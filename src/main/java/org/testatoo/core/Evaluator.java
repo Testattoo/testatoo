@@ -33,6 +33,13 @@ public interface Evaluator<T> {
     String name();
 
     /**
+     * To open the page.
+     *
+     * @param url the url corresponding to the page we want to open
+     */
+    void open(String url);
+
+    /**
      * To know if a given component is visible
      *
      * @param component the component we want to know if visible

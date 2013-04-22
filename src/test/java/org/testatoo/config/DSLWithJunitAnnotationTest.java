@@ -19,20 +19,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.testatoo.config.annotation.TestatooModules;
 import org.testatoo.config.junit.TestatooJunitRunner;
+import org.testatoo.core.Testatoo;
 
 @RunWith(TestatooJunitRunner.class)
 @TestatooModules(MyModule.class)
-public final class DSLWithJunitAnnotationTest {
+public final class DSLWithJunitAnnotationTest extends Testatoo {
 
     @Test
     public void test_1() throws Exception {
-//        page().open("/index.xhtml");
+        open("/index.html");
 //        assertThat(component(TextField.class, "lang").value(), is("fr"));
     }
 
     @Test
     public void test_2() {
-//        page().open("/index.xhtml");
+        open("/index.html");
 //        assertThat(component(TextField.class, "lang").value(), is("fr"));
     }
 

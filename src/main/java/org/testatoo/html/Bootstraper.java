@@ -17,7 +17,6 @@
 package org.testatoo.html;
 
 import com.thoughtworks.selenium.Selenium;
-import org.testatoo.cartridge.html4.evaluator.selenium.SeleniumHtmlEvaluator;
 import org.testatoo.core.CartridgeBootstraper;
 import org.testatoo.core.Evaluator;
 import org.testatoo.html.evaluator.SeleniumEvaluator;

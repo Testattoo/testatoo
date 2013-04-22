@@ -29,6 +29,10 @@ public class Testatoo {
         }
     }
 
+    public void open(String url) {
+        EvaluatorHolder.get().open(url);
+    }
+
     // State
     public Available available() {
         return new Available();
