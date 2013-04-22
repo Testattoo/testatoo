@@ -8,7 +8,7 @@ import org.testatoo.core.nature.*;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class SeleniumEvaluator implements Evaluator {
+public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     private final Selenium selenium;
     private final String name;
@@ -32,13 +32,13 @@ public class SeleniumEvaluator implements Evaluator {
 
 
     @Override
-    public Object implementation() {
-        return null;
+    public Selenium implementation() {
+        return selenium;
     }
 
     @Override
     public String name() {
-        return null;
+        return name;
     }
 
     @Override
