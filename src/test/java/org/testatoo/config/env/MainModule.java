@@ -19,9 +19,6 @@ import org.testatoo.config.AbstractTestatooModule;
 
 public final class MainModule extends AbstractTestatooModule {
 
-    private MainModule() {
-    }
-
     @Override
     protected void configure() {
         if (System.getProperty("hudson") != null)

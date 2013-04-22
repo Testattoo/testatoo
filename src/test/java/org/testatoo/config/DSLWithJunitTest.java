@@ -21,8 +21,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testatoo.config.cartridge.TestatooCartridge;
 import org.testatoo.config.testatoo.Testatoo;
+import org.testatoo.core.component.TextField;
 
-public final class DSLWithJunitTest {
+public final class DSLWithJunitTest extends org.testatoo.core.Testatoo {
 
     private static Testatoo testatoo;
 
@@ -67,8 +68,8 @@ public final class DSLWithJunitTest {
 
     @Test
     public void test() {
-//        page().open("/index.xhtml");
-//        assertThat(component(TextField.class, "lang").value(), is("fr"));
+        open("/index.html");
+        assertThat(new TextField("text_field").is(visible()));
     }
 
 }

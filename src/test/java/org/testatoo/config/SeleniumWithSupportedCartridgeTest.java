@@ -20,8 +20,9 @@ import com.thoughtworks.selenium.Selenium;
 import org.junit.Test;
 import org.testatoo.config.cartridge.TestatooCartridge;
 import org.testatoo.config.testatoo.Testatoo;
+import org.testatoo.core.component.TextField;
 
-public final class SeleniumWithSupportedCartridgeTest {
+public final class SeleniumWithSupportedCartridgeTest extends org.testatoo.core.Testatoo {
 
     @Test
     public void test() throws Throwable {
@@ -48,8 +49,8 @@ public final class SeleniumWithSupportedCartridgeTest {
         });
 
         testatoo.start();
-//        page().open("/index.xhtml");
-//        assertThat(component(TextField.class, "lang").value(), is("fr"));
+        open("/index.html");
+        assertThat(new TextField("text_field").is(visible()));
         testatoo.stop();
     }
 

@@ -20,14 +20,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.testatoo.config.cartridge.TestatooCartridge;
 
-// Package access is just to be sure testatoo can instanciate even
-// Protected classes
 final class MyModule extends AbstractTestatooModule {
-
-    // Private access is just to be sure testatoo can instanciate even
-    // Protected classes
-    private MyModule() {
-    }
 
     @Override
     protected void configure() {

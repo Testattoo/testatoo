@@ -20,6 +20,7 @@ import org.junit.runner.RunWith;
 import org.testatoo.config.annotation.TestatooModules;
 import org.testatoo.config.junit.TestatooJunitRunner;
 import org.testatoo.core.Testatoo;
+import org.testatoo.core.component.TextField;
 
 @RunWith(TestatooJunitRunner.class)
 @TestatooModules(MyModule.class)
@@ -28,13 +29,13 @@ public final class DSLWithJunitAnnotationTest extends Testatoo {
     @Test
     public void test_1() throws Exception {
         open("/index.html");
-//        assertThat(component(TextField.class, "lang").value(), is("fr"));
+        assertThat(new TextField("text_field").is(visible()));
     }
 
     @Test
     public void test_2() {
         open("/index.html");
-//        assertThat(component(TextField.class, "lang").value(), is("fr"));
+        assertThat(new TextField("text_field").is(visible()));
     }
 
     @Test

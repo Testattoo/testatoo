@@ -21,9 +21,6 @@ import org.testatoo.config.cartridge.TestatooCartridge;
 
 final class HudsonModule extends AbstractTestatooModule {
 
-    HudsonModule() {
-    }
-
     @Override
     protected void configure() {
         seleniumSessions()

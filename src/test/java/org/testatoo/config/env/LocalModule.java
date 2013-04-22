@@ -21,9 +21,6 @@ import org.testatoo.config.cartridge.TestatooCartridge;
 
 final class LocalModule extends AbstractTestatooModule {
 
-    LocalModule() {
-    }
-
     @Override
     protected void configure() {
 

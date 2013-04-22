@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.testatoo.html;
+package org.testatoo.html.evaluator.selenium;
 
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.CartridgeBootstraper;
 import org.testatoo.core.Evaluator;
-import org.testatoo.html.evaluator.SeleniumEvaluator;
+import org.testatoo.html.evaluator.selenium.SeleniumEvaluator;
 
 import java.util.Map;
 

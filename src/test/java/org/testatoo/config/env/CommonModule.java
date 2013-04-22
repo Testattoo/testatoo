@@ -23,9 +23,6 @@ import org.testatoo.config.Scope;
 
 final class CommonModule extends AbstractTestatooModule {
 
-    CommonModule() {
-    }
-
     @Override
     protected void configure() {
         containers().registerProvider(createContainer()

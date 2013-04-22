@@ -1,11 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>HTML5 Rocks</title>
+
     <meta name="description" content="HTML5 Rocks">
     <meta name="author" content="ovea">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">Testatoo</a>
+    </div>
+</div>
+<div class="row">
+    <div class="span2"></div>
+    <div class="span8">
+
+        <form>
+            <fieldset>
+                <label>Label text</label>
+                <input id="text_field" type="text" placeholder="Type something…"/>
+            </fieldset>
+
+            <fieldset>
+                <label>Label password</label>
+                <input id="password_field" type="password" placeholder="Type your password"/>
+            </fieldset>
+
+            <fieldset>
+                <label class="checkbox">
+                    <input type="checkbox"/>Check me out
+                </label>
+            </fieldset>
+
+            <button type="submit" class="btn">Submit</button>
+
+        </form>
+
+    </div>
+    <div class="span2"></div>
+</div>
 </body>
 </html>

@@ -20,21 +20,23 @@ import org.junit.runner.RunWith;
 import org.testatoo.config.annotation.TestatooModules;
 import org.testatoo.config.env.MainModule;
 import org.testatoo.config.junit.TestatooJunitRunner;
+import org.testatoo.core.Testatoo;
+import org.testatoo.core.component.TextField;
 
 @RunWith(TestatooJunitRunner.class)
 @TestatooModules(MainModule.class)
-public final class MultipleEnvTest {
+public final class MultipleEnvTest extends Testatoo {
 
     @Test
     public void test_1() {
-//        page().open("/index.xhtml");
-//        assertThat(component(TextField.class, "lang").value(), is("fr"));
+        open("/index.html");
+        assertThat(new TextField("text_field").is(visible()));
     }
 
     @Test
     public void test_2() {
-//        page().open("/index.xhtml");
-//        assertThat(component(TextField.class, "lang").value(), is("fr"));
+        open("/index.html");
+        assertThat(new TextField("text_field").is(visible()));
     }
 
     @Test
