@@ -17,6 +17,7 @@ package org.testatoo.core.property;
 
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
+import org.testatoo.core.nature.TitleSupport;
 import org.testatoo.core.nature.ValueSupport;
 
 /**
@@ -24,21 +25,12 @@ import org.testatoo.core.nature.ValueSupport;
  */
 public class Value extends Property {
 
-    private String expected_value;
-
-    public Value(String value) {
-        this.expected_value = value;
-    }
-
     @Override
-    public boolean is(Component component) {
+    public PropertyWrapper is(Component component) {
         if (component instanceof ValueSupport) {
-            String value = EvaluatorHolder.get().value((ValueSupport) component);
-            if (value.equals(expected_value))
-                return true;
-            else
-                throw new AssertionError("Expected value " + expected_value + " but was " + value);
+            return new PropertyWrapper("value", EvaluatorHolder.get().value((ValueSupport) component));
         }
         throw new AssertionError("The component does not support Value");
     }
+
 }

@@ -24,20 +24,10 @@ import org.testatoo.core.nature.LabelSupport;
  */
 public class Label extends Property {
 
-    private String expected_label;
-
-    public Label(String label) {
-        this.expected_label = label;
-    }
-
     @Override
-    public boolean is(Component component) {
+    public PropertyWrapper is(Component component) {
         if (component instanceof LabelSupport) {
-            String label = EvaluatorHolder.get().label((LabelSupport) component);
-            if (label.equals(expected_label))
-                return true;
-            else
-                throw new AssertionError("Expected label " + expected_label + " but was " + label);
+            return new PropertyWrapper("label", EvaluatorHolder.get().label((LabelSupport) component));
         }
         throw new AssertionError("The component does not support Label");
     }

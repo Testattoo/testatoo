@@ -13,17 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.html;
+package org.testatoo.html.conf;
 
-import org.junit.runner.RunWith;
-import org.testatoo.config.annotation.TestatooModules;
-import org.testatoo.config.junit.TestatooJunitRunner;
-import org.testatoo.core.Testatoo;
+import com.ovea.tajin.server.Server;
+import org.testatoo.config.AbstractTestatooModule;
+import org.testatoo.config.Scope;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(TestatooJunitRunner.class)
-@TestatooModules(Module.class)
-public class WebTest extends Testatoo {
+public class ContainerModule extends AbstractTestatooModule {
+    @Override
+    protected void configure() {
+
+        containers().registerProvider(createContainer()
+                .implementedBy(Server.JETTY9)
+                .webappRoot("src/test/webapp")
+                .port(Integer.parseInt(System.getProperty("port")))
+                .build())
+                .scope(Scope.TEST_SUITE);
+    }
 }

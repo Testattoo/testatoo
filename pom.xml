@@ -144,7 +144,7 @@
         <dependency>
             <groupId>com.ovea.tajin.server</groupId>
             <artifactId>tajin-server-core</artifactId>
-            <version>1.0.b1</version>
+            <version>1.0.b10</version>
             <optional>true</optional>
         </dependency>
 
@@ -166,6 +166,12 @@
             <artifactId>httpunit</artifactId>
             <version>1.7</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>rhino</groupId>
@@ -176,7 +182,7 @@
         <dependency>
             <groupId>com.ovea.tajin.server</groupId>
             <artifactId>tajin-server-jetty9</artifactId>
-            <version>1.0.b1</version>
+            <version>1.0.b11</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>HTML5 Rocks</title>
-
-    <meta name="description" content="HTML5 Rocks">
-    <meta name="author" content="ovea">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-</head>
-<body>
+<!--#include virtual="/includes/header.html" -->
 <div class="navbar">
     <div class="navbar-inner">
         <a class="brand" href="#">Testatoo</a>
@@ -21,29 +8,26 @@
     <div class="span2"></div>
     <div class="span8">
 
-        <form>
-            <fieldset>
-                <label>Label text</label>
-                <input id="text_field" type="text" placeholder="Type something…"/>
-            </fieldset>
+        <input type="button" id="button" class="btn btn-large btn-primary" value="Button"/>
+        <input type="submit" id="submit" class="btn btn-large btn-primary" disabled="disabled" value="Submit"/>
+        <input type="reset" id="reset" class="btn btn-large btn-primary" value="Reset"/>
 
-            <fieldset>
-                <label>Label password</label>
-                <input id="password_field" type="password" placeholder="Type your password"/>
-            </fieldset>
+        <button type="submit" id="btn" class="btn btn-large btn-primary" value="value">My Button Text</button>
 
-            <fieldset>
-                <label class="checkbox">
-                    <input type="checkbox"/>Check me out
-                </label>
-            </fieldset>
+        <hr/>
 
-            <button type="submit" class="btn">Submit</button>
+        <label class="checkbox">
+            <input type="checkbox" id="checkbox">Check me out
+        </label>
 
-        </form>
+        <hr/>
+
+        <a href="/index.html" id="link">Link to index</a>
+
+        <hr/>
 
     </div>
     <div class="span2"></div>
 </div>
-</body>
-</html>
+<!--#include virtual="/includes/footer.html" -->
+

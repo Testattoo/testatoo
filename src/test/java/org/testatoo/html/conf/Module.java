@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.html;
+package org.testatoo.html.conf;
 
 import org.testatoo.config.AbstractTestatooModule;
 import org.testatoo.config.lifecycle.TestListenerAdapter;

@@ -32,7 +32,6 @@ public final class ContainerTest {
 
     @Test
     public void test() throws Throwable {
-
         Testatoo testatoo = Testatoo.configure(new AbstractTestatooModule() {
             @Override
             protected void configure() {
@@ -63,8 +62,8 @@ public final class ContainerTest {
         assertFalse("Verify that port 7896 is used", isPortFree(7896));
         assertFalse("Verify that port 7897 is used", isPortFree(7897));
 
-        verify("http://127.0.0.1:7896/mycontext/index.html");
-        verify("http://127.0.0.1:7897/mycontext/index.html");
+        verify("http://127.0.0.1:7896/mycontext/container.html");
+        verify("http://127.0.0.1:7897/mycontext/container.html");
 
         testatoo.stop();
 

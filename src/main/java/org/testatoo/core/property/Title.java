@@ -17,6 +17,7 @@ package org.testatoo.core.property;
 
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
+import org.testatoo.core.nature.ReferenceSupport;
 import org.testatoo.core.nature.TitleSupport;
 
 /**
@@ -24,21 +25,12 @@ import org.testatoo.core.nature.TitleSupport;
  */
 public class Title extends Property {
 
-    private String expected_title;
-
-    public Title(String title) {
-        this.expected_title = title;
-    }
-
     @Override
-    public boolean is(Component component) {
+    public PropertyWrapper is(Component component) {
         if (component instanceof TitleSupport) {
-            String title = EvaluatorHolder.get().title((TitleSupport) component);
-            if (title.equals(expected_title))
-                return true;
-            else
-                throw new AssertionError("Expected title " + expected_title + " but was " + title);
+            return new PropertyWrapper("title", EvaluatorHolder.get().title((TitleSupport) component));
         }
         throw new AssertionError("The component does not support Title");
     }
+
 }

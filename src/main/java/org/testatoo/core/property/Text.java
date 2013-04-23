@@ -17,6 +17,7 @@ package org.testatoo.core.property;
 
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
+import org.testatoo.core.nature.LabelSupport;
 import org.testatoo.core.nature.TextSupport;
 
 /**
@@ -24,20 +25,10 @@ import org.testatoo.core.nature.TextSupport;
  */
 public class Text extends Property {
 
-    private String expected_text;
-
-    public Text(String text) {
-        this.expected_text = text;
-    }
-
     @Override
-    public boolean is(Component component) {
+    public PropertyWrapper is(Component component) {
         if (component instanceof TextSupport) {
-            String text = EvaluatorHolder.get().text((TextSupport) component);
-            if (text.equals(expected_text))
-                return true;
-            else
-                throw new AssertionError("Expected text " + expected_text + " but was " + text);
+            return new PropertyWrapper("text", EvaluatorHolder.get().text((TextSupport) component));
         }
         throw new AssertionError("The component does not support Text");
     }

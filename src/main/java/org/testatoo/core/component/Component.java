@@ -17,6 +17,7 @@ package org.testatoo.core.component;
 
 
 import org.testatoo.core.property.Property;
+import org.testatoo.core.property.PropertyWrapper;
 import org.testatoo.core.state.State;
 
 /**
@@ -46,7 +47,7 @@ public class Component {
         return state.is(this);
     }
 
-    public boolean has(Property property) {
+    public PropertyWrapper has(Property property) {
         return property.is(this);
     }
 

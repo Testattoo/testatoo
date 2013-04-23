@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.html;
+package org.testatoo.html.conf;
 
 import org.testatoo.config.AbstractTestatooModule;
 import org.testatoo.config.Scope;
+import org.testatoo.config.cartridge.TestatooCartridge;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -33,19 +34,20 @@ public class LocalModule extends AbstractTestatooModule {
             seleniumPort = findFreePort();
         }
 
-//        seleniumServers().register(createSeleniumServer()
-//                .port(seleniumPort)
-//                .useSingleWindow(true)
-//                .build())
-//                .scope(Scope.TEST_SUITE);
-//
-//        seleniumSessions().register(createSeleniumSession()
-//                .website("http://" + System.getProperty("host") + ":" + System.getProperty("port"))
-////                .browser("*firefox")
-//                .browser("*googlechrome")
-//                .serverHost("localhost")
-//                .serverPort(seleniumPort).build())
-//                .scope(Scope.TEST_SUITE)
-//                .withTimeout(20000);
+        seleniumServers().registerProvider(createSeleniumServer()
+                .port(seleniumPort)
+                .build())
+                .scope(Scope.TEST_SUITE);
+
+        seleniumSessions()
+                .registerProvider(createSeleniumSession()
+                        .website("http://" + System.getProperty("host") + ":" + System.getProperty("port"))
+                        .browser("*googlechrome")
+                        .serverHost("localhost")
+                        .serverPort(seleniumPort)
+                        .build())
+                .scope(Scope.TEST_CLASS)
+                .withTimeout(20000)
+                .inCartridge(TestatooCartridge.HTML4);
     }
 }

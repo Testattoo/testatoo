@@ -50,17 +50,17 @@ public class PropertyTest extends Testatoo {
         Radio radio = new Radio(id);
         when(evaluator.label(radio)).thenReturn("MyLabel");
 
-        assertThat(radio.has(label("MyLabel")));
+        assertThat(radio.has(label()).equalsTo("MyLabel"));
 
         try {
-            assertThat(radio.has(label("OtherLabel")));
+            assertThat(radio.has(label()).equalsTo("OtherLabel"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected label OtherLabel but was MyLabel");
+            assertEquals(e.getMessage(), "Expected label: \"OtherLabel\" but was: \"MyLabel\"");
         }
 
         Component component = new Component(id);
         try {
-            component.has(label("MyLabel"));
+            component.has(label()).equalsTo("MyLabel");
         } catch (AssertionError e) {
             assertEquals(e.getMessage(), "The component does not support Label");
         }
@@ -71,17 +71,17 @@ public class PropertyTest extends Testatoo {
         TextField textField = new TextField(id);
         when(evaluator.value(textField)).thenReturn("MyValue");
 
-        assertThat(textField.has(value("MyValue")));
+        assertThat(textField.has(value()).equalsTo("MyValue"));
 
         try {
-            assertThat(textField.has(value("OtherValue")));
+            assertThat(textField.has(value()).equalsTo("OtherValue"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected value OtherValue but was MyValue");
+            assertEquals(e.getMessage(), "Expected value: \"OtherValue\" but was: \"MyValue\"");
         }
 
         Component component = new Component(id);
         try {
-            component.has(value("MyValue"));
+            component.has(value()).equalsTo("MyValue");
         } catch (AssertionError e) {
             assertEquals(e.getMessage(), "The component does not support Value");
         }
@@ -92,17 +92,17 @@ public class PropertyTest extends Testatoo {
         Button button = new Button(id);
         when(evaluator.text(button)).thenReturn("MyText");
 
-        assertThat(button.has(text("MyText")));
+        assertThat(button.has(text()).equalsTo("MyText"));
 
         try {
-            assertThat(button.has(text("OtherText")));
+            assertThat(button.has(text()).equalsTo("OtherText"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected text OtherText but was MyText");
+            assertEquals(e.getMessage(), "Expected text: \"OtherText\" but was: \"MyText\"");
         }
 
         Component component = new Component(id);
         try {
-            component.has(text("MyText"));
+            component.has(text()).equalsTo("MyText");
         } catch (AssertionError e) {
             assertEquals(e.getMessage(), "The component does not support Text");
         }
@@ -113,17 +113,17 @@ public class PropertyTest extends Testatoo {
         Panel panel = new Panel(id);
         when(evaluator.title(panel)).thenReturn("MyTitle");
 
-        assertThat(panel.has(title("MyTitle")));
+        assertThat(panel.has(title()).equalsTo("MyTitle"));
 
         try {
-            assertThat(panel.has(title("OtherTitle")));
+            assertThat(panel.has(title()).equalsTo("OtherTitle"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected title OtherTitle but was MyTitle");
+            assertEquals(e.getMessage(), "Expected title: \"OtherTitle\" but was: \"MyTitle\"");
         }
 
         Component component = new Component(id);
         try {
-            component.has(title("MyTitle"));
+            component.has(title()).equalsTo("MyTitle");
         } catch (AssertionError e) {
             assertEquals(e.getMessage(), "The component does not support Title");
         }
@@ -134,17 +134,17 @@ public class PropertyTest extends Testatoo {
         Link link = new Link(id);
         when(evaluator.reference(link)).thenReturn("http://www.testatoo.org");
 
-        assertThat(link.has(reference("http://www.testatoo.org")));
+        assertThat(link.has(reference()).equalsTo("http://www.testatoo.org"));
 
         try {
-            assertThat(link.has(reference("http://www.testatoo.net")));
+            assertThat(link.has(reference()).equalsTo("http://www.testatoo.net"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected reference http://www.testatoo.net but was http://www.testatoo.org");
+            assertEquals(e.getMessage(), "Expected reference: \"http://www.testatoo.net\" but was: \"http://www.testatoo.org\"");
         }
 
         Component component = new Component(id);
         try {
-            component.has(reference("http://www.testatoo.org"));
+            component.has(reference()).equalsTo("http://www.testatoo.org");
         } catch (AssertionError e) {
             assertEquals(e.getMessage(), "The component does not support Reference");
         }

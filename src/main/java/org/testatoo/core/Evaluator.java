@@ -66,11 +66,11 @@ public interface Evaluator<T> {
     /**
      * To know if a checkable element is checked
      *
-     * @param component an element that can be check (ex : radioButton, checkBox)
+     * @param checkable an element that can be check (ex : radioButton, checkBox)
      *
      * @return True if the element is checked
      */
-    Boolean isChecked(Checkable component);
+    Boolean isChecked(Checkable checkable);
 
     /**
      * To get the label of an element with label

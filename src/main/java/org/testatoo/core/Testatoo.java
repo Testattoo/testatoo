@@ -24,9 +24,6 @@ import org.testatoo.core.state.*;
 public class Testatoo {
 
     public void assertThat(boolean expected) {
-        if (!expected) {
-            throw new AssertionError("Expected true but was false");
-        }
     }
 
     public void open(String url) {
@@ -75,24 +72,24 @@ public class Testatoo {
     }
 
     // Property
-    public Label label(String label) {
-        return new Label(label);
+    public Label label() {
+        return new Label();
     }
 
-    public Value value(String value) {
-        return new Value(value);
+    public Value value() {
+        return new Value();
     }
 
-    public Text text(String text) {
-        return new Text(text);
+    public Text text() {
+        return new Text();
     }
 
-    public Title title(String title) {
-        return new Title(title);
+    public Title title() {
+        return new Title();
     }
 
-    public Reference reference(String reference) {
-        return new Reference(reference);
+    public Reference reference() {
+        return new Reference();
     }
 
 }

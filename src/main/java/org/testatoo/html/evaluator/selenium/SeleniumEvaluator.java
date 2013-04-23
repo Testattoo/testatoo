@@ -56,7 +56,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public Boolean isEnabled(Component component) {
-        return null;
+        return Boolean.valueOf(evaljQuery("$('#" + component.id() + "').is(':enabled');"));
     }
 
     @Override
@@ -65,13 +65,23 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public Boolean isChecked(Checkable component) {
-        return null;
+    public Boolean isChecked(Checkable checkable) {
+        Component component = (Component) checkable;
+        return Boolean.valueOf(evaljQuery("$('#" + component.id() + "').prop('checked');"));
     }
 
     @Override
     public String label(LabelSupport labelSupport) {
-        return null;
+        Component component = (Component) labelSupport;
+        if (Integer.valueOf(evaljQuery("$('label[for=\"" + component.id() + "\"]').length")) > 0) {
+            return evaljQuery("$('label[for=\"" + component.id() + "\"]').text()");
+        }
+
+        if (Integer.valueOf(evaljQuery("$('#" + component.id() + "').prev('label').length")) > 0) {
+            return evaljQuery("$('#" + component.id() + "').prev('label').text()");
+        }
+        // TODO clean string
+        return evaljQuery("$('#" + component.id() + "').parent().text()");
     }
 
     @Override
@@ -81,7 +91,12 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public String text(TextSupport textSupport) {
-        return null;
+        Component component = (Component) textSupport;
+        String nodeName = nodename(component);
+        if (nodeName.equalsIgnoreCase("input")) {
+            return evaljQuery("$('#" + component.id() + "').prop('value');");
+        }
+        return evaljQuery("$('#" + component.id() + "').text();");
     }
 
     @Override
@@ -91,7 +106,12 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public String reference(ReferenceSupport referenceSupport) {
-        return null;
+        Component component = (Component) referenceSupport;
+        return evaljQuery("$('#" + component.id() + "').prop('href');");
+    }
+
+    private String nodename(Component component) {
+        return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
     }
 
     private String evaljQuery(String expression) {

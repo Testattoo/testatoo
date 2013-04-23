@@ -22,6 +22,6 @@ import org.testatoo.core.component.Component;
  */
 public abstract class Property {
 
-    abstract public boolean is(Component component);
+    abstract public PropertyWrapper is(Component component);
 
 }
