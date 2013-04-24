@@ -13,42 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component;
+package org.testatoo.core.property;
 
-
-import org.testatoo.core.property.Property;
-import org.testatoo.core.property.PropertySupport;
-import org.testatoo.core.state.State;
+import org.testatoo.core.component.Component;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Component {
+public abstract class PropertySupport {
 
-    /**
-     * The unique identifier of the component
-     */
-    private String id;
-
-    public Component(String id) {
-        this.id = id;
-    }
-
-    /**
-     * To get the id of the component
-     *
-     * @return the id of the component
-     */
-    public String id() {
-        return id;
-    }
-
-    public boolean is(State state) {
-        return state.is(this);
-    }
-
-    public Property has(PropertySupport support) {
-        return support.is(this);
-    }
+    abstract public Property is(Component component);
 
 }

@@ -17,18 +17,17 @@ package org.testatoo.core.property;
 
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
-import org.testatoo.core.nature.ReferenceSupport;
 import org.testatoo.core.nature.TitleSupport;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Title extends Property {
+public class Title extends PropertySupport {
 
     @Override
-    public PropertyWrapper is(Component component) {
+    public Property is(Component component) {
         if (component instanceof TitleSupport) {
-            return new PropertyWrapper("title", EvaluatorHolder.get().title((TitleSupport) component));
+            return new Property("title", EvaluatorHolder.get().title((TitleSupport) component));
         }
         throw new AssertionError("The component does not support Title");
     }

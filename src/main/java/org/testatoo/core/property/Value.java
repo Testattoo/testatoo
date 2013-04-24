@@ -17,18 +17,17 @@ package org.testatoo.core.property;
 
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
-import org.testatoo.core.nature.TitleSupport;
 import org.testatoo.core.nature.ValueSupport;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Value extends Property {
+public class Value extends PropertySupport {
 
     @Override
-    public PropertyWrapper is(Component component) {
+    public Property is(Component component) {
         if (component instanceof ValueSupport) {
-            return new PropertyWrapper("value", EvaluatorHolder.get().value((ValueSupport) component));
+            return new Property("value", EvaluatorHolder.get().value((ValueSupport) component));
         }
         throw new AssertionError("The component does not support Value");
     }

@@ -61,7 +61,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public Boolean isFocused(Component component) {
-        return null;
+        return Boolean.valueOf(evaljQuery("$('#" + component.id() + "').is(':focus');"));
     }
 
     @Override
@@ -86,7 +86,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public String value(ValueSupport valueSupport) {
-        return null;
+        Component component = (Component) valueSupport;
+        return evaljQuery("$('#" + component.id() + "').prop('value');");
     }
 
     @Override
@@ -101,7 +102,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public String title(TitleSupport titleSupport) {
-        return null;
+        Component component = (Component) titleSupport;
+        return evaljQuery("$('#" + component.id() + "').prop('title');");
     }
 
     @Override

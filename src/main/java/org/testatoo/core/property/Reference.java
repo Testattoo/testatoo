@@ -18,17 +18,16 @@ package org.testatoo.core.property;
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
 import org.testatoo.core.nature.ReferenceSupport;
-import org.testatoo.core.nature.TextSupport;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Reference extends Property {
+public class Reference extends PropertySupport {
 
     @Override
-    public PropertyWrapper is(Component component) {
+    public Property is(Component component) {
         if (component instanceof ReferenceSupport) {
-            return new PropertyWrapper("reference", EvaluatorHolder.get().reference((ReferenceSupport) component));
+            return new Property("reference", EvaluatorHolder.get().reference((ReferenceSupport) component));
         }
         throw new AssertionError("The component does not support Reference");
     }

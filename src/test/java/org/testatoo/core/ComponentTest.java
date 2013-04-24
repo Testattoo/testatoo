@@ -62,11 +62,5 @@ public class ComponentTest {
 
         // ReferenceSupport
         assertTrue(ReferenceSupport.class.isInstance(link));
-
-
-
-
     }
-
-
 }

@@ -73,7 +73,7 @@ public class ComponentTest extends Testatoo {
         assertThat(checkBox.is(visible()));
         assertThat(checkBox.is(not(checked())));
 
-        assertThat(checkBox.has(label()).equalsTo("Check me out"));
+        assertThat(checkBox.has(label()).contains("Check me out"));
     }
 
     @Test
@@ -81,26 +81,62 @@ public class ComponentTest extends Testatoo {
         open("/index.html");
 
         Link link = new Link("link");
+        //TODO Why is not enabled !!!!
 //        assertThat(link.is(enabled()));
         assertThat(link.is(visible()));
 
-//        assertThat(link.has(text("Link to index")));
-//        assertThat(link.has(reference("/index.html")));
-
-
+        assertThat(link.has(text()).equalsTo("Link to index"));
+        assertThat(link.has(reference()).contains("/index.html"));
     }
 
+    @Test
+    public void test_panel() {
+        open("/index.html");
 
+        Panel panel = new Panel("panel");
+        assertThat(panel.is(enabled()));
+        assertThat(panel.is(visible()));
 
+        assertThat(panel.has(title()).equalsTo(""));
+    }
 
+    @Test
+    public void test_passwordField() {
+        open("/index.html");
 
+        PasswordField passwordField = new PasswordField("password_field");
 
-//        Link link = new Link(id);
-//        Panel panel = new Panel(id);
-//        PasswordField passwordField = new PasswordField(id);
-//        Radio radio = new Radio(id);
-//        TextField textField = new TextField(id);
+        assertThat(passwordField.is(enabled()));
+        assertThat(passwordField.is(visible()));
 
+        assertThat(passwordField.has(label()).equalsTo("Password"));
+        assertThat(passwordField.has(value()).equalsTo("?art"));
+    }
 
+    @Test
+    public void test_radio() {
+        open("/index.html");
+
+        Radio radio = new Radio("radio");
+        assertThat(radio.is(enabled()));
+        assertThat(radio.is(visible()));
+        assertThat(radio.is(checked()));
+
+        assertThat(radio.has(label()).contains("Radio label"));
+    }
+
+    @Test
+    public void test_textField() {
+        open("/index.html");
+
+        TextField textField = new TextField("text_field");
+
+        assertThat(textField.is(disabled()));
+        assertThat(textField.is(visible()));
+
+        assertThat(textField.has(label()).equalsTo("Email"));
+        assertThat(textField.has(value()).equalsTo(""));
+
+    }
 
 }
