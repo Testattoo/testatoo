@@ -34,6 +34,7 @@ public class ComponentTest {
         Button button = new Button(id);
         CheckBox checkBox = new CheckBox(id);
         Link link = new Link(id);
+        Page page = new Page(id);
         Panel panel = new Panel(id);
         PasswordField passwordField = new PasswordField(id);
         Radio radio = new Radio(id);
@@ -59,6 +60,7 @@ public class ComponentTest {
 
         // TitleSupport
         assertTrue(TitleSupport.class.isInstance(panel));
+        assertTrue(TitleSupport.class.isInstance(page));
 
         // ValueSupport
         assertTrue(ValueSupport.class.isInstance(textField));
@@ -66,9 +68,5 @@ public class ComponentTest {
 
         // ReferenceSupport
         assertTrue(ReferenceSupport.class.isInstance(link));
-
-
-
-
     }
 }

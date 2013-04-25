@@ -67,7 +67,6 @@ public interface Evaluator<T> {
      * To know if a checkable element is checked
      *
      * @param checkable an element that can be check (ex : radioButton, checkBox)
-     *
      * @return True if the element is checked
      */
     Boolean isChecked(Checkable checkable);
@@ -125,9 +124,17 @@ public interface Evaluator<T> {
      *
      * @param component a Component
      * @param attribute the attribute name
-     *
      * @return the attribute value
      */
     String attribute(Component component, String attribute);
+
+    /**
+     * To know if a given container contains a given component
+     *
+     * @param container an element with container properties (ex : window, panel,..)
+     * @param component the component we want to know if contained in the container
+     * @return True if the component is contained in the container
+     */
+    Boolean contains(Component container, Component... component);
 
 }

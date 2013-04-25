@@ -15,6 +15,7 @@
  */
 package org.testatoo.core;
 
+import org.testatoo.core.component.Page;
 import org.testatoo.core.property.*;
 import org.testatoo.core.state.*;
 
@@ -28,6 +29,10 @@ public class Testatoo {
 
     public void open(String url) {
         EvaluatorHolder.get().open(url);
+    }
+
+    public Page page() {
+        return new Page("");
     }
 
     // State

@@ -136,7 +136,19 @@ public class ComponentTest extends Testatoo {
 
         assertThat(textField.has(label()).equalsTo("Email"));
         assertThat(textField.has(value()).equalsTo(""));
+    }
 
+    @Test
+    public void test_page() {
+        open("/index.html");
+
+        assertThat(page().has(title()).equalsTo("Testatoo Rocks"));
+
+        assertThat(page().contains(
+                new Button("button"),
+                new TextField("text_field"),
+                new Radio("radio")
+        ));
     }
 
 }

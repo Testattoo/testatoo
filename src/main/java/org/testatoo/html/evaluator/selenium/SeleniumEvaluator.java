@@ -18,6 +18,7 @@ package org.testatoo.html.evaluator.selenium;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.component.Component;
+import org.testatoo.core.component.Page;
 import org.testatoo.core.nature.*;
 
 import java.io.BufferedReader;
@@ -47,7 +48,6 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     public SeleniumEvaluator(Selenium selenium) {
         this(DEFAULT_NAME, selenium);
     }
-
 
     @Override
     public Selenium implementation() {
@@ -117,6 +117,9 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public String title(TitleSupport titleSupport) {
+        if (titleSupport instanceof Page) {
+            return evaljQuery("$(document).find('title').text();");
+        }
         return attribute((Component) titleSupport, "title");
     }
 
@@ -139,6 +142,17 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
             return "";
 
         return attributeValue;
+    }
+
+    @Override
+    public Boolean contains(Component container, Component... component) {
+        boolean containsAllElements = true;
+        for (Component cmp : component) {
+            if (!selenium.isElementPresent("//*[@id='" + container.id() + "']//*[@id='" + cmp.id() + "']")) {
+                containsAllElements = false;
+            }
+        }
+        return containsAllElements;
     }
 
     private String nodename(Component component) {

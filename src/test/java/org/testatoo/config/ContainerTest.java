@@ -74,8 +74,8 @@ public final class ContainerTest {
     private void verify(String url) throws Exception {
         WebConversation wc = new WebConversation();
         WebResponse resp = wc.getResponse(url);
-        assertEquals(resp.getTitle(), "HTML5 Rocks");
-        assertTrue(resp.getText().contains("HTML5 Rocks"));
+        assertEquals(resp.getTitle(), "Testatoo Rocks");
+        assertTrue(resp.getText().contains("Testatoo Rocks"));
     }
 
     private boolean isPortFree(int port) {
