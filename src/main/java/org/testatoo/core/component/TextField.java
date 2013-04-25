@@ -19,6 +19,8 @@ import org.testatoo.core.nature.LabelSupport;
 import org.testatoo.core.nature.ValueSupport;
 
 /**
+ * This class allows the testing of TextField.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class TextField extends Component implements LabelSupport, ValueSupport {

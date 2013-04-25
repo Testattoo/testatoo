@@ -27,10 +27,10 @@ import static org.junit.Assert.assertTrue;
  */
 public class ComponentTest {
 
-    private String id = "myId";
-
     @Test
     public void component_implement_expected_nature() {
+        String id = "myId";
+
         Button button = new Button(id);
         CheckBox checkBox = new CheckBox(id);
         Link link = new Link(id);
@@ -38,6 +38,8 @@ public class ComponentTest {
         PasswordField passwordField = new PasswordField(id);
         Radio radio = new Radio(id);
         TextField textField = new TextField(id);
+        DropDown dropDown = new DropDown(id);
+        ComboBox comboBox = new ComboBox(id);
 
         // Checkable
         assertTrue(Checkable.class.isInstance(checkBox));
@@ -48,6 +50,8 @@ public class ComponentTest {
         assertTrue(LabelSupport.class.isInstance(radio));
         assertTrue(LabelSupport.class.isInstance(textField));
         assertTrue(LabelSupport.class.isInstance(passwordField));
+        assertTrue(LabelSupport.class.isInstance(dropDown));
+        assertTrue(LabelSupport.class.isInstance(comboBox));
 
         // TextSupport
         assertTrue(TextSupport.class.isInstance(button));
@@ -62,5 +66,9 @@ public class ComponentTest {
 
         // ReferenceSupport
         assertTrue(ReferenceSupport.class.isInstance(link));
+
+
+
+
     }
 }

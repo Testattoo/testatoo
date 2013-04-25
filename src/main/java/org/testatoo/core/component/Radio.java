@@ -19,6 +19,8 @@ import org.testatoo.core.nature.Checkable;
 import org.testatoo.core.nature.LabelSupport;
 
 /**
+ * This class allows the testing of Radio button.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class Radio extends Component implements Checkable, LabelSupport {

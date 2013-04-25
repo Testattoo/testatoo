@@ -19,6 +19,8 @@ import org.testatoo.core.nature.ReferenceSupport;
 import org.testatoo.core.nature.TextSupport;
 
 /**
+ * This class allows the testing of link.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class Link extends Component implements TextSupport, ReferenceSupport {

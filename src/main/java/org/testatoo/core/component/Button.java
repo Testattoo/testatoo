@@ -18,6 +18,8 @@ package org.testatoo.core.component;
 import org.testatoo.core.nature.TextSupport;
 
 /**
+ * This class allows the testing of button.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class Button extends Component implements TextSupport {

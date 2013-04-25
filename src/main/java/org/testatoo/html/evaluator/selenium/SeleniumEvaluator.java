@@ -112,6 +112,11 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         return evaljQuery("$('#" + component.id() + "').prop('href');");
     }
 
+    @Override
+    public String selectedValue(Selectable selectable) {
+        return null;
+    }
+
     private String nodename(Component component) {
         return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
     }

@@ -165,4 +165,14 @@ public class PropertyTest extends Testatoo {
 
     }
 
+    @Test
+    public void test_selected_value() {
+        DropDown dropDown = new DropDown(id);
+        when(evaluator.selectedValue(dropDown)).thenReturn("MySelectedValue");
+
+
+        assertThat(dropDown.has(selectedValue()).equalsTo("MySelectedValue"));
+
+    }
+
 }

@@ -92,4 +92,8 @@ public class Testatoo {
         return new Reference();
     }
 
+    public SelectedValue selectedValue() {
+        return new SelectedValue();
+    }
+
 }

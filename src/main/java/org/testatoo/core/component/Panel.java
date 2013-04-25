@@ -18,6 +18,8 @@ package org.testatoo.core.component;
 import org.testatoo.core.nature.TitleSupport;
 
 /**
+ * This class allows the testing of Panel.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class Panel extends Component implements TitleSupport {

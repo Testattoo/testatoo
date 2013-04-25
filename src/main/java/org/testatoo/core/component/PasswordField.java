@@ -16,6 +16,9 @@
 package org.testatoo.core.component;
 
 /**
+ * This class allows the testing of PasswordField.
+ * A PasswordField is a specific textField to enter passwords.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class PasswordField extends TextField {

@@ -112,5 +112,12 @@ public interface Evaluator<T> {
      */
     String reference(ReferenceSupport referenceSupport);
 
+    /**
+     * To get the choosen values in a dropdown or combobox list
+     *
+     * @param selectable a Component that represents a list
+     * @return the strings selected in the list
+     */
+    String selectedValue(Selectable selectable);
 
 }

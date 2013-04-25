@@ -21,6 +21,8 @@ import org.testatoo.core.property.PropertySupport;
 import org.testatoo.core.state.State;
 
 /**
+ * This is the base class for all type of graphic components.
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class Component {
