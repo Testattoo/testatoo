@@ -67,7 +67,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     @Override
     public Boolean isChecked(Checkable checkable) {
         Component component = (Component) checkable;
-        return Boolean.valueOf(evaljQuery("$('#" + component.id() + "').prop('checked');"));
+        return Boolean.valueOf(attribute(component, "checked"));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     @Override
     public String value(ValueSupport valueSupport) {
         Component component = (Component) valueSupport;
-        return evaljQuery("$('#" + component.id() + "').prop('value');");
+        return attribute(component, "value");
     }
 
     @Override
@@ -95,26 +95,35 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         Component component = (Component) textSupport;
         String nodeName = nodename(component);
         if (nodeName.equalsIgnoreCase("input")) {
-            return evaljQuery("$('#" + component.id() + "').prop('value');");
+            return attribute(component, "value");
         }
         return evaljQuery("$('#" + component.id() + "').text();");
     }
 
     @Override
     public String title(TitleSupport titleSupport) {
-        Component component = (Component) titleSupport;
-        return evaljQuery("$('#" + component.id() + "').prop('title');");
+        return attribute((Component) titleSupport, "title");
     }
 
     @Override
     public String reference(ReferenceSupport referenceSupport) {
-        Component component = (Component) referenceSupport;
-        return evaljQuery("$('#" + component.id() + "').prop('href');");
+        return attribute((Component) referenceSupport, "href");
     }
 
     @Override
     public String selectedValue(Selectable selectable) {
         return null;
+    }
+
+    @Override
+    public String attribute(Component component, String attribute) {
+        String attributeValue;
+        attributeValue = evaljQuery("$('#" + component.id() + "').prop('" + attribute + "');");
+
+        if (attributeValue.equals("null"))
+            return "";
+
+        return attributeValue;
     }
 
     private String nodename(Component component) {

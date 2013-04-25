@@ -120,4 +120,14 @@ public interface Evaluator<T> {
      */
     String selectedValue(Selectable selectable);
 
+    /**
+     * To get the attribute value of a component
+     *
+     * @param component a Component
+     * @param attribute the attribute name
+     *
+     * @return the attribute value
+     */
+    String attribute(Component component, String attribute);
+
 }
