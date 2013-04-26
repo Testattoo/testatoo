@@ -13,34 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.state;
+package org.testatoo.core;
 
-import org.testatoo.core.component.Component;
+import java.util.concurrent.TimeUnit;
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-public class InvertedState extends State {
+public final class Duration {
 
-    private State state;
+    public long duration;
+    public TimeUnit unit;
 
-    public static InvertedState of(State state) {
-        return new InvertedState(state);
+    public Duration(long duration, TimeUnit unit) {
+        this.duration = duration;
+        this.unit = unit;
     }
-
-    private InvertedState(State state) {
-        this.state = state;
-    }
-
-    @Override
-    public void is(Component component) {
-        try {
-            state.is(component);
-        } catch (AssertionError e) {
-            return;
-        }
-        throw new AssertionError(state.invertedStateMessage(component));
-    }
-
 
 }

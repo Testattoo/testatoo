@@ -18,6 +18,8 @@ package org.testatoo.core;
 import org.testatoo.core.component.Component;
 import org.testatoo.core.nature.*;
 
+import java.util.UUID;
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -136,5 +138,14 @@ public interface Evaluator<T> {
      * @return True if the component is contained in the container
      */
     Boolean contains(Component container, Component... component);
+
+    /**
+     * To get the ids of the html elements corresponding to a given path
+     *
+     * @param expression to locate the html elements
+     * @return the list of ids of the html elements
+     */
+    String[] elementsId(String expression);
+
 
 }

@@ -15,6 +15,7 @@
  */
 package org.testatoo.core;
 
+import org.testatoo.core.component.Component;
 import org.testatoo.core.component.Page;
 import org.testatoo.core.property.*;
 import org.testatoo.core.state.*;
@@ -24,8 +25,17 @@ import org.testatoo.core.state.*;
  */
 public class Testatoo {
 
-    public void assertThat(boolean expected) {
+    private static ThreadLocal<Component> it = new ThreadLocal<Component>();
+
+    public static Component it() {
+        return it.get();
     }
+
+    public void assertThat(Component component) {
+        it.set(component);
+    }
+
+    public void assertThat(boolean expected) {}
 
     public void open(String url) {
         EvaluatorHolder.get().open(url);

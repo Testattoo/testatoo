@@ -23,8 +23,15 @@ import org.testatoo.core.component.Component;
  */
 public class Visible extends State {
 
+    public Visible() {
+        expected_state = "visible";
+        none_expected_state = "hidden";
+    }
+
     @Override
-    public boolean is(Component component) {
-        return EvaluatorHolder.get().isVisible(component);
+    public void is(Component component) {
+        if (!EvaluatorHolder.get().isVisible(component)) {
+            throw new AssertionError(stateMessage(component));
+        }
     }
 }

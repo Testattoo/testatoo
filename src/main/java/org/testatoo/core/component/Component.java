@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.component;
 
-
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.property.Property;
 import org.testatoo.core.property.PropertySupport;
@@ -46,8 +45,9 @@ public class Component {
         return id;
     }
 
-    public boolean is(State state) {
-        return state.is(this);
+    public Component is(State state) {
+        state.is(this);
+        return this;
     }
 
     public Property has(PropertySupport support) {

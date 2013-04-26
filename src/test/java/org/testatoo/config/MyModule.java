@@ -38,9 +38,9 @@ final class MyModule extends AbstractTestatooModule {
 
         seleniumSessions()
                 .registerProvider(createSeleniumSession()
-                    .website("http://127.0.0.1:7896/")
+                    .website("http://localhost:7896/")
                     .browser("*googlechrome")
-                    .serverHost("127.0.0.1")
+                    .serverHost("localhost")
                     .serverPort(4444)
                     .build())
                 .scope(Scope.TEST_CLASS)

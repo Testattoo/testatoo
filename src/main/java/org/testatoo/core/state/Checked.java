@@ -24,9 +24,17 @@ import org.testatoo.core.nature.Checkable;
  */
 public class Checked extends State {
 
-    public boolean is(Component component) {
+    public Checked() {
+        expected_state = "checked";
+        none_expected_state = "unchecked";
+    }
+
+    public void is(Component component) {
         if (component instanceof Checkable) {
-            return EvaluatorHolder.get().isChecked((Checkable) component);
+            if (!EvaluatorHolder.get().isChecked((Checkable) component)) {
+                throw new AssertionError(stateMessage(component));
+            }
+            return;
         }
         throw new AssertionError("The component is not Checkable");
     }

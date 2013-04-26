@@ -23,8 +23,15 @@ import org.testatoo.core.component.Component;
  */
 public class Focused extends State {
 
+    public Focused() {
+        expected_state = "focused";
+        none_expected_state = "not focused";
+    }
+
     @Override
-    public boolean is(Component component) {
-        return EvaluatorHolder.get().isFocused(component);
+    public void is(Component component) {
+        if (!EvaluatorHolder.get().isFocused(component)) {
+            throw new AssertionError(stateMessage(component));
+        }
     }
 }

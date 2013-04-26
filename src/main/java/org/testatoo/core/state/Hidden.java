@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.state;
 
+import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
 
 /**
@@ -22,8 +23,15 @@ import org.testatoo.core.component.Component;
  */
 public class Hidden extends State {
 
+    public Hidden() {
+        expected_state = "hidden";
+        none_expected_state = "visible";
+    }
+
     @Override
-    public boolean is(Component component) {
-        return !new Visible().is(component);
+    public void is(Component component) {
+        if (EvaluatorHolder.get().isVisible(component)) {
+            throw new AssertionError(stateMessage(component));
+        }
     }
 }

@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.state;
 
+import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
 
 /**
@@ -22,8 +23,15 @@ import org.testatoo.core.component.Component;
  */
 public class Disabled extends State {
 
+    public Disabled() {
+        expected_state = "disabled";
+        none_expected_state = "enable";
+    }
+
     @Override
-    public boolean is(Component component) {
-        return !new Enabled().is(component);
+    public void is(Component component) {
+        if (EvaluatorHolder.get().isEnabled(component)) {
+            throw new AssertionError(stateMessage(component));
+        }
     }
 }

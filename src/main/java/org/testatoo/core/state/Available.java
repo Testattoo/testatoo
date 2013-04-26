@@ -23,7 +23,6 @@ import org.testatoo.core.component.Component;
 public class Available extends State {
 
     @Override
-    public boolean is(Component component) {
-        return true;
+    public void is(Component component) {
     }
 }

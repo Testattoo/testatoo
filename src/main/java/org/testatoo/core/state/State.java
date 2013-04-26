@@ -22,5 +22,16 @@ import org.testatoo.core.component.Component;
  */
 public abstract class State {
 
-    abstract public boolean is(Component component);
+    protected String expected_state;
+    protected String none_expected_state;
+
+    abstract public void is(Component component);
+
+    protected String stateMessage(Component component) {
+        return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + expected_state + "  but was " + none_expected_state;
+    }
+
+    protected String invertedStateMessage(Component component) {
+        return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + none_expected_state + "  but was " + expected_state;
+    }
 }

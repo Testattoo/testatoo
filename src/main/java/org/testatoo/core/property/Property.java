@@ -38,13 +38,12 @@ public class Property {
         if (value.contains(expected_value))
             return true;
         throw new AssertionError("Expected " + property + " contains: \"" + expected_value + "\" but was: \"" + value + "\"");
-
     }
 
-    public boolean matches(String expected_value) {
-        if (value.matches(expected_value))
+    public boolean matches(String expression) {
+        if (value.matches(expression))
             return true;
-        throw new AssertionError("Expected " + property + " matches: \"" + expected_value + "\" but was: \"" + value + "\"");
+        throw new AssertionError("Expected " + property + " matches: \"" + expression + "\" but was: \"" + value + "\"");
 
     }
 

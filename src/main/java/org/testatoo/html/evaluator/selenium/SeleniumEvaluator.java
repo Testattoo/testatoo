@@ -17,6 +17,7 @@ package org.testatoo.html.evaluator.selenium;
 
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.Evaluator;
+import org.testatoo.core.EvaluatorException;
 import org.testatoo.core.component.Component;
 import org.testatoo.core.component.Page;
 import org.testatoo.core.nature.*;
@@ -25,6 +26,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.UUID;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -71,7 +73,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     @Override
     public Boolean isEnabled(Component component) {
-        return Boolean.valueOf(evaljQuery("$('#" + component.id() + "').is(':enabled');"));
+        return !Boolean.valueOf(evaljQuery("$('#" + component.id() + "').is(':disabled');"));
     }
 
     @Override
@@ -155,8 +157,47 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         return containsAllElements;
     }
 
+    @Override
+    public String[] elementsId(String expression) {
+        if (!expression.startsWith("jquery:")) {
+            expression = "jquery:$('#" + expression.replace(".", "\\\\.") + "')";
+        }
+
+        if (!Boolean.valueOf(evaljQuery(expression.substring(7) + ".length > 0"))) {
+            throw new EvaluatorException("Cannot find component defined by the jquery expression : " + expression.substring(7));
+        }
+
+        String[] resultId = extractId(expression);
+        for (int i = 0; i < resultId.length; i++) {
+            String id = resultId[i];
+            if (id.equals("")) {
+                id = UUID.randomUUID().toString();
+                evaljQuery("$(" + expression.substring(7) + "[" + i + "]).attr('id', '" + id + "')");
+                resultId[i] = id;
+            }
+        }
+        return resultId;
+    }
+
     private String nodename(Component component) {
         return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
+    }
+
+    private String[] extractId(String expression) {
+        if (expression.startsWith("jquery:")) {
+            expression = expression.substring(7, expression.length());
+            return parseCSV(evaljQuery("[]; " + expression + ".each(function(){window.testatoo_tmp.push($(this).attr('id') ? $(this).attr('id') : 'undefined')});"));
+        }
+        return null;
+    }
+
+    private static String[] parseCSV(String input) {
+        String[] splitedInput = input.split(",");
+        for (int i = 0; i < splitedInput.length; i++) {
+            if (splitedInput[i].equalsIgnoreCase("undefined"))
+                splitedInput[i] = "";
+        }
+        return splitedInput;
     }
 
     private String evaljQuery(String expression) {

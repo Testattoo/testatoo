@@ -15,15 +15,28 @@
  */
 package org.testatoo.core.state;
 
+import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
+import org.testatoo.core.nature.Checkable;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 public class Unchecked extends State {
 
+    public Unchecked() {
+        expected_state = "unchecked";
+        none_expected_state = "checked";
+    }
+
     @Override
-    public boolean is(Component component) {
-        return !new Checked().is(component);
+    public void is(Component component) {
+        if (component instanceof Checkable) {
+            if (EvaluatorHolder.get().isChecked((Checkable) component)) {
+                throw new AssertionError(stateMessage(component));
+            }
+            return;
+        }
+        throw new AssertionError("The component is not Checkable");
     }
 }

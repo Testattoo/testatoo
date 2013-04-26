@@ -13,34 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.state;
+package org.testatoo.core;
 
-import org.testatoo.core.component.Component;
+import com.google.common.base.Function;
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-public class InvertedState extends State {
-
-    private State state;
-
-    public static InvertedState of(State state) {
-        return new InvertedState(state);
+public abstract class Selector {
+    public static <I, O> Function<I, O> to(final Class<? extends O> clazz) {
+        return new Function<I, O>() {
+            @Override
+            public O apply(I from) {
+                return clazz.cast(from);
+            }
+        };
     }
-
-    private InvertedState(State state) {
-        this.state = state;
-    }
-
-    @Override
-    public void is(Component component) {
-        try {
-            state.is(component);
-        } catch (AssertionError e) {
-            return;
-        }
-        throw new AssertionError(state.invertedStateMessage(component));
-    }
-
-
 }

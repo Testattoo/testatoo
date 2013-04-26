@@ -13,34 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.state;
-
-import org.testatoo.core.component.Component;
+package org.testatoo.core;
 
 /**
+ * This class specifies exception in the use of evaluator on html4 elements
+ *
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class InvertedState extends State {
-
-    private State state;
-
-    public static InvertedState of(State state) {
-        return new InvertedState(state);
+public class EvaluatorException extends RuntimeException {
+    public EvaluatorException(String message) {
+        super(message);
     }
-
-    private InvertedState(State state) {
-        this.state = state;
-    }
-
-    @Override
-    public void is(Component component) {
-        try {
-            state.is(component);
-        } catch (AssertionError e) {
-            return;
-        }
-        throw new AssertionError(state.invertedStateMessage(component));
-    }
-
-
 }
+
