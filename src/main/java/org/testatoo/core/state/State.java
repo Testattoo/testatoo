@@ -28,10 +28,10 @@ public abstract class State {
     abstract public void is(Component component);
 
     protected String stateMessage(Component component) {
-        return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + expected_state + "  but was " + none_expected_state;
+        return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + expected_state + " but was " + none_expected_state;
     }
 
     protected String invertedStateMessage(Component component) {
-        return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + none_expected_state + "  but was " + expected_state;
+        return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + none_expected_state + " but was " + expected_state;
     }
 }

@@ -25,7 +25,7 @@ public class Disabled extends State {
 
     public Disabled() {
         expected_state = "disabled";
-        none_expected_state = "enable";
+        none_expected_state = "enabled";
     }
 
     @Override

@@ -66,10 +66,29 @@ public class StateTest extends Testatoo {
 
         assertThat(enabled_component.is(enabled()));
 
+        try {
+            assertThat(enabled_component.is(disabled()));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected disabled but was enabled", e.getMessage());
+        }
+
         Component disabled_component = new Component(id);
         when(evaluator.isEnabled(disabled_component)).thenReturn(false);
+
         assertThat(disabled_component.is(not(enabled())));
         assertThat(disabled_component.is(disabled()));
+
+        try {
+            assertThat(disabled_component.is(enabled()));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected enabled but was disabled", e.getMessage());
+        }
+
+        try {
+            assertThat(disabled_component.is(not(disabled())));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected enabled but was disabled", e.getMessage());
+        }
     }
 
     @Test
@@ -79,10 +98,29 @@ public class StateTest extends Testatoo {
 
         assertThat(visible_component.is(visible()));
 
+        try {
+            assertThat(visible_component.is(hidden()));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected hidden but was visible", e.getMessage());
+        }
+
         Component hidden_component = new Component(id);
         when(evaluator.isVisible(hidden_component)).thenReturn(false);
-//        assertThat(hidden_component.is(not(visible())));
+
+        assertThat(hidden_component.is(not(visible())));
         assertThat(hidden_component.is(hidden()));
+
+        try {
+            assertThat(hidden_component.is(visible()));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected visible but was hidden", e.getMessage());
+        }
+
+        try {
+            assertThat(hidden_component.is(not(hidden())));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected visible but was hidden", e.getMessage());
+        }
     }
 
     @Test
@@ -92,18 +130,39 @@ public class StateTest extends Testatoo {
 
         assertThat(checked_checkBox.is(checked()));
 
+        try {
+            assertThat(checked_checkBox.is(unchecked()));
+        } catch (AssertionError e) {
+            assertEquals("Component CheckBox with id: \"myId\" expected unchecked but was checked", e.getMessage());
+        }
+
         CheckBox unchecked_checkBox = new CheckBox(id);
         when(evaluator.isChecked(unchecked_checkBox)).thenReturn(false);
 
-//        assertThat(unchecked_checkBox.is(not(checked())));
+        assertThat(unchecked_checkBox.is(not(checked())));
         assertThat(unchecked_checkBox.is(unchecked()));
+
+        try {
+            assertThat(unchecked_checkBox.is(checked()));
+        } catch (AssertionError e) {
+            assertEquals("Component CheckBox with id: \"myId\" expected checked but was unchecked", e.getMessage());
+        }
+
+        try {
+            assertThat(unchecked_checkBox.is(not(unchecked())));
+        } catch (AssertionError e) {
+            assertEquals("Component CheckBox with id: \"myId\" expected checked but was unchecked", e.getMessage());
+        }
+
+
+
 
         // Throw Error if component doesn't have the Checkable nature
         try {
             Component component = new Component(id);
             assertThat(component.is(checked()));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "The component is not Checkable");
+            assertEquals("The component is not Checkable", e.getMessage());
         }
 
         // Same with Radio
@@ -115,7 +174,7 @@ public class StateTest extends Testatoo {
         Radio unchecked_radio = new Radio(id);
         when(evaluator.isChecked(unchecked_radio)).thenReturn(false);
 
-//        assertThat(unchecked_radio.is(not(checked())));
+        assertThat(unchecked_radio.is(not(checked())));
         assertThat(unchecked_radio.is(unchecked()));
     }
 
@@ -128,6 +187,6 @@ public class StateTest extends Testatoo {
 
         Component none_focused_component = new Component(id);
         when(evaluator.isFocused(none_focused_component)).thenReturn(false);
-//        assertThat(none_focused_component.is(not(focused())));
+        assertThat(none_focused_component.is(not(focused())));
     }
 }

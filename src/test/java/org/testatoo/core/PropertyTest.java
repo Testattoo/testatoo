@@ -55,14 +55,14 @@ public class PropertyTest extends Testatoo {
         try {
             assertThat(radio.has(label()).equalsTo("OtherLabel"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected label: \"OtherLabel\" but was: \"MyLabel\"");
+            assertEquals("Expected label: \"OtherLabel\" but was: \"MyLabel\"", e.getMessage());
         }
 
         Component component = new Component(id);
         try {
             component.has(label()).equalsTo("MyLabel");
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "The component does not support Label");
+            assertEquals("The component does not support Label", e.getMessage());
         }
     }
 
@@ -76,14 +76,14 @@ public class PropertyTest extends Testatoo {
         try {
             assertThat(textField.has(value()).equalsTo("OtherValue"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected value: \"OtherValue\" but was: \"MyValue\"");
+            assertEquals("Expected value: \"OtherValue\" but was: \"MyValue\"", e.getMessage());
         }
 
         Component component = new Component(id);
         try {
             component.has(value()).equalsTo("MyValue");
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "The component does not support Value");
+            assertEquals("The component does not support Value", e.getMessage());
         }
     }
 
@@ -97,14 +97,14 @@ public class PropertyTest extends Testatoo {
         try {
             assertThat(button.has(text()).equalsTo("OtherText"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected text: \"OtherText\" but was: \"MyText\"");
+            assertEquals("Expected text: \"OtherText\" but was: \"MyText\"", e.getMessage());
         }
 
         Component component = new Component(id);
         try {
             component.has(text()).equalsTo("MyText");
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "The component does not support Text");
+            assertEquals("The component does not support Text", e.getMessage());
         }
     }
 
@@ -118,14 +118,14 @@ public class PropertyTest extends Testatoo {
         try {
             assertThat(panel.has(title()).equalsTo("OtherTitle"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected title: \"OtherTitle\" but was: \"MyTitle\"");
+            assertEquals("Expected title: \"OtherTitle\" but was: \"MyTitle\"", e.getMessage());
         }
 
         Component component = new Component(id);
         try {
             component.has(title()).equalsTo("MyTitle");
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "The component does not support Title");
+            assertEquals("The component does not support Title", e.getMessage());
         }
     }
 
@@ -139,14 +139,14 @@ public class PropertyTest extends Testatoo {
         try {
             assertThat(link.has(reference()).equalsTo("http://www.testatoo.net"));
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "Expected reference: \"http://www.testatoo.net\" but was: \"http://www.testatoo.org\"");
+            assertEquals("Expected reference: \"http://www.testatoo.net\" but was: \"http://www.testatoo.org\"", e.getMessage());
         }
 
         Component component = new Component(id);
         try {
             component.has(reference()).equalsTo("http://www.testatoo.org");
         } catch (AssertionError e) {
-            assertEquals(e.getMessage(), "The component does not support Reference");
+            assertEquals("The component does not support Reference", e.getMessage());
         }
     }
 
@@ -169,7 +169,6 @@ public class PropertyTest extends Testatoo {
     public void test_selected_value() {
         DropDown dropDown = new DropDown(id);
         when(evaluator.selectedValue(dropDown)).thenReturn("MySelectedValue");
-
 
         assertThat(dropDown.has(selectedValue()).equalsTo("MySelectedValue"));
 
