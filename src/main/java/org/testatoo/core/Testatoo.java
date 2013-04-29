@@ -20,6 +20,8 @@ import org.testatoo.core.component.Page;
 import org.testatoo.core.property.*;
 import org.testatoo.core.state.*;
 
+import static org.testatoo.core.ComponentFactory.component;
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -42,7 +44,7 @@ public class Testatoo {
     }
 
     public Page page() {
-        return new Page("");
+        return component(Page.class, By.$("body"));
     }
 
     // State

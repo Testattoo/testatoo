@@ -137,7 +137,7 @@ public interface Evaluator<T> {
      * @param component the component we want to know if contained in the container
      * @return True if the component is contained in the container
      */
-    Boolean contains(Component container, Component... component);
+    Boolean contains(Component container, Component component);
 
     /**
      * To get the ids of the html elements corresponding to a given path

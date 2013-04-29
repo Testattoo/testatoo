@@ -36,6 +36,7 @@ public class LocalModule extends AbstractTestatooModule {
 
         seleniumServers().registerProvider(createSeleniumServer()
                 .port(seleniumPort)
+                .useSingleWindow(true)
                 .build())
                 .scope(Scope.TEST_SUITE);
 

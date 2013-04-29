@@ -147,14 +147,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public Boolean contains(Component container, Component... component) {
-        boolean containsAllElements = true;
-        for (Component cmp : component) {
-            if (!selenium.isElementPresent("//*[@id='" + container.id() + "']//*[@id='" + cmp.id() + "']")) {
-                containsAllElements = false;
-            }
-        }
-        return containsAllElements;
+    public Boolean contains(Component container, Component component) {
+        return Integer.valueOf(evaljQuery("$('#" + container.id() + "').has('#" + component.id() + "').length;")) > 0;
     }
 
     @Override
@@ -203,7 +197,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     private String evaljQuery(String expression) {
         selenium.runScript("if(window.tQuery){(function($, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}");
         String s = selenium.getEval("window.testatoo_tmp");
-        if ("__TQUERY_MISSING__".equals(s)) {
+        if ("__TQUERY_MISSING__" .equals(s)) {
             selenium.runScript(addScript("tquery-1.7.2.js") + addScript("tquery-simulate.js") + addScript("tquery-util.js"));
             selenium.runScript("if(window.tQuery){(function($, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}");
             s = selenium.getEval("window.testatoo_tmp");

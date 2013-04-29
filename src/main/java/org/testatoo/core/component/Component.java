@@ -55,7 +55,23 @@ public class Component {
     }
 
     public boolean contains(Component... components) {
-        return EvaluatorHolder.get().contains(this, components);
+        for (Component component : components) {
+            if (!EvaluatorHolder.get().contains(this, component)) {
+                throw new AssertionError("Component " + this.getClass().getSimpleName() + " with id: \"" + this.id() + "\" does no contains component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
+            }
+        }
+        return true;
     }
+
+    public boolean displays(Component... components) {
+        contains(components);
+        for (Component component : components) {
+            if (!EvaluatorHolder.get().isVisible(component)) {
+                throw new AssertionError("Component " + this.getClass().getSimpleName() + " with id: \"" + this.id() + "\" does no displays component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
+            }
+        }
+        return true;
+    }
+
 
 }

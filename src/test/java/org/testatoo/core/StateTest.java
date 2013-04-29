@@ -154,9 +154,6 @@ public class StateTest extends Testatoo {
             assertEquals("Component CheckBox with id: \"myId\" expected checked but was unchecked", e.getMessage());
         }
 
-
-
-
         // Throw Error if component doesn't have the Checkable nature
         try {
             Component component = new Component(id);
@@ -185,8 +182,20 @@ public class StateTest extends Testatoo {
 
         assertThat(focused_component.is(focused()));
 
+        try {
+            assertThat(focused_component.is(not(focused())));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected not focused but was focused", e.getMessage());
+        }
+
         Component none_focused_component = new Component(id);
         when(evaluator.isFocused(none_focused_component)).thenReturn(false);
         assertThat(none_focused_component.is(not(focused())));
+
+        try {
+            assertThat(none_focused_component.is(focused()));
+        } catch (AssertionError e) {
+            assertEquals("Component Component with id: \"myId\" expected focused but was not focused", e.getMessage());
+        }
     }
 }
