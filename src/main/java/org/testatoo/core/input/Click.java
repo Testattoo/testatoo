@@ -13,14 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.env;
+package org.testatoo.core.input;
 
-import org.testatoo.config.AbstractTestatooModule;
-
-public final class MainModule extends AbstractTestatooModule {
-
-    @Override
-    protected void configure() {
-        install(new CommonModule(), new LocalModule());
-    }
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
+public enum Click {
+    left, right, center
 }

@@ -33,8 +33,6 @@ public class StateTest extends Testatoo {
     private Evaluator evaluator;
     private String id = "myId";
 
-    // TODO test assertion failure error messages ;)
-
     @Before
     public void setUp() {
         evaluator = mock(Evaluator.class);

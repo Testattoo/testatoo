@@ -13,14 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.env;
+package org.testatoo.core.input;
 
-import org.testatoo.config.AbstractTestatooModule;
+import org.testatoo.core.EvaluatorHolder;
+import org.testatoo.core.component.Component;
 
-public final class MainModule extends AbstractTestatooModule {
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
+public class Dragger {
 
-    @Override
-    protected void configure() {
-        install(new CommonModule(), new LocalModule());
+    private Component from;
+
+    public Dragger(Component from) {
+        this.from = from;
+    }
+
+    public void on(Component to) {
+        EvaluatorHolder.get().dragAndDrop(from, to);
     }
 }

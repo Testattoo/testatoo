@@ -13,14 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.env;
+package org.testatoo.core.input;
 
-import org.testatoo.config.AbstractTestatooModule;
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
+public enum KeyModifier {
 
-public final class MainModule extends AbstractTestatooModule {
+    SHIFT(16),
+    CONTROL(17),
+    ALT(18);
+// LEFT_SHIFT,
+// LEFT_ALT,
+// LEFT_CONTROL,
+// FN;
+//left window key  	91
+//right window key 	92
+//select key 	93
 
-    @Override
-    protected void configure() {
-        install(new CommonModule(), new LocalModule());
+    private final int code;
+
+    KeyModifier(int code) {
+        this.code = code;
     }
 }

@@ -18,15 +18,24 @@ package org.testatoo.html.evaluator.selenium;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorException;
+import org.testatoo.core.component.Button;
 import org.testatoo.core.component.Component;
 import org.testatoo.core.component.Page;
+import org.testatoo.core.component.TextField;
+import org.testatoo.core.input.Click;
+import org.testatoo.core.input.Key;
+import org.testatoo.core.input.KeyModifier;
+import org.testatoo.core.input.KeyboardLayout;
+import org.testatoo.core.input.i18n.USEnglishLayout;
 import org.testatoo.core.nature.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.UUID;
+import java.util.*;
+
+import static org.testatoo.core.input.KeyModifier.*;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -35,6 +44,9 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     private final Selenium selenium;
     private final String name;
+    private final Properties _props = new Properties();
+    protected KeyboardLayout keyboardLayout = new USEnglishLayout();
+    protected final List<KeyModifier> pressedKeyModifier = new ArrayList<KeyModifier>();
 
     /**
      * Class constructor specifying the used selenium engine
@@ -173,8 +185,140 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         return resultId;
     }
 
+    @Override
+    public void reset(TextField textField) {
+        evaljQuery("$('#" + textField.id() + "').val('')");
+    }
+
+    @Override
+    public void focusOn(Component component) {
+        click(component, Click.left);
+    }
+
+    @Override
+    public void type(String text) {
+        String keyModifier = keyModifier();
+        Component focusedComponent = focusedComponent();
+        if (focusedComponent != null) {
+            for (byte charCode : text.getBytes()) {
+                if (isIe()) {
+                    evaljQuery("$('#" + focusedComponent.id() + "')" +
+                            ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
+                }
+                evaljQuery("$('#" + focusedComponent.id() + "')" +
+                        ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
+            }
+        } else {
+            for (char charCode : text.toCharArray()) {
+                evaljQuery("($.browser.mozilla) ? $(window.document).simulate('type', {keyCode: " + keyboardLayout.convert(charCode) + keyModifier + "}) : $(window.document).simulate('type', {charCode: " + keyboardLayout.convert(charCode) + keyModifier + "})");
+            }
+        }
+    }
+
+    @Override
+    public void press(Key key) {
+        typeKey(key.code());
+    }
+
+    @Override
+    public void keyDown(KeyModifier keyModifier) {
+        pressedKeyModifier.add(keyModifier);
+    }
+
+    @Override
+    public void release(KeyModifier keyModifier) {
+        pressedKeyModifier.remove(keyModifier);
+    }
+
+    @Override
+    public void release() {
+        List<KeyModifier> keys = new ArrayList<KeyModifier>(pressedKeyModifier);
+        Collections.reverse(keys);
+        try {
+            for (KeyModifier keyModifier : keys) {
+                release(keyModifier);
+            }
+        } catch (Exception e) {
+            // Continue
+        }
+    }
+
+    @Override
+    public void click(Component component, Click which) {
+        try {
+            if (which == Click.right) {
+                evaljQuery("$('#" + component.id() + "').simulate('rightclick')");
+            } else {
+                // If component is link we need to open the expected target
+                // Not sure but some Browser seems have a security check to not open page on js event
+//                if (component instanceof Link && !((Link) component).reference().equals("#")) {
+//                    selenium.click(component.id());
+//                } else {
+                    evaljQuery("$('#" + component.id() + "').simulate('click')");
+//                }
+            }
+        } catch (Exception e) {
+            // Continue... if the click change page
+        }
+    }
+
+    @Override
+    public void doubleClick(Component component) {
+        evaljQuery("$('#" + component.id() + "').simulate('dblclick')");
+    }
+
+    @Override
+    public void mouseOver(Component component) {
+        evaljQuery("$('#" + component.id() + "').simulate('mouseover')");
+    }
+
+    @Override
+    public void mouseOut(Component component) {
+        evaljQuery("$('#" + component.id() + "').simulate('mouseout')");
+    }
+
+    @Override
+    public void dragAndDrop(Component from, Component to) {
+        evaljQuery("$('#" + from.id() + "').simulate('dragTo', {'target': $('#" + to.id() + "')})");
+    }
+
     private String nodename(Component component) {
         return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
+    }
+
+    private Component focusedComponent() {
+        if (Integer.valueOf(evaljQuery("$(':focus').lenght")) == 1) {
+            return new Component(evaljQuery("$(':focus').prop('id')"));
+        }
+        return null;
+    }
+
+    private String keyModifier() {
+        if (!pressedKeyModifier.isEmpty()) {
+            List<String> options = new ArrayList<String>();
+            if (pressedKeyModifier.contains(CONTROL)) {
+                options.add("ctrlKey : true");
+            }
+            if (pressedKeyModifier.contains(SHIFT)) {
+                options.add("shiftKey : true");
+            }
+            if (pressedKeyModifier.contains(ALT)) {
+                options.add("altKey : true");
+            }
+
+            String result = "";
+            for (String option : options) {
+                result = result + ", " + option;
+            }
+            return result;
+        } else {
+            return "";
+        }
+    }
+
+    private void typeKey(int keyCode) {
+        String keyModifier = keyModifier();
+        evaljQuery("($.browser.webkit) ? $(window.document).simulate('type', {charCode: " + keyCode + keyModifier + "}) : $('body').simulate('type', {keyCode: " + keyCode + keyModifier + "})");
     }
 
     private String[] extractId(String expression) {
@@ -218,5 +362,12 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         } catch (IOException e) {
             throw new IllegalStateException("Internal error occurred when trying to load custom scripts : " + e.getMessage(), e);
         }
+    }
+
+    private boolean isIe() {
+        if (!_props.containsKey("IE")) {
+            _props.setProperty("IE", evaljQuery("$.browser.msie"));
+        }
+        return Boolean.valueOf(_props.getProperty("IE"));
     }
 }

@@ -17,6 +17,9 @@ package org.testatoo.core;
 
 import org.testatoo.core.component.Component;
 import org.testatoo.core.component.Page;
+import org.testatoo.core.component.TextField;
+import org.testatoo.core.input.Keyboard;
+import org.testatoo.core.input.Mouse;
 import org.testatoo.core.property.*;
 import org.testatoo.core.state.*;
 
@@ -111,6 +114,77 @@ public class Testatoo {
 
     public SelectedValue selectedValue() {
         return new SelectedValue();
+    }
+
+    // Input
+
+    /**
+     * Reset the field and call the method type
+     *
+     * @param value   value to be entered
+     * @param textField the textField
+     * @return the textField
+     */
+    public static TextField enter(String value, TextField textField) {
+        EvaluatorHolder.get().reset(textField);
+        return type(value, textField);
+    }
+
+    /**
+     * To simulate the enter of a value in a textField
+     *
+     * @param value   value to be entered
+     * @param textField the textField
+     * @return the textField with value in it
+     */
+    public static TextField type(String value, TextField textField) {
+        EvaluatorHolder.get().focusOn(textField);
+        Keyboard.type(value);
+        return textField;
+    }
+
+    /**
+     * To simulate a click on a component
+     *
+     * @param component testatoo component
+     * @return the component after click
+     */
+    public static Component clickOn(Component component) {
+        Mouse.clickOn(component);
+        return component;
+    }
+
+    /**
+     * To simulate a double-click on a component
+     *
+     * @param component testatoo component
+     * @return the component after double-click
+     */
+    public static Component doubleClickOn(Component component) {
+        Mouse.doubleClickOn(component);
+        return component;
+    }
+
+    /**
+     * To simulate a mouse movement over a component
+     *
+     * @param component testatoo component
+     * @return the component after mouse-over
+     */
+    public static Component dragMouseOver(Component component) {
+        Mouse.mouseOverOn(component);
+        return component;
+    }
+
+    /**
+     * To simulate a mouse movement out of a component
+     *
+     * @param component testatoo component
+     * @return the component after mouse-out
+     */
+    public static Component dragMouseOut(Component component) {
+        Mouse.mouseOutOf(component);
+        return component;
     }
 
 }

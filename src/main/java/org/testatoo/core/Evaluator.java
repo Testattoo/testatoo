@@ -16,9 +16,11 @@
 package org.testatoo.core;
 
 import org.testatoo.core.component.Component;
+import org.testatoo.core.component.TextField;
+import org.testatoo.core.input.Click;
+import org.testatoo.core.input.Key;
+import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.nature.*;
-
-import java.util.UUID;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -147,5 +149,88 @@ public interface Evaluator<T> {
      */
     String[] elementsId(String expression);
 
+    /**
+     * To reset a TextField
+     *
+     * @param textField the text field to reset
+     */
+    void reset(TextField textField);
+
+    /**
+     * To get the focus on the specified component
+     *
+     * @param component the component to focus
+     */
+    void focusOn(Component component);
+
+    /**
+     * To type a text
+     *
+     * @param text the text to type
+     */
+    void type(String text);
+
+    /**
+     * To press a Key
+     *
+     * @param key the Key to press
+     */
+    void press(Key key);
+
+    /**
+     * To KeyDown a KeyModifier
+     *
+     * @param keyModifier the keyModifier to keyDown
+     */
+    void keyDown(KeyModifier keyModifier);
+
+    /**
+     * To release a KeyModifier
+     *
+     * @param keyModifier the keyModifier to release
+     */
+    void release(KeyModifier keyModifier);
+
+    /**
+     * To release all KeyModifier
+     */
+    void release();
+
+    /**
+     * To click on a given component
+     *
+     * @param component the component we want to click on
+     * @param which     button is click
+     */
+    void click(Component component, Click which);
+
+    /**
+     * To double-click on a given component
+     *
+     * @param component the component we want to double-click on
+     */
+    void doubleClick(Component component);
+
+    /**
+     * To move the mouse cursor over a component
+     *
+     * @param component the component we want to move the mouse cursor over
+     */
+    void mouseOver(Component component);
+
+    /**
+     * To move the mouse cursor out of a component
+     *
+     * @param component the component we want to move the mouse cursor out
+     */
+    void mouseOut(Component component);
+
+    /**
+     * To do a "drag and drop" operation
+     *
+     * @param from the component we drag
+     * @param to   the component we drop on
+     */
+    void dragAndDrop(Component from, Component to);
 
 }

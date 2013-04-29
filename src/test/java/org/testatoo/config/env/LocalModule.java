@@ -25,17 +25,18 @@ final class LocalModule extends AbstractTestatooModule {
     protected void configure() {
 
         seleniumServers().registerProvider(createSeleniumServer()
-            .port(4444)
-            .build())
+                .useSingleWindow(true)
+                .port(4444)
+                .build())
                 .scope(Scope.TEST_CLASS);
 
         seleniumSessions()
                 .registerProvider(createSeleniumSession()
-                    .website("http://127.0.0.1:7896/")
-                    .browser("*googlechrome")
-                    .serverHost("127.0.0.1")
-                    .serverPort(4444)
-                    .build())
+                        .website("http://127.0.0.1:7896/")
+                        .browser("*googlechrome")
+                        .serverHost("127.0.0.1")
+                        .serverPort(4444)
+                        .build())
                 .scope(Scope.TEST_CLASS)
                 .withTimeout(20000)
                 .inCartridge(TestatooCartridge.HTML4);
