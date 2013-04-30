@@ -18,10 +18,7 @@ package org.testatoo.html.evaluator.selenium;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorException;
-import org.testatoo.core.component.Button;
-import org.testatoo.core.component.Component;
-import org.testatoo.core.component.Page;
-import org.testatoo.core.component.TextField;
+import org.testatoo.core.component.*;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
@@ -47,6 +44,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     private final Properties _props = new Properties();
     protected KeyboardLayout keyboardLayout = new USEnglishLayout();
     protected final List<KeyModifier> pressedKeyModifier = new ArrayList<KeyModifier>();
+    private Component focusedComponent;
 
     /**
      * Class constructor specifying the used selenium engine
@@ -76,6 +74,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     @Override
     public void open(String url) {
         selenium.open(url);
+        focusedComponent = null;
+        release();
     }
 
     @Override
@@ -198,7 +198,6 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     @Override
     public void type(String text) {
         String keyModifier = keyModifier();
-        Component focusedComponent = focusedComponent();
         if (focusedComponent != null) {
             for (byte charCode : text.getBytes()) {
                 if (isIe()) {
@@ -246,6 +245,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     @Override
     public void click(Component component, Click which) {
         try {
+            setFocus(component);
             if (which == Click.right) {
                 evaljQuery("$('#" + component.id() + "').simulate('rightclick')");
             } else {
@@ -254,7 +254,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 //                if (component instanceof Link && !((Link) component).reference().equals("#")) {
 //                    selenium.click(component.id());
 //                } else {
-                    evaljQuery("$('#" + component.id() + "').simulate('click')");
+                evaljQuery("$('#" + component.id() + "').simulate('click')");
 //                }
             }
         } catch (Exception e) {
@@ -265,6 +265,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     @Override
     public void doubleClick(Component component) {
         evaljQuery("$('#" + component.id() + "').simulate('dblclick')");
+        setFocus(component);
     }
 
     @Override
@@ -286,11 +287,9 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
     }
 
-    private Component focusedComponent() {
-        if (Integer.valueOf(evaljQuery("$(':focus').lenght")) == 1) {
-            return new Component(evaljQuery("$(':focus').prop('id')"));
-        }
-        return null;
+    private void setFocus(Component component) {
+        evaljQuery("$('#" + component.id() + "').focus()");
+        focusedComponent = component;
     }
 
     private String keyModifier() {

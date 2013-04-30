@@ -29,7 +29,7 @@ public class Focused extends State {
     }
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
         if (!EvaluatorHolder.get().isFocused(component)) {
             throw new AssertionError(stateMessage(component));
         }

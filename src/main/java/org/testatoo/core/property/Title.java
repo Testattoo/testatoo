@@ -22,14 +22,17 @@ import org.testatoo.core.nature.TitleSupport;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Title extends PropertySupport {
+public class Title extends Property {
+
+    public Title() {
+        super("title");
+    }
 
     @Override
-    public Property is(Component component) {
+    public String value(Component component) {
         if (component instanceof TitleSupport) {
-            return new Property("title", EvaluatorHolder.get().title((TitleSupport) component));
+            return EvaluatorHolder.get().title((TitleSupport) component);
         }
         throw new AssertionError("The component does not support Title");
     }
-
 }

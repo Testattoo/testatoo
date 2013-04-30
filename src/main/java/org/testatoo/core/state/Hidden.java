@@ -29,7 +29,7 @@ public class Hidden extends State {
     }
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
         if (EvaluatorHolder.get().isVisible(component)) {
             throw new AssertionError(stateMessage(component));
         }

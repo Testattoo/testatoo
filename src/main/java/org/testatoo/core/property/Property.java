@@ -15,36 +15,23 @@
  */
 package org.testatoo.core.property;
 
+import org.testatoo.core.component.Component;
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Property {
+public abstract class Property {
 
     private String property;
-    private String value;
 
-    public Property(String property, String value) {
+    public Property(String property) {
         this.property = property;
-        this.value = value;
     }
 
-    public boolean equalsTo(String expected_value) {
-        if (value.equals(expected_value))
-            return true;
-        throw new AssertionError("Expected " + property + ": \"" + expected_value + "\" but was: \"" + value + "\"");
-    }
+    public abstract String value(Component component);
 
-    public boolean contains(String expected_value) {
-        if (value.contains(expected_value))
-            return true;
-        throw new AssertionError("Expected " + property + " contains: \"" + expected_value + "\" but was: \"" + value + "\"");
-    }
-
-    public boolean matches(String expression) {
-        if (value.matches(expression))
-            return true;
-        throw new AssertionError("Expected " + property + " matches: \"" + expression + "\" but was: \"" + value + "\"");
-
+    public String property() {
+        return property;
     }
 
 }

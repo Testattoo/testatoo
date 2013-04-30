@@ -16,8 +16,9 @@
 package org.testatoo.core.component;
 
 import org.testatoo.core.EvaluatorHolder;
+import org.testatoo.core.Has;
+import org.testatoo.core.Is;
 import org.testatoo.core.property.Property;
-import org.testatoo.core.property.PropertySupport;
 import org.testatoo.core.state.State;
 
 /**
@@ -45,33 +46,41 @@ public class Component {
         return id;
     }
 
-    public Component is(State state) {
-        state.is(this);
-        return this;
+    public Is is(State state) {
+        return new Is(state, this);
     }
 
-    public Property has(PropertySupport support) {
-        return support.is(this);
+    public Has has(Property property) {
+        return new Has(property, this);
     }
 
-    public boolean contains(Component... components) {
-        for (Component component : components) {
-            if (!EvaluatorHolder.get().contains(this, component)) {
-                throw new AssertionError("Component " + this.getClass().getSimpleName() + " with id: \"" + this.id() + "\" does no contains component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
+    public Runnable contains(final Component... components) {
+        final Component current = this;
+        return new Runnable() {
+            @Override
+            public void run() {
+                for (Component component : components) {
+                    if (!EvaluatorHolder.get().contains(current, component)) {
+                        throw new AssertionError("Component " + current.getClass().getSimpleName() + " with id: \"" + current.id() + "\" does no contains component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
+                    }
+                }
             }
-        }
-        return true;
+        };
     }
 
-    public boolean displays(Component... components) {
-        contains(components);
-        for (Component component : components) {
-            if (!EvaluatorHolder.get().isVisible(component)) {
-                throw new AssertionError("Component " + this.getClass().getSimpleName() + " with id: \"" + this.id() + "\" does no displays component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
+    public Runnable displays(final Component... components) {
+        final Component current = this;
+        return new Runnable() {
+            @Override
+            public void run() {
+                contains(components);
+                for (Component component : components) {
+                    if (!EvaluatorHolder.get().isVisible(component)) {
+                        throw new AssertionError("Component " + current.getClass().getSimpleName() + " with id: \"" + current.id() + "\" does no displays component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
+                    }
+                }
             }
-        }
-        return true;
+        };
     }
-
 
 }

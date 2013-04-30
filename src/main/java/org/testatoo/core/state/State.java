@@ -25,7 +25,7 @@ public abstract class State {
     protected String expected_state;
     protected String none_expected_state;
 
-    abstract public void is(Component component);
+    public abstract void check(Component component);
 
     protected String stateMessage(Component component) {
         return "Component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\" expected " + expected_state + " but was " + none_expected_state;

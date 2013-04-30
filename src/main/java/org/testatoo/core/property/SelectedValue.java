@@ -22,12 +22,16 @@ import org.testatoo.core.nature.Selectable;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class SelectedValue extends PropertySupport {
+public class SelectedValue extends Property {
+
+    public SelectedValue() {
+        super("selectedValue");
+    }
 
     @Override
-    public Property is(Component component) {
+    public String value(Component component) {
         if (component instanceof Selectable) {
-            return new Property("text", EvaluatorHolder.get().selectedValue((Selectable) component));
+            return EvaluatorHolder.get().selectedValue((Selectable) component);
         }
         throw new AssertionError("The component does not support Text");
     }

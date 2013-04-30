@@ -22,6 +22,7 @@ import org.testatoo.config.junit.TestatooJunitRunner;
 import org.testatoo.core.component.*;
 import org.testatoo.html.conf.Module;
 
+import static org.junit.Assert.assertEquals;
 import static org.testatoo.core.ComponentFactory.component;
 import static org.testatoo.core.ComponentFactory.components;
 
@@ -40,7 +41,7 @@ public class ComponentFactoryTest extends Testatoo {
         assertThat(button.is(visible()));
 
         Selection<Button> buttons = components(Button.class, By.$(".btn"));
-        assertThat(buttons.size().equals(4));
+        assertEquals(buttons.size(), 4);
 
         CheckBox checkBox = component(CheckBox.class, By.id("checkbox"));
         assertThat(checkBox.is(visible()));

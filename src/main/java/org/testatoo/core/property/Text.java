@@ -22,12 +22,16 @@ import org.testatoo.core.nature.TextSupport;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Text extends PropertySupport {
+public class Text extends Property {
+
+    public Text() {
+        super("text");
+    }
 
     @Override
-    public Property is(Component component) {
+    public String value(Component component) {
         if (component instanceof TextSupport) {
-            return new Property("text", EvaluatorHolder.get().text((TextSupport) component));
+            return EvaluatorHolder.get().text((TextSupport) component);
         }
         throw new AssertionError("The component does not support Text");
     }

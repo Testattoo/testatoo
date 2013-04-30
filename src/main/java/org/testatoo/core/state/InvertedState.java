@@ -33,14 +33,12 @@ public class InvertedState extends State {
     }
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
         try {
-            state.is(component);
+            state.check(component);
         } catch (AssertionError e) {
             return;
         }
         throw new AssertionError(state.invertedStateMessage(component));
     }
-
-
 }

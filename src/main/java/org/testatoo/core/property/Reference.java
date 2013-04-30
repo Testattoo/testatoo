@@ -22,14 +22,17 @@ import org.testatoo.core.nature.ReferenceSupport;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Reference extends PropertySupport {
+public class Reference extends Property {
+
+    public Reference() {
+        super("reference");
+    }
 
     @Override
-    public Property is(Component component) {
+    public String value(Component component) {
         if (component instanceof ReferenceSupport) {
-            return new Property("reference", EvaluatorHolder.get().reference((ReferenceSupport) component));
+            return EvaluatorHolder.get().reference((ReferenceSupport) component);
         }
         throw new AssertionError("The component does not support Reference");
     }
-
 }

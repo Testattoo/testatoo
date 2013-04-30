@@ -22,12 +22,16 @@ import org.testatoo.core.nature.LabelSupport;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Label extends PropertySupport {
+public class Label extends Property {
+
+    public Label() {
+        super("label");
+    }
 
     @Override
-    public Property is(Component component) {
+    public String value(Component component) {
         if (component instanceof LabelSupport) {
-            return new Property("label", EvaluatorHolder.get().label((LabelSupport) component));
+            return EvaluatorHolder.get().label((LabelSupport) component);
         }
         throw new AssertionError("The component does not support Label");
     }

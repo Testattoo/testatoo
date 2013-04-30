@@ -29,7 +29,8 @@ public class Checked extends State {
         none_expected_state = "unchecked";
     }
 
-    public void is(Component component) {
+    @Override
+    public void check(Component component) {
         if (component instanceof Checkable) {
             if (!EvaluatorHolder.get().isChecked((Checkable) component)) {
                 throw new AssertionError(stateMessage(component));

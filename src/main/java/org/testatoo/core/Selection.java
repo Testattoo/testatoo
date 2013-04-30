@@ -53,7 +53,7 @@ public interface Selection<T> extends Iterable<T> {
 
     boolean isEmpty();
 
-    Integer size();
+    int size();
 
     boolean contains(Object o);
 

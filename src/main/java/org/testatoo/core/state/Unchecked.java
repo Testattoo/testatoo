@@ -30,7 +30,7 @@ public class Unchecked extends State {
     }
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
         if (component instanceof Checkable) {
             if (EvaluatorHolder.get().isChecked((Checkable) component)) {
                 throw new AssertionError(stateMessage(component));

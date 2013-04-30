@@ -22,14 +22,17 @@ import org.testatoo.core.nature.ValueSupport;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Value extends PropertySupport {
+public class Value extends Property {
+
+    public Value() {
+        super("value");
+    }
 
     @Override
-    public Property is(Component component) {
+    public String value(Component component) {
         if (component instanceof ValueSupport) {
-            return new Property("value", EvaluatorHolder.get().value((ValueSupport) component));
+            return EvaluatorHolder.get().value((ValueSupport) component);
         }
         throw new AssertionError("The component does not support Value");
     }
-
 }

@@ -17,6 +17,7 @@ package org.testatoo.core.state;
 
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
+import org.testatoo.core.nature.Checkable;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,7 +30,7 @@ public class Disabled extends State {
     }
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
         if (EvaluatorHolder.get().isEnabled(component)) {
             throw new AssertionError(stateMessage(component));
         }

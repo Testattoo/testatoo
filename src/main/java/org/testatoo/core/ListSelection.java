@@ -63,7 +63,7 @@ public final class ListSelection<T> implements Selection<T> {
         return list.isEmpty();
     }
 
-    public final Integer size() {
+    public final int size() {
         return list.size();
     }
 

@@ -29,7 +29,7 @@ public class Enabled extends State {
     }
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
         if (!EvaluatorHolder.get().isEnabled(component)) {
             throw new AssertionError(stateMessage(component));
         }

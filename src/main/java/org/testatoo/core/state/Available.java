@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.state;
 
+import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.component.Component;
 
 /**
@@ -23,6 +24,6 @@ import org.testatoo.core.component.Component;
 public class Available extends State {
 
     @Override
-    public void is(Component component) {
+    public void check(Component component) {
     }
 }
