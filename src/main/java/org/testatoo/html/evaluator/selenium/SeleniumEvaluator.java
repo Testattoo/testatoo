@@ -283,6 +283,11 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         evaljQuery("$('#" + from.id() + "').simulate('dragTo', {'target': $('#" + to.id() + "')})");
     }
 
+    @Override
+    public String evaluate(String expression) {
+        return evaljQuery(expression);
+    }
+
     private String nodename(Component component) {
         return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
     }

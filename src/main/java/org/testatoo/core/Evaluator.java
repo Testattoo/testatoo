@@ -233,4 +233,6 @@ public interface Evaluator<T> {
      */
     void dragAndDrop(Component from, Component to);
 
+    String evaluate(String expression);
+
 }
