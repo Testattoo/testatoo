@@ -21,7 +21,7 @@ import org.testatoo.core.state.State;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Is implements Block {
+public class Is implements Matcher {
 
     private final State state;
     private final Component component;
@@ -32,8 +32,7 @@ public class Is implements Block {
     }
 
     @Override
-    public Component execute() {
+    public void matches() {
         state.check(component);
-        return component;
     }
 }

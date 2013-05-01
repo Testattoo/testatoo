@@ -32,18 +32,16 @@ import static org.testatoo.core.ComponentFactory.component;
  */
 public class Testatoo {
 
-    private static ThreadLocal<Component> it = new ThreadLocal<Component>();
-
     public static Component it() {
-        return it.get();
+        return Component.it();
     }
 
-    public void assertThat(Block<Component> block) {
-         it.set(block.execute());
+    public void assertThat(Matcher matcher) {
+        matcher.matches();
     }
 
-    public void and(Block<Component> block) {
-        block.execute();
+    public void and(Matcher matcher) {
+        matcher.matches();
     }
 
     public void open(String url) {
@@ -219,42 +217,42 @@ public class Testatoo {
     /**
      * Waiting until an assertion is reached. The timeout is 1 second
      *
-     * @param block the block of code to evaluate
+     * @param matcher the matcher of code to evaluate
      */
-    public static void waitUntil(Block block) {
-        waitUntil(block, max(5, TimeUnit.SECONDS));
+    public static void waitUntil(Matcher matcher) {
+        waitUntil(matcher, max(5, TimeUnit.SECONDS));
     }
 
     /**
      * Waiting until an assertion is reached.
      *
-     * @param block the block of code to evaluate
+     * @param matcher the matcher of code to evaluate
      * @param duration maximum waiting time
      */
 //    public static void waitUntil(State state, Duration duration) {
 //        waitUntil(state, duration, freq(500, TimeUnit.MILLISECONDS));
 //    }
 
-    public static void waitUntil(Block block, Duration duration) {
-        waitUntil(block, duration, freq(500, TimeUnit.MILLISECONDS));
+    public static void waitUntil(Matcher matcher, Duration duration) {
+        waitUntil(matcher, duration, freq(500, TimeUnit.MILLISECONDS));
     }
 
     /**
      * Waiting until an assertion is reached.
      *
-     * @param block the block of code to evaluate
+     * @param matcher the matcher of code to evaluate
      * @param duration  maximum waiting time
      * @param frequency frequency of retries
      */
 //    public static void waitUntil(State state, Duration duration, Duration frequency) {
 
-    public static void waitUntil(Block block, Duration duration, Duration frequency) {
+    public static void waitUntil(Matcher matcher, Duration duration, Duration frequency) {
         final long step = frequency.unit.toMillis(frequency.duration);
         Throwable ex = null;
         try {
             for (long timeout = duration.unit.toMillis(duration.duration); timeout > 0; timeout -= step, Thread.sleep(step)) {
                 try {
-                    block.execute();
+                    matcher.matches();
                     return;
                 } catch (Throwable e) {
                     ex = e;

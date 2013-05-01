@@ -23,8 +23,8 @@ import org.aopalliance.intercept.MethodInterceptor;
 
 /**
  * This configuration class enables you to hook into Testatoo system
- * if you need to execute some code before, after all tests and also
- * before, after each test and decide where you want to execute a
+ * if you need to matches some code before, after all tests and also
+ * before, after each test and decide where you want to matches a
  * givne test or not.
  */
 public interface LifeCycleConfig {
@@ -33,7 +33,7 @@ public interface LifeCycleConfig {
      * Add an execution block to run after Testatoo system as started.
      * I.e. if you need to setup a database
      *
-     * @param runnable The code to execute
+     * @param runnable The code to matches
      * @return this
      */
     LifeCycleConfig onStart(Runnable runnable);
@@ -42,7 +42,7 @@ public interface LifeCycleConfig {
      * Add an execution block to run before Testatoo system stops.
      * I.e. if you need to clean a database
      *
-     * @param runnable The code to execute
+     * @param runnable The code to matches
      * @return this
      */
     LifeCycleConfig onStop(Runnable runnable);
@@ -52,7 +52,7 @@ public interface LifeCycleConfig {
      * used to intercept all test calls. By default, no interceptor
      * is setup and all test are executed.
      * <p/>
-     * You can setup an interceptor if you need to execute some code
+     * You can setup an interceptor if you need to matches some code
      * before or after a test, or if you need to skip a specifc test
      * in some conditions.
      * <p/>

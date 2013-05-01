@@ -129,8 +129,8 @@ public final class Testatoo {
      * default, all methods are executed.
      * <p/>
      * You can register an interceptor (in AOP, and Around Advice) when you
-     * configure Testatoo which will enabled you to execute some things before a test,
-     * after a test and decide wheter you want or not to execute the test.
+     * configure Testatoo which will enabled you to matches some things before a test,
+     * after a test and decide wheter you want or not to matches the test.
      *
      * @param testInvocation The test invocation
      * @throws Throwable Any exception thrown by the tes execution

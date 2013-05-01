@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component;
 
-import org.testatoo.core.Block;
+import org.testatoo.core.Matcher;
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.Has;
 import org.testatoo.core.Is;
@@ -29,6 +29,12 @@ import org.testatoo.core.state.State;
  */
 public class Component {
 
+    private static ThreadLocal<Component> it = new ThreadLocal<Component>();
+
+    public static Component it() {
+        return it.get();
+    }
+
     /**
      * The unique identifier of the component
      */
@@ -36,6 +42,7 @@ public class Component {
 
     public Component(String id) {
         this.id = id;
+        it.set(this);
     }
 
     /**
@@ -55,33 +62,33 @@ public class Component {
         return new Has(property, this);
     }
 
-    public Block contains(final Component... components) {
+    // TODO user a State matcher
+
+    public Matcher contains(final Component... components) {
         final Component current = this;
-        return new Block() {
+        return new Matcher() {
             @Override
-            public Component execute() {
+            public void matches() {
                 for (Component component : components) {
                     if (!EvaluatorHolder.get().contains(current, component)) {
                         throw new AssertionError("Component " + current.getClass().getSimpleName() + " with id: \"" + current.id() + "\" does no contains component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
                     }
                 }
-                return current;
             }
         };
     }
 
-    public Block displays(final Component... components) {
+    public Matcher displays(final Component... components) {
         final Component current = this;
-        return new Block() {
+        return new Matcher() {
             @Override
-            public Component execute() {
+            public void matches() {
                 contains(components);
                 for (Component component : components) {
                     if (!EvaluatorHolder.get().isVisible(component)) {
                         throw new AssertionError("Component " + current.getClass().getSimpleName() + " with id: \"" + current.id() + "\" does no displays component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
                     }
                 }
-                return current;
             }
         };
     }
