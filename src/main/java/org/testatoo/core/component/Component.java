@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component;
 
+import org.testatoo.core.Block;
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.Has;
 import org.testatoo.core.Is;
@@ -54,31 +55,33 @@ public class Component {
         return new Has(property, this);
     }
 
-    public Runnable contains(final Component... components) {
+    public Block contains(final Component... components) {
         final Component current = this;
-        return new Runnable() {
+        return new Block() {
             @Override
-            public void run() {
+            public Component execute() {
                 for (Component component : components) {
                     if (!EvaluatorHolder.get().contains(current, component)) {
                         throw new AssertionError("Component " + current.getClass().getSimpleName() + " with id: \"" + current.id() + "\" does no contains component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
                     }
                 }
+                return current;
             }
         };
     }
 
-    public Runnable displays(final Component... components) {
+    public Block displays(final Component... components) {
         final Component current = this;
-        return new Runnable() {
+        return new Block() {
             @Override
-            public void run() {
+            public Component execute() {
                 contains(components);
                 for (Component component : components) {
                     if (!EvaluatorHolder.get().isVisible(component)) {
                         throw new AssertionError("Component " + current.getClass().getSimpleName() + " with id: \"" + current.id() + "\" does no displays component " + component.getClass().getSimpleName() + " with id: \"" + component.id() + "\"");
                     }
                 }
+                return current;
             }
         };
     }

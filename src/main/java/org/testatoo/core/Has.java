@@ -31,34 +31,34 @@ public class Has {
         this.component = component;
     }
 
-    public Runnable equalsTo(final String expected_value) {
-        return new Runnable() {
+    public Block equalsTo(final Object expected_value) {
+        return new Block() {
             @Override
-            public void run() {
+            public Component execute() {
                 if (property.value(component).equals(expected_value))
-                    return;
+                    return component;
                 throw new AssertionError("Expected " + property.property() + ": \"" + expected_value + "\" but was: \"" + property.value(component) + "\"");
             }
         };
     }
 
-    public Runnable contains(final String expected_value) {
-        return new Runnable() {
+    public Block contains(final String expected_value) {
+        return new Block() {
             @Override
-            public void run() {
+            public Component execute() {
                 if (property.value(component).contains(expected_value))
-                    return;
+                    return component;
                 throw new AssertionError("Expected " + property.property() + " contains: \"" + expected_value + "\" but was: \"" + property.value(component) + "\"");
             }
         };
     }
 
-    public Runnable matches(final String expression) {
-        return new Runnable() {
+    public Block matches(final String expression) {
+        return new Block() {
             @Override
-            public void run() {
+            public Component execute() {
                 if (property.value(component).matches(expression))
-                    return;
+                    return component;
                 throw new AssertionError("Expected " + property.property() + " matches: \"" + expression + "\" but was: \"" + property.value(component) + "\"");
             }
         };

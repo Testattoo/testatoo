@@ -21,7 +21,7 @@ import org.testatoo.core.state.State;
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Is implements Runnable {
+public class Is implements Block {
 
     private final State state;
     private final Component component;
@@ -32,7 +32,8 @@ public class Is implements Runnable {
     }
 
     @Override
-    public void run() {
+    public Component execute() {
         state.check(component);
+        return component;
     }
 }

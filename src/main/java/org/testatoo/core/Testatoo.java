@@ -20,11 +20,9 @@ import org.testatoo.core.component.Page;
 import org.testatoo.core.component.TextField;
 import org.testatoo.core.input.Keyboard;
 import org.testatoo.core.input.Mouse;
-import org.testatoo.core.nature.LabelSupport;
 import org.testatoo.core.property.*;
 import org.testatoo.core.state.*;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import static org.testatoo.core.ComponentFactory.component;
@@ -34,19 +32,19 @@ import static org.testatoo.core.ComponentFactory.component;
  */
 public class Testatoo {
 
-//    private static ThreadLocal<Component> it = new ThreadLocal<Component>();
-//
-//    public static Component it() {
-//        return it.get();
-//    }
+    private static ThreadLocal<Component> it = new ThreadLocal<Component>();
 
-    public void assertThat(Runnable runable) {
-        runable.run();
+    public static Component it() {
+        return it.get();
     }
 
-//    public void assertThat(Runnable r) {
-//        r.run();
-//    }
+    public void assertThat(Block<Component> block) {
+         it.set(block.execute());
+    }
+
+    public void and(Block<Component> block) {
+        block.execute();
+    }
 
     public void open(String url) {
         EvaluatorHolder.get().open(url);
@@ -121,8 +119,6 @@ public class Testatoo {
     public SelectedValue selectedValue() {
         return new SelectedValue();
     }
-
-    // Input
 
     /**
      * Reset the field and call the method type
@@ -223,46 +219,42 @@ public class Testatoo {
     /**
      * Waiting until an assertion is reached. The timeout is 1 second
      *
-     * @param state the expected state
+     * @param block the block of code to evaluate
      */
-//    public static void waitUntil(State state) {
-//        waitUntil(state, max(5, TimeUnit.SECONDS));
-//    }
-
-    public static void waitUntil(Runnable r) {
-        waitUntil(r, max(5, TimeUnit.SECONDS));
+    public static void waitUntil(Block block) {
+        waitUntil(block, max(5, TimeUnit.SECONDS));
     }
 
     /**
      * Waiting until an assertion is reached.
      *
-     * @param state the expected state
+     * @param block the block of code to evaluate
      * @param duration maximum waiting time
      */
 //    public static void waitUntil(State state, Duration duration) {
 //        waitUntil(state, duration, freq(500, TimeUnit.MILLISECONDS));
 //    }
 
-    public static void waitUntil(Runnable r, Duration duration) {
-        waitUntil(r, duration, freq(500, TimeUnit.MILLISECONDS));
+    public static void waitUntil(Block block, Duration duration) {
+        waitUntil(block, duration, freq(500, TimeUnit.MILLISECONDS));
     }
 
     /**
      * Waiting until an assertion is reached.
      *
-     * @param state the expected state
+     * @param block the block of code to evaluate
      * @param duration  maximum waiting time
      * @param frequency frequency of retries
      */
 //    public static void waitUntil(State state, Duration duration, Duration frequency) {
 
-    public static void waitUntil(Runnable r, Duration duration, Duration frequency) {
+    public static void waitUntil(Block block, Duration duration, Duration frequency) {
         final long step = frequency.unit.toMillis(frequency.duration);
         Throwable ex = null;
         try {
             for (long timeout = duration.unit.toMillis(duration.duration); timeout > 0; timeout -= step, Thread.sleep(step)) {
                 try {
-                    r.run();;
+                    block.execute();
                     return;
                 } catch (Throwable e) {
                     ex = e;
