@@ -5,7 +5,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.annotation.TestatooModules
 import org.testatoo.config.junit.TestatooJunitRunner
-import org.testatoo.experimental.dsl.Testatoo
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -16,25 +15,22 @@ import org.testatoo.experimental.dsl.Testatoo
 class SampleDsl {
 
     @Delegate
-    Testatoo testatoo = new Testatoo()
+    MyComponents myComponents = new MyComponents()
 
     @Before
     void before() {
-        open("/");
-        waitUntil(login_view().is(visible()));
+        open "/"
+        waitUntil login_view.is(visible)
     }
 
     @Test
     void login_page_contains_expected_elements() {
-        assertThat(page().displays(
-            email_field(),
-            password_field(),
-            login_button()
-        ));
-
-        assertThat(email_field().has(label()).equalsTo("Email"));
-        assertThat(password_field().has(label()).equalsTo("Password"));
-        assertThat(login_button().has(text()).equalsTo("Login"));
+        assertThat {
+            [login_form.email, login_form.password, login_form.login_buuuton]*.are(visible)
+            //login_form.email.has(label()).equalsTo("Email"))
+            //login_form.password.has(label()).equalsTo("Password"))
+            //login_form.login_button.has(label()).equalsTo("Login"))
+        }
     }
 
     @Test
