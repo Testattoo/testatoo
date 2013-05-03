@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component;
 
+import org.testatoo.core.IdSupport;
 import org.testatoo.core.Matcher;
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.Has;
@@ -27,7 +28,7 @@ import org.testatoo.core.state.State;
  *
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class Component {
+public class Component implements IdSupport {
 
     private static ThreadLocal<Component> it = new ThreadLocal<Component>();
 
@@ -52,6 +53,11 @@ public class Component {
      */
     public String id() {
         return id;
+    }
+
+    @Override
+    public String getId() {
+        return id();
     }
 
     public Is is(State state) {

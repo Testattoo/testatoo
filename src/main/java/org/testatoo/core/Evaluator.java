@@ -49,7 +49,7 @@ public interface Evaluator<T> {
      * @param component the component we want to know if visible
      * @return True if the component is visible
      */
-    Boolean isVisible(Component component);
+    Boolean isVisible(IdSupport component);
 
     /**
      * To know if a given component is enabled

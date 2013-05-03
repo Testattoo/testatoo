@@ -18,6 +18,7 @@ package org.testatoo.html.evaluator.selenium;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorException;
+import org.testatoo.core.IdSupport;
 import org.testatoo.core.component.*;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
@@ -79,8 +80,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public Boolean isVisible(Component component) {
-        return Boolean.valueOf(evaljQuery("$('#" + component.id() + "').is(':visible');"));
+    public Boolean isVisible(IdSupport id) {
+        return Boolean.valueOf(evaljQuery("$('#" + id.getId() + "').is(':visible');"));
     }
 
     @Override

@@ -37,8 +37,7 @@ class Testatoo {
     }
 
     State visible = { Component c ->
-        //TODO: change EvaluatorHolder API to support this component class => use interface Id
-        Assert.ensure c, EvaluatorHolder.get().isVisible(new org.testatoo.core.component.Component(c.id)), [e: 'visible', w: 'hidden']
+        Assert.ensure c, EvaluatorHolder.get().isVisible(c), [e: 'visible', w: 'hidden']
     } as State
 
 
