@@ -1,20 +1,17 @@
 package org.testatoo.experimental.dsl
-
-import org.testatoo.core.EvaluatorHolder
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-01
  */
 class Testatoo {
 
-    void assertThat(Closure<?> c) {
-        c()
-    }
+    Evaluator evaluator = new LegacyEvaluator()
 
-    void open(String uri) { EvaluatorHolder.get().open(uri) }
+    void assertThat(Closure<?> c) { c() }
 
-    Component $(String jQuery, long timeout = 2000) { new Component(new jQueryId(jQuery, timeout)) }
+    void open(String uri) { evaluator.open(uri) }
+
+    Component $(String jQuery, long timeout = 2000) { new Component(new jQueryId(evaluator, jQuery, timeout)) }
 
     void waitUntil(Closure<?> c, long timeout = 5000) {
         //TODO: support better optional params for timeout
@@ -37,7 +34,7 @@ class Testatoo {
     }
 
     State visible = { Component c ->
-        Assert.ensure c, EvaluatorHolder.get().isVisible(c), [e: 'visible', w: 'hidden']
+        Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden']
     } as State
 
 

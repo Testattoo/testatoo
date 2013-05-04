@@ -1,7 +1,5 @@
 package org.testatoo.experimental.dsl
 
-import org.testatoo.core.IdSupport
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-03

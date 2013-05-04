@@ -15,13 +15,13 @@
  */
 package org.testatoo.core.component;
 
-import org.testatoo.core.IdSupport;
-import org.testatoo.core.Matcher;
 import org.testatoo.core.EvaluatorHolder;
 import org.testatoo.core.Has;
 import org.testatoo.core.Is;
+import org.testatoo.core.Matcher;
 import org.testatoo.core.property.Property;
 import org.testatoo.core.state.State;
+import org.testatoo.experimental.dsl.IdSupport;
 
 /**
  * This is the base class for all type of graphic components.

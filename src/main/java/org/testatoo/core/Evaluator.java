@@ -20,7 +20,14 @@ import org.testatoo.core.component.TextField;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
-import org.testatoo.core.nature.*;
+import org.testatoo.core.nature.Checkable;
+import org.testatoo.core.nature.LabelSupport;
+import org.testatoo.core.nature.ReferenceSupport;
+import org.testatoo.core.nature.Selectable;
+import org.testatoo.core.nature.TextSupport;
+import org.testatoo.core.nature.TitleSupport;
+import org.testatoo.core.nature.ValueSupport;
+import org.testatoo.experimental.dsl.IdSupport;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

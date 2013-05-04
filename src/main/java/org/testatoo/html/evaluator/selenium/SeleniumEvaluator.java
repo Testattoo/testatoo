@@ -18,22 +18,36 @@ package org.testatoo.html.evaluator.selenium;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorException;
-import org.testatoo.core.IdSupport;
-import org.testatoo.core.component.*;
+import org.testatoo.core.component.Component;
+import org.testatoo.core.component.Page;
+import org.testatoo.core.component.TextField;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.input.KeyboardLayout;
 import org.testatoo.core.input.i18n.USEnglishLayout;
-import org.testatoo.core.nature.*;
+import org.testatoo.core.nature.Checkable;
+import org.testatoo.core.nature.LabelSupport;
+import org.testatoo.core.nature.ReferenceSupport;
+import org.testatoo.core.nature.Selectable;
+import org.testatoo.core.nature.TextSupport;
+import org.testatoo.core.nature.TitleSupport;
+import org.testatoo.core.nature.ValueSupport;
+import org.testatoo.experimental.dsl.IdSupport;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
+import java.util.UUID;
 
-import static org.testatoo.core.input.KeyModifier.*;
+import static org.testatoo.core.input.KeyModifier.ALT;
+import static org.testatoo.core.input.KeyModifier.CONTROL;
+import static org.testatoo.core.input.KeyModifier.SHIFT;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -10,26 +10,20 @@ import org.testatoo.core.EvaluatorHolder
 class jQueryId implements Id {
     private final String expression
     private final long timeout
+    private final Evaluator evaluator
 
-    @Override
-    MetaClass getMetaClass() {
-        return super.getMetaClass()
-    }
-
-    jQueryId(String expression, long timeout) {
+    jQueryId(Evaluator evaluator, String expression, long timeout) {
         this.expression = expression
         this.timeout = timeout
+        this.evaluator = evaluator
     }
 
     @Override
-    String getValue() { waitUntilId() }
-
-    private String waitUntilId() {
+    String getValue() {
         String[] ids = waitUntilIds()
-        if (ids.length > 1)
-            throw new ComponentException("Find more than one component defined by jQueryExpression=" + expression.substring(7))
-        else
-            return ids[0]
+        if (ids.length == 1) return ids[0]
+        if (ids.length == 0) throw new ComponentException("Component defined by ${expression} not found.")
+        throw new ComponentException("Component defined by ${expression} not unique")
     }
 
     private String[] waitUntilIds() {
@@ -39,7 +33,7 @@ class jQueryId implements Id {
             long timeout = this.timeout
             for (; timeout > 0 && !Thread.currentThread().isInterrupted(); timeout -= step) {
                 try {
-                    return EvaluatorHolder.get().elementsId(expression)
+                    return evaluator.getElementsIds(expression)
                 } catch (RuntimeException e) {
                     ex = e
                 }
