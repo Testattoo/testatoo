@@ -88,7 +88,7 @@ public interface Evaluator<T> {
      * @param labelSupport an element that can have a associated label
      * @return the label associated to the element
      */
-    String label(LabelSupport labelSupport);
+    String label(IdSupport component);
 
     /**
      * To get the value displayed in a field

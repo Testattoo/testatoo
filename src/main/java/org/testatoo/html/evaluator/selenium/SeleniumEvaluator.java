@@ -27,7 +27,6 @@ import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.input.KeyboardLayout;
 import org.testatoo.core.input.i18n.USEnglishLayout;
 import org.testatoo.core.nature.Checkable;
-import org.testatoo.core.nature.LabelSupport;
 import org.testatoo.core.nature.ReferenceSupport;
 import org.testatoo.core.nature.Selectable;
 import org.testatoo.core.nature.TextSupport;
@@ -115,17 +114,16 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public String label(LabelSupport labelSupport) {
-        Component component = (Component) labelSupport;
-        if (Integer.valueOf(evaljQuery("$('label[for=\"" + component.id() + "\"]').length")) > 0) {
-            return evaljQuery("$('label[for=\"" + component.id() + "\"]').text()");
+    public String label(IdSupport component) {
+        if (Integer.valueOf(evaljQuery("$('label[for=\"" + component.getId() + "\"]').length")) > 0) {
+            return evaljQuery("$('label[for=\"" + component.getId() + "\"]').text()");
         }
 
-        if (Integer.valueOf(evaljQuery("$('#" + component.id() + "').prev('label').length")) > 0) {
-            return evaljQuery("$('#" + component.id() + "').prev('label').text()");
+        if (Integer.valueOf(evaljQuery("$('#" + component.getId() + "').prev('label').length")) > 0) {
+            return evaljQuery("$('#" + component.getId() + "').prev('label').text()");
         }
         // TODO clean string
-        return evaljQuery("$('#" + component.id() + "').parent().text()");
+        return evaljQuery("$('#" + component.getId() + "').parent().text()");
     }
 
     @Override
@@ -217,10 +215,10 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
             for (byte charCode : text.getBytes()) {
                 if (isIe()) {
                     evaljQuery("$('#" + focusedComponent.id() + "')" +
-                            ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
+                        ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
                 }
                 evaljQuery("$('#" + focusedComponent.id() + "')" +
-                        ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
+                    ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
             }
         } else {
             for (char charCode : text.toCharArray()) {
@@ -360,7 +358,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     private String evaljQuery(String expression) {
         selenium.runScript("if(window.tQuery){(function($, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}");
         String s = selenium.getEval("window.testatoo_tmp");
-        if ("__TQUERY_MISSING__" .equals(s)) {
+        if ("__TQUERY_MISSING__".equals(s)) {
             selenium.runScript(addScript("tquery-1.7.2.js") + addScript("tquery-simulate.js") + addScript("tquery-util.js"));
             selenium.runScript("if(window.tQuery){(function($, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}");
             s = selenium.getEval("window.testatoo_tmp");

@@ -31,7 +31,7 @@ public class Label extends Property {
     @Override
     public String value(Component component) {
         if (component instanceof LabelSupport) {
-            return EvaluatorHolder.get().label((LabelSupport) component);
+            return EvaluatorHolder.get().label(component);
         }
         throw new AssertionError("The component does not support Label");
     }

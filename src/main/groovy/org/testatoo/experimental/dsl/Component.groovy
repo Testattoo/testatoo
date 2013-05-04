@@ -12,8 +12,13 @@ class Component implements IdSupport {
 
     String getId() { id.value }
 
-    Closure<?> is(State state) { return { state.check(this) } }
+    Block is(Matcher matcher) { block(matcher) }
 
-    Closure<?> are(State state) { is(state) }
+    Block are(Matcher matcher) { block(matcher) }
 
+    Block has(Matcher matcher) { block(matcher) }
+
+    Block have(Matcher matcher) { block(matcher) }
+
+    private block(Matcher m) { return { m.matches(this) } as Block }
 }

@@ -5,22 +5,28 @@ package org.testatoo.experimental.dsl
  */
 class Testatoo {
 
-    Evaluator evaluator = new LegacyEvaluator()
+    final Evaluator evaluator = new LegacyEvaluator()
+
+    final Matcher visible = { Component c ->
+        Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden']
+    } as Matcher
+
+    void assertThat(Block m) { m.run() }
+
+    void assertThat(Collection<Block> ms) { ms*.run() }
 
     void assertThat(Closure<?> c) { c() }
 
     void open(String uri) { evaluator.open(uri) }
 
-    Component $(String jQuery, long timeout = 2000) { new Component(new jQueryId(evaluator, jQuery, timeout)) }
-
-    void waitUntil(Closure<?> c, long timeout = 5000) {
+    void waitUntil(Block m, long timeout = 5000) {
         //TODO: support better optional params for timeout
         final long step = 500
         Throwable ex = null
         try {
             for (; timeout > 0; timeout -= step) {
                 try {
-                    c()
+                    m.run()
                     return
                 } catch (Throwable e) {
                     ex = e
@@ -33,9 +39,8 @@ class Testatoo {
         throw new RuntimeException("Unable to reach the condition in 5 seconds", ex)
     }
 
-    State visible = { Component c ->
-        Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden']
-    } as State
+    Component $(String jQuery, long timeout = 2000) { new Component(new jQueryId(evaluator, jQuery, timeout)) }
 
+    Label getLabel() { new Label(evaluator) }
 
 }

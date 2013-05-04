@@ -25,11 +25,13 @@ class SampleDsl {
 
     @Test
     void login_page_contains_expected_elements() {
+        assertThat(login_form.email.is(visible))
+        assertThat([login_form.email, login_form.password, login_form.login_button]*.are(visible))
         assertThat {
-            [login_form.email, login_form.password, login_form.login_buuuton]*.are(visible)
-            //login_form.email.has(label()).equalsTo("Email"))
-            //login_form.password.has(label()).equalsTo("Password"))
-            //login_form.login_button.has(label()).equalsTo("Login"))
+            login_form.email.is visible
+            [login_form.email, login_form.password, login_form.login_button]*.are visible
+            login_form.email.has label.equalsTo("Email")
+            [login_form.email, login_form.password, login_form.login_button]*.have label.equalsTo(['Email', 'Password', 'Login'])
         }
     }
 
