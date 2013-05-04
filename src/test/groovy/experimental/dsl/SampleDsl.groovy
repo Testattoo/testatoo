@@ -25,26 +25,24 @@ class SampleDsl {
 
     @Test
     void login_page_contains_expected_elements() {
-        assertThat(login_form.email.is(visible))
-        assertThat([login_form.email, login_form.password, login_form.login_button]*.are(visible))
+        assertThat(login_email.is(visible))
+        assertThat([login_email, login_password, login_button]*.are(visible))
         assertThat {
-            login_form.email.is visible
-            [login_form.email, login_form.password, login_form.login_button]*.are visible
-            login_form.email.has label.equalsTo("Email")
-            [login_form.email, login_form.password, login_form.login_button]*.have label.equalsTo('Email', 'Password', 'Login')
+            login_email.is visible
+            [login_email, login_password, login_button]*.are visible
+            login_email.has label.equalsTo("Email")
+            [login_email, login_password, login_button]*.have label.equalsTo('Email', 'Password', 'Login')
         }
     }
 
     @Test
     public void can_login_logout() {
-        enter("pastaga@guestful.com", on(email_field()));
-        enter("password666", on(password_field()));
-
-        clickOn(login_button());
-        waitUntil(dashboard_view().is(visible()));
-
-        clickOn(logout_button());
-        waitUntil(login_view().is(visible()));
+        on login_email.enter("pastaga@guestful.com")
+        on login_password.enter("password666")
+        on login_button.click()
+        waitUntil dashboard_view.is(visible)
+        on logout_button.click()
+        waitUntil login_view.is(visible)
     }
 
     @Test

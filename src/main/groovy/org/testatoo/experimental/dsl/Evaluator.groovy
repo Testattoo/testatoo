@@ -8,4 +8,12 @@ public interface Evaluator {
     String[] getElementsIds(String expr)
 
     String getLabel(IdSupport component)
+
+    void reset(IdSupport component)
+
+    void setFocus(IdSupport component)
+
+    void type(String text)
+
+    void click(IdSupport component)
 }

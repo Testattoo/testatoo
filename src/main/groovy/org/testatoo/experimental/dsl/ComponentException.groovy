@@ -1,4 +1,4 @@
-package org.testatoo.experimental.dsl;
+package org.testatoo.experimental.dsl
 
 public class ComponentException extends RuntimeException {
 

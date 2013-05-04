@@ -127,7 +127,7 @@ public class Testatoo {
      */
     public static Component enter(String value, Component component) {
         if (component instanceof TextField) {
-            EvaluatorHolder.get().reset((TextField) component);
+            EvaluatorHolder.get().reset(component);
             return type(value, component);
         }
         throw new AssertionError("The component is not a TextField");

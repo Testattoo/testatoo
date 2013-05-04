@@ -1,5 +1,5 @@
 package org.testatoo.experimental.dsl
 
 public interface Id {
-    String getValue()
+    String getValue(Evaluator evaluator)
 }

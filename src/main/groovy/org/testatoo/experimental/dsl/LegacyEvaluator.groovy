@@ -1,6 +1,7 @@
 package org.testatoo.experimental.dsl
 
 import org.testatoo.core.EvaluatorHolder
+import org.testatoo.core.input.Click
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -25,5 +26,25 @@ class LegacyEvaluator implements Evaluator {
     @Override
     String getLabel(IdSupport component) {
         return EvaluatorHolder.get().label(component)
+    }
+
+    @Override
+    void reset(IdSupport component) {
+        EvaluatorHolder.get().reset(component)
+    }
+
+    @Override
+    void setFocus(IdSupport component) {
+        EvaluatorHolder.get().focusOn(component)
+    }
+
+    @Override
+    void type(String text) {
+        EvaluatorHolder.get().type(text)
+    }
+
+    @Override
+    void click(IdSupport component) {
+        EvaluatorHolder.get().click(component, Click.left)
     }
 }

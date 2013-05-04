@@ -13,6 +13,8 @@ class Testatoo {
 
     void assertThat(Block m) { m.run() }
 
+    void on(Block m) { m.run() }
+
     void assertThat(Collection<Block> ms) { ms*.run() }
 
     void assertThat(Closure<?> c) { c() }
@@ -39,7 +41,7 @@ class Testatoo {
         throw new RuntimeException("Unable to reach the condition in 5 seconds", ex)
     }
 
-    Component $(String jQuery, long timeout = 2000) { new Component(new jQueryId(evaluator, jQuery, timeout)) }
+    Component $(String jQuery, long timeout = 2000) { new Component(evaluator: evaluator, id: new jQueryId(jQuery, timeout)) }
 
     Label getLabel() { new Label(evaluator) }
 

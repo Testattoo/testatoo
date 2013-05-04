@@ -16,12 +16,10 @@
 package org.testatoo.core;
 
 import org.testatoo.core.component.Component;
-import org.testatoo.core.component.TextField;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.nature.Checkable;
-import org.testatoo.core.nature.LabelSupport;
 import org.testatoo.core.nature.ReferenceSupport;
 import org.testatoo.core.nature.Selectable;
 import org.testatoo.core.nature.TextSupport;
@@ -85,7 +83,7 @@ public interface Evaluator<T> {
     /**
      * To get the label of an element with label
      *
-     * @param labelSupport an element that can have a associated label
+     * @param component an element that can have a associated label
      * @return the label associated to the element
      */
     String label(IdSupport component);
@@ -159,16 +157,16 @@ public interface Evaluator<T> {
     /**
      * To reset a TextField
      *
-     * @param textField the text field to reset
+     * @param component the text field to reset
      */
-    void reset(TextField textField);
+    void reset(IdSupport component);
 
     /**
      * To get the focus on the specified component
      *
      * @param component the component to focus
      */
-    void focusOn(Component component);
+    void focusOn(IdSupport component);
 
     /**
      * To type a text
@@ -209,7 +207,7 @@ public interface Evaluator<T> {
      * @param component the component we want to click on
      * @param which     button is click
      */
-    void click(Component component, Click which);
+    void click(IdSupport component, Click which);
 
     /**
      * To double-click on a given component

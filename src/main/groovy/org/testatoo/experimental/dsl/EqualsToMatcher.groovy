@@ -19,9 +19,9 @@ class EqualsToMatcher implements Matcher {
         String v = attribute.getValue(c)
         if (!(v in expected)) {
             if (expected.size() == 1) {
-                throw new AssertionError("Expected ${attribute.class.simpleName} '${expected[0]}' but was '${v}'");
+                throw new AssertionError("Expected ${attribute.class.simpleName} '${expected[0]}' but was '${v}'")
             } else {
-                throw new AssertionError("Expected one of ${attribute.class.simpleName} '${expected}' but was '${v}'");
+                throw new AssertionError("Expected one of ${attribute.class.simpleName} '${expected}' but was '${v}'")
             }
         }
     }

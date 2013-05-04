@@ -20,7 +20,6 @@ import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorException;
 import org.testatoo.core.component.Component;
 import org.testatoo.core.component.Page;
-import org.testatoo.core.component.TextField;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
@@ -58,7 +57,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     private final Properties _props = new Properties();
     protected KeyboardLayout keyboardLayout = new USEnglishLayout();
     protected final List<KeyModifier> pressedKeyModifier = new ArrayList<KeyModifier>();
-    private Component focusedComponent;
+    private IdSupport focusedComponent;
 
     /**
      * Class constructor specifying the used selenium engine
@@ -199,12 +198,12 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public void reset(TextField textField) {
-        evaljQuery("$('#" + textField.id() + "').val('')");
+    public void reset(IdSupport component) {
+        evaljQuery("$('#" + component.getId() + "').val('')");
     }
 
     @Override
-    public void focusOn(Component component) {
+    public void focusOn(IdSupport component) {
         click(component, Click.left);
     }
 
@@ -214,11 +213,11 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         if (focusedComponent != null) {
             for (byte charCode : text.getBytes()) {
                 if (isIe()) {
-                    evaljQuery("$('#" + focusedComponent.id() + "')" +
-                        ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
+                    evaljQuery("$('#" + focusedComponent.getId() + "')" +
+                        ".val($('#" + focusedComponent.getId() + "').val() + String.fromCharCode(" + charCode + "));");
                 }
-                evaljQuery("$('#" + focusedComponent.id() + "')" +
-                    ".val($('#" + focusedComponent.id() + "').val() + String.fromCharCode(" + charCode + "));");
+                evaljQuery("$('#" + focusedComponent.getId() + "')" +
+                    ".val($('#" + focusedComponent.getId() + "').val() + String.fromCharCode(" + charCode + "));");
             }
         } else {
             for (char charCode : text.toCharArray()) {
@@ -256,18 +255,18 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public void click(Component component, Click which) {
+    public void click(IdSupport component, Click which) {
         try {
             setFocus(component);
             if (which == Click.right) {
-                evaljQuery("$('#" + component.id() + "').simulate('rightclick')");
+                evaljQuery("$('#" + component.getId() + "').simulate('rightclick')");
             } else {
                 // If component is link we need to open the expected target
                 // Not sure but some Browser seems have a security check to not open page on js event
 //                if (component instanceof Link && !((Link) component).reference().equals("#")) {
 //                    selenium.click(component.id());
 //                } else {
-                evaljQuery("$('#" + component.id() + "').simulate('click')");
+                evaljQuery("$('#" + component.getId() + "').simulate('click')");
 //                }
             }
         } catch (Exception e) {
@@ -305,8 +304,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
     }
 
-    private void setFocus(Component component) {
-        evaljQuery("$('#" + component.id() + "').focus()");
+    private void setFocus(IdSupport component) {
+        evaljQuery("$('#" + component.getId() + "').focus()");
         focusedComponent = component;
     }
 
