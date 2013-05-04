@@ -7,6 +7,9 @@ package org.testatoo.experimental.dsl
 class Label implements Attribute {
     final Evaluator evaluator
 
+    @Delegate
+    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+
     Label(Evaluator evaluator) {
         this.evaluator = evaluator
     }
@@ -15,8 +18,4 @@ class Label implements Attribute {
     String getValue(IdSupport component) {
         return evaluator.getLabel(component)
     }
-
-    EqualsToMatcher equalsTo(String expected) { equalsTo([expected]) }
-
-    EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(this, anyOfExpected) }
 }

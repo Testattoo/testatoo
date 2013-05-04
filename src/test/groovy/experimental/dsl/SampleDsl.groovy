@@ -15,7 +15,7 @@ import org.testatoo.config.junit.TestatooJunitRunner
 class SampleDsl {
 
     @Delegate
-    MyComponents myComponents = new MyComponents()
+    private MyComponents myComponents = new MyComponents()
 
     @Before
     void before() {
@@ -31,7 +31,7 @@ class SampleDsl {
             login_form.email.is visible
             [login_form.email, login_form.password, login_form.login_button]*.are visible
             login_form.email.has label.equalsTo("Email")
-            [login_form.email, login_form.password, login_form.login_button]*.have label.equalsTo(['Email', 'Password', 'Login'])
+            [login_form.email, login_form.password, login_form.login_button]*.have label.equalsTo('Email', 'Password', 'Login')
         }
     }
 

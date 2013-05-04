@@ -10,7 +10,7 @@ import org.testatoo.experimental.dsl.Testatoo
 class MyComponents {
 
     @Delegate
-    Testatoo testatoo = new Testatoo()
+    private Testatoo testatoo = new Testatoo()
 
     // components are initialzed once and can be reused
     // => only expression is kept, evaluation (to get id + id assignment) is done only when needed

@@ -25,4 +25,14 @@ class EqualsToMatcher implements Matcher {
             }
         }
     }
+
+    static Matchers matchers(Attribute a) { new Matchers(attribute: a) }
+
+    static class Matchers extends AttributeMatchers {
+        EqualsToMatcher equalsTo(String expected) { equalsTo([expected]) }
+
+        EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(attribute, anyOfExpected) }
+
+        EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(attribute, Arrays.asList(anyOfExpected)) }
+    }
 }
