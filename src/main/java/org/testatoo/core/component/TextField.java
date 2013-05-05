@@ -16,6 +16,7 @@
 package org.testatoo.core.component;
 
 import org.testatoo.core.nature.LabelSupport;
+import org.testatoo.core.nature.PlaceholderSupport;
 import org.testatoo.core.nature.ValueSupport;
 
 /**
@@ -23,7 +24,7 @@ import org.testatoo.core.nature.ValueSupport;
  *
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class TextField extends Component implements LabelSupport, ValueSupport {
+public class TextField extends Component implements LabelSupport, ValueSupport, PlaceholderSupport {
 
     public TextField(String id) {
         super(id);

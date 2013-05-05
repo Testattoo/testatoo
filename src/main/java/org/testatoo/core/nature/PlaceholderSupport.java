@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.core.nature;
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class Button extends Component {
+public interface PlaceholderSupport {
 }

@@ -19,12 +19,7 @@ import org.testatoo.core.component.Component;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
-import org.testatoo.core.nature.Checkable;
-import org.testatoo.core.nature.ReferenceSupport;
-import org.testatoo.core.nature.Selectable;
-import org.testatoo.core.nature.TextSupport;
-import org.testatoo.core.nature.TitleSupport;
-import org.testatoo.core.nature.ValueSupport;
+import org.testatoo.core.nature.*;
 import org.testatoo.experimental.dsl.IdSupport;
 
 /**
@@ -87,6 +82,8 @@ public interface Evaluator<T> {
      * @return the label associated to the element
      */
     String label(IdSupport component);
+
+    String placeholder(PlaceholderSupport placeholderSupport);
 
     /**
      * To get the value displayed in a field
@@ -239,5 +236,6 @@ public interface Evaluator<T> {
     void dragAndDrop(Component from, Component to);
 
     String evaluate(String expression);
+
 
 }
