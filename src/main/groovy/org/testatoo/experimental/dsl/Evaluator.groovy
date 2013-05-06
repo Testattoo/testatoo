@@ -16,4 +16,6 @@ public interface Evaluator {
     void type(String text)
 
     void click(IdSupport component)
+
+    String getText(IdSupport component)
 }

@@ -1,7 +1,6 @@
 package org.testatoo.experimental.dsl
 
 import org.testatoo.core.EvaluatorException
-import org.testatoo.core.EvaluatorHolder
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -23,6 +22,8 @@ class jQueryId implements Id {
         if (ids.length == 0) throw new ComponentException("Component defined by ${expression} not found.")
         throw new ComponentException("Component defined by ${expression} not unique")
     }
+
+
 
     private String[] waitUntilIds(Evaluator evaluator) {
         Throwable ex = null
@@ -50,4 +51,8 @@ class jQueryId implements Id {
         }
         throw new RuntimeException("Unable to reach the condition in 2 seconds", ex)
     }
+
+    @Override
+    public String toString() { '$(' + expression + ')';
+}
 }

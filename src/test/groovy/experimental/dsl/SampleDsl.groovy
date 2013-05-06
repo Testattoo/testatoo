@@ -25,7 +25,7 @@ class SampleDsl {
 
     @Test
     void login_page_contains_expected_elements() {
-        assertThat(login_email.is(visible))
+        assertThat login_email.is(visible)
         assertThat([login_email, login_password, login_button]*.are(visible))
         assertThat {
             login_email.is visible
@@ -47,16 +47,15 @@ class SampleDsl {
 
     @Test
     public void on_login_failure_error_message_is_displayed() {
-        assertThat(login_error_message().is(hidden()));
-
-        enter("pastaga@guestful.com", on(email_field()));
-        enter("badpassword", on(password_field()));
-
-        clickOn(login_button());
-        waitUntil(login_error_message().is(visible()));
-        assertThat(login_error_message().has(text()).contains("Login failed: Please verify your credentials and try again"));
-
-        assertThat(login_view().is(visible()));
+        assertThat login_error_message.is(hidden)
+        on login_email.enter("pastaga@guestful.com")
+        on login_password.enter("badpassword")
+        on login_button.click()
+        waitUntil login_error_message.is(visible)
+        assertThat {
+            login_error_message.has text.containing("Login failed: Please verify your credentials and try again")
+            login_view.is visible
+        }
     }
 
 }

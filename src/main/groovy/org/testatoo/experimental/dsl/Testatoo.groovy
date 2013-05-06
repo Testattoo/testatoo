@@ -5,21 +5,34 @@ package org.testatoo.experimental.dsl
  */
 class Testatoo {
 
-    final Evaluator evaluator = new LegacyEvaluator()
+    // settings
+    Evaluator evaluator = new LegacyEvaluator()
 
+    // matchers
     final Matcher visible = { Component c ->
         Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden']
     } as Matcher
 
-    void assertThat(Block m) { m.run() }
+    final Matcher hidden = { Component c ->
+        Assert.ensure c, !evaluator.isVisible(c), [e: 'hidden', w: 'visible']
+    } as Matcher
 
-    void on(Block m) { m.run() }
+    // dsl
 
-    void assertThat(Collection<Block> ms) { ms*.run() }
-
-    void assertThat(Closure<?> c) { c() }
+    Component $(String jQuery, long timeout = 2000) { new Component(evaluator: evaluator, id: new jQueryId(jQuery, timeout)) }
 
     void open(String uri) { evaluator.open(uri) }
+
+    void assertThat(Block m) { run(m) }
+
+    void on(Block m) { run(m) }
+
+    void assertThat(Collection<Block> blocks) { run(Blocks.compose(blocks)) }
+
+    void assertThat(Closure<?> c) {
+        c()
+        run(Blocks.compose(Blocks.pending()))
+    }
 
     void waitUntil(Block m, long timeout = 5000) {
         //TODO: support better optional params for timeout
@@ -41,8 +54,17 @@ class Testatoo {
         throw new RuntimeException("Unable to reach the condition in 5 seconds", ex)
     }
 
-    Component $(String jQuery, long timeout = 2000) { new Component(evaluator: evaluator, id: new jQueryId(jQuery, timeout)) }
+    // attributes
 
-    Label getLabel() { new Label(evaluator) }
+    LabelAttribute getLabel() { new LabelAttribute(evaluator) }
+
+    TextAttribute getText() { new TextAttribute(evaluator) }
+
+    // utils
+
+    private void run(Block block) {
+        println block
+        block.run()
+    }
 
 }

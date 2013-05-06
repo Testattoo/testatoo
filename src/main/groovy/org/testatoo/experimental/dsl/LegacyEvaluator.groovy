@@ -8,43 +8,32 @@ import org.testatoo.core.input.Click
  * @date 2013-05-04
  */
 class LegacyEvaluator implements Evaluator {
-    @Override
-    void open(String url) {
-        EvaluatorHolder.get().open(url)
-    }
 
     @Override
-    boolean isVisible(IdSupport component) {
-        return EvaluatorHolder.get().isVisible(component)
-    }
+    void open(String url) { EvaluatorHolder.get().open(url) }
 
     @Override
-    String[] getElementsIds(String expr) {
-        return EvaluatorHolder.get().elementsId(expr)
-    }
+    boolean isVisible(IdSupport component) { EvaluatorHolder.get().isVisible(component) }
 
     @Override
-    String getLabel(IdSupport component) {
-        return EvaluatorHolder.get().label(component)
-    }
+    String[] getElementsIds(String expr) { EvaluatorHolder.get().elementsId(expr) }
 
     @Override
-    void reset(IdSupport component) {
-        EvaluatorHolder.get().reset(component)
-    }
+    String getLabel(IdSupport component) { EvaluatorHolder.get().label(component) }
 
     @Override
-    void setFocus(IdSupport component) {
-        EvaluatorHolder.get().focusOn(component)
-    }
+    void reset(IdSupport component) { EvaluatorHolder.get().reset(component) }
 
     @Override
-    void type(String text) {
-        EvaluatorHolder.get().type(text)
-    }
+    void setFocus(IdSupport component) { EvaluatorHolder.get().focusOn(component) }
 
     @Override
-    void click(IdSupport component) {
-        EvaluatorHolder.get().click(component, Click.left)
-    }
+    void type(String text) { EvaluatorHolder.get().type(text) }
+
+    @Override
+    void click(IdSupport component) { EvaluatorHolder.get().click(component, Click.left) }
+
+    @Override
+    String getText(IdSupport component) { EvaluatorHolder.get().label(component) }
+
 }

@@ -26,6 +26,9 @@ class EqualsToMatcher implements Matcher {
         }
     }
 
+    @Override
+    String toString() { "${attribute} equals to ${expected.size() == 1 ? expected[0] : expected}" }
+
     static Matchers matchers(Attribute a) { new Matchers(attribute: a) }
 
     static class Matchers extends AttributeMatchers {

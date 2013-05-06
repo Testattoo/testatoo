@@ -20,4 +20,6 @@ class MyComponents {
     TextField login_password = $("#login_form :input[name=\"password\"]") as TextField
     Button login_button = $("#login_form button:first") as Button
     Button logout_button = $("[data-role=logout]:visible") as Button
+    Component login_error_message = $("#login_form .alert-error")
+
 }

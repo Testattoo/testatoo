@@ -9,9 +9,7 @@ class Component implements IdSupport {
     private Id id
     Evaluator evaluator
 
-    void setId(Id id) {
-        this.id = id
-    }
+    void setId(Id id) { this.id = id }
 
     String getId() { id.getValue(evaluator) }
 
@@ -23,13 +21,16 @@ class Component implements IdSupport {
 
     Block have(Matcher matcher) { block(matcher) }
 
-    Block click() { return { evaluator.click(this) } as Block }
+    Block click() { Blocks.block "click on ${this}", { evaluator.click(this) } }
 
-    private block(Matcher m) { return { m.matches(this) } as Block }
+    private block(Matcher m) { Blocks.block "matching ${this}: ${m}", { m.matches(this) } }
+
+    @Override
+    String toString() { getClass().simpleName + ":${id as String}" }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
-            Component c = clazz.newInstance() as Component
+            Component c = (Component) clazz.newInstance()
             c.setId(this.id)
             c.evaluator = this.evaluator
             return c
