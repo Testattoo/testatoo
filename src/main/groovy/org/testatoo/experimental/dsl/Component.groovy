@@ -23,14 +23,15 @@ class Component implements IdSupport {
 
     private Id id
     Evaluator evaluator
+    List<Class<Attribute>> supportedAttributes = [];
 
     void setId(Id id) { this.id = id }
 
     String getId() throws ComponentException { id.getValue(evaluator) }
 
-    Block is(Matcher matcher) { block 'is', matcher }
+    Block is(Property matcher) { block 'is', matcher }
 
-    Block are(Matcher matcher) { block 'is', matcher }
+    Block are(Property matcher) { block 'is', matcher }
 
     Block has(Matcher matcher) { block 'has', matcher }
 
@@ -53,4 +54,5 @@ class Component implements IdSupport {
         return super.asType(clazz)
     }
 
+    boolean supports(Attribute attribute) { attribute.class in supportedAttributes }
 }

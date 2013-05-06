@@ -20,14 +20,18 @@ package org.testatoo.experimental.dsl
  */
 class TextField extends Component {
 
+    TextField() {
+        supportedAttributes << [PlaceholderAttribute]
+    }
+
     Block enter(String text) {
         return [
-                run: {
-                    evaluator.reset(this)
-                    evaluator.focus = this
-                    evaluator.type(text)
-                },
-                toString: { "enter '${text}' on ${this}" as String }
+            run: {
+                evaluator.reset(this)
+                evaluator.focus = this
+                evaluator.type(text)
+            },
+            toString: { "enter '${text}' on ${this}" as String }
         ] as Block
     }
 

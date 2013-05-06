@@ -20,6 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.annotation.TestatooModules
 import org.testatoo.config.junit.TestatooJunitRunner
+import org.testatoo.experimental.dsl.Testatoo
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -29,6 +30,8 @@ import org.testatoo.config.junit.TestatooJunitRunner
 @TestatooModules(MyModule)
 class SampleDsl {
 
+    @Delegate
+    private Testatoo testatoo = new Testatoo()
     @Delegate
     private MyComponents myComponents = new MyComponents()
 

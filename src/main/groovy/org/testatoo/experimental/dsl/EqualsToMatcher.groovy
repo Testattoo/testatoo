@@ -31,6 +31,9 @@ class EqualsToMatcher implements Matcher {
 
     @Override
     void matches(Component c) {
+        if (!c.supports(this)) {
+            throw new AssertionError("Component ${this} doesn ot support attribute ${getClass().simpleName}")
+        }
         String v = attribute.getValue(c)
         if (!(v in expected)) {
             if (expected.size() == 1) {

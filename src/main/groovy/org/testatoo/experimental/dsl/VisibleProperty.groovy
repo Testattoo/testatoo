@@ -17,10 +17,19 @@ package org.testatoo.experimental.dsl
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
+ * @date 2013-05-06
  */
-class Button extends Component {
-    Button() {
-        supportedAttributes << [TextAttribute]
+class VisibleProperty implements Property {
+
+    final Evaluator evaluator
+
+    VisibleProperty(Evaluator evaluator) {
+        this.evaluator = evaluator
     }
+
+    @Override
+    void matches(Component c) { Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] }
+
+    @Override
+    String toString() { 'visible' }
 }

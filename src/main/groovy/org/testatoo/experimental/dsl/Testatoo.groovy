@@ -26,27 +26,6 @@ class Testatoo {
     // settings
     Evaluator evaluator = new LegacyEvaluator()
 
-    // matchers
-    final Matcher visible = [
-        matches: { Component c -> Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] },
-        toString: { 'visible' }
-    ] as Matcher
-
-    final Matcher hidden = [
-        matches: { Component c -> Assert.ensure c, !evaluator.isVisible(c), [e: 'hidden', w: 'visible'] },
-        toString: { 'hidden' }
-    ] as Matcher
-
-    final Matcher available = [
-        matches: { Component c -> Assert.ensure c, evaluator.isAvailable(c), [e: 'available', w: 'missing'] },
-        toString: { 'available' }
-    ] as Matcher
-
-    final Matcher missing = [
-        matches: { Component c -> Assert.ensure c, !evaluator.isAvailable(c), [e: 'missing', w: 'available'] },
-        toString: { 'missing' }
-    ] as Matcher
-
     // dsl
 
     Component $(String jQuery, long timeout = 2000) { new Component(evaluator: evaluator, id: new jQueryId(jQuery, timeout)) }
@@ -82,6 +61,13 @@ class Testatoo {
     LabelAttribute getLabel() { new LabelAttribute(evaluator) }
 
     TextAttribute getText() { new TextAttribute(evaluator) }
+
+    // properties
+
+    final VisibleProperty visible = new VisibleProperty(evaluator)
+    final HiddenProperty hidden = new HiddenProperty(evaluator)
+    final AvailableProperty available = new AvailableProperty(evaluator)
+    final MissingProperty missing = new MissingProperty(evaluator)
 
     // utils
 
