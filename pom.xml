@@ -147,13 +147,6 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <classifier>jdk15</classifier>
-            <version>5.9</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>org.concordion</groupId>
             <artifactId>concordion</artifactId>
             <version>1.3.2</version>
