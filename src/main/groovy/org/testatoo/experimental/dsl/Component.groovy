@@ -28,17 +28,17 @@ class Component implements IdSupport {
 
     String getId() { id.getValue(evaluator) }
 
-    Block is(Matcher matcher) { block(matcher) }
+    Block is(Matcher matcher) { block 'is', matcher }
 
-    Block are(Matcher matcher) { block(matcher) }
+    Block are(Matcher matcher) { block 'is', matcher }
 
-    Block has(Matcher matcher) { block(matcher) }
+    Block has(Matcher matcher) { block 'has', matcher }
 
-    Block have(Matcher matcher) { block(matcher) }
+    Block have(Matcher matcher) { block 'has', matcher }
 
     Block click() { Blocks.block "click on ${this}", { evaluator.click(this) } }
 
-    private block(Matcher m) { Blocks.block "matching ${this}: ${m}", { m.matches(this) } }
+    private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 
     @Override
     String toString() { getClass().simpleName + ":${id as String}" }

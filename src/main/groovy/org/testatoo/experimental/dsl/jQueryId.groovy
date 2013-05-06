@@ -15,7 +15,7 @@
  */
 package org.testatoo.experimental.dsl
 
-import org.testatoo.core.EvaluatorException
+import java.util.concurrent.TimeoutException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -41,33 +41,18 @@ class jQueryId implements Id {
 
 
     private String[] waitUntilIds(Evaluator evaluator) {
-        Throwable ex = null
         try {
-            final long step = 500
-            long timeout = this.timeout
-            for (; timeout > 0 && !Thread.currentThread().isInterrupted(); timeout -= step) {
-                try {
-                    return evaluator.getElementsIds(expression)
-                } catch (RuntimeException e) {
-                    ex = e
-                }
-                Thread.sleep(step)
+            Util.waitUntil timeout, 500, {
+                println "waitUntilIds: ${expression}"
+                return evaluator.getElementsIds('jquery:' + expression)
             }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt()
-            ex = e
+        } catch (TimeoutException e) {
+            throw new ComponentException("${e.message} : Cannot find component defined by jQuery expression: ${expression}")
         }
-
-        if (ex instanceof EvaluatorException) {
-            if (expression.startsWith("jquery:"))
-                throw new ComponentException("Cannot find component defined by jQueryExpression=" + expression.substring(7))
-            else
-                throw new ComponentException("Cannot find component defined by id=" + expression)
-        }
-        throw new RuntimeException("Unable to reach the condition in 2 seconds", ex)
     }
 
     @Override
-    public String toString() { '$(' + expression + ')';
-}
+    public String toString() {
+        '$(' + expression + ')';
+    }
 }

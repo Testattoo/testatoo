@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 package org.testatoo.experimental.dsl
+
+import java.util.concurrent.TimeoutException
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-01
@@ -24,13 +27,15 @@ class Testatoo {
     Evaluator evaluator = new LegacyEvaluator()
 
     // matchers
-    final Matcher visible = { Component c ->
-        Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden']
-    } as Matcher
+    final Matcher visible = [
+        matches: { Component c -> Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] },
+        toString: { 'visible' }
+    ] as Matcher
 
-    final Matcher hidden = { Component c ->
-        Assert.ensure c, !evaluator.isVisible(c), [e: 'hidden', w: 'visible']
-    } as Matcher
+    final Matcher hidden = [
+        matches: { Component c -> Assert.ensure c, !evaluator.isVisible(c), [e: 'hidden', w: 'visible'] },
+        toString: { 'hidden' }
+    ] as Matcher
 
     // dsl
 
@@ -50,23 +55,14 @@ class Testatoo {
     }
 
     void waitUntil(Block m, long timeout = 5000) {
-        //TODO: support better optional params for timeout
-        final long step = 500
-        Throwable ex = null
         try {
-            for (; timeout > 0; timeout -= step) {
-                try {
-                    m.run()
-                    return
-                } catch (Throwable e) {
-                    ex = e
-                }
-                Thread.sleep(step)
+            Util.waitUntil timeout, 500, {
+                println "waitUntil: ${m}"
+                m.run()
             }
-        } catch (InterruptedException iex) {
-            throw new RuntimeException("Interrupted exception", iex)
+        } catch (TimeoutException e) {
+            throw new RuntimeException("${e.message} : ${m}")
         }
-        throw new RuntimeException("Unable to reach the condition in 5 seconds", ex)
     }
 
     // attributes
