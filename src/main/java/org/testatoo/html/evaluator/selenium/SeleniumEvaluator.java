@@ -33,15 +33,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
-import static org.testatoo.core.input.KeyModifier.ALT;
-import static org.testatoo.core.input.KeyModifier.CONTROL;
-import static org.testatoo.core.input.KeyModifier.SHIFT;
+import static org.testatoo.core.input.KeyModifier.*;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -377,13 +371,14 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
 
     private String addScript(String name) {
         try {
-            Reader reader = new BufferedReader(new InputStreamReader(Bootstraper.class.getResourceAsStream(name)));
+            Reader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(name)));
             StringBuilder builder = new StringBuilder();
             char[] buffer = new char[8192];
             int read;
             while ((read = reader.read(buffer, 0, buffer.length)) > 0) {
                 builder.append(buffer, 0, read);
             }
+            reader.close();
             return builder.toString();
         } catch (IOException e) {
             throw new IllegalStateException("Internal error occurred when trying to load custom scripts : " + e.getMessage(), e);

@@ -18,15 +18,14 @@ package org.testatoo.config.testatoo;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.config.cartridge.EvaluatorListener;
 import org.testatoo.config.cartridge.EvaluatorListenerAdapter;
-import org.testatoo.config.cartridge.TestatooCartridge;
-import org.testatoo.config.cartridge.TestatooEvaluator;
 import org.testatoo.config.selenium.SeleniumSessionConfig;
 import org.testatoo.config.selenium.SeleniumSessionConfigBuilder;
 import org.testatoo.core.Evaluator;
+import org.testatoo.core.EvaluatorHolder;
+import org.testatoo.html.evaluator.selenium.SeleniumEvaluator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 import static org.testatoo.config.testatoo.Ensure.notNull;
 
@@ -67,19 +66,12 @@ final class DefaultSeleniumSessionConfigBuilder implements SeleniumSessionConfig
 
     @SuppressWarnings({"unchecked"})
     @Override
-    public SeleniumSessionConfig inCartridge(final TestatooCartridge cartridge) {
+    public SeleniumSessionConfig inCartridge() {
         listeners.add(new EvaluatorListenerAdapter<Selenium>() {
-            private CartridgeConfigurator cartridgeConfigurator;
 
             @Override
             public void beforeStart(final Selenium session) {
-                cartridgeConfigurator = CartridgeFactory.get(cartridge, TestatooEvaluator.from(session));
-                cartridgeConfigurator.register(new TreeMap<String, Object>() {
-                    {
-                        put("name", sessionName);
-                        put(Selenium.class.getName(), session);
-                    }
-                });
+                EvaluatorHolder.register(new SeleniumEvaluator(sessionName, session));
             }
 
             @Override
@@ -89,13 +81,7 @@ final class DefaultSeleniumSessionConfigBuilder implements SeleniumSessionConfig
 
             @Override
             public void beforeStop(final Selenium session) {
-                if (cartridgeConfigurator != null)
-                    cartridgeConfigurator.unregister(new TreeMap<String, Object>() {
-                        {
-                            put("name", sessionName);
-                            put(Selenium.class.getName(), session);
-                        }
-                    });
+                EvaluatorHolder.unregister(sessionName);
             }
         });
         return seleniumSessionConfig;

@@ -17,7 +17,6 @@ package experimental.dsl
 
 import org.testatoo.config.AbstractTestatooModule
 import org.testatoo.config.Scope
-import org.testatoo.config.cartridge.TestatooCartridge
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -49,7 +48,7 @@ class MyModule extends AbstractTestatooModule {
             .build())
             .scope(Scope.TEST_CLASS)
             .withTimeout(5000)
-            .inCartridge(TestatooCartridge.HTML4);
+            .inCartridge();
 
         useAnnotations();
     }

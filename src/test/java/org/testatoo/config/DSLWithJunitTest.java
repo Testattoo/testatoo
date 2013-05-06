@@ -19,7 +19,6 @@ import com.ovea.tajin.server.Server;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.testatoo.config.cartridge.TestatooCartridge;
 import org.testatoo.config.testatoo.Testatoo;
 import org.testatoo.core.component.TextField;
 
@@ -54,7 +53,7 @@ public final class DSLWithJunitTest extends org.testatoo.core.Testatoo {
                             .build())
                         .scope(Scope.TEST_CLASS)
                         .withTimeout(20000)
-                        .inCartridge(TestatooCartridge.HTML4);
+                        .inCartridge();
 
             }
         });

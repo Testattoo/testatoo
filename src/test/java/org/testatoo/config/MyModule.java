@@ -18,7 +18,6 @@ package org.testatoo.config;
 import com.ovea.tajin.server.Server;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.testatoo.config.cartridge.TestatooCartridge;
 
 final class MyModule extends AbstractTestatooModule {
 
@@ -45,7 +44,7 @@ final class MyModule extends AbstractTestatooModule {
                     .build())
                 .scope(Scope.TEST_CLASS)
                 .withTimeout(20000)
-                .inCartridge(TestatooCartridge.HTML4);
+                .inCartridge();
 
         lifecycle().onTest(new MethodInterceptor() {
             @Override

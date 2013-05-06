@@ -18,7 +18,6 @@ package org.testatoo.config;
 import com.ovea.tajin.server.Server;
 import com.thoughtworks.selenium.Selenium;
 import org.junit.Test;
-import org.testatoo.config.cartridge.TestatooCartridge;
 import org.testatoo.config.testatoo.Testatoo;
 import org.testatoo.core.component.TextField;
 
@@ -43,7 +42,7 @@ public final class SeleniumWithSupportedCartridgeTest extends org.testatoo.core.
                         .registerProvider(provider)
                         .scope(Scope.TEST_CLASS)
                         .withTimeout(20000)
-                        .inCartridge(TestatooCartridge.HTML4);
+                        .inCartridge();
 
             }
         });

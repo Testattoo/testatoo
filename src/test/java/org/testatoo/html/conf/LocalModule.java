@@ -17,7 +17,6 @@ package org.testatoo.html.conf;
 
 import org.testatoo.config.AbstractTestatooModule;
 import org.testatoo.config.Scope;
-import org.testatoo.config.cartridge.TestatooCartridge;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -49,6 +48,6 @@ public class LocalModule extends AbstractTestatooModule {
                         .build())
                 .scope(Scope.TEST_CLASS)
                 .withTimeout(20000)
-                .inCartridge(TestatooCartridge.HTML4);
+                .inCartridge();
     }
 }

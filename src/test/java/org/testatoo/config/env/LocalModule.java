@@ -17,7 +17,6 @@ package org.testatoo.config.env;
 
 import org.testatoo.config.AbstractTestatooModule;
 import org.testatoo.config.Scope;
-import org.testatoo.config.cartridge.TestatooCartridge;
 
 final class LocalModule extends AbstractTestatooModule {
 
@@ -39,7 +38,7 @@ final class LocalModule extends AbstractTestatooModule {
                         .build())
                 .scope(Scope.TEST_CLASS)
                 .withTimeout(20000)
-                .inCartridge(TestatooCartridge.HTML4);
+                .inCartridge();
 
     }
 }

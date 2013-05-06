@@ -16,7 +16,6 @@
 package org.testatoo.config;
 
 import org.testatoo.config.cartridge.EvaluatorListener;
-import org.testatoo.config.cartridge.TestatooCartridge;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -44,5 +43,5 @@ public interface Evaluator<T, E1, E2> {
      * @return Fluent API ocnstruction...
      * @see org.testatoo.config.cartridge.TestatooCartridge
      */
-    E2 inCartridge(TestatooCartridge cartridge);
+    E2 inCartridge();
 }
