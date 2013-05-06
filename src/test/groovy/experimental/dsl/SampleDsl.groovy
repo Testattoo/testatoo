@@ -18,8 +18,8 @@ package experimental.dsl
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.testatoo.config.annotation.TestatooModules
-import org.testatoo.config.junit.TestatooJunitRunner
+import org.testatoo.config.TestatooModules
+import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.experimental.dsl.Testatoo
 
 /**

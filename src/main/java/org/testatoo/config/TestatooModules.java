@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.annotation;
+package org.testatoo.config;
 
 import org.testatoo.config.TestatooModule;
 
@@ -24,7 +24,7 @@ import java.lang.annotation.*;
 
 /**
  * This annotation can be put on your test classes which uses the
- * {@link org.testatoo.config.junit.TestatooJunitRunner} Junit Runner
+ * {@link org.testatoo.config.TestatooJunitRunner} Junit Runner
  * or {@link org.testatoo.config.junit.TestatooJunitTest} abstract test.
  * <p/>
  * It's goal is to define the list of {@link org.testatoo.config.TestatooModule}

@@ -17,8 +17,6 @@ package org.testatoo.config;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testatoo.config.annotation.TestatooModules;
-import org.testatoo.config.junit.TestatooJunitRunner;
 import org.testatoo.core.Testatoo;
 import org.testatoo.core.component.TextField;
 

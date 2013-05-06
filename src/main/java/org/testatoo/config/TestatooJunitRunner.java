@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.junit;
+package org.testatoo.config;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Rule;
@@ -25,7 +25,6 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
-import org.testatoo.config.annotation.TestatooModules;
 import org.testatoo.config.testatoo.Testatoo;
 
 import java.lang.reflect.AccessibleObject;

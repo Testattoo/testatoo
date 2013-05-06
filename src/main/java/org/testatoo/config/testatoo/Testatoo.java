@@ -17,7 +17,7 @@ package org.testatoo.config.testatoo;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.testatoo.config.TestatooModule;
-import org.testatoo.config.annotation.TestatooModules;
+import org.testatoo.config.TestatooModules;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
