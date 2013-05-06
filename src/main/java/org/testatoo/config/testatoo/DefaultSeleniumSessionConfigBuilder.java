@@ -18,7 +18,6 @@ package org.testatoo.config.testatoo;
 import com.thoughtworks.selenium.Selenium;
 import org.testatoo.config.cartridge.EvaluatorListener;
 import org.testatoo.config.cartridge.EvaluatorListenerAdapter;
-import org.testatoo.config.selenium.SeleniumSessionConfig;
 import org.testatoo.config.selenium.SeleniumSessionConfigBuilder;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorHolder;
@@ -43,6 +42,23 @@ final class DefaultSeleniumSessionConfigBuilder implements SeleniumSessionConfig
 
     DefaultSeleniumSessionConfigBuilder(DefaultSeleniumSessionConfig seleniumSessionConfig) {
         this.seleniumSessionConfig = seleniumSessionConfig;
+        listeners.add(new EvaluatorListenerAdapter<Selenium>() {
+
+            @Override
+            public void beforeStart(final Selenium session) {
+                EvaluatorHolder.register(new SeleniumEvaluator(sessionName, session));
+            }
+
+            @Override
+            public void afterStart(Selenium session) {
+                session.setTimeout("" + timeout);
+            }
+
+            @Override
+            public void beforeStop(final Selenium session) {
+                EvaluatorHolder.unregister(sessionName);
+            }
+        });
     }
 
     @Override
@@ -62,29 +78,6 @@ final class DefaultSeleniumSessionConfigBuilder implements SeleniumSessionConfig
         notNull(listener, "Selenium session listener");
         listeners.add(listener);
         return this;
-    }
-
-    @SuppressWarnings({"unchecked"})
-    @Override
-    public SeleniumSessionConfig inCartridge() {
-        listeners.add(new EvaluatorListenerAdapter<Selenium>() {
-
-            @Override
-            public void beforeStart(final Selenium session) {
-                EvaluatorHolder.register(new SeleniumEvaluator(sessionName, session));
-            }
-
-            @Override
-            public void afterStart(Selenium session) {
-                session.setTimeout("" + timeout);
-            }
-
-            @Override
-            public void beforeStop(final Selenium session) {
-                EvaluatorHolder.unregister(sessionName);
-            }
-        });
-        return seleniumSessionConfig;
     }
 
     void fireAfterStart(Selenium session) {

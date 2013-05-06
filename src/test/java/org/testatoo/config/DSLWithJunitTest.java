@@ -52,8 +52,7 @@ public final class DSLWithJunitTest extends org.testatoo.core.Testatoo {
                             .serverPort(4444)
                             .build())
                         .scope(Scope.TEST_CLASS)
-                        .withTimeout(20000)
-                        .inCartridge();
+                        .withTimeout(20000);
 
             }
         });

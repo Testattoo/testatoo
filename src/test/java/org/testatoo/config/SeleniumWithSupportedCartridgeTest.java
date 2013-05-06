@@ -41,8 +41,7 @@ public final class SeleniumWithSupportedCartridgeTest extends org.testatoo.core.
                 seleniumSessions()
                         .registerProvider(provider)
                         .scope(Scope.TEST_CLASS)
-                        .withTimeout(20000)
-                        .inCartridge();
+                        .withTimeout(20000);
 
             }
         });

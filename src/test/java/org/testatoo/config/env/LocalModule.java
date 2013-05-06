@@ -37,8 +37,7 @@ final class LocalModule extends AbstractTestatooModule {
                         .serverPort(4444)
                         .build())
                 .scope(Scope.TEST_CLASS)
-                .withTimeout(20000)
-                .inCartridge();
+                .withTimeout(20000);
 
     }
 }

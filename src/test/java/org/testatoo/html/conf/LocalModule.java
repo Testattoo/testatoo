@@ -47,7 +47,6 @@ public class LocalModule extends AbstractTestatooModule {
                         .serverPort(seleniumPort)
                         .build())
                 .scope(Scope.TEST_CLASS)
-                .withTimeout(20000)
-                .inCartridge();
+                .withTimeout(20000);
     }
 }

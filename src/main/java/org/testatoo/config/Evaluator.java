@@ -32,16 +32,4 @@ public interface Evaluator<T, E1, E2> {
      */
     E1 add(EvaluatorListener<T> listener);
 
-    /**
-     * Choose for wich cartridge to setup this implementation amongst supported cartridge.
-     * <br>
-     * If the cartridge is not supported (custom cartridge), you can use
-     * {@link #add(org.testatoo.config.cartridge.EvaluatorListener)} to register
-     * a callback to setup your {@link org.testatoo.core.Cartridge}
-     *
-     * @param cartridge The cartridge to build with this implementation
-     * @return Fluent API ocnstruction...
-     * @see org.testatoo.config.cartridge.TestatooCartridge
-     */
-    E2 inCartridge();
 }

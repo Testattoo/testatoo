@@ -47,8 +47,7 @@ class MyModule extends AbstractTestatooModule {
             .serverPort(4444)
             .build())
             .scope(Scope.TEST_CLASS)
-            .withTimeout(5000)
-            .inCartridge();
+            .withTimeout(5000);
 
         useAnnotations();
     }
