@@ -13,20 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component;
+package org.testatoo.core.property;
 
-import org.testatoo.core.nature.LabelSupport;
+import org.testatoo.core.EvaluatorHolder;
+import org.testatoo.core.component.Component;
 import org.testatoo.core.nature.PlaceholderSupport;
-import org.testatoo.core.nature.ValueSupport;
 
 /**
- * This class allows the testing of TextField.
- *
  * @author David Avenante (d.avenante@gmail.com)
  */
-public class TextField extends Component implements LabelSupport, ValueSupport, PlaceholderSupport {
+public class Placeholder extends Property {
 
-    public TextField(String id) {
-        super(id);
+    public Placeholder() {
+        super("placeholder");
+    }
+
+    @Override
+    public String value(Component component) {
+        if (component instanceof PlaceholderSupport) {
+            return EvaluatorHolder.get().placeholder((PlaceholderSupport) component);
+        }
+        throw new AssertionError("The component does not support Placeholder");
     }
 }

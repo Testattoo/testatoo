@@ -98,6 +98,10 @@ public class Testatoo {
         return new Label();
     }
 
+    public Placeholder placeholder() {
+        return new Placeholder();
+    }
+
     public Value value() {
         return new Value();
     }

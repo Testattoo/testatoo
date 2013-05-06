@@ -13,24 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.core.nature;
 
-public interface Evaluator {
-    void open(String url)
-
-    boolean isVisible(IdSupport component)
-
-    String[] getElementsIds(String expr)
-
-    String getLabel(IdSupport component)
-
-    void reset(IdSupport component)
-
-    void setFocus(IdSupport component)
-
-    void type(String text)
-
-    void click(IdSupport component)
-
-    String getText(IdSupport component)
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
+public interface PlaceholderSupport {
 }

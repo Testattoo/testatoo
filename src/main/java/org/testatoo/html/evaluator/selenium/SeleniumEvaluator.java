@@ -25,12 +25,7 @@ import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.input.KeyboardLayout;
 import org.testatoo.core.input.i18n.USEnglishLayout;
-import org.testatoo.core.nature.Checkable;
-import org.testatoo.core.nature.ReferenceSupport;
-import org.testatoo.core.nature.Selectable;
-import org.testatoo.core.nature.TextSupport;
-import org.testatoo.core.nature.TitleSupport;
-import org.testatoo.core.nature.ValueSupport;
+import org.testatoo.core.nature.*;
 import org.testatoo.experimental.dsl.IdSupport;
 
 import java.io.BufferedReader;
@@ -123,6 +118,12 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         }
         // TODO clean string
         return evaljQuery("$('#" + component.getId() + "').parent().text()");
+    }
+
+    @Override
+    public String placeholder(PlaceholderSupport placeholderSupport) {
+        Component component = (Component) placeholderSupport;
+        return attribute(component, "placeholder");
     }
 
     @Override
