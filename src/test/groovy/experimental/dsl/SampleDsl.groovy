@@ -34,7 +34,7 @@ class SampleDsl {
 
     @Before
     void before() {
-        open "/"
+        open '/'
         waitUntil login_view.is(visible)
     }
 
@@ -45,15 +45,16 @@ class SampleDsl {
         assertThat {
             login_email.is visible
             [login_email, login_password, login_button]*.are visible
-            login_email.has label.equalsTo("Email")
-            [login_email, login_password, login_button]*.have label.equalsTo('Email', 'Password', 'Login')
+            login_email.has placeholder.equalsTo('Email')
+            [login_email, login_password]*.have placeholder.equalsTo('Email', 'Password')
+            login_button.has text.equalsTo('Login')
         }
     }
 
     @Test
     public void can_login_logout() {
-        on login_email.enter("pastaga@guestful.com")
-        on login_password.enter("password666")
+        on login_email.enter('pastaga@guestful.com')
+        on login_password.enter('password666')
         on login_button.click()
         waitUntil dashboard_view.is(visible)
         on logout_button.click()

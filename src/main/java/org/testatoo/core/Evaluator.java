@@ -83,7 +83,7 @@ public interface Evaluator<T> {
      */
     String label(IdSupport component);
 
-    String placeholder(PlaceholderSupport placeholderSupport);
+    String placeholder(IdSupport component);
 
     /**
      * To get the value displayed in a field
@@ -99,7 +99,7 @@ public interface Evaluator<T> {
      * @param textSupport component
      * @return the displayed text
      */
-    String text(TextSupport textSupport);
+    String text(IdSupport component);
 
     /**
      * To get the title of a given element
@@ -132,7 +132,7 @@ public interface Evaluator<T> {
      * @param attribute the attribute name
      * @return the attribute value
      */
-    String attribute(Component component, String attribute);
+    String attribute(IdSupport component, String attribute);
 
     /**
      * To know if a given container contains a given component
@@ -238,4 +238,5 @@ public interface Evaluator<T> {
     String evaluate(String expression);
 
 
+    boolean available(IdSupport component);
 }

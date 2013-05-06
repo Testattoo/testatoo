@@ -26,6 +26,7 @@ import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.input.KeyboardLayout;
 import org.testatoo.core.input.i18n.USEnglishLayout;
 import org.testatoo.core.nature.*;
+import org.testatoo.experimental.dsl.ComponentException;
 import org.testatoo.experimental.dsl.IdSupport;
 
 import java.io.BufferedReader;
@@ -121,8 +122,7 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public String placeholder(PlaceholderSupport placeholderSupport) {
-        Component component = (Component) placeholderSupport;
+    public String placeholder(IdSupport component) {
         return attribute(component, "placeholder");
     }
 
@@ -133,13 +133,12 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public String text(TextSupport textSupport) {
-        Component component = (Component) textSupport;
+    public String text(IdSupport component) {
         String nodeName = nodename(component);
         if (nodeName.equalsIgnoreCase("input")) {
             return attribute(component, "value");
         }
-        return evaljQuery("$('#" + component.id() + "').text();");
+        return evaljQuery("$('#" + component.getId() + "').text();");
     }
 
     @Override
@@ -161,9 +160,9 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public String attribute(Component component, String attribute) {
+    public String attribute(IdSupport component, String attribute) {
         String attributeValue;
-        attributeValue = evaljQuery("$('#" + component.id() + "').prop('" + attribute + "');");
+        attributeValue = evaljQuery("$('#" + component.getId() + "').prop('" + attribute + "');");
 
         if (attributeValue.equals("null"))
             return "";
@@ -301,8 +300,18 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
         return evaljQuery(expression);
     }
 
-    private String nodename(Component component) {
-        return evaljQuery("$('#" + component.id() + "').prop('nodeName')");
+    @Override
+    public boolean available(IdSupport component) {
+        try {
+            component.getId();
+            return true;
+        } catch (ComponentException e) {
+            return false;
+        }
+    }
+
+    private String nodename(IdSupport component) {
+        return evaljQuery("$('#" + component.getId() + "').prop('nodeName')");
     }
 
     private void setFocus(IdSupport component) {

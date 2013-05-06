@@ -31,7 +31,7 @@ public class Placeholder extends Property {
     @Override
     public String value(Component component) {
         if (component instanceof PlaceholderSupport) {
-            return EvaluatorHolder.get().placeholder((PlaceholderSupport) component);
+            return EvaluatorHolder.get().placeholder(component);
         }
         throw new AssertionError("The component does not support Placeholder");
     }

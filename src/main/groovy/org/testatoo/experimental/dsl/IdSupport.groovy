@@ -16,5 +16,5 @@
 package org.testatoo.experimental.dsl
 
 public interface IdSupport {
-    String getId()
+    String getId() throws ComponentException
 }

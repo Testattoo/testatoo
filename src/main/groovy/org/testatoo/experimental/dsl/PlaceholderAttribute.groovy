@@ -15,26 +15,25 @@
  */
 package org.testatoo.experimental.dsl
 
-public interface Evaluator {
-    void open(String url)
+/**
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-05-04
+ */
+class PlaceholderAttribute implements Attribute {
+    final Evaluator evaluator
 
-    boolean isVisible(IdSupport component)
+    @Delegate
+    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
 
-    String[] getElementsIds(String expr)
+    @Delegate
+    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    String getLabel(IdSupport component)
+    PlaceholderAttribute(Evaluator evaluator) { this.evaluator = evaluator }
 
-    void reset(IdSupport component)
+    @Override
+    String getValue(IdSupport component) { evaluator.getPlaceholder(component) }
 
-    void setFocus(IdSupport component)
 
-    void type(String text)
-
-    void click(IdSupport component)
-
-    String getText(IdSupport component)
-
-    String getPlaceholder(IdSupport component)
-
-    boolean isAvailable(IdSupport component)
+    @Override
+    String toString() { "Placeholder" }
 }

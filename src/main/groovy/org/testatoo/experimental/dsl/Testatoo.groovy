@@ -37,6 +37,16 @@ class Testatoo {
         toString: { 'hidden' }
     ] as Matcher
 
+    final Matcher available = [
+        matches: { Component c -> Assert.ensure c, evaluator.isAvailable(c), [e: 'available', w: 'missing'] },
+        toString: { 'available' }
+    ] as Matcher
+
+    final Matcher missing = [
+        matches: { Component c -> Assert.ensure c, !evaluator.isAvailable(c), [e: 'missing', w: 'available'] },
+        toString: { 'missing' }
+    ] as Matcher
+
     // dsl
 
     Component $(String jQuery, long timeout = 2000) { new Component(evaluator: evaluator, id: new jQueryId(jQuery, timeout)) }
@@ -67,6 +77,8 @@ class Testatoo {
 
     // attributes
 
+    PlaceholderAttribute getPlaceholder() { new PlaceholderAttribute(evaluator) }
+
     LabelAttribute getLabel() { new LabelAttribute(evaluator) }
 
     TextAttribute getText() { new TextAttribute(evaluator) }
@@ -74,7 +86,7 @@ class Testatoo {
     // utils
 
     private void run(Block block) {
-        println block
+        println block.toString()
         block.run()
     }
 

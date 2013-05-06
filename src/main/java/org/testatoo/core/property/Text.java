@@ -31,7 +31,7 @@ public class Text extends Property {
     @Override
     public String value(Component component) {
         if (component instanceof TextSupport) {
-            return EvaluatorHolder.get().text((TextSupport) component);
+            return EvaluatorHolder.get().text(component);
         }
         throw new AssertionError("The component does not support Text");
     }

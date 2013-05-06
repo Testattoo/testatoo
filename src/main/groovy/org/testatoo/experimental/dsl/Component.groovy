@@ -26,7 +26,7 @@ class Component implements IdSupport {
 
     void setId(Id id) { this.id = id }
 
-    String getId() { id.getValue(evaluator) }
+    String getId() throws ComponentException { id.getValue(evaluator) }
 
     Block is(Matcher matcher) { block 'is', matcher }
 

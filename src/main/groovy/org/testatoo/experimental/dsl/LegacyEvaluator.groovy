@@ -49,6 +49,11 @@ class LegacyEvaluator implements Evaluator {
     void click(IdSupport component) { EvaluatorHolder.get().click(component, Click.left) }
 
     @Override
-    String getText(IdSupport component) { EvaluatorHolder.get().label(component) }
+    String getText(IdSupport component) { EvaluatorHolder.get().text(component) }
 
+    @Override
+    String getPlaceholder(IdSupport component) { EvaluatorHolder.get().placeholder(component) }
+
+    @Override
+    boolean isAvailable(IdSupport component) { EvaluatorHolder.get().available(component) }
 }

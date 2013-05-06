@@ -15,7 +15,7 @@
  */
 package org.testatoo.experimental.dsl
 
-import java.util.concurrent.TimeoutException
+import org.testatoo.core.EvaluatorException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -26,33 +26,23 @@ class jQueryId implements Id {
     private final long timeout
 
     jQueryId(String expression, long timeout) {
-        this.expression = expression
+        this.expression = expression.startsWith('$') ? expression : ('$(\'' + expression + '\')')
         this.timeout = timeout
     }
 
     @Override
-    String getValue(Evaluator evaluator) {
-        String[] ids = waitUntilIds(evaluator)
-        if (ids.length == 1) return ids[0]
-        if (ids.length == 0) throw new ComponentException("Component defined by ${expression} not found.")
-        throw new ComponentException("Component defined by ${expression} not unique")
-    }
-
-
-
-    private String[] waitUntilIds(Evaluator evaluator) {
+    String getValue(Evaluator evaluator) throws ComponentException {
+        println "get: ${expression}"
         try {
-            Util.waitUntil timeout, 500, {
-                println "waitUntilIds: ${expression}"
-                return evaluator.getElementsIds('jquery:' + expression)
-            }
-        } catch (TimeoutException e) {
-            throw new ComponentException("${e.message} : Cannot find component defined by jQuery expression: ${expression}")
+            String[] ids = evaluator.getElementsIds('jquery:' + expression)
+            if (ids.length == 1) return ids[0]
+            if (ids.length == 0) throw new ComponentException("Component defined by ${expression} not found.")
+            throw new ComponentException("Component defined by ${expression} not unique")
+        } catch (EvaluatorException e) {
+            throw new ComponentException("Component defined by ${expression} cannot be found: ${e.message}")
         }
     }
 
     @Override
-    public String toString() {
-        '$(' + expression + ')';
-    }
+    public String toString() { expression }
 }
