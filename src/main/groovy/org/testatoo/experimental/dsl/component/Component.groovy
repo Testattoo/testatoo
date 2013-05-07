@@ -15,15 +15,13 @@
  */
 package org.testatoo.experimental.dsl.component
 
-import org.testatoo.experimental.dsl.attribute.Attribute
+import org.testatoo.experimental.dsl.property.Property
 import org.testatoo.experimental.dsl.Block
 import org.testatoo.experimental.dsl.Blocks
-import org.testatoo.experimental.dsl.ComponentException
 import org.testatoo.experimental.dsl.Evaluator
 import org.testatoo.experimental.dsl.Id
-import org.testatoo.experimental.dsl.IdSupport
 import org.testatoo.experimental.dsl.Matcher
-import org.testatoo.experimental.dsl.attribute.matcher.AttributeMatcher
+import org.testatoo.experimental.dsl.property.matcher.PropertyMatcher
 import org.testatoo.experimental.dsl.state.State
 
 /**
@@ -34,7 +32,7 @@ class Component implements IdSupport {
 
     private Id id
     Evaluator evaluator
-    List<Class<Attribute>> supportedAttributes = [];
+    List<Class<Property>> supportedProperties = [];
 
     void setId(Id id) { this.id = id }
 
@@ -44,9 +42,9 @@ class Component implements IdSupport {
 
     Block are(State matcher) { block 'is', matcher }
 
-    Block has(AttributeMatcher matcher) { block 'has', matcher }
+    Block has(PropertyMatcher matcher) { block 'has', matcher }
 
-    Block have(AttributeMatcher matcher) { block 'has', matcher }
+    Block have(PropertyMatcher matcher) { block 'has', matcher }
 
     Block click() { Blocks.block "click on ${this}", { evaluator.click(this) } }
 
@@ -65,5 +63,5 @@ class Component implements IdSupport {
         return super.asType(clazz)
     }
 
-    boolean supports(Attribute attribute) { attribute.class in supportedAttributes }
+    boolean supports(Property property) { property.class in supportedProperties }
 }

@@ -26,8 +26,8 @@ import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.input.KeyboardLayout;
 import org.testatoo.core.input.i18n.USEnglishLayout;
 import org.testatoo.core.nature.*;
-import org.testatoo.experimental.dsl.ComponentException;
-import org.testatoo.experimental.dsl.IdSupport;
+import org.testatoo.experimental.dsl.component.ComponentException;
+import org.testatoo.experimental.dsl.component.IdSupport;
 
 import java.io.BufferedReader;
 import java.io.IOException;

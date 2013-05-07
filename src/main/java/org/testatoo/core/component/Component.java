@@ -21,7 +21,7 @@ import org.testatoo.core.Is;
 import org.testatoo.core.Matcher;
 import org.testatoo.core.property.Property;
 import org.testatoo.core.state.State;
-import org.testatoo.experimental.dsl.IdSupport;
+import org.testatoo.experimental.dsl.component.IdSupport;
 
 /**
  * This is the base class for all type of graphic components.

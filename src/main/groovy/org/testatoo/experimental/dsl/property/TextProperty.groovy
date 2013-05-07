@@ -13,27 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl.attribute
+package org.testatoo.experimental.dsl.property
 
-import org.testatoo.experimental.dsl.attribute.matcher.ContainingMatcher
-import org.testatoo.experimental.dsl.attribute.matcher.EqualsToMatcher
+import org.testatoo.experimental.dsl.property.matcher.ContainingMatcher
+import org.testatoo.experimental.dsl.property.matcher.EqualsToMatcher
 import org.testatoo.experimental.dsl.Evaluator
-import org.testatoo.experimental.dsl.IdSupport
+import org.testatoo.experimental.dsl.component.IdSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class TextAttribute implements Attribute {
+class TextProperty implements Property {
     final Evaluator evaluator
 
-    @Delegate
-    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+    @Delegate private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+    @Delegate private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    @Delegate
-    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
-
-    TextAttribute(Evaluator evaluator) { this.evaluator = evaluator }
+    TextProperty(Evaluator evaluator) { this.evaluator = evaluator }
 
     @Override
     String getValue(IdSupport component) { evaluator.getText(component) }

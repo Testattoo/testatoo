@@ -16,6 +16,7 @@
 package org.testatoo.experimental.dsl
 
 import org.testatoo.core.EvaluatorException
+import org.testatoo.experimental.dsl.component.ComponentException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

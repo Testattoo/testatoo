@@ -26,8 +26,7 @@ import org.testatoo.experimental.dsl.component.TextField
  */
 class MyComponents {
 
-    @Delegate
-    private Testatoo testatoo = new Testatoo()
+    @Delegate private Testatoo testatoo = new Testatoo()
 
     Component login_view = $("#login_view")
     Component dashboard_view = $("#dashboard_view")

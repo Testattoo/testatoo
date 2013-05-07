@@ -15,6 +15,8 @@
  */
 package org.testatoo.experimental.dsl
 
+import org.testatoo.experimental.dsl.component.ComponentException
+
 public interface Id {
     String getValue(Evaluator evaluator) throws ComponentException
 }

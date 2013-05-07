@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.property.matcher
 
-import org.testatoo.experimental.dsl.attribute.Attribute
+import org.testatoo.experimental.dsl.property.Property
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class AttributeMatchers {
-    Attribute attribute
+class PropertyMatchers {
+    Property property
 }

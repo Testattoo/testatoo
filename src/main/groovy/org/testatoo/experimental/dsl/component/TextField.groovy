@@ -16,7 +16,7 @@
 package org.testatoo.experimental.dsl.component
 
 import org.testatoo.experimental.dsl.Block
-import org.testatoo.experimental.dsl.attribute.PlaceholderAttribute
+import org.testatoo.experimental.dsl.property.PlaceholderProperty
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -25,7 +25,7 @@ import org.testatoo.experimental.dsl.attribute.PlaceholderAttribute
 class TextField extends Component {
 
     TextField() {
-        supportedAttributes << [PlaceholderAttribute]
+        supportedProperties << [PlaceholderProperty]
     }
 
     Block enter(String text) {

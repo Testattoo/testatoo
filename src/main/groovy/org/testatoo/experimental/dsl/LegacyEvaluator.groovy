@@ -17,6 +17,7 @@ package org.testatoo.experimental.dsl
 
 import org.testatoo.core.EvaluatorHolder
 import org.testatoo.core.input.Click
+import org.testatoo.experimental.dsl.component.IdSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

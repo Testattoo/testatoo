@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.component
 
 public class ComponentException extends RuntimeException {
 

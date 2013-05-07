@@ -13,26 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.state
 
 import org.testatoo.experimental.dsl.component.Component
-import org.testatoo.experimental.dsl.state.State
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-06
+ * @date 2013-05-03
  */
-class HiddenState implements State {
+class Assert {
 
-    final Evaluator evaluator
-
-    HiddenState(Evaluator evaluator) {
-        this.evaluator = evaluator
+    static void ensure(Component c, boolean test, Map<String, ?> opts) {
+        if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts.e} but was ${opts.w}")
     }
 
-    @Override
-    void matches(Component c) { Assert.ensure c, !evaluator.isVisible(c), [e: 'hidden', w: 'visible'] }
-
-    @Override
-    String toString() { 'hidden' }
 }

@@ -15,7 +15,6 @@
  */
 package org.testatoo.experimental.dsl.state
 
-import org.testatoo.experimental.dsl.Assert
 import org.testatoo.experimental.dsl.Evaluator
 import org.testatoo.experimental.dsl.component.Component
 

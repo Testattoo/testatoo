@@ -15,7 +15,7 @@
  */
 package org.testatoo.experimental.dsl.component
 
-import org.testatoo.experimental.dsl.attribute.TextAttribute
+import org.testatoo.experimental.dsl.property.TextProperty
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -23,6 +23,6 @@ import org.testatoo.experimental.dsl.attribute.TextAttribute
  */
 class Button extends Component {
     Button() {
-        supportedAttributes << [TextAttribute]
+        supportedProperties << [TextProperty]
     }
 }

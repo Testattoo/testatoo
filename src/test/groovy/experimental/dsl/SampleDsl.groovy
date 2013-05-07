@@ -30,10 +30,8 @@ import org.testatoo.experimental.dsl.Testatoo
 @TestatooModules(MyModule)
 class SampleDsl {
 
-    @Delegate
-    private Testatoo testatoo = new Testatoo()
-    @Delegate
-    private MyComponents myComponents = new MyComponents()
+    @Delegate Testatoo testatoo = new Testatoo()
+    @Delegate MyComponents myComponents = new MyComponents()
 
     @Before
     void before() {

@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl.attribute.matcher
+package org.testatoo.experimental.dsl.property.matcher
 
-import org.testatoo.experimental.dsl.AttributeMatchers
-import org.testatoo.experimental.dsl.attribute.Attribute
+import org.testatoo.experimental.dsl.property.Property
 import org.testatoo.experimental.dsl.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class EqualsToMatcher extends AbstractAttributeMatcher {
+class EqualsToMatcher extends AbstractPropertyMatcher {
 
     final Collection<String> expected
 
-    EqualsToMatcher(Attribute attribute, Collection<String> expected) {
-        super(attribute)
+    EqualsToMatcher(Property property, Collection<String> expected) {
+        super(property)
         this.expected = expected
     }
 
@@ -36,23 +35,23 @@ class EqualsToMatcher extends AbstractAttributeMatcher {
     void doMatch(Component c, String currentValue) {
         if (!(currentValue in expected)) {
             if (expected.size() == 1) {
-                throw new AssertionError("Expected ${attribute.class.simpleName} '${expected[0]}' but was '${currentValue}'")
+                throw new AssertionError("Expected ${property.class.simpleName} '${expected[0]}' but was '${currentValue}'")
             } else {
-                throw new AssertionError("Expected one of ${attribute.class.simpleName} '${expected}' but was '${currentValue}'")
+                throw new AssertionError("Expected one of ${property.class.simpleName} '${expected}' but was '${currentValue}'")
             }
         }
     }
 
     @Override
-    String toString() { "${attribute} equals to ${expected.size() == 1 ? expected[0] : expected}" }
+    String toString() { "${property} equals to ${expected.size() == 1 ? expected[0] : expected}" }
 
-    static Matchers matchers(Attribute a) { new Matchers(attribute: a) }
+    static Matchers matchers(Property a) { new Matchers(property: a) }
 
-    static class Matchers extends AttributeMatchers {
+    static class Matchers extends PropertyMatchers {
         EqualsToMatcher equalsTo(String expected) { equalsTo([expected]) }
 
-        EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(attribute, anyOfExpected) }
+        EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(property, anyOfExpected) }
 
-        EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(attribute, Arrays.asList(anyOfExpected)) }
+        EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
     }
 }

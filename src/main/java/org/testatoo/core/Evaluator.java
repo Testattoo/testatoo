@@ -20,7 +20,7 @@ import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
 import org.testatoo.core.nature.*;
-import org.testatoo.experimental.dsl.IdSupport;
+import org.testatoo.experimental.dsl.component.IdSupport;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

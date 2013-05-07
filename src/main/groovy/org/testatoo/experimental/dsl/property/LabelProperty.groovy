@@ -13,26 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl.state
+package org.testatoo.experimental.dsl.property
 
+import org.testatoo.experimental.dsl.property.matcher.ContainingMatcher
+import org.testatoo.experimental.dsl.property.matcher.EqualsToMatcher
 import org.testatoo.experimental.dsl.Evaluator
-import org.testatoo.experimental.dsl.component.Component
+import org.testatoo.experimental.dsl.component.IdSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-06
+ * @date 2013-05-04
  */
-class VisibleState implements State {
-
+class LabelProperty implements Property {
     final Evaluator evaluator
 
-    VisibleState(Evaluator evaluator) {
-        this.evaluator = evaluator
-    }
+    @Delegate private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+    @Delegate private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
+
+    LabelProperty(Evaluator evaluator) { this.evaluator = evaluator }
 
     @Override
-    void matches(Component c) { Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] }
+    String getValue(IdSupport component) { evaluator.getLabel(component) }
 
     @Override
-    String toString() { 'visible' }
+    String toString() { "Label" }
 }

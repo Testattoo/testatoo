@@ -15,11 +15,12 @@
  */
 package org.testatoo.experimental.dsl
 
-import org.testatoo.experimental.dsl.attribute.LabelAttribute
-import org.testatoo.experimental.dsl.attribute.PlaceholderAttribute
-import org.testatoo.experimental.dsl.attribute.TextAttribute
+import org.testatoo.experimental.dsl.property.LabelProperty
+import org.testatoo.experimental.dsl.property.PlaceholderProperty
+import org.testatoo.experimental.dsl.property.TextProperty
 import org.testatoo.experimental.dsl.component.Component
 import org.testatoo.experimental.dsl.state.AvailableState
+import org.testatoo.experimental.dsl.state.HiddenState
 import org.testatoo.experimental.dsl.state.MissingState
 import org.testatoo.experimental.dsl.state.VisibleState
 
@@ -62,13 +63,13 @@ class Testatoo {
         }
     }
 
-    // attributes
+    // properties
 
-    PlaceholderAttribute getPlaceholder() { new PlaceholderAttribute(evaluator) }
+    PlaceholderProperty getPlaceholder() { new PlaceholderProperty(evaluator) }
 
-    LabelAttribute getLabel() { new LabelAttribute(evaluator) }
+    LabelProperty getLabel() { new LabelProperty(evaluator) }
 
-    TextAttribute getText() { new TextAttribute(evaluator) }
+    TextProperty getText() { new TextProperty(evaluator) }
 
     // properties
 

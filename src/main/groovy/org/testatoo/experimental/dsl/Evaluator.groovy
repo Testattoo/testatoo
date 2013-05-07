@@ -15,6 +15,8 @@
  */
 package org.testatoo.experimental.dsl
 
+import org.testatoo.experimental.dsl.component.IdSupport
+
 public interface Evaluator {
     void open(String url)
 
