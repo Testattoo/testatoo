@@ -93,7 +93,7 @@ public class Testatoo {
         return InvertedState.of(state);
     }
 
-    // Property
+    // State
     public Label label() {
         return new Label();
     }

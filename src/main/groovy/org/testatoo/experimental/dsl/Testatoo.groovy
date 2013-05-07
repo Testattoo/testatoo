@@ -64,10 +64,10 @@ class Testatoo {
 
     // properties
 
-    final VisibleProperty visible = new VisibleProperty(evaluator)
-    final HiddenProperty hidden = new HiddenProperty(evaluator)
-    final AvailableProperty available = new AvailableProperty(evaluator)
-    final MissingProperty missing = new MissingProperty(evaluator)
+    final VisibleState visible = new VisibleState(evaluator)
+    final HiddenState hidden = new HiddenState(evaluator)
+    final AvailableState available = new AvailableState(evaluator)
+    final MissingState missing = new MissingState(evaluator)
 
     // utils
 

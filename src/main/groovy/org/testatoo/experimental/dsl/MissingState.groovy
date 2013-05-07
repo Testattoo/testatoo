@@ -15,6 +15,21 @@
  */
 package org.testatoo.experimental.dsl
 
-public interface Property extends Matcher {
+/**
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-05-06
+ */
+class MissingState implements State {
 
+    final Evaluator evaluator
+
+    MissingState(Evaluator evaluator) {
+        this.evaluator = evaluator
+    }
+
+    @Override
+    void matches(Component c) { Assert.ensure c, !evaluator.isAvailable(c), [e: 'missing', w: 'available'] }
+
+    @Override
+    String toString() { 'missing' }
 }

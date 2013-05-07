@@ -29,9 +29,9 @@ class Component implements IdSupport {
 
     String getId() throws ComponentException { id.getValue(evaluator) }
 
-    Block is(Property matcher) { block 'is', matcher }
+    Block is(State matcher) { block 'is', matcher }
 
-    Block are(Property matcher) { block 'is', matcher }
+    Block are(State matcher) { block 'is', matcher }
 
     Block has(Matcher matcher) { block 'has', matcher }
 

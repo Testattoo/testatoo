@@ -15,21 +15,6 @@
  */
 package org.testatoo.experimental.dsl
 
-/**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-06
- */
-class MissingProperty implements Property {
+public interface State extends Matcher {
 
-    final Evaluator evaluator
-
-    MissingProperty(Evaluator evaluator) {
-        this.evaluator = evaluator
-    }
-
-    @Override
-    void matches(Component c) { Assert.ensure c, !evaluator.isAvailable(c), [e: 'missing', w: 'available'] }
-
-    @Override
-    String toString() { 'missing' }
 }

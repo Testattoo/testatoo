@@ -19,17 +19,17 @@ package org.testatoo.experimental.dsl
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-06
  */
-class AvailableProperty implements Property {
+class HiddenState implements State {
 
     final Evaluator evaluator
 
-    AvailableProperty(Evaluator evaluator) {
+    HiddenState(Evaluator evaluator) {
         this.evaluator = evaluator
     }
 
     @Override
-    void matches(Component c) { Assert.ensure c, evaluator.isAvailable(c), [e: 'available', w: 'missing'] }
+    void matches(Component c) { Assert.ensure c, !evaluator.isVisible(c), [e: 'hidden', w: 'visible'] }
 
     @Override
-    String toString() { 'available' }
+    String toString() { 'hidden' }
 }

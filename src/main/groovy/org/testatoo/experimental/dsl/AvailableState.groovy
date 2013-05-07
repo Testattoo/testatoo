@@ -19,17 +19,17 @@ package org.testatoo.experimental.dsl
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-06
  */
-class VisibleProperty implements Property {
+class AvailableState implements State {
 
     final Evaluator evaluator
 
-    VisibleProperty(Evaluator evaluator) {
+    AvailableState(Evaluator evaluator) {
         this.evaluator = evaluator
     }
 
     @Override
-    void matches(Component c) { Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] }
+    void matches(Component c) { Assert.ensure c, evaluator.isAvailable(c), [e: 'available', w: 'missing'] }
 
     @Override
-    String toString() { 'visible' }
+    String toString() { 'available' }
 }
