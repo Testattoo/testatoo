@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.cartridge;
+package org.testatoo.config.lifecycle;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
 /**
- * Adpater class of {@link org.testatoo.config.cartridge.EvaluatorListener}.
+ * Adpater class of {@link EvaluatorListener}.
  * <p/>
  * We strongly recommend that classes which need to receive callback of
  * object startup extend this adapter class
- * insead of implementing {@link org.testatoo.config.cartridge.EvaluatorListener}.
+ * insead of implementing {@link EvaluatorListener}.
  * <br>
  * This will allow us adding more events to the interface without impacting your code.
  *
- * @see org.testatoo.config.cartridge.EvaluatorListener
+ * @see EvaluatorListener
  */
 public class EvaluatorListenerAdapter<T> implements EvaluatorListener<T> {
     @Override

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.cartridge;
+package org.testatoo.config.lifecycle;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -42,7 +42,7 @@ package org.testatoo.config.cartridge;
  * }</code></pre>
  * <p/>
  * We strongly recommend that classes which need to receive callback of
- * object startup extend the adapter class {@link org.testatoo.config.cartridge.EvaluatorListenerAdapter}
+ * object startup extend the adapter class {@link EvaluatorListenerAdapter}
  * insead of implementing this interface.
  * <br>
  * This will allow us adding more events to the interface without impacting your code.

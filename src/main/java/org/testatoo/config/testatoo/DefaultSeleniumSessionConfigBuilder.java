@@ -16,8 +16,8 @@
 package org.testatoo.config.testatoo;
 
 import com.thoughtworks.selenium.Selenium;
-import org.testatoo.config.cartridge.EvaluatorListener;
-import org.testatoo.config.cartridge.EvaluatorListenerAdapter;
+import org.testatoo.config.lifecycle.EvaluatorListener;
+import org.testatoo.config.lifecycle.EvaluatorListenerAdapter;
 import org.testatoo.config.selenium.SeleniumSessionConfigBuilder;
 import org.testatoo.core.Evaluator;
 import org.testatoo.core.EvaluatorHolder;
