@@ -13,13 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.attribute
+
+import org.testatoo.experimental.dsl.attribute.matcher.ContainingMatcher
+import org.testatoo.experimental.dsl.attribute.matcher.EqualsToMatcher
+import org.testatoo.experimental.dsl.Evaluator
+import org.testatoo.experimental.dsl.IdSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class TextAttribute implements Attribute {
+class LabelAttribute implements Attribute {
     final Evaluator evaluator
 
     @Delegate
@@ -28,11 +33,11 @@ class TextAttribute implements Attribute {
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    TextAttribute(Evaluator evaluator) { this.evaluator = evaluator }
+    LabelAttribute(Evaluator evaluator) { this.evaluator = evaluator }
 
     @Override
-    String getValue(IdSupport component) { evaluator.getText(component) }
+    String getValue(IdSupport component) { evaluator.getLabel(component) }
 
     @Override
-    String toString() { "Text" }
+    String toString() { "Label" }
 }

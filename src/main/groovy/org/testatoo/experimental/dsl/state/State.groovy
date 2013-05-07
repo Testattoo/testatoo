@@ -13,26 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
-/**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
- */
-class TextField extends Component {
+package org.testatoo.experimental.dsl.state
 
-    TextField() {
-        supportedAttributes << [PlaceholderAttribute]
-    }
+import org.testatoo.experimental.dsl.Matcher
 
-    Block enter(String text) {
-        return [
-            run: {
-                evaluator.reset(this)
-                evaluator.focus = this
-                evaluator.type(text)
-            },
-            toString: { "enter '${text}' on ${this}" as String }
-        ] as Block
-    }
+public interface State extends Matcher {
 
 }

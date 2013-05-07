@@ -15,6 +15,8 @@
  */
 package org.testatoo.experimental.dsl
 
+import org.testatoo.experimental.dsl.component.Component
+
 public interface Matcher {
     void matches(Component c)
 }

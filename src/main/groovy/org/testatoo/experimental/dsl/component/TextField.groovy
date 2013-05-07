@@ -13,14 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.component
+
+import org.testatoo.experimental.dsl.Block
+import org.testatoo.experimental.dsl.attribute.PlaceholderAttribute
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class Button extends Component {
-    Button() {
-        supportedAttributes << [TextAttribute]
+class TextField extends Component {
+
+    TextField() {
+        supportedAttributes << [PlaceholderAttribute]
     }
+
+    Block enter(String text) {
+        return [
+            run: {
+                evaluator.reset(this)
+                evaluator.focus = this
+                evaluator.type(text)
+            },
+            toString: { "enter '${text}' on ${this}" as String }
+        ] as Block
+    }
+
 }

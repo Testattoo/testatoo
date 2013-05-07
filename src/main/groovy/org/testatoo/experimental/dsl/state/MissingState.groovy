@@ -13,8 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.state
 
-public interface Attribute {
-    String getValue(IdSupport component)
+import org.testatoo.experimental.dsl.Assert
+import org.testatoo.experimental.dsl.Evaluator
+import org.testatoo.experimental.dsl.component.Component
+
+/**
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-05-06
+ */
+class MissingState implements State {
+
+    final Evaluator evaluator
+
+    MissingState(Evaluator evaluator) {
+        this.evaluator = evaluator
+    }
+
+    @Override
+    void matches(Component c) { Assert.ensure c, !evaluator.isAvailable(c), [e: 'missing', w: 'available'] }
+
+    @Override
+    String toString() { 'missing' }
 }

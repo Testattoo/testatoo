@@ -15,6 +15,14 @@
  */
 package org.testatoo.experimental.dsl
 
+import org.testatoo.experimental.dsl.attribute.LabelAttribute
+import org.testatoo.experimental.dsl.attribute.PlaceholderAttribute
+import org.testatoo.experimental.dsl.attribute.TextAttribute
+import org.testatoo.experimental.dsl.component.Component
+import org.testatoo.experimental.dsl.state.AvailableState
+import org.testatoo.experimental.dsl.state.MissingState
+import org.testatoo.experimental.dsl.state.VisibleState
+
 import java.util.concurrent.TimeoutException
 
 /**

@@ -13,7 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.component
+
+import org.testatoo.experimental.dsl.attribute.Attribute
+import org.testatoo.experimental.dsl.Block
+import org.testatoo.experimental.dsl.Blocks
+import org.testatoo.experimental.dsl.ComponentException
+import org.testatoo.experimental.dsl.Evaluator
+import org.testatoo.experimental.dsl.Id
+import org.testatoo.experimental.dsl.IdSupport
+import org.testatoo.experimental.dsl.Matcher
+import org.testatoo.experimental.dsl.attribute.matcher.AttributeMatcher
+import org.testatoo.experimental.dsl.state.State
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -33,9 +44,9 @@ class Component implements IdSupport {
 
     Block are(State matcher) { block 'is', matcher }
 
-    Block has(Matcher matcher) { block 'has', matcher }
+    Block has(AttributeMatcher matcher) { block 'has', matcher }
 
-    Block have(Matcher matcher) { block 'has', matcher }
+    Block have(AttributeMatcher matcher) { block 'has', matcher }
 
     Block click() { Blocks.block "click on ${this}", { evaluator.click(this) } }
 

@@ -13,30 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.attribute.matcher
+
+import org.testatoo.experimental.dsl.AttributeMatchers
+import org.testatoo.experimental.dsl.attribute.Attribute
+import org.testatoo.experimental.dsl.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class ContainingMatcher implements Matcher {
+class ContainingMatcher extends AbstractAttributeMatcher {
 
-    final Attribute attribute
     final Collection<String> contained
 
     ContainingMatcher(Attribute attribute, Collection<String> contained) {
-        this.attribute = attribute
+        super(attribute)
         this.contained = contained
     }
 
     @Override
-    void matches(Component c) {
-        String v = attribute.getValue(c)
-        if (!contained.find { v.contains(it) }) {
+    void doMatch(Component c, String currentValue) {
+        if (!contained.find { currentValue.contains(it) }) {
             if (contained.size() == 1) {
-                throw new AssertionError("Expected ${attribute.class.simpleName} containing '${contained[0]}' but was '${v}'")
+                throw new AssertionError("Expected ${attribute.class.simpleName} containing '${contained[0]}' but was '${currentValue}'")
             } else {
-                throw new AssertionError("Expected one of ${attribute.class.simpleName} containing '${contained}' but was '${v}'")
+                throw new AssertionError("Expected one of ${attribute.class.simpleName} containing '${contained}' but was '${currentValue}'")
             }
         }
     }

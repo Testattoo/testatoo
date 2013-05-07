@@ -13,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.component
+
+import org.testatoo.experimental.dsl.attribute.TextAttribute
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-04
  */
-class PlaceholderAttribute implements Attribute {
-    final Evaluator evaluator
-
-    @Delegate
-    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
-
-    @Delegate
-    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
-
-    PlaceholderAttribute(Evaluator evaluator) { this.evaluator = evaluator }
-
-    @Override
-    String getValue(IdSupport component) { evaluator.getPlaceholder(component) }
-
-
-    @Override
-    String toString() { "Placeholder" }
+class Button extends Component {
+    Button() {
+        supportedAttributes << [TextAttribute]
+    }
 }

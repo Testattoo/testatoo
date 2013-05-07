@@ -13,8 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.state
 
-public interface State extends Matcher {
+import org.testatoo.experimental.dsl.Assert
+import org.testatoo.experimental.dsl.Evaluator
+import org.testatoo.experimental.dsl.component.Component
 
+/**
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-05-06
+ */
+class VisibleState implements State {
+
+    final Evaluator evaluator
+
+    VisibleState(Evaluator evaluator) {
+        this.evaluator = evaluator
+    }
+
+    @Override
+    void matches(Component c) { Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] }
+
+    @Override
+    String toString() { 'visible' }
 }

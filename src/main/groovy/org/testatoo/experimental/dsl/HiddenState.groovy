@@ -15,6 +15,9 @@
  */
 package org.testatoo.experimental.dsl
 
+import org.testatoo.experimental.dsl.component.Component
+import org.testatoo.experimental.dsl.state.State
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-06

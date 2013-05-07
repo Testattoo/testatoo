@@ -15,10 +15,10 @@
  */
 package experimental.dsl
 
-import org.testatoo.experimental.dsl.Button
-import org.testatoo.experimental.dsl.Component
+import org.testatoo.experimental.dsl.component.Button
+import org.testatoo.experimental.dsl.component.Component
 import org.testatoo.experimental.dsl.Testatoo
-import org.testatoo.experimental.dsl.TextField
+import org.testatoo.experimental.dsl.component.TextField
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

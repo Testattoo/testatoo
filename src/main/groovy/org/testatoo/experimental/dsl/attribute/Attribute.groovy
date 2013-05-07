@@ -13,23 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.experimental.dsl
+package org.testatoo.experimental.dsl.attribute
 
-/**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-06
- */
-class VisibleState implements State {
+import org.testatoo.experimental.dsl.IdSupport
 
-    final Evaluator evaluator
-
-    VisibleState(Evaluator evaluator) {
-        this.evaluator = evaluator
-    }
-
-    @Override
-    void matches(Component c) { Assert.ensure c, evaluator.isVisible(c), [e: 'visible', w: 'hidden'] }
-
-    @Override
-    String toString() { 'visible' }
+public interface Attribute {
+    String getValue(IdSupport component)
 }
