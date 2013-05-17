@@ -1,1 +1,3 @@
-[![Build Status](https://travis-ci.org/Ovea/testatoo.png)](https://travis-ci.org/Ovea/testatoo)
+## Build Status
+
+[![Build Status](https://travis-ci.org/Ovea/testatoo.png?branch=master)](https://travis-ci.org/Ovea/testatoo)
