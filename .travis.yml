@@ -1,4 +1,18 @@
 language: java
+
+script: mvn clean install --quiet -B
+
+install: /bin/true
+
 jdk:
-  - oraclejdk7
   - openjdk7
+  - oraclejdk7
+
+branches:
+  only:
+    - master
+
+notifications:
+  email:
+    - d.avenante@gmail.com
+    - mathieu.carbou@gmail.com
