@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package experimental.dsl
+package experimental.dsl.conf
 
 import org.testatoo.config.AbstractTestatooModule
 import org.testatoo.config.Scope
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-01
  */
-class MyModule extends AbstractTestatooModule {
+class TestModule extends AbstractTestatooModule {
 
     static int seleniumPort = -1;
 

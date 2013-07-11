@@ -57,7 +57,7 @@ public interface Evaluator<T> {
      * @param component the component we want to know if enabled
      * @return True if the component is enabled
      */
-    Boolean isEnabled(Component component);
+    Boolean isEnabled(IdSupport component);
 
     /**
      * To know if a given component ise focused

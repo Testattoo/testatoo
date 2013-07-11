@@ -20,6 +20,8 @@ import org.testatoo.experimental.dsl.property.PlaceholderProperty
 import org.testatoo.experimental.dsl.property.TextProperty
 import org.testatoo.experimental.dsl.component.Component
 import org.testatoo.experimental.dsl.state.AvailableState
+import org.testatoo.experimental.dsl.state.DisabledState
+import org.testatoo.experimental.dsl.state.EnabledState
 import org.testatoo.experimental.dsl.state.HiddenState
 import org.testatoo.experimental.dsl.state.MissingState
 import org.testatoo.experimental.dsl.state.VisibleState
@@ -28,7 +30,6 @@ import java.util.concurrent.TimeoutException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-01
  */
 class Testatoo {
 
@@ -63,16 +64,13 @@ class Testatoo {
         }
     }
 
-    // properties
-
+    // Properties
     PlaceholderProperty getPlaceholder() { new PlaceholderProperty(evaluator) }
-
     LabelProperty getLabel() { new LabelProperty(evaluator) }
-
     TextProperty getText() { new TextProperty(evaluator) }
 
-    // properties
-
+    final EnabledState enabled = new EnabledState(evaluator)
+    final DisabledState disabled = new DisabledState(evaluator)
     final VisibleState visible = new VisibleState(evaluator)
     final HiddenState hidden = new HiddenState(evaluator)
     final AvailableState available = new AvailableState(evaluator)

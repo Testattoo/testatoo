@@ -22,7 +22,6 @@ import org.testatoo.experimental.dsl.component.IdSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
  */
 class PlaceholderProperty implements Property {
     final Evaluator evaluator

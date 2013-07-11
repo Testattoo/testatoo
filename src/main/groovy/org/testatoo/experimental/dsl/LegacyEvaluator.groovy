@@ -21,12 +21,14 @@ import org.testatoo.experimental.dsl.component.IdSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
  */
 class LegacyEvaluator implements Evaluator {
 
     @Override
     void open(String url) { EvaluatorHolder.get().open(url) }
+
+    @Override
+    boolean isEnabled(IdSupport component) { EvaluatorHolder.get().isEnabled(component) }
 
     @Override
     boolean isVisible(IdSupport component) { EvaluatorHolder.get().isVisible(component) }

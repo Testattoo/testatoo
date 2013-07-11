@@ -5,7 +5,6 @@ import org.testatoo.experimental.dsl.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-07
  */
 abstract class AbstractPropertyMatcher implements PropertyMatcher {
 
@@ -18,7 +17,7 @@ abstract class AbstractPropertyMatcher implements PropertyMatcher {
     @Override
     final void matches(Component c) {
         if (!c.supports(property)) {
-            throw new AssertionError("Component ${this} doesn ot support property ${getClass().simpleName}")
+            throw new AssertionError("Component ${this} does not support property ${getClass().simpleName}")
         }
         String v = property.getValue(c)
         doMatch(c, v)

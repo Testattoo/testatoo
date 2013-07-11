@@ -19,10 +19,9 @@ import org.testatoo.experimental.dsl.property.TextProperty
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
  */
 class Button extends Component {
     Button() {
-        supportedProperties << [TextProperty]
+        supportedProperties << TextProperty
     }
 }

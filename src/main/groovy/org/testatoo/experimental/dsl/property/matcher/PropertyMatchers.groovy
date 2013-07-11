@@ -19,7 +19,6 @@ import org.testatoo.experimental.dsl.property.Property
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
  */
 class PropertyMatchers {
     Property property

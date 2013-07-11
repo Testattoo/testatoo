@@ -39,7 +39,7 @@ public final class MultipleEnvTest extends Testatoo {
 
     @Test
     public void test_3() {
-        throw new IllegalStateException("This test should be skipped by MethodInterceptor in module MyModule");
+        throw new IllegalStateException("This test should be skipped by MethodInterceptor in module TestModule");
     }
 
 }

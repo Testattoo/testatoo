@@ -20,7 +20,6 @@ import org.testatoo.experimental.dsl.component.ComponentException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-03
  */
 class jQueryId implements Id {
     private final String expression

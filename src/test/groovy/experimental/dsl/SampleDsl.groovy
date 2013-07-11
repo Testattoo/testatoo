@@ -15,6 +15,7 @@
  */
 package experimental.dsl
 
+import experimental.dsl.conf.TestModule
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,7 +28,7 @@ import org.testatoo.experimental.dsl.Testatoo
  * @date 2013-05-01
  */
 @RunWith(TestatooJunitRunner)
-@TestatooModules(MyModule)
+@TestatooModules(TestModule)
 class SampleDsl {
 
     @Delegate Testatoo testatoo = new Testatoo()

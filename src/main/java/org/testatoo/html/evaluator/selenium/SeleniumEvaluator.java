@@ -87,8 +87,8 @@ public class SeleniumEvaluator implements Evaluator<Selenium> {
     }
 
     @Override
-    public Boolean isEnabled(Component component) {
-        return !Boolean.valueOf(evaljQuery("$('#" + component.id() + "').is(':disabled');"));
+    public Boolean isEnabled(IdSupport id) {
+        return !Boolean.valueOf(evaljQuery("$('#" + id.getId() + "').is(':disabled');"));
     }
 
     @Override

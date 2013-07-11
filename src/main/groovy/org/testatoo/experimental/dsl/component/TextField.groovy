@@ -20,12 +20,11 @@ import org.testatoo.experimental.dsl.property.PlaceholderProperty
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-04
  */
 class TextField extends Component {
 
     TextField() {
-        supportedProperties << [PlaceholderProperty]
+        supportedProperties << PlaceholderProperty
     }
 
     Block enter(String text) {

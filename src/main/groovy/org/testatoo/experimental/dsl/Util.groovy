@@ -19,7 +19,6 @@ import java.util.concurrent.TimeoutException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-06
  */
 class Util {
     static <V> V waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {

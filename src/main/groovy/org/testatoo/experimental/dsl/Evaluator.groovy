@@ -20,6 +20,8 @@ import org.testatoo.experimental.dsl.component.IdSupport
 public interface Evaluator {
     void open(String url)
 
+    boolean isEnabled(IdSupport component)
+
     boolean isVisible(IdSupport component)
 
     String[] getElementsIds(String expr)
