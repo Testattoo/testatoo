@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ovea</groupId>
+        <artifactId>ovea</artifactId>
+        <version>10</version>
+    </parent>
+
+    <groupId>org.testatoo</groupId>
+    <artifactId>testatoo-pom</artifactId>
+    <version>1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Testatoo :: POM</name>
+
+    <scm>
+        <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
+        <developerConnection>scm:git:git@github.com:Ovea/testatoo.git</developerConnection>
+        <url>http://github.com/Ovea/testatoo</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <jdk.version>1.7</jdk.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>perform</goal>
+                            </goals>
+                            <configuration>
+                                <pomFileName>${project.artifactId}/pom.xml</pomFileName>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <dependencies>
+                        <!-- SSI -->
+                        <dependency>
+                            <groupId>org.apache.tomcat</groupId>
+                            <artifactId>tomcat-catalina</artifactId>
+                            <version>7.0.8</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat-servlet-api</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat-annotations-api</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat-api</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
