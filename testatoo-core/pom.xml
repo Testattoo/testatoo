@@ -13,6 +13,7 @@
     <version>2.0.b1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Testatoo :: Core</name>
+    <inceptionYear>2008</inceptionYear>
 
     <scm>
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
