@@ -16,6 +16,7 @@
 package org.testatoo.config.container;
 
 import com.ovea.tajin.server.Server;
+import org.testatoo.config.testatoo.ContainerBuilder;
 
 public interface ContainerType {
 

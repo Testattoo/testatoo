@@ -21,7 +21,13 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -37,7 +43,7 @@ public final class ListSelection<T> implements Selection<T> {
         return new ListSelection<T>(collections);
     }
 
-    public static <T> Selection<T> compose(Iterable<? extends T>... collections) {
+    public static <T> Selection<T> compose(Iterable<? extends T>[] collections) {
         return compose(Arrays.asList(collections));
     }
 
@@ -46,7 +52,7 @@ public final class ListSelection<T> implements Selection<T> {
         return compose(Arrays.asList(collection));
     }
 
-    public static <T> Selection<T> of(T... elements) {
+    public static <T> Selection<T> of(T[] elements) {
         return from(Arrays.asList(elements));
     }
 

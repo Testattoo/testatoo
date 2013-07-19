@@ -15,16 +15,15 @@
  */
 package org.testatoo.config.testatoo;
 
+import org.openqa.selenium.server.SeleniumServer;
 import org.testatoo.config.Provider;
 import org.testatoo.config.Scope;
 import org.testatoo.config.ScopedProvider;
 import org.testatoo.config.SingletonProvider;
 import org.testatoo.config.selenium.SeleniumServerConfig;
-import org.testatoo.selenium.server.SeleniumServer;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,7 +66,7 @@ final class DefaultSeleniumServerConfig implements SeleniumServerConfig {
                     case TEST_SUITE:
                         config.register(new EventListener(Priority.SELENIUM_SERVER) {
                             @Override
-                            void onStart() {
+                            void onStart() throws Throwable {
                                 SeleniumServer server = singleton.get();
                                 if (!SCOPE_TEST_SUITE.contains(server.getPort())) {
                                     if (LOGGER.isLoggable(Level.FINE))
@@ -81,21 +80,20 @@ final class DefaultSeleniumServerConfig implements SeleniumServerConfig {
                             void onStop() {
                             }
                         });
-                        Shutdown.addHook(new Callable() {
+                        Shutdown.addHook(new Shutdown.Hook() {
                             @Override
-                            public Object call() throws Exception {
+                            public void onShutdown() throws Throwable {
                                 SeleniumServer server = singleton.get();
                                 if (LOGGER.isLoggable(Level.FINE))
                                     LOGGER.fine("Stopping SeleniumServer on port " + server.getPort() + "...");
                                 server.stop();
-                                return null;
                             }
                         });
                         break;
                     case TEST_CLASS:
                         config.register(new EventListener(Priority.SELENIUM_SERVER) {
                             @Override
-                            void onStart() {
+                            void onStart() throws Throwable {
                                 SeleniumServer server = singleton.get();
                                 if (LOGGER.isLoggable(Level.FINE))
                                     LOGGER.fine("Starting SeleniumServer on port " + server.getPort() + "...");
@@ -103,7 +101,7 @@ final class DefaultSeleniumServerConfig implements SeleniumServerConfig {
                             }
 
                             @Override
-                            void onStop() {
+                            void onStop() throws Throwable {
                                 SeleniumServer server = singleton.get();
                                 if (LOGGER.isLoggable(Level.FINE))
                                     LOGGER.fine("Stopping SeleniumServer on port " + server.getPort() + "...");

@@ -18,10 +18,10 @@ package org.testatoo.config;
 import org.testatoo.config.container.ContainerConfig;
 import org.testatoo.config.container.ContainerType;
 import org.testatoo.config.lifecycle.LifeCycleConfig;
-import org.testatoo.config.selenium.SeleniumServerBuilder;
 import org.testatoo.config.selenium.SeleniumServerConfig;
 import org.testatoo.config.selenium.SeleniumSessionBuilder;
 import org.testatoo.config.selenium.SeleniumSessionConfig;
+import org.testatoo.config.testatoo.SeleniumServerBuilder;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

@@ -15,8 +15,6 @@
  */
 package org.testatoo.config.lifecycle;
 
-import org.aopalliance.intercept.MethodInterceptor;
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -48,7 +46,7 @@ public interface LifeCycleConfig {
     LifeCycleConfig onStop(Runnable runnable);
 
     /**
-     * Replace current {@link org.aopalliance.intercept.MethodInterceptor}
+     * Replace current {@link TestInterceptor}
      * used to intercept all test calls. By default, no interceptor
      * is setup and all test are executed.
      * <p/>
@@ -75,7 +73,7 @@ public interface LifeCycleConfig {
      * @param interceptor The interceptor to setup
      * @return this
      */
-    LifeCycleConfig onTest(MethodInterceptor interceptor);
+    LifeCycleConfig onTest(TestInterceptor interceptor);
 
     /**
      * Register a listener when a test method starts

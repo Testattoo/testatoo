@@ -28,14 +28,14 @@ import java.util.concurrent.Future;
  */
 public final class EvaluatorHolder {
 
-    private static ThreadLocal<ExecutorService> EXECUTOR = new ThreadLocal<ExecutorService>();
+    private static ThreadLocal<ExecutorService> EXECUTOR = new ThreadLocal<>();
 
-    private static Map<String, Evaluator<?>> EVALUATORS = new ConcurrentHashMap<String, Evaluator<?>>();
+    private static Map<String, Evaluator> EVALUATORS = new ConcurrentHashMap<>();
 
-    private static ThreadLocal<Deque<Evaluator<?>>> currentEvaluators = new ThreadLocal<Deque<Evaluator<?>>>() {
+    private static ThreadLocal<Deque<Evaluator>> currentEvaluators = new ThreadLocal<Deque<Evaluator>>() {
         @Override
-        protected Deque<Evaluator<?>> initialValue() {
-            return new LinkedList<Evaluator<?>>();
+        protected Deque<Evaluator> initialValue() {
+            return new LinkedList<>();
         }
     };
 
@@ -61,8 +61,8 @@ public final class EvaluatorHolder {
     }
 
     @SuppressWarnings({"unchecked"})
-    public static <T extends Evaluator<?>> T get() {
-        Evaluator<?> evaluator = currentEvaluators.get().peek();
+    public static Evaluator get() {
+        Evaluator evaluator = currentEvaluators.get().peek();
         // if for this thread we ave no evaluator set yet, we get the default one
         if (evaluator == null) {
             evaluator = EVALUATORS.get(Evaluator.DEFAULT_NAME);
@@ -72,11 +72,11 @@ public final class EvaluatorHolder {
         if (evaluator == null) {
             throw new IllegalStateException(String.format("No evaluator is bound to local thread."));
         }
-        return (T) evaluator;
+        return evaluator;
     }
 
     public static void unregister(String name) {
-        Evaluator<?> evaluator = EVALUATORS.remove(name);
+        Evaluator evaluator = EVALUATORS.remove(name);
         if (evaluator != null)
             currentEvaluators.get().remove(evaluator);
     }
@@ -100,7 +100,7 @@ public final class EvaluatorHolder {
         }
 
         public <V> V run(Callable<V> callable) throws Exception {
-            Evaluator<?> evaluator = EVALUATORS.get(evaluatorName);
+            Evaluator evaluator = EVALUATORS.get(evaluatorName);
             if (evaluator == null) {
                 throw new IllegalArgumentException("Unknown evaluator: " + evaluatorName);
             }
@@ -113,7 +113,7 @@ public final class EvaluatorHolder {
         }
 
         public void run(Runnable runnable) {
-            Evaluator<?> evaluator = EVALUATORS.get(evaluatorName);
+            Evaluator evaluator = EVALUATORS.get(evaluatorName);
             if (evaluator == null) {
                 throw new IllegalArgumentException("Unknown evaluator: " + evaluatorName);
             }

@@ -36,8 +36,14 @@ final class Ensure {
         }
     }
 
-    public static <T> void notEmpty(String message, T... objects) {
-        if (objects.length == 0) {
+    public static void notEmpty(String message, Iterable<?> it) {
+        if (!it.iterator().hasNext()) {
+            throw new IllegalArgumentException(message + " cannot be empty !");
+        }
+    }
+
+    public static void notEmpty(String message, Object[] it) {
+        if (it.length == 0) {
             throw new IllegalArgumentException(message + " cannot be empty !");
         }
     }

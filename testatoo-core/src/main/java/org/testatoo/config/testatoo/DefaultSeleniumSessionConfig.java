@@ -28,7 +28,6 @@ import org.testatoo.config.selenium.SeleniumSessionConfigBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,7 +70,7 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                 if (scope == Scope.TEST_CLASS) {
                     config.register(new EventListener(Priority.IMPLEMENTATION) {
                         @Override
-                        void onStart() {
+                        void onStart() throws Throwable {
                             Selenium seleniumSession = singleton.get();
                             if (LOGGER.isLoggable(Level.FINE))
                                 LOGGER.fine("Starting Selenium session...");
@@ -81,7 +80,7 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                         }
 
                         @Override
-                        void onStop() {
+                        void onStop() throws Throwable {
                             Selenium seleniumSession = singleton.get();
                             if (LOGGER.isLoggable(Level.FINE))
                                 LOGGER.fine("Stopping Selenium session...");
@@ -93,7 +92,7 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                 } else if (scope == Scope.TEST_SUITE) {
                     config.register(new EventListener(Priority.IMPLEMENTATION) {
                         @Override
-                        void onStart() {
+                        void onStart() throws Throwable {
                             Selenium seleniumSession = singleton.get();
                             // if it is a DefaultSelenium, it can be managed statically
                             // otherwise fallback to default behavior
@@ -128,7 +127,7 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                         }
 
                         @Override
-                        void onStop() {
+                        void onStop() throws Throwable {
                             Selenium seleniumSession = singleton.get();
                             // if it is a DefaultSelenium, it can be managed statically
                             // otherwise fallback to default behavior
@@ -141,15 +140,14 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                             }
                         }
                     });
-                    Shutdown.addHook(new Callable() {
+                    Shutdown.addHook(new Shutdown.Hook() {
                         @Override
-                        public Object call() throws Exception {
+                        public void onShutdown() throws Throwable {
                             Selenium seleniumSession = singleton.get();
                             // if it is a DefaultSelenium, it can be managed statically
                             if (seleniumSession instanceof DefaultSelenium) {
                                 singleton.get().stop();
                             }
-                            return null;
                         }
                     });
                 }

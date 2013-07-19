@@ -31,14 +31,14 @@ public abstract class SingletonProvider<T> implements Provider<T> {
     private T instance;
 
     @Override
-    public final T get() {
+    public final T get() throws Throwable{
         if (instance == null) {
             instance = create();
         }
         return instance;
     }
 
-    protected abstract T create();
+    protected abstract T create() throws Throwable;
 
     /**
      * Wrap the given {@link org.testatoo.config.Provider} to return always the same instance all the time. like a singleton.
@@ -53,7 +53,7 @@ public abstract class SingletonProvider<T> implements Provider<T> {
         }
         return new SingletonProvider<T>() {
             @Override
-            protected T create() {
+            protected T create() throws Throwable {
                 return provider.get();
             }
         };

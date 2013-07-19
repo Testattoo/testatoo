@@ -19,20 +19,24 @@ import org.testatoo.core.component.Component;
 import org.testatoo.core.input.Click;
 import org.testatoo.core.input.Key;
 import org.testatoo.core.input.KeyModifier;
-import org.testatoo.core.nature.*;
+import org.testatoo.core.nature.Checkable;
+import org.testatoo.core.nature.ReferenceSupport;
+import org.testatoo.core.nature.Selectable;
+import org.testatoo.core.nature.TitleSupport;
+import org.testatoo.core.nature.ValueSupport;
 import org.testatoo.experimental.dsl.component.IdSupport;
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public interface Evaluator<T> {
+public interface Evaluator {
 
     String DEFAULT_NAME = Evaluator.class.getName() + ".DEFAULT";
 
     /**
      * @return The implementation used by this Evaluator. This can be useful to recover the underlying implementation for specific cases
      */
-    T implementation();
+    Object implementation();
 
     String name();
 
@@ -96,7 +100,7 @@ public interface Evaluator<T> {
     /**
      * To get the text displayed on a TextSupport component
      *
-     * @param textSupport component
+     * @param component component
      * @return the displayed text
      */
     String text(IdSupport component);

@@ -15,19 +15,14 @@
  */
 package org.testatoo.config;
 
-import org.aopalliance.intercept.MethodInvocation;
-import org.junit.Rule;
-import org.junit.internal.runners.model.ReflectiveCallable;
-import org.junit.internal.runners.statements.Fail;
-import org.junit.rules.MethodRule;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
+import org.testatoo.config.lifecycle.TestInvocation;
 import org.testatoo.config.testatoo.Testatoo;
 
-import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 
 /**
@@ -36,6 +31,7 @@ import java.lang.reflect.Method;
 
 public final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
 
+    private final ThreadLocal<Object> createdTest = new ThreadLocal<>();
     private Testatoo testatoo;
 
     public TestatooJunitRunner(Class<?> klass) throws InitializationError {
@@ -70,45 +66,28 @@ public final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
     }
 
     @Override
+    protected Object createTest() throws Exception {
+        Object o = super.createTest();
+        createdTest.set(o);
+        return o;
+    }
+
+    @Override
     protected Statement methodBlock(final FrameworkMethod method) {
-        final Object test;
-        try {
-            test = new ReflectiveCallable() {
-                @Override
-                protected Object runReflectiveCall() throws Throwable {
-                    return createTest();
-                }
-            }.run();
-        } catch (Throwable e) {
-            return new Fail(e);
-        }
-        Statement statement = methodInvoker(method, test);
-        statement = possiblyExpectingExceptions(method, test, statement);
-        statement = withPotentialTimeout(method, test, statement);
-        statement = withBefores(method, test, statement);
-        statement = withAfters(method, test, statement);
-        statement = withRules(method, test, statement);
-        final Statement st = statement;
+        final Statement statement = super.methodBlock(method);
+        final Object test = createdTest.get();
+        createdTest.remove();
         return new Statement() {
             @Override
             public void evaluate() throws Throwable {
                 try {
                     testatoo.on(test, method.getMethod());
-                    st.evaluate();
+                    statement.evaluate();
                 } catch (Throwable throwable) {
                     throw new RuntimeException(throwable.getMessage(), throwable);
                 }
             }
         };
-    }
-
-    private Statement withRules(FrameworkMethod method, Object target,
-                                Statement statement) {
-        Statement result = statement;
-        for (MethodRule each : getTestClass().getAnnotatedFieldValues(target,
-            Rule.class, MethodRule.class))
-            result = each.apply(result, method, target);
-        return result;
     }
 
     @Override
@@ -117,31 +96,20 @@ public final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
             @SuppressWarnings({"ThrowableResultOfMethodCallIgnored"})
             @Override
             public void evaluate() throws Throwable {
-                testatoo.executeTestMethod(new MethodInvocation() {
+                testatoo.executeTestMethod(new TestInvocation() {
                     @Override
                     public Method getMethod() {
                         return method.getMethod();
                     }
 
                     @Override
-                    public Object[] getArguments() {
-                        return new Object[0];
-                    }
-
-                    @Override
-                    public Object proceed() throws Throwable {
+                    public void proceed() throws Throwable {
                         TestatooJunitRunner.super.methodInvoker(method, test).evaluate();
-                        return null;
                     }
 
                     @Override
-                    public Object getThis() {
+                    public Object getTestInstance() {
                         return test;
-                    }
-
-                    @Override
-                    public AccessibleObject getStaticPart() {
-                        return method.getMethod();
                     }
                 });
             }

@@ -15,9 +15,9 @@
  */
 package org.testatoo.config.testatoo;
 
-import org.aopalliance.intercept.MethodInvocation;
 import org.testatoo.config.TestatooModule;
 import org.testatoo.config.TestatooModules;
+import org.testatoo.config.lifecycle.TestInvocation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -136,7 +136,7 @@ public final class Testatoo {
      * @throws Throwable Any exception thrown by the tes execution
      * @see org.testatoo.config.lifecycle.LifeCycleConfig
      */
-    public void executeTestMethod(MethodInvocation testInvocation) throws Throwable {
+    public void executeTestMethod(TestInvocation testInvocation) throws Throwable {
         config.fire(testInvocation);
     }
 

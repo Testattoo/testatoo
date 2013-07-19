@@ -16,7 +16,6 @@
 package org.testatoo.config.testatoo;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -27,24 +26,27 @@ final class Shutdown {
 
     private static final Shutdown SHUTDOWN = new Shutdown();
 
-    private final List<Callable> hooks = new CopyOnWriteArrayList<Callable>();
+    private final List<Hook> hooks = new CopyOnWriteArrayList<>();
 
     private Shutdown() {
         Runtime.getRuntime().addShutdownHook(new Thread("Testatoo Module cleaner") {
             @Override
             public void run() {
-                for (Callable hook : hooks) {
+                for (Hook hook : hooks) {
                     try {
-                        hook.call();
-                    } catch (Exception ignored) {
+                        hook.onShutdown();
+                    } catch (Throwable ignored) {
                     }
                 }
             }
         });
     }
 
-    public static void addHook(Callable callable) {
+    public static void addHook(Hook callable) {
         SHUTDOWN.hooks.add(callable);
     }
 
+    public static interface Hook {
+        void onShutdown() throws Throwable;
+    }
 }

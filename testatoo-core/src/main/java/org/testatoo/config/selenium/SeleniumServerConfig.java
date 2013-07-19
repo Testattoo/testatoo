@@ -15,8 +15,8 @@
  */
 package org.testatoo.config.selenium;
 
+import org.openqa.selenium.server.SeleniumServer;
 import org.testatoo.config.ScopedProviderRegistry;
-import org.testatoo.selenium.server.SeleniumServer;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

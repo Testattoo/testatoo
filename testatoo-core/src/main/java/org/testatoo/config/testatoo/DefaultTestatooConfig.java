@@ -16,19 +16,17 @@
 package org.testatoo.config.testatoo;
 
 import com.ovea.tajin.server.Server;
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
 import org.testatoo.config.ConcurrentTestingConfig;
 import org.testatoo.config.TestatooConfig;
 import org.testatoo.config.TestatooModule;
 import org.testatoo.config.annotation.Implementation;
-import org.testatoo.config.container.ContainerBuilder;
 import org.testatoo.config.container.ContainerConfig;
 import org.testatoo.config.container.ContainerType;
 import org.testatoo.config.lifecycle.LifeCycleConfig;
+import org.testatoo.config.lifecycle.TestInterceptor;
+import org.testatoo.config.lifecycle.TestInvocation;
 import org.testatoo.config.lifecycle.TestListener;
 import org.testatoo.config.lifecycle.TestListenerAdapter;
-import org.testatoo.config.selenium.SeleniumServerBuilder;
 import org.testatoo.config.selenium.SeleniumServerConfig;
 import org.testatoo.config.selenium.SeleniumSessionBuilder;
 import org.testatoo.config.selenium.SeleniumSessionConfig;
@@ -36,7 +34,6 @@ import org.testatoo.core.Current;
 import org.testatoo.core.EvaluatorHolder;
 
 import java.io.IOException;
-import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
@@ -63,10 +60,10 @@ final class DefaultTestatooConfig implements TestatooConfig {
     private final DefaultSeleniumServerConfig seleniumServerConfig;
     private final DefaultLifeCycleConfig lifeCycleConfig;
     private final DefaultSeleniumSessionConfig seleniumSessionConfig;
-    private MethodInterceptor interceptorChain = new MethodInterceptor() {
+    private TestInterceptor interceptorChain = new TestInterceptor() {
         @Override
-        public Object invoke(MethodInvocation invocation) throws Throwable {
-            return invocation.proceed();
+        public void invoke(TestInvocation invocation) throws Throwable {
+            invocation.proceed();
         }
     };
     private final List<TestListener> testListeners = new LinkedList<TestListener>();
@@ -110,7 +107,7 @@ final class DefaultTestatooConfig implements TestatooConfig {
             @Override
             public ContainerBuilder implementedBy(String containerClass) {
                 notNull(containerClass, "Container class");
-                return new DefaultContainerBuilder(containerClass);
+                return new ContainerBuilder(containerClass);
             }
         };
     }
@@ -122,7 +119,7 @@ final class DefaultTestatooConfig implements TestatooConfig {
 
     @Override
     public SeleniumServerBuilder createSeleniumServer() {
-        return new DefaultSeleniumServerBuilder();
+        return new SeleniumServerBuilder();
     }
 
     @Override
@@ -200,42 +197,32 @@ final class DefaultTestatooConfig implements TestatooConfig {
         }
     }
 
-    void register(final MethodInterceptor aroundInterceptor) {
-        final MethodInterceptor chain = interceptorChain;
-        this.interceptorChain = new MethodInterceptor() {
+    void register(final TestInterceptor aroundInterceptor) {
+        final TestInterceptor chain = interceptorChain;
+        this.interceptorChain = new TestInterceptor() {
             @Override
-            public Object invoke(final MethodInvocation invocation) throws Throwable {
-                return aroundInterceptor.invoke(new MethodInvocation() {
+            public void invoke(final TestInvocation invocation) throws Throwable {
+                aroundInterceptor.invoke(new TestInvocation() {
                     @Override
                     public Method getMethod() {
                         return invocation.getMethod();
                     }
 
                     @Override
-                    public Object[] getArguments() {
-                        return invocation.getArguments();
+                    public void proceed() throws Throwable {
+                        chain.invoke(invocation);
                     }
 
                     @Override
-                    public Object proceed() throws Throwable {
-                        return chain.invoke(invocation);
-                    }
-
-                    @Override
-                    public Object getThis() {
-                        return invocation.getThis();
-                    }
-
-                    @Override
-                    public AccessibleObject getStaticPart() {
-                        return invocation.getStaticPart();
+                    public Object getTestInstance() {
+                        return invocation.getTestInstance();
                     }
                 });
             }
         };
     }
 
-    void fire(MethodInvocation testInvocation) throws Throwable {
+    void fire(TestInvocation testInvocation) throws Throwable {
         interceptorChain.invoke(testInvocation);
     }
 

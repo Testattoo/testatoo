@@ -56,10 +56,8 @@ public class ComponentFactory {
     }
 
     private static <T extends Component> T loadComponent(Class<T> componentType, String id) {
-        Class cmpType = componentType;
-
         try {
-            return (T) cmpType.getConstructor(String.class).newInstance(id);
+            return componentType.getConstructor(String.class).newInstance(id);
         } catch (Exception e) {
             if (e.getCause() instanceof ComponentException)
                 throw (ComponentException) e.getCause();

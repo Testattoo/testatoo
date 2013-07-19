@@ -64,7 +64,7 @@ final class DefaultContainerConfig implements ContainerConfig {
                     case TEST_SUITE:
                         config.register(new EventListener(Priority.CONTAINER) {
                             @Override
-                            void onStart() {
+                            void onStart() throws Throwable {
                                 ContainerInfo container = singleton.get();
                                 if (!CONTAINERS.containsKey(container.configuration.port())) {
                                     Container c = container.get();
@@ -81,7 +81,7 @@ final class DefaultContainerConfig implements ContainerConfig {
                     case TEST_CLASS:
                         config.register(new EventListener(Priority.CONTAINER) {
                             @Override
-                            void onStart() {
+                            void onStart() throws Throwable {
                                 ContainerInfo container = singleton.get();
                                 Container c = CONTAINERS.get(container.configuration.port());
                                 if (c == null) {
@@ -92,7 +92,7 @@ final class DefaultContainerConfig implements ContainerConfig {
                             }
 
                             @Override
-                            void onStop() {
+                            void onStop() throws Throwable {
                                 ContainerInfo container = singleton.get();
                                 CONTAINERS.get(container.configuration.port()).stop();
                             }

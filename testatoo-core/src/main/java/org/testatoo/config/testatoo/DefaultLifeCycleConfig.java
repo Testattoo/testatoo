@@ -15,8 +15,8 @@
  */
 package org.testatoo.config.testatoo;
 
-import org.aopalliance.intercept.MethodInterceptor;
 import org.testatoo.config.lifecycle.LifeCycleConfig;
+import org.testatoo.config.lifecycle.TestInterceptor;
 import org.testatoo.config.lifecycle.TestListener;
 
 import static org.testatoo.config.testatoo.Ensure.notNull;
@@ -58,7 +58,7 @@ final class DefaultLifeCycleConfig implements LifeCycleConfig {
     }
 
     @Override
-    public LifeCycleConfig onTest(MethodInterceptor interceptor) {
+    public LifeCycleConfig onTest(TestInterceptor interceptor) {
         notNull(interceptor, "Test interceptor");
         config.register(interceptor);
         return this;

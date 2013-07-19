@@ -17,7 +17,7 @@ package org.testatoo.config.testatoo;
 
 import com.ovea.tajin.server.ContainerConfiguration;
 import org.testatoo.config.Provider;
-import org.testatoo.config.container.ContainerBuilder;
+import org.testatoo.config.ProviderBuilder;
 import org.testatoo.config.container.ContainerInfo;
 
 import java.io.File;
@@ -28,12 +28,12 @@ import java.util.Properties;
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
-final class DefaultContainerBuilder implements ContainerBuilder {
+public final class ContainerBuilder implements ProviderBuilder<ContainerInfo> {
 
     private final ContainerConfiguration containerConfiguration = ContainerConfiguration.create();
     private final String containerClass;
 
-    DefaultContainerBuilder(String containerClass) {
+    ContainerBuilder(String containerClass) {
         this.containerClass = containerClass;
     }
 
@@ -49,97 +49,81 @@ final class DefaultContainerBuilder implements ContainerBuilder {
 
     /* DELEGATES */
 
-    @Override
     public ContainerBuilder serverClassPath(String serverClassPath) {
         containerConfiguration.serverClassPath(serverClassPath);
         return this;
     }
 
-    @Override
     public ContainerBuilder serverClassPath(File... paths) {
         containerConfiguration.serverClassPath(paths);
         return this;
     }
 
-    @Override
     public ContainerBuilder serverClassPath(URL... locations) {
         containerConfiguration.serverClassPath(locations);
         return this;
     }
 
-    @Override
     public ContainerBuilder webappClassPath(String webappClassPath) {
         containerConfiguration.webappClassPath(webappClassPath);
         return this;
     }
 
-    @Override
     public ContainerBuilder webappClassPath(File... paths) {
         containerConfiguration.webappClassPath(paths);
         return this;
     }
 
-    @Override
     public ContainerBuilder webappClassPath(URL... locations) {
         containerConfiguration.webappClassPath(locations);
         return this;
     }
 
-    @Override
     public ContainerBuilder webappRoot(String webappRoot) {
         containerConfiguration.webappRoot(webappRoot);
         return this;
     }
 
-    @Override
     public ContainerBuilder webappRoot(File webappRoot) {
         containerConfiguration.webappRoot(webappRoot);
         return this;
     }
 
-    @Override
     public ContainerBuilder context(String contextPath) {
         containerConfiguration.context(contextPath);
         return this;
     }
 
-    @Override
     public ContainerBuilder port(int port) {
         containerConfiguration.port(port);
         return this;
     }
 
-    @Override
     public ContainerBuilder add(ContainerConfiguration settings) {
         containerConfiguration.add(settings);
         return this;
     }
 
-    @Override
     public ContainerBuilder add(Properties settings) {
         containerConfiguration.add(settings);
         return this;
     }
 
-    @Override
     public ContainerBuilder set(String property, String value) {
         containerConfiguration.set(property, value);
         return this;
     }
 
-    @Override
     public ContainerBuilder set(com.ovea.tajin.server.Properties property, String value) {
         containerConfiguration.set(property, value);
         return this;
     }
 
-    @Override
     public ContainerBuilder clear(String property) {
         containerConfiguration.clear(property);
         return this;
     }
 
-    @Override
     public String toString() {
         return containerConfiguration.toString();
     }

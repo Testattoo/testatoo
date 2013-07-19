@@ -20,7 +20,17 @@ import org.testatoo.config.annotation.ConcurrentEvaluation;
 import org.testatoo.core.EvaluatorHolder;
 
 import java.lang.reflect.Method;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -106,7 +116,7 @@ final class DefaultConcurrentTestingConfig implements ConcurrentTestingConfig {
             public void execute(Runnable runnable) {
                 TestatooRunnable testBlock = (TestatooRunnable) runnable;
                 if (testBlock.testMethod().isAnnotationPresent(ConcurrentEvaluation.class)
-                        || testBlock.testClass().isAnnotationPresent(ConcurrentEvaluation.class)) {
+                    || testBlock.testClass().isAnnotationPresent(ConcurrentEvaluation.class)) {
                     if (LOGGER.isLoggable(Level.FINE))
                         LOGGER.fine(String.format("[%s] Scheduling test %s for concurrent execution", Thread.currentThread().getName(), testBlock.testMethod()));
                     jobs.incrementAndGet();
