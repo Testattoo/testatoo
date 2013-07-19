@@ -26,7 +26,8 @@ import org.testatoo.config.testatoo.Testatoo;
 import javax.net.ServerSocketFactory;
 import java.net.ServerSocket;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public final class ContainerTest {
 
@@ -34,22 +35,22 @@ public final class ContainerTest {
     public void test() throws Throwable {
         Testatoo testatoo = Testatoo.configure(new AbstractTestatooModule() {
             @Override
-            protected void configure() {
+            protected void configure() throws Throwable {
                 Provider<ContainerInfo> provider = createContainer()
-                        .implementedBy(Server.JETTY9)
-                        .webappRoot("src/test/webapp")
-                        .context("/mycontext")
-                        .port(7896)
-                        .build();
+                    .implementedBy(Server.JETTY9)
+                    .webappRoot("src/test/webapp")
+                    .context("/mycontext")
+                    .port(7896)
+                    .build();
 
                 containers()
-                        .register(provider.get())
-                        .scope(Scope.TEST_CLASS)
-                        .register(new ContainerInfo(ContainerConfiguration.create()
-                                .webappRoot("src/test/webapp")
-                                .context("/mycontext")
-                                .port(7897), "com.ovea.tajin.server.Jetty9Container"))
-                        .scope(Scope.TEST_CLASS);
+                    .register(provider.get())
+                    .scope(Scope.TEST_CLASS)
+                    .register(new ContainerInfo(ContainerConfiguration.create()
+                        .webappRoot("src/test/webapp")
+                        .context("/mycontext")
+                        .port(7897), "com.ovea.tajin.server.Jetty9Container"))
+                    .scope(Scope.TEST_CLASS);
 
             }
         });

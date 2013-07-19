@@ -13,22 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.ovea.tajin.server.ContainerConfiguration;
-import com.ovea.tajin.server.Server;
+package org.testatoo.config.env;
 
-/**
- * @author David Avenante (d.avenante@gmail.com)
- */
-public class Launcher {
+import org.testatoo.config.AbstractTestatooModule;
 
-    public static void main(String... arg) {
+public final class MainModule extends AbstractTestatooModule {
 
-        System.setProperty("domain", "localhost:8080");
-
-        ContainerConfiguration.create()
-                .webappRoot("src/test/webapp")
-                .buildContainer(Server.JETTY9)
-                .start();
+    @Override
+    protected void configure() {
+        install(new CommonModule(), new LocalModule());
     }
-
 }

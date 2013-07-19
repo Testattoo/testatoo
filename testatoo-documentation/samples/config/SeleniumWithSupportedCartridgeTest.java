@@ -63,7 +63,7 @@ public final class SeleniumWithSupportedCartridgeTest extends org.testatoo.core.
                     .build())
                         .scope(Scope.TEST_CLASS);
                 seleniumServers().registerProvider(createSeleniumServer()
-                    .port(4444)
+                    .setPort(4444)
                     .build())
                         .scope(Scope.TEST_CLASS);
             }

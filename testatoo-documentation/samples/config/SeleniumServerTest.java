@@ -16,9 +16,8 @@
 package org.testatoo.config;
 
 import org.junit.Test;
+import org.openqa.selenium.server.SeleniumServer;
 import org.testatoo.config.testatoo.Testatoo;
-import org.testatoo.selenium.server.SeleniumServer;
-import org.testatoo.selenium.server.SeleniumServerFactory;
 
 import javax.net.ServerSocketFactory;
 import java.net.ServerSocket;
@@ -33,16 +32,14 @@ public final class SeleniumServerTest {
 
         Testatoo testatoo = Testatoo.configure(new AbstractTestatooModule() {
             @Override
-            protected void configure() {
+            protected void configure() throws Throwable {
                 Provider<SeleniumServer> provider = createSeleniumServer()
-                        .port(4444)
+                        .setPort(4444)
                         .build();
                 seleniumServers()
                         .registerProvider(provider)
                         .scope(Scope.TEST_CLASS)
-                        .register(SeleniumServerFactory
-                                .commandeLine("-port", "5555")
-                                .create())
+                        .register(new SeleniumServer())
                         .scope(Scope.TEST_CLASS);
 
             }

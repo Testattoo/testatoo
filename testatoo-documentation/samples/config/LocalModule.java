@@ -13,24 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.html.conf;
+package org.testatoo.config.env;
 
-import com.ovea.tajin.server.Server;
 import org.testatoo.config.AbstractTestatooModule;
 import org.testatoo.config.Scope;
 
-/**
- * @author David Avenante (d.avenante@gmail.com)
- */
-public class ContainerModule extends AbstractTestatooModule {
+final class LocalModule extends AbstractTestatooModule {
+
     @Override
     protected void configure() {
 
-        containers().registerProvider(createContainer()
-                .implementedBy(Server.JETTY9)
-                .webappRoot("src/test/webapp")
-                .port(Integer.parseInt(System.getProperty("port")))
+        seleniumServers().registerProvider(createSeleniumServer()
+                .setSingleWindow(true)
+                .setPort(4444)
                 .build())
-                .scope(Scope.TEST_SUITE);
+                .scope(Scope.TEST_CLASS);
+
+        seleniumSessions()
+                .registerProvider(createSeleniumSession()
+                        .website("http://127.0.0.1:7896/")
+                        .browser("*googlechrome")
+                        .serverHost("127.0.0.1")
+                        .serverPort(4444)
+                        .build())
+                .scope(Scope.TEST_CLASS)
+                .withTimeout(20000);
+
     }
 }
