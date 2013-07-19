@@ -7,13 +7,12 @@ import org.testatoo.config.TestatooModules
 import org.testatoo.experimental.dsl.Testatoo
 import org.testatoo.experimental.dsl.component.Button
 import org.testatoo.experimental.dsl.component.CheckBox
-import org.testatoo.html.conf.Module
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(TestatooJunitRunner.class)
-@TestatooModules(Module.class)
+@TestatooModules(TestModule)
 class ComponentTest extends Testatoo {
 
     @Test

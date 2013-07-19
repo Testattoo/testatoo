@@ -15,13 +15,19 @@
  */
 package org.testatoo.html;
 
+import experimental.dsl.TestModule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.testatoo.config.TestatooModules;
 import org.testatoo.config.TestatooJunitRunner;
+import org.testatoo.config.TestatooModules;
 import org.testatoo.core.Testatoo;
-import org.testatoo.core.component.*;
-import org.testatoo.html.conf.Module;
+import org.testatoo.core.component.Button;
+import org.testatoo.core.component.CheckBox;
+import org.testatoo.core.component.Link;
+import org.testatoo.core.component.Panel;
+import org.testatoo.core.component.PasswordField;
+import org.testatoo.core.component.Radio;
+import org.testatoo.core.component.TextField;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,7 +35,7 @@ import static org.junit.Assert.assertEquals;
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(TestatooJunitRunner.class)
-@TestatooModules(Module.class)
+@TestatooModules(TestModule.class)
 public class ComponentTest extends Testatoo {
 
     @Test

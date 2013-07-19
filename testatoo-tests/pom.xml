@@ -13,7 +13,7 @@
     <version>2.0.b1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Testatoo :: Tests</name>
-    
+
     <scm>
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
         <developerConnection>scm:git:git@github.com:Ovea/testatoo.git</developerConnection>
@@ -77,7 +77,7 @@
     </build>
 
     <dependencies>
-    
+
         <dependency>
             <groupId>org.testatoo</groupId>
             <artifactId>testatoo-core</artifactId>
@@ -91,14 +91,21 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.9.0</version>
             <scope>test</scope>
         </dependency>
-        
+
+        <dependency>
+            <groupId>com.ovea.tajin.servers</groupId>
+            <artifactId>tajin-server-core</artifactId>
+            <version>1.0.b12</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

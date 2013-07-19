@@ -13,40 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.html.conf;
+package experimental.dsl
 
-import org.testatoo.config.AbstractTestatooModule;
-import org.testatoo.config.Scope;
+import org.testatoo.config.AbstractTestatooModule
+import org.testatoo.config.Scope
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-public class LocalModule extends AbstractTestatooModule {
+class TestModule extends AbstractTestatooModule {
+
     static int seleniumPort = -1;
 
     @Override
     protected void configure() {
-
-        System.setProperty("host", "localhost");
 
         if (seleniumPort == -1) {
             seleniumPort = findFreePort();
         }
 
         seleniumServers().registerProvider(createSeleniumServer()
-                .port(seleniumPort)
-                .useSingleWindow(true)
-                .build())
-                .scope(Scope.TEST_SUITE);
+            .setPort(seleniumPort)
+            .setSingleWindow(true)
+            .build())
+            .scope(Scope.TEST_SUITE);
 
         seleniumSessions()
-                .registerProvider(createSeleniumSession()
-                        .website("http://" + System.getProperty("host") + ":" + System.getProperty("port"))
-                        .browser("*googlechrome")
-                        .serverHost("localhost")
-                        .serverPort(seleniumPort)
-                        .build())
-                .scope(Scope.TEST_CLASS)
-                .withTimeout(20000);
+            .registerProvider(createSeleniumSession()
+            .website("http://" + System.getProperty("host", "localhost") + ":" + System.getProperty("port", "8080"))
+            .browser("*googlechrome")
+            .serverHost("localhost")
+            .serverPort(seleniumPort)
+            .build())
+            .scope(Scope.TEST_CLASS)
+            .withTimeout(20000);
+
+        useAnnotations()
     }
 }
