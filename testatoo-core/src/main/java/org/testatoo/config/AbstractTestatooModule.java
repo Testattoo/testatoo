@@ -32,7 +32,7 @@ public abstract class AbstractTestatooModule implements TestatooModule {
     private TestatooConfig testatooConfig;
 
     @Override
-    public void configure(TestatooConfig testatooConfig) {
+    public void configure(TestatooConfig testatooConfig) throws Throwable {
         if (this.testatooConfig != null) {
             throw new IllegalStateException("Re-entrance not allowed");
         }
@@ -52,7 +52,7 @@ public abstract class AbstractTestatooModule implements TestatooModule {
     /**
      * @see TestatooConfig#install(TestatooModule...)
      */
-    protected final TestatooConfig install(TestatooModule... modules) {
+    protected final TestatooConfig install(TestatooModule... modules) throws Throwable {
         return config().install(modules);
     }
 
@@ -127,5 +127,5 @@ public abstract class AbstractTestatooModule implements TestatooModule {
         return testatooConfig.findFreePort();
     }
 
-    protected abstract void configure();
+    protected abstract void configure() throws Throwable;
 }

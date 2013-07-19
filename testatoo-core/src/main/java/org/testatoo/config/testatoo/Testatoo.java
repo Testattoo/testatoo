@@ -50,7 +50,7 @@ public final class Testatoo {
      * @param testatooModules Annotation containing the module class list
      * @return The created Testatoo instance
      */
-    public static Testatoo configure(TestatooModules testatooModules) {
+    public static Testatoo configure(TestatooModules testatooModules) throws Throwable {
         notNull(testatooModules, "TestatooModules annotation");
         Class<? extends TestatooModule>[] classes = testatooModules.value();
         notEmpty("Testatoo module list", classes);
@@ -77,7 +77,7 @@ public final class Testatoo {
      * @param testatooModules module list
      * @return The created Testatoo instance
      */
-    public static Testatoo configure(TestatooModule... testatooModules) {
+    public static Testatoo configure(TestatooModule... testatooModules) throws Throwable {
         notNull(testatooModules, "Testatoo module list");
         notEmpty("Testatoo module list", testatooModules);
         return configure(Arrays.asList(testatooModules));
@@ -89,7 +89,7 @@ public final class Testatoo {
      * @param testatooModules module list
      * @return The created Testatoo instance
      */
-    public static Testatoo configure(Iterable<TestatooModule> testatooModules) {
+    public static Testatoo configure(Iterable<TestatooModule> testatooModules) throws Throwable {
         notNull(testatooModules, "Testatoo module list");
         notEmpty("Testatoo module list", testatooModules);
         DefaultTestatooConfig config = new DefaultTestatooConfig();

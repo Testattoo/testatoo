@@ -38,7 +38,7 @@ public interface TestatooConfig {
      * @param modules list of {@link org.testatoo.config.TestatooModule} to import
      * @return this
      */
-    TestatooConfig install(TestatooModule... modules);
+    TestatooConfig install(TestatooModule... modules) throws Throwable;
 
     TestatooConfig useAnnotations();
 

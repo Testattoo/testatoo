@@ -77,7 +77,7 @@ final class DefaultTestatooConfig implements TestatooConfig {
     }
 
     @Override
-    public TestatooConfig install(TestatooModule... modules) {
+    public TestatooConfig install(TestatooModule... modules) throws Throwable {
         notNull(modules, "Testatoo module list");
         for (TestatooModule module : modules) {
             module.configure(this);

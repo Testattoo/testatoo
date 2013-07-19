@@ -28,5 +28,5 @@ package org.testatoo.config;
  * to methods in {@link org.testatoo.config.TestatooConfig}
  */
 public interface TestatooModule {
-    void configure(TestatooConfig config);
+    void configure(TestatooConfig config) throws Throwable;
 }
