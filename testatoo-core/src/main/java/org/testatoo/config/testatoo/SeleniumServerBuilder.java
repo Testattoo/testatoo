@@ -22,6 +22,8 @@ import org.testatoo.config.Provider;
 import org.testatoo.config.ProviderBuilder;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -36,6 +38,11 @@ public final class SeleniumServerBuilder implements ProviderBuilder<SeleniumServ
         return new Provider<SeleniumServer>() {
             @Override
             public SeleniumServer get() throws Throwable {
+                if (!seleniumServerConfiguration.dontTouchLogging()) {
+                    Logger.getLogger("org.openqa.selenium.server.SeleniumDriverResourceHandler").setLevel(Level.OFF);
+                    Logger.getLogger("org.openqa.selenium.server.SeleniumServer").setLevel(Level.OFF);
+                    Logger.getLogger("org.openqa.jetty").setLevel(Level.OFF);
+                }
                 return new SeleniumServer(seleniumServerConfiguration);
             }
         };
