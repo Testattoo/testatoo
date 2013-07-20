@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.ovea</groupId>
         <artifactId>ovea</artifactId>
-        <version>10</version>
+        <version>11</version>
         <relativePath>../../ovea-pom</relativePath>
     </parent>
 
