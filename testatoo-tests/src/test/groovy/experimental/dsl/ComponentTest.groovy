@@ -21,29 +21,29 @@ class ComponentTest extends Testatoo {
 
         // input type=button
         Button button = $("#button") as Button;
-        assertThat button.is(enabled);
-        assertThat button.is(visible);
+        assert button.is(enabled);
+        assert button.is(visible);
 
         assertThat { button.has text.equalsTo('Button') }
 
         // input type=submit
         button = $("#submit") as Button;
-        assertThat button.is(disabled);
-        assertThat button.is(visible);
+        assert button.is(disabled);
+        assert button.is(visible);
 
         assertThat button.has(text.equalsTo('Submit'))
 
         // input type=reset
         button = $("#reset") as Button;
-        assertThat button.is(enabled);
-        assertThat button.is(visible);
+        assert button.is(enabled);
+        assert button.is(visible);
 
         assertThat button.has(text.equalsTo('Reset'))
 
         // button element
         button = $("#btn") as Button;
-        assertThat button.is(enabled);
-        assertThat button.is(visible);
+        assert button.is(enabled);
+        assert button.is(visible);
 
         assertThat button.has(text.equalsTo('My Button Text'))
     }
@@ -53,11 +53,11 @@ class ComponentTest extends Testatoo {
         open("/index.html");
 
         CheckBox checkBox = $("#checkbox") as CheckBox;
-        assertThat checkBox.is(enabled);
-        assertThat checkBox.is(visible);
+        assert checkBox.is(enabled);
+        assert checkBox.is(visible);
 
 //        assertThat(checkBox.is(not(checked())));
-        assertThat checkBox.has(label.containing("Check me out"));
+        assert checkBox.has(label.containing("Check me out"));
     }
 
 //    @Test
