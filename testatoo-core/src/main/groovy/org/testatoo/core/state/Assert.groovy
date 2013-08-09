@@ -13,27 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package experimental.dsl
+package org.testatoo.core.state
 
-import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
-import org.testatoo.core.Testatoo
-import org.testatoo.core.component.TextField
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-01
  */
-class MyComponents {
+class Assert {
 
-    @Delegate private Testatoo testatoo = new Testatoo()
-
-    Component login_view = $("#login_view")
-    Component dashboard_view = $("#dashboard_view")
-    TextField login_email = $("#login_form :input[name=\"email\"]") as TextField
-    TextField login_password = $("#login_form :input[name=\"password\"]") as TextField
-    Button login_button = $("#login_form [type=submit]") as Button
-    Button logout_button = $("[data-role=logout]:visible") as Button
-    Component login_error_message = $("#login_form .alert-error")
+    static void ensure(Component c, boolean test, Map<String, ?> opts) {
+        if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts.e} but was ${opts.w}")
+    }
 
 }

@@ -20,7 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.TestatooModules
 import org.testatoo.config.TestatooJunitRunner
-import org.testatoo.experimental.dsl.Testatoo
+import org.testatoo.core.Testatoo
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

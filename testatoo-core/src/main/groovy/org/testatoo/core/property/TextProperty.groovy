@@ -13,27 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package experimental.dsl
+package org.testatoo.core.property
 
-import org.testatoo.core.component.Button
+import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
-import org.testatoo.core.Testatoo
-import org.testatoo.core.component.TextField
+import org.testatoo.core.property.matcher.ContainingMatcher
+import org.testatoo.core.property.matcher.EqualsToMatcher
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-05-01
  */
-class MyComponents {
+class TextProperty extends PropertySkeleton {
 
-    @Delegate private Testatoo testatoo = new Testatoo()
+    @Delegate
+    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+    @Delegate
+    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    Component login_view = $("#login_view")
-    Component dashboard_view = $("#dashboard_view")
-    TextField login_email = $("#login_form :input[name=\"email\"]") as TextField
-    TextField login_password = $("#login_form :input[name=\"password\"]") as TextField
-    Button login_button = $("#login_form [type=submit]") as Button
-    Button logout_button = $("[data-role=logout]:visible") as Button
-    Component login_error_message = $("#login_form .alert-error")
+    TextProperty(Evaluator evaluator) { super(evaluator) }
 
+    @Override
+    String value(Component component) {
+        evaluator.getText(component)
+    }
+
+    @Override
+    String toString() { "Text" }
 }

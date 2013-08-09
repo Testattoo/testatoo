@@ -4,9 +4,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
-import org.testatoo.experimental.dsl.Testatoo
-import org.testatoo.experimental.dsl.component.Button
-import org.testatoo.experimental.dsl.component.CheckBox
+import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.CheckBox
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
