@@ -26,71 +26,65 @@ final class DefaultSeleniumServerConfig implements SeleniumServerConfig {
     @Override
     public ScopedProvider<SeleniumServerConfig> register(final SeleniumServer seleniumServer) {
         notNull(seleniumServer, "Selenium server")
-        return registerProvider(new Provider<SeleniumServer>() {
-            @Override
-            public SeleniumServer get() {
-                return seleniumServer
-            }
-        });
+        return registerProvider({ seleniumServer } as Provider<SeleniumServer>)
     }
 
     @Override
     public ScopedProvider<SeleniumServerConfig> registerProvider(final Provider<SeleniumServer> seleniumServer) {
         notNull(seleniumServer, "Selenium server provider");
         final Provider<SeleniumServer> singleton = SingletonProvider.from(seleniumServer);
-        return new ScopedProvider<SeleniumServerConfig>() {
-            @Override
-            public SeleniumServerConfig scope(Scope scope) {
-                switch (scope) {
-                    case Scope.TEST_SUITE:
-                        config.register(new EventListener(Priority.SELENIUM_SERVER) {
-                            @Override
-                            void onStart() throws Throwable {
-                                SeleniumServer server = singleton.get()
-                                if (!DefaultSeleniumServerConfig.SCOPE_TEST_SUITE.contains(server.port)) {
-                                    if (DefaultSeleniumServerConfig.LOGGER.isLoggable(Level.FINE))
-                                        DefaultSeleniumServerConfig.LOGGER.fine("Starting SeleniumServer on port " + server.port + "...")
-                                    server.start();
-                                    DefaultSeleniumServerConfig.SCOPE_TEST_SUITE.add(server.port)
-                                }
-                            }
+        DefaultSeleniumServerConfig that = this
+        return { Scope scope ->
 
-                            @Override
-                            void onStop() {
-                            }
-                        });
-                        Shutdown.addHook(new Shutdown.Hook() {
-                            @Override
-                            public void onShutdown() throws Throwable {
-                                SeleniumServer server = singleton.get()
-                                if (DefaultSeleniumServerConfig.LOGGER.isLoggable(Level.FINE))
-                                    DefaultSeleniumServerConfig.LOGGER.fine("Stopping SeleniumServer on port " + server.port + "...")
-                                server.stop()
-                            }
-                        });
-                        break;
-                    case Scope.TEST_CLASS:
-                        config.register(new EventListener(Priority.SELENIUM_SERVER) {
-                            @Override
-                            void onStart() throws Throwable {
-                                SeleniumServer server = singleton.get()
-                                if (DefaultSeleniumServerConfig.LOGGER.isLoggable(Level.FINE))
-                                    DefaultSeleniumServerConfig.LOGGER.fine("Starting SeleniumServer on port " + server.port + "...")
-                                server.start()
-                            }
+            if (scope == Scope.TEST_SUITE) {
 
-                            @Override
-                            void onStop() throws Throwable {
-                                SeleniumServer server = singleton.get()
-                                if (DefaultSeleniumServerConfig.LOGGER.isLoggable(Level.FINE))
-                                    DefaultSeleniumServerConfig.LOGGER.fine("Stopping SeleniumServer on port " + server.port + "...")
-                                server.stop()
-                            }
-                        });
-                        break;
-                }
-                return DefaultSeleniumServerConfig.this
+                config.register(new EventListener(Priority.SELENIUM_SERVER) {
+                    @Override
+                    void onStart() throws Throwable {
+                        SeleniumServer server = singleton.get()
+                        if (!SCOPE_TEST_SUITE.contains(server.port)) {
+                            if (LOGGER.isLoggable(Level.FINE))
+                                LOGGER.fine("Starting SeleniumServer on port " + server.port + "...")
+                            server.start();
+                            SCOPE_TEST_SUITE.add(server.port)
+                        }
+                    }
+                });
+
+                Shutdown.addHook({
+                    SeleniumServer server = singleton.get()
+                    if (LOGGER.isLoggable(Level.FINE))
+                        LOGGER.fine("Stopping SeleniumServer on port " + server.port + "...")
+                    server.stop()
+                } as Shutdown.Hook)
+
             }
-        };
+
+            if (scope == Scope.TEST_CLASS) {
+
+                config.register(new EventListener(Priority.SELENIUM_SERVER) {
+                    @Override
+                    void onStart() throws Throwable {
+                        SeleniumServer server = singleton.get()
+                        if (LOGGER.isLoggable(Level.FINE))
+                            LOGGER.fine("Starting SeleniumServer on port " + server.port + "...")
+                        server.start()
+                    }
+
+                    @Override
+                    void onStop() throws Throwable {
+                        SeleniumServer server = singleton.get()
+                        if (LOGGER.isLoggable(Level.FINE))
+                            LOGGER.fine("Stopping SeleniumServer on port " + server.port + "...")
+                        server.stop()
+                    }
+                });
+
+            }
+
+            return that
+
+        } as ScopedProvider<SeleniumServerConfig>
+
     }
 }

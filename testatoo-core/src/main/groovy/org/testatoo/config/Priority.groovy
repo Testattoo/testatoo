@@ -17,7 +17,7 @@ enum Priority {
         this.start = start
     }
 
-    public int next() {
+    public int getNext() {
         return start++
     }
 }

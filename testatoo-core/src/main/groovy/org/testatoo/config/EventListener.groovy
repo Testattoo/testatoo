@@ -6,10 +6,10 @@ package org.testatoo.config
 
 class EventListener {
 
-    private final int priority
+    final int priority
 
-    EventListener(Priority priority) {
-        this.priority = priority.next()
+    EventListener(Priority p) {
+        this.priority = p.next
     }
 
     void on(Event event) throws Throwable {
@@ -21,10 +21,6 @@ class EventListener {
                 onStop();
                 break;
         }
-    }
-
-    public final int priority() {
-        return priority
     }
 
     void onStart() throws Throwable {

@@ -7,7 +7,6 @@ import org.junit.runners.model.InitializationError
 import org.junit.runners.model.Statement
 import org.testatoo.config.lifecycle.TestInvocation
 
-
 import java.lang.reflect.Method
 
 /**
@@ -24,7 +23,7 @@ final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
 
     @Override
     protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
-        testatoo.scheduleTest(getTestClass().javaClass, method.method,  {super.runChild(method, notifier)} as Runnable);
+        testatoo.scheduleTest(getTestClass().javaClass, method.method, { super.runChild(method, notifier) } as Runnable);
 
 //        testatoo.scheduleTest(testClass.javaClass, method.method, new Runnable() {
 //            @Override
@@ -63,43 +62,37 @@ final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
         final Statement statement = super.methodBlock(method)
         final Object test = createdTest.get()
         createdTest.remove()
-        return new Statement() {
-            @Override
-            public void evaluate() throws Throwable {
-                try {
-                    testatoo.on(test, method.method)
-                    statement.evaluate()
-                } catch (Throwable throwable) {
-                    throw new RuntimeException(throwable.message, throwable)
-                }
+        return {
+            try {
+                testatoo.on(test, method.method)
+                statement.evaluate()
+            } catch (Throwable throwable) {
+                throw new RuntimeException(throwable.message, throwable)
             }
-        };
+        } as Statement
     }
 
     @Override
     protected final Statement methodInvoker(final FrameworkMethod method, final Object test) {
-        return new Statement() {
-            @SuppressWarnings("ThrowableResultOfMethodCallIgnored")
-            @Override
-            public void evaluate() throws Throwable {
-                testatoo.executeTestMethod(new TestInvocation() {
-                    @Override
-                    public Method getMethod() {
-                        return method.getMethod()
-                    }
+        Statement delegate = super.methodInvoker(method, test)
+        return {
+            testatoo.executeTestMethod(new TestInvocation() {
+                @Override
+                public Method getMethod() {
+                    return method.getMethod()
+                }
 
-                    @Override
-                    public void proceed() throws Throwable {
-                        TestatooJunitRunner.super.methodInvoker(method, test).evaluate()
-                    }
+                @Override
+                public void proceed() throws Throwable {
+                    delegate.evaluate()
+                }
 
-                    @Override
-                    public Object getTestInstance() {
-                        return test
-                    }
-                });
-            }
-        };
+                @Override
+                public Object getTestInstance() {
+                    return test
+                }
+            });
+        } as Statement
     }
 
 }
