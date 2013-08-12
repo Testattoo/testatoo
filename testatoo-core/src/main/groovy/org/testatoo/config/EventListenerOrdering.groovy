@@ -4,6 +4,7 @@ package org.testatoo.config
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
+// TODO grovyfy Comparator
 enum EventListenerOrdering implements EventListenerSorter {
 
     BY_PRIORITY(new Comparator<EventListener>() {

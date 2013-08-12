@@ -7,6 +7,5 @@ import java.lang.reflect.Method
  */
 class TestListenerAdapter implements TestListener {
     @Override
-    public void onTest(Object instance, Method method) {
-    }
+    public void onTest(Object instance, Method method) {}
 }

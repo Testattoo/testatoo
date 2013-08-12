@@ -26,7 +26,7 @@ abstract class AbstractTestatooModule implements TestatooModule {
 
         try {
             this.testatooConfig = testatooConfig
-            configure();
+            configure()
         } finally {
             this.testatooConfig = null
         }
@@ -96,5 +96,5 @@ abstract class AbstractTestatooModule implements TestatooModule {
         testatooConfig.findFreePort()
     }
 
-    protected abstract void configure() throws Throwable;
+    protected abstract void configure() throws Throwable
 }

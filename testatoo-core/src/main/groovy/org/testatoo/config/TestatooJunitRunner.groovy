@@ -23,31 +23,21 @@ final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
 
     @Override
     protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
-        testatoo.scheduleTest(getTestClass().javaClass, method.method, { super.runChild(method, notifier) } as Runnable);
-
-//        testatoo.scheduleTest(testClass.javaClass, method.method, new Runnable() {
-//            @Override
-//            public void run() {
-//                TestatooJunitRunner.super.runChild(method, notifier)
-//            }
-//        });
+        testatoo.scheduleTest(testClass.javaClass, method.method, { super.runChild(method, notifier) } as Runnable);
     }
 
     @Override
     protected Statement classBlock(RunNotifier notifier) {
         final Statement statement = super.classBlock(notifier)
-        return new Statement() {
-            @Override
-            public void evaluate() throws Throwable {
-                testatoo = TestatooStarter.configure(getTestClass().javaClass.getAnnotation(TestatooModules.class))
-                testatoo.start()
-                try {
-                    statement.evaluate()
-                } finally {
-                    testatoo.stop()
-                }
+        return {
+            testatoo = TestatooStarter.configure(testClass.javaClass.getAnnotation(TestatooModules.class))
+            testatoo.start()
+            try {
+                statement.evaluate()
+            } finally {
+                testatoo.stop()
             }
-        };
+        } as Statement
     }
 
     @Override
@@ -76,22 +66,11 @@ final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
     protected final Statement methodInvoker(final FrameworkMethod method, final Object test) {
         Statement delegate = super.methodInvoker(method, test)
         return {
-            testatoo.executeTestMethod(new TestInvocation() {
-                @Override
-                public Method getMethod() {
-                    return method.getMethod()
-                }
-
-                @Override
-                public void proceed() throws Throwable {
-                    delegate.evaluate()
-                }
-
-                @Override
-                public Object getTestInstance() {
-                    return test
-                }
-            });
+            testatoo.executeTestMethod([
+                    getMethod: { return method.getMethod() },
+                    proceed: { delegate.evaluate() },
+                    getTestInstance: { return test }
+            ] as TestInvocation)
         } as Statement
     }
 

@@ -11,11 +11,14 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 import static org.testatoo.config.Ensure.notNull;
+import static org.testatoo.config.Scope.*
+import static org.testatoo.config.Priority.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
+// TODO grovyfy EventListener
 final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
 
     private static final Logger LOGGER = Logger.getLogger(DefaultSeleniumSessionConfig.class.name)
@@ -39,10 +42,9 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
         final Provider<Selenium> singleton = SingletonProvider.from(session)
         final DefaultSeleniumSessionConfigBuilder seleniumSessionConfigBuilder = new DefaultSeleniumSessionConfigBuilder(this)
         return { Scope scope ->
+            if (scope == TEST_CLASS) {
 
-            if (scope == Scope.TEST_CLASS) {
-
-                config.register(new EventListener(Priority.IMPLEMENTATION) {
+                config.register(new EventListener(IMPLEMENTATION) {
                     @Override
                     void onStart() throws Throwable {
                         Selenium seleniumSession = singleton.get()
@@ -66,9 +68,9 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
 
             }
 
-            if (scope == Scope.TEST_SUITE) {
+            if (scope == TEST_SUITE) {
 
-                config.register(new EventListener(Priority.IMPLEMENTATION) {
+                config.register(new EventListener(IMPLEMENTATION) {
                     @Override
                     void onStart() throws Throwable {
                         Selenium seleniumSession = singleton.get()

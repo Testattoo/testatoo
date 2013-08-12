@@ -4,10 +4,12 @@ package org.testatoo.config
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
+import static org.testatoo.config.EventListenerOrdering.*
+
 enum Event {
 
-    START(EventListenerOrdering.BY_PRIORITY),
-    STOP(EventListenerOrdering.BY_PRIORITY_REVERSE)
+    START(BY_PRIORITY),
+    STOP(BY_PRIORITY_REVERSE)
 
     private final EventListenerOrdering ordering
 

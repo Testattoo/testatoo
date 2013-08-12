@@ -10,6 +10,7 @@ import static org.testatoo.config.Ensure.notNull
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
+// TOTO GROVVYFY EventListener
 final class DefaultLifeCycleConfig implements LifeCycleConfig {
 
     private final DefaultTestatooConfig config
