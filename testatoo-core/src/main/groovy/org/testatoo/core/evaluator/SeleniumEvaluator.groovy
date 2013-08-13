@@ -5,6 +5,8 @@ import org.testatoo.core.Evaluator
 import org.testatoo.core.EvaluatorException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.ComponentType
+
 //import org.testatoo.core.component.Page
 import org.testatoo.core.input.Click
 //import org.testatoo.core.input.Key;
@@ -65,6 +67,11 @@ class SeleniumEvaluator implements Evaluator {
     }
 
     @Override
+    Boolean isChecked(Component component) {
+        return Boolean.valueOf(evaljQuery("\$('#" + component.id + "').is(':checked');"))
+    }
+
+    @Override
     public boolean isEnabled(Component component) {
         return !Boolean.valueOf(evaljQuery("\$('#" + component.id + "').is(':disabled');"))
     }
@@ -88,7 +95,6 @@ class SeleniumEvaluator implements Evaluator {
         if (Integer.valueOf(evaljQuery("\$('#" + component.id + "').prev('label').length")) > 0) {
             return evaljQuery("\$('#" + component.id + "').prev('label').text()")
         }
-        // TODO clean string
         return evaljQuery("\$('#" + component.id + "').parent().text()")
     }
 
@@ -269,6 +275,21 @@ class SeleniumEvaluator implements Evaluator {
         }
     }
 
+    @Override
+    ComponentType getType(Component component) {
+        return ComponentType.valueOf(evaljQuery("\$('#" + component.id + "').componentType()").toUpperCase());
+    }
+
+    @Override
+    String getTitle(Component component) {
+        return null
+    }
+
+    @Override
+    String getReference(Component component) {
+        return evaljQuery("\$('#" + component.id + "').prop('href')")
+    }
+
     private String nodename(Component component) {
         return evaljQuery("\$('#" + component.id + "').prop('nodeName')")
     }
@@ -276,10 +297,8 @@ class SeleniumEvaluator implements Evaluator {
     private String attribute(Component component, String attribute) {
         String attributeValue
         attributeValue = evaljQuery("\$('#" + component.id + "').prop('" + attribute + "');")
-
         if (attributeValue.equals("null"))
             return ""
-
         return attributeValue
     }
 
@@ -306,10 +325,10 @@ class SeleniumEvaluator implements Evaluator {
         }
     }
 
-    private void typeKey(int keyCode) {
-        String keyModifier = keyModifier()
-        evaljQuery("(\$.browser.webkit) ? \$(window.document).simulate('type', {charCode: " + keyCode + keyModifier + "}) : \$('body').simulate('type', {keyCode: " + keyCode + keyModifier + "})")
-    }
+//    private void typeKey(int keyCode) {
+//        String keyModifier = keyModifier()
+//        evaljQuery("(\$.browser.webkit) ? \$(window.document).simulate('type', {charCode: " + keyCode + keyModifier + "}) : \$('body').simulate('type', {keyCode: " + keyCode + keyModifier + "})")
+//    }
 
     private String[] extractId(String expression) {
         if (expression.startsWith("jquery:")) {

@@ -21,7 +21,11 @@ import org.testatoo.core.property.TextProperty
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Button extends Component {
+
     Button() {
         supportedProperties << TextProperty
     }
+
+    @Override
+    ComponentType getType() { ComponentType.BUTTON }
 }

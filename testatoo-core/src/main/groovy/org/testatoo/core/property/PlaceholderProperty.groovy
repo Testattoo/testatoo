@@ -33,9 +33,7 @@ class PlaceholderProperty extends PropertySkeleton {
     PlaceholderProperty(Evaluator evaluator) { super(evaluator) }
 
     @Override
-    String value(Component component) {
-        evaluator.getPlaceholder(component)
-    }
+    String value(Component component) { evaluator.getPlaceholder(component) }
 
     @Override
     String toString() { "Placeholder" }

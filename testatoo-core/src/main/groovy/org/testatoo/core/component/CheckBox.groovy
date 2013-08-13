@@ -21,7 +21,11 @@ import org.testatoo.core.property.LabelProperty
  * @author David Avenante (d.avenante@gmail.com)
  */
 class CheckBox extends Component {
+
     CheckBox() {
-        supportedProperties.addAll([LabelProperty])
+        supportedProperties << LabelProperty
     }
+
+    @Override
+    ComponentType getType() { ComponentType.CHECKBOX }
 }

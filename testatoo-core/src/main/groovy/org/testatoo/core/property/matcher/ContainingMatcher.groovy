@@ -47,6 +47,7 @@ class ContainingMatcher extends AbstractPropertyMatcher {
     static Matchers matchers(Property a) { new Matchers(property: a) }
 
     static class Matchers extends PropertyMatchers {
+
         ContainingMatcher containing(String expected) { containing([expected]) }
 
         ContainingMatcher containing(Collection<String> anyOfExpected) { new ContainingMatcher(property, anyOfExpected) }

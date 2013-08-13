@@ -6,7 +6,6 @@ import java.util.concurrent.CopyOnWriteArrayList
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
-// TODO groovyfy Thread
 final class Shutdown {
 
     private static final Shutdown SHUTDOWN = new Shutdown()

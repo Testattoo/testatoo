@@ -18,7 +18,6 @@ import static org.testatoo.config.Priority.*
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 
-// TODO grovyfy EventListener
 final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
 
     private static final Logger LOGGER = Logger.getLogger(DefaultSeleniumSessionConfig.class.name)
@@ -74,8 +73,8 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                     @Override
                     void onStart() throws Throwable {
                         Selenium seleniumSession = singleton.get()
-                        // if it is a DefaultSelenium, it can be managed statically
-                        // otherwise fallback to default behavior
+                        // If it is a DefaultSelenium, it can be managed statically
+                        // Otherwise fallback to default behavior
                         if (seleniumSession instanceof DefaultSelenium) {
                             // All of this is a very hugly hack to determine if we can reuse an existing session
                             // since we cannot recover the needed information from Selenium interface.
@@ -109,10 +108,10 @@ final class DefaultSeleniumSessionConfig implements SeleniumSessionConfig {
                     @Override
                     void onStop() throws Throwable {
                         Selenium seleniumSession = singleton.get()
-                        // if it is a DefaultSelenium, it can be managed statically
-                        // otherwise fallback to default behavior
+                        // If it is a DefaultSelenium, it can be managed statically
+                        // Otherwise fallback to default behavior
                         if (seleniumSession instanceof DefaultSelenium) {
-                            // nothing to do, the selenium session will be cleared by shutdown hook
+                            // Nothing to do, the selenium session will be cleared by shutdown hook
                         } else {
                             if (LOGGER.isLoggable(Level.FINE))
                                 LOGGER.fine("Stopping Selenium session...")

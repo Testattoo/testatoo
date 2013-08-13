@@ -16,6 +16,7 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.Block
+import org.testatoo.core.property.LabelProperty
 import org.testatoo.core.property.PlaceholderProperty
 
 /**
@@ -24,7 +25,7 @@ import org.testatoo.core.property.PlaceholderProperty
 class TextField extends Component {
 
     TextField() {
-        supportedProperties << PlaceholderProperty
+        supportedProperties << PlaceholderProperty << LabelProperty
     }
 
     Block enter(String text) {

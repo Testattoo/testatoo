@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentType
 
 public interface Evaluator {
 
@@ -34,6 +35,8 @@ public interface Evaluator {
 
     boolean isVisible(Component component)
 
+    Boolean isChecked(Component component);
+
     String[] getElementsIds(String expr)
 
     String getLabel(Component component)
@@ -51,4 +54,10 @@ public interface Evaluator {
     String getPlaceholder(Component component)
 
     boolean isAvailable(Component component)
+
+    ComponentType getType(Component component)
+
+    String getTitle(Component component)
+
+    String getReference(Component component)
 }

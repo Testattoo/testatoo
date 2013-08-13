@@ -2,6 +2,7 @@ package org.testatoo.core.property
 
 import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.ComponentType
 
 /**
@@ -14,10 +15,9 @@ abstract class PropertySkeleton implements Property {
 
     @Override
     final String getValue(Component component) {
-        // TODO component test support this property
-        ComponentType type = evaluator.getType(this)
+        ComponentType type = evaluator.getType(component)
         if(type != component.type) {
-//            throw new ....
+            throw new ComponentException('Expected component type: ' + component.type + ' but was:' + type)
         }
         return value(component)
     }

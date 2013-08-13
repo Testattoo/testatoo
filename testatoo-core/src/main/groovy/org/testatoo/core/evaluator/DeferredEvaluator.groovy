@@ -2,6 +2,7 @@ package org.testatoo.core.evaluator
 
 import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentType
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -22,6 +23,9 @@ class DeferredEvaluator implements Evaluator {
 
     @Override
     boolean isVisible(Component component) { EvaluatorHolder.get().isVisible component }
+
+    @Override
+    Boolean isChecked(Component component) { EvaluatorHolder.get().isChecked component }
 
     @Override
     String[] getElementsIds(String expr) { EvaluatorHolder.get().getElementsIds expr }
@@ -49,4 +53,13 @@ class DeferredEvaluator implements Evaluator {
 
     @Override
     boolean isAvailable(Component component) { EvaluatorHolder.get().isAvailable component }
+
+    @Override
+    ComponentType getType(Component component) { return EvaluatorHolder.get().getType(component) }
+
+    @Override
+    String getTitle(Component component) { return EvaluatorHolder.get().getTitle(component) }
+
+    @Override
+    String getReference(Component component) { return EvaluatorHolder.get().getReference(component) }
 }

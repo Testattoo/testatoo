@@ -1,0 +1,4 @@
+moduleName=testatoo
+moduleVersion=1
+extensionClasses=org.testatoo.core.GroovyExtensions
+staticExtensionClasses=

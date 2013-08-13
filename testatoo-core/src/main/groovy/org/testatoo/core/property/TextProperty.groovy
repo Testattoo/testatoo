@@ -33,9 +33,7 @@ class TextProperty extends PropertySkeleton {
     TextProperty(Evaluator evaluator) { super(evaluator) }
 
     @Override
-    String value(Component component) {
-        evaluator.getText(component)
-    }
+    String value(Component component) { evaluator.getText(component)  }
 
     @Override
     String toString() { "Text" }

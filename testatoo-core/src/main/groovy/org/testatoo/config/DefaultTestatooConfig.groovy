@@ -19,7 +19,7 @@ import static org.testatoo.config.Ensure.notNull;
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
- // TODO grovyfy TestListenerAdapter TestInterceptor
+
 final class DefaultTestatooConfig implements TestatooConfig {
 
     private static final Logger LOGGER = Logger.getLogger(DefaultTestatooConfig.class.name)

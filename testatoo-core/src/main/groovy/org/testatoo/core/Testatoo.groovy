@@ -15,18 +15,10 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.evaluator.DeferredEvaluator
-import org.testatoo.core.evaluator.SeleniumEvaluator
-import org.testatoo.core.property.LabelProperty
-import org.testatoo.core.property.PlaceholderProperty
-import org.testatoo.core.property.TextProperty
 import org.testatoo.core.component.Component
-import org.testatoo.core.state.AvailableState
-import org.testatoo.core.state.DisabledState
-import org.testatoo.core.state.EnabledState
-import org.testatoo.core.state.HiddenState
-import org.testatoo.core.state.MissingState
-import org.testatoo.core.state.VisibleState
+import org.testatoo.core.evaluator.DeferredEvaluator
+import org.testatoo.core.property.*
+import org.testatoo.core.state.*
 
 import java.util.concurrent.TimeoutException
 
@@ -54,7 +46,7 @@ class Testatoo {
         run(Blocks.compose(Blocks.pending()))
     }
 
-    void waitUntil(Block m, long timeout = 5000) {
+    static void waitUntil(Block m, long timeout = 5000) {
         try {
             Util.waitUntil timeout, 500, {
                 println "waitUntil: ${m}"
@@ -65,10 +57,15 @@ class Testatoo {
         }
     }
 
+
+
     // Properties
     PlaceholderProperty getPlaceholder() { new PlaceholderProperty(evaluator) }
     LabelProperty getLabel() { new LabelProperty(evaluator) }
     TextProperty getText() { new TextProperty(evaluator) }
+    ReferenceProperty getReference() { new ReferenceProperty(evaluator) }
+    TitleProperty getTitle() { new TitleProperty(evaluator) }
+//    ValueProperty getValue() { new ValueProperty(evaluator) }
 
     final EnabledState enabled = new EnabledState(evaluator)
     final DisabledState disabled = new DisabledState(evaluator)
@@ -76,9 +73,12 @@ class Testatoo {
     final HiddenState hidden = new HiddenState(evaluator)
     final AvailableState available = new AvailableState(evaluator)
     final MissingState missing = new MissingState(evaluator)
+    final CheckedState checked = new CheckedState(evaluator)
+    final UnCheckedState unchecked = new UnCheckedState(evaluator)
+
 
     // Utils
-    private void run(Block block) {
+    static void run(Block block) {
         println block.toString()
         block.run()
     }

@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 package org.testatoo.core
-
-import org.testatoo.core.Block
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
