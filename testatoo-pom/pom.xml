@@ -28,7 +28,7 @@
 
     <groupId>org.testatoo</groupId>
     <artifactId>testatoo-pom</artifactId>
-    <version>2</version>
+    <version>3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Testatoo :: POM</name>
 
@@ -36,7 +36,7 @@
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
         <developerConnection>scm:git:git@github.com:Ovea/testatoo.git</developerConnection>
         <url>http://github.com/Ovea/testatoo</url>
-        <tag>testatoo-pom-2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
