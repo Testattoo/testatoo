@@ -18,8 +18,8 @@ package experimental.dsl
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.testatoo.config.TestatooModules
 import org.testatoo.config.TestatooJunitRunner
+import org.testatoo.config.TestatooModules
 import org.testatoo.core.Testatoo
 
 /**
@@ -42,7 +42,7 @@ class SampleDsl {
     @Test
     void login_page_contains_expected_elements() {
         assertThat login_email.is(visible)
-        assertThat([login_email, login_password, login_button]*.are(visible))
+        assertThat([login_email, login_password, login_button].are(visible))
         assertThat {
             login_email.is visible
             [login_email, login_password, login_button]*.are visible

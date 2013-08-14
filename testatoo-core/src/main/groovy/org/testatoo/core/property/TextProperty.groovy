@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.matcher.ContainingMatcher
 import org.testatoo.core.property.matcher.EqualsToMatcher
@@ -30,10 +29,8 @@ class TextProperty extends PropertySkeleton {
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    TextProperty(Evaluator evaluator) { super(evaluator) }
-
     @Override
-    String value(Component component) { evaluator.getText(component)  }
+    String value(Component component) { component.evaluator.getText(component)  }
 
     @Override
     String toString() { "Text" }

@@ -15,9 +15,8 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.Evaluator
 import org.testatoo.core.component.ComponentException
 
-public interface Id {
-    String getValue(Evaluator evaluator) throws ComponentException
+public interface IdProvider {
+    String getValue(Evaluator e) throws ComponentException
 }

@@ -1,32 +1,38 @@
 package org.testatoo
 
 import experimental.dsl.TestModule
+import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.CheckBox
-import org.testatoo.core.component.Link
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.PasswordField
-import org.testatoo.core.component.TextField
+import org.testatoo.core.component.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(TestatooJunitRunner.class)
 @TestatooModules(TestModule)
-class ComponentTest extends Testatoo {
+class ComponentTest {
+
+    @Delegate private static Testatoo testatoo = new Testatoo()
+
+    @BeforeClass
+    public static void open() {
+        testatoo.open('/index.html')
+    }
 
     @Test
     public void test_button() {
-        open('/index.html')
 
         // input type=button
         Button button = $('#button') as Button
         assert button.is(enabled)
+
+        // are / have extension
+        assert [button].are(enabled)
+
         assert button.is(visible)
 
         assertThat { button.has text.equalsTo('Button') }
@@ -55,7 +61,6 @@ class ComponentTest extends Testatoo {
 
     @Test
     public void test_textField() {
-        open('/index.html');
 
         TextField textField = $('#text_field') as TextField
 
@@ -68,7 +73,6 @@ class ComponentTest extends Testatoo {
 
     @Test
     public void test_passwordField() {
-        open('/index.html')
 
         PasswordField passwordField = $('#password_field') as PasswordField
 
@@ -82,8 +86,6 @@ class ComponentTest extends Testatoo {
 
     @Test
     public void test_checkbox() {
-        open('/index.html')
-
         CheckBox checkBox = $('#checkbox') as CheckBox
         assert checkBox.is(enabled)
         assert checkBox.is(visible)
@@ -94,8 +96,6 @@ class ComponentTest extends Testatoo {
 
     @Test
     public void test_link() {
-        open('/index.html')
-
         Link link = $('#link') as Link
         assert link.is(enabled)
         assert link.is(visible)
@@ -106,8 +106,6 @@ class ComponentTest extends Testatoo {
 
     @Test
     public void test_panel() {
-        open('/index.html')
-
         Panel panel = $('#panel') as Panel
         assert panel.is(enabled)
         assert panel.is(visible)

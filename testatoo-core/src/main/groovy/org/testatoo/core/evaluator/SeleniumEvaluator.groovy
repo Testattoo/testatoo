@@ -5,7 +5,6 @@ import org.testatoo.core.Evaluator
 import org.testatoo.core.EvaluatorException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.ComponentType
 import org.testatoo.core.input.Click
 
 //import org.testatoo.core.component.Page
@@ -276,11 +275,11 @@ class SeleniumEvaluator implements Evaluator {
     }
 
     @Override
-    ComponentType getType(Component component) { evaljQuery("\$('#" + component.id + "').componentType()").toUpperCase() as ComponentType }
+    String getType(String id) { evaljQuery("\$('#" + id + "').componentType()") }
 
     @Override
     String getTitle(Component component) {
-        return null
+        throw new UnsupportedOperationException()
     }
 
     @Override
@@ -348,7 +347,7 @@ class SeleniumEvaluator implements Evaluator {
     private String evaljQuery(String expression) {
         selenium.runScript("if(window.tQuery){(function(\$, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}")
         String s = selenium.getEval("window.testatoo_tmp")
-        if ("__TQUERY_MISSING__".equals(s)) {
+        if (s && s.contains('__TQUERY_MISSING__')) {
             selenium.runScript(addScript("tquery-1.7.2.js") + addScript("tquery-simulate.js") + addScript("tquery-util.js"))
             selenium.runScript("if(window.tQuery){(function(\$, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}")
             s = selenium.getEval("window.testatoo_tmp")
@@ -356,21 +355,7 @@ class SeleniumEvaluator implements Evaluator {
         return s;
     }
 
-    private String addScript(String name) {
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(name)))
-            StringBuilder builder = new StringBuilder()
-            char[] buffer = new char[8192]
-            int read
-            while ((read = reader.read(buffer, 0, buffer.length)) > 0) {
-                builder.append(buffer, 0, read)
-            }
-            reader.close()
-            return builder.toString()
-        } catch (IOException e) {
-            throw new IllegalStateException("Internal error occurred when trying to load custom scripts : " + e.message, e)
-        }
-    }
+    private String addScript(String name) { getClass().getResource(name).text }
 
     private boolean isIe() {
         if (!_props.containsKey("IE")) {

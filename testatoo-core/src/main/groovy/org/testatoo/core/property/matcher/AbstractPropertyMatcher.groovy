@@ -30,13 +30,7 @@ abstract class AbstractPropertyMatcher implements PropertyMatcher {
     }
 
     @Override
-    final void matches(Component c) {
-        if (!c.supports(property)) {
-            throw new AssertionError("Component ${this} does not support property ${getClass().simpleName}")
-        }
-        String v = property.getValue(c)
-        doMatch(c, v)
-    }
+    final void matches(Component c) { doMatch(c, property.getValue(c)) }
 
     abstract void doMatch(Component c, String currentValue)
 }

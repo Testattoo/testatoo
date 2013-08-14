@@ -10,9 +10,10 @@ import org.testatoo.config.selenium.SeleniumSessionConfigBuilder
 import java.util.logging.Level
 import java.util.logging.Logger
 
-import static org.testatoo.config.Ensure.notNull;
-import static org.testatoo.config.Scope.*
-import static org.testatoo.config.Priority.*
+import static org.testatoo.config.Ensure.notNull
+import static org.testatoo.config.Priority.IMPLEMENTATION
+import static org.testatoo.config.Scope.TEST_CLASS
+import static org.testatoo.config.Scope.TEST_SUITE
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

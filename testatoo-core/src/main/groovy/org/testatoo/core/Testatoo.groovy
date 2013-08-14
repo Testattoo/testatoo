@@ -28,10 +28,10 @@ import java.util.concurrent.TimeoutException
 class Testatoo {
 
     // Settings
-    Evaluator evaluator =  new DeferredEvaluator()
+    Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
-    Component $(String jQuery, long timeout = 2000) { new Component(evaluator: evaluator, id: new jQueryId(jQuery, timeout)) }
+    Component $(String jQuery, long timeout = 2000) { new Component(evaluator, new jQueryIdProvider(jQuery, timeout)) }
 
     void open(String uri) { evaluator.open(uri) }
 
@@ -57,15 +57,12 @@ class Testatoo {
         }
     }
 
-
-
     // Properties
-    PlaceholderProperty getPlaceholder() { new PlaceholderProperty(evaluator) }
-    LabelProperty getLabel() { new LabelProperty(evaluator) }
-    TextProperty getText() { new TextProperty(evaluator) }
-    ReferenceProperty getReference() { new ReferenceProperty(evaluator) }
-    TitleProperty getTitle() { new TitleProperty(evaluator) }
-//    ValueProperty getValue() { new ValueProperty(evaluator) }
+    final PlaceholderProperty placeholder = new PlaceholderProperty()
+    final LabelProperty label = new LabelProperty()
+    final TextProperty text = new TextProperty()
+    final ReferenceProperty reference = new ReferenceProperty()
+    final TitleProperty title = new TitleProperty()
 
     final EnabledState enabled = new EnabledState(evaluator)
     final DisabledState disabled = new DisabledState(evaluator)
@@ -75,7 +72,6 @@ class Testatoo {
     final MissingState missing = new MissingState(evaluator)
     final CheckedState checked = new CheckedState(evaluator)
     final UnCheckedState unchecked = new UnCheckedState(evaluator)
-
 
     // Utils
     static void run(Block block) {

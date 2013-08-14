@@ -16,7 +16,6 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentType
 
 public interface Evaluator {
 
@@ -55,7 +54,7 @@ public interface Evaluator {
 
     boolean isAvailable(Component component)
 
-    ComponentType getType(Component component)
+    String getType(String id)
 
     String getTitle(Component component)
 

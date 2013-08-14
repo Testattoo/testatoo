@@ -1,8 +1,8 @@
 package org.testatoo.config.selenium
 
-import com.thoughtworks.selenium.CommandProcessor;
-import com.thoughtworks.selenium.Selenium;
-import org.testatoo.config.ProviderBuilder;
+import com.thoughtworks.selenium.CommandProcessor
+import com.thoughtworks.selenium.Selenium
+import org.testatoo.config.ProviderBuilder
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

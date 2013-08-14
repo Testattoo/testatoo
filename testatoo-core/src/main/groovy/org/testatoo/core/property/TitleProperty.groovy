@@ -1,6 +1,5 @@
 package org.testatoo.core.property
 
-import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.matcher.ContainingMatcher
 import org.testatoo.core.property.matcher.EqualsToMatcher
@@ -15,10 +14,8 @@ class TitleProperty extends PropertySkeleton {
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    TitleProperty(Evaluator evaluator) { super(evaluator) }
-
     @Override
-    String value(Component component) { evaluator.getTitle(component) }
+    String value(Component component) { component.evaluator.getTitle(component) }
 
     @Override
     String toString() { "Title" }

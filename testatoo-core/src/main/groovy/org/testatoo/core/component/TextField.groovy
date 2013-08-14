@@ -23,9 +23,9 @@ import org.testatoo.core.property.PlaceholderProperty
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class TextField extends Component {
-
     TextField() {
-        supportedProperties << PlaceholderProperty << LabelProperty
+        type Type.TEXTFIELD
+        support PlaceholderProperty, LabelProperty
     }
 
     Block enter(String text) {
@@ -38,8 +38,5 @@ class TextField extends Component {
             toString: { "enter '${text}' on ${this}" as String }
         ] as Block
     }
-
-    @Override
-    ComponentType getType() { ComponentType.TEXTFIELD }
 
 }

@@ -1,7 +1,7 @@
 package org.testatoo.config.selenium
 
-import com.thoughtworks.selenium.Selenium;
-import org.testatoo.config.Evaluator;
+import com.thoughtworks.selenium.Selenium
+import org.testatoo.config.Evaluator
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

@@ -20,11 +20,11 @@ import org.testatoo.core.component.ComponentException
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class jQueryId implements Id {
+class jQueryIdProvider implements IdProvider {
     private final String expression
     private final long timeout
 
-    jQueryId(String expression, long timeout) {
+    jQueryIdProvider(String expression, long timeout) {
         this.expression = expression.startsWith('$') ? expression : ('$(\'' + expression + '\')')
         this.timeout = timeout
     }
@@ -35,10 +35,10 @@ class jQueryId implements Id {
         try {
             String[] ids = evaluator.getElementsIds('jquery:' + expression)
             if (ids.length == 1) return ids[0]
-            if (ids.length == 0) throw new ComponentException("Component defined by ${expression} not found.")
-            throw new ComponentException("Component defined by ${expression} not unique")
+            if (ids.length == 0) throw new ComponentException("Component defined by jQuery expression ${expression} not found.")
+            throw new ComponentException("Component defined by jQuery expression ${expression} is not unique")
         } catch (EvaluatorException e) {
-            throw new ComponentException("Component defined by ${expression} cannot be found: ${e.message}")
+            throw new ComponentException("Component defined by jQuery expression ${expression} cannot be found", e)
         }
     }
 

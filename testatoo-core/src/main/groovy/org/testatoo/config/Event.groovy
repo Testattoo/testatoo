@@ -3,8 +3,8 @@ package org.testatoo.config
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-
-import static org.testatoo.config.EventListenerOrdering.*
+import static org.testatoo.config.EventListenerOrdering.BY_PRIORITY
+import static org.testatoo.config.EventListenerOrdering.BY_PRIORITY_REVERSE
 
 enum Event {
 

@@ -15,12 +15,9 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.*
 import org.testatoo.core.property.Property
-import org.testatoo.core.Block
-import org.testatoo.core.Blocks
-import org.testatoo.core.Evaluator
-import org.testatoo.core.Id
-import org.testatoo.core.Matcher
+import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
 
@@ -29,40 +26,95 @@ import org.testatoo.core.state.State
  */
 class Component {
 
-    private Id id
-    Evaluator evaluator
-    List<Class<Property>> supportedProperties = [];
+    private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
+    Meta _meta
+    String type
 
-    void setId(Id id) { this.id = id }
+    Component() {
+        type = Type.UNDEFINED
+        _meta = new Meta()
+    }
 
-    String getId() throws ComponentException { id.getValue(evaluator) }
+    Component(Evaluator evaluator, IdProvider idProvider) {
+        type = Type.UNDEFINED
+        _meta = new Meta(
+            evaluator: evaluator,
+            idProvider: idProvider
+        )
+    }
 
-    ComponentType getType() { ComponentType.UNKNOWN }
+    void support(Class<? extends Property>... types) {
+        _supportedProperties = (types as List).collectEntries { [(it): PropertyEvaluator.DEFAULT] }
+    }
+
+    void type(String type) { this.type = type }
+
+    String getId() throws ComponentException { _meta.getId(this) }
+
+    Evaluator getEvaluator() { _meta.evaluator }
 
     Block is(State matcher) { block 'is', matcher }
 
-    Block are(State matcher) { block 'is', matcher }
-
     Block has(PropertyMatcher matcher) { block 'has', matcher }
-
-    Block have(PropertyMatcher matcher) { block 'has', matcher }
 
     Block click() { Blocks.block "click on ${this}", { evaluator.click(this) } }
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 
     @Override
-    String toString() { getClass().simpleName + ":${id as String}" }
+    String toString() { getClass().simpleName + ":${id ?: '<unresolved>'}" }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
-            c.setId(this.id)
-            c.evaluator = this.evaluator
+            c._meta = this._meta
             return c
         }
         return super.asType(clazz)
     }
 
-    boolean supports(Property property) { property.class in supportedProperties }
+    boolean supports(Property property) { _supportedProperties.containsKey(property.class) }
+
+    static class Meta {
+        String _id
+        Evaluator evaluator
+        IdProvider idProvider
+
+        String getId(Component c) throws ComponentException {
+            if (!_id) {
+                String _id = idProvider.getValue(evaluator)
+                String t = evaluator.getType(_id)
+                if (t != c.type) {
+                    throw new ComponentException('Expected type: ' + c.type + ' for component ' + c + ' but was:' + t)
+                }
+                this._id = _id
+            }
+            return _id
+        }
+    }
+
+    /**
+     * @author David Avenante (d.avenante@gmail.com)
+     */
+    static class Type {
+
+        static final String ALERTBOX = 'Alertbox'
+        static final String BUTTON = 'Button'
+        static final String CHECKBOX = 'CheckBox'
+        static final String COMBOBOX = 'ComboBox'
+        static final String DROPDOWN = 'DropDown'
+        static final String IMAGE = 'Image'
+        static final String LINK = 'Link'
+        static final String LISTBOX = 'ListBox'
+        static final String PANEL = 'Panel'
+        static final String PASSWORDFIELD = 'PasswordField'
+        static final String RADIO = 'Radio'
+        static final String TEXTFIELD = 'TextField'
+        static final String DATAGRID = 'DATAGRID'
+        static final String CELL = 'Cell'
+        static final String COLUMN = 'Column'
+        static final String ROW = 'Row'
+        static final String UNDEFINED = 'Undefined'
+
+    }
 }

@@ -7,8 +7,6 @@ import org.junit.runners.model.InitializationError
 import org.junit.runners.model.Statement
 import org.testatoo.config.lifecycle.TestInvocation
 
-import java.lang.reflect.Method
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -53,12 +51,8 @@ final class TestatooJunitRunner extends BlockJUnit4ClassRunner {
         final Object test = createdTest.get()
         createdTest.remove()
         return {
-            try {
-                testatoo.on(test, method.method)
-                statement.evaluate()
-            } catch (Throwable throwable) {
-                throw new RuntimeException(throwable.message, throwable)
-            }
+            testatoo.on(test, method.method)
+            statement.evaluate()
         } as Statement
     }
 

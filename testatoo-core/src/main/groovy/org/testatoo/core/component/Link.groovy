@@ -7,11 +7,8 @@ import org.testatoo.core.property.TextProperty
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Link extends Component {
-
     Link() {
-        supportedProperties << TextProperty << ReferenceProperty
+        type Type.LINK
+        support TextProperty, ReferenceProperty
     }
-
-    @Override
-    ComponentType getType() { ComponentType.LINK }
 }

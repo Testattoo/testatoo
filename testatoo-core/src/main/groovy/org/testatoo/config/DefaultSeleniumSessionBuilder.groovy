@@ -6,8 +6,8 @@ import com.thoughtworks.selenium.HttpCommandProcessor
 import com.thoughtworks.selenium.Selenium
 import org.testatoo.config.selenium.SeleniumSessionBuilder
 
-import static org.testatoo.config.Ensure.notNull;
-import static org.testatoo.config.Ensure.require;
+import static org.testatoo.config.Ensure.notNull
+import static org.testatoo.config.Ensure.require
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

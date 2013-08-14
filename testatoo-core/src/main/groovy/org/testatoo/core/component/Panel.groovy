@@ -6,11 +6,8 @@ import org.testatoo.core.property.TitleProperty
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Panel extends Component {
-
     Panel() {
-        supportedProperties << TitleProperty
+        type Type.PANEL
+        support TitleProperty
     }
-
-    @Override
-    ComponentType getType() { ComponentType.BUTTON }
 }

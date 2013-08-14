@@ -35,17 +35,19 @@ class TestModule extends AbstractTestatooModule {
         seleniumServers().registerProvider(createSeleniumServer()
             .setPort(seleniumPort)
             .setSingleWindow(true)
+            .setTrustAllSSLCertificates(true)
             .build())
             .scope(Scope.TEST_SUITE);
 
         seleniumSessions()
             .registerProvider(createSeleniumSession()
             .website("http://" + System.getProperty("host", "localhost") + ":" + System.getProperty("port", "8080"))
-            .browser("*googlechrome")
+            //.browser("*googlechrome")
+            .browser("*firefox")
             .serverHost("localhost")
             .serverPort(seleniumPort)
             .build())
-            .scope(Scope.TEST_CLASS)
+            .scope(Scope.TEST_SUITE)
             .withTimeout(20000);
 
         useAnnotations()
