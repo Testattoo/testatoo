@@ -58,11 +58,11 @@ class Testatoo {
     }
 
     // Properties
-    final PlaceholderProperty placeholder = new PlaceholderProperty()
-    final LabelProperty label = new LabelProperty()
-    final TextProperty text = new TextProperty()
-    final ReferenceProperty reference = new ReferenceProperty()
-    final TitleProperty title = new TitleProperty()
+    final Placeholder placeholder = new Placeholder()
+    final Label label = new Label()
+    final Text text = new Text()
+    final Reference reference = new Reference()
+    final Title title = new Title()
 
     final EnabledState enabled = new EnabledState(evaluator)
     final DisabledState disabled = new DisabledState(evaluator)

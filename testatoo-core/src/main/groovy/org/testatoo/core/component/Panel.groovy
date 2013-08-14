@@ -1,6 +1,6 @@
 package org.testatoo.core.component
 
-import org.testatoo.core.property.TitleProperty
+import org.testatoo.core.property.Title
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -8,6 +8,6 @@ import org.testatoo.core.property.TitleProperty
 class Panel extends Component {
     Panel() {
         type Type.PANEL
-        support TitleProperty
+        support Title
     }
 }

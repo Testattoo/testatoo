@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.property.TextProperty
+import org.testatoo.core.property.Text
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -23,6 +23,6 @@ import org.testatoo.core.property.TextProperty
 class Button extends Component {
     Button() {
         type Type.BUTTON
-        support TextProperty
+        support Text
     }
 }

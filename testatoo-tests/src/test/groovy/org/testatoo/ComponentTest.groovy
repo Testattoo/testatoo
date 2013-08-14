@@ -24,6 +24,22 @@ class ComponentTest {
     }
 
     @Test
+    public void new_dsl() {
+        Button button = $('#button') as Button
+        MyProp myProp = new MyProp()
+
+        // are / have extension
+        assert [button].are(enabled)
+
+        // custom components
+        MyPanel myPanel = $('#panel') as MyPanel
+        // existing property, evaluation overriden
+        assert myPanel.has(title.equalsTo('temp2'))
+        // new property
+        assert myPanel.has(myProp.equalsTo('temp1'))
+    }
+
+    @Test
     public void test_button() {
 
         // input type=button

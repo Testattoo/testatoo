@@ -15,8 +15,15 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
+class Property {
 
-public interface Property {
-    String getValue(Component component)
+    PropertyEvaluator evaluator
+
+    void evaluator(PropertyEvaluator p) { evaluator = p }
+
+    void evaluator(Closure<String> c) { evaluator = c as PropertyEvaluator }
+
+    @Override
+    String toString() { getClass().simpleName }
+
 }

@@ -16,8 +16,8 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.Block
-import org.testatoo.core.property.LabelProperty
-import org.testatoo.core.property.PlaceholderProperty
+import org.testatoo.core.property.Label
+import org.testatoo.core.property.Placeholder
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -25,7 +25,7 @@ import org.testatoo.core.property.PlaceholderProperty
 class TextField extends Component {
     TextField() {
         type Type.TEXTFIELD
-        support PlaceholderProperty, LabelProperty
+        support Placeholder, Label
     }
 
     Block enter(String text) {

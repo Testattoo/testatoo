@@ -1,7 +1,6 @@
 package org.testatoo.core.component
 
-import org.testatoo.core.property.ReferenceProperty
-import org.testatoo.core.property.TextProperty
+import org.testatoo.core.property.Text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -9,6 +8,6 @@ import org.testatoo.core.property.TextProperty
 class Link extends Component {
     Link() {
         type Type.LINK
-        support TextProperty, ReferenceProperty
+        support Text, org.testatoo.core.property.Reference
     }
 }

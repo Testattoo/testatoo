@@ -22,16 +22,15 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class LabelProperty extends PropertySkeleton {
+class Text extends Property {
+
+    Text() {
+        evaluator { Component c -> c.evaluator.getText(c) }
+    }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    @Override
-    String value(Component component) { component.evaluator.getLabel(component) }
-
-    @Override
-    String toString() { "Label" }
 }

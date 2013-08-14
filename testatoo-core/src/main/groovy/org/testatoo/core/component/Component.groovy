@@ -26,28 +26,20 @@ import org.testatoo.core.state.State
  */
 class Component {
 
-    private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
-    Meta _meta
-    String type
+    private static final PropertyEvaluator DEFAULT = {} as PropertyEvaluator
 
-    Component() {
-        type = Type.UNDEFINED
-        _meta = new Meta()
-    }
+    private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
+    Meta _meta = new Meta()
+    String type = Type.UNDEFINED
+
+    Component() {}
 
     Component(Evaluator evaluator, IdProvider idProvider) {
-        type = Type.UNDEFINED
         _meta = new Meta(
             evaluator: evaluator,
             idProvider: idProvider
         )
     }
-
-    void support(Class<? extends Property>... types) {
-        _supportedProperties = (types as List).collectEntries { [(it): PropertyEvaluator.DEFAULT] }
-    }
-
-    void type(String type) { this.type = type }
 
     String getId() throws ComponentException { _meta.getId(this) }
 
@@ -73,7 +65,27 @@ class Component {
         return super.asType(clazz)
     }
 
-    boolean supports(Property property) { _supportedProperties.containsKey(property.class) }
+    void type(String type) { this.type = type }
+
+    void support(Class<? extends Property>... types) {
+        _supportedProperties << (types as List).collectEntries { [(it): DEFAULT] }
+    }
+
+    void support(Class<? extends Property> type, PropertyEvaluator e) {
+        _supportedProperties.put(type, e)
+    }
+
+    void support(Class<? extends Property> type, Closure<String> c) {
+        _supportedProperties.put(type, c as PropertyEvaluator)
+    }
+
+    String getValue(Property property) {
+        PropertyEvaluator pe = _supportedProperties.get(property.class)
+        if (pe == null) {
+            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
+        }
+        return (pe == DEFAULT ? property.evaluator : pe).getValue(this)
+    }
 
     static class Meta {
         String _id
@@ -85,7 +97,7 @@ class Component {
                 String _id = idProvider.getValue(evaluator)
                 String t = evaluator.getType(_id)
                 if (t != c.type) {
-                    throw new ComponentException('Expected type: ' + c.type + ' for component ' + c + ' but was:' + t)
+                    throw new ComponentException('Expected type: ' + c.type + ' for component ' + c.class.simpleName + ' but was:' + t)
                 }
                 this._id = _id
             }
@@ -93,28 +105,4 @@ class Component {
         }
     }
 
-    /**
-     * @author David Avenante (d.avenante@gmail.com)
-     */
-    static class Type {
-
-        static final String ALERTBOX = 'Alertbox'
-        static final String BUTTON = 'Button'
-        static final String CHECKBOX = 'CheckBox'
-        static final String COMBOBOX = 'ComboBox'
-        static final String DROPDOWN = 'DropDown'
-        static final String IMAGE = 'Image'
-        static final String LINK = 'Link'
-        static final String LISTBOX = 'ListBox'
-        static final String PANEL = 'Panel'
-        static final String PASSWORDFIELD = 'PasswordField'
-        static final String RADIO = 'Radio'
-        static final String TEXTFIELD = 'TextField'
-        static final String DATAGRID = 'DATAGRID'
-        static final String CELL = 'Cell'
-        static final String COLUMN = 'Column'
-        static final String ROW = 'Row'
-        static final String UNDEFINED = 'Undefined'
-
-    }
 }

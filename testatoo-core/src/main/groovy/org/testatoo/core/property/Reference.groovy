@@ -7,16 +7,15 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class ReferenceProperty extends PropertySkeleton {
+class Reference extends Property {
+
+    Reference() {
+        evaluator { Component c -> c.evaluator.getReference(c) }
+    }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    @Override
-    String value(Component component) { component.evaluator.getReference(component) }
-
-    @Override
-    String toString() { "Reference" }
 }

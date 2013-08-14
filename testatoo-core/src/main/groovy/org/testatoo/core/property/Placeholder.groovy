@@ -22,16 +22,15 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class TextProperty extends PropertySkeleton {
+class Placeholder extends Property {
+
+    Placeholder() {
+        evaluator { Component c -> c.evaluator.getPlaceholder(c) }
+    }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
-    @Override
-    String value(Component component) { component.evaluator.getText(component)  }
-
-    @Override
-    String toString() { "Text" }
 }

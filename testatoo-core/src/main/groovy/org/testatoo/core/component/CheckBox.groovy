@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.property.LabelProperty
+import org.testatoo.core.property.Label
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -23,6 +23,6 @@ import org.testatoo.core.property.LabelProperty
 class CheckBox extends Component {
     CheckBox() {
         type Type.CHECKBOX
-        support LabelProperty
+        support Label
     }
 }
