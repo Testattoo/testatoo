@@ -20,15 +20,19 @@ import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
+import org.testatoo.core.state.StateEvaluator
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Component {
 
-    private static final PropertyEvaluator DEFAULT = {} as PropertyEvaluator
+    private static final PropertyEvaluator DEFAULT_PE = {} as PropertyEvaluator
+    private static final StateEvaluator DEFAULT_SE = {} as StateEvaluator
 
     private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
+    private Map<Class<? extends State>, StateEvaluator> _supportedStates = new IdentityHashMap<>()
+
     Meta _meta = new Meta()
     String type = Type.UNDEFINED
 
@@ -67,16 +71,30 @@ class Component {
 
     void type(String type) { this.type = type }
 
-    void support(Class<? extends Property>... types) {
-        _supportedProperties << (types as List).collectEntries { [(it): DEFAULT] }
+    void support(Class<?>... types) {
+        for (Class<?> type : types) {
+            if (Property.isAssignableFrom(type)) {
+                support(type as Class<? extends Property>, DEFAULT_PE)
+            } else if (State.isAssignableFrom(type)) {
+                support(type as Class<? extends State>, DEFAULT_SE)
+            }
+        }
     }
 
     void support(Class<? extends Property> type, PropertyEvaluator e) {
         _supportedProperties.put(type, e)
     }
 
-    void support(Class<? extends Property> type, Closure<String> c) {
-        _supportedProperties.put(type, c as PropertyEvaluator)
+    void support(Class<? extends State> type, StateEvaluator e) {
+        _supportedStates.put(type, e)
+    }
+
+    void support(Class<?> type, Closure<?> c) {
+        if (Property.isAssignableFrom(type)) {
+            _supportedProperties.put(type as Class<? extends Property>, c as PropertyEvaluator)
+        } else if (State.isAssignableFrom(type)) {
+            _supportedStates.put(type as Class<? extends State>, c as StateEvaluator)
+        }
     }
 
     String getValue(Property property) {
@@ -84,7 +102,15 @@ class Component {
         if (pe == null) {
             throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
         }
-        return (pe == DEFAULT ? property.evaluator : pe).getValue(this)
+        return (pe == DEFAULT_PE ? property.evaluator : pe).getValue(this)
+    }
+
+    boolean getState(State state) {
+        StateEvaluator se = _supportedStates.get(state.class)
+        if (se == null) {
+            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
+        }
+        return (se == DEFAULT_SE ? state.evaluator : se).getState(this)
     }
 
     static class Meta {
@@ -97,7 +123,7 @@ class Component {
                 String _id = idProvider.getValue(evaluator)
                 String t = evaluator.getType(_id)
                 if (t != c.type) {
-                    throw new ComponentException('Expected type: ' + c.type + ' for component ' + c.class.simpleName + ' but was:' + t)
+                    throw new ComponentException("Expected type '${c.type}' for component ${c.class.simpleName} with id '${_id}' but was '${t}' ")
                 }
                 this._id = _id
             }

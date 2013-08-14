@@ -1,6 +1,5 @@
 package org.testatoo
 
-import experimental.dsl.TestModule
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,6 +26,7 @@ class ComponentTest {
     public void new_dsl() {
         Button button = $('#button') as Button
         MyProp myProp = new MyProp()
+        MyState myState = new MyState()
 
         // are / have extension
         assert [button].are(enabled)
@@ -37,6 +37,7 @@ class ComponentTest {
         assert myPanel.has(title.equalsTo('temp2'))
         // new property
         assert myPanel.has(myProp.equalsTo('temp1'))
+        assert myPanel.is(myState)
     }
 
     @Test

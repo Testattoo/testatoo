@@ -15,23 +15,14 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class MissingState implements State {
-
-    final Evaluator evaluator
-
-    MissingState(Evaluator evaluator) {
-        this.evaluator = evaluator
+class Hidden extends State {
+    Hidden() {
+        evaluator { Component c -> !c.evaluator.isVisible(c) }
+        description e: 'hidden', w: 'visible'
     }
-
-    @Override
-    void matches(Component c) { Assert.ensure c, !evaluator.isAvailable(c), [e: 'missing', w: 'available'] }
-
-    @Override
-    String toString() { 'missing' }
 }

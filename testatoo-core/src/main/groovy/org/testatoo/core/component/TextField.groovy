@@ -18,6 +18,7 @@ package org.testatoo.core.component
 import org.testatoo.core.Block
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
+import org.testatoo.core.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -26,6 +27,7 @@ class TextField extends Component {
     TextField() {
         type Type.TEXTFIELD
         support Placeholder, Label
+        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
     Block enter(String text) {

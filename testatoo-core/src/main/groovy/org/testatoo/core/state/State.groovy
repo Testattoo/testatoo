@@ -16,7 +16,23 @@
 package org.testatoo.core.state
 
 import org.testatoo.core.Matcher
+import org.testatoo.core.component.Component
 
-public interface State extends Matcher {
+class State implements Matcher {
+
+    StateEvaluator evaluator
+    Map<String, String> description
+
+    void evaluator(StateEvaluator p) { evaluator = p }
+
+    void evaluator(Closure<Boolean> c) { evaluator = c as StateEvaluator }
+
+    void description(Map<String, String> m) { description = m }
+
+    @Override
+    void matches(Component c) { Assert.ensure c, c.getState(this), description }
+
+    @Override
+    String toString() { getClass().simpleName }
 
 }

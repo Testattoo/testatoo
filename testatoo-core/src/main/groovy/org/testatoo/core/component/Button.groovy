@@ -16,6 +16,7 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.property.Text
+import org.testatoo.core.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -24,5 +25,6 @@ class Button extends Component {
     Button() {
         type Type.BUTTON
         support Text
+        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

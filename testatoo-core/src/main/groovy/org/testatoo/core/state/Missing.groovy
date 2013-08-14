@@ -15,23 +15,14 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.Evaluator
 import org.testatoo.core.component.Component
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class EnabledState implements State {
-
-    final Evaluator evaluator
-
-    EnabledState(Evaluator evaluator) {
-        this.evaluator = evaluator
+class Missing extends State {
+    Missing() {
+        evaluator { Component c -> !c.evaluator.isAvailable(c) }
+        description e: 'missing', w: 'available'
     }
-
-    @Override
-    void matches(Component c) { Assert.ensure c, evaluator.isEnabled(c), [e: 'enabled', w: 'disabled'] }
-
-    @Override
-    String toString() { 'enabled' }
 }

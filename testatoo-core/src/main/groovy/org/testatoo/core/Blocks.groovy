@@ -62,4 +62,8 @@ class Blocks {
 
     }
 
+    static void run(Block b) {
+        Log.testatoo b.toString()
+        b.run()
+    }
 }

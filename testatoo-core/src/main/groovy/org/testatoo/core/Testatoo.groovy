@@ -35,21 +35,21 @@ class Testatoo {
 
     void open(String uri) { evaluator.open(uri) }
 
-    void assertThat(Block m) { run(m) }
+    void assertThat(Block m) { Blocks.run m }
 
-    void on(Block m) { run(m) }
+    void on(Block m) { Blocks.run m }
 
-    void assertThat(Collection<Block> blocks) { run(Blocks.compose(blocks)) }
+    void assertThat(Collection<Block> blocks) { Blocks.run Blocks.compose(blocks) }
 
     void assertThat(Closure<?> c) {
         c()
-        run(Blocks.compose(Blocks.pending()))
+        Blocks.run Blocks.compose(Blocks.pending())
     }
 
     static void waitUntil(Block m, long timeout = 5000) {
         try {
             Util.waitUntil timeout, 500, {
-                println "waitUntil: ${m}"
+                Log.testatoo "waitUntil: ${m}"
                 m.run()
             }
         } catch (TimeoutException e) {
@@ -61,22 +61,16 @@ class Testatoo {
     final Placeholder placeholder = new Placeholder()
     final Label label = new Label()
     final Text text = new Text()
-    final Reference reference = new Reference()
+    final Ref reference = new Ref()
     final Title title = new Title()
 
-    final EnabledState enabled = new EnabledState(evaluator)
-    final DisabledState disabled = new DisabledState(evaluator)
-    final VisibleState visible = new VisibleState(evaluator)
-    final HiddenState hidden = new HiddenState(evaluator)
-    final AvailableState available = new AvailableState(evaluator)
-    final MissingState missing = new MissingState(evaluator)
-    final CheckedState checked = new CheckedState(evaluator)
-    final UnCheckedState unchecked = new UnCheckedState(evaluator)
-
-    // Utils
-    static void run(Block block) {
-        println block.toString()
-        block.run()
-    }
+    final Enabled enabled = new Enabled()
+    final Disabled disabled = new Disabled()
+    final Visible visible = new Visible()
+    final Hidden hidden = new Hidden()
+    final Available available = new Available()
+    final Missing missing = new Missing()
+    final Checked checked = new Checked()
+    final Unchecked unchecked = new Unchecked()
 
 }

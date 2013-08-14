@@ -10,7 +10,7 @@ import org.testatoo.core.state.State
 class GroovyExtensions {
 
     static boolean asBoolean(Block block) {
-        Testatoo.run(block)
+        Blocks.run(block)
         return true
     }
 

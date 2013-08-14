@@ -31,7 +31,7 @@ class jQueryIdProvider implements IdProvider {
 
     @Override
     String getValue(Evaluator evaluator) throws ComponentException {
-        println "get: ${expression}"
+        Log.testatoo "getID: ${expression}"
         try {
             String[] ids = evaluator.getElementsIds('jquery:' + expression)
             if (ids.length == 1) return ids[0]

@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package experimental.dsl
+package org.testatoo
 
 import org.testatoo.config.AbstractTestatooModule
 import org.testatoo.config.Scope
+import org.testatoo.core.Log
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -28,6 +29,9 @@ class TestModule extends AbstractTestatooModule {
     @Override
     protected void configure() {
 
+        Log.selenium = true
+        Log.testatoo = true
+
         if (seleniumPort == -1) {
             seleniumPort = findFreePort();
         }
@@ -35,7 +39,9 @@ class TestModule extends AbstractTestatooModule {
         seleniumServers().registerProvider(createSeleniumServer()
             .setPort(seleniumPort)
             .setSingleWindow(true)
+            .setAvoidProxy(true)
             .setTrustAllSSLCertificates(true)
+            .setHonorSystemProxy(false)
             .build())
             .scope(Scope.TEST_SUITE);
 

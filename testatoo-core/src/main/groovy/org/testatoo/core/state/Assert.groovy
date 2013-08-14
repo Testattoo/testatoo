@@ -23,7 +23,7 @@ import org.testatoo.core.component.Component
 class Assert {
 
     static void ensure(Component c, boolean test, Map<String, ?> opts) {
-        if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts.e} but was ${opts.w}")
+        if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")
     }
 
 }

@@ -2,7 +2,7 @@ package org.testatoo.core.evaluator
 
 import com.thoughtworks.selenium.Selenium
 import org.testatoo.core.Evaluator
-import org.testatoo.core.EvaluatorException
+import org.testatoo.core.Log
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.input.Click
@@ -143,23 +143,25 @@ class SeleniumEvaluator implements Evaluator {
     @Override
     public String[] getElementsIds(String expression) {
         if (!expression.startsWith("jquery:")) {
-            expression = "jquery:\$('#" + expression.replace(".", "\\\\.") + "')"
+            expression = "\$('#" + expression.replace(".", "\\\\.") + "')"
+        } else {
+            expression = expression.substring(7)
         }
 
-        if (!Boolean.valueOf(evaljQuery(expression.substring(7) + ".length > 0"))) {
-            throw new EvaluatorException("Cannot find component defined by the jquery expression : " + expression.substring(7))
+        String expr = """(function() {
+    var ids=[];
+    ${expression}.each(function() {
+        var id=\$(this).attr('id');
+        if(!id) {
+            id = 'gen-' + new Date().getTime() * Math.random();
+            \$(this).attr('id', id);
         }
+        ids.push(id);
+    });
+    return ids;
+}());"""
 
-        String[] resultId = extractId(expression);
-        for (int i = 0; i < resultId.length; i++) {
-            String id = resultId[i]
-            if (id.equals("")) {
-                id = UUID.randomUUID().toString()
-                evaljQuery("\$(" + expression.substring(7) + "[" + i + "]).attr('id', '" + id + "')")
-                resultId[i] = id
-            }
-        }
-        return resultId
+        return evaljQuery(expr).split(",")
     }
 
     @Override
@@ -327,35 +329,24 @@ class SeleniumEvaluator implements Evaluator {
 //        evaljQuery("(\$.browser.webkit) ? \$(window.document).simulate('type', {charCode: " + keyCode + keyModifier + "}) : \$('body').simulate('type', {keyCode: " + keyCode + keyModifier + "})")
 //    }
 
-    private String[] extractId(String expression) {
-        if (expression.startsWith("jquery:")) {
-            expression = expression.substring(7, expression.length())
-            return parseCSV(evaljQuery("[]; " + expression + ".each(function(){window.testatoo_tmp.push(\$(this).attr('id') ? \$(this).attr('id') : 'undefined')});"))
-        }
-        return null;
-    }
-
-    private static String[] parseCSV(String input) {
-        String[] splitedInput = input.split(",")
-        for (int i = 0; i < splitedInput.length; i++) {
-            if (splitedInput[i].equalsIgnoreCase("undefined"))
-                splitedInput[i] = ""
-        }
-        return splitedInput
-    }
-
     private String evaljQuery(String expression) {
-        selenium.runScript("if(window.tQuery){(function(\$, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}")
-        String s = selenium.getEval("window.testatoo_tmp")
-        if (s && s.contains('__TQUERY_MISSING__')) {
-            selenium.runScript(addScript("tquery-1.7.2.js") + addScript("tquery-simulate.js") + addScript("tquery-util.js"))
-            selenium.runScript("if(window.tQuery){(function(\$, jQuery){window.testatoo_tmp=" + expression + ";})(window.tQuery, window.tQuery);}else{window.testatoo_tmp='__TQUERY_MISSING__';}")
-            s = selenium.getEval("window.testatoo_tmp")
+
+        String expr = """(function(\$, jQuery){
+    if(!jQuery) return '__TQUERY_MISSING__';
+    else return ${expression};
+}(window.tQuery, window.tQuery));"""
+
+        Log.selenium "EXECUTING: ${expr}"
+        String v = selenium.getEval(expr)
+        if (v == '__TQUERY_MISSING__') {
+            selenium.runScript(load("tquery-1.7.2.js") + load("tquery-simulate.js") + load("tquery-util.js"))
+            v = selenium.getEval(expr)
         }
-        return s;
+        Log.selenium "RESULT: ${v}"
+        return v;
     }
 
-    private String addScript(String name) { getClass().getResource(name).text }
+    private String load(String name) { getClass().getResource(name).text }
 
     private boolean isIe() {
         if (!_props.containsKey("IE")) {

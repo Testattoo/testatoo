@@ -7,9 +7,9 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Reference extends Property {
+class Ref extends Property {
 
-    Reference() {
+    Ref() {
         evaluator { Component c -> c.evaluator.getReference(c) }
     }
 
