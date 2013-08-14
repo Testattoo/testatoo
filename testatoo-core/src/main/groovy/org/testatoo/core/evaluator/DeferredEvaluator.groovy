@@ -55,11 +55,11 @@ class DeferredEvaluator implements Evaluator {
     boolean isAvailable(Component component) { EvaluatorHolder.get().isAvailable component }
 
     @Override
-    ComponentType getType(Component component) { return EvaluatorHolder.get().getType(component) }
+    ComponentType getType(Component component) { EvaluatorHolder.get().getType(component) }
 
     @Override
-    String getTitle(Component component) { return EvaluatorHolder.get().getTitle(component) }
+    String getTitle(Component component) { EvaluatorHolder.get().getTitle(component) }
 
     @Override
-    String getReference(Component component) { return EvaluatorHolder.get().getReference(component) }
+    String getReference(Component component) { EvaluatorHolder.get().getReference(component) }
 }

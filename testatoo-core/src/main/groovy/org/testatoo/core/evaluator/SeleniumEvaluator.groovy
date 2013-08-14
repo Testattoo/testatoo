@@ -6,9 +6,9 @@ import org.testatoo.core.EvaluatorException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.ComponentType
+import org.testatoo.core.input.Click
 
 //import org.testatoo.core.component.Page
-import org.testatoo.core.input.Click
 //import org.testatoo.core.input.Key;
 //import org.testatoo.core.input.KeyModifier;
 //import org.testatoo.core.input.KeyboardLayout;
@@ -38,7 +38,7 @@ class SeleniumEvaluator implements Evaluator {
     /**
      * Class constructor specifying the used selenium engine
      *
-     * @param name     of the evaluator
+     * @param name of the evaluator
      * @param selenium the selenium engine
      */
     public SeleniumEvaluator(String name, Selenium selenium) {
@@ -180,10 +180,10 @@ class SeleniumEvaluator implements Evaluator {
             for (byte charCode : text.getBytes()) {
                 if (isIe()) {
                     evaljQuery("\$('#" + focusedComponent.getId() + "')" +
-                            ".val(\$('#" + focusedComponent.getId() + "').val() + String.fromCharCode(" + charCode + "));")
+                        ".val(\$('#" + focusedComponent.getId() + "').val() + String.fromCharCode(" + charCode + "));")
                 }
                 evaljQuery("\$('#" + focusedComponent.getId() + "')" +
-                        ".val(\$('#" + focusedComponent.getId() + "').val() + String.fromCharCode(" + charCode + "));")
+                    ".val(\$('#" + focusedComponent.getId() + "').val() + String.fromCharCode(" + charCode + "));")
             }
         } else {
             for (char charCode : text.toCharArray()) {
@@ -276,9 +276,7 @@ class SeleniumEvaluator implements Evaluator {
     }
 
     @Override
-    ComponentType getType(Component component) {
-        return ComponentType.valueOf(evaljQuery("\$('#" + component.id + "').componentType()").toUpperCase());
-    }
+    ComponentType getType(Component component) { evaljQuery("\$('#" + component.id + "').componentType()").toUpperCase() as ComponentType }
 
     @Override
     String getTitle(Component component) {
