@@ -1,3 +1,20 @@
+<!--
+
+    Copyright (C) 2008 Ovea <dev@ovea.com>
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -5,7 +22,7 @@
     <parent>
         <groupId>org.testatoo</groupId>
         <artifactId>testatoo-pom</artifactId>
-        <version>1</version>
+        <version>2-SNAPSHOT</version>
         <relativePath>../testatoo-pom</relativePath>
     </parent>
 
@@ -22,68 +39,17 @@
         <tag>HEAD</tag>
     </scm>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <version>1.5</version>
-                <configuration>
-                    <source/>
-                    <providerSelection>2.0</providerSelection>
-                    <sourceEncoding>UTF-8</sourceEncoding>
-                    <targetBytecode>${jdk.version}</targetBytecode>
-                    <invokeDynamic>false</invokeDynamic>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generateStubs</goal>
-                            <goal>compile</goal>
-                            <goal>generateTestStubs</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>2.1.6</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.gmaven.runtime</groupId>
-                        <artifactId>gmaven-runtime-2.0</artifactId>
-                        <version>1.5</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>org.codehaus.groovy</groupId>
-                                <artifactId>groovy-all</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.apache.ant</groupId>
-                        <artifactId>ant</artifactId>
-                        <version>1.8.4</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.apache.ivy</groupId>
-                        <artifactId>ivy</artifactId>
-                        <version>2.2.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.1.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <version>4.11</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
@@ -110,18 +76,11 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit-dep</artifactId>
-            <version>4.10</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>com.ovea.tajin.server</groupId>
             <artifactId>tajin-server-core</artifactId>
             <version>1.0.b10</version>
             <optional>true</optional>
         </dependency>
-
     </dependencies>
 
 </project>
