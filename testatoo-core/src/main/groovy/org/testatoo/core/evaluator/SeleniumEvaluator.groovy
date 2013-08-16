@@ -354,7 +354,7 @@ class SeleniumEvaluator implements Evaluator {
         Log.selenium "EXECUTING: ${expr}"
         String v = selenium.getEval(expr)
         if (v == '__TQUERY_MISSING__') {
-            selenium.runScript(load("tquery-1.7.2.js") + load("tquery-simulate.js") + load("tquery-util.js"))
+            selenium.runScript(load("tquery-2.0.3.js") + load("tquery-simulate.js") + load("tquery-util.js"))
             v = selenium.getEval(expr)
         }
         Log.selenium "RESULT: ${v}"
