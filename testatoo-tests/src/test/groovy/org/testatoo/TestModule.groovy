@@ -40,7 +40,6 @@ class TestModule extends AbstractTestatooModule {
             .setPort(seleniumPort)
             .setSingleWindow(true)
             .setAvoidProxy(true)
-            .setTrustAllSSLCertificates(true)
             .setHonorSystemProxy(false)
             .build())
             .scope(Scope.TEST_SUITE);
@@ -48,8 +47,8 @@ class TestModule extends AbstractTestatooModule {
         seleniumSessions()
             .registerProvider(createSeleniumSession()
             .website("http://" + System.getProperty("host", "localhost") + ":" + System.getProperty("port", "8080"))
-            //.browser("*googlechrome")
-            .browser("*firefox")
+            .browser("*googlechrome")
+            //.browser("*firefox")
             .serverHost("localhost")
             .serverPort(seleniumPort)
             .build())

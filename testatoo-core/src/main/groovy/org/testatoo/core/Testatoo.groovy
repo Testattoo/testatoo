@@ -61,7 +61,7 @@ class Testatoo {
     final Placeholder placeholder = new Placeholder()
     final Label label = new Label()
     final Text text = new Text()
-    final Ref reference = new Ref()
+    final Href reference = new Href()
     final Title title = new Title()
 
     final Enabled enabled = new Enabled()

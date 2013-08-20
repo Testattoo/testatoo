@@ -15,9 +15,9 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Block
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
+import org.testatoo.core.property.Text
 import org.testatoo.core.state.*
 
 /**
@@ -26,19 +26,10 @@ import org.testatoo.core.state.*
 class TextField extends Component {
     TextField() {
         type Type.TEXTFIELD
-        support Placeholder, Label
+        support Placeholder, Label, Text
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    Block enter(String text) {
-        return [
-            run: {
-                evaluator.reset(this)
-                evaluator.focus = this
-                evaluator.type(text)
-            },
-            toString: { "enter '${text}' on ${this}" as String }
-        ] as Block
-    }
+    void enter(String text) { evaluator.evalScript("testatoo.ext.type('${id}', '${text}')") }
 
 }

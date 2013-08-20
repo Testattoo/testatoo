@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.property.Ref
+import org.testatoo.core.property.Href
 import org.testatoo.core.property.Text
 import org.testatoo.core.state.*
 
@@ -25,7 +25,7 @@ import org.testatoo.core.state.*
 class Link extends Component {
     Link() {
         type Type.LINK
-        support Text, Ref
+        support Text, Href
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

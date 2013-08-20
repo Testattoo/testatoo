@@ -16,13 +16,21 @@
 package org.testatoo.core.state
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Available extends State {
     Available() {
-        evaluator { Component c -> c.evaluator.isAvailable(c) }
+        evaluator { Component c ->
+            try {
+                c.meta.idProvider.getMetaInfo(c.evaluator)
+                return true
+            } catch (ComponentException ignored) {
+                return false
+            }
+        }
         description e: 'available', w: 'missing'
     }
 }

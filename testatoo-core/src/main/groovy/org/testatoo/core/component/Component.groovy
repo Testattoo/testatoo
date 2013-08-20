@@ -33,21 +33,21 @@ class Component {
     private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
     private Map<Class<? extends State>, StateEvaluator> _supportedStates = new IdentityHashMap<>()
 
-    Meta _meta = new Meta()
+    CachedMetaData meta = new CachedMetaData()
     String type = Type.UNDEFINED
 
     Component() {}
 
     Component(Evaluator evaluator, IdProvider idProvider) {
-        _meta = new Meta(
+        meta = new CachedMetaData(
             evaluator: evaluator,
             idProvider: idProvider
         )
     }
 
-    String getId() throws ComponentException { _meta.getId(this) }
+    String getId() throws ComponentException { meta.getId(this) }
 
-    Evaluator getEvaluator() { _meta.evaluator }
+    Evaluator getEvaluator() { meta.evaluator }
 
     Block is(State matcher) { block 'is', matcher }
 
@@ -63,7 +63,7 @@ class Component {
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
-            c._meta = this._meta
+            c.meta = this.meta
             return c
         }
         return super.asType(clazz)
@@ -113,21 +113,24 @@ class Component {
         return (se == DEFAULT_SE ? state.evaluator : se).getState(this)
     }
 
-    static class Meta {
-        String _id
-        Evaluator evaluator
+    static class CachedMetaData {
+
+        @Delegate
+        private MetaInfo metaInfo
+
+        private Evaluator evaluator
+
         IdProvider idProvider
 
         String getId(Component c) throws ComponentException {
-            if (!_id) {
-                String _id = idProvider.getValue(evaluator)
-                String t = evaluator.getType(_id)
-                if (t != c.type) {
-                    throw new ComponentException("Expected type '${c.type}' for component ${c.class.simpleName} with id '${_id}' but was '${t}' ")
+            if (!metaInfo) {
+                MetaInfo info = idProvider.getMetaInfo(evaluator)
+                if (info.type != c.type) {
+                    throw new ComponentException("Expected type '${c.type}' for component ${c.class.simpleName} with id '${info.id}' but meta info was '${info}' ")
                 }
-                this._id = _id
+                metaInfo = info
             }
-            return _id
+            return metaInfo.id
         }
     }
 

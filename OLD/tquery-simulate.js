@@ -31,15 +31,6 @@
         if (/^type/.test(type)) {
             this.simulateType(el, options);
             return;
-        } if (/^click/.test(type)) {
-            this.simulateClick(el, options);
-            return;
-        } if (/^dblclick/.test(type)) {
-            this.simulateDblClick(el, options);
-            return;
-        } if (/^rightclick/.test(type)) {
-            this.simulateRightClick(el, options);
-            return;
         } if (/^mouse(over|out|up|down)/.test(type)) {
             this.simulateMouseEvent(el,type, options);
             return;
@@ -53,51 +44,6 @@
     };
 
     tQuery.extend(tQuery.simulate.prototype, {
-        simulateClick: function(el, options) {
-            this.dispatchEvent(el, 'mousedown', this.mouseEvent('mousedown', options));
-            this.dispatchEvent(el, 'mouseup', this.mouseEvent('mouseup', options));
-            this.dispatchEvent(el, 'click', this.mouseEvent('click', options));
-
-            // Issue reported on http://yuilibrary.com/projects/yui2/ticket/2528826
-            if (tQuery.browser.msie) {
-                if (tQuery(el).attr('type') == 'checkbox') {
-                    tQuery(el).attr('checked', !tQuery(el).attr('checked'));
-                }
-                if(tQuery(el).attr('type') == 'radio') {
-                    tQuery(el).attr('checked', true);
-                }
-                if(tQuery(el).attr('type') == 'submit' || tQuery(el).attr('type') == 'image') {
-                    tQuery(el).closest('form')[0].submit();
-                }
-                if(tQuery(el).attr('type') == 'reset') {
-                    tQuery(el).closest('form')[0].reset();
-                }
-            }
-        },
-
-        simulateDblClick: function(el, options) {
-            if (tQuery.browser.msie) {
-                this.dispatchEvent(el, 'mousedown', this.mouseEvent('mousedown', options));
-                this.dispatchEvent(el, 'mouseup', this.mouseEvent('mouseup', options));
-                this.dispatchEvent(el, 'click', this.mouseEvent('click', options));
-                this.dispatchEvent(el, 'mouseup', this.mouseEvent('mouseup', options));
-                this.dispatchEvent(el, 'dblclick', this.mouseEvent('dblclick', options));
-            } else {
-                this.dispatchEvent(el, 'mousedown', this.mouseEvent('mousedown', options));
-                this.dispatchEvent(el, 'mouseup', this.mouseEvent('mouseup', options));
-                this.dispatchEvent(el, 'click', this.mouseEvent('click', options));
-                this.dispatchEvent(el, 'mousedown', this.mouseEvent('mousedown', options));
-                this.dispatchEvent(el, 'mouseup', this.mouseEvent('mouseup', options));
-                this.dispatchEvent(el, 'click', this.mouseEvent('click', options));
-                this.dispatchEvent(el, 'dblclick', this.mouseEvent('dblclick', options));
-            }
-        },
-
-        simulateRightClick: function(el, options) {
-            this.dispatchEvent(el, 'mousedown', this.mouseEvent('mousedown', options));
-            this.dispatchEvent(el, 'mouseup', this.mouseEvent('mouseup', options));
-            this.dispatchEvent(el, 'contextmenu', this.mouseEvent('contextmenu', options));
-        },
 
         simulateMouseEvent: function(el, type, options) {
             this.dispatchEvent(el, type, this.mouseEvent(type, options));

@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Placeholder extends Property {
 
     Placeholder() {
-        evaluator { Component c -> c.evaluator.getPlaceholder(c) }
+        evaluator { Component c -> c.evaluator.getStringProperty(c.id, 'placeholder') }
     }
 
     @Delegate

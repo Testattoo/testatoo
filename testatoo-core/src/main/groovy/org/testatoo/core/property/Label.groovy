@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Label extends Property {
 
     Label() {
-        evaluator { Component c -> c.evaluator.getLabel(c) }
+        evaluator { Component c -> c.evaluator.getString("testatoo.ext.getLabel('${c.id}')") }
     }
 
     @Delegate

@@ -18,5 +18,5 @@ package org.testatoo.core
 import org.testatoo.core.component.ComponentException
 
 public interface IdProvider {
-    String getValue(Evaluator e) throws ComponentException
+    MetaInfo getMetaInfo(Evaluator e) throws ComponentException
 }

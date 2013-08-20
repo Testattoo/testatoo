@@ -16,6 +16,7 @@
 package org.testatoo.core.evaluator
 
 import org.testatoo.core.Evaluator
+import org.testatoo.core.MetaInfo
 import org.testatoo.core.component.Component
 
 /**
@@ -33,47 +34,28 @@ class DeferredEvaluator implements Evaluator {
     void open(String url) { EvaluatorHolder.get().open(url) }
 
     @Override
-    boolean isEnabled(Component component) { EvaluatorHolder.get().isEnabled component }
+    String getString(String jQueryExpr) { EvaluatorHolder.get().getString(jQueryExpr) }
 
     @Override
-    boolean isVisible(Component component) { EvaluatorHolder.get().isVisible component }
+    String evalScript(String script) { EvaluatorHolder.get().evalScript(script) }
 
     @Override
-    Boolean isChecked(Component component) { EvaluatorHolder.get().isChecked component }
+    public <T> T getJson(String jQueryExpr) { EvaluatorHolder.get().getJson(jQueryExpr) }
 
     @Override
-    String[] getElementsIds(String expr) { EvaluatorHolder.get().getElementsIds expr }
+    boolean getBool(String jQueryExpr) {EvaluatorHolder.get().getBool(jQueryExpr) }
 
     @Override
-    String getLabel(Component component) { EvaluatorHolder.get().getLabel component }
+    int getInt(String jQueryExpr) {EvaluatorHolder.get().getInt(jQueryExpr) }
+
+    boolean getBoolProperty(String id, String prop) { EvaluatorHolder.get().getBoolProperty(id, prop) }
+
+    int getIntProperty(String id, String prop) { EvaluatorHolder.get().getIntProperty(id, prop) }
 
     @Override
-    void reset(Component component) { EvaluatorHolder.get().reset component }
+    String getStringProperty(String id, String prop) { EvaluatorHolder.get().getStringProperty(id, prop) }
 
     @Override
-    void setFocus(Component component) { EvaluatorHolder.get().focus = component }
+    List<MetaInfo> getMetaInfo(String jQueryExpr) { EvaluatorHolder.get().getMetaInfo(jQueryExpr) }
 
-    @Override
-    void type(String text) { EvaluatorHolder.get().type(text) }
-
-    @Override
-    void click(Component component) { EvaluatorHolder.get().click component }
-
-    @Override
-    String getText(Component component) { EvaluatorHolder.get().getText component }
-
-    @Override
-    String getPlaceholder(Component component) { EvaluatorHolder.get().getPlaceholder component }
-
-    @Override
-    boolean isAvailable(Component component) { EvaluatorHolder.get().isAvailable component }
-
-    @Override
-    String getType(String id) { EvaluatorHolder.get().getType(id) }
-
-    @Override
-    String getTitle(Component component) { EvaluatorHolder.get().getTitle(component) }
-
-    @Override
-    String getReference(Component component) { EvaluatorHolder.get().getReference(component) }
 }

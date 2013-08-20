@@ -77,15 +77,29 @@ class ComponentTest {
     }
 
     @Test
-    public void test_textField() {
+    public void test_emailField() {
 
-        TextField textField = $('#text_field') as TextField
+        TextField textField = $('#email_field') as TextField
 
         assert textField.is(disabled)
         assert textField.is(visible)
 
         assert textField.has(label.equalsTo('Email'))
 //        assert textField.has(value.equalsTo(''))
+    }
+
+    @Test
+    public void test_textField() {
+
+        TextField textField = $('#text_field') as TextField
+
+        assert textField.is(enabled)
+        assert textField.is(visible)
+
+        assert textField.has(label.equalsTo('Text'))
+
+        textField.enter 'toto'
+        assert textField.has(text.equalsTo('toto'))
     }
 
     @Test
@@ -97,7 +111,7 @@ class ComponentTest {
         assert passwordField.is(visible)
 
         assert passwordField.has(label.equalsTo('Password'))
-//        assert passwordField.has(value.equalsTo('?art'))
+        assert passwordField.has(text.equalsTo('?art'))
     }
 
 
@@ -131,7 +145,7 @@ class ComponentTest {
     }
 
 
-//
+
 //    @Test
 //    public void test_radio() {
 //        open('/index.html');
@@ -143,9 +157,8 @@ class ComponentTest {
 //
 //        assertThat(radio.has(label()).contains('Radio label'));
 //    }
-//
-//
-//
+
+
 //    @Test
 //    public void test_page() {
 //        open('/index.html');

@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Title extends Property {
 
     Title() {
-        evaluator { Component c -> c.evaluator.getTitle(c) }
+        evaluator { Component c -> c.evaluator.getStringProperty(c.id, 'title') }
     }
 
     @Delegate

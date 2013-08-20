@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Unchecked extends State {
     Unchecked() {
-        evaluator { Component c -> !c.evaluator.isChecked(c) }
+        evaluator { Component c -> !c.evaluator.getBool("\$('#" + c.id + "').is(':checked')") }
         description e: 'unchecked', w: 'checked'
     }
 }

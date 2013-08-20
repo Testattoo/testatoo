@@ -15,48 +15,32 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.Component
-
 public interface Evaluator {
 
-    String DEFAULT_NAME = Evaluator.class.getName() + ".DEFAULT";
+    String DEFAULT_NAME = Evaluator.name + ".DEFAULT";
 
-    /**
-     * @return The implementation used by this Evaluator. This can be useful to recover the underlying implementation for specific cases
-     */
-    Object getImplementation();
+    Object getImplementation()
 
     String getName()
 
     void open(String url)
 
-    boolean isEnabled(Component component)
+    String  evalScript(String script)
 
-    boolean isVisible(Component component)
+    String getString(String jQueryExpr)
 
-    Boolean isChecked(Component component);
+    public <T> T getJson(String jQueryExpr)
 
-    String[] getElementsIds(String expr)
+    boolean getBool(String jQueryExpr)
 
-    String getLabel(Component component)
+    int getInt(String jQueryExpr)
 
-    void reset(Component component)
+    boolean getBoolProperty(String id, String prop)
 
-    void setFocus(Component component)
+    int getIntProperty(String id, String prop)
 
-    void type(String text)
+    String getStringProperty(String id, String prop)
 
-    void click(Component component)
+    List<MetaInfo> getMetaInfo(String jQueryExpr)
 
-    String getText(Component component)
-
-    String getPlaceholder(Component component)
-
-    boolean isAvailable(Component component)
-
-    String getType(String id)
-
-    String getTitle(Component component)
-
-    String getReference(Component component)
 }
