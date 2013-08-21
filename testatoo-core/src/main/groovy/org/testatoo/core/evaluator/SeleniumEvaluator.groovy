@@ -91,7 +91,7 @@ class SeleniumEvaluator implements Evaluator {
         Log.selenium "EXECUTING:\n${expr}"
         String v = selenium.getEval(expr)
         if (v == '__TESTATOO_MISSING__') {
-            selenium.runScript(getClass().getResource("jquery-1.10.2.min.js").text + getClass().getResource("testatoo.js").text)
+            selenium.runScript(getClass().getResource("jquery-2.0.3.min.js").text + getClass().getResource("testatoo.js").text)
             v = selenium.getEval(expr)
         }
         Log.selenium "RESULT: ${v}"
