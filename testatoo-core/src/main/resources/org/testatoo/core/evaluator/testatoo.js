@@ -42,6 +42,8 @@
                     return 'TextField';
                 case 'password':
                     return 'PasswordField';
+                case 'email':
+                    return 'EmailField';
                 case 'file':
                     return 'FileDialog';
                 case 'button':

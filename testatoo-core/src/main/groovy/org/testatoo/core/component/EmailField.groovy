@@ -13,20 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
-
-import groovy.transform.Immutable
-
+package org.testatoo.core.component
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-08-20
+ * @author David Avenante (d.avenante@gmail.com)
  */
-@Immutable
-class MetaInfo {
-    String type
-    String node
-    String id
-
-    @Override
-    String toString() { "type=${type},id=${id},node=${node}" }
+class EmailField extends TextField {
+    EmailField() {
+        type Type.EMAILFIELD
+    }
 }

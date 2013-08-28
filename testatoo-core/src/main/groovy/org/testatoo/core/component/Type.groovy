@@ -30,6 +30,7 @@ class Type {
     static final String LISTBOX = 'ListBox'
     static final String PANEL = 'Panel'
     static final String PASSWORDFIELD = 'PasswordField'
+    static final String EMAILFIELD = 'EmailField'
     static final String RADIO = 'Radio'
     static final String TEXTFIELD = 'TextField'
     static final String DATAGRID = 'DATAGRID'
