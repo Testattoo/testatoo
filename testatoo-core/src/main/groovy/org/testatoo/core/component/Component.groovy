@@ -57,7 +57,7 @@ class Component {
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 
     @Override
-    String toString() { getClass().simpleName + ":${id ?: '<unresolved>'}" }
+    String toString() { getClass().simpleName + ":${try { id } catch (Throwable ignored) { '<unresolved>' }}" }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {

@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
@@ -45,9 +46,9 @@ class Testatoo {
         Blocks.run Blocks.and(Blocks.pending())
     }
 
-    void waitUntil(Block m, long timeout = 5000) {
+    void waitUntil(Block m, TimeDuration duration = 5.seconds) {
         try {
-            Util.waitUntil timeout, 500, {
+            Util.waitUntil duration.toMilliseconds(), 500, {
                 Log.testatoo "waitUntil: ${m}"
                 m.run()
             }

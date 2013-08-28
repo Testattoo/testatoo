@@ -15,7 +15,8 @@ import org.testatoo.core.component.*
 @TestatooModules(TestModule)
 class ComponentTest {
 
-    @Delegate private static Testatoo testatoo = new Testatoo()
+    @Delegate
+    private static Testatoo testatoo = new Testatoo()
 
     @BeforeClass
     public static void open() {
@@ -87,9 +88,14 @@ class ComponentTest {
         assert button.is(enabled).or(button.is(visible))
         assert button.is(enabled) | button.is(visible)
 
-        long time = System.currentTimeMillis()
-        waitUntil button.is(disabled).or(message.is(visible))
-        println System.currentTimeMillis() - time
+        assert button.is(disabled) & button.is(visible)
+        assert button.is(disabled).and(button.is(visible))
+
+        //waitUntil button.is(enabled).or(message.is(visible))
+        //waitUntil button.is(enabled) | message.is(visible)
+
+        //waitUntil button.is(enabled).and(message.is(visible)), 10.seconds
+        waitUntil button.is(enabled) & message.is(visible), 10.seconds
 
     }
 
@@ -161,8 +167,6 @@ class ComponentTest {
         assert panel.has(title.equalsTo(''))
     }
 
-
-
 //    @Test
 //    public void test_radio() {
 //        open('/index.html');
@@ -174,7 +178,6 @@ class ComponentTest {
 //
 //        assertThat(radio.has(label()).contains('Radio label'));
 //    }
-
 
 //    @Test
 //    public void test_page() {

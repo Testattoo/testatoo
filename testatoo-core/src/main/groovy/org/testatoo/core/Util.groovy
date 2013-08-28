@@ -27,7 +27,7 @@ class Util {
         for (; t > 0; t -= interval) {
             try {
                 return c.call()
-            } catch (RuntimeException e) {
+            } catch (Throwable e) {
                 ex = e
             }
             Thread.sleep(interval)
