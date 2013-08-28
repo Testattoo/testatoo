@@ -30,23 +30,23 @@ import java.util.concurrent.TimeoutException
 class Testatoo {
 
     // Settings
-    Evaluator evaluator = new DeferredEvaluator()
+    static Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
-    Component $(String jQuery, long timeout = 2000) { new Component(evaluator, new jQueryIdProvider(jQuery, timeout)) }
+    static Component $(String jQuery, long timeout = 2000) { new Component(evaluator, new jQueryIdProvider(jQuery, timeout)) }
 
-    void open(String uri) { evaluator.open(uri) }
+    static void open(String uri) { evaluator.open(uri) }
 
-    void assertThat(Block m) { Blocks.run m }
+    static void assertThat(Block m) { Blocks.run m }
 
-    void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }
+    static void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }
 
-    void assertThat(Closure<?> c) {
+    static void assertThat(Closure<?> c) {
         c()
         Blocks.run Blocks.and(Blocks.pending())
     }
 
-    void waitUntil(Block m, TimeDuration duration = 5.seconds) {
+    static void waitUntil(Block m, TimeDuration duration = 5.seconds) {
         try {
             Util.waitUntil duration.toMilliseconds(), 500, {
                 Log.testatoo "waitUntil: ${m}"

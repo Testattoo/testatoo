@@ -8,6 +8,8 @@ import org.testatoo.config.TestatooModules
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 
+import static org.testatoo.core.Testatoo.*
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -20,7 +22,7 @@ class ComponentTest {
 
     @BeforeClass
     public static void open() {
-        testatoo.open('/index.html')
+        open('/index.html')
     }
 
     @Test
