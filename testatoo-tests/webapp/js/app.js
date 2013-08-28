@@ -4,7 +4,7 @@
 
         $('#add-message').on('click', function () {
             setTimeout(function () {
-                $('#messages ol').append('<li>' + new Date() + ' - a message</li>');
+                $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
                 setTimeout(function () {
                     $('#add-message').prop('disabled', false);
                 }, 1000);

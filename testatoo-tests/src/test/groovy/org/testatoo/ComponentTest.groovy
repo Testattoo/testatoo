@@ -75,15 +75,22 @@ class ComponentTest {
     @Test
     public void test_wait() {
         Button button = $('#add-message') as Button
+        Button message = $('#msg') as Button
+
         assert button.is(enabled) & button.is(visible)
         assert button.is(enabled).and(button.is(visible))
+
+        assert message.is(missing)
 
         button.click()
 
         assert button.is(enabled).or(button.is(visible))
         assert button.is(enabled) | button.is(visible)
 
-        waitUntil button.is(disabled).or()
+        long time = System.currentTimeMillis()
+        waitUntil button.is(disabled).or(message.is(visible))
+        println System.currentTimeMillis() - time
+
     }
 
     @Test
