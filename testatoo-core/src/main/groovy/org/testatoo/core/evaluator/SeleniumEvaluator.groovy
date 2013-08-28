@@ -17,7 +17,6 @@ package org.testatoo.core.evaluator
 
 import com.thoughtworks.selenium.Selenium
 import groovy.json.JsonSlurper
-import org.testatoo.core.Evaluator
 import org.testatoo.core.Log
 import org.testatoo.core.MetaInfo
 

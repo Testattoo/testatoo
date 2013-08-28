@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.ComponentException
+import org.testatoo.core.evaluator.Evaluator
 
 public interface IdProvider {
     MetaInfo getMetaInfo(Evaluator e) throws ComponentException

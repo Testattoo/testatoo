@@ -15,6 +15,12 @@
  */
 package org.testatoo.core
 
-public interface Block {
-    void run()
+public abstract class Block {
+    abstract void run()
+
+    abstract String toString()
+
+    Block and(Block b) { Blocks.and([this, b]) }
+
+    Block or(Block b) { Blocks.or([this, b]) }
 }

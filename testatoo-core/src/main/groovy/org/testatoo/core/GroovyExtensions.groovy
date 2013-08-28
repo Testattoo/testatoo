@@ -30,11 +30,11 @@ class GroovyExtensions {
     }
 
     static Block are(Collection<? extends Component> components, State matcher) {
-        Blocks.compose(components.collect { it.is(matcher) })
+        Blocks.and(components.collect { it.is(matcher) })
     }
 
     static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {
-        Blocks.compose(components.collect { it.has(matcher) })
+        Blocks.and(components.collect { it.has(matcher) })
     }
 
 }

@@ -16,6 +16,7 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.*
+import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
@@ -52,8 +53,6 @@ class Component {
     Block is(State matcher) { block 'is', matcher }
 
     Block has(PropertyMatcher matcher) { block 'has', matcher }
-
-    Block click() { Blocks.block "click on ${this}", { evaluator.click(this) } }
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 

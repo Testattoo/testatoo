@@ -23,16 +23,19 @@ class Blocks {
 
     static Block block(String description, Closure<?> c) {
         Block b = null
-        b = [
-            run: {
+        b = new Block() {
+            @Override
+            void run() {
                 try {
                     c()
                 } finally {
                     BLOCKS.remove(b)
                 }
-            },
-            toString: { description }
-        ] as Block
+            }
+
+            @Override
+            String toString() { description }
+        }
         BLOCKS.offer(b)
         return b
     }
@@ -45,25 +48,65 @@ class Blocks {
         return blks
     }
 
-    static Block compose(Collection<Block> blocks) {
+    static Block and(Collection<Block> blocks) {
+        if (blocks.empty) {
+            throw new IllegalArgumentException('Empty block')
+        }
         Block b = null
-        b = [
-            run: {
+        b = new Block() {
+            @Override
+            void run() {
                 try {
                     blocks*.run()
                 } finally {
                     BLOCKS.remove(b)
                 }
-            },
-            toString: { blocks.collect { it as String }.join('\n') }
-        ] as Block
+            }
+
+            @Override
+            String toString() { blocks.collect { it as String }.join(' AND') }
+        }
         BLOCKS.offer(b)
         return b
+    }
 
+    static Block or(Collection<Block> blocks) {
+        if (blocks.empty) {
+            throw new IllegalArgumentException('Empty block')
+        }
+        Block b = null
+        b = new Block() {
+            @Override
+            void run() {
+                try {
+                    Throwable last = null
+                    Block succeed = blocks.find {
+                        try {
+                            it.run()
+                            return true
+                        } catch (Throwable t) {
+                            last = t
+                            return false
+                        }
+                    }
+                    if (succeed == null) {
+                        throw last
+                    }
+                } finally {
+                    BLOCKS.remove(b)
+                }
+            }
+
+            @Override
+            String toString() { blocks.collect { it as String }.join(' OR') }
+        }
+        BLOCKS.offer(b)
+        return b
     }
 
     static void run(Block b) {
         Log.testatoo b.toString()
         b.run()
     }
+
 }

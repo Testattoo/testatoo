@@ -23,9 +23,13 @@ import org.testatoo.core.state.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Link extends Component {
+
     Link() {
         type Type.LINK
         support Text, Href
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
+
+    void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }
+
 }

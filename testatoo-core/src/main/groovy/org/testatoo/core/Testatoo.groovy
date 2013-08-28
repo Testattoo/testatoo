@@ -17,6 +17,7 @@ package org.testatoo.core
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.DeferredEvaluator
+import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.*
 import org.testatoo.core.state.*
 
@@ -37,16 +38,14 @@ class Testatoo {
 
     void assertThat(Block m) { Blocks.run m }
 
-    void on(Block m) { Blocks.run m }
-
-    void assertThat(Collection<Block> blocks) { Blocks.run Blocks.compose(blocks) }
+    void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }
 
     void assertThat(Closure<?> c) {
         c()
-        Blocks.run Blocks.compose(Blocks.pending())
+        Blocks.run Blocks.and(Blocks.pending())
     }
 
-    static void waitUntil(Block m, long timeout = 5000) {
+    void waitUntil(Block m, long timeout = 5000) {
         try {
             Util.waitUntil timeout, 500, {
                 Log.testatoo "waitUntil: ${m}"

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.evaluator
+
+import org.testatoo.core.MetaInfo
 
 public interface Evaluator {
 

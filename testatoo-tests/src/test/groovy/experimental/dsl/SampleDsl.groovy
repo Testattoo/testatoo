@@ -55,20 +55,20 @@ class SampleDsl {
 
     @Test
     public void can_login_logout() {
-        on login_email.enter('pastaga@guestful.com')
-        on login_password.enter('password666')
-        on login_button.click()
+        login_email.enter('pastaga@guestful.com')
+        login_password.enter('password666')
+        login_button.click()
         waitUntil dashboard_view.is(visible)
-        on logout_button.click()
+        logout_button.click()
         waitUntil login_view.is(visible)
     }
 
     @Test
     public void on_login_failure_error_message_is_displayed() {
         assertThat login_error_message.is(hidden)
-        on login_email.enter("pastaga@guestful.com")
-        on login_password.enter("badpassword")
-        on login_button.click()
+        login_email.enter("pastaga@guestful.com")
+        login_password.enter("badpassword")
+        login_button.click()
         waitUntil login_error_message.is(visible)
         assertThat {
             login_error_message.has text.containing("Login failed: Please verify your credentials and try again")

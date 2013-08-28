@@ -15,9 +15,7 @@
  */
 package org.testatoo.core.evaluator
 
-import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

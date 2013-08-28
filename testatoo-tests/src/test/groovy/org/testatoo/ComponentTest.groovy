@@ -34,9 +34,8 @@ class ComponentTest {
         // custom components
         MyPanel myPanel = $('#panel') as MyPanel
         // existing property, evaluation overriden
-        assert myPanel.has(title.equalsTo('temp2'))
+        assert myPanel.has(title.equalsTo('temp2')).and(myPanel.has(myProp.equalsTo('temp1')))
         // new property
-        assert myPanel.has(myProp.equalsTo('temp1'))
         assert myPanel.is(myState)
     }
 
@@ -56,24 +55,35 @@ class ComponentTest {
 
         // input type=submit
         button = $('#submit') as Button
-        assert button.is(disabled)
-        assert button.is(visible)
+        assert button.is(disabled).and(button.is(visible))
 
         assert button.has(text.equalsTo('Submit'))
 
         // input type=reset
         button = $('#reset') as Button
-        assert button.is(enabled)
-        assert button.is(visible)
+        assert button.is(enabled).and(button.is(visible))
 
         assert button.has(text.equalsTo('Reset'))
 
         // button element
         button = $('#btn') as Button
-        assert button.is(enabled)
-        assert button.is(visible)
+        assert button.is(enabled).and(button.is(visible))
 
         assert button.has(text.equalsTo('My Button Text'))
+    }
+
+    @Test
+    public void test_wait() {
+        Button button = $('#add-message') as Button
+        assert button.is(enabled) & button.is(visible)
+        assert button.is(enabled).and(button.is(visible))
+
+        button.click()
+
+        assert button.is(enabled).or(button.is(visible))
+        assert button.is(enabled) | button.is(visible)
+
+        waitUntil button.is(disabled).or()
     }
 
     @Test

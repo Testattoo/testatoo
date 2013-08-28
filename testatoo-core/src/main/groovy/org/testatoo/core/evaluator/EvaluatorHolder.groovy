@@ -15,8 +15,6 @@
  */
 package org.testatoo.core.evaluator
 
-import org.testatoo.core.Evaluator
-
 import java.util.concurrent.Callable
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
