@@ -32,6 +32,5 @@ abstract class AbstractPropertyMatcher implements PropertyMatcher {
     @Override
     final void matches(Component c) { doMatch(c, c.getValue(property)) }
 
-    abstract void doMatch(Component c, String currentValue)
-
+    abstract void doMatch(Component c, Object currentValue)
 }

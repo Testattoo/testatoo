@@ -21,7 +21,7 @@ class Property {
 
     void evaluator(PropertyEvaluator p) { evaluator = p }
 
-    void evaluator(Closure<String> c) { evaluator = c as PropertyEvaluator }
+    void evaluator(Closure<?> c) { evaluator = c as PropertyEvaluator }
 
     @Override
     String toString() { getClass().simpleName }

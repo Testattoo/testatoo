@@ -96,7 +96,7 @@ class Component {
         }
     }
 
-    String getValue(Property property) {
+    Object getValue(Property property) {
         PropertyEvaluator pe = _supportedProperties.get(property.class)
         if (pe == null) {
             throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")

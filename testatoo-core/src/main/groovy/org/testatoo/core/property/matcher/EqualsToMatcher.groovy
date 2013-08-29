@@ -23,15 +23,15 @@ import org.testatoo.core.property.Property
  */
 class EqualsToMatcher extends AbstractPropertyMatcher {
 
-    final Collection<String> expected
+    final Collection<?> expected
 
-    EqualsToMatcher(Property property, Collection<String> expected) {
+    EqualsToMatcher(Property property, Collection<?> expected) {
         super(property)
         this.expected = expected
     }
 
     @Override
-    void doMatch(Component c, String currentValue) {
+    void doMatch(Component c, Object currentValue) {
         if (!(currentValue in expected)) {
             if (expected.size() == 1) {
                 throw new AssertionError("Expected ${property.class.simpleName} '${expected[0]}' but was '${currentValue}'")
@@ -54,5 +54,8 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
         EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(property, anyOfExpected) }
 
         EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
+
+        EqualsToMatcher equalsTo(int ... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
     }
+
 }

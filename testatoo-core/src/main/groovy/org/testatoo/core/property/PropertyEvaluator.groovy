@@ -22,5 +22,5 @@ import org.testatoo.core.component.Component
  * @date 2013-08-13
  */
 interface PropertyEvaluator {
-    String getValue(Component c)
+    Object getValue(Component c)
 }

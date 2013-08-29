@@ -31,8 +31,8 @@ class ContainingMatcher extends AbstractPropertyMatcher {
     }
 
     @Override
-    void doMatch(Component c, String currentValue) {
-        if (!contained.find { currentValue.contains(it) }) {
+    void doMatch(Component c, Object currentValue) {
+        if (!contained.find { String.valueOf(currentValue).contains(it) }) {
             if (contained.size() == 1) {
                 throw new AssertionError("Expected ${property.class.simpleName} containing '${contained[0]}' but was '${currentValue}'")
             } else {
