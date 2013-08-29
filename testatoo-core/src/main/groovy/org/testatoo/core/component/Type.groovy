@@ -27,6 +27,7 @@ class Type {
     static final String DROPDOWN = 'DropDown'
     static final String IMAGE = 'Image'
     static final String LINK = 'Link'
+    static final String LIST = 'List'
     static final String LISTBOX = 'ListBox'
     static final String PANEL = 'Panel'
     static final String PASSWORDFIELD = 'PasswordField'

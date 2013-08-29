@@ -22,9 +22,9 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Href extends Property {
+class Reference extends Property {
 
-    Href() {
+    Reference() {
         evaluator { Component c -> c.evaluator.getStringProperty(c.id, 'href') }
     }
 

@@ -27,6 +27,7 @@
         if (el.is('img')) return 'Image';
         if (el.is('a')) return 'Link';
         if (el.is('div')) return 'Panel';
+        if (el.is('ul')) return 'List';
         if (el.is('select')) return el.attr('multiple') ? 'ListBox' : 'DropDown';
         if (el.is('table')) return 'DataGrid';
         if (el.is('tr')) return 'Row';
@@ -202,6 +203,14 @@
         getText: function (id) {
             var e = $('#' + id + '');
             return (e.prop('nodeName') || '').toLowerCase() == 'input' ? e.val() : e.text();
+        },
+
+        getSize: function (id) {
+            var el = $('#' + id + '');
+            if (el.is('ul')) {
+                return el.find('li').length;
+            }
+            return 0;
         },
 
         type: function (id, text) {

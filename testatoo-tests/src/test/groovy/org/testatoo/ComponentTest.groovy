@@ -169,6 +169,19 @@ class ComponentTest {
         assert panel.has(title.equalsTo(''))
     }
 
+    @Test
+    public void test_listview() {
+        List list = $('#list_view') as List
+
+        assert list.has(size.equalsTo(5));
+//        assert list.has(values(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']))
+
+
+
+
+    }
+
+
 //    @Test
 //    public void test_radio() {
 //        open('/index.html');
