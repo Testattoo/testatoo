@@ -28,6 +28,11 @@ class SeleniumEvaluator implements Evaluator {
     private final Selenium selenium
     private final String name
 
+    SeleniumEvaluator(Selenium selenium) {
+        this.name = DEFAULT_NAME
+        this.selenium = selenium
+    }
+
     SeleniumEvaluator(String name, Selenium selenium) {
         this.name = name
         this.selenium = selenium

@@ -35,7 +35,7 @@ final class DefaultSeleniumSessionConfigBuilder implements SeleniumSessionConfig
     private final DefaultSeleniumSessionConfig seleniumSessionConfig
 
     private int timeout = 60000
-    private String sessionName = Evaluator.class.getName() + ".DEFAULT"
+    private String sessionName = Evaluator.DEFAULT_NAME
 
     DefaultSeleniumSessionConfigBuilder(DefaultSeleniumSessionConfig seleniumSessionConfig) {
         this.seleniumSessionConfig = seleniumSessionConfig
