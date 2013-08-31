@@ -124,18 +124,7 @@ final class DefaultTestatooConfig implements TestatooConfig {
     }
 
     @Override
-    public int findFreePort() {
-        Random r = new Random()
-
-        while (true) {
-            int p = 1025 + r.nextInt(64000)
-            try {
-                new ServerSocket(p).close()
-                return p
-            } catch (IOException ignored) {
-            }
-        }
-    }
+    public int findFreePort() { Port.findFreePort() }
 
     void register(EventListener eventListener) {
         eventListeners.add(eventListener)
