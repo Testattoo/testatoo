@@ -65,6 +65,7 @@ class Testatoo {
     final Title title = new Title()
     final Size size = new Size()
 
+    // States
     final Enabled enabled = new Enabled()
     final Disabled disabled = new Disabled()
     final Visible visible = new Visible()
