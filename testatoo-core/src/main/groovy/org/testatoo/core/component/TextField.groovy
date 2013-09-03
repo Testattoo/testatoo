@@ -18,6 +18,7 @@ package org.testatoo.core.component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
 import org.testatoo.core.property.Text
+import org.testatoo.core.property.Value
 import org.testatoo.core.state.*
 
 /**
@@ -26,7 +27,7 @@ import org.testatoo.core.state.*
 class TextField extends Component {
     TextField() {
         type Type.TEXTFIELD
-        support Placeholder, Label, Text
+        support Placeholder, Label, Text, Value
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 

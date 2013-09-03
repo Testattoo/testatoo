@@ -17,8 +17,8 @@ package org.testatoo.core
 
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
+import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.evaluator.PerThreadEvaluator
 import org.testatoo.core.property.*
 import org.testatoo.core.state.*
 
@@ -30,7 +30,9 @@ import java.util.concurrent.TimeoutException
 class Testatoo {
 
     // Settings
-    static Evaluator evaluator = new PerThreadEvaluator()
+
+    // TODO Mathieu replace  DeferredEvaluator by PerThreadEvaluator
+    static Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
     static Component $(String jQuery, long timeout = 2000) { new Component(evaluator, new jQueryIdProvider(jQuery, timeout)) }
@@ -60,6 +62,7 @@ class Testatoo {
     // Properties
     final Placeholder placeholder = new Placeholder()
     final Label label = new Label()
+    final Value value = new Value()
     final Text text = new Text()
     final Reference reference = new Reference()
     final Title title = new Title()
@@ -74,5 +77,6 @@ class Testatoo {
     final Missing missing = new Missing()
     final Checked checked = new Checked()
     final Unchecked unchecked = new Unchecked()
+    final Empty empty = new Empty()
 
 }
