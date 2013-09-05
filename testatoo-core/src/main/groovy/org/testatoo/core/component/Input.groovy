@@ -13,24 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.core.component
 
-import org.testatoo.core.component.Component
-import org.testatoo.core.property.matcher.ContainingMatcher
-import org.testatoo.core.property.matcher.EqualsToMatcher
+import org.testatoo.core.property.Text
+import org.testatoo.core.property.Value
+import org.testatoo.core.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Value extends Property {
+class Input extends Component {
 
-    Value() {
-        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').val()") }
+    Input() {
+        support Text, Value
+        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    @Delegate
-    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
-    @Delegate
-    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
+    void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }
 
 }

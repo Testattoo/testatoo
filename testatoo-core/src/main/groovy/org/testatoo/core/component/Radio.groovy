@@ -13,24 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
-
-import org.testatoo.core.component.Component
-import org.testatoo.core.property.matcher.ContainingMatcher
-import org.testatoo.core.property.matcher.EqualsToMatcher
-
+package org.testatoo.core.component
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Value extends Property {
+class Radio extends Input {
+    Radio() {
+        type Type.RADIO
 
-    Value() {
-        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').val()") }
     }
-
-    @Delegate
-    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
-    @Delegate
-    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
-
 }

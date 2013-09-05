@@ -28,6 +28,8 @@
         if (el.is('a')) return 'Link';
         if (el.is('div')) return 'Panel';
         if (el.is('ul')) return 'List';
+        if (el.is('ol')) return 'List';
+        if (el.is('li')) return 'ListItem';
         if (el.is('select')) return el.attr('multiple') ? 'ListBox' : 'DropDown';
         if (el.is('table')) return 'DataGrid';
         if (el.is('tr')) return 'Row';
@@ -139,7 +141,7 @@
             var me = $(this),
                 id = $(this).attr('id');
             if (!id) {
-                id = 'gen-' + new Date().getTime() * Math.random();
+                id = 'gen-' + Math.round(new Date().getTime() * Math.random());
                 me.attr('id', id);
             }
             metaInfos.push({
@@ -198,11 +200,6 @@
             var f = e.prev('label');
             if (f.length > 0) return f.text();
             return e.parent().text();
-        },
-
-        getText: function (id) {
-            var e = $('#' + id + '');
-            return (e.prop('nodeName') || '').toLowerCase() == 'input' ? e.val() : e.text();
         },
 
         getSize: function (id) {

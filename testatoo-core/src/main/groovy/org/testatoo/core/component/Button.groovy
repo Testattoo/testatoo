@@ -30,5 +30,4 @@ class Button extends Component {
     }
 
     void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }
-
 }

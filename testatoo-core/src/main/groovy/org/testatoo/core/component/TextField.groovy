@@ -17,20 +17,15 @@ package org.testatoo.core.component
 
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
-import org.testatoo.core.property.Text
-import org.testatoo.core.property.Value
-import org.testatoo.core.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class TextField extends Component {
+class TextField extends Input {
     TextField() {
         type Type.TEXTFIELD
-        support Placeholder, Label, Text, Value
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
+        support Placeholder, Label
     }
 
     void enter(String text) { evaluator.evalScript("testatoo.ext.type('${id}', '${text}')") }
-
 }
