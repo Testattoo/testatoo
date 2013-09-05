@@ -61,6 +61,7 @@ class Testatoo {
     final Placeholder placeholder = new Placeholder()
     final Label label = new Label()
     final Text text = new Text()
+    final Value value = new Value()
     final Reference reference = new Reference()
     final Title title = new Title()
     final Size size = new Size()

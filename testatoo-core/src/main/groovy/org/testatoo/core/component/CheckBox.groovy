@@ -16,15 +16,16 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.property.Label
-import org.testatoo.core.state.*
+import org.testatoo.core.state.Checked
+import org.testatoo.core.state.Unchecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class CheckBox extends Component {
+class CheckBox extends Input {
     CheckBox() {
         type Type.CHECKBOX
         support Label
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Checked, Unchecked
+        support Checked, Unchecked
     }
 }

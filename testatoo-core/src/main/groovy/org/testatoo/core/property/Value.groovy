@@ -22,10 +22,10 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Text extends Property {
+class Value extends Property {
 
-    Text() {
-        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').text()") }
+    Value() {
+        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').val()") }
     }
 
     @Delegate
