@@ -195,10 +195,11 @@
         },
 
         getLabel: function (id) {
-            var e = $('label[for="' + id + '"]');
-            if (e.length > 0) return e.text();
-            var f = e.prev('label');
-            if (f.length > 0) return f.text();
+            var label = $('label[for="' + id + '"]');
+            if (label.length > 0) return label.text();
+            var e = $('#' + id + '');
+            var p = e.prev('label');
+            if (p.length > 0) return p.text();
             return e.parent().text();
         },
 
@@ -208,6 +209,11 @@
                 return el.find('li').length;
             }
             return 0;
+        },
+
+        getText: function (id) {
+            var e = $('#' + id + '');
+            return (e.prop('nodeName') || '').toLowerCase() == 'input' ? e.val() : e.text();
         },
 
         type: function (id, text) {
