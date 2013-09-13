@@ -26,7 +26,7 @@ class Input extends Component {
 
     Input() {
         support Text, Value
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
+        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
     }
 
     void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }

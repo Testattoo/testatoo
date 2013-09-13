@@ -76,5 +76,7 @@ class Testatoo {
     final Missing missing = new Missing()
     final Checked checked = new Checked()
     final Unchecked unchecked = new Unchecked()
+    final Empty empty = new Empty()
+    final Filled filled = new Filled()
 
 }

@@ -1,4 +1,4 @@
-package org.testatoo
+package experimental.dsl.todo
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.state.State

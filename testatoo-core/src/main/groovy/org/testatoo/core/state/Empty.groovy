@@ -23,7 +23,7 @@ import org.testatoo.core.component.Component
 class Empty extends State {
 
     Empty() {
-        evaluator { Component c -> !c.evaluator.getBool("\$('#" + c.id + "').is(':checked')") }
+        evaluator { Component c -> c.evaluator.getBool("testatoo.ext.isEmpty('${c.id}')") }
         description e: 'empty', w: 'not empty'
     }
 }

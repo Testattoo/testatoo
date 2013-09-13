@@ -48,33 +48,20 @@ class ComponentTest {
     }
 
     @Test
-    public void test_emailField() {
-        TextField textField = $('#email_field') as TextField
-
-        assert textField.is(disabled)
-        assert textField.is(visible)
-
-        assert textField.has(label.equalsTo('Email'))
-        assert textField.has(value.equalsTo(''))
-    }
-
-    @Test
-    public void test_textField() {
+    public void test_input_fields() {
         TextField textField = $('#text_field') as TextField
 
         assert textField.is(enabled)
         assert textField.is(visible)
 
         assert textField.has(label.equalsTo('Text'))
-//        assert textField.is(empty);
+        assert textField.is(empty);
 
-        textField.enter 'toto'
-        assert textField.has(text.equalsTo('toto'))
-        assert textField.has(value.equalsTo('toto'))
-    }
+        textField.enter 'some value'
+        assert textField.has(text.equalsTo('some value'))
+        assert textField.has(value.equalsTo('some value'))
+        assert textField.is(filled);
 
-    @Test
-    public void test_passwordField() {
         PasswordField passwordField = $('#password_field') as PasswordField
 
         assert passwordField.is(enabled)
@@ -82,6 +69,8 @@ class ComponentTest {
 
         assert passwordField.has(label.equalsTo('Password'))
         assert passwordField.has(text.equalsTo('?art'))
+
+        // Textarea
     }
 
     @Test
@@ -120,7 +109,9 @@ class ComponentTest {
     public void test_listview() {
         List list = $('#list_view') as List
 
+        assert list.is(filled);
         assert list.has(size.equalsTo(5));
+
 
 //        assert list.has(values(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']))
 

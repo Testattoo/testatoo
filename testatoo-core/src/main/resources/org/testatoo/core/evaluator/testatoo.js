@@ -197,10 +197,10 @@
         getLabel: function (id) {
             var label = $('label[for="' + id + '"]');
             if (label.length > 0) return label.text();
-            var e = $('#' + id + '');
-            var p = e.prev('label');
+            var el = $('#' + id + '');
+            var p = el.prev('label');
             if (p.length > 0) return p.text();
-            return e.parent().text();
+            return el.parent().text();
         },
 
         getSize: function (id) {
@@ -212,8 +212,24 @@
         },
 
         getText: function (id) {
-            var e = $('#' + id + '');
-            return (e.prop('nodeName') || '').toLowerCase() == 'input' ? e.val() : e.text();
+            var el = $('#' + id + '');
+            return (el.prop('nodeName') || '').toLowerCase() == 'input' ? el.val() : el.text();
+        },
+
+        isEmpty: function(id) {
+            var el = $('#' + id + '');
+            var nodeName = el.prop('nodeName').toLowerCase() || '';
+            switch(nodeName) {
+                case 'input':
+                    return $.trim(el.val()).length == 0;
+                    break;
+                case 'ol':
+                case 'ul':
+                    return el.find('li').length == 0;
+                    break;
+                default:
+                    return false;
+            }
         },
 
         type: function (id, text) {

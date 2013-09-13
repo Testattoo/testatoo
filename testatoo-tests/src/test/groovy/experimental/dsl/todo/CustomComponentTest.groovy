@@ -1,6 +1,7 @@
-package org.testatoo
+package experimental.dsl.todo
 
 import org.junit.Test
+
 import org.testatoo.core.component.Button
 
 import static org.testatoo.core.Testatoo.$
