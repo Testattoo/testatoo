@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.state
 
-import org.testatoo.core.property.Size
-import org.testatoo.core.state.*
+import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class List extends Component {
+class Empty extends State {
 
-    List() {
-        type Type.LIST
-        support Size
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
+    Empty() {
+        evaluator { Component c -> c.evaluator.getBool("testatoo.ext.isEmpty('${c.id}')") }
+        description e: 'empty', w: 'not empty'
     }
 }

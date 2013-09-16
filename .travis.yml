@@ -1,6 +1,6 @@
 language: java
 
-script: mvn clean install -DskipTests --quiet -B
+script: mvn clean install --quiet -B -f testatoo-core/pom.xml
 
 install: /bin/true
 

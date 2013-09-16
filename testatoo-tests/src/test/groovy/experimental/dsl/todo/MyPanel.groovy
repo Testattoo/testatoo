@@ -1,4 +1,4 @@
-package org.testatoo
+package experimental.dsl.todo
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Type
@@ -22,6 +22,6 @@ class MyPanel extends Component {
         support Available, { Component c -> return true }
 
         // properties and states and custom ones
-        support MyProp, MyState, Enabled
+        support experimental.dsl.todo.MyProp, experimental.dsl.todo.MyState, Enabled
     }
 }

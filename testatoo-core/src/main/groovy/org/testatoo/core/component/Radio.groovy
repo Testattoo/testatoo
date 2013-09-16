@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.component
-
-import org.testatoo.core.property.Size
-import org.testatoo.core.state.*
-
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class List extends Component {
+class Radio extends Input {
+    Radio() {
+        type Type.RADIO
 
-    List() {
-        type Type.LIST
-        support Size
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
     }
 }

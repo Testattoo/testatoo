@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.property
 
-import org.testatoo.core.property.Size
-import org.testatoo.core.state.*
+import org.testatoo.core.component.Component
+import org.testatoo.core.property.matcher.ContainingMatcher
+import org.testatoo.core.property.matcher.EqualsToMatcher
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class List extends Component {
+class Value extends Property {
 
-    List() {
-        type Type.LIST
-        support Size
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
+    Value() {
+        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').val()") }
     }
+
+    @Delegate
+    private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+    @Delegate
+    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
+
 }

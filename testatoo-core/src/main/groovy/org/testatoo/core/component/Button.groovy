@@ -22,7 +22,6 @@ import org.testatoo.core.state.*
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Button extends Component {
-
     Button() {
         type Type.BUTTON
         support Text
@@ -30,5 +29,4 @@ class Button extends Component {
     }
 
     void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }
-
 }

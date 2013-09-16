@@ -15,17 +15,20 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.property.Size
+import org.testatoo.core.property.Text
+import org.testatoo.core.property.Value
 import org.testatoo.core.state.*
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class List extends Component {
+class Input extends Component {
 
-    List() {
-        type Type.LIST
-        support Size
+    Input() {
+        support Text, Value
         support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
     }
+
+    void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }
+
 }

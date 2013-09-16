@@ -15,17 +15,12 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.property.Size
-import org.testatoo.core.state.*
-
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-09-02
  */
-class List extends Component {
+class ListItem extends Component {
+    ListItem() {
 
-    List() {
-        type Type.LIST
-        support Size
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
     }
 }

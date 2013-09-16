@@ -30,6 +30,7 @@ import java.util.concurrent.TimeoutException
 class Testatoo {
 
     // Settings
+    // TODO Mathieu replace  DeferredEvaluator by PerThreadEvaluator
     static Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
@@ -61,10 +62,12 @@ class Testatoo {
     final Placeholder placeholder = new Placeholder()
     final Label label = new Label()
     final Text text = new Text()
+    final Value value = new Value()
     final Reference reference = new Reference()
     final Title title = new Title()
     final Size size = new Size()
 
+    // States
     final Enabled enabled = new Enabled()
     final Disabled disabled = new Disabled()
     final Visible visible = new Visible()
@@ -73,5 +76,7 @@ class Testatoo {
     final Missing missing = new Missing()
     final Checked checked = new Checked()
     final Unchecked unchecked = new Unchecked()
+    final Empty empty = new Empty()
+    final Filled filled = new Filled()
 
 }
