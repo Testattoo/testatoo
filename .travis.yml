@@ -1,6 +1,6 @@
 language: java
 
-script: mvn clean install --quiet -B
+script: mvn clean install -DskipTests --quiet -B
 
 install: /bin/true
 
