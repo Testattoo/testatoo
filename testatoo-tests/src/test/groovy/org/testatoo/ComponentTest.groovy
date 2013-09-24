@@ -106,10 +106,14 @@ class ComponentTest {
     }
 
     @Test
-    public void test_listview() {
+    public void test_list() {
         List list = $('#list_view') as List
 
         assert list.is(filled);
+
+
+//        assert list.contains(5.items);
+//        assert list.has(5.items);
         assert list.has(size.equalsTo(5));
 
 
