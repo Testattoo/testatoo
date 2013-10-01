@@ -133,4 +133,6 @@ class Component {
         }
     }
 
+    static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout)) }
+
 }

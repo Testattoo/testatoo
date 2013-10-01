@@ -34,7 +34,7 @@ class Testatoo {
     static Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
-    static Component $(String jQuery, long timeout = 2000) { new Component(evaluator, new jQueryIdProvider(jQuery, timeout)) }
+    static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery,  timeout) }
 
     static void open(String uri) { evaluator.open(uri) }
 

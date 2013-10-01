@@ -28,4 +28,7 @@ class List extends Component {
         support Size
         support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty
     }
+
+    java.util.List<ListItem> getItems() { evaluator.getMetaInfo("${id} > li").collect { it as ListItem } }
+
 }

@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import groovy.transform.Immutable
+import org.testatoo.core.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -29,4 +30,12 @@ class MetaInfo {
 
     @Override
     String toString() { "type=${type},id=${id},node=${node}" }
+
+    Object asType(Class clazz) {
+        if (Component.isAssignableFrom(clazz)) {
+            return Component.$("${id}").asType(clazz)
+        }
+        return super.asType(clazz)
+    }
+
 }
