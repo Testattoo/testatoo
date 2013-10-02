@@ -16,20 +16,21 @@
 
 -->
 <!--#include virtual="header.html" -->
-<div class="navbar">
-    <div class="navbar-inner">
-        <a class="brand" href="#">Testatoo</a>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Testatoo Component</a>
     </div>
-</div>
+</nav>
+
 <div class="row">
-    <div class="span2"></div>
-    <div class="span8">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
 
-        <input type="button" id="button" class="btn btn-large btn-primary" value="Button"/>
-        <input type="submit" id="submit" class="btn btn-large btn-primary" disabled="disabled" value="Submit"/>
-        <input type="reset" id="reset" class="btn btn-large btn-primary" value="Reset"/>
+        <input type="button" id="button" class="btn btn-primary" value="Button"/>
+        <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
+        <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
 
-        <button type="submit" id="btn" class="btn btn-large btn-primary" value="value">My Button Text</button>
+        <button type="submit" id="btn" class="btn btn-primary" value="value">My Button Text</button>
 
         <hr/>
 
@@ -39,7 +40,7 @@
 
         <hr/>
 
-        <a href="/index.html" id="link">Link to index</a>
+        <a href="component.html" id="link">Link to component page</a>
 
         <hr/>
 
@@ -75,7 +76,7 @@
         <hr/>
 
         <div id="panel">
-            <button id="button_in_visible_panel">Button</button>
+            <button id="button_in_visible_panel" class="btn btn-primary">Button</button>
             <button id="invisible_button_in_visible_panel" style="display: none">Button</button>
         </div>
 
@@ -85,7 +86,7 @@
 
         <hr/>
 
-        <button type="button" id="add-message" class="btn btn-large btn-primary">Add message</button>
+        <button type="button" id="add-message" class="btn btn-primary">Add message</button>
         <div id="messages"></div>
 
         <hr/>
@@ -99,7 +100,7 @@
         </ul>
 
     </div>
-    <div class="span2"></div>
+    <div class="col-md-2"></div>
 </div>
 
 <script>

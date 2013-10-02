@@ -22,7 +22,7 @@ class ComponentTest {
 
     @BeforeClass
     public static void openTestPage() {
-        open('/index.html')
+        open('/component.html')
     }
 
     @Test
@@ -93,7 +93,7 @@ class ComponentTest {
         assert link.is(visible)
 
         assert link.has(text.equalsTo('Link to index'))
-        assert link.has(reference.containing('/index.html'))
+        assert link.has(reference.containing('/component.html'))
     }
 
     @Test
@@ -136,7 +136,7 @@ class ComponentTest {
 
 //    @Test
 //    public void test_radio() {
-//        open('/index.html');
+//        open('/component.html');
 //
 //        Radio radio = new Radio('radio');
 //        assertThat(radio.is(enabled()));
@@ -148,14 +148,14 @@ class ComponentTest {
 
 //    @Test
 //    public void test_page() {
-//        open('/index.html');
+//        open('/component.html');
 //
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
 //    }
 //
 //    @Test
 //    public void test_contains() {
-//        open('/index.html');
+//        open('/component.html');
 //
 //        assertThat(page().contains(
 //                new Button('button'),
@@ -181,7 +181,7 @@ class ComponentTest {
 //
 //    @Test
 //    public void test_displays() {
-//        open('/index.html');
+//        open('/component.html');
 //
 //        assertThat(page().displays(
 //                new Button('button'),

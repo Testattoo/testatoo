@@ -24,7 +24,7 @@ class DSLTest {
 
     @BeforeClass
     public static void openTestPage() {
-        open('/index.html')
+        open('/component.html')
     }
 
     @Test

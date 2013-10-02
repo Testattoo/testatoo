@@ -1,20 +1,20 @@
 <!--#include virtual="header.html" -->
 
-<div class="navbar">
-    <div class="navbar-inner">
-        <a class="brand" href="#">Testatoo Mouse Tests</a>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Testatoo Mouse Tests</a>
     </div>
-</div>
+</nav>
 
 <div class="row">
-    <div class="span2"></div>
-    <div class="span8">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
 
-        <input type="button" id="button_1" class="btn btn-large btn-primary" value="Button"/>
-        <input type="button" id="button_2" class="btn btn-large btn-primary" value="Button"/>
-        <input type="button" id="button_3" class="btn btn-large btn-primary" value="Button"/>
-        <input type="button" id="button_4" class="btn btn-large btn-primary" value="Button"/>
-        <input type="button" id="button_5" class="btn btn-large btn-primary" value="Button"/>
+        <input type="button" id="button_1" class="btn btn-primary" value="Button"/>
+        <input type="button" id="button_2" class="btn btn-primary" value="Button"/>
+        <input type="button" id="button_3" class="btn btn-primary" value="Button"/>
+        <input type="button" id="button_4" class="btn btn-primary" value="Button"/>
+        <input type="button" id="button_5" class="btn btn-primary" value="Button"/>
 
         <label class="checkbox">
             <input type="checkbox" id="checkbox">Check me out
@@ -24,9 +24,21 @@
             <input type="radio" id="radio">Check me out
         </label>
 
+        <div id="droppable" class="jumbotron">
+            <div class="container">
+                <h1>Drop here</h1>
+            </div>
+        </div>
+
+        <div id="draggable" class="panel panel-default">
+            <div class="panel-body">
+                Drag me
+            </div>
+        </div>
+
 
     </div>
-    <div class="span2"></div>
+    <div class="col-md-2"></div>
 </div>
 
 <script>

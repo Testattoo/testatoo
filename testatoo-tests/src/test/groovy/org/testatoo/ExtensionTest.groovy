@@ -23,7 +23,7 @@ class ExtensionTest {
 
     @BeforeClass
     public static void openTestPage() {
-        open('/index.html')
+        open('/component.html')
     }
 
     @Test
