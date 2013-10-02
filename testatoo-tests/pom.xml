@@ -43,7 +43,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- TODO: see if keep mongoose or use a jetty server or tajin-cli -->
+        <!-- TODO: change to => tajin-cli -->
         <dependency>
             <groupId>com.ovea.tajin.servers</groupId>
             <artifactId>tajin-server-core</artifactId>

@@ -1,0 +1,62 @@
+<!--#include virtual="header.html" -->
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">Testatoo Mouse Tests</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span2"></div>
+    <div class="span8">
+
+        <input type="button" id="button_1" class="btn btn-large btn-primary" value="Button"/>
+        <input type="button" id="button_2" class="btn btn-large btn-primary" value="Button"/>
+        <input type="button" id="button_3" class="btn btn-large btn-primary" value="Button"/>
+        <input type="button" id="button_4" class="btn btn-large btn-primary" value="Button"/>
+        <input type="button" id="button_5" class="btn btn-large btn-primary" value="Button"/>
+
+        <label class="checkbox">
+            <input type="checkbox" id="checkbox">Check me out
+        </label>
+
+        <label class="radio">
+            <input type="radio" id="radio">Check me out
+        </label>
+
+
+    </div>
+    <div class="span2"></div>
+</div>
+
+<script>
+    (function ($) {
+        $('#button_1').on('click', function(e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Clicked!');
+        });
+
+        $('#button_2').on('dblclick', function(e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Double Clicked!');
+        });
+
+        $('#button_3').on('mouseover', function(e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Mouse Over!');
+        });
+
+        $('#button_4').on('mouseout', function(e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Mouse Out!');
+        });
+
+        $('#button_5').on('contextmenu', function(e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Right Clicked!');
+        });
+
+    }(jQuery));
+</script>
+
+<!--#include virtual="footer.html" -->

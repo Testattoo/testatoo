@@ -26,8 +26,12 @@ class List extends Component {
     List() {
         type Type.LIST
         support Size
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty
+        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
     }
+
+//    List<ListItem> items() {
+//        return new ArrayList<ListItem>();
+//    }
 
     java.util.List<ListItem> getItems() { evaluator.getMetaInfo("${id} > li").collect { it as ListItem } }
 

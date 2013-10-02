@@ -30,6 +30,7 @@ class Value extends Property {
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
+
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 

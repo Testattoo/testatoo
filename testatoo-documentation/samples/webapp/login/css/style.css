@@ -146,11 +146,6 @@ CONTENT
 	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 }
 
-/* Second input field */
-.login-form .content .password, .login-form .content .pass-icon {
-	margin-top: 25px;
-}
-
 .login-form .content .input:hover {
 	background: #dfe9ec;
 	color: #414848;
@@ -181,12 +176,12 @@ CONTENT
 }
 
 .user-icon {
-	top:117px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+	top:137px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
 	background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
 }
 
 .pass-icon {
-	top:191px;
+	top:207px;
 	background: rgba(65,72,72,0.75) url(../images/pass-icon.png) no-repeat center;
 }
 

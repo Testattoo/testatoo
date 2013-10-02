@@ -182,6 +182,16 @@
                 dispatchEvent(el, 'dblclick', mouseEvent('dblclick', options));
             },
 
+            mouseOver: function(id, options) {
+                var el = document.getElementById(id);
+                dispatchEvent(el, 'mouseover', mouseEvent('mouseover', options));
+            },
+
+            mouseOut: function(id, options) {
+                var el = document.getElementById(id);
+                dispatchEvent(el, 'mouseout', mouseEvent('mouseout', options));
+            },
+
             type: function (id, options) {
                 var el = document.getElementById(id);
                 dispatchEvent(el, 'keydown', keyboardEvent('keydown', options));

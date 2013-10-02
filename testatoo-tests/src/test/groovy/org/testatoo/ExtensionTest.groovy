@@ -22,7 +22,7 @@ class ExtensionTest {
     private static Testatoo testatoo = new Testatoo()
 
     @BeforeClass
-    public static void open() {
+    public static void openTestPage() {
         open('/index.html')
     }
 

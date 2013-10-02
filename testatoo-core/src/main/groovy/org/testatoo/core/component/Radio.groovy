@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 package org.testatoo.core.component
+
+import org.testatoo.core.state.Checked
+import org.testatoo.core.state.Unchecked
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Radio extends Input {
     Radio() {
         type Type.RADIO
-
+        support Checked, Unchecked
     }
 }

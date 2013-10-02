@@ -23,7 +23,7 @@ class DSLTest {
     private static Testatoo testatoo = new Testatoo()
 
     @BeforeClass
-    public static void open() {
+    public static void openTestPage() {
         open('/index.html')
     }
 
@@ -40,7 +40,6 @@ class DSLTest {
         assert button.is(disabled).or(button.is(visible))
         assert button.is(disabled) | button.is(visible)
     }
-
 
     @Test
     public void test_wait() {

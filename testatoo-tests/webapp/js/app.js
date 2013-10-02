@@ -2,6 +2,8 @@
 
     $(function () {
 
+
+
         $('#add-message').on('click', function () {
             setTimeout(function () {
                 $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');

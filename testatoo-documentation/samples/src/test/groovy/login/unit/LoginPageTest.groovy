@@ -25,17 +25,20 @@ class LoginPageTest {
         open('/login/index.html')
     }
 
-
     @Test
     public void page_contains_expected_elements() {
         assert login_panel.is(visible)
 
         assert login_panel.has(title.equalsTo('Login Form'))
 
-        assert login_panel.contains()
+//        assert login_panel.contains(email_field, password_field, login_button)
 
+        assert email_field.has(label.equalsTo('Email'))
+        assert email_field.has(placeholder.equalsTo('joe@blow.org'))
 
+        assert password_field.has(label.equalsTo('Password'))
+
+        assert login_button.has(text.equalsTo('Login'))
     }
-
 
 }

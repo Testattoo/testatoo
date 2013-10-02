@@ -28,5 +28,4 @@ class Button extends Component {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    void click() { evaluator.evalScript("testatoo.ext.simulate.click('${id}')") }
 }

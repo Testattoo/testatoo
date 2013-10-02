@@ -21,7 +21,7 @@ class ComponentTest {
     private static Testatoo testatoo = new Testatoo()
 
     @BeforeClass
-    public static void open() {
+    public static void openTestPage() {
         open('/index.html')
     }
 
@@ -112,9 +112,12 @@ class ComponentTest {
         assert list.is(filled);
 
 
-//        assert list.contains(5.items);
+
+//        assert list.contains(item1, item2);
+
 //        assert list.has(5.items);
         assert list.has(size.equalsTo(5));
+        assert list.items().size == 5;
 
 
 //        assert list.has(values(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']))
@@ -123,6 +126,12 @@ class ComponentTest {
 
 
     }
+
+    @Test
+    public void test_contains() {
+
+    }
+
 
 
 //    @Test
