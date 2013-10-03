@@ -31,17 +31,18 @@ class MouseTest {
     public void click() {
         Button button = $('#button_1') as Button
         assertThat { button.has text.equalsTo('Button') }
+        assertThat { button.has text.equalsTo('Button') }
         clickOn button
         assertThat { button.has text.equalsTo('Button Clicked!') }
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assertThat {checkBox.is unchecked}
-        clickOn(checkBox)
+        clickOn checkBox
         assertThat {checkBox.is checked}
 
         Radio radio = $('#radio') as Radio
         assertThat {radio.is unchecked}
-        clickOn(radio)
+        clickOn radio
         assertThat {radio.is checked}
 
         // test click on dropdown items
@@ -75,7 +76,7 @@ class MouseTest {
     public void mouseOut() {
         Button button = $('#button_4') as Button
         assertThat { button.has text.equalsTo('Button') }
-        mouseOutOn button
+        mouseOutOff button
         assertThat { button.has text.equalsTo('Button Mouse Out!') }
     }
 
@@ -86,7 +87,7 @@ class MouseTest {
 
         Panel dragPanel =  $('#draggable') as Panel
 
-        drag(dragPanel).on(dropPanel)
+        drag dragPanel on dropPanel
         assertThat { dropPanel.has title.equalsTo('Dropped!')}
     }
 

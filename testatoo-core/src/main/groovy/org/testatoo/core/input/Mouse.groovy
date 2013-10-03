@@ -21,7 +21,7 @@ class Mouse {
 
     static void mouseOverOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.mouseOver('${c.id}')") }
 
-    static void mouseOutOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.mouseOut('${c.id}')") }
+    static void mouseOutOff(Component c) { evaluator.evalScript("testatoo.ext.simulate.mouseOut('${c.id}')") }
 
     static Dragger drag(Component c) {
         return new Dragger(c)
