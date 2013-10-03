@@ -6,9 +6,8 @@ import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.CheckBox
-import org.testatoo.core.component.Radio
+import org.testatoo.core.component.*
+import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
@@ -33,7 +32,7 @@ class MouseTest {
         Button button = $('#button_1') as Button
         assertThat { button.has text.equalsTo('Button') }
         clickOn button
-        assertThat { button.has text.equalsTo('Button Clicked !') }
+        assertThat { button.has text.equalsTo('Button Clicked!') }
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assertThat {checkBox.is unchecked}
@@ -80,16 +79,22 @@ class MouseTest {
         assertThat { button.has text.equalsTo('Button Mouse Out!') }
     }
 
-//    @Test
-//    public void test_component_drag_and_drop() throws Exception {
-//        assertThat(component(Image.class, "image").isVisible(), is(false));
-//        Panel draggablePanel = component(Panel.class, "draggable");
-//        Panel droppablePanel = component(Panel.class, "droppable");
-//
-//        Mouse.drag(draggablePanel).on(droppablePanel);
-//
-//        assertThat(component(Image.class, "image"), is(visible()));
-//    }
+    @Test
+    public void dragAndDrop() {
+        DropPanel dropPanel = $('#droppable') as DropPanel
+        assertThat { dropPanel.has title.equalsTo('Drop here')}
+
+        Panel dragPanel =  $('#draggable') as Panel
+
+        drag(dragPanel).on(dropPanel)
+        assertThat { dropPanel.has title.equalsTo('Dropped!')}
+    }
+
+    class DropPanel extends Panel  {
+        DropPanel() {
+            support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id} h1')") }
+        }
+    }
 
 
 }

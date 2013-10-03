@@ -81,7 +81,7 @@
             ctrlKey: false, altKey: false, shiftKey: false, metaKey: false,
             button: 0, relatedTarget: undefined
         }, options);
-        var relatedTarget = $(e.relatedTarget)[0];
+//        var relatedTarget = $(e.relatedTarget)[0];
         if ($.isFunction(document.createEvent)) {
             evt = document.createEvent("MouseEvents");
             evt.initMouseEvent(type, e.bubbles, e.cancelable, e.view, e.detail,
@@ -135,6 +135,14 @@
         return evt;
     }
 
+    function findCenter(el) {
+        var el = $(el), o = el.offset();
+        return {
+            x: o.left + el.outerWidth() / 2,
+            y: o.top + el.outerHeight() / 2
+        };
+    }
+
     $.fn.getMetaInfos = function () {
         var metaInfos = [];
         this.each(function () {
@@ -182,14 +190,49 @@
                 dispatchEvent(el, 'dblclick', mouseEvent('dblclick', options));
             },
 
-            mouseOver: function(id, options) {
+            mouseOver: function (id, options) {
                 var el = document.getElementById(id);
                 dispatchEvent(el, 'mouseover', mouseEvent('mouseover', options));
             },
 
-            mouseOut: function(id, options) {
+            mouseOut: function (id, options) {
                 var el = document.getElementById(id);
                 dispatchEvent(el, 'mouseout', mouseEvent('mouseout', options));
+            },
+
+            drag: function (from, to) {
+                var origin = document.getElementById(from);
+                var target = document.getElementById(to);
+
+                var fromCenter = findCenter(origin);
+                var toCenter = findCenter(target);
+
+                var x = Math.floor(fromCenter.x);
+                var y = Math.floor(fromCenter.y);
+
+                var xDest = Math.floor(toCenter.x);
+                var yDest = Math.floor(toCenter.y);
+
+                var stepX = (xDest - x) / 10;
+                var stepY = (yDest - y) / 10;
+                stepX = (stepX == 0) ? 1 : stepX;
+                stepY = (stepY == 0) ? 1 : stepY;
+
+                var coord = {clientX: x, clientY: y};
+                dispatchEvent(origin, 'mousedown', mouseEvent('mousedown', coord));
+                while ((Math.abs(xDest - x) > Math.abs(stepX)) || (Math.abs(yDest - y) > Math.abs(stepY))) {
+                    if (Math.abs(xDest - x) > Math.abs(stepX)) {
+                        x += stepX;
+                    }
+                    if (Math.abs(yDest - y) > Math.abs(stepY)) {
+                        y += stepY;
+                    }
+                    coord = { clientX: x, clientY: y };
+                    dispatchEvent(origin, 'mousemove', mouseEvent('mousemove', coord));
+                }
+                dispatchEvent(origin, 'mousemove', mouseEvent('mousemove', coord));
+                dispatchEvent(origin, 'mouseup', mouseEvent('mouseup', coord));
+                dispatchEvent(target, 'mouseup', mouseEvent('mouseup', coord));
             },
 
             type: function (id, options) {
@@ -226,10 +269,10 @@
             return (el.prop('nodeName') || '').toLowerCase() == 'input' ? el.val() : el.text();
         },
 
-        isEmpty: function(id) {
+        isEmpty: function (id) {
             var el = $('#' + id + '');
             var nodeName = el.prop('nodeName').toLowerCase() || '';
-            switch(nodeName) {
+            switch (nodeName) {
                 case 'input':
                     return $.trim(el.val()).length == 0;
                     break;

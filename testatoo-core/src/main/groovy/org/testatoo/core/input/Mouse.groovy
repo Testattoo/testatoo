@@ -23,4 +23,20 @@ class Mouse {
 
     static void mouseOutOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.mouseOut('${c.id}')") }
 
+    static Dragger drag(Component c) {
+        return new Dragger(c)
+    }
+
+    public static class Dragger {
+        private Component from;
+
+        public Dragger(Component from) {
+            this.from = from;
+        }
+
+        public void on(Component to) {
+            evaluator.evalScript("testatoo.ext.simulate.drag('${from.id}', '${to.id}')")
+        }
+    }
+
 }
