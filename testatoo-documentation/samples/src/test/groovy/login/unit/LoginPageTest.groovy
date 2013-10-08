@@ -8,6 +8,7 @@ import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 
+import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.Testatoo.open
 
 /**
@@ -28,6 +29,8 @@ class LoginPageTest {
     @Test
     public void page_contains_expected_elements() {
         assert login_panel.is(visible)
+
+//        assertThat login_button is visible
 
         assert login_panel.has(title.equalsTo('Login Form'))
 

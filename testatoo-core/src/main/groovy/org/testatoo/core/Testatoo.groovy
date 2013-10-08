@@ -38,14 +38,18 @@ class Testatoo {
 
     static void open(String uri) { evaluator.open(uri) }
 
-    static void assertThat(Block m) { Blocks.run m }
-
-    static void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }
-
-    static void assertThat(Closure<?> c) {
-        c()
-        Blocks.run Blocks.and(Blocks.pending())
+    static Assertion assertThat(Component c) {
+        new Assertion(c)
     }
+
+//    static void assertThat(Block m) { Blocks.run m }
+//
+//    static void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }
+//
+//    static void assertThat(Closure<?> c) {
+//        c()
+//        Blocks.run Blocks.and(Blocks.pending())
+//    }
 
     static void waitUntil(Block m, TimeDuration duration = 5.seconds) {
         try {
@@ -57,27 +61,5 @@ class Testatoo {
             throw new RuntimeException("${e.message} : ${m}")
         }
     }
-
-    // Properties
-    final Placeholder placeholder = new Placeholder()
-    final Label label = new Label()
-    final Text text = new Text()
-    final Value value = new Value()
-    final Reference reference = new Reference()
-    final Title title = new Title()
-    final Size size = new Size()
-
-    // States
-    final Enabled enabled = new Enabled()
-    final Disabled disabled = new Disabled()
-    final Visible visible = new Visible()
-    final Hidden hidden = new Hidden()
-    final Available available = new Available()
-    final Missing missing = new Missing()
-    final Checked checked = new Checked()
-    final Unchecked unchecked = new Unchecked()
-    final Empty empty = new Empty()
-    final Filled filled = new Filled()
-
 
 }

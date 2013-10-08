@@ -5,10 +5,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
-import org.testatoo.core.Testatoo
+
 import org.testatoo.core.component.*
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -16,9 +18,6 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(TestatooJunitRunner.class)
 @TestatooModules(TestModule)
 class ComponentTest {
-
-    @Delegate
-    private static Testatoo testatoo = new Testatoo()
 
     @BeforeClass
     public static void openTestPage() {
@@ -29,46 +28,46 @@ class ComponentTest {
     public void test_button() {
         // input type=button
         Button button = $('#button') as Button
-        assert button.is(enabled)
-        assert button.is(visible)
+        assertThat button is enabled
+        assertThat button is visible
 
-        assertThat { button.has text.equalsTo('Button') }
+        assertThat button has text.equalsTo('Button')
 
         // input type=submit
         button = $('#submit') as Button
-        assert button.has(text.equalsTo('Submit'))
+        assertThat button has text.equalsTo('Submit')
 
         // input type=reset
         button = $('#reset') as Button
-        assert button.has(text.equalsTo('Reset'))
+        assertThat button has text.equalsTo('Reset')
 
         // button element
         button = $('#btn') as Button
-        assert button.has(text.equalsTo('My Button Text'))
+        assertThat button has text.equalsTo('My Button Text')
     }
 
     @Test
     public void test_input_fields() {
         TextField textField = $('#text_field') as TextField
 
-        assert textField.is(enabled)
-        assert textField.is(visible)
+        assertThat textField is enabled
+        assertThat textField is visible
 
-        assert textField.has(label.equalsTo('Text'))
-        assert textField.is(empty);
+        assertThat textField has label.equalsTo('Text')
+        assertThat textField is empty
 
         textField.enter 'some value'
-        assert textField.has(text.equalsTo('some value'))
-        assert textField.has(value.equalsTo('some value'))
-        assert textField.is(filled);
+        assertThat textField has text.equalsTo('some value')
+        assertThat textField has value.equalsTo('some value')
+        assertThat textField is filled
 
         PasswordField passwordField = $('#password_field') as PasswordField
 
-        assert passwordField.is(enabled)
-        assert passwordField.is(visible)
+        assertThat passwordField is enabled
+        assertThat passwordField is visible
 
-        assert passwordField.has(label.equalsTo('Password'))
-        assert passwordField.has(text.equalsTo('?art'))
+        assertThat passwordField has label.equalsTo('Password')
+        assertThat passwordField has text.equalsTo('?art')
 
         // Textarea
     }
@@ -76,11 +75,11 @@ class ComponentTest {
     @Test
     public void test_checkbox() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assert checkBox.is(enabled)
-        assert checkBox.is(visible)
+        assertThat checkBox is enabled
+        assertThat checkBox is visible
 
-        assert checkBox.is(unchecked)
-        assert checkBox.has(label.containing('Check me out'))
+        assertThat checkBox is unchecked
+        assertThat checkBox has label.containing('Check me out')
 
 //        checkBox.check()
 //        assert checkBox.is(checked)
@@ -89,49 +88,48 @@ class ComponentTest {
     @Test
     public void test_link() {
         Link link = $('#link') as Link
-        assert link.is(enabled)
-        assert link.is(visible)
+        assertThat link is enabled
+        assertThat link is visible
 
-        assert link.has(text.equalsTo('Link to index'))
-        assert link.has(reference.containing('/component.html'))
+        assertThat link has text.equalsTo('Link to index')
+        assertThat link has reference.containing('/component.html')
     }
 
     @Test
     public void test_panel() {
         Panel panel = $('#panel') as Panel
-        assert panel.is(enabled)
-        assert panel.is(visible)
+        assertThat panel is enabled
+        assertThat panel is visible
 
-        assert panel.has(title.equalsTo(''))
+        assertThat panel has title.equalsTo('')
     }
 
-    @Test
-    public void test_list() {
-        List list = $('#list_view') as List
+//    @Test
+//    public void test_list() {
+//        List list = $('#list_view') as List
+//
+//        assert list.is(filled);
+//
+////        assert list.contains(item1, item2);
+//
+////        assert list.has(5.items);
+//        assert list.has(size.equalsTo(5));
+//        assert list.items().size == 5;
+//
+//
+////        assert list.has(values(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']))
+//
+//
+//
+//
+//    }
+//
+//    @Test
+//    public void test_contains() {
+//
+//    }
 
-        assert list.is(filled);
-
-
-
-//        assert list.contains(item1, item2);
-
-//        assert list.has(5.items);
-        assert list.has(size.equalsTo(5));
-        assert list.items().size == 5;
-
-
-//        assert list.has(values(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']))
-
-
-
-
-    }
-
-    @Test
-    public void test_contains() {
-
-    }
-
+    // ===================================================
 
 
 //    @Test
