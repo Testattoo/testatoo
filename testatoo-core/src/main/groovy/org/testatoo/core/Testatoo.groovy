@@ -42,6 +42,11 @@ class Testatoo {
         new Assertion(c)
     }
 
+    static Component check(Component c) {
+        evaluator.getString("testatoo.ext.check('${c.id}')")
+        return c
+    }
+
 //    static void assertThat(Block m) { Blocks.run m }
 //
 //    static void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }

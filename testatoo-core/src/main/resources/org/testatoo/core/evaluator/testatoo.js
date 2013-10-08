@@ -247,6 +247,13 @@
 
         },
 
+        check: function (id) {
+            var el = $('#' + id + '');
+            if (el.is('input') && (el.attr('type') == 'radio' || el.attr('type') == 'checkbox') && !el.prop('checked')) {
+                testatoo.ext.simulate.click(id);
+            }
+        },
+
         getLabel: function (id) {
             var label = $('label[for="' + id + '"]');
             if (label.length > 0) return label.text();

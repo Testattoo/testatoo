@@ -81,8 +81,8 @@ class ComponentTest {
         assertThat checkBox is unchecked
         assertThat checkBox has label.containing('Check me out')
 
-//        checkBox.check()
-//        assert checkBox.is(checked)
+        check checkBox
+        assertThat checkBox is checked
     }
 
     @Test
