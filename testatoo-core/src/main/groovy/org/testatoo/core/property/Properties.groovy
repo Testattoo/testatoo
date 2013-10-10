@@ -1,5 +1,7 @@
 package org.testatoo.core.property
 
+import org.testatoo.core.property.matcher.PropertyMatcher
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -7,10 +9,21 @@ class Properties {
 
     // Properties
     static final Placeholder placeholder = new Placeholder()
+
     static final Label label = new Label()
+    static final PropertyMatcher label(String expected) { label.equalsTo(expected) }
+
     static final Text text = new Text()
+    static final PropertyMatcher text(String expected) { text.equalsTo(expected) }
+
     static final Value value = new Value()
+    static final PropertyMatcher value(String expected) { value.equalsTo(expected) }
+
     static final Reference reference = new Reference()
+    static final PropertyMatcher reference(String expected) { reference.equalsTo(expected) }
+
     static final Title title = new Title()
+    static final PropertyMatcher title(String expected) { title.equalsTo(expected) }
+
     static final Size size = new Size()
 }

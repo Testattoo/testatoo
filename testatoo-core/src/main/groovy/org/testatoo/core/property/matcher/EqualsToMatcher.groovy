@@ -47,6 +47,7 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
     static Matchers matchers(Property a) { new Matchers(property: a) }
 
     static class Matchers extends PropertyMatchers {
+
         EqualsToMatcher equalsTo(String expected) { equalsTo([expected]) }
 
         EqualsToMatcher equalsTo(int expected) { equalsTo([expected]) }

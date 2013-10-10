@@ -28,10 +28,10 @@ class MouseTest {
     @Test
     public void click() {
         Button button = $('#button_1') as Button
-        assertThat button has text.equalsTo('Button')
-        assertThat button has text.equalsTo('Button')
+        assertThat button has text('Button')
+        assertThat button has text('Button')
         clickOn button
-        assertThat button has text.equalsTo('Button Clicked!')
+        assertThat button has text('Button Clicked!')
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assertThat checkBox is unchecked
@@ -49,44 +49,44 @@ class MouseTest {
     @Test
     public void doubleClick() {
         Button button = $('#button_2') as Button
-        assertThat button has text.equalsTo('Button')
+        assertThat button has text('Button')
         doubleClickOn button
-        assertThat button has text.equalsTo('Button Double Clicked!')
+        assertThat button has text('Button Double Clicked!')
     }
 
     @Test
     public void rightClick() {
         Button button = $('#button_5') as Button
-        assertThat button has text.equalsTo('Button')
+        assertThat button has text('Button')
         rightClickOn button
-        assertThat button has text.equalsTo('Button Right Clicked!')
+        assertThat button has text('Button Right Clicked!')
     }
 
     @Test
     public void mouseOver() {
         Button button = $('#button_3') as Button
-        assertThat button has text.equalsTo('Button')
+        assertThat button has text('Button')
         mouseOverOn button
-        assertThat button has text.equalsTo('Button Mouse Over!')
+        assertThat button has text('Button Mouse Over!')
     }
 
     @Test
     public void mouseOut() {
         Button button = $('#button_4') as Button
-        assertThat button has text.equalsTo('Button')
+        assertThat button has text('Button')
         mouseOutOff button
-        assertThat button has text.equalsTo('Button Mouse Out!')
+        assertThat button has text('Button Mouse Out!')
     }
 
     @Test
     public void dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
-        assertThat dropPanel has title.equalsTo('Drop here')
+        assertThat dropPanel has title('Drop here')
 
         Panel dragPanel =  $('#draggable') as Panel
 
         drag dragPanel on dropPanel
-        assertThat dropPanel has title.equalsTo('Dropped!')
+        assertThat dropPanel has title('Dropped!')
     }
 
     class DropPanel extends Panel  {
@@ -94,6 +94,4 @@ class MouseTest {
             support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id} h1')") }
         }
     }
-
-
 }

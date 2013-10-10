@@ -31,19 +31,19 @@ class ComponentTest {
         assertThat button is enabled
         assertThat button is visible
 
-        assertThat button has text.equalsTo('Button')
+        assertThat button has text('Button')
 
         // input type=submit
         button = $('#submit') as Button
-        assertThat button has text.equalsTo('Submit')
+        assertThat button has text('Submit')
 
         // input type=reset
         button = $('#reset') as Button
-        assertThat button has text.equalsTo('Reset')
+        assertThat button has text('Reset')
 
         // button element
         button = $('#btn') as Button
-        assertThat button has text.equalsTo('My Button Text')
+        assertThat button has text('My Button Text')
     }
 
     @Test
@@ -53,12 +53,12 @@ class ComponentTest {
         assertThat textField is enabled
         assertThat textField is visible
 
-        assertThat textField has label.equalsTo('Text')
+        assertThat textField has label('Text')
         assertThat textField is empty
 
         textField.enter 'some value'
-        assertThat textField has text.equalsTo('some value')
-        assertThat textField has value.equalsTo('some value')
+        assertThat textField has text('some value')
+        assertThat textField has value('some value')
         assertThat textField is filled
 
         PasswordField passwordField = $('#password_field') as PasswordField
@@ -66,8 +66,8 @@ class ComponentTest {
         assertThat passwordField is enabled
         assertThat passwordField is visible
 
-        assertThat passwordField has label.equalsTo('Password')
-        assertThat passwordField has text.equalsTo('?art')
+        assertThat passwordField has label('Password')
+        assertThat passwordField has text('?art')
 
         // Textarea
     }
@@ -79,7 +79,7 @@ class ComponentTest {
         assertThat checkBox is visible
 
         assertThat checkBox is unchecked
-        assertThat checkBox has label.containing('Check me out')
+        assertThat checkBox has label('Check me out')
 
         check checkBox
         assertThat checkBox is checked
@@ -91,7 +91,7 @@ class ComponentTest {
         assertThat link is enabled
         assertThat link is visible
 
-        assertThat link has text.equalsTo('Link to index')
+        assertThat link has text('Link to index')
         assertThat link has reference.containing('/component.html')
     }
 
@@ -118,10 +118,6 @@ class ComponentTest {
 //
 //
 ////        assert list.has(values(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']))
-//
-//
-//
-//
 //    }
 //
 //    @Test

@@ -31,7 +31,7 @@ class ExtensionTest {
         Button button = $('#button') as Button
 
         // are / have extension
-        assert [button].are(enabled)
+//        assert [button] are enabled
 
     }
 }
