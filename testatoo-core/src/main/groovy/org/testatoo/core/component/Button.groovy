@@ -27,5 +27,4 @@ class Button extends Component {
         support Text
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
-
 }

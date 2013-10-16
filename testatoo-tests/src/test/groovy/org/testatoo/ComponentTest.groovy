@@ -70,6 +70,8 @@ class ComponentTest {
         assertThat passwordField has text('?art')
 
         // Textarea
+
+
     }
 
     @Test
@@ -83,6 +85,17 @@ class ComponentTest {
 
         check checkBox
         assertThat checkBox is checked
+    }
+
+    @Test
+    public void test_radio() {
+        Radio radio = $('#radio') as Radio;
+
+        assertThat radio is enabled
+        assertThat radio is visible
+        assertThat radio is checked
+
+        assertThat radio has label('Radio label');
     }
 
     @Test
@@ -103,6 +116,23 @@ class ComponentTest {
 
         assertThat panel has title.equalsTo('')
     }
+
+    // http://en.wikipedia.org/wiki/Combo_box
+    @Test
+    public void test_comboBox() {
+
+    }
+
+    // http://en.wikipedia.org/wiki/Drop-down_list
+    @Test
+    public void test_dropDown() {
+        DropDown dropDown = $('elements') as DropDown
+
+
+    }
+
+    @Test
+    public void test_listBox() {}
 
 //    @Test
 //    public void test_list() {
@@ -127,18 +157,7 @@ class ComponentTest {
 
     // ===================================================
 
-
-//    @Test
-//    public void test_radio() {
-//        open('/component.html');
 //
-//        Radio radio = new Radio('radio');
-//        assertThat(radio.is(enabled()));
-//        assertThat(radio.is(visible()));
-//        assertThat(radio.is(checked()));
-//
-//        assertThat(radio.has(label()).contains('Radio label'));
-//    }
 
 //    @Test
 //    public void test_page() {

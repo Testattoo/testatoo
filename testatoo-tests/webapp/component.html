@@ -86,6 +86,89 @@
 
         <hr/>
 
+        <label class="control-label" for="cities">Cities list</label>
+
+        <div class="controls">
+            <select id="cities" size="3" multiple="multiple" name="cityName" title="cityTitle">
+                <option label="Montreal" value="Montreal">Montreal</option>
+                <option label="Quebec" value="Quebec" disabled>Quebec</option>
+                <option label="Montpellier" value="Montpellier">Montpellier</option>
+                <option label="New York" value="New York" selected="selected">New York</option>
+                <option label="Casablanca" value="Casablanca">Casablanca</option>
+                <option label="Munich" value="Munich" selected="selected">Munich</option>
+            </select>
+        </div>
+
+        <hr/>
+
+        <label class="control-label" for="elements">Elements list</label>
+
+        <div class="controls">
+            <select id="elements">
+                <option label="H" value="1">Helium</option>
+                <option label="B" value="5">Boron</option>
+                <option label="Pol" value="84">Polonium</option>
+                <option label="Ca" value="20">Calcium</option>
+                <option label="Ra" value="88">Radium</option>
+            </select>
+        </div>
+
+        <hr/>
+
+        <label class="control-label" for="countries">Countries list</label>
+
+        <div class="controls">
+            <select id="countries" disabled>
+                <option label="Canada">Canada</option>
+                <option label="France">France</option>
+                <option label="Spain">Spain</option>
+            </select>
+        </div>
+
+        <hr/>
+
+        <label class="control-label" for="planets">planets list</label>
+
+        <div class="controls">
+            <select id="planets" multiple="multiple">
+                <option value="1">Mercury</option>
+                <option value="2">Venus</option>
+                <option value="3">Earth</option>
+                <option value="4">Mars</option>
+                <option value="5">Jupiter</option>
+                <option value="6">Saturn</option>
+                <option value="7">Uranus</option>
+                <option value="8">Neptune</option>
+            </select>
+        </div>
+
+        <hr/>
+
+        <label class="control-label" for="planets">Linux</label>
+
+        <div class="controls">
+            <select id="os">
+                <option selected label="none" value="none">None</option>
+                <optgroup id="linux" label="linux" name="linuxGrpName" title="linuxGrpTitle" lang="fr" dir="ltr"
+                          class="myClass"
+                          style="color:black">
+                    <option label="KubuntuLabel" value="KubuntuValue" id="kubuntuOption">Kubuntu</option>
+                    <option label="RedHatLabel" value="RedHatValue">Fedora</option>
+                    <option label="GentooLabel" value="GentooValue">Gentoo</option>
+                </optgroup>
+                <optgroup label="win32">
+                    <option label="XPLabel" value="XPValue">XP</option>
+                    <option label="VistaLabel" value="VistaValue">Vista</option>
+                </optgroup>
+                <optgroup label="BSD">
+                    <option label="FreeBSDLabel" value="FreeBSDValue">FreeBSD</option>
+                    <option label="OpenBSDLabel" value="OpenBSDValue">OpenBSD</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <hr/>
+
         <button type="button" id="add-message" class="btn btn-primary">Add message</button>
         <div id="messages"></div>
 

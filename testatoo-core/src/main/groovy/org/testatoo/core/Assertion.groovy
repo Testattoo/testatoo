@@ -13,7 +13,6 @@ class Assertion {
     Property property
     PropertyMatcher propertyMatcher
 
-
     Assertion(Component c) {
         this.component = c;
     }

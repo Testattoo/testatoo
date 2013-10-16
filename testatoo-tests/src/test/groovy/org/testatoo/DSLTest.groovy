@@ -26,7 +26,7 @@ class DSLTest {
     @Test
     public void test_AND() {
         Button button = $('#button') as Button
-        assertThat button is enabled and button is visible
+//        assertThat button is enabled and button is visible
 //        assertThat button.is(enabled) & button.is(visible)
     }
 
