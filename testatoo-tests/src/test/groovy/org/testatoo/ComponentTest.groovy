@@ -131,8 +131,12 @@ class ComponentTest {
 
     }
 
+//    http://en.wikipedia.org/wiki/List_box
     @Test
-    public void test_listBox() {}
+    public void test_listBox() {
+        ListBox listBox = $('cities') as ListBox
+
+    }
 
 //    @Test
 //    public void test_list() {
