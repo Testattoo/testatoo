@@ -13,12 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.component.list
+
+import org.testatoo.core.component.Component
+import org.testatoo.core.component.Type
+import org.testatoo.core.property.Size
+import org.testatoo.core.state.*
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class EmailField extends TextField {
-    EmailField() {
-        type Type.EMAILFIELD
+class List extends Component {
+
+    List() {
+        type Type.LIST
+        support Size
+        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
     }
+
+//    List<ListItem> items() {
+//        return new ArrayList<ListItem>();
+//    }
+
+    java.util.List<ListItem> getItems() { evaluator.getMetaInfo("${id} > li").collect { it as ListItem } }
+
 }

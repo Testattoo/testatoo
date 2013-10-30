@@ -1,5 +1,7 @@
-package org.testatoo.core.component
+package org.testatoo.core.component.list
 
+import org.testatoo.core.component.Component
+import org.testatoo.core.component.Type
 import org.testatoo.core.state.*
 
 /**

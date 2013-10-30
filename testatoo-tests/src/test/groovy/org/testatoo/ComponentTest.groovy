@@ -7,6 +7,12 @@ import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 
 import org.testatoo.core.component.*
+import org.testatoo.core.component.input.CheckBox
+import org.testatoo.core.component.input.PasswordField
+import org.testatoo.core.component.input.Radio
+import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.ListBox
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
@@ -128,6 +134,67 @@ class ComponentTest {
     public void test_dropDown() {
         DropDown dropDown = $('elements') as DropDown
 
+        assertThat dropDown is enabled
+        assertThat dropDown is visible
+
+        assertThat dropDown has label('Elements list');
+
+        assertThat dropDown has items.equalsTo("Helium", "Boron", "Polonium", "Calcium", "Radium")
+        assertThat dropDown has items("Helium", "Boron", "Polonium", "Calcium", "Radium")
+
+        assertThat dropDown has selectedValue('')
+        dropDown select 'Polonium'
+        assertThat dropDown has selectedValue('Polonium')
+
+
+
+//        assertThat(dropdown.selectedValue(), is(""));
+//        dropdown.select("Polonium");
+//        assertThat(dropdown.selectedValue(), is("Polonium"));
+
+
+//        assertThat(countriesList.values(), hasItems("Canada", "France", "Spain"));
+//
+//        // List with explicit values
+//        DropDown elementsList = component(DropDown.class, "elements");
+//        assertThat(elementsList.values(), hasItems("Helium", "Boron", "Polonium", "Calcium", "Radium"));
+//        assertThat(elementsList.values(), hasItems("Calcium", "Boron", "Polonium", "Helium", "Radium"));
+//
+//        Selection<String> values = component(DropDown.class, "elements").values();
+//        assertThat(values.containsAll(Arrays.asList("Helium", "Boron", "Polonium", "Calcium", "Radium")), is(true));
+//    }
+//
+//    @Test
+//    public void test_can_select_value() {
+//        DropDown dropdown = component(DropDown.class, "elements");
+//
+//
+//    }
+//
+//    // Test specific for Html
+//    @Test
+//    public void can_select_item() {
+//        // List without explicit values (in this case, the value is set with the content)
+//        DropDown countriesList = component(DropDown.class, "countries");
+//        countriesList.select("France");
+//        assertThat(countriesList.selectedValue(), is("France"));
+//        countriesList.select("Spain");
+//        assertThat(countriesList.selectedValue(), is("Spain"));
+//
+//        // List with explicit values
+//        DropDown elementsList = component(DropDown.class, "elements");
+//        elementsList.select("Polonium");
+//        assertThat(elementsList.selectedValue(), is("Polonium"));
+//        elementsList.select("Calcium");
+//        assertThat(elementsList.selectedValue(), is("Calcium"));
+//    }
+//
+//    @Test
+//    public void test_label() {
+//        assertThat(component(DropDown.class, "elements"), has(label("Elements list")));
+//    }
+//
+
 
     }
 
@@ -220,10 +287,4 @@ class ComponentTest {
 //            assertEquals('Component Panel with id: \'panel\' does no displays component Button with id: \'invisible_button_in_visible_panel\'', e.getMessage());
 //        }
 //    }
-
-//    @Test
-//    public void componentType() {
-//
-//    }
-
 }

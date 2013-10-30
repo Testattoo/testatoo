@@ -3,9 +3,9 @@ package login
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.EmailField
+import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.component.Panel
-import org.testatoo.core.component.PasswordField
+import org.testatoo.core.component.input.PasswordField
 import org.testatoo.core.property.Title
 
 /**

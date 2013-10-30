@@ -18,7 +18,7 @@ package experimental.dsl
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.TextField
+import org.testatoo.core.component.input.TextField
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

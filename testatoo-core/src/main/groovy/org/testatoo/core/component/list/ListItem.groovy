@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.component.list
 
-import org.testatoo.core.property.Label
-import org.testatoo.core.state.Checked
-import org.testatoo.core.state.Unchecked
+import org.testatoo.core.component.Component
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-09-02
  */
-class CheckBox extends Input {
-    CheckBox() {
-        type Type.CHECKBOX
-        support Label
-        support Checked, Unchecked
+class ListItem extends Component {
+    ListItem() {
+
     }
 }

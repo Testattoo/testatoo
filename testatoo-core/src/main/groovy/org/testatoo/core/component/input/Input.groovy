@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.component.input
 
+import org.testatoo.core.component.Component
 import org.testatoo.core.property.Text
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.*

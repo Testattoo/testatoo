@@ -26,4 +26,12 @@ class Properties {
     static final PropertyMatcher title(String expected) { title.equalsTo(expected) }
 
     static final Size size = new Size()
+
+    static final SelectedValue selectedValue = new SelectedValue();
+
+    static final Items items = new Items()
+    static final PropertyMatcher items(Collection<?> values) { items.equalsTo(values) }
+    static final PropertyMatcher items(Object... values) { items.equalsTo(values) }
+
+
 }

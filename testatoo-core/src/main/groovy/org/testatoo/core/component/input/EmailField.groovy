@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.component.input
+
+import org.testatoo.core.component.Type
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
- * @date 2013-09-02
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class ListItem extends Component {
-    ListItem() {
-
+class EmailField extends TextField {
+    EmailField() {
+        type Type.EMAILFIELD
     }
 }

@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.component.input
+
+import org.testatoo.core.component.Type
+import org.testatoo.core.component.input.Input
+import org.testatoo.core.property.Label
+import org.testatoo.core.property.Placeholder
+
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class PasswordField extends TextField {
-    PasswordField() {
-        type Type.PASSWORDFIELD
+class TextField extends Input {
+    TextField() {
+        type Type.TEXTFIELD
+        support Placeholder, Label
     }
+
+    void enter(String text) { evaluator.evalScript("testatoo.ext.type('${id}', '${text}')") }
 }

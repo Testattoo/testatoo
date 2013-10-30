@@ -1,5 +1,4 @@
 package org.testatoo.core.state
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -16,4 +15,5 @@ class States {
     static final Unchecked unchecked = new Unchecked()
     static final Empty empty = new Empty()
     static final Filled filled = new Filled()
+
 }

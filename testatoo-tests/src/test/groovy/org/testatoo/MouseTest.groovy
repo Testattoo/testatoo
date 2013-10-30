@@ -6,6 +6,8 @@ import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 import org.testatoo.core.component.*
+import org.testatoo.core.component.input.CheckBox
+import org.testatoo.core.component.input.Radio
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*

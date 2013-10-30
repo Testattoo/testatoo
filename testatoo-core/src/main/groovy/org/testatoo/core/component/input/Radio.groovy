@@ -13,26 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.core.component.input
 
-import org.testatoo.core.property.Size
-import org.testatoo.core.state.*
+import org.testatoo.core.component.Type
+import org.testatoo.core.state.Checked
+import org.testatoo.core.state.Unchecked
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class List extends Component {
-
-    List() {
-        type Type.LIST
-        support Size
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled
+class Radio extends Input {
+    Radio() {
+        type Type.RADIO
+        support Checked, Unchecked
     }
-
-//    List<ListItem> items() {
-//        return new ArrayList<ListItem>();
-//    }
-
-    java.util.List<ListItem> getItems() { evaluator.getMetaInfo("${id} > li").collect { it as ListItem } }
-
 }
