@@ -12,6 +12,6 @@ class DropDown extends Component {
     DropDown() {
         type Type.DROPDOWN
 //        support Items, { ['temp2', 'temps2'] }
-//        support Enabled, Disabled, Available, Missing, Hidden, Visible
+        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

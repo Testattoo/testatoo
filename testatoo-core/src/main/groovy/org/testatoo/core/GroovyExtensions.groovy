@@ -15,9 +15,7 @@
  */
 package org.testatoo.core
 
-import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
 
 /**
@@ -34,12 +32,12 @@ class GroovyExtensions {
         Blocks.and(components.collect { it.is(matcher) })
     }
 
-    static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {
-        Blocks.and(components.collect { it.has(matcher) })
-    }
-
-    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
-
-    public static TimeDuration getSecond(Number self) { getSeconds(self) }
+//    static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {
+//        Blocks.and(components.collect { it.has(matcher) })
+//    }
+//
+//    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
+//
+//    public static TimeDuration getSecond(Number self) { getSeconds(self) }
 
 }
