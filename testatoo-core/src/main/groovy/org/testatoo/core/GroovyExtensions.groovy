@@ -25,21 +25,21 @@ import org.testatoo.core.state.State
  */
 class GroovyExtensions {
 
-    static boolean asBoolean(Block block) {
-        Blocks.run(block)
-        return true
-    }
+//    static boolean asBoolean(Block block) {
+//        Blocks.run(block)
+//        return true
+//    }
 
-    static Block are(Collection<? extends Component> components, State matcher) {
-        Blocks.and(components.collect { it.is(matcher) })
-    }
+//    static Block are(Collection<? extends Component> components, State matcher) {
+//        Blocks.and(components.collect { it.is(matcher) })
+//    }
 
-    static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {
-        Blocks.and(components.collect { it.has(matcher) })
-    }
+//    static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {
+//        Blocks.and(components.collect { it.has(matcher) })
+//    }
 
-    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
+//    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
 
-    public static TimeDuration getSecond(Number self) { getSeconds(self) }
+//    public static TimeDuration getSecond(Number self) { getSeconds(self) }
 
 }

@@ -1,6 +1,5 @@
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.property.matcher.EqualsToListMatcher
 
 /**
@@ -8,17 +7,10 @@ import org.testatoo.core.property.matcher.EqualsToListMatcher
  */
 class Items extends Property {
 
-    Items() {
-        // extratc list on values
-        evaluator { Component c ->
-
-            evaluator.getMetaInfo("${id} > li").collect { it as ListItem }
-
-            c.evaluator.getJson()MString("testatoo.ext.getLabel('${c.id}')")
-        }
-    }
-
     @Delegate
     private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
+
+//    @Delegate
+//    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
 }

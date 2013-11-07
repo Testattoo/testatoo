@@ -40,13 +40,19 @@ class EqualsToListMatcher extends AbstractPropertyMatcher {
     @Override
     String toString() { "${property} equals to ${expected.size() == 1 ? expected[0] : expected}" }
 
-    static Matchers matchers(Property a) { new Matchers(property: a) }
+    static Matchers matchers(Property a) {
+        new Matchers(property: a)
+    }
 
     static class Matchers extends PropertyMatchers {
 
-        EqualsToListMatcher equalsTo(Collection<?> items) { new EqualsToListMatcher(property, items) }
+        EqualsToListMatcher equalsTo(Collection<?> items) {
+            new EqualsToListMatcher(property, items)
+        }
 
-        EqualsToListMatcher equalsTo(Object... items) { new EqualsToListMatcher(property, Arrays.asList(items)) }
+        EqualsToListMatcher equalsTo(Object... items) {
+            new EqualsToListMatcher(property, Arrays.asList(items))
+        }
 
     }
 

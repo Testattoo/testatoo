@@ -15,7 +15,7 @@ import org.testatoo.core.state.Visible
 class ListBox extends Component {
     ListBox() {
         type Type.LISTBOX
-        support Items
+//        support Items
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

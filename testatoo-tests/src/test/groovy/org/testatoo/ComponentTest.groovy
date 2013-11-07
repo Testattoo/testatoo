@@ -75,9 +75,7 @@ class ComponentTest {
         assertThat passwordField has label('Password')
         assertThat passwordField has text('?art')
 
-        // Textarea
-
-
+        // TODO Textarea
     }
 
     @Test
@@ -135,16 +133,16 @@ class ComponentTest {
         DropDown dropDown = $('elements') as DropDown
 
         assertThat dropDown is enabled
-        assertThat dropDown is visible
+        assertThat dropDown is hidden
 
-        assertThat dropDown has label('Elements list');
+//        assertThat dropDown has label('Elements list222');
 
-        assertThat dropDown has items.equalsTo("Helium", "Boron", "Polonium", "Calcium", "Radium")
-        assertThat dropDown has items("Helium", "Boron", "Polonium", "Calcium", "Radium")
+//        assertThat dropDown has items.equalsTo("Helium", "Boron", "Polonium", "Calcium", "Radium")
+//        assertThat dropDown has items("Helium", "Boron", "Polonium", "Calcium", "Radium")
 
-        assertThat dropDown has selectedValue('')
-        dropDown select 'Polonium'
-        assertThat dropDown has selectedValue('Polonium')
+//        assertThat dropDown has selectedValue('')
+//        dropDown select 'Polonium'
+//        assertThat dropDown has selectedValue('Polonium')
 
 
 
@@ -199,11 +197,11 @@ class ComponentTest {
     }
 
 //    http://en.wikipedia.org/wiki/List_box
-    @Test
-    public void test_listBox() {
-        ListBox listBox = $('cities') as ListBox
-
-    }
+//    @Test
+//    public void test_listBox() {
+//        ListBox listBox = $('cities') as ListBox
+//
+//    }
 
 //    @Test
 //    public void test_list() {
