@@ -1,30 +1,22 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.Property
 import org.testatoo.core.property.matcher.PropertyMatcher
+import org.testatoo.core.state.State
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Assertion {
 
-    Component component
-    Property property
-    PropertyMatcher propertyMatcher
+    final Component component
 
     Assertion(Component c) {
         this.component = c;
     }
 
-    Assertion has(Property p) {
-        this.property = p
-        return this
-    }
+    Block is(State matcher) { component.is(matcher) }
 
-    Assertion has(PropertyMatcher p) {
-        this.propertyMatcher = p
-        return this
-    }
+    Block has(PropertyMatcher matcher) { component.has(matcher) }
 
 }
