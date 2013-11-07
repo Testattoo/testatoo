@@ -15,8 +15,12 @@ class Assertion {
         this.component = c;
     }
 
-    Block is(State matcher) { component.is(matcher) }
+    void is(State matcher) {
+        assert component.is(matcher)
+    }
 
-    Block has(PropertyMatcher matcher) { component.has(matcher) }
+    void has(PropertyMatcher matcher) {
+        assert component.has(matcher)
+    }
 
 }
