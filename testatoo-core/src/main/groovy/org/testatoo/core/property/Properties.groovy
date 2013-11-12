@@ -1,6 +1,5 @@
 package org.testatoo.core.property
 
-import org.testatoo.core.property.matcher.EqualsToListMatcher
 import org.testatoo.core.property.matcher.PropertyMatcher
 
 /**
@@ -27,13 +26,10 @@ class Properties {
     static final PropertyMatcher title(String expected) { title.equalsTo(expected) }
 
     static final Items items = new Items()
-//    static final PropertyMatcher items(String... expected) { items.equals(expected) }
+    static final PropertyMatcher items(String... expected) { items.equalsTo(expected) }
 
     static final Size size = new Size()
 
-    static final SelectedValue selectedValue = new SelectedValue();
-
-
-
-
+    static final SelectedItems selectedItems = new SelectedItems()
+    static final PropertyMatcher selectedItems(String... expected) { selectedItems.equalsTo(expected) }
 }

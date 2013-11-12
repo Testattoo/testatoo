@@ -16,6 +16,7 @@
 package org.testatoo.core.component.input
 
 import org.testatoo.core.component.Type
+import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked
 
@@ -23,8 +24,10 @@ import org.testatoo.core.state.Unchecked
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Radio extends Input {
+
     Radio() {
         type Type.RADIO
-        support Checked, Unchecked
+        support Label, Checked, Unchecked
     }
+
 }

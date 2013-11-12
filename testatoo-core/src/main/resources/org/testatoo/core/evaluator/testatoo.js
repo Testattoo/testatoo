@@ -29,8 +29,9 @@
         if (el.is('div')) return 'Panel';
         if (el.is('ul')) return 'List';
         if (el.is('ol')) return 'List';
-        if (el.is('li')) return 'ListItem';
+        if (el.is('li')) return 'Item';
         if (el.is('select')) return el.attr('multiple') ? 'ListBox' : 'DropDown';
+        if (el.is('option')) return 'Item';
         if (el.is('table')) return 'DataGrid';
         if (el.is('tr')) return 'Row';
         if (el.is('td')) return 'Cell';
@@ -254,13 +255,17 @@
             }
         },
 
+        selectItem: function (id) {
+            $('#' + id + '').prop('selected', true);
+        },
+
         getLabel: function (id) {
             var label = $('label[for="' + id + '"]');
             if (label.length > 0) return label.text();
             var el = $('#' + id + '');
             var p = el.prev('label');
             if (p.length > 0) return p.text();
-            return el.parent().text();
+            return el.parent().text().trim();
         },
 
         getSize: function (id) {
@@ -268,12 +273,15 @@
             if (el.is('ul')) {
                 return el.find('li').length;
             }
+            if (el.is('select')) {
+                return el.find('option').length;
+            }
             return 0;
         },
 
         getText: function (id) {
             var el = $('#' + id + '');
-            return (el.prop('nodeName') || '').toLowerCase() == 'input' ? el.val() : el.text();
+            return (el.prop('nodeName') || '').toLowerCase() == 'input' ? el.val() : el.text().trim();
         },
 
         isEmpty: function (id) {

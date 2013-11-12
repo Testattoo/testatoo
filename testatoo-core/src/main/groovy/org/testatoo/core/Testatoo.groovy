@@ -47,14 +47,14 @@ class Testatoo {
         return c
     }
 
-//    static void assertThat(Block m) { Blocks.run m }
-//
-//    static void assertThat(Collection<Block> blocks) { Blocks.run Blocks.and(blocks) }
-//
-//    static void assertThat(Closure<?> c) {
-//        c()
-//        Blocks.run Blocks.and(Blocks.pending())
-//    }
+    static Interaction on(Component c) {
+        return new Interaction(c)
+    }
+
+    static Component select(Component c) {
+        evaluator.getString("testatoo.ext.selectItem('${c.id}')")
+        return c
+    }
 
     static void waitUntil(Block m, TimeDuration duration = 5.seconds) {
         try {

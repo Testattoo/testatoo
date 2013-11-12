@@ -23,9 +23,9 @@ import org.testatoo.core.state.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class List extends Component {
+class ListTodo extends Component {
 
-    List() {
+    ListTodo() {
         type Type.LIST
         support Size
         support Enabled, Disabled, Available, Missing, Hidden, Visible, Empty, Filled

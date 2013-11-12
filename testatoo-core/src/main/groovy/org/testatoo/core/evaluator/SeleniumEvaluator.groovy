@@ -89,9 +89,9 @@ class SeleniumEvaluator implements Evaluator {
 
     private String eval(String s) {
         String expr = """(function(\$, jQuery, testatoo){
-    if(!jQuery) return '__TESTATOO_MISSING__';
-    else return ${removeTrailingChars(s)};
-}(window.testatoo, window.testatoo, window.testatoo));"""
+            if(!jQuery) return '__TESTATOO_MISSING__';
+                else return ${removeTrailingChars(s)};
+            }(window.testatoo, window.testatoo, window.testatoo));"""
         Log.selenium "EXECUTING:\n${expr}"
         String v = selenium.getEval(expr)
         if (v == '__TESTATOO_MISSING__') {

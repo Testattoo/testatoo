@@ -24,10 +24,12 @@ import org.testatoo.core.property.Placeholder
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class TextField extends Input {
+
     TextField() {
         type Type.TEXTFIELD
         support Placeholder, Label
     }
 
     void enter(String text) { evaluator.evalScript("testatoo.ext.type('${id}', '${text}')") }
+
 }

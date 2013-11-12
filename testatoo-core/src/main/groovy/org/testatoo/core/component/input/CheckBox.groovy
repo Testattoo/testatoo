@@ -24,9 +24,11 @@ import org.testatoo.core.state.Unchecked
  * @author David Avenante (d.avenante@gmail.com)
  */
 class CheckBox extends Input {
+
     CheckBox() {
         type Type.CHECKBOX
         support Label
         support Checked, Unchecked
     }
+
 }

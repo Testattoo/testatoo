@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.component.list
-
-import org.testatoo.core.component.Component
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-09-02
  */
-class ListItem extends Component {
-    ListItem() {
+interface ListItem {
 
-    }
+    List<Item> getItems()
+
 }
