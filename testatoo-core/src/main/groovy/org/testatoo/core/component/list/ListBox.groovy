@@ -14,6 +14,8 @@ import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Enabled
 import org.testatoo.core.state.Hidden
 import org.testatoo.core.state.Missing
+import org.testatoo.core.state.MultiSelectable
+import org.testatoo.core.state.SingleSelectable
 import org.testatoo.core.state.Visible
 
 /**
@@ -30,7 +32,7 @@ class ListBox extends Component {
         support GroupItems, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
         }
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
+        support Enabled, Disabled, Available, Missing, Hidden, Visible, MultiSelectable, SingleSelectable
     }
 
     List<Item> getItems() {

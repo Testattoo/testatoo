@@ -321,6 +321,11 @@
             return (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
         },
 
+        isMultiSelectable: function(id) {
+            var el = $('#' + id + '');
+            return el.is('select') && el.prop('multiple');
+        },
+
         type: function (id, text) {
             var el = $('#' + id + '');
             el.val('');

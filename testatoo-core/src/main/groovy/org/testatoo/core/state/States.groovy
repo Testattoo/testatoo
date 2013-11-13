@@ -15,5 +15,7 @@ class States {
     static final Unchecked unchecked = new Unchecked()
     static final Empty empty = new Empty()
     static final Filled filled = new Filled()
+    static final MultiSelectable multiSelectable = new MultiSelectable()
+    static final SingleSelectable singleSelectable = new SingleSelectable()
 
 }

@@ -198,8 +198,7 @@ class ComponentTest {
 
         assertThat listBox has 3.visibleItems
 
-//        assertThat listBox is multiSelectable
-//        assertThat listBox !support singleSelectable
+        assertThat listBox is multiSelectable
 
         assertThat listBox.items[0] is enabled
         assertThat listBox.items[1] is disabled
@@ -218,6 +217,9 @@ class ComponentTest {
         }
 
         assertThat listBox has selectedItems('Montreal', 'Montpellier')
+
+        listBox = $('#planets') as ListBox
+        assertThat listBox is singleSelectable
     }
 
 }
