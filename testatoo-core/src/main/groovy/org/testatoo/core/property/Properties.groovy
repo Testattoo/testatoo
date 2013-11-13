@@ -28,6 +28,10 @@ class Properties {
     static final Items items = new Items()
     static final PropertyMatcher items(String... expected) { items.equalsTo(expected) }
 
+    static final GroupItems groupItems = new GroupItems()
+    static final PropertyMatcher groupItems(String... expected) { groupItems.equalsTo(expected) }
+
+
     static final Size size = new Size()
 
     static final SelectedItems selectedItems = new SelectedItems()

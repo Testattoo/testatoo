@@ -2,6 +2,7 @@ package org.testatoo.core.component.list
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Type
+import org.testatoo.core.property.Label
 import org.testatoo.core.property.Text
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.*
@@ -13,7 +14,7 @@ class Item extends Component {
 
     Item() {
         type Type.ITEM
-        support Text, Value
+        support Text, Value, Label
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 

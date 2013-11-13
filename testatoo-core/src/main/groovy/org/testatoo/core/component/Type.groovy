@@ -30,10 +30,14 @@ class Type {
     static final String TEXTFIELD = 'TextField'
 
     static final String DROPDOWN = 'DropDown'
+    static final String LISTBOX = 'ListBox'
     static final String ITEM = 'Item'
-
+    static final String GROUPITEM = 'GroupItem'
 
     static final String UNDEFINED = 'Undefined'
+
+
+
 
     static final String ALERTBOX = 'Alertbox'
 
@@ -41,8 +45,7 @@ class Type {
 
     static final String IMAGE = 'Image'
     static final String LIST = 'List'
-    static final String LISTITEM = 'ListItem'
-    static final String LISTBOX = 'ListBox'
+
     static final String DATAGRID = 'DATAGRID'
     static final String CELL = 'Cell'
     static final String COLUMN = 'Column'

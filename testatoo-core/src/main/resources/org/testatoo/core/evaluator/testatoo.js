@@ -30,8 +30,9 @@
         if (el.is('ul')) return 'List';
         if (el.is('ol')) return 'List';
         if (el.is('li')) return 'Item';
-        if (el.is('select')) return el.attr('multiple') ? 'ListBox' : 'DropDown';
+        if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'DropDown';
         if (el.is('option')) return 'Item';
+        if (el.is('optgroup')) return 'GroupItem';
         if (el.is('table')) return 'DataGrid';
         if (el.is('tr')) return 'Row';
         if (el.is('td')) return 'Cell';
@@ -259,10 +260,19 @@
             $('#' + id + '').prop('selected', true);
         },
 
+        unSelectItem: function (id) {
+            $('#' + id + '').prop('selected', false);
+        },
+
         getLabel: function (id) {
+            var el = $('#' + id + '');
+            if (el.is('option') || el.is('optgroup'))  {
+                return el.attr('label');
+            }
+
             var label = $('label[for="' + id + '"]');
             if (label.length > 0) return label.text();
-            var el = $('#' + id + '');
+
             var p = el.prev('label');
             if (p.length > 0) return p.text();
             return el.parent().text().trim();
