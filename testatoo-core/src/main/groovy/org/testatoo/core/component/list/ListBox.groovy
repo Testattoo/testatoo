@@ -3,10 +3,12 @@ package org.testatoo.core.component.list
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Type
 import org.testatoo.core.property.GroupItems
+import org.testatoo.core.property.GroupItemsSize
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.SelectedItems
 import org.testatoo.core.property.Size
+import org.testatoo.core.property.VisibleItemsSize
 import org.testatoo.core.state.Available
 import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Enabled
@@ -21,7 +23,7 @@ class ListBox extends Component {
 
     ListBox() {
         type Type.LISTBOX
-        support Label, Size, SelectedItems
+        support Label, Size, GroupItemsSize, VisibleItemsSize, SelectedItems
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

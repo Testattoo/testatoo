@@ -286,6 +286,9 @@
             if (el.is('select')) {
                 return el.find('option').length;
             }
+            if (el.is('optgroup')) {
+                return el.find('option').length;
+            }
             return 0;
         },
 
@@ -310,9 +313,17 @@
             }
         },
 
+        isDisabled: function(id) {
+            var el = $('#' + id + '');
+            if(el.is(':disabled')) {
+                return true;
+            }
+            return (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
+        },
+
         type: function (id, text) {
-            var e = $('#' + id + '');
-            e.val('');
+            var el = $('#' + id + '');
+            el.val('');
             $.ext.simulate.click(id);
             text = text || '';
             for (var i = 0; i < text.length; i++) {

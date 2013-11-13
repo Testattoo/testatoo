@@ -30,7 +30,9 @@ class Properties {
 
     static final GroupItems groupItems = new GroupItems()
     static final PropertyMatcher groupItems(String... expected) { groupItems.equalsTo(expected) }
+    static final GroupItemsSize groupItemsSize = new GroupItemsSize()
 
+    static final VisibleItemsSize visibleItemsSize = new VisibleItemsSize()
 
     static final Size size = new Size()
 

@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Enabled extends State {
     Enabled() {
-        evaluator { Component c -> c.evaluator.getBool("\$('#" + c.id + "').is(':not([disabled])')") }
+        evaluator { Component c -> !c.evaluator.getBool("testatoo.ext.isDisabled('${c.id}')")  }
         description e: 'enabled', w: 'disabled'
     }
 }

@@ -3,6 +3,7 @@ package org.testatoo.core.component.list
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Type
 import org.testatoo.core.property.GroupItems
+import org.testatoo.core.property.GroupItemsSize
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.SelectedItems
@@ -16,7 +17,7 @@ class DropDown extends Component {
 
     DropDown() {
         type Type.DROPDOWN
-        support Label, Size, SelectedItems
+        support Label, Size, GroupItemsSize, SelectedItems
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

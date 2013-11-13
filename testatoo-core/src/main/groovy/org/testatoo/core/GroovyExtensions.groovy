@@ -40,7 +40,11 @@ class GroovyExtensions {
     }
 
     public static PropertyMatcher getGroupItems(Integer expected) {
-        Properties.size.equalsTo(expected)
+        Properties.groupItemsSize.equalsTo(expected)
+    }
+
+    public static PropertyMatcher getVisibleItems(Integer expected) {
+        Properties.visibleItemsSize.equalsTo(expected)
     }
 
 //    static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {

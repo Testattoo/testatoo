@@ -6,6 +6,7 @@ import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 import org.testatoo.core.component.Button
+import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Link
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.CheckBox
@@ -16,6 +17,7 @@ import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
 
+import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
@@ -144,12 +146,11 @@ class ComponentTest {
 
         assertThat dropDown has items.containing('Polonium', 'Calcium')
 
-        // TODO Math ... is it a state or a property !!!
         assertThat dropDown has selectedItems('Helium')
         on dropDown select 'Polonium'
         assertThat dropDown has selectedItems('Polonium')
 
-        dropDown.items.size = 5
+        assert dropDown.items.size == 5
         assertThat dropDown has 5.items
 
         assertThat dropDown.items[0] has label('H')
@@ -164,14 +165,13 @@ class ComponentTest {
         dropDown = $('#countries') as DropDown
         assertThat dropDown is disabled
         assertThat dropDown has items('Canada', 'France', 'Spain')
-
-//        and(it(), has(not(selectedValues())));
+        assertThat dropDown.items[0] is disabled
 
         dropDown = $('#os') as DropDown
         assertThat dropDown has 8.items
         assertThat dropDown has items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
 
-//        assertThat dropDown has 3.groupItems
+        assertThat dropDown has 3.groupItems
         assertThat dropDown has groupItems('linux', 'win32', 'BSD')
 
         GroupItem group = dropDown.groupItems[0]
@@ -184,9 +184,10 @@ class ComponentTest {
 
         group = dropDown.groupItems[2]
         assertThat group has label('BSD')
+        assertThat group has 2.items
+        assert group.items.size == 2
         assertThat group has items('FreeBSD', 'OpenBSD')
     }
-
 
     @Test
     public void test_listBox() {
@@ -195,60 +196,31 @@ class ComponentTest {
         assertThat listBox has 6.items
         assertThat listBox has selectedItems('New York', 'Munich')
 
-//        assertThat listBox has 2.visibleItems
-//        assertThat listBox has multiselectionSupport
+        assertThat listBox has 3.visibleItems
+
+//        assertThat listBox is multiSelectable
+//        assertThat listBox !support singleSelectable
 
         assertThat listBox.items[0] is enabled
         assertThat listBox.items[1] is disabled
 
-        on listBox unSelect 'New York'
-        on listBox unSelect 'Munich'
+        on listBox unselect 'New York'
+        on listBox unselect 'Munich'
 
         on listBox select 'Montreal'
         on listBox select 'Montpellier'
 
-        // TODO must fail cause disabled
-//        try {
-//            on listBox select 'Quebec'
-//            fail()
-//        } catch (ComponentException e) {
-//            assert e.message == 'some error message'
-//        }
+        try {
+            on listBox select 'Quebec'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Item Quebec is disabled and cannot be selected '
+        }
 
         assertThat listBox has selectedItems('Montreal', 'Montpellier')
     }
 
 }
-
-//    @Test
-//    public void test_if_multiple_select() {
-//        assertThat(component(Select.class, $("#cities")).isMultiple(), is(true));
-//    }
-//
-//    @Test
-//    public void test_number_of_visible_rows() {
-//        assertThat(component(Select.class, $("#elements")).visibleRows(), is(2));
-//    }
-
-//
-//    // Test specific for Html
-//    @Test
-//    public void can_select_item() {
-//        // List without explicit values (in this case, the value is set with the content)
-//        DropDown countriesList = component(DropDown.class, "countries");
-//        countriesList.select("France");
-//        assertThat(countriesList.selectedValue(), is("France"));
-//        countriesList.select("Spain");
-//        assertThat(countriesList.selectedValue(), is("Spain"));
-//
-//        // List with explicit values
-//        DropDown elementsList = component(DropDown.class, "elements");
-//        elementsList.select("Polonium");
-//        assertThat(elementsList.selectedValue(), is("Polonium"));
-//        elementsList.select("Calcium");
-//        assertThat(elementsList.selectedValue(), is("Calcium"));
-//    }
-//
 
 //
 //    @Test
@@ -257,8 +229,6 @@ class ComponentTest {
 //    }
 
 // ===================================================
-
-//
 
 //    @Test
 //    public void test_page() {
