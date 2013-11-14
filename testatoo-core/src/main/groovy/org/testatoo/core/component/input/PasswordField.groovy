@@ -23,7 +23,7 @@ import org.testatoo.core.component.Type
 class PasswordField extends TextField {
 
     PasswordField() {
-        type Type.PASSWORDFIELD
+        type Type.PASSWORD_FIELD
     }
 
 }

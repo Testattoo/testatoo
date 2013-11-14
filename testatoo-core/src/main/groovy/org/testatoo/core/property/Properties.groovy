@@ -36,6 +36,17 @@ class Properties {
 
     static final Size size = new Size()
 
+    static final Minimum minimum = new Minimum()
+    static final PropertyMatcher minimun(Number... expected) { minimum.equalsTo(expected) }
+    static final PropertyMatcher minimun(String... expected) { minimum.equalsTo(expected) }
+
+    static final Maximum maximum = new Maximum()
+    static final PropertyMatcher maximum(Number... expected) { maximum.equalsTo(expected) }
+    static final PropertyMatcher maximum(String... expected) { maximum.equalsTo(expected) }
+
+    static final Step step = new Step()
+    static final PropertyMatcher step(Number... expected) { step.equalsTo(expected) }
+
     static final SelectedItems selectedItems = new SelectedItems()
     static final PropertyMatcher selectedItems(String... expected) { selectedItems.equalsTo(expected) }
 }

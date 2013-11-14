@@ -33,6 +33,7 @@
         if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'DropDown';
         if (el.is('option')) return 'Item';
         if (el.is('optgroup')) return 'GroupItem';
+        if (el.is('form')) return 'Form';
         if (el.is('table')) return 'DataGrid';
         if (el.is('tr')) return 'Row';
         if (el.is('td')) return 'Cell';
@@ -49,8 +50,30 @@
                     return 'PasswordField';
                 case 'email':
                     return 'EmailField';
+                case 'tel':
+                    return 'PhoneField';
+                case 'url':
+                    return 'URLField';
+                case 'search':
+                    return 'SearchField';
+                case 'number':
+                    return 'NumberField';
+                case 'range':
+                    return 'RangeField';
+                case 'color':
+                    return 'ColorField';
                 case 'file':
                     return 'FileDialog';
+                case 'month':
+                    return 'MonthField';
+                case 'week':
+                    return 'WeekField';
+                case 'date':
+                    return 'DateField';
+                case 'time':
+                    return 'TimeField';
+                case 'datetime':
+                    return 'DateTimeField';
                 case 'button':
                     return 'Button';
                 case 'submit':

@@ -14,7 +14,7 @@ import org.testatoo.core.state.*
 class GroupItem extends Component {
 
     GroupItem() {
-        type Type.GROUPITEM
+        type Type.GROUP_ITEM
         support Label, Value, Size
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }

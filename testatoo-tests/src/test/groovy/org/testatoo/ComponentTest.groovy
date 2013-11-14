@@ -5,14 +5,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Link
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.input.CheckBox
-import org.testatoo.core.component.input.PasswordField
-import org.testatoo.core.component.input.Radio
-import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.*
+import org.testatoo.core.component.input.*
 import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
@@ -58,6 +52,8 @@ class ComponentTest {
 
     @Test
     public void test_input_fields() {
+
+        // Text field
         TextField textField = $('#text_field') as TextField
 
         assertThat textField is enabled
@@ -71,6 +67,12 @@ class ComponentTest {
         assertThat textField has value('some value')
         assertThat textField is filled
 
+        // TextArea is treated as TextField
+        textField = $('#text_area_field') as TextField
+
+        assertThat textField is enabled
+        assertThat textField is visible
+
         PasswordField passwordField = $('#password_field') as PasswordField
 
         assertThat passwordField is enabled
@@ -79,7 +81,50 @@ class ComponentTest {
         assertThat passwordField has label('Password')
         assertThat passwordField has text('?art')
 
-        // TODO Textarea
+        EmailField emailField = $('#email_field') as EmailField
+        assertThat emailField is disabled
+
+        PhoneField phoneField = $('#phone_field') as PhoneField
+        assertThat phoneField is enabled
+//        assertThat phoneField has pattern('^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$')
+
+        URLField urlField = $('#url_field') as URLField
+        assertThat urlField is enabled
+
+        SearchField searchField = $('#search_field') as SearchField
+        assertThat searchField is enabled
+
+        NumberField numberField = $('#number_field') as NumberField
+        assertThat numberField is enabled
+        assertThat numberField has minimun(0)
+        assertThat numberField has maximum(64)
+        assertThat numberField has step(8)
+
+        RangeField rangeField = $('#range_field') as RangeField
+        assertThat rangeField is enabled
+        assertThat rangeField has minimun(0)
+        assertThat rangeField has maximum(50)
+        assertThat rangeField has step(5)
+
+        ColorField colorField = $('#color_field') as ColorField
+        assertThat colorField is enabled
+
+        MonthField monthField = $('#month_field') as MonthField
+        assertThat monthField is enabled
+
+        WeekField weekField = $('#week_field') as WeekField
+        assertThat weekField is enabled
+
+        DateField dateField = $('#date_field') as DateField
+        assertThat dateField is enabled
+        assertThat dateField has minimun('2011-08-13')
+        assertThat dateField has maximum('2012-06-25')
+
+        TimeField timeField = $('#time_field') as TimeField
+        assertThat timeField is enabled
+
+        DateTimeField dateTimeField = $('#datetime_field') as DateTimeField
+        assertThat dateTimeField is enabled
     }
 
     @Test
@@ -114,6 +159,11 @@ class ComponentTest {
 
         assertThat link has text('Link to component page')
         assertThat link has reference.containing('/component.html')
+    }
+
+    @Test
+    public void test_image() {
+//        reference
     }
 
     @Test
@@ -194,6 +244,8 @@ class ComponentTest {
         ListBox listBox = $('#cities') as ListBox
 
         assertThat listBox has 6.items
+        assertThat listBox has items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
+
         assertThat listBox has selectedItems('New York', 'Munich')
 
         assertThat listBox has 3.visibleItems
@@ -220,24 +272,43 @@ class ComponentTest {
 
         listBox = $('#planets') as ListBox
         assertThat listBox is singleSelectable
+
+        assertThat listBox has groupItems('Cat-1', 'Cat-2')
+
+        GroupItem group = listBox.groupItems[0]
+        assertThat group has label('Cat-1')
+        assertThat group has 4.items
+        assert group.items.size == 4
+        assertThat group has items('Mercury', 'Venus', 'Earth', 'Mars')
+    }
+
+    @Test
+    public void test_listView() {
+
+    }
+
+    @Test
+    public void test_form() {
+        $('#form') as Form
+    }
+
+
+    public void test_datagrid() {
+
+    }
+
+    @Test
+    public void test_page() {
+//        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
     }
 
 }
 
-//
-//    @Test
-//    public void test_contains() {
-//
-//    }
+
 
 // ===================================================
 
-//    @Test
-//    public void test_page() {
-//        open('/component.html');
 //
-//        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
-//    }
 //
 //    @Test
 //    public void test_contains() {

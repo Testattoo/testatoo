@@ -64,4 +64,10 @@ class DSLTest {
 //        waitUntil button is enabled  & message.is(visible), 10.seconds
 
     }
+
+    //
+//    @Test
+//    public void test_contains() {
+//
+//    }
 }

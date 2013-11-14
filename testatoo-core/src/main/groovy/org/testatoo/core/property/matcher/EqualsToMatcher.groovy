@@ -49,14 +49,13 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
     static class Matchers extends PropertyMatchers {
 
         EqualsToMatcher equalsTo(String expected) { equalsTo([expected]) }
+        EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
 
-        EqualsToMatcher equalsTo(int expected) { equalsTo([expected]) }
+        EqualsToMatcher equalsTo(Number expected) { equalsTo([expected]) }
+        EqualsToMatcher equalsTo(Number ... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
 
         EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(property, anyOfExpected) }
 
-        EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
-
-        EqualsToMatcher equalsTo(int ... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
     }
 
 }

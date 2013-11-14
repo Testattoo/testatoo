@@ -23,7 +23,7 @@ import org.testatoo.core.component.Type
 class EmailField extends TextField {
 
     EmailField() {
-        type Type.EMAILFIELD
+        type Type.EMAIL_FIELD
     }
 
 }

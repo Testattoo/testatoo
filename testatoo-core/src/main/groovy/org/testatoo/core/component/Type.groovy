@@ -24,15 +24,29 @@ class Type {
     static final String CHECKBOX = 'CheckBox'
     static final String LINK = 'Link'
     static final String PANEL = 'Panel'
-    static final String PASSWORDFIELD = 'PasswordField'
-    static final String EMAILFIELD = 'EmailField'
+    static final String TEXT_FIELD = 'TextField'
+    static final String PASSWORD_FIELD = 'PasswordField'
+    static final String EMAIL_FIELD = 'EmailField'
+    static final String PHONE_FIELD = 'PhoneField'
+    static final String URL_FIELD = 'URLField'
+    static final String SEARCH_FIELD = 'SearchField'
+    static final String NUMBER_FIELD = 'NumberField'
+    static final String RANGE_FIELD = 'RangeField'
+    static final String MONTH_FIELD = 'MonthField'
+    static final String WEEK_FIELD = 'WeekField'
+    static final String COLOR_FIELD = 'ColorField'
+    static final String DATE_FIELD = 'DateField'
+    static final String TIME_FIELD = 'TimeField'
+    static final String DATETIME_FIELD = 'DateTimeField'
+
+
     static final String RADIO = 'Radio'
-    static final String TEXTFIELD = 'TextField'
+    static final String FORM = 'Form'
 
     static final String DROPDOWN = 'DropDown'
     static final String LISTBOX = 'ListBox'
     static final String ITEM = 'Item'
-    static final String GROUPITEM = 'GroupItem'
+    static final String GROUP_ITEM = 'GroupItem'
 
     static final String UNDEFINED = 'Undefined'
 

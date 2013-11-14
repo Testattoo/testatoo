@@ -16,7 +16,6 @@
 package org.testatoo.core.component.input
 
 import org.testatoo.core.component.Type
-import org.testatoo.core.component.input.Input
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
 
@@ -26,7 +25,7 @@ import org.testatoo.core.property.Placeholder
 class TextField extends Input {
 
     TextField() {
-        type Type.TEXTFIELD
+        type Type.TEXT_FIELD
         support Placeholder, Label
     }
 
