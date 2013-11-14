@@ -48,6 +48,8 @@ class Type {
     static final String ITEM = 'Item'
     static final String GROUP_ITEM = 'GroupItem'
 
+    static final String IMAGE = 'Image'
+
     static final String UNDEFINED = 'Undefined'
 
 
@@ -57,7 +59,7 @@ class Type {
 
     static final String COMBOBOX = 'ComboBox'
 
-    static final String IMAGE = 'Image'
+
     static final String LIST = 'List'
 
     static final String DATAGRID = 'DATAGRID'

@@ -15,7 +15,24 @@
     limitations under the License.
 
 -->
-<!--#include virtual="header.html" -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Testatoo Rocks</title>
+
+    <meta name="description" content="HTML5 Rocks">
+    <meta name="author" content="ovea">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script src="js/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+
+
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Testatoo Component</a>
@@ -23,230 +40,248 @@
 </nav>
 
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+<div class="col-md-2"></div>
+<div class="col-md-8">
 
-        <a href="component.html" id="link">Link to component page</a>
+<a href="component.html" id="link">Link to component page</a>
 
-        <hr/>
+<hr/>
 
-        <form id="form">
-            <input type="button" id="button" class="btn btn-primary" value="Button"/>
-            <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
-            <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
+<form id="form">
+    <input type="button" id="button" class="btn btn-primary" value="Button"/>
+    <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
+    <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
 
-            <button type="submit" id="btn" class="btn btn-primary" value="value">My Button Text</button>
+    <button type="submit" id="btn" class="btn btn-primary" value="value">My Button Text</button>
 
-            <hr/>
+    <hr/>
 
-            <label class="checkbox">
-                <input type="checkbox" id="checkbox">Check me out
-            </label>
+    <label class="checkbox">
+        <input type="checkbox" id="checkbox">Check me out
+    </label>
 
-            <hr/>
+    <hr/>
 
-            <label class="radio">
-                <input type="radio" id="radio" value="value_1" checked>
-                Radio label
-            </label>
+    <label class="radio">
+        <input type="radio" id="radio" value="value_1" checked>
+        Radio label
+    </label>
 
-            <hr/>
+    <hr/>
 
-            <label class="control-label" for="text_field">Text</label>
-            <div class="controls">
-                <input type="text" id="text_field" placeholder="Text">
-            </div>
+    <label class="control-label" for="text_field">Text</label>
 
-            <label class="control-label" for="password_field">Password</label>
-            <div class="controls">
-                <input type="password" id="password_field" placeholder="Password" value="?art">
-            </div>
-
-            <label class="control-label" for="email_field">Email</label>
-            <div class="controls">
-                <input type="email" id="email_field" placeholder="Email" disabled>
-            </div>
-
-            <label class="control-label" for="phone_field">Phone</label>
-            <div class="controls">
-                <input type="tel" id="phone_field" placeholder="Phone"
-                       pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
-            </div>
-
-            <label class="control-label" for="phone_field">URL</label>
-            <div class="controls">
-                <input type="url" id="url_field" placeholder="URL">
-            </div>
-
-            <label class="control-label" for="search_field">Search</label>
-            <div class="controls">
-                <input type="search" id="search_field" placeholder="Search">
-            </div>
-
-            <label class="control-label" for="number_field">Number</label>
-            <div class="controls">
-                <input type="number" id="number_field" placeholder="Number" step="8"  min="0" max="64">
-            </div>
-
-            <label class="control-label" for="range_field">Range</label>
-            <div class="controls">
-                <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5">
-            </div>
-
-            <label class="control-label" for="color_field">Color</label>
-            <div class="controls">
-                <input type="color" id="color_field" placeholder="Color">
-            </div>
-
-            <label class="control-label" for="month_field">Month</label>
-            <div class="controls">
-                <input type="month" id="month_field" placeholder="Month">
-            </div>
-
-            <label class="control-label" for="week_field">Week</label>
-            <div class="controls">
-                <input type="week" id="week_field" placeholder="Week">
-            </div>
-
-            <label class="control-label" for="date_field">Date</label>
-            <div class="controls">
-                <input type="date" id="date_field" placeholder="Date" max="2012-06-25" min="2011-08-13">
-            </div>
-
-            <label class="control-label" for="time_field">Date</label>
-            <div class="controls">
-                <input type="time" id="time_field" placeholder="Time">
-            </div>
-
-            <label class="control-label" for="datetime_field">Date</label>
-            <div class="controls">
-                <input type="datetime" id="datetime_field" placeholder="DateTime">
-            </div>
-
-            <label class="control-label" for="text_area_field">Date</label>
-            <div class="controls">
-                <textarea id="text_area_field" rows="4" cols="50">
-                    Text area
-                </textarea>
-            </div>
-
-            <hr/>
-
-            <label class="control-label" for="cities">Cities list</label>
-
-            <div class="controls">
-                <select id="cities" size="3" multiple="multiple" name="cityName" title="cityTitle">
-                    <option label="Montreal" value="Montreal">Montreal</option>
-                    <option label="Quebec" value="Quebec" disabled>Quebec</option>
-                    <option label="Montpellier" value="Montpellier">Montpellier</option>
-                    <option label="New York" value="New York" selected="selected">New York</option>
-                    <option label="Casablanca" value="Casablanca">Casablanca</option>
-                    <option label="Munich" value="Munich" selected="selected">Munich</option>
-                </select>
-            </div>
-
-            <hr/>
-
-            <label class="control-label" for="elements">Elements list</label>
-
-            <div class="controls">
-                <select id="elements">
-                    <option label="H" value="1">Helium</option>
-                    <option label="B" value="5">Boron</option>
-                    <option label="Pol" value="84">Polonium</option>
-                    <option label="Ca" value="20">Calcium</option>
-                    <option label="Ra" value="88">Radium</option>
-                </select>
-            </div>
-
-            <hr/>
-
-            <label class="control-label" for="countries">Countries list</label>
-
-            <div class="controls">
-                <select id="countries" disabled>
-                    <option label="Canada">Canada</option>
-                    <option label="France">France</option>
-                    <option label="Spain">Spain</option>
-                </select>
-            </div>
-
-            <hr/>
-
-            <label class="control-label" for="planets">planets list</label>
-
-            <div class="controls">
-                <select id="planets" size="5">
-                    <optgroup label="Cat-1">
-                        <option value="1">Mercury</option>
-                        <option value="2">Venus</option>
-                        <option value="3">Earth</option>
-                        <option value="4">Mars</option>
-                    </optgroup>
-                    <optgroup label="Cat-2">
-                        <option value="5">Jupiter</option>
-                        <option value="6">Saturn</option>
-                        <option value="7">Uranus</option>
-                        <option value="8">Neptune</option>
-                    </optgroup>
-                </select>
-            </div>
-
-            <hr/>
-
-            <label class="control-label" for="os">OS</label>
-
-            <div class="controls">
-                <select id="os">
-                    <option selected label="none" value="none">None</option>
-                    <optgroup id="linux" label="linux" name="linuxGrpName">
-                        <option label="UbuntuLabel" value="UbuntuValue" id="kubuntuOption">Ubuntu</option>
-                        <option label="RedHatLabel" value="RedHatValue">Fedora</option>
-                        <option label="GentooLabel" value="GentooValue">Gentoo</option>
-                    </optgroup>
-                    <optgroup label="win32">
-                        <option label="XPLabel" value="XPValue">XP</option>
-                        <option label="VistaLabel" value="VistaValue">Vista</option>
-                    </optgroup>
-                    <optgroup label="BSD">
-                        <option label="FreeBSDLabel" value="FreeBSDValue">FreeBSD</option>
-                        <option label="OpenBSDLabel" value="OpenBSDValue">OpenBSD</option>
-                    </optgroup>
-                </select>
-            </div>
-
-        </form>
-
-        <hr/>
-
-        <ul id="list_view">
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-            <li>Item 5</li>
-        </ul>
-
-        <hr/>
-
-        <div id="panel">
-            <button id="button_in_visible_panel" class="btn btn-primary">Button</button>
-            <button id="invisible_button_in_visible_panel" style="display: none">Button</button>
-        </div>
-
-        <div id="invisible_panel" style="display: none">
-            <button id="button_in_invisible_panel">Button</button>
-        </div>
-
-
-        <!-- TODO move to other page test -->
-        <!--<button type="button" id="add-message" class="btn btn-primary">Add message</button>-->
-        <!--<div id="messages"></div>-->
-
-
-
+    <div class="controls">
+        <input type="text" id="text_field" placeholder="Text">
     </div>
-    <div class="col-md-2"></div>
+
+    <label class="control-label" for="password_field">Password</label>
+
+    <div class="controls">
+        <input type="password" id="password_field" placeholder="Password" value="?art">
+    </div>
+
+    <label class="control-label" for="email_field">Email</label>
+
+    <div class="controls">
+        <input type="email" id="email_field" placeholder="Email" disabled>
+    </div>
+
+    <label class="control-label" for="phone_field">Phone</label>
+
+    <div class="controls">
+        <input type="tel" id="phone_field" placeholder="Phone"
+               pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+    </div>
+
+    <label class="control-label" for="phone_field">URL</label>
+
+    <div class="controls">
+        <input type="url" id="url_field" placeholder="URL">
+    </div>
+
+    <label class="control-label" for="search_field">Search</label>
+
+    <div class="controls">
+        <input type="search" id="search_field" placeholder="Search">
+    </div>
+
+    <label class="control-label" for="number_field">Number</label>
+
+    <div class="controls">
+        <input type="number" id="number_field" placeholder="Number" step="8" min="0" max="64">
+    </div>
+
+    <label class="control-label" for="range_field">Range</label>
+
+    <div class="controls">
+        <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5">
+    </div>
+
+    <label class="control-label" for="color_field">Color</label>
+
+    <div class="controls">
+        <input type="color" id="color_field" placeholder="Color">
+    </div>
+
+    <label class="control-label" for="month_field">Month</label>
+
+    <div class="controls">
+        <input type="month" id="month_field" placeholder="Month">
+    </div>
+
+    <label class="control-label" for="week_field">Week</label>
+
+    <div class="controls">
+        <input type="week" id="week_field" placeholder="Week">
+    </div>
+
+    <label class="control-label" for="date_field">Date</label>
+
+    <div class="controls">
+        <input type="date" id="date_field" placeholder="Date" max="2012-06-25" min="2011-08-13">
+    </div>
+
+    <label class="control-label" for="time_field">Date</label>
+
+    <div class="controls">
+        <input type="time" id="time_field" placeholder="Time">
+    </div>
+
+    <label class="control-label" for="datetime_field">Date</label>
+
+    <div class="controls">
+        <input type="datetime" id="datetime_field" placeholder="DateTime">
+    </div>
+
+    <label class="control-label" for="text_area_field">Date</label>
+
+    <div class="controls">
+        <textarea id="text_area_field" rows="4" cols="50">
+            Text area
+        </textarea>
+    </div>
+
+    <hr/>
+
+    <label class="control-label" for="cities">Cities list</label>
+
+    <div class="controls">
+        <select id="cities" size="3" multiple="multiple" name="cityName" title="cityTitle">
+            <option label="Montreal" value="Montreal">Montreal</option>
+            <option label="Quebec" value="Quebec" disabled>Quebec</option>
+            <option label="Montpellier" value="Montpellier">Montpellier</option>
+            <option label="New York" value="New York" selected="selected">New York</option>
+            <option label="Casablanca" value="Casablanca">Casablanca</option>
+            <option label="Munich" value="Munich" selected="selected">Munich</option>
+        </select>
+    </div>
+
+    <hr/>
+
+    <label class="control-label" for="elements">Elements list</label>
+
+    <div class="controls">
+        <select id="elements">
+            <option label="H" value="1">Helium</option>
+            <option label="B" value="5">Boron</option>
+            <option label="Pol" value="84">Polonium</option>
+            <option label="Ca" value="20">Calcium</option>
+            <option label="Ra" value="88">Radium</option>
+        </select>
+    </div>
+
+    <hr/>
+
+    <label class="control-label" for="countries">Countries list</label>
+
+    <div class="controls">
+        <select id="countries" disabled>
+            <option label="Canada">Canada</option>
+            <option label="France">France</option>
+            <option label="Spain">Spain</option>
+        </select>
+    </div>
+
+    <hr/>
+
+    <label class="control-label" for="planets">planets list</label>
+
+    <div class="controls">
+        <select id="planets" size="5">
+            <optgroup label="Cat-1">
+                <option value="1">Mercury</option>
+                <option value="2">Venus</option>
+                <option value="3">Earth</option>
+                <option value="4">Mars</option>
+            </optgroup>
+            <optgroup label="Cat-2">
+                <option value="5">Jupiter</option>
+                <option value="6">Saturn</option>
+                <option value="7">Uranus</option>
+                <option value="8">Neptune</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <hr/>
+
+    <label class="control-label" for="os">OS</label>
+
+    <div class="controls">
+        <select id="os">
+            <option selected label="none" value="none">None</option>
+            <optgroup id="linux" label="linux" name="linuxGrpName">
+                <option label="UbuntuLabel" value="UbuntuValue" id="kubuntuOption">Ubuntu</option>
+                <option label="RedHatLabel" value="RedHatValue">Fedora</option>
+                <option label="GentooLabel" value="GentooValue">Gentoo</option>
+            </optgroup>
+            <optgroup label="win32">
+                <option label="XPLabel" value="XPValue">XP</option>
+                <option label="VistaLabel" value="VistaValue">Vista</option>
+            </optgroup>
+            <optgroup label="BSD">
+                <option label="FreeBSDLabel" value="FreeBSDValue">FreeBSD</option>
+                <option label="OpenBSDLabel" value="OpenBSDValue">OpenBSD</option>
+            </optgroup>
+        </select>
+    </div>
+
+</form>
+
+<hr/>
+
+<ul id="list_view">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+</ul>
+
+<hr/>
+
+<img id="image" src="img/Montpellier.jpg" />
+
+<hr/>
+
+<div id="panel">
+    <button id="button_in_visible_panel" class="btn btn-primary">Button</button>
+    <button id="invisible_button_in_visible_panel" style="display: none">Button</button>
+</div>
+
+<div id="invisible_panel" style="display: none">
+    <button id="button_in_invisible_panel">Button</button>
+</div>
+
+
+<!-- TODO move to other page test -->
+<!--<button type="button" id="add-message" class="btn btn-primary">Add message</button>-->
+<!--<div id="messages"></div>-->
+
+
+</div>
+<div class="col-md-2"></div>
 </div>
 
 <script>
@@ -265,4 +300,5 @@
     }(jQuery));
 </script>
 
-<!--#include virtual="footer.html" -->
+</body>
+</html>

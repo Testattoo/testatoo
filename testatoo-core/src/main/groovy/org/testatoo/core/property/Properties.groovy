@@ -22,6 +22,9 @@ class Properties {
     static final Reference reference = new Reference()
     static final PropertyMatcher reference(String expected) { reference.equalsTo(expected) }
 
+    static final Source source = new Source()
+    static final PropertyMatcher source(String expected) { source.equalsTo(expected) }
+
     static final Title title = new Title()
     static final PropertyMatcher title(String expected) { title.equalsTo(expected) }
 
@@ -46,6 +49,9 @@ class Properties {
 
     static final Step step = new Step()
     static final PropertyMatcher step(Number... expected) { step.equalsTo(expected) }
+
+    static final Pattern pattern = new Pattern()
+    static final PropertyMatcher pattern(String... expected) { pattern.equalsTo(expected) }
 
     static final SelectedItems selectedItems = new SelectedItems()
     static final PropertyMatcher selectedItems(String... expected) { selectedItems.equalsTo(expected) }

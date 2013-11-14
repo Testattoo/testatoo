@@ -86,7 +86,7 @@ class ComponentTest {
 
         PhoneField phoneField = $('#phone_field') as PhoneField
         assertThat phoneField is enabled
-//        assertThat phoneField has pattern('^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$')
+        assertThat phoneField has pattern('^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$')
 
         URLField urlField = $('#url_field') as URLField
         assertThat urlField is enabled
@@ -158,12 +158,18 @@ class ComponentTest {
         assertThat link is visible
 
         assertThat link has text('Link to component page')
-        assertThat link has reference.containing('/component.html')
+        assertThat link has reference('http://localhost:8080/component.html')
+        assertThat link has reference.containing('component')
     }
 
     @Test
     public void test_image() {
-//        reference
+        Image image = $('#image') as Image
+        assertThat image is enabled
+        assertThat image is visible
+
+        assertThat image has source('http://localhost:8080/img/Montpellier.jpg')
+        assertThat image has source.containing('Montpellier')
     }
 
     @Test
