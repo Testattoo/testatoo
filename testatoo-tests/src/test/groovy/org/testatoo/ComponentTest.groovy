@@ -296,17 +296,146 @@ class ComponentTest {
     @Test
     public void test_form() {
         $('#form') as Form
+
+//        @Test
+//        public void can_submit_a_form() {
+//            assertThat(page().title(), is("Form tests"));
+//
+//            Button submitButton = component(Button.class, $("#submitImage"));
+//            clickOn(submitButton);
+//
+//            waitUntil(page(), has(title("Exit page")));
+//
+//            page().open("Form.html");
+//            assertThat(page(), has(title("Form tests")));
+//            clickOn(submitButton);
+//
+//            assertThat(page(), has(title("Exit page")));
+//
+//            page().open("Form.html");
+//            assertThat(page(), has(title("Form tests")));
+//
+//            component(Form.class, $("#myForm")).submit();
+//
+//            assertThat(page(), has(title("Exit page")));
+//        }
+
+//        @Test
+//        public void can_reset_a_form() {
+//            type("Joe", on(component(InputText.class, $("#firstname"))));
+//            type("Blow", into(component(InputText.class, $("#lastname"))));
+//            enter("email@noname.com", into(component(InputText.class, $("#email"))));
+//
+//            check(component(Radio.class, $("#male")));
+//            check(component(CheckBox.class, $("[name=yes]")));
+//
+//            on(component(Select.class, $("#cities"))).select("Casablanca");
+//
+//            component(Form.class, $("#myForm")).reset();
+//
+//            assertThat(component(InputText.class, $("#firstname")), has(value("")));
+//            assertThat(component(InputText.class, $("#lastname")), has(value("")));
+//            assertThat(component(InputText.class, $("#email")), has(value("")));
+//
+//            assertThat(component(Radio.class, $("#male")), is(not(checked())));
+//            assertThat(component(CheckBox.class, $("[name=yes]")), is(not(checked())));
+//
+//            assertThat(component(Select.class, $("#cities")), has(selectedValues("New York")));
+//
+//            type("Joe", on(component(InputText.class, $("#firstname"))));
+//            type("Blow", into(component(InputText.class, $("#lastname"))));
+//            enter("email@noname.com", into(component(InputText.class, $("#email"))));
+//
+//            check(component(Radio.class, $("#male")));
+//            check(component(CheckBox.class, $("[name=yes]")));
+//
+//            on(component(Select.class, $("#cities"))).select("Casablanca");
+//
+//            on(component(Form.class, $("#myForm"))).reset();
+//
+//            assertThat(component(InputText.class, $("#firstname")), has(value("")));
+//            assertThat(component(InputText.class, $("#lastname")), has(value("")));
+//            assertThat(component(InputText.class, $("#email")), has(value("")));
+//
+//            assertThat(component(Radio.class, $("#male")), is(not(checked())));
+//            assertThat(component(CheckBox.class, $("[name=yes]")), is(not(checked())));
+//
+//            assertThat(component(Select.class, $("#cities")), has(selectedValues("New York")));
+//        }
+
+
     }
 
 
     public void test_datagrid() {
 
+//        @Test
+//        public void can_test_columns_title() {
+//            DataGrid grid1 = component(DataGrid.class, "grid1");
+//
+//            assertThat(grid1.columns().size(), is(3));
+//
+//            Selection<Column> columns = grid1.columns();
+//
+//            assertThat(columns.get(0).title(), is("Column1"));
+//            assertThat(columns.get(1).title(), is("Column2"));
+//            assertThat(columns.get(2).title(), is("Column3"));
+//        }
+//
+//        @Test
+//        public void can_test_column_cells() {
+//            DataGrid grid1 = component(DataGrid.class, "grid1");
+//
+//            Selection<Column> columns = grid1.columns();
+//
+//            assertThat(columns.get(0).cells().size(), is(3));
+//            assertThat(columns.get(1).cells().size(), is(3));
+//            assertThat(columns.get(2).cells().size(), is(3));
+//
+//            assertThat(columns.get(0).cells().get(0).value(), is("value10"));
+//            assertThat(columns.get(0).cells().get(1).value(), is("value11"));
+//            assertThat(columns.get(0).cells().get(2).value(), is("value12"));
+//
+//            assertThat(columns.get(1).cells().get(0).value(), is("value20"));
+//            assertThat(columns.get(1).cells().get(1).value(), is("value21"));
+//            assertThat(columns.get(1).cells().get(2).value(), is("value22"));
+//
+//            assertThat(columns.get(2).cells().get(0).value(), is("value30"));
+//            assertThat(columns.get(2).cells().get(1).value(), is("value31"));
+//            assertThat(columns.get(2).cells().get(2).value(), is("value32"));
+//        }
+
+//        @Test
+//        public void can_test_row_cell() {
+//            DataGrid grid1 = component(DataGrid.class, "grid1");
+//
+//            Selection<Row> rows = grid1.rows();
+//
+//            assertThat(rows.size(), is(3));
+//
+//            assertThat(rows.get(0).cells().size(), is(3));
+//            assertThat(rows.get(1).cells().size(), is(3));
+//            assertThat(rows.get(2).cells().size(), is(3));
+//
+//            assertThat(rows.get(0).cells().get(0).value(), is("value10"));
+//            assertThat(rows.get(0).cells().get(1).value(), is("value20"));
+//            assertThat(rows.get(0).cells().get(2).value(), is("value30"));
+//
+//            assertThat(rows.get(1).cells().get(0).value(), is("value11"));
+//            assertThat(rows.get(1).cells().get(1).value(), is("value21"));
+//            assertThat(rows.get(1).cells().get(2).value(), is("value31"));
+//
+//            assertThat(rows.get(2).cells().get(0).value(), is("value12"));
+//            assertThat(rows.get(2).cells().get(1).value(), is("value22"));
+//            assertThat(rows.get(2).cells().get(2).value(), is("value32"));
+//        }
+
     }
 
-    @Test
-    public void test_page() {
+//    @Test
+//    public void test_page() {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
-    }
+//    }
 
 }
 
