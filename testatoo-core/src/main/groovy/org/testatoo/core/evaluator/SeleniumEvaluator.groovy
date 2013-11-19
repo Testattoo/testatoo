@@ -76,6 +76,11 @@ class SeleniumEvaluator implements Evaluator {
     }
 
     @Override
+    void runScript(String script) {
+        selenium.runScript(script)
+    }
+
+    @Override
     List<MetaInfo> getMetaInfo(String jQueryExpr) {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
@@ -88,10 +93,10 @@ class SeleniumEvaluator implements Evaluator {
     }
 
     private String eval(String s) {
-        String expr = """(function(\$, jQuery, testatoo, window){
+        String expr = """(function(\$, jQuery, testatoo){
             if(!jQuery) return '__TESTATOO_MISSING__';
                 else return ${removeTrailingChars(s)};
-            }(window.testatoo, window.testatoo, window.testatoo, window));"""
+            }(window.testatoo, window.testatoo, window.testatoo));"""
         Log.selenium "EXECUTING:\n${expr}"
         String v = selenium.getEval(expr)
         if (v == '__TESTATOO_MISSING__') {

@@ -38,6 +38,9 @@ class DeferredEvaluator implements Evaluator {
     String evalScript(String script) { EvaluatorHolder.get().evalScript(script) }
 
     @Override
+    void runScript(String script) { EvaluatorHolder.get().runScript(script) }
+
+    @Override
     public <T> T getJson(String jQueryExpr) { EvaluatorHolder.get().getJson(jQueryExpr) }
 
     @Override

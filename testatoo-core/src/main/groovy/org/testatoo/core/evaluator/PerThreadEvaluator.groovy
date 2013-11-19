@@ -55,6 +55,9 @@ class PerThreadEvaluator implements Evaluator {
     String evalScript(String script) { evaluator.evalScript(script) }
 
     @Override
+    void runScript(String script) { evaluator.runScript(script) }
+
+    @Override
     String getString(String jQueryExpr) { evaluator.getString(jQueryExpr) }
 
     @Override

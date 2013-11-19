@@ -29,6 +29,8 @@ public interface Evaluator {
 
     String  evalScript(String script)
 
+    void  runScript(String script)
+
     String getString(String jQueryExpr)
 
     public <T> T getJson(String jQueryExpr)
