@@ -17,8 +17,8 @@ package org.testatoo.core
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
-import org.testatoo.core.state.Disabled
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -51,6 +51,10 @@ class Interaction {
             throw new ComponentException("${item.type} ${item} is disabled and cannot be unselected ")
         }
         c.evaluator.getString("testatoo.ext.unSelectItem('${item.id}')")
+    }
+
+    void enter(String value) {
+        ((TextField) c).enter(value)
     }
 
 }

@@ -24,6 +24,7 @@ class Properties {
 
     // Properties
     static final Placeholder placeholder = new Placeholder()
+    static final PropertyMatcher placeholder(String expected) {placeholder.equalsTo(expected)}
 
     static final Label label = new Label()
     static final PropertyMatcher label(String expected) { label.equalsTo(expected) }

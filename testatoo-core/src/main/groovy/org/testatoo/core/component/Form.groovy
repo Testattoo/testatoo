@@ -23,4 +23,8 @@ class Form extends Component {
         type Type.FORM
     }
 
+    void submit() { evaluator.runScript("\$('#${id}').submit()") }
+
+    void reset() { evaluator.evalScript("\$('#${id}')[0].reset()") }
+
 }

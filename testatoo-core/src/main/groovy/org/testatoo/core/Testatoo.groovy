@@ -17,6 +17,7 @@ package org.testatoo.core
 
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Form
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.*
@@ -49,6 +50,16 @@ class Testatoo {
 
     static Interaction on(Component c) {
         return new Interaction(c)
+    }
+
+    static Form reset(Form form) {
+        form.reset()
+        return form
+    }
+
+    static Form submit(Form form) {
+        form.submit()
+        return form
     }
 
     static Component select(Component c) {

@@ -10,9 +10,11 @@ import org.testatoo.core.component.input.*
 import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -60,9 +62,12 @@ class ComponentTest {
         assertThat textField is visible
 
         assertThat textField has label('Text')
+        assertThat textField has placeholder('Text')
         assertThat textField is empty
 
-        textField.enter 'some value'
+        // TODO mathieu is good syntax (enter only on textfield) / type on all component ?
+        on textField enter 'some value'
+
         assertThat textField has text('some value')
         assertThat textField has value('some value')
         assertThat textField is filled
@@ -295,7 +300,51 @@ class ComponentTest {
 
     @Test
     public void test_form() {
-        $('#form') as Form
+        Form form = $('#form') as Form
+        EmailField email_field = $('#form [type=email]') as EmailField
+        PasswordField password_field = $('#form [type=password]') as PasswordField
+
+        Button submit_button = $('#form [type=submit]') as Button
+        Button reset_button = $('#form [type=reset]') as Button
+
+        Message message = $('#form .alert') as Message
+
+
+        // Can reset a form
+        on email_field enter 'my@email.org'
+        on password_field enter 'password'
+
+        // By clicking on the button
+        assertThat email_field has text('my@email.org')
+        assertThat password_field has text('password')
+
+        clickOn reset_button
+
+        assertThat email_field has text('')
+        assertThat password_field has text('')
+
+        // By the DSL
+        on email_field enter 'my@email.org'
+        on password_field enter 'password'
+
+        assertThat email_field has text('my@email.org')
+        assertThat password_field has text('password')
+
+        reset form
+
+        assertThat email_field has text('')
+        assertThat password_field has text('')
+
+        // Can submit a form
+        assertThat message has title('The form was submitted 0 time(s)')
+
+        clickOn submit_button
+        assertThat message has title('The form was submitted 1 time(s)')
+
+        submit form
+        assertThat message has title('The form was submitted 2 time(s)')
+
+
 
 //        @Test
 //        public void can_submit_a_form() {
@@ -319,50 +368,6 @@ class ComponentTest {
 //
 //            assertThat(page(), has(title("Exit page")));
 //        }
-
-//        @Test
-//        public void can_reset_a_form() {
-//            type("Joe", on(component(InputText.class, $("#firstname"))));
-//            type("Blow", into(component(InputText.class, $("#lastname"))));
-//            enter("email@noname.com", into(component(InputText.class, $("#email"))));
-//
-//            check(component(Radio.class, $("#male")));
-//            check(component(CheckBox.class, $("[name=yes]")));
-//
-//            on(component(Select.class, $("#cities"))).select("Casablanca");
-//
-//            component(Form.class, $("#myForm")).reset();
-//
-//            assertThat(component(InputText.class, $("#firstname")), has(value("")));
-//            assertThat(component(InputText.class, $("#lastname")), has(value("")));
-//            assertThat(component(InputText.class, $("#email")), has(value("")));
-//
-//            assertThat(component(Radio.class, $("#male")), is(not(checked())));
-//            assertThat(component(CheckBox.class, $("[name=yes]")), is(not(checked())));
-//
-//            assertThat(component(Select.class, $("#cities")), has(selectedValues("New York")));
-//
-//            type("Joe", on(component(InputText.class, $("#firstname"))));
-//            type("Blow", into(component(InputText.class, $("#lastname"))));
-//            enter("email@noname.com", into(component(InputText.class, $("#email"))));
-//
-//            check(component(Radio.class, $("#male")));
-//            check(component(CheckBox.class, $("[name=yes]")));
-//
-//            on(component(Select.class, $("#cities"))).select("Casablanca");
-//
-//            on(component(Form.class, $("#myForm"))).reset();
-//
-//            assertThat(component(InputText.class, $("#firstname")), has(value("")));
-//            assertThat(component(InputText.class, $("#lastname")), has(value("")));
-//            assertThat(component(InputText.class, $("#email")), has(value("")));
-//
-//            assertThat(component(Radio.class, $("#male")), is(not(checked())));
-//            assertThat(component(CheckBox.class, $("[name=yes]")), is(not(checked())));
-//
-//            assertThat(component(Select.class, $("#cities")), has(selectedValues("New York")));
-//        }
-
 
     }
 
@@ -432,6 +437,7 @@ class ComponentTest {
 
     }
 
+
 //    @Test
 //    public void test_page() {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
@@ -440,59 +446,14 @@ class ComponentTest {
 }
 
 
+class Message extends Panel  {
+    Message() {
+        support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
+    }
+}
+
 
 // ===================================================
 
-//
-//
-//    @Test
-//    public void test_contains() {
-//        open('/component.html');
-//
-//        assertThat(page().contains(
-//                new Button('button'),
-//                new TextField('text_field'),
-//                new Radio('radio')
-//        ));
-//
-//        Panel panel = new Panel('panel');
-//        assertThat(panel.contains(
-//                new Button('button_in_visible_panel'),
-//                new Button('invisible_button_in_visible_panel')
-//        ));
-//
-//        Panel invisible_panel = new Panel('invisible_panel');
-//        try {
-//            assertThat(invisible_panel.contains(
-//                    new Button('button_in_visible_panel')
-//            ));
-//        } catch (AssertionError e) {
-//            assertEquals('Component Panel with id: \'invisible_panel\' does no contains component Button with id: \'button_in_visible_panel\'', e.getMessage());
-//        }
-//    }
-//
-//    @Test
-//    public void test_displays() {
-//        open('/component.html');
-//
-//        assertThat(page().displays(
-//                new Button('button'),
-//                new TextField('text_field'),
-//                new Radio('radio')
-//        ));
-//
-//        Panel panel = new Panel('panel');
-//        assertThat(panel.displays(
-//                new Button('button_in_visible_panel')
-//        ));
-//
-//        try {
-//            assertThat(panel.displays(
-//                    new Button('button_in_visible_panel'),
-//                    new Button('invisible_button_in_visible_panel')
-//            ));
-//        } catch (AssertionError e) {
-//            assertEquals('Component Panel with id: \'panel\' does no displays component Button with id: \'invisible_button_in_visible_panel\'', e.getMessage());
-//        }
-//    }
-//}
+
+
