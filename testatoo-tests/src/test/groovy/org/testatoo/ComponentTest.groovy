@@ -343,32 +343,6 @@ class ComponentTest {
 
         submit form
         assertThat message has title('The form was submitted 2 time(s)')
-
-
-
-//        @Test
-//        public void can_submit_a_form() {
-//            assertThat(page().title(), is("Form tests"));
-//
-//            Button submitButton = component(Button.class, $("#submitImage"));
-//            clickOn(submitButton);
-//
-//            waitUntil(page(), has(title("Exit page")));
-//
-//            page().open("Form.html");
-//            assertThat(page(), has(title("Form tests")));
-//            clickOn(submitButton);
-//
-//            assertThat(page(), has(title("Exit page")));
-//
-//            page().open("Form.html");
-//            assertThat(page(), has(title("Form tests")));
-//
-//            component(Form.class, $("#myForm")).submit();
-//
-//            assertThat(page(), has(title("Exit page")));
-//        }
-
     }
 
 

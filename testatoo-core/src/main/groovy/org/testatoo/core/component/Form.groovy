@@ -23,7 +23,10 @@ class Form extends Component {
         type Type.FORM
     }
 
-    void submit() { evaluator.runScript("\$('#${id}').submit()") }
+    void submit() {
+        Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button
+        evaluator.evalScript("testatoo.ext.simulate.click('${submit_button.id}')")
+    }
 
     void reset() { evaluator.evalScript("\$('#${id}')[0].reset()") }
 
