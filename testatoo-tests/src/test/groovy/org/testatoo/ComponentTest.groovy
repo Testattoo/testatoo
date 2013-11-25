@@ -6,10 +6,15 @@ import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 import org.testatoo.core.component.*
+import org.testatoo.core.component.datagrid.Cell
+import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.component.datagrid.DataGrid
+import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.component.input.*
 import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.component.list.ListView
 import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
@@ -54,7 +59,6 @@ class ComponentTest {
 
     @Test
     public void test_input_fields() {
-
         // Text field
         TextField textField = $('#text_field') as TextField
 
@@ -295,7 +299,12 @@ class ComponentTest {
 
     @Test
     public void test_listView() {
+        ListView listView = $('#list_view') as ListView
 
+        assert listView.items.size == 5
+        assertThat listView has 5.items
+
+        assertThat listView has items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5')
     }
 
     @Test
@@ -308,7 +317,6 @@ class ComponentTest {
         Button reset_button = $('#form [type=reset]') as Button
 
         Message message = $('#form .alert') as Message
-
 
         // Can reset a form
         on email_field enter 'my@email.org'
@@ -345,89 +353,67 @@ class ComponentTest {
         assertThat message has title('The form was submitted 2 time(s)')
     }
 
-
+    @Test
     public void test_datagrid() {
+        DataGrid data_grid = $('#data_grid') as DataGrid
 
-//        @Test
-//        public void can_test_columns_title() {
-//            DataGrid grid1 = component(DataGrid.class, "grid1");
-//
-//            assertThat(grid1.columns().size(), is(3));
-//
-//            Selection<Column> columns = grid1.columns();
-//
-//            assertThat(columns.get(0).title(), is("Column1"));
-//            assertThat(columns.get(1).title(), is("Column2"));
-//            assertThat(columns.get(2).title(), is("Column3"));
-//        }
-//
-//        @Test
-//        public void can_test_column_cells() {
-//            DataGrid grid1 = component(DataGrid.class, "grid1");
-//
-//            Selection<Column> columns = grid1.columns();
-//
-//            assertThat(columns.get(0).cells().size(), is(3));
-//            assertThat(columns.get(1).cells().size(), is(3));
-//            assertThat(columns.get(2).cells().size(), is(3));
-//
-//            assertThat(columns.get(0).cells().get(0).value(), is("value10"));
-//            assertThat(columns.get(0).cells().get(1).value(), is("value11"));
-//            assertThat(columns.get(0).cells().get(2).value(), is("value12"));
-//
-//            assertThat(columns.get(1).cells().get(0).value(), is("value20"));
-//            assertThat(columns.get(1).cells().get(1).value(), is("value21"));
-//            assertThat(columns.get(1).cells().get(2).value(), is("value22"));
-//
-//            assertThat(columns.get(2).cells().get(0).value(), is("value30"));
-//            assertThat(columns.get(2).cells().get(1).value(), is("value31"));
-//            assertThat(columns.get(2).cells().get(2).value(), is("value32"));
-//        }
+        assertThat data_grid has 3.columns
+        assert data_grid.columns.size == 3
 
-//        @Test
-//        public void can_test_row_cell() {
-//            DataGrid grid1 = component(DataGrid.class, "grid1");
-//
-//            Selection<Row> rows = grid1.rows();
-//
-//            assertThat(rows.size(), is(3));
-//
-//            assertThat(rows.get(0).cells().size(), is(3));
-//            assertThat(rows.get(1).cells().size(), is(3));
-//            assertThat(rows.get(2).cells().size(), is(3));
-//
-//            assertThat(rows.get(0).cells().get(0).value(), is("value10"));
-//            assertThat(rows.get(0).cells().get(1).value(), is("value20"));
-//            assertThat(rows.get(0).cells().get(2).value(), is("value30"));
-//
-//            assertThat(rows.get(1).cells().get(0).value(), is("value11"));
-//            assertThat(rows.get(1).cells().get(1).value(), is("value21"));
-//            assertThat(rows.get(1).cells().get(2).value(), is("value31"));
-//
-//            assertThat(rows.get(2).cells().get(0).value(), is("value12"));
-//            assertThat(rows.get(2).cells().get(1).value(), is("value22"));
-//            assertThat(rows.get(2).cells().get(2).value(), is("value32"));
-//        }
+        assertThat data_grid has 4.rows
+        assert data_grid.rows.size == 4
 
+        assertThat data_grid.columns[0] has title('Column 1 title')
+        assertThat data_grid.columns[1] has title('Column 2 title')
+        assertThat data_grid.columns[2] has title('Column 3 title')
+
+        // TODO
+//        assertThat data_grid has titles('Column 1 title', 'Column 2 title', 'Column 3 title')
+
+        List<Column> columns = data_grid.columns
+
+        assertThat columns[0] has 4.cells
+        assert columns[0].cells.size == 4
+
+        List<Cell> cells = columns[1].cells
+        // TODO
+//        assertThat cells has values('value 10','value 20', 'value 30')
+
+        assertThat cells[0] has value('cell 12')
+        assertThat cells[1] has value('cell 22')
+        assertThat cells[2] has value('cell 32')
+        assertThat cells[3] has value('cell 42')
+
+        assertThat columns[2].cells[3] has value('cell 43')
+
+        List<Row> rows = data_grid.rows
+
+        assertThat rows[0] has 3.cells
+        assert rows[0].cells.size == 3
+
+        cells = rows[1].cells
+        // TODO
+//        assertThat cells has values('value 10','value 20', 'value 30')
+
+        assertThat cells[0] has value('cell 21')
+        assertThat cells[1] has value('cell 22')
+        assertThat cells[2] has value('cell 23')
+
+        assertThat rows[2].cells[1] has value('cell 32')
     }
-
 
 //    @Test
 //    public void test_page() {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
 //    }
 
-}
-
-
-class Message extends Panel  {
-    Message() {
-        support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
+    class Message extends Panel  {
+        Message() {
+            support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
+        }
     }
+
 }
-
-
-// ===================================================
 
 
 

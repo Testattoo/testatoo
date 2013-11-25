@@ -21,7 +21,7 @@ class Blocks {
 
     private static final Queue<Block> BLOCKS = new LinkedList<>()
 
-    static Block block(String description, Closure<?> c) {
+    static Block block(String description, Closure c) {
         Block b = null
         b = new Block() {
             @Override
@@ -109,4 +109,20 @@ class Blocks {
         b.run()
     }
 
+    static Block compose(Collection<Block> blocks) {
+        Block b = null
+        b = [
+                run: {
+                    try {
+                        blocks*.run()
+                    } finally {
+                        BLOCKS.remove(b)
+                    }
+                },
+                toString: { blocks.collect { it as String }.join('\n') }
+        ] as Block
+        BLOCKS.offer(b)
+        return b
+
+    }
 }

@@ -43,6 +43,18 @@ class GroovyExtensions {
         Properties.groupItemsSize.equalsTo(expected)
     }
 
+    public static PropertyMatcher getColumns(Integer expected) {
+        Properties.columnSize.equalsTo(expected)
+    }
+
+    public static PropertyMatcher getRows(Integer expected) {
+        Properties.rowSize.equalsTo(expected)
+    }
+
+    public static PropertyMatcher getCells(Integer expected) {
+        Properties.size.equalsTo(expected)
+    }
+
     public static PropertyMatcher getVisibleItems(Integer expected) {
         Properties.visibleItemsSize.equalsTo(expected)
     }

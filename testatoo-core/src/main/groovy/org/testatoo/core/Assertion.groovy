@@ -38,4 +38,8 @@ class Assertion {
         assert component.has(matcher)
     }
 
+    void contains(Component... components) {
+        assert component.contains(components)
+    }
+
 }

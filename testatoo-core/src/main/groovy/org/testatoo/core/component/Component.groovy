@@ -52,6 +52,15 @@ class Component {
 
     Block is(State matcher) { block 'is', matcher }
 
+    Block contains(Component... components) {
+        Blocks.block "matching ${this} ${type} ${m}", {
+            Map ret = evaluator.getJson("testatoo.ext.contains('${id}', ${components*.id})")
+//            if() {
+//
+//            }
+        }
+    }
+
     Block has(PropertyMatcher matcher) { block 'has', matcher }
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }

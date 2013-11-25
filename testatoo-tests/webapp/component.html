@@ -262,7 +262,6 @@
 
 <br/>
 
-<!-- TODO -->
 <ul id="list_view">
     <li>Item 1</li>
     <li>Item 2</li>
@@ -287,6 +286,48 @@
 <hr/>
 
 <h1>DataGrid</h1>
+
+<table id="data_grid" class="table">
+    <thead>
+    <tr>
+        <th>Column 1 title</th>
+        <th>Column 2 title</th>
+        <th>Column 3 title</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>cell 11</td>
+        <td>cell 12</td>
+        <td>cell 13</td>
+    </tr>
+    <tr>
+        <td>cell 21</td>
+        <td>cell 22</td>
+        <td>cell 23</td>
+    </tr>
+    <tr>
+        <td>cell 31</td>
+        <td>cell 32</td>
+        <td>cell 33</td>
+    </tr>
+    <tr>
+        <td>cell 41</td>
+        <td>cell 42</td>
+        <td>cell 43</td>
+    </tr>
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td>footer 1</td>
+        <td>footer 2</td>
+        <td>footer 3</td>
+    </tr>
+    </tfoot>
+
+</table>
 
 
 <hr/>
@@ -313,10 +354,10 @@
 </div>
 
 <script>
-     $('#form').on('submit', function(e) {
-         e.preventDefault();
-         $(this).find('span').text(+$(this).find('span').text() + 1);
-     })
+    $('#form').on('submit', function (e) {
+        e.preventDefault();
+        $(this).find('span').text(+$(this).find('span').text() + 1);
+    })
 
 
 </script>

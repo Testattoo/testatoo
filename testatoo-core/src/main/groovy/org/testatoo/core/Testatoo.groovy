@@ -43,6 +43,17 @@ class Testatoo {
         new Assertion(c)
     }
 
+    static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
+        c.delegate = component
+        c(component)
+        Blocks.run(Blocks.compose(Blocks.pending()))
+    }
+
+    static void assertThat(Closure c) {
+        c()
+        Blocks.run(Blocks.compose(Blocks.pending()))
+    }
+
     static Component check(Component c) {
         evaluator.getString("testatoo.ext.check('${c.id}')")
         return c

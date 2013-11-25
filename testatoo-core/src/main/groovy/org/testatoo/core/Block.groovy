@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 public abstract class Block {
+
     abstract void run()
 
     abstract String toString()

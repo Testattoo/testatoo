@@ -20,10 +20,19 @@ package org.testatoo.core.component
  */
 class Type {
 
+    static final String FORM = 'Form'
+
     static final String BUTTON = 'Button'
+
     static final String CHECKBOX = 'CheckBox'
+    static final String RADIO = 'Radio'
+    static final String DROPDOWN = 'DropDown'
+    static final String LISTBOX = 'ListBox'
+    static final String COMBOBOX = 'ComboBox'
+
     static final String LINK = 'Link'
     static final String PANEL = 'Panel'
+
     static final String TEXT_FIELD = 'TextField'
     static final String PASSWORD_FIELD = 'PasswordField'
     static final String EMAIL_FIELD = 'EmailField'
@@ -39,31 +48,16 @@ class Type {
     static final String TIME_FIELD = 'TimeField'
     static final String DATETIME_FIELD = 'DateTimeField'
 
-
-    static final String RADIO = 'Radio'
-    static final String FORM = 'Form'
-
-    static final String DROPDOWN = 'DropDown'
-    static final String LISTBOX = 'ListBox'
+    static final String LISTVIEW = 'ListView'
     static final String ITEM = 'Item'
     static final String GROUP_ITEM = 'GroupItem'
+
+    static final String DATAGRID = 'DataGrid'
+    static final String CELL = 'Cell'
+    static final String COLUMN = 'Column'
+    static final String ROW = 'Row'
 
     static final String IMAGE = 'Image'
 
     static final String UNDEFINED = 'Undefined'
-
-
-
-
-    static final String ALERTBOX = 'Alertbox'
-
-    static final String COMBOBOX = 'ComboBox'
-
-
-    static final String LIST = 'List'
-
-    static final String DATAGRID = 'DATAGRID'
-    static final String CELL = 'Cell'
-    static final String COLUMN = 'Column'
-    static final String ROW = 'Row'
 }

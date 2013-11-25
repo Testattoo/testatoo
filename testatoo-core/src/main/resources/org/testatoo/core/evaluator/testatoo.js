@@ -27,11 +27,10 @@
         if (el.is('img')) return 'Image';
         if (el.is('a')) return 'Link';
         if (el.is('div')) return 'Panel';
-        if (el.is('ul')) return 'List';
-        if (el.is('ol')) return 'List';
-        if (el.is('li')) return 'Item';
+        if (el.is('ul')) return 'ListView';
+        if (el.is('ol')) return 'ListView';
         if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'DropDown';
-        if (el.is('option')) return 'Item';
+        if (el.is('option') || el.is('li')) return 'Item';
         if (el.is('optgroup')) return 'GroupItem';
         if (el.is('form')) return 'Form';
         if (el.is('table')) return 'DataGrid';
@@ -312,6 +311,9 @@
             if (el.is('optgroup')) {
                 return el.find('option').length;
             }
+            if (el.is('table')) {
+                return el.find('tbody tr').length;
+            }
             return 0;
         },
 
@@ -357,6 +359,10 @@
             for (var i = 0; i < text.length; i++) {
                 $.ext.simulate.type(id, {charCode: text.charCodeAt(i)});
             }
+        },
+
+        cellSize: function(id) {
+
         }
 
     };

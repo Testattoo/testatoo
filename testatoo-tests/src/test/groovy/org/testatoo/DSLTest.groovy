@@ -9,6 +9,7 @@ import org.testatoo.core.component.Button
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.property.Properties.label
 import static org.testatoo.core.state.States.*
 
 /**
@@ -23,7 +24,10 @@ class DSLTest {
         open('/component.html')
     }
 
-    // TODO do the with
+//    assertThat textField, {
+//        has label('Text')
+//        is(enabled) and visible
+//    }
 
     @Test
     public void test_AND() {
