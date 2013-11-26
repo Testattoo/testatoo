@@ -361,10 +361,14 @@
             }
         },
 
-        cellSize: function(id) {
-
+        contains: function(id, ids) {
+            var el = $('#' + id + '');
+            var not = [];
+            $.each(ids, function(index, _id) {
+                !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
+            });
+            return not;
         }
-
     };
 
 }(window));

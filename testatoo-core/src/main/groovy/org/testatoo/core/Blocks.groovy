@@ -52,6 +52,7 @@ class Blocks {
         if (blocks.empty) {
             throw new IllegalArgumentException('Empty block')
         }
+        BLOCKS.removeAll(blocks)
         Block b = null
         b = new Block() {
             @Override
@@ -74,6 +75,7 @@ class Blocks {
         if (blocks.empty) {
             throw new IllegalArgumentException('Empty block')
         }
+        BLOCKS.removeAll(blocks)
         Block b = null
         b = new Block() {
             @Override
@@ -98,7 +100,7 @@ class Blocks {
             }
 
             @Override
-            String toString() { blocks.collect { it as String }.join(' OR') }
+            String toString() { blocks.collect { it as String }.join(' OR ') }
         }
         BLOCKS.offer(b)
         return b

@@ -22,6 +22,7 @@ import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
 import org.testatoo.core.state.StateEvaluator
+import org.testatoo.core.state.Visible
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -53,11 +54,22 @@ class Component {
     Block is(State matcher) { block 'is', matcher }
 
     Block contains(Component... components) {
-        Blocks.block "matching ${this} ${type} ${m}", {
-            Map ret = evaluator.getJson("testatoo.ext.contains('${id}', ${components*.id})")
-//            if() {
-//
-//            }
+        Blocks.block "matching ${this} contains ${components}", {
+            List ret = evaluator.getJson("testatoo.ext.contains('${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
+            if(ret) {
+                throw new AssertionError("Component ${this} does not contains expected component(s): ${components.findAll { it.id in ret } }");
+            }
+        }
+    }
+
+    Block displays(Component... components) {
+        Blocks.block "matching ${this} displays ${components}", {
+            List ret = evaluator.getJson("testatoo.ext.contains('${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
+            if(ret) {
+                throw new AssertionError("Component ${this} does not contains expected component(s): ${components.findAll { it.id in ret } }");
+            } else {
+                components.findAll { !it.is(new Visible()) }
+            }
         }
     }
 

@@ -6,8 +6,14 @@ import org.junit.runner.RunWith
 import org.testatoo.config.TestatooJunitRunner
 import org.testatoo.config.TestatooModules
 import org.testatoo.core.component.Button
+import org.testatoo.core.component.Component
+import org.testatoo.core.component.input.CheckBox
+import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.ListBox
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.assertThat
+import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.label
 import static org.testatoo.core.state.States.*
@@ -24,24 +30,46 @@ class DSLTest {
         open('/component.html')
     }
 
-//    assertThat textField, {
-//        has label('Text')
-//        is(enabled) and visible
-//    }
+    @Test
+    public void test_chaining_assert() {
+        CheckBox checkBox = $('#checkbox') as CheckBox
+        assertThat checkBox, { Component c ->
+            c.is enabled
+            c.is visible
+
+            c.is unchecked
+            c.has label('Check me out')
+        }
+    }
 
     @Test
     public void test_AND() {
-        Button button = $('#button') as Button
-//        assertThat button is enabled and button is visible
-//        assertThat button.is(enabled) & button.is(visible)
+        CheckBox checkBox = $('#checkbox') as CheckBox
+        assertThat checkBox, { Component c ->
+            c.is (enabled) and c.is(visible)
+            c.is (enabled) & c.is(visible)
+        }
     }
 
     @Test
     public void test_OR() {
-        Button button = $('#button') as Button
-//        assertThat button.is(disabled).or(button.is(visible))
-//        assertThat button.is(disabled) | button.is(visible)
+        ListBox listBox = $('#cities') as ListBox
+
+        assertThat listBox, { ListBox c ->
+            c.has (8.items) or c.has(3.visibleItems)
+            c.has (8.items) | c.has(3.visibleItems)
+        }
     }
+
+    @Test
+    public void test_ARE() {
+        DropDown dropDown = $('#elements') as DropDown
+
+        assertThat dropDown, { DropDown c ->
+            c.items.are enabled
+        }
+    }
+
 
     @Test
     public void test_wait() {
@@ -69,9 +97,4 @@ class DSLTest {
 
     }
 
-    //
-//    @Test
-//    public void test_contains() {
-//
-//    }
 }

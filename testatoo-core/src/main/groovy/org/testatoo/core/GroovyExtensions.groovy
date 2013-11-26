@@ -16,18 +16,17 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
-import org.testatoo.core.property.Properties
-
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
 
-    static Block are(Collection<? extends Component> components, State matcher) {
-        Blocks.and(components.collect { it.is(matcher) })
+    static Block are(Collection components, State matcher) {
+        Blocks.and(components.collect { ((Component) it).is(matcher) })
     }
 
     static boolean asBoolean(Block block) {
@@ -59,10 +58,6 @@ class GroovyExtensions {
         Properties.visibleItemsSize.equalsTo(expected)
     }
 
-//    static Block have(Collection<? extends Component> components, PropertyMatcher matcher) {
-//        Blocks.and(components.collect { it.has(matcher) })
-//    }
-//
 //    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
 //
 //    public static TimeDuration getSecond(Number self) { getSeconds(self) }

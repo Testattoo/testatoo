@@ -21,6 +21,7 @@ import org.testatoo.core.component.Component
 class State implements Matcher {
 
     StateEvaluator evaluator
+
     Map<String, String> description
 
     void evaluator(StateEvaluator p) { evaluator = p }

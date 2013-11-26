@@ -42,4 +42,8 @@ class Assertion {
         assert component.contains(components)
     }
 
+    void displays(Component... components) {
+        assert component.displays(components)
+    }
+
 }
