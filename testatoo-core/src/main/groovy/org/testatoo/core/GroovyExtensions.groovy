@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
@@ -58,8 +59,8 @@ class GroovyExtensions {
         Properties.visibleItemsSize.equalsTo(expected)
     }
 
-//    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
-//
-//    public static TimeDuration getSecond(Number self) { getSeconds(self) }
+    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
+
+    public static TimeDuration getSecond(Number self) { getSeconds(self) }
 
 }

@@ -1,31 +1,61 @@
 package org.testatoo
 
+import com.thoughtworks.selenium.DefaultSelenium
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.testatoo.config.TestatooJunitRunner
-import org.testatoo.config.TestatooModules
+import org.junit.runners.JUnit4
+import org.openqa.selenium.server.RemoteControlConfiguration
+import org.openqa.selenium.server.SeleniumServer
+import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
-import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Form
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.component.input.PasswordField
+import org.testatoo.core.config.Port
+import org.testatoo.core.evaluator.DeferredEvaluator
+import org.testatoo.core.evaluator.EvaluatorHolder
+import org.testatoo.core.evaluator.SeleniumEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.state.States.getEnabled
+import java.util.logging.Level
+import java.util.logging.Logger
+
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(TestatooJunitRunner.class)
-@TestatooModules(TestModule)
+@RunWith(JUnit4)
 class ContainsDisplayTest {
 
     @BeforeClass
     public static void openTestPage() {
+//        Testatoo.configure([
+//
+//        ])
+
+        Testatoo.evaluator = new DeferredEvaluator()
+        int port = Port.findFreePort()
+
+        RemoteControlConfiguration seleniumServerConfiguration = new RemoteControlConfiguration()
+        seleniumServerConfiguration.port = port
+        seleniumServerConfiguration.singleWindow = true
+        seleniumServerConfiguration.avoidProxy = true
+        seleniumServerConfiguration.honorSystemProxy = true
+
+        if (!seleniumServerConfiguration.dontTouchLogging()) {
+            Logger.getLogger("org.openqa.selenium.server.SeleniumDriverResourceHandler").setLevel(Level.OFF)
+            Logger.getLogger("org.openqa.selenium.server.SeleniumServer").setLevel(Level.OFF)
+            Logger.getLogger("org.openqa.jetty").setLevel(Level.OFF)
+        }
+        SeleniumServer seleniumServer = new SeleniumServer(seleniumServerConfiguration)
+        seleniumServer.start()
+
+        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*googlechrome', 'http://localhost:8080')
+        selenium.start()
+
+        EvaluatorHolder.register(new SeleniumEvaluator(selenium))
         open('/container.html')
     }
 
@@ -55,8 +85,8 @@ class ContainsDisplayTest {
 
         try {
             assertThat panel contains(
-                submit_button,
-                reset_button
+                    submit_button,
+                    reset_button
             )
         } catch (AssertionError e) {
             assert e.message == "Component Panel:panel does not contains expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"

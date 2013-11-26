@@ -1,32 +1,62 @@
 package org.testatoo
 
+import com.thoughtworks.selenium.DefaultSelenium
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.testatoo.config.TestatooJunitRunner
-import org.testatoo.config.TestatooModules
-import org.testatoo.core.component.Button
+import org.junit.runners.JUnit4
+import org.openqa.selenium.server.RemoteControlConfiguration
+import org.openqa.selenium.server.SeleniumServer
+import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.input.CheckBox
 import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.config.Port
+import org.testatoo.core.evaluator.DeferredEvaluator
+import org.testatoo.core.evaluator.EvaluatorHolder
+import org.testatoo.core.evaluator.SeleniumEvaluator
+
+import java.util.logging.Level
+import java.util.logging.Logger
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.label
 import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(TestatooJunitRunner.class)
-@TestatooModules(TestModule)
+@RunWith(JUnit4)
 class DSLTest {
 
     @BeforeClass
     public static void openTestPage() {
+//        Testatoo.configure([
+//
+//        ])
+
+        Testatoo.evaluator = new DeferredEvaluator()
+        int port = Port.findFreePort()
+
+        RemoteControlConfiguration seleniumServerConfiguration = new RemoteControlConfiguration()
+        seleniumServerConfiguration.port = port
+        seleniumServerConfiguration.singleWindow = true
+        seleniumServerConfiguration.avoidProxy = true
+        seleniumServerConfiguration.honorSystemProxy = true
+
+        if (!seleniumServerConfiguration.dontTouchLogging()) {
+            Logger.getLogger("org.openqa.selenium.server.SeleniumDriverResourceHandler").setLevel(Level.OFF)
+            Logger.getLogger("org.openqa.selenium.server.SeleniumServer").setLevel(Level.OFF)
+            Logger.getLogger("org.openqa.jetty").setLevel(Level.OFF)
+        }
+        SeleniumServer seleniumServer = new SeleniumServer(seleniumServerConfiguration)
+        seleniumServer.start()
+
+        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*googlechrome', 'http://localhost:8080')
+        selenium.start()
+
+        EvaluatorHolder.register(new SeleniumEvaluator(selenium))
         open('/component.html')
     }
 
@@ -71,17 +101,17 @@ class DSLTest {
     }
 
 
-    @Test
-    public void test_wait() {
-        Button button = $('#add-message') as Button
-        Button message = $('#msg') as Button
+//    @Test
+//    public void test_wait() {
+//        Button button = $('#add-message') as Button
+//        Button message = $('#msg') as Button
 
 //        assertThat button.is(enabled) & button.is(visible)
 //        assertThat button.is(enabled).and(button.is(visible))
 
-        assertThat message is missing
+//        assertThat message is missing
 
-        clickOn button
+//        clickOn button
 
 //        assertThat button.is(enabled).or(button.is(visible))
 //        assertThat button.is(enabled) | button.is(visible)
@@ -95,6 +125,6 @@ class DSLTest {
         //waitUntil button.is(enabled).and(message.is(visible)), 10.seconds
 //        waitUntil button is enabled  & message.is(visible), 10.seconds
 
-    }
+//    }
 
 }

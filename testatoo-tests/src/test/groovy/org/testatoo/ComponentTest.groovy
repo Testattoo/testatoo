@@ -1,10 +1,14 @@
 package org.testatoo
 
+import com.thoughtworks.selenium.DefaultSelenium
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.testatoo.config.TestatooJunitRunner
-import org.testatoo.config.TestatooModules
+import org.junit.runners.JUnit4
+import org.openqa.selenium.server.RemoteControlConfiguration
+import org.openqa.selenium.server.SeleniumServer
+import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
@@ -15,7 +19,14 @@ import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.component.list.ListView
+import org.testatoo.core.config.Port
+import org.testatoo.core.evaluator.DeferredEvaluator
+import org.testatoo.core.evaluator.EvaluatorHolder
+import org.testatoo.core.evaluator.SeleniumEvaluator
 import org.testatoo.core.property.Title
+
+import java.util.logging.Level
+import java.util.logging.Logger
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -26,13 +37,42 @@ import static org.testatoo.core.state.States.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(TestatooJunitRunner.class)
-@TestatooModules(TestModule)
+@RunWith(JUnit4)
 class ComponentTest {
 
     @BeforeClass
     public static void openTestPage() {
-        open('/component.html')
+//        Testatoo.configure([
+//
+//        ])
+
+        Testatoo.evaluator = new DeferredEvaluator()
+        int port = Port.findFreePort()
+
+        RemoteControlConfiguration seleniumServerConfiguration = new RemoteControlConfiguration()
+        seleniumServerConfiguration.port = port
+        seleniumServerConfiguration.singleWindow = true
+        seleniumServerConfiguration.avoidProxy = true
+        seleniumServerConfiguration.honorSystemProxy = true
+
+        if (!seleniumServerConfiguration.dontTouchLogging()) {
+            Logger.getLogger("org.openqa.selenium.server.SeleniumDriverResourceHandler").setLevel(Level.OFF)
+            Logger.getLogger("org.openqa.selenium.server.SeleniumServer").setLevel(Level.OFF)
+            Logger.getLogger("org.openqa.jetty").setLevel(Level.OFF)
+        }
+        SeleniumServer seleniumServer = new SeleniumServer(seleniumServerConfiguration)
+        seleniumServer.start()
+
+        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*googlechrome', 'http://localhost:8080')
+        selenium.start()
+
+        EvaluatorHolder.register(new SeleniumEvaluator(selenium))
+        open('component.html')
+    }
+
+    @Before
+    void open() {
+
     }
 
     @Test
@@ -407,7 +447,7 @@ class ComponentTest {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
 //    }
 
-    class Message extends Panel  {
+    class Message extends Panel {
         Message() {
             support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
         }

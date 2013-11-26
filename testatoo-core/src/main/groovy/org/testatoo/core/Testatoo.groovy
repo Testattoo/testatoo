@@ -20,8 +20,6 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.property.*
-import org.testatoo.core.state.*
 
 import java.util.concurrent.TimeoutException
 

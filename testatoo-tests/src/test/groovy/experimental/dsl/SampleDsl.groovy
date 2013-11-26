@@ -18,9 +18,10 @@ package experimental.dsl
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.testatoo.TestModule
-import org.testatoo.config.TestatooJunitRunner
-import org.testatoo.config.TestatooModules
+import org.junit.runners.JUnit4
+
+//import org.testatoo.config.TestatooJunitRunner
+//import org.testatoo.config.TestatooModules
 import org.testatoo.core.Testatoo
 
 import static org.testatoo.core.Testatoo.*
@@ -29,8 +30,7 @@ import static org.testatoo.core.Testatoo.*
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-01
  */
-@RunWith(TestatooJunitRunner)
-@TestatooModules(TestModule)
+@RunWith(JUnit4)
 class SampleDsl {
 
     @Delegate Testatoo testatoo = new Testatoo()

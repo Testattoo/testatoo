@@ -13,14 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.config.lifecycle
-
-import java.lang.reflect.Method
+package org.testatoo.core.config
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @date 2013-08-30
  */
+class Port {
+    static int findFreePort() {
+        Random r = new Random()
 
-interface TestListener {
-    void onTest(Object instance, Method method)
+        while (true) {
+            int p = 1025 + r.nextInt(64000)
+            try {
+                new ServerSocket(p).close()
+                return p
+            } catch (IOException ignored) {
+            }
+        }
+    }
 }
