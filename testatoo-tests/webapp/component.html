@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2008 Ovea <dev@ovea.com>
+    Copyright (C) 2011 Ovea <dev@ovea.com>
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
     limitations under the License.
 
 -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -352,46 +351,14 @@
 <div class="col-md-2"></div>
 </div>
 
+</div>
+
 <script>
     $('#form').on('submit', function (e) {
         e.preventDefault();
         $(this).find('span').text(+$(this).find('span').text() + 1);
     })
-
-
 </script>
 
-
-<!--<div id="invisible_panel" style="display: none">-->
-<!--<button id="button_in_invisible_panel">Button</button>-->
-<!--</div>-->
-
-
-<!--&lt;!&ndash; TODO move to other page test &ndash;&gt;-->
-<!--&lt;!&ndash;<button type="button" id="add-message" class="btn btn-primary">Add message</button>&ndash;&gt;-->
-<!--&lt;!&ndash;<div id="messages"></div>&ndash;&gt;-->
-
-
-<!--</div>-->
-<!--<div class="col-md-2"></div>-->
-<!--</div>-->
-
-<!--<script>-->
-<!--(function ($) {-->
-<!--$(function () {-->
-<!--$('#add-message').on('click', function () {-->
-<!--setTimeout(function () {-->
-<!--$('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');-->
-<!--setTimeout(function () {-->
-<!--$('#add-message').prop('disabled', false);-->
-<!--}, 5000);-->
-<!--}, 2000);-->
-<!--$('#add-message').prop('disabled', true);-->
-<!--});-->
-<!--});-->
-<!--}(jQuery));-->
-<!--</script>-->
-
-</div>
 </body>
 </html>

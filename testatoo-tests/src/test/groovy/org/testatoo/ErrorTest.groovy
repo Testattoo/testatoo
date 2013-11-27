@@ -23,10 +23,6 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.server.RemoteControlConfiguration
 import org.openqa.selenium.server.SeleniumServer
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.input.CheckBox
-import org.testatoo.core.component.list.DropDown
-import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.config.Port
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
@@ -35,15 +31,13 @@ import org.testatoo.core.evaluator.SeleniumEvaluator
 import java.util.logging.Level
 import java.util.logging.Logger
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.label
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.Testatoo.open
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class DSLTest {
+class ErrorTest {
 
     @BeforeClass
     public static void openTestPage() {
@@ -72,61 +66,17 @@ class DSLTest {
         selenium.start()
 
         EvaluatorHolder.register(new SeleniumEvaluator(selenium))
-        open('/component.html')
+        open('component.html')
     }
 
     @Test
-    public void test_chaining_assert() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { Component c ->
-            c.is enabled
-            c.is visible
-
-            c.is unchecked
-            c.has label('Check me out')
-        }
-
-        assertThat {
-            checkBox.is enabled
-            checkBox.is visible
-
-            checkBox.is unchecked
-            checkBox.has label('Check me out')
-        }
+    public void bad_component_type() {
 
     }
 
     @Test
-    public void test_AND() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { Component c ->
-            c.is (enabled) and c.is(visible)
-            c.is (enabled) & c.is(visible)
-        }
+    public void not_supported_support() {
 
-        assertThat {
-            checkBox.is (enabled) and checkBox.is(visible)
-            checkBox.is (enabled) & checkBox.is(visible)
-        }
-    }
-
-    @Test
-    public void test_OR() {
-        ListBox listBox = $('#cities') as ListBox
-
-        assertThat listBox, { ListBox c ->
-            c.has (8.items) or c.has(3.visibleItems)
-            c.has (8.items) | c.has(3.visibleItems)
-        }
-    }
-
-    @Test
-    public void test_ARE() {
-        DropDown dropDown = $('#elements') as DropDown
-
-        assertThat dropDown, { DropDown c ->
-            c.items.are enabled
-        }
     }
 
 

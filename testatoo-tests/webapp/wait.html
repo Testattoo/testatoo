@@ -33,7 +33,7 @@
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Container</a>
+        <a class="navbar-brand" href="#">Testatoo Wait</a>
     </div>
 </nav>
 
@@ -41,32 +41,28 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
-        <div id="panel">
-            <button id="visible_button" class="btn btn-primary">Button</button>
-            <button id="invisible_button" style="display: none">Button</button>
-        </div>
-
-        <hr/>
-
-        <form id="form">
-            <div class="form-group">
-                <label>Email address
-                    <input type="email" class="form-control" placeholder="Enter email">
-                </label>
-            </div>
-            <div class="form-group">
-                <label>Password
-                    <input type="password" class="form-control" placeholder="Password">
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-        </form>
-
-        <hr/>
+        <button type="button" id="add-message" class="btn btn-primary">Add message</button>
+        <div id="messages"></div>
 
     </div>
     <div class="col-md-2"></div>
 </div>
+
+<script>
+    (function ($) {
+        $(function () {
+            $('#add-message').on('click', function () {
+                setTimeout(function () {
+                    $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
+                    setTimeout(function () {
+                        $('#add-message').prop('disabled', false);
+                    }, 5000);
+                }, 2000);
+                $('#add-message').prop('disabled', true);
+            });
+        });
+    }(jQuery));
+</script>
+
 </body>
 </html>

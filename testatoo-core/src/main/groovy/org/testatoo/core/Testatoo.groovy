@@ -87,4 +87,11 @@ class Testatoo {
         }
     }
 
+    /*static void waitUntil(Component component, @DelegatesTo(Component) Closure c) {
+        c.delegate = component
+        c(component)
+        Blocks.run(Blocks.compose(Blocks.pending()))
+    }*/
+
+
 }

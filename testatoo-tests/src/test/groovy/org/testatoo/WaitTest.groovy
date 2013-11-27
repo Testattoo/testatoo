@@ -23,10 +23,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.server.RemoteControlConfiguration
 import org.openqa.selenium.server.SeleniumServer
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.input.CheckBox
-import org.testatoo.core.component.list.DropDown
-import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.component.Button
 import org.testatoo.core.config.Port
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
@@ -35,15 +32,17 @@ import org.testatoo.core.evaluator.SeleniumEvaluator
 import java.util.logging.Level
 import java.util.logging.Logger
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.label
+import static org.testatoo.core.Testatoo.assertThat
+import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.waitUntil
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class DSLTest {
+class WaitTest {
 
     @BeforeClass
     public static void openTestPage() {
@@ -72,64 +71,52 @@ class DSLTest {
         selenium.start()
 
         EvaluatorHolder.register(new SeleniumEvaluator(selenium))
-        open('/component.html')
+        open('/wait.html')
     }
+
 
     @Test
-    public void test_chaining_assert() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { Component c ->
-            c.is enabled
-            c.is visible
+    public void test_wait() {
+        Button button = $('#add-message') as Button
+        Button message = $('#msg') as Button
 
-            c.is unchecked
-            c.has label('Check me out')
+        assertThat button, { Button c ->
+            c.is(enabled) and c.is(visible)
         }
 
-        assertThat {
-            checkBox.is enabled
-            checkBox.is visible
+        assertThat message is missing
 
-            checkBox.is unchecked
-            checkBox.has label('Check me out')
-        }
+        clickOn button
+
+        assertThat button is(disabled)
+
+
+
+
+//        waitUntil button
+//
+//        } is(enabled).or(message.is(visible))
+//
+//
+//        waitUntil button.is(enabled).and(message.is(visible)), 10.seconds
+
 
     }
-
-    @Test
-    public void test_AND() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { Component c ->
-            c.is (enabled) and c.is(visible)
-            c.is (enabled) & c.is(visible)
-        }
-
-        assertThat {
-            checkBox.is (enabled) and checkBox.is(visible)
-            checkBox.is (enabled) & checkBox.is(visible)
-        }
-    }
-
-    @Test
-    public void test_OR() {
-        ListBox listBox = $('#cities') as ListBox
-
-        assertThat listBox, { ListBox c ->
-            c.has (8.items) or c.has(3.visibleItems)
-            c.has (8.items) | c.has(3.visibleItems)
-        }
-    }
-
-    @Test
-    public void test_ARE() {
-        DropDown dropDown = $('#elements') as DropDown
-
-        assertThat dropDown, { DropDown c ->
-            c.items.are enabled
-        }
-    }
-
-
-
-
 }
+
+
+
+//        assertThat button.is(enabled).or(button.is(visible))
+//        assertThat button.is(enabled) | button.is(visible)
+
+//        assertThat button.is(disabled) & button.is(visible)
+//        assertThat button.is(disabled).and(button.is(visible))
+
+    //waitUntil button.is(enabled).or(message.is(visible))
+    //waitUntil button.is(enabled) | message.is(visible)
+
+    //waitUntil button.is(enabled).and(message.is(visible)), 10.seconds
+//        waitUntil button is enabled  & message.is(visible), 10.seconds
+
+//}
+

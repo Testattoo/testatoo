@@ -70,11 +70,6 @@ class ComponentTest {
         open('component.html')
     }
 
-    @Before
-    void open() {
-
-    }
-
     @Test
     public void test_button() {
         // input type=button
