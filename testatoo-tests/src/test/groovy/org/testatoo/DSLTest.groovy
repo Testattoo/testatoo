@@ -46,7 +46,7 @@ import static org.testatoo.core.state.States.*
 class DSLTest {
 
     @BeforeClass
-    public static void openTestPage() {
+    public static void before() {
 //        Testatoo.configure([
 //
 //        ])
@@ -78,7 +78,7 @@ class DSLTest {
     @Test
     public void test_chaining_assert() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { Component c ->
+        assertThat checkBox, { CheckBox c ->
             c.is enabled
             c.is visible
 
@@ -93,13 +93,12 @@ class DSLTest {
             checkBox.is unchecked
             checkBox.has label('Check me out')
         }
-
     }
 
     @Test
     public void test_AND() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { Component c ->
+        assertThat checkBox, { CheckBox c ->
             c.is (enabled) and c.is(visible)
             c.is (enabled) & c.is(visible)
         }
@@ -118,6 +117,11 @@ class DSLTest {
             c.has (8.items) or c.has(3.visibleItems)
             c.has (8.items) | c.has(3.visibleItems)
         }
+
+        assertThat {
+            listBox.has (8.items) or listBox.has(3.visibleItems)
+            listBox.has (8.items) | listBox.has(3.visibleItems)
+        }
     }
 
     @Test
@@ -127,9 +131,9 @@ class DSLTest {
         assertThat dropDown, { DropDown c ->
             c.items.are enabled
         }
+
+        assertThat {
+            dropDown.items.are enabled
+        }
     }
-
-
-
-
 }

@@ -87,11 +87,32 @@ class Testatoo {
         }
     }
 
-    /*static void waitUntil(Component component, @DelegatesTo(Component) Closure c) {
-        c.delegate = component
-        c(component)
-        Blocks.run(Blocks.compose(Blocks.pending()))
-    }*/
+    static void waitFor(TimeDuration duration = 5.seconds, Closure c) {
+        waitUntil(duration, c)
+    }
 
+    static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {
+        c()
+        try {
+            Util.waitUntil duration.toMilliseconds(), 500, {
+                Log.testatoo "waitUntil: ${c}"
+                Blocks.run(Blocks.compose(Blocks.pending()))
+            }
+        } catch (TimeoutException e) {
+            throw new RuntimeException("${e.message} : ${c}")
+        }
+    }
+
+    //    static void waitUntil(Assertion a, TimeDuration duration = 5.seconds) {
+//        try {
+//            Block m = Blocks.BLOCKS
+//            Util.waitUntil duration.toMilliseconds(), 500, {
+//                Log.testatoo "waitUntil: ${m}"
+//                m.run()
+//            }
+//        } catch (TimeoutException e) {
+//            throw new RuntimeException("${e.message} : ${m}")
+//        }
+//    }
 
 }

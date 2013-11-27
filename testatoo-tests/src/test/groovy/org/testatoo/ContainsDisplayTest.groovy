@@ -45,7 +45,7 @@ import static org.testatoo.core.Testatoo.*
 class ContainsDisplayTest {
 
     @BeforeClass
-    public static void openTestPage() {
+    public static void before() {
 //        Testatoo.configure([
 //
 //        ])

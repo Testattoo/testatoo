@@ -32,9 +32,7 @@ import org.testatoo.core.evaluator.SeleniumEvaluator
 import java.util.logging.Level
 import java.util.logging.Logger
 
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.Testatoo.waitUntil
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.state.States.*
 
@@ -45,7 +43,7 @@ import static org.testatoo.core.state.States.*
 class WaitTest {
 
     @BeforeClass
-    public static void openTestPage() {
+    public static void before() {
 //        Testatoo.configure([
 //
 //        ])
@@ -90,33 +88,18 @@ class WaitTest {
 
         assertThat button is(disabled)
 
+        waitFor 10.seconds, {
+            button.is(enabled)
+        }
 
+        clickOn button
 
+        waitUntil {
+            button.is(enabled) or message.is(visible)
+        }
 
-//        waitUntil button
-//
-//        } is(enabled).or(message.is(visible))
-//
-//
-//        waitUntil button.is(enabled).and(message.is(visible)), 10.seconds
-
-
+        // TODO
+//        waitUntil button is enabled
     }
 }
-
-
-
-//        assertThat button.is(enabled).or(button.is(visible))
-//        assertThat button.is(enabled) | button.is(visible)
-
-//        assertThat button.is(disabled) & button.is(visible)
-//        assertThat button.is(disabled).and(button.is(visible))
-
-    //waitUntil button.is(enabled).or(message.is(visible))
-    //waitUntil button.is(enabled) | message.is(visible)
-
-    //waitUntil button.is(enabled).and(message.is(visible)), 10.seconds
-//        waitUntil button is enabled  & message.is(visible), 10.seconds
-
-//}
 

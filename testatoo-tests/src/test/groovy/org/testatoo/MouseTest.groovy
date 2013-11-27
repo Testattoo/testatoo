@@ -51,7 +51,7 @@ import static org.testatoo.core.state.States.getUnchecked
 class MouseTest {
 
     @BeforeClass
-    public static void openTestPage() {
+    public static void before() {
 //        Testatoo.configure([
 //
 //        ])

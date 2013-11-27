@@ -40,7 +40,7 @@ import static org.testatoo.core.Testatoo.open
 class ErrorTest {
 
     @BeforeClass
-    public static void openTestPage() {
+    public static void before() {
 //        Testatoo.configure([
 //
 //        ])
