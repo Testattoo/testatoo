@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.component
+
+import org.testatoo.core.state.Available
+import org.testatoo.core.state.Hidden
+import org.testatoo.core.state.Missing
+import org.testatoo.core.state.Visible
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -21,6 +27,7 @@ class Form extends Component {
 
     Form() {
         type Type.FORM
+        support Available, Missing, Hidden, Visible
     }
 
     void submit() {
