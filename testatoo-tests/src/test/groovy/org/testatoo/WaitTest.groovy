@@ -100,6 +100,8 @@ class WaitTest {
 
         // TODO
 //        waitUntil button is enabled
+//        waitFor 10.seconds that button.is(enabled)
+//        waitFor 10.seconds that button is enabled
     }
 }
 

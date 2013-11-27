@@ -103,16 +103,4 @@ class Testatoo {
         }
     }
 
-    //    static void waitUntil(Assertion a, TimeDuration duration = 5.seconds) {
-//        try {
-//            Block m = Blocks.BLOCKS
-//            Util.waitUntil duration.toMilliseconds(), 500, {
-//                Log.testatoo "waitUntil: ${m}"
-//                m.run()
-//            }
-//        } catch (TimeoutException e) {
-//            throw new RuntimeException("${e.message} : ${m}")
-//        }
-//    }
-
 }
