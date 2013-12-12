@@ -21,7 +21,16 @@
         $ = w.testatoo,
         webkit = !!window.webkitRequestAnimationFrame;
 
+    $.options = {
+        customType: function(el) {
+            return undefined;
+        }
+    };
+
     function getType(el) {
+        var type = $.options.customType(el);
+        if (type) return type;
+
         if (el.is('button')) return 'Button';
         if (el.is('textarea')) return 'TextField';
         if (el.is('img')) return 'Image';

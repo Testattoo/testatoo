@@ -16,10 +16,14 @@
 package org.testatoo
 
 import com.thoughtworks.selenium.DefaultSelenium
+import com.thoughtworks.selenium.Selenium
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebDriverBackedSelenium
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.server.RemoteControlConfiguration
 import org.openqa.selenium.server.SeleniumServer
 import org.testatoo.core.Testatoo
@@ -37,6 +41,7 @@ import org.testatoo.core.config.Port
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.SeleniumEvaluator
+import org.testatoo.core.evaluator.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import java.util.logging.Level
@@ -77,17 +82,24 @@ class ComponentTest {
         SeleniumServer seleniumServer = new SeleniumServer(seleniumServerConfiguration)
         seleniumServer.start()
 
+//        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*firefox', 'http://localhost:8080')
         DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*googlechrome', 'http://localhost:8080')
         selenium.start()
 
         EvaluatorHolder.register(new SeleniumEvaluator(selenium))
         open('component.html')
+
+
+//        WebDriver driver = new FirefoxDriver();
+//        EvaluatorHolder.register(new WebDriverEvaluator(driver))
+//        open('http://localhost:8080/component.html')
     }
 
     @Test
     public void test_button() {
         // input type=button
         Button button = $('#button') as Button
+
         assertThat button is enabled
         assertThat button is visible
 
@@ -441,9 +453,9 @@ class ComponentTest {
         assert rows[0].cells.size == 3
 
         cells = rows[1].cells
+
         // TODO
 //        assertThat cells has values('value 10','value 20', 'value 30')
-
         assertThat cells[0] has value('cell 21')
         assertThat cells[1] has value('cell 22')
         assertThat cells[2] has value('cell 23')
@@ -456,9 +468,33 @@ class ComponentTest {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
 //    }
 
+    @Test
+    public void custom_component_type() {
+//        Custom_1 custom_1 = $('#button') as Custom_1
+//        assertThat custom_1 has text('Button')
+
+        Custom_2 custom_2 = $('#button') as Custom_2
+        try {
+            assertThat custom_2 has text('Button')
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "The Component hierarchy [Custom_2, Panel, Component] doesn't contain the type Button for component with id ...."
+        }
+    }
+
     class Message extends Panel {
         Message() {
             support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
+        }
+    }
+
+    class Custom_1 extends Button {
+        Custom_1() {
+        }
+    }
+
+    class Custom_2 extends Panel {
+        Custom_2() {
         }
     }
 

@@ -37,7 +37,7 @@ class Interaction {
 
     void select(Item item) {
         if (c.evaluator.getBool("testatoo.ext.isDisabled('${item.id}')")) {
-            throw new ComponentException("${item.type} ${item} is disabled and cannot be selected ")
+            throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be selected ")
         }
         c.evaluator.getString("testatoo.ext.selectItem('${item.id}')")
     }
@@ -48,7 +48,7 @@ class Interaction {
 
     void unselect(Item item) {
         if (c.evaluator.getBool("testatoo.ext.isDisabled('${item.id}')")) {
-            throw new ComponentException("${item.type} ${item} is disabled and cannot be unselected ")
+            throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be unselected ")
         }
         c.evaluator.getString("testatoo.ext.unSelectItem('${item.id}')")
     }

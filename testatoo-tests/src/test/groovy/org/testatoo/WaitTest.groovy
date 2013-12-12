@@ -88,7 +88,7 @@ class WaitTest {
 
         assertThat button is(disabled)
 
-        waitFor 10.seconds, {
+        waitUntil 10.seconds, {
             button.is(enabled)
         }
 

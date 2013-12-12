@@ -16,7 +16,6 @@
 package org.testatoo.core.component.datagrid
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.Type
 import org.testatoo.core.property.ColumnSize
 import org.testatoo.core.property.RowSize
 import org.testatoo.core.property.Size
@@ -28,7 +27,6 @@ import org.testatoo.core.state.*
 class DataGrid extends Component {
 
     DataGrid() {
-        type Type.DATAGRID
         support Size, ColumnSize, RowSize
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }

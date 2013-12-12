@@ -104,8 +104,8 @@ class DSLTest {
         }
 
         assertThat {
-            checkBox.is (enabled) and checkBox.is(visible)
-            checkBox.is (enabled) & checkBox.is(visible)
+            checkBox.is(enabled) and checkBox.is(visible)
+            checkBox.is(enabled) & checkBox.is(visible)
         }
     }
 
@@ -114,13 +114,13 @@ class DSLTest {
         ListBox listBox = $('#cities') as ListBox
 
         assertThat listBox, { ListBox c ->
-            c.has (8.items) or c.has(3.visibleItems)
-            c.has (8.items) | c.has(3.visibleItems)
+            c.has(8.items) or c.has(3.visibleItems)
+            c.has(8.items) | c.has(3.visibleItems)
         }
 
         assertThat {
-            listBox.has (8.items) or listBox.has(3.visibleItems)
-            listBox.has (8.items) | listBox.has(3.visibleItems)
+            listBox.has(8.items) or listBox.has(3.visibleItems)
+            listBox.has(8.items) | listBox.has(3.visibleItems)
         }
     }
 

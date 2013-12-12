@@ -23,7 +23,6 @@ import org.testatoo.core.state.*
  */
 class Panel extends Component {
     Panel() {
-        type Type.PANEL
         support Title
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }

@@ -16,7 +16,6 @@
 package org.testatoo.core.component.datagrid
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.Type
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Title
 import org.testatoo.core.state.Available
@@ -30,7 +29,6 @@ import org.testatoo.core.state.Visible
 class Column extends Component {
 
     Column() {
-        type Type.COLUMN
         support Size, {
             int index = evaluator.getInt("\$('#${id}').index()") + 1
             evaluator.getInt("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})').length")

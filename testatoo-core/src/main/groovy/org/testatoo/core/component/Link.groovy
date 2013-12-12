@@ -25,7 +25,6 @@ import org.testatoo.core.state.*
 class Link extends Component {
 
     Link() {
-        type Type.LINK
         support Text, Reference
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }

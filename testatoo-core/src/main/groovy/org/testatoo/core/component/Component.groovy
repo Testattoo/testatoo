@@ -36,7 +36,6 @@ class Component {
     private Map<Class<? extends State>, StateEvaluator> _supportedStates = new IdentityHashMap<>()
 
     CachedMetaData meta = new CachedMetaData()
-    String type = Type.UNDEFINED
 
     Component() {}
 
@@ -78,7 +77,9 @@ class Component {
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 
     @Override
-    String toString() { getClass().simpleName + ":${try { id } catch (Throwable ignored) { '<unresolved>' }}" }
+    String toString() {
+        getClass().simpleName + ":${try { id } catch (Throwable ignored) { meta.metaInfo }}"
+    }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
@@ -88,8 +89,6 @@ class Component {
         }
         return super.asType(clazz)
     }
-
-    void type(String type) { this.type = type }
 
     void support(Class<?>... types) {
         for (Class<?> type : types) {
@@ -145,8 +144,16 @@ class Component {
         String getId(Component c) throws ComponentException {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfo(evaluator)
-                if (info.type != c.type) {
-                    throw new ComponentException("Expected type '${c.type}' for component ${c.class.simpleName} with id '${info.id}' but meta info was '${info}' ")
+
+                def hierarchy= []
+                def s = c.class
+                while(s != null) {
+                    hierarchy << s.simpleName; s = s.superclass
+                }
+                hierarchy.pop()
+                if (!hierarchy.contains(info.type)) {
+                    println "===============> ${hierarchy}"
+                    throw new ComponentException("The Component hierarchy ${hierarchy} doesn't contain the type ${info.type} for component with id ${info.id}")
                 }
                 metaInfo = info
             }

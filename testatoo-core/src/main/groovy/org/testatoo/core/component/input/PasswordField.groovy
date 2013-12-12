@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.component.input
-
-import org.testatoo.core.component.Type
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class PasswordField extends TextField {
 
     PasswordField() {
-        type Type.PASSWORD_FIELD
     }
 
 }

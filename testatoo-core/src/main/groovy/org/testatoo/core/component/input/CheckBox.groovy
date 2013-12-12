@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.component.Type
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked
@@ -26,7 +25,6 @@ import org.testatoo.core.state.Unchecked
 class CheckBox extends Input {
 
     CheckBox() {
-        type Type.CHECKBOX
         support Label
         support Checked, Unchecked
     }

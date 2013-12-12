@@ -87,10 +87,6 @@ class Testatoo {
         }
     }
 
-    static void waitFor(TimeDuration duration = 5.seconds, Closure c) {
-        waitUntil(duration, c)
-    }
-
     static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {
         c()
         try {

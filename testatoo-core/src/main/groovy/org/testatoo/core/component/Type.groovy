@@ -59,5 +59,7 @@ class Type {
 
     static final String IMAGE = 'Image'
 
+    static final Collection<String> SUPPORTED = [FORM, BUTTON, IMAGE]
+
     static final String UNDEFINED = 'Undefined'
 }

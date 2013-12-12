@@ -23,7 +23,6 @@ import org.testatoo.core.state.*
  */
 class Button extends Component {
     Button() {
-        type Type.BUTTON
         support Text
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }

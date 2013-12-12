@@ -24,7 +24,6 @@ import org.testatoo.core.state.*
 class Image extends Component {
 
     Image() {
-        type Type.IMAGE
         support Source
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }

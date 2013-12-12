@@ -23,7 +23,6 @@ import org.testatoo.core.component.Type
 class ColorField extends TextField {
 
     ColorField() {
-        type Type.COLOR_FIELD
     }
 
 }
