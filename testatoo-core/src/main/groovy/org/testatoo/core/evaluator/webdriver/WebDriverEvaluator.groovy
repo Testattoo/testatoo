@@ -13,39 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.evaluator
+package org.testatoo.core.evaluator.webdriver
 
-import com.thoughtworks.selenium.Selenium
 import groovy.json.JsonSlurper
-import org.testatoo.core.Log
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebDriver
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.evaluator.KeyboardAction
+import org.testatoo.core.evaluator.MouseAction
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SeleniumEvaluator implements Evaluator {
+class WebDriverEvaluator implements Evaluator {
 
-    private final Selenium selenium
+    private final WebDriver webDriver
+    private final JavascriptExecutor js
+    private final WebDriverMouseAction mouseAction
+    private final WebDriverKeyboardAction keyboardAction
     private final String name
 
-    SeleniumEvaluator(Selenium selenium) {
+    WebDriverEvaluator(WebDriver webDriver) {
         this.name = DEFAULT_NAME
-        this.selenium = selenium
+        this.webDriver = webDriver
+        this.js = (JavascriptExecutor) webDriver;
+        this.mouseAction = new WebDriverMouseAction(webDriver)
+        this.keyboardAction = new WebDriverKeyboardAction(webDriver)
     }
 
-    SeleniumEvaluator(String name, Selenium selenium) {
+    WebDriverEvaluator(String name, WebDriver webDriver) {
         this.name = name
-        this.selenium = selenium
+        this.webDriver = webDriver
+        this.js = (JavascriptExecutor) webDriver;
+        this.mouseAction = new WebDriverMouseAction(webDriver)
+        this.keyboardAction = new WebDriverKeyboardAction(webDriver)
     }
 
     @Override
-    Selenium getImplementation() { selenium }
+    WebDriver getImplementation() { webDriver }
 
     @Override
     String getName() { name }
 
     @Override
-    void open(String url) { selenium.open(url) }
+    void open(String url) { webDriver.get(url) }
 
     @Override
     boolean getBool(String jQueryExpr) { Boolean.valueOf(getString(jQueryExpr)) }
@@ -63,21 +75,23 @@ class SeleniumEvaluator implements Evaluator {
     String getStringProperty(String id, String prop) { getString("\$('#" + id + "').prop('" + prop + "')") }
 
     @Override
-    public <T> T getJson(String jQueryExpr) { getString("JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T } }
+    public <T> T getJson(String jQueryExpr) {
+        getString("JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
+    }
 
     @Override
     String getString(String jQueryExpr) { eval(jQueryExpr) }
 
     @Override
     String evalScript(String script) {
-        eval("""(function(){
-        ${removeTrailingChars(script)};
-    }());""")
+        eval("""var evaluate = function() {
+            ${removeTrailingChars(script)};
+        }; return evaluate();""")
     }
 
     @Override
     void runScript(String script) {
-        selenium.runScript(script)
+        ((JavascriptExecutor) webDriver).executeScript(script);
     }
 
     @Override
@@ -85,25 +99,30 @@ class SeleniumEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
             new MetaInfo(
-                id: it.id,
-                type: it.type,
-                node: it.node
+                    id: it.id,
+                    type: it.type,
+                    node: it.node
             )
         }
     }
 
+    @Override
+    KeyboardAction keyboard() { keyboardAction }
+
+    @Override
+    MouseAction mouse() { mouseAction }
+
     private String eval(String s) {
-        String expr = """(function(\$, jQuery, testatoo){
+        String expr = """var _evaluate = function(\$, jQuery, testatoo) {
             if(!jQuery) return '__TESTATOO_MISSING__';
-                else return ${removeTrailingChars(s)};
-            }(window.testatoo, window.testatoo, window.testatoo));"""
-        Log.selenium "EXECUTING:\n${expr}"
-        String v = selenium.getEval(expr)
+            else return ${removeTrailingChars(s)};
+            }; return _evaluate(window.testatoo, window.testatoo, window.testatoo);"""
+
+        String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
-            selenium.runScript(getClass().getResource("jquery-2.0.3.min.js").text + getClass().getResource("testatoo.js").text)
-            v = selenium.getEval(expr)
+            js.executeScript(getClass().getResource("jquery-2.0.3.min.js").text + getClass().getResource("testatoo.js").text)
+            v = js.executeScript(expr)
         }
-        Log.selenium "RESULT: ${v}"
         return v == 'null' || v == 'undefined' ? null : v
     }
 
@@ -111,5 +130,4 @@ class SeleniumEvaluator implements Evaluator {
         expr = expr.trim()
         expr.endsWith(';') ? expr.substring(0, expr.length() - 1) : expr
     }
-
 }

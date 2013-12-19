@@ -15,18 +15,17 @@
  */
 package org.testatoo
 
-import com.thoughtworks.selenium.DefaultSelenium
-import com.thoughtworks.selenium.Selenium
+import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebDriverBackedSelenium
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.server.RemoteControlConfiguration
-import org.openqa.selenium.server.SeleniumServer
 import org.testatoo.core.Testatoo
+
+//import org.openqa.selenium.server.RemoteControlConfiguration
+//import org.openqa.selenium.server.SeleniumServer
 import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
@@ -37,15 +36,10 @@ import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.component.list.ListView
-import org.testatoo.core.config.Port
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
-import org.testatoo.core.evaluator.SeleniumEvaluator
-import org.testatoo.core.evaluator.WebDriverEvaluator
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
-
-import java.util.logging.Level
-import java.util.logging.Logger
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -59,40 +53,20 @@ import static org.testatoo.core.state.States.*
 @RunWith(JUnit4)
 class ComponentTest {
 
+    static WebDriver driver;
+
     @BeforeClass
     public static void before() {
-//        Testatoo.configure([
-//
-//        ])
-
         Testatoo.evaluator = new DeferredEvaluator()
-        int port = Port.findFreePort()
 
-        RemoteControlConfiguration seleniumServerConfiguration = new RemoteControlConfiguration()
-        seleniumServerConfiguration.port = port
-        seleniumServerConfiguration.singleWindow = true
-        seleniumServerConfiguration.avoidProxy = true
-        seleniumServerConfiguration.honorSystemProxy = true
+        driver = new FirefoxDriver();
+        EvaluatorHolder.register(new WebDriverEvaluator(driver))
+        open('http://localhost:8080/component.html')
+    }
 
-        if (!seleniumServerConfiguration.dontTouchLogging()) {
-            Logger.getLogger("org.openqa.selenium.server.SeleniumDriverResourceHandler").setLevel(Level.OFF)
-            Logger.getLogger("org.openqa.selenium.server.SeleniumServer").setLevel(Level.OFF)
-            Logger.getLogger("org.openqa.jetty").setLevel(Level.OFF)
-        }
-        SeleniumServer seleniumServer = new SeleniumServer(seleniumServerConfiguration)
-        seleniumServer.start()
-
-//        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*firefox', 'http://localhost:8080')
-        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*googlechrome', 'http://localhost:8080')
-        selenium.start()
-
-        EvaluatorHolder.register(new SeleniumEvaluator(selenium))
-        open('component.html')
-
-
-//        WebDriver driver = new FirefoxDriver();
-//        EvaluatorHolder.register(new WebDriverEvaluator(driver))
-//        open('http://localhost:8080/component.html')
+    @AfterClass
+    public static void after() {
+        driver.quit();
     }
 
     @Test
@@ -478,7 +452,7 @@ class ComponentTest {
             assertThat custom_2 has text('Button')
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [Custom_2, Panel, Component] doesn't contain the type Button for component with id ...."
+            assert e.message == "The Component hierarchy [Custom_2, Panel, Component] doesn't contain the evaluated type Button for component with id button"
         }
     }
 

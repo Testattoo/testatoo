@@ -27,6 +27,6 @@ class TextField extends Input {
         support Placeholder, Label
     }
 
-    void enter(String text) { evaluator.evalScript("testatoo.ext.type('${id}', '${text}')") }
+    void enter(String text) { evaluator.keyboard().enter(id, text) }
 
 }

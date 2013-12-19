@@ -80,4 +80,10 @@ class PerThreadEvaluator implements Evaluator {
 
     @Override
     List<MetaInfo> getMetaInfo(String jQueryExpr) { evaluator.getMetaInfo(jQueryExpr) }
+
+    @Override
+    KeyboardAction keyboard() { evaluator.keyboard() }
+
+    @Override
+    MouseAction mouse() { evaluator.mouse() }
 }

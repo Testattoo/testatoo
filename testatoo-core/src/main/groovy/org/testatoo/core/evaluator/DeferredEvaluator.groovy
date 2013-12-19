@@ -59,4 +59,10 @@ class DeferredEvaluator implements Evaluator {
     @Override
     List<MetaInfo> getMetaInfo(String jQueryExpr) { EvaluatorHolder.get().getMetaInfo(jQueryExpr) }
 
+    @Override
+    KeyboardAction keyboard() { EvaluatorHolder.get().keyboard() }
+
+    @Override
+    MouseAction mouse() { EvaluatorHolder.get().mouse() }
+
 }

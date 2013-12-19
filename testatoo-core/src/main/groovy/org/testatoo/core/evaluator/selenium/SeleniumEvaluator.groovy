@@ -13,42 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.evaluator
+package org.testatoo.core.evaluator.selenium
 
 import com.thoughtworks.selenium.Selenium
 import groovy.json.JsonSlurper
-import org.openqa.selenium.JavascriptExecutor
-import org.openqa.selenium.WebDriver
 import org.testatoo.core.Log
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.evaluator.KeyboardAction
+import org.testatoo.core.evaluator.MouseAction
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class WebDriverEvaluator implements Evaluator {
+class SeleniumEvaluator implements Evaluator {
 
-    private final WebDriver webDriver
+    private final Selenium selenium
     private final String name
 
-
-    WebDriverEvaluator(WebDriver webDriver) {
+    SeleniumEvaluator(Selenium selenium) {
         this.name = DEFAULT_NAME
-        this.webDriver = webDriver
+        this.selenium = selenium
     }
 
-    WebDriverEvaluator(String name, WebDriver webDriver) {
+    SeleniumEvaluator(String name, Selenium selenium) {
         this.name = name
-        this.webDriver = webDriver
+        this.selenium = selenium
     }
 
     @Override
-    Selenium getImplementation() { webDriver }
+    Selenium getImplementation() { selenium }
 
     @Override
     String getName() { name }
 
     @Override
-    void open(String url) { webDriver.get(url) }
+    void open(String url) { selenium.open(url) }
 
     @Override
     boolean getBool(String jQueryExpr) { Boolean.valueOf(getString(jQueryExpr)) }
@@ -80,7 +80,7 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     void runScript(String script) {
-        ((JavascriptExecutor) webDriver).executeScript(script);
+        selenium.runScript(script)
     }
 
     @Override
@@ -88,11 +88,21 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
             new MetaInfo(
-                    id: it.id,
-                    type: it.type,
-                    node: it.node
+                id: it.id,
+                type: it.type,
+                node: it.node
             )
         }
+    }
+
+    @Override
+    KeyboardAction keyboard() {
+        return null
+    }
+
+    @Override
+    MouseAction mouse() {
+        return null
     }
 
     private String eval(String s) {
@@ -114,4 +124,5 @@ class WebDriverEvaluator implements Evaluator {
         expr = expr.trim()
         expr.endsWith(';') ? expr.substring(0, expr.length() - 1) : expr
     }
+
 }

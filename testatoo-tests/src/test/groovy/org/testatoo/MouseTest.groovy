@@ -15,27 +15,23 @@
  */
 package org.testatoo
 
-import com.thoughtworks.selenium.DefaultSelenium
+import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.server.RemoteControlConfiguration
-import org.openqa.selenium.server.SeleniumServer
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.CheckBox
 import org.testatoo.core.component.input.Radio
-import org.testatoo.core.config.Port
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
-import org.testatoo.core.evaluator.SeleniumEvaluator
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
-
-import java.util.logging.Level
-import java.util.logging.Logger
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
@@ -50,34 +46,20 @@ import static org.testatoo.core.state.States.getUnchecked
 @RunWith(JUnit4)
 class MouseTest {
 
+    static WebDriver driver
+
     @BeforeClass
     public static void before() {
-//        Testatoo.configure([
-//
-//        ])
-
         Testatoo.evaluator = new DeferredEvaluator()
-        int port = Port.findFreePort()
 
-        RemoteControlConfiguration seleniumServerConfiguration = new RemoteControlConfiguration()
-        seleniumServerConfiguration.port = port
-        seleniumServerConfiguration.singleWindow = true
-        seleniumServerConfiguration.avoidProxy = true
-        seleniumServerConfiguration.honorSystemProxy = true
+        driver = new FirefoxDriver();
+        EvaluatorHolder.register(new WebDriverEvaluator(driver))
+        open('http://localhost:8080/mouse.html')
+    }
 
-        if (!seleniumServerConfiguration.dontTouchLogging()) {
-            Logger.getLogger("org.openqa.selenium.server.SeleniumDriverResourceHandler").setLevel(Level.OFF)
-            Logger.getLogger("org.openqa.selenium.server.SeleniumServer").setLevel(Level.OFF)
-            Logger.getLogger("org.openqa.jetty").setLevel(Level.OFF)
-        }
-        SeleniumServer seleniumServer = new SeleniumServer(seleniumServerConfiguration)
-        seleniumServer.start()
-
-        DefaultSelenium selenium = new DefaultSelenium('localhost', port, '*googlechrome', 'http://localhost:8080')
-        selenium.start()
-
-        EvaluatorHolder.register(new SeleniumEvaluator(selenium))
-        open('/mouse.html')
+    @AfterClass
+    public static void after() {
+        driver.close()
     }
 
     @Test
@@ -138,13 +120,13 @@ class MouseTest {
         DropPanel dropPanel = $('#droppable') as DropPanel
         assertThat dropPanel has title('Drop here')
 
-        Panel dragPanel =  $('#draggable') as Panel
+        Panel dragPanel = $('#draggable') as Panel
 
         drag dragPanel on dropPanel
         assertThat dropPanel has title('Dropped!')
     }
 
-    class DropPanel extends Panel  {
+    class DropPanel extends Panel {
         DropPanel() {
             support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id} h1')") }
         }

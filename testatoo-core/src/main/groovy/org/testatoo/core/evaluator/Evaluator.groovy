@@ -47,4 +47,8 @@ public interface Evaluator {
 
     List<MetaInfo> getMetaInfo(String jQueryExpr)
 
+    KeyboardAction keyboard()
+
+    MouseAction mouse()
+
 }

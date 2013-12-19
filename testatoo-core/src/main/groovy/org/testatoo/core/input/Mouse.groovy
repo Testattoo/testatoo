@@ -28,15 +28,15 @@ class Mouse {
     // TODO Mathieu replace  DeferredEvaluator by PerThreadEvaluator
     static Evaluator evaluator = new DeferredEvaluator()
 
-    static void clickOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.click('${c.id}')") }
+    static void clickOn(Component c) { evaluator.mouse().click(c.id) }
 
-    static void doubleClickOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.dblClick('${c.id}')") }
+    static void doubleClickOn(Component c) { evaluator.mouse().doubleClick(c.id) }
 
-    static void rightClickOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.rightClick('${c.id}')") }
+    static void rightClickOn(Component c) { evaluator.mouse().rightClick(c.id) }
 
-    static void mouseOverOn(Component c) { evaluator.evalScript("testatoo.ext.simulate.mouseOver('${c.id}')") }
+    static void mouseOverOn(Component c) { evaluator.mouse().mouseOver(c.id) }
 
-    static void mouseOutOff(Component c) { evaluator.evalScript("testatoo.ext.simulate.mouseOut('${c.id}')") }
+    static void mouseOutOff(Component c) { evaluator.mouse().mouseOut(c.id) }
 
     static Dragger drag(Component c) {
         return new Dragger(c)
@@ -50,7 +50,7 @@ class Mouse {
         }
 
         public void on(Component to) {
-            evaluator.evalScript("testatoo.ext.simulate.drag('${from.id}', '${to.id}')")
+            evaluator.mouse().dragAndDrop(from.id, to.id)
         }
     }
 
