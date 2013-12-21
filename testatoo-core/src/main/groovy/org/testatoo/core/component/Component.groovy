@@ -52,6 +52,8 @@ class Component {
 
     Block is(State matcher) { block 'is', matcher }
 
+    Block has(PropertyMatcher matcher) { block 'has', matcher }
+
     Block contains(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
             List ret = evaluator.getJson("testatoo.ext.contains('${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
@@ -71,8 +73,6 @@ class Component {
             }
         }
     }
-
-    Block has(PropertyMatcher matcher) { block 'has', matcher }
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 

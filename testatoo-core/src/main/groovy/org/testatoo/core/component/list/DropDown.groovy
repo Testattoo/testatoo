@@ -25,7 +25,10 @@ import org.testatoo.core.state.*
 class DropDown extends Component {
 
     DropDown() {
-        support Label, Size, GroupItemsSize, SelectedItems
+        support Label, GroupItemsSize, SelectedItems
+        support Size, {
+            Component c -> c.evaluator.getInt("\$('#${id}').find('option').length")
+        }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

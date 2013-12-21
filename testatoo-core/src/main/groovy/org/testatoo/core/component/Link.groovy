@@ -25,7 +25,10 @@ import org.testatoo.core.state.*
 class Link extends Component {
 
     Link() {
-        support Text, Reference
+        support Text, {
+            Component c -> c.evaluator.getString("\$('#${id}').text()")
+        }
+        support Reference
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 

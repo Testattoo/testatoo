@@ -51,7 +51,7 @@ class WaitTest {
 
     @AfterClass
     public static void after() {
-        driver.close()
+        driver.quit()
     }
 
     @Test

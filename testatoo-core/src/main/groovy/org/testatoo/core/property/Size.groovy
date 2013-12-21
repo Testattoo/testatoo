@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Size extends Property {
 
     Size() {
-        evaluator { Component c -> c.evaluator.getInt("testatoo.ext.getSize('${c.id}')") }
+        evaluator { Component c -> c.evaluator.getInt("\$('#${c.id}').length") }
     }
 
     @Delegate

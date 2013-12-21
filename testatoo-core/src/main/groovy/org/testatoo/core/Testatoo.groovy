@@ -20,6 +20,7 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.state.Checked
 
 import java.util.concurrent.TimeoutException
 
@@ -33,7 +34,7 @@ class Testatoo {
     static Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
-    static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery,  timeout) }
+    static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
 
     static void open(String uri) { evaluator.open(uri) }
 
@@ -53,7 +54,8 @@ class Testatoo {
     }
 
     static Component check(Component c) {
-        evaluator.getString("testatoo.ext.check('${c.id}')")
+        if (!c.getState(new Checked()))
+            evaluator.mouse().click(c.id)
         return c
     }
 
@@ -72,7 +74,7 @@ class Testatoo {
     }
 
     static Component select(Component c) {
-        evaluator.getString("testatoo.ext.selectItem('${c.id}')")
+        on(c).select(c)
         return c
     }
 

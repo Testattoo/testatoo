@@ -28,7 +28,7 @@ import org.testatoo.core.state.Visible
 class Cell extends Component {
 
     Cell() {
-        support Value, { evaluator.getString("testatoo.ext.getText('${id}')") }
+        support Value, { evaluator.getString("\$('#${id}').text()") }
         support Available, Missing, Hidden, Visible
     }
 }

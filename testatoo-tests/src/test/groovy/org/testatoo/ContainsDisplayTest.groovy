@@ -15,6 +15,7 @@
  */
 package org.testatoo
 
+import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -48,6 +49,11 @@ class ContainsDisplayTest {
         driver = new FirefoxDriver();
         EvaluatorHolder.register(new WebDriverEvaluator(driver))
         open('http://localhost:8080/container.html')
+    }
+
+    @AfterClass
+    public static void after() {
+        driver.quit()
     }
 
     @Test

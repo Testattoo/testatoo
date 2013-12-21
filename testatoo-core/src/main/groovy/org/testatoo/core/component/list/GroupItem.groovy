@@ -28,7 +28,10 @@ import org.testatoo.core.state.*
 class GroupItem extends Component {
 
     GroupItem() {
-        support Label, Value, Size
+        support Label, Value
+        support Size, {
+            Component c -> c.evaluator.getInt("\$('#${id}').find('option').length")
+        }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

@@ -23,7 +23,7 @@ import org.testatoo.core.component.Component
 class SingleSelectable extends State {
 
     SingleSelectable() {
-        evaluator { Component c -> !c.evaluator.getBool("testatoo.ext.isMultiSelectable('${c.id}')") }
+        evaluator { Component c -> !c.evaluator.getBool("\$('#${c.id}').is('select') && \$('#${c.id}').prop('multiple');") }
         description e: 'single selectable', w: 'not single selectable'
     }
 

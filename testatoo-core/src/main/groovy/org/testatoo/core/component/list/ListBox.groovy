@@ -25,7 +25,10 @@ import org.testatoo.core.state.*
 class ListBox extends Component {
 
     ListBox() {
-        support Label, Size, GroupItemsSize, VisibleItemsSize, SelectedItems
+        support Label, GroupItemsSize, VisibleItemsSize, SelectedItems
+        support Size, {
+            Component c -> c.evaluator.getInt("\$('#${id}').find('option').length")
+        }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

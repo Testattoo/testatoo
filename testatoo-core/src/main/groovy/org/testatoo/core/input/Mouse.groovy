@@ -34,9 +34,7 @@ class Mouse {
 
     static void rightClickOn(Component c) { evaluator.mouse().rightClick(c.id) }
 
-    static void mouseOverOn(Component c) { evaluator.mouse().mouseOver(c.id) }
-
-    static void mouseOutOff(Component c) { evaluator.mouse().mouseOut(c.id) }
+    static void mouseOver(Component c) { evaluator.mouse().mouseOver(c.id) }
 
     static Dragger drag(Component c) {
         return new Dragger(c)

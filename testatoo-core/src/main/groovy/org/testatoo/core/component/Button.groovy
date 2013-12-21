@@ -23,7 +23,9 @@ import org.testatoo.core.state.*
  */
 class Button extends Component {
     Button() {
-        support Text
+        support Text, {
+            Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
+        }
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

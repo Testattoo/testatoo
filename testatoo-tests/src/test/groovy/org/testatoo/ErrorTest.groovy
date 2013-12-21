@@ -23,11 +23,18 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.Panel
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
+import static org.junit.Assert.fail
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.property.Properties.text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -48,7 +55,7 @@ class ErrorTest {
 
     @AfterClass
     public static void after() {
-        driver.close()
+        driver.quit()
     }
 
     @Test
@@ -60,5 +67,38 @@ class ErrorTest {
     public void not_supported_support() {
 
     }
+
+    // try to check component that not support checked state
+    // try to submit a form without submit button
+    // try to reset a form without reset button
+
+    // cannot select already selected item
+    // cannot unselect already unselected item
+
+//    @Test
+//    public void custom_component_type() {
+////        Custom_1 custom_1 = $('#button') as Custom_1
+////        assertThat custom_1 has text('Button')
+//
+//        Custom_2 custom_2 = $('#button') as Custom_2
+//        try {
+//            assertThat custom_2 has text('Button')
+//            fail()
+//        } catch (ComponentException e) {
+//            assert e.message == "The Component hierarchy [Custom_2, Panel, Component] doesn't contain the evaluated type Button for component with id button"
+//        }
+//    }
+
+    class Custom_1 extends Button {
+        Custom_1() {
+        }
+    }
+
+    class Custom_2 extends Panel {
+        Custom_2() {
+        }
+    }
+
+
 
 }

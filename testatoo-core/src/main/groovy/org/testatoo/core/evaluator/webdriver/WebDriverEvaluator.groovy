@@ -84,9 +84,9 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     String evalScript(String script) {
-        eval("""var evaluate = function() {
-            ${removeTrailingChars(script)};
-        }; return evaluate();""")
+        eval("""(function(){
+        ${removeTrailingChars(script)};
+    }());""")
     }
 
     @Override
@@ -115,7 +115,7 @@ class WebDriverEvaluator implements Evaluator {
     private String eval(String s) {
         String expr = """var _evaluate = function(\$, jQuery, testatoo) {
             if(!jQuery) return '__TESTATOO_MISSING__';
-            else return ${removeTrailingChars(s)};
+                else return ${removeTrailingChars(s)};
             }; return _evaluate(window.testatoo, window.testatoo, window.testatoo);"""
 
         String v = js.executeScript(expr)

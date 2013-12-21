@@ -34,7 +34,7 @@ class Column extends Component {
             evaluator.getInt("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})').length")
         }
         support Title, {
-            evaluator.getString("testatoo.ext.getText('${id}')")
+            evaluator.getString("\$('#${id}').text()")
         }
         support Available, Missing, Hidden, Visible
     }

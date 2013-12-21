@@ -31,9 +31,18 @@ class Form extends Component {
 
     void submit() {
         Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button
-        evaluator.evalScript("testatoo.ext.simulate.click('${submit_button.id}')")
+        if (submit_button.is(new Available()))
+            evaluator.mouse().click(submit_button.id)
+        else
+            throw new ComponentException('Cannot submit form without submit button')
     }
 
-    void reset() { evaluator.evalScript("\$('#${id}')[0].reset()") }
+    void reset() {
+        Button reset_button = evaluator.getMetaInfo("\$('#${id}').find('[type=reset]:first')")[0] as Button
+        if (reset_button.is(new Available()))
+            evaluator.mouse().click(reset_button.id)
+        else
+            throw new ComponentException('Cannot reset form without submit button')
+    }
 
 }

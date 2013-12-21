@@ -27,8 +27,11 @@ import org.testatoo.core.state.*
 class Item extends Component {
 
     Item() {
-        support Text, Value, Label
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
+        support Value, Label
+        support Text, {
+            Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
+        }
+        support Enabled, Disabled, Available, Missing, Hidden, Visible, Selected, UnSelected
     }
 
     boolean equals(o) {
@@ -37,7 +40,7 @@ class Item extends Component {
     }
 
     String getValue() {
-        return evaluator.getString("testatoo.ext.getText('${id}')")
+        return evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
     }
 
     @Override

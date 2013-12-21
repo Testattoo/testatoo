@@ -26,7 +26,9 @@ import org.testatoo.core.state.*
 class ListView extends Component {
 
     ListView() {
-        support Size
+        support Size, {
+            Component c -> c.evaluator.getInt("\$('#${id}').find('li').length")
+        }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('li')").collect { it as Item }
         }

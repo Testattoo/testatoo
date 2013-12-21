@@ -96,14 +96,6 @@
         return 'Undefined';
     }
 
-    function findCenter(el) {
-        var el = $(el), o = el.offset();
-        return {
-            x: o.left + el.outerWidth() / 2,
-            y: o.top + el.outerHeight() / 2
-        };
-    }
-
     $.fn.getMetaInfos = function () {
         var metaInfos = [];
         this.each(function () {
@@ -124,21 +116,6 @@
 
     $.ext = {
 
-        check: function (id) {
-            var el = $('#' + id + '');
-            if (el.is('input') && (el.attr('type') == 'radio' || el.attr('type') == 'checkbox') && !el.prop('checked')) {
-                testatoo.ext.simulate.click(id);
-            }
-        },
-
-        selectItem: function (id) {
-            $('#' + id + '').prop('selected', true);
-        },
-
-        unSelectItem: function (id) {
-            $('#' + id + '').prop('selected', false);
-        },
-
         getLabel: function (id) {
             var el = $('#' + id + '');
             if (el.is('option') || el.is('optgroup'))  {
@@ -151,28 +128,6 @@
             var p = el.prev('label');
             if (p.length > 0) return p.text();
             return el.parent().text().trim();
-        },
-
-        getSize: function (id) {
-            var el = $('#' + id + '');
-            if (el.is('ul')) {
-                return el.find('li').length;
-            }
-            if (el.is('select')) {
-                return el.find('option').length;
-            }
-            if (el.is('optgroup')) {
-                return el.find('option').length;
-            }
-            if (el.is('table')) {
-                return el.find('tbody tr').length;
-            }
-            return 0;
-        },
-
-        getText: function (id) {
-            var el = $('#' + id + '');
-            return (el.prop('nodeName') || '').toLowerCase() == 'input' ? el.val() : el.text().trim();
         },
 
         isEmpty: function (id) {
@@ -193,25 +148,7 @@
 
         isDisabled: function(id) {
             var el = $('#' + id + '');
-            if(el.is(':disabled')) {
-                return true;
-            }
-            return (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
-        },
-
-        isMultiSelectable: function(id) {
-            var el = $('#' + id + '');
-            return el.is('select') && el.prop('multiple');
-        },
-
-        type: function (id, text) {
-            var el = $('#' + id + '');
-            el.val('');
-            $.ext.simulate.click(id);
-            text = text || '';
-            for (var i = 0; i < text.length; i++) {
-                $.ext.simulate.type(id, {charCode: text.charCodeAt(i)});
-            }
+            return el.is(':disabled') || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
         },
 
         contains: function(id, ids) {

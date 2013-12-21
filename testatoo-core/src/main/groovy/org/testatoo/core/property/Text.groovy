@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Text extends Property {
 
     Text() {
-        evaluator { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
+        evaluator { Component c -> c.evaluator.getString("\$('#${id}').text()") }
     }
 
     @Delegate

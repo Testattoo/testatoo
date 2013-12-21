@@ -59,7 +59,7 @@ class MouseTest {
 
     @AfterClass
     public static void after() {
-        driver.close()
+        driver.quit()
     }
 
     @Test
@@ -103,15 +103,21 @@ class MouseTest {
     public void mouseOver() {
         Button button = $('#button_3') as Button
         assertThat button has text('Button')
-        mouseOverOn button
+        mouseOver button
         assertThat button has text('Button Mouse Over!')
     }
 
     @Test
     public void mouseOut() {
+        // To simulate mouse out
         Button button = $('#button_4') as Button
         assertThat button has text('Button')
-        mouseOutOff button
+        // 1 - mouse over the component
+        mouseOver button
+        // 2 - mouse over an another component
+        mouseOver $('#button_5') as Button
+
+        // The mouse out is triggered
         assertThat button has text('Button Mouse Out!')
     }
 
@@ -128,7 +134,7 @@ class MouseTest {
 
     class DropPanel extends Panel {
         DropPanel() {
-            support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id} h1')") }
+            support Title, { Component c -> c.evaluator.getString("\$('#${id}').find('h1').text()") }
         }
     }
 }

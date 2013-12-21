@@ -23,11 +23,11 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.*
+import org.testatoo.core.component.datagrid.Cell
 
 //import org.openqa.selenium.server.RemoteControlConfiguration
 //import org.openqa.selenium.server.SeleniumServer
-import org.testatoo.core.component.*
-import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
@@ -247,8 +247,12 @@ class ComponentTest {
         assertThat dropDown has items.containing('Polonium', 'Calcium')
 
         assertThat dropDown has selectedItems('Helium')
+        assertThat dropDown.items[2] is unSelected
+
         on dropDown select 'Polonium'
+
         assertThat dropDown has selectedItems('Polonium')
+        assertThat dropDown.items[2] is selected
 
         assert dropDown.items.size == 5
         assertThat dropDown has 5.items
@@ -315,7 +319,7 @@ class ComponentTest {
             on listBox select 'Quebec'
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Item Quebec is disabled and cannot be selected '
+            assert e.message == 'Item Quebec is disabled and cannot be selected'
         }
 
         assertThat listBox has selectedItems('Montreal', 'Montpellier')
@@ -442,33 +446,9 @@ class ComponentTest {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
 //    }
 
-    @Test
-    public void custom_component_type() {
-//        Custom_1 custom_1 = $('#button') as Custom_1
-//        assertThat custom_1 has text('Button')
-
-        Custom_2 custom_2 = $('#button') as Custom_2
-        try {
-            assertThat custom_2 has text('Button')
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [Custom_2, Panel, Component] doesn't contain the evaluated type Button for component with id button"
-        }
-    }
-
     class Message extends Panel {
         Message() {
-            support Title, { Component c -> c.evaluator.getString("testatoo.ext.getText('${c.id}')") }
-        }
-    }
-
-    class Custom_1 extends Button {
-        Custom_1() {
-        }
-    }
-
-    class Custom_2 extends Panel {
-        Custom_2() {
+            support Title, { Component c -> c.evaluator.getString("\$('#${id}').text()") }
         }
     }
 

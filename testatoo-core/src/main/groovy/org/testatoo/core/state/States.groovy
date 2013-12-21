@@ -32,5 +32,7 @@ class States {
     static final Filled filled = new Filled()
     static final MultiSelectable multiSelectable = new MultiSelectable()
     static final SingleSelectable singleSelectable = new SingleSelectable()
+    static final Selected selected = new Selected()
+    static final UnSelected unSelected = new UnSelected()
 
 }
