@@ -16,7 +16,6 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.property.Text
-import org.testatoo.core.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -26,6 +25,5 @@ class Button extends Component {
         support Text, {
             Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
         }
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

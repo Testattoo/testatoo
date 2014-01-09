@@ -16,7 +16,6 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.property.Title
-import org.testatoo.core.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -24,6 +23,5 @@ import org.testatoo.core.state.*
 class Panel extends Component {
     Panel() {
         support Title
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 }

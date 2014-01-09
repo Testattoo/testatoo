@@ -17,7 +17,8 @@ package org.testatoo.core.component.list
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.*
-import org.testatoo.core.state.*
+import org.testatoo.core.state.MultiSelectable
+import org.testatoo.core.state.SingleSelectable
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -35,7 +36,7 @@ class ListBox extends Component {
         support GroupItems, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
         }
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, MultiSelectable, SingleSelectable
+        support MultiSelectable, SingleSelectable
     }
 
     List<Item> getItems() {

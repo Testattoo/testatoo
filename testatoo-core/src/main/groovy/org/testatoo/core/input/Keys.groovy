@@ -13,17 +13,56 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
-
-import org.testatoo.core.property.Source
+package org.testatoo.core.input
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Image extends Component {
+public enum Keys {
 
-    Image() {
-        support Source
-    }
+    BACK_SPACE,
+    TAB,
+    ENTER,
+    SHIFT,
+    LEFT_SHIFT,
+    CONTROL,
+    LEFT_CONTROL,
+    ALT,
+    LEFT_ALT,
+    ESCAPE,
+    SPACE,
+    PAGE_UP,
+    PAGE_DOWN,
+    END,
+    HOME,
+    LEFT,
+    UP,
+    RIGHT,
+    DOWN,
+    INSERT,
+    DELETE,
+    SEMICOLON,
 
+    EQUALS,
+    MULTIPLY,
+    ADD,
+    SEPARATOR,
+    SUBTRACT,
+    DECIMAL,
+    DIVIDE,
+
+    F1,
+    F2,
+    F3,
+    F4,
+    F5,
+    F6,
+    F7,
+    F8,
+    F9,
+    F10,
+    F11,
+    F12,
+
+    COMMAND
 }

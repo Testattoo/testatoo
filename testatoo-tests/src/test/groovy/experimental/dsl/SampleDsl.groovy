@@ -19,9 +19,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-
-//import org.testatoo.config.TestatooJunitRunner
-//import org.testatoo.config.TestatooModules
 import org.testatoo.core.Testatoo
 
 import static org.testatoo.core.Testatoo.*

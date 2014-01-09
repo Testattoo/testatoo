@@ -16,7 +16,8 @@
 package experimental.dsl.todo
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.Type
+import org.testatoo.core.component.Panel
+
 import org.testatoo.core.property.Title
 import org.testatoo.core.state.Available
 import org.testatoo.core.state.Enabled
@@ -24,9 +25,8 @@ import org.testatoo.core.state.Enabled
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class MyPanel extends Component {
+class MyPanel extends Panel {
     MyPanel() {
-        type Type.PANEL
 
         // existing property, override evaluation
         support Title, { Component c -> /*c.evaluator.execute('$(...)')*/ return 'temp2' }

@@ -26,6 +26,9 @@ import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Panel
+import org.testatoo.core.component.input.CheckBox
+import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -35,6 +38,11 @@ import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.Testatoo.open
 import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.state.States.getEnabled
+import static org.testatoo.core.state.States.getEnabled
+import static org.testatoo.core.state.States.getEnabled
+import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.state.States.getVisible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -68,6 +76,37 @@ class ErrorTest {
 
     }
 
+
+    // TODO errors on ...
+
+//    @Test
+//    public void test_AND() {
+//        CheckBox checkBox = $('#checkbox') as CheckBox
+//
+//        assertThat {
+//            checkBox.is(enabled) and checkBox.is(visible)
+//            checkBox.is(enabled) & checkBox.is(visible)
+//        }
+//    }
+//
+//    @Test
+//    public void test_OR() {
+//        ListBox listBox = $('#cities') as ListBox
+//
+//        assertThat {
+//            listBox.has(8.items) or listBox.has(3.visibleItems)
+//            listBox.has(8.items) | listBox.has(3.visibleItems)
+//        }
+//    }
+//
+//    @Test
+//    public void test_ARE() {
+//        DropDown dropDown = $('#elements') as DropDown
+//
+//        assertThat {
+//            dropDown.items.are enabled
+//        }
+//    }
     // try to check component that not support checked state
     // try to submit a form without submit button
     // try to reset a form without reset button
@@ -75,6 +114,7 @@ class ErrorTest {
     // cannot select already selected item
     // cannot unselect already unselected item
 
+    // USe evaluator.runScript to add new component type
 //    @Test
 //    public void custom_component_type() {
 ////        Custom_1 custom_1 = $('#button') as Custom_1
@@ -89,15 +129,15 @@ class ErrorTest {
 //        }
 //    }
 
-    class Custom_1 extends Button {
-        Custom_1() {
-        }
-    }
-
-    class Custom_2 extends Panel {
-        Custom_2() {
-        }
-    }
+//    class Custom_1 extends Button {
+//        Custom_1() {
+//        }
+//    }
+//
+//    class Custom_2 extends Panel {
+//        Custom_2() {
+//        }
+//    }
 
 
 

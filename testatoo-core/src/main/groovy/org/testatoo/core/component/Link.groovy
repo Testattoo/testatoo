@@ -17,7 +17,6 @@ package org.testatoo.core.component
 
 import org.testatoo.core.property.Reference
 import org.testatoo.core.property.Text
-import org.testatoo.core.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,7 +28,6 @@ class Link extends Component {
             Component c -> c.evaluator.getString("\$('#${id}').text()")
         }
         support Reference
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
 }

@@ -19,7 +19,6 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
-import org.testatoo.core.property.SelectedItems
 import org.testatoo.core.state.Selected
 import org.testatoo.core.state.UnSelected
 

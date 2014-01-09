@@ -16,25 +16,20 @@
 package org.testatoo.core.input
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.evaluator.DeferredEvaluator
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.evaluator.EvaluatorHolder
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Mouse {
 
-    // Settings
-    // TODO Mathieu replace  DeferredEvaluator by PerThreadEvaluator
-    static Evaluator evaluator = new DeferredEvaluator()
+    static void clickOn(Component c) { EvaluatorHolder.get().mouse().click(c.id) }
 
-    static void clickOn(Component c) { evaluator.mouse().click(c.id) }
+    static void doubleClickOn(Component c) { EvaluatorHolder.get().mouse().doubleClick(c.id) }
 
-    static void doubleClickOn(Component c) { evaluator.mouse().doubleClick(c.id) }
+    static void rightClickOn(Component c) { EvaluatorHolder.get().mouse().rightClick(c.id) }
 
-    static void rightClickOn(Component c) { evaluator.mouse().rightClick(c.id) }
-
-    static void mouseOver(Component c) { evaluator.mouse().mouseOver(c.id) }
+    static void mouseOver(Component c) { EvaluatorHolder.get().mouse().mouseOver(c.id) }
 
     static Dragger drag(Component c) {
         return new Dragger(c)
@@ -48,7 +43,7 @@ class Mouse {
         }
 
         public void on(Component to) {
-            evaluator.mouse().dragAndDrop(from.id, to.id)
+            EvaluatorHolder.get().mouse().dragAndDrop(from.id, to.id)
         }
     }
 

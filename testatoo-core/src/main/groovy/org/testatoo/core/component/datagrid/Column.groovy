@@ -18,10 +18,6 @@ package org.testatoo.core.component.datagrid
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Title
-import org.testatoo.core.state.Available
-import org.testatoo.core.state.Hidden
-import org.testatoo.core.state.Missing
-import org.testatoo.core.state.Visible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -36,7 +32,6 @@ class Column extends Component {
         support Title, {
             evaluator.getString("\$('#${id}').text()")
         }
-        support Available, Missing, Hidden, Visible
     }
 
     List<Cell> getCells() {

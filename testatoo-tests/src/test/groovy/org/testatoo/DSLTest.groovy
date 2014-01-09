@@ -60,14 +60,6 @@ class DSLTest {
     @Test
     public void test_chaining_assert() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { CheckBox c ->
-            c.is enabled
-            c.is visible
-
-            c.is unchecked
-            c.has label('Check me out')
-        }
-
         assertThat {
             checkBox.is enabled
             checkBox.is visible
@@ -80,10 +72,6 @@ class DSLTest {
     @Test
     public void test_AND() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox, { CheckBox c ->
-            c.is(enabled) and c.is(visible)
-            c.is(enabled) & c.is(visible)
-        }
 
         assertThat {
             checkBox.is(enabled) and checkBox.is(visible)
@@ -95,11 +83,6 @@ class DSLTest {
     public void test_OR() {
         ListBox listBox = $('#cities') as ListBox
 
-        assertThat listBox, { ListBox c ->
-            c.has(8.items) or c.has(3.visibleItems)
-            c.has(8.items) | c.has(3.visibleItems)
-        }
-
         assertThat {
             listBox.has(8.items) or listBox.has(3.visibleItems)
             listBox.has(8.items) | listBox.has(3.visibleItems)
@@ -109,10 +92,6 @@ class DSLTest {
     @Test
     public void test_ARE() {
         DropDown dropDown = $('#elements') as DropDown
-
-        assertThat dropDown, { DropDown c ->
-            c.items.are enabled
-        }
 
         assertThat {
             dropDown.items.are enabled

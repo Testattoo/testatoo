@@ -20,9 +20,7 @@ import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
-import org.testatoo.core.state.State
-import org.testatoo.core.state.StateEvaluator
-import org.testatoo.core.state.Visible
+import org.testatoo.core.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -37,13 +35,16 @@ class Component {
 
     CachedMetaData meta = new CachedMetaData()
 
-    Component() {}
+    Component() {
+        support Enabled, Disabled, Available, Missing, Hidden, Visible
+    }
 
     Component(Evaluator evaluator, IdProvider idProvider) {
         meta = new CachedMetaData(
             evaluator: evaluator,
             idProvider: idProvider
         )
+        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
     String getId() throws ComponentException { meta.getId(this) }

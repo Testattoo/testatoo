@@ -93,7 +93,7 @@
                     return 'Undefined';
             }
         }
-        return 'Undefined';
+        return 'Component';
     }
 
     $.fn.getMetaInfos = function () {

@@ -41,8 +41,12 @@ import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
+import static org.junit.Assert.assertThat
+import static org.junit.Assert.assertTrue
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.assertThat
+import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
@@ -104,7 +108,6 @@ class ComponentTest {
         assertThat textField has placeholder('Text')
         assertThat textField is empty
 
-        // TODO mathieu is good syntax (enter only on textfield) / type on all component ?
         on textField enter 'some value'
 
         assertThat textField has text('some value')
@@ -340,6 +343,9 @@ class ComponentTest {
     public void test_listView() {
         ListView listView = $('#list_view') as ListView
 
+        assertThat listView is enabled
+        assertThat listView is visible
+
         assert listView.items.size == 5
         assertThat listView has 5.items
 
@@ -395,6 +401,9 @@ class ComponentTest {
     @Test
     public void test_datagrid() {
         DataGrid data_grid = $('#data_grid') as DataGrid
+
+        assertThat data_grid is enabled
+        assertThat data_grid is visible
 
         assertThat data_grid has 3.columns
         assert data_grid.columns.size == 3

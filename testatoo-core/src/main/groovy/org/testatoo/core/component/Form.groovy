@@ -16,18 +16,13 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.state.Available
-import org.testatoo.core.state.Hidden
-import org.testatoo.core.state.Missing
-import org.testatoo.core.state.Visible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Form extends Component {
 
-    Form() {
-        support Available, Missing, Hidden, Visible
-    }
+    Form() {}
 
     void submit() {
         Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button

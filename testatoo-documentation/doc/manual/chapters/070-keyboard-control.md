@@ -15,7 +15,6 @@ Only US English keyboard is managed for the moment.
 
 Keep a key pressed
 
-    import org.testatoo.core.input.Keyboard;
     import static org.testatoo.core.input.KeyModifier.*;
     ...
     Keyboard.keyDown(CONTROL);

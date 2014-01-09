@@ -19,7 +19,8 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Text
 import org.testatoo.core.property.Value
-import org.testatoo.core.state.*
+import org.testatoo.core.state.Selected
+import org.testatoo.core.state.UnSelected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -31,7 +32,7 @@ class Item extends Component {
         support Text, {
             Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
         }
-        support Enabled, Disabled, Available, Missing, Hidden, Visible, Selected, UnSelected
+        support Selected, UnSelected
     }
 
     boolean equals(o) {

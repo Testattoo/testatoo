@@ -20,7 +20,6 @@ import org.testatoo.core.property.Items
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Value
-import org.testatoo.core.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -35,7 +34,6 @@ class GroupItem extends Component {
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
     List<Item> getItems() {
