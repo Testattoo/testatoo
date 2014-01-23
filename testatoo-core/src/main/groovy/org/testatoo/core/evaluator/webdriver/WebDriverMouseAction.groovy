@@ -18,6 +18,7 @@ package org.testatoo.core.evaluator.webdriver
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
+import org.testatoo.core.evaluator.KeyboardAction
 import org.testatoo.core.evaluator.MouseAction
 
 /**
@@ -26,38 +27,39 @@ import org.testatoo.core.evaluator.MouseAction
 class WebDriverMouseAction implements MouseAction {
 
     private final WebDriver webDriver
+    private final WebDriverKeyboardAction keyboard
 
-    WebDriverMouseAction(WebDriver webDriver) {
+    WebDriverMouseAction(WebDriver webDriver, WebDriverKeyboardAction keyboard) {
         this.webDriver = webDriver
+        this.keyboard = keyboard
     }
 
     @Override
     void click(String id) {
-        new Actions(webDriver).click(webDriver.findElement(By.id(id))).build().perform();
+        Actions action = new Actions(webDriver)
+        keyboard.addModifierKeys(action)
+        action.click(webDriver.findElement(By.id(id))).build().perform()
+        keyboard.releaseAction()
     }
 
     @Override
     void doubleClick(String id) {
-        new Actions(webDriver).doubleClick(webDriver.findElement(By.id(id))).build().perform();
+        new Actions(webDriver).doubleClick(webDriver.findElement(By.id(id))).build().perform()
     }
 
     @Override
     void rightClick(String id) {
-        new Actions(webDriver).contextClick(webDriver.findElement(By.id(id))).build().perform();
+        new Actions(webDriver).contextClick(webDriver.findElement(By.id(id))).build().perform()
     }
 
     @Override
     void mouseOver(String id) {
-        new Actions(webDriver).moveToElement(webDriver.findElement(By.id(id))).build().perform();
-    }
-
-    @Override
-    void mouseOut(String id) {
-
+        new Actions(webDriver).moveToElement(webDriver.findElement(By.id(id))).build().perform()
     }
 
     @Override
     void dragAndDrop(String originId, String targetId) {
-        new Actions(webDriver).dragAndDrop(webDriver.findElement(By.id(originId)), webDriver.findElement(By.id(targetId))).build().perform();
+        new Actions(webDriver).dragAndDrop(webDriver.findElement(By.id(originId)), webDriver.findElement(By.id(targetId))).build().perform()
     }
+
 }

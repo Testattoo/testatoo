@@ -38,16 +38,16 @@ class WebDriverEvaluator implements Evaluator {
         this.name = DEFAULT_NAME
         this.webDriver = webDriver
         this.js = (JavascriptExecutor) webDriver;
-        this.mouseAction = new WebDriverMouseAction(webDriver)
         this.keyboardAction = new WebDriverKeyboardAction(webDriver)
+        this.mouseAction = new WebDriverMouseAction(webDriver, keyboardAction)
     }
 
     WebDriverEvaluator(String name, WebDriver webDriver) {
         this.name = name
         this.webDriver = webDriver
         this.js = (JavascriptExecutor) webDriver;
-        this.mouseAction = new WebDriverMouseAction(webDriver)
         this.keyboardAction = new WebDriverKeyboardAction(webDriver)
+        this.mouseAction = new WebDriverMouseAction(webDriver, keyboardAction)
     }
 
     @Override

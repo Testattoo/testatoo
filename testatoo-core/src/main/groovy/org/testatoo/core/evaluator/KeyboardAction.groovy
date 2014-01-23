@@ -15,11 +15,22 @@
  */
 package org.testatoo.core.evaluator
 
+import org.testatoo.core.input.Keys
+import org.testatoo.core.input.KeysModifier
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 public interface KeyboardAction {
 
     void enter(String id, String data)
+
+    void enter(Keys key)
+
+    void press(KeysModifier key)
+
+    void release(KeysModifier key)
+
+    void releaseAll()
 
 }

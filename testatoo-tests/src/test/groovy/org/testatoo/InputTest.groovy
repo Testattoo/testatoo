@@ -15,7 +15,9 @@
  */
 package org.testatoo
 
+import org.junit.After
 import org.junit.AfterClass
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,12 +34,14 @@ import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+
+import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.input.Keys.*
+import static org.testatoo.core.input.KeysModifier.*
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.pressKey
-import static org.testatoo.core.input.Keyboard.type
+import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
@@ -50,9 +54,8 @@ class InputTest {
 
     static WebDriver driver
 
-
     @BeforeClass
-    public static void before() {
+    public static  void before() {
         Testatoo.evaluator = new DeferredEvaluator()
 
         driver = new FirefoxDriver();
@@ -141,7 +144,7 @@ class InputTest {
     }
 
     @Test
-    public void test_my_abc_on_keyboard_() {
+    public void test_letters_on_keyboard_() {
         assertThat $('#span_a') is missing
         assertThat $('#span_b') is missing
         assertThat $('#span_c') is missing
@@ -260,44 +263,13 @@ class InputTest {
         assertThat $('#span_0') is available
     }
 
-
     @Test
     public void test_type_on_focused_input() {
-
-
-
     }
 
     @Test
     public void test_key() {
-
-        assertThat $('#_backspace') is missing
-        assertThat $('#_tab') is missing
-        assertThat $('#_enter') is missing
-        assertThat $('#_esc') is missing
-        assertThat $('#_space') is missing
-        assertThat $('#_pageup') is missing
-        assertThat $('#_pagedown') is missing
-        assertThat $('#_end') is missing
-        assertThat $('#_home') is missing
-        assertThat $('#_left') is missing
-        assertThat $('#_up') is missing
-        assertThat $('#_right') is missing
-        assertThat $('#_down') is missing
-        assertThat $('#_insert') is missing
-        assertThat $('#_del') is missing
-        assertThat $('#_semicolon') is missing
-        assertThat $('#_equals') is missing
-        assertThat $('#_multiply') is missing
-        assertThat $('#_add') is missing
-        assertThat $('#_separator') is missing
-        assertThat $('#_substract') is missing
-        assertThat $('#_decimal') is missing
-        assertThat $('#_divide') is missing
-        assertThat $('#_scroll') is missing
-        assertThat $('#_capslock') is missing
-        assertThat $('#_numlock') is missing
-        assertThat $('#_pause') is missing
+        assertThat $('#span_esc') is missing
 
         assertThat $('#span_f1') is missing
         assertThat $('#span_f2') is missing
@@ -312,71 +284,70 @@ class InputTest {
         assertThat $('#span_f11') is missing
         assertThat $('#span_f12') is missing
 
-        pressKey(BACK_SPACE)
-        pressKey(TAB)
-        pressKey(ENTER)
-        pressKey(ESCAPE)
-        pressKey(SPACE)
-        pressKey(PAGE_UP)
-        pressKey(PAGE_DOWN)
-        pressKey(END)
-        pressKey(HOME)
-        pressKey(LEFT)
-        pressKey(UP)
-        pressKey(RIGHT)
-        pressKey(DOWN)
-        pressKey(INSERT)
-        pressKey(DELETE)
-        pressKey(SEMICOLON)
+        assertThat $('#span_insert') is missing
+        assertThat $('#span_del') is missing
+        assertThat $('#span_pageup') is missing
+        assertThat $('#span_pagedown') is missing
 
-        pressKey(EQUALS)
-        pressKey(MULTIPLY)
-        pressKey(ADD)
-        pressKey(SEPARATOR)
-        pressKey(SUBTRACT)
-        pressKey(DECIMAL)
-        pressKey(DIVIDE)
+        assertThat $('#span_home') is missing
+        assertThat $('#span_end') is missing
+        assertThat $('#span_backspace') is missing
 
-        pressKey(F1)
-        pressKey(F2)
-        pressKey(F3)
-        pressKey(F4)
-        pressKey(F5)
-        pressKey(F6)
-        pressKey(F7)
-        pressKey(F8)
-        pressKey(F9)
-        pressKey(F10)
-        pressKey(F11)
-        pressKey(F12)
+        assertThat $('#span_divide') is missing
+        assertThat $('#span_multiply') is missing
+        assertThat $('#span_substract') is missing
+        assertThat $('#span_add') is missing
+        assertThat $('#span_equals') is missing
 
-        assertThat $('#_backspace') is available
-        assertThat $('#_tab') is available
-        assertThat $('#_enter') is available
-        assertThat $('#_esc') is available
-        assertThat $('#_space') is available
-        assertThat $('#_pageup') is available
-        assertThat $('#_pagedown') is available
-        assertThat $('#_end') is available
-        assertThat $('#_home') is available
-        assertThat $('#_left') is available
-        assertThat $('#_up') is available
-        assertThat $('#_right') is available
-        assertThat $('#_down') is available
-        assertThat $('#_insert') is available
-        assertThat $('#_del') is available
-        assertThat $('#_semicolon') is available
-        assertThat $('#_equals') is available
-        assertThat $('#_multiply') is available
-        assertThat $('#_add') is available
-        assertThat $('#_separator') is available
-        assertThat $('#_substract') is available
-        assertThat $('#_decimal') is available
-        assertThat $('#_divide') is available
-        assertThat $('#_scroll') is available
-        assertThat $('#_capslock') is available
-        assertThat $('#_numlock') is available
-        assertThat $('#_pause') is available
+        assertThat $('#span_tab') is missing
+        assertThat $('#span_return') is missing
+        assertThat $('#span_space') is missing
+
+        assertThat $('#span_left') is missing
+        assertThat $('#span_up') is missing
+        assertThat $('#span_right') is missing
+        assertThat $('#span_down') is missing
+
+        type(ESCAPE)
+
+        type(F1)
+        type(F2)
+        type(F3)
+        type(F4)
+        type(F5)
+        type(F6)
+        type(F7)
+        type(F8)
+        type(F9)
+        type(F10)
+        type(F11)
+        type(F12)
+
+        type(INSERT)
+        type(DELETE)
+        type(PAGE_UP)
+        type(PAGE_DOWN)
+
+        type(HOME)
+        type(END)
+        type(BACK_SPACE)
+
+        type(MULTIPLY)
+        type(DIVIDE)
+        type(SUBTRACT)
+        type(ADD)
+        type(EQUALS)
+
+        type(TAB)
+        type(RETURN)
+        type(SPACE)
+
+        type(LEFT)
+        type(UP)
+        type(RIGHT)
+        type(DOWN)
+
+        assertThat $('#span_esc') is available
 
         assertThat $('#span_f1') is available
         assertThat $('#span_f2') is available
@@ -390,26 +361,133 @@ class InputTest {
         assertThat $('#span_f10') is available
         assertThat $('#span_f11') is available
         assertThat $('#span_f12') is available
+
+        assertThat $('#span_insert') is available
+        assertThat $('#span_del') is available
+        assertThat $('#span_pageup') is available
+        assertThat $('#span_pagedown') is available
+
+        assertThat $('#span_home') is available
+        assertThat $('#span_end') is available
+        assertThat $('#span_backspace') is available
+
+        assertThat $('#span_divide') is available
+        assertThat $('#span_multiply') is available
+        assertThat $('#span_substract') is available
+        assertThat $('#span_add') is available
+        assertThat $('#span_equals') is available
+
+        assertThat $('#span_tab') is available
+        assertThat $('#span_return') is available
+        assertThat $('#span_space') is available
+
+        assertThat $('#span_left') is available
+        assertThat $('#span_up') is available
+        assertThat $('#span_right') is available
+        assertThat $('#span_down') is available
     }
-
-
 
     @Test
     public void test_key_modifier() {
-        //        SHIFT,
-//        LEFT_SHIFT,
-//        CONTROL,
-//        LEFT_CONTROL,
-//        ALT,
-//        LEFT_ALT,
-        //        COMMAND
+        assertThat $('#span_Ctrl_c') is missing
+        assertThat $('#span_Shift_c') is missing
+        assertThat $('#span_Alt_c') is missing
+
+        assertThat $('#span_Ctrl_1') is missing
+        assertThat $('#span_Alt_1') is missing
+
+        assertThat $('#span_Ctrl_esc') is missing
+        assertThat $('#span_Shift_esc') is missing
+        assertThat $('#span_Alt_esc') is missing
+
+        press(CONTROL)
+        type('c')
+        release(CONTROL)
+
+        press(SHIFT)
+        type('c')
+        release(SHIFT)
+
+        press(ALT)
+        type('c')
+        release(ALT)
+
+        press(CONTROL)
+        type('1')
+        release(CONTROL)
+
+        press(ALT)
+        type('1')
+        release(ALT)
+
+        press(CONTROL)
+        type(ESCAPE)
+        release(CONTROL)
+
+        press(SHIFT)
+        type(ESCAPE)
+        release(SHIFT)
+
+        press(ALT)
+        type(ESCAPE)
+        release(ALT)
+
+        assertThat $('#span_Ctrl_c') is available
+        assertThat $('#span_Shift_c') is available
+        assertThat $('#span_Alt_c') is available
+
+        assertThat $('#span_Ctrl_1') is available
+        assertThat $('#span_Alt_1') is available
+
+        assertThat $('#span_Ctrl_esc') is available
+        assertThat $('#span_Shift_esc') is available
+        assertThat $('#span_Alt_esc') is available
     }
 
     @Test
     public void test_mouse_with_key_modifier() {
 
-    }
+        assertThat $('#span_Ctrl_mouseleft') is missing
+        assertThat $('#span_Shift_mouseleft') is missing
+        assertThat $('#span_Alt_mouseleft') is missing
 
+        assertThat $('#span_Ctrl_mouseright') is missing
+        assertThat $('#span_Shift_mouseright') is missing
+        assertThat $('#span_Alt_mouseright') is missing
+
+        press(CONTROL)
+        clickOn $('#_Ctrl_mouseleft') as Panel
+        release(CONTROL)
+
+        press(SHIFT)
+        clickOn $('#_Shift_mouseleft') as Panel
+        release(SHIFT)
+
+        press(ALT)
+        clickOn $('#_Shift_mouseleft') as Panel
+        release(ALT)
+
+        assertThat $('#span_Ctrl_mouseleft') is available
+        assertThat $('#span_Shift_mouseleft') is available
+        assertThat $('#span_Alt_mouseleft') is available
+
+        // Not testable cause Handled by the browser
+        press(CONTROL)
+        rightClickOn $('#_Ctrl_mouseright') as Panel
+        release(CONTROL)
+
+        press(SHIFT)
+        rightClickOn $('#_Shift_mouseright') as Panel
+        release(SHIFT)
+
+        press(ALT)
+        rightClickOn $('#_Shift_mouseright') as Panel
+        release(ALT)
+
+        assertThat $('#span_Ctrl_mouseright') is missing
+        assertThat $('#span_Shift_mouseright') is missing
+        assertThat $('#span_Alt_mouseright') is missing
+    }
 
     class DropPanel extends Panel {
         DropPanel() {

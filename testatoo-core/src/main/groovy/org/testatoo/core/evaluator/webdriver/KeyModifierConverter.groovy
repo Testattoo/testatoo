@@ -13,49 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.input
+package org.testatoo.core.evaluator.webdriver
+
+import org.openqa.selenium.Keys
+import org.testatoo.core.input.KeysModifier
+
+import static org.testatoo.core.input.KeysModifier.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public enum Keys {
+class KeyModifierConverter {
 
-    ESCAPE,
+    static Keys convert(KeysModifier key) {
 
-    F1,
-    F2,
-    F3,
-    F4,
-    F5,
-    F6,
-    F7,
-    F8,
-    F9,
-    F10,
-    F11,
-    F12,
-
-    INSERT,
-    DELETE,
-    PAGE_UP,
-    PAGE_DOWN,
-
-    HOME,
-    END,
-    BACK_SPACE,
-
-    MULTIPLY,
-    DIVIDE,
-    SUBTRACT,
-    ADD,
-    EQUALS,
-
-    TAB,
-    RETURN,
-    SPACE,
-
-    LEFT,
-    UP,
-    RIGHT,
-    DOWN
+        switch (key) {
+            case SHIFT:
+                return Keys.SHIFT
+            case CONTROL:
+                return Keys.CONTROL
+            case ALT:
+                return Keys.ALT
+        }
+    }
 }

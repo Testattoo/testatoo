@@ -15,9 +15,11 @@
  */
 package org.testatoo.core.evaluator.webdriver
 
-import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.evaluator.KeyboardAction
+import org.testatoo.core.input.Keys
+import org.testatoo.core.input.KeysModifier
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -25,6 +27,7 @@ import org.testatoo.core.evaluator.KeyboardAction
 class WebDriverKeyboardAction implements KeyboardAction {
 
     private final WebDriver webDriver
+    private final Set<KeysModifier> keysDown = new HashSet<>();
 
     WebDriverKeyboardAction(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -32,7 +35,48 @@ class WebDriverKeyboardAction implements KeyboardAction {
 
     @Override
     void enter(String id, String data) {
-        webDriver.findElement(By.id(id)).sendKeys(data)
+        Actions action = new Actions(webDriver)
+        addModifierKeys(action)
+        action.sendKeys(data).build().perform()
+        releaseAction()
+    }
+
+    @Override
+    void enter(Keys key) {
+        Actions action = new Actions(webDriver)
+        addModifierKeys(action)
+        action.sendKeys(KeyConverter.convert(key)).perform()
+        releaseAction()
+    }
+
+    @Override
+    void press(KeysModifier key) {
+        keysDown.add(key)
+    }
+
+    @Override
+    void release(KeysModifier key) {
+        keysDown.remove(key)
+    }
+
+    @Override
+    void releaseAll() {
+        keysDown.clear()
+    }
+
+    protected addModifierKeys(Actions action) {
+        keysDown.each {
+            action.keyDown(KeyModifierConverter.convert(it))
+        }
+    }
+
+    protected releaseAction() {
+        Actions action = new Actions(webDriver)
+        action = new Actions(webDriver)
+        keysDown.each {
+            action.keyUp(KeyModifierConverter.convert(it))
+        }
+        action.build().perform()
     }
 
 }

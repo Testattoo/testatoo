@@ -18,44 +18,8 @@ package org.testatoo.core.input
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public enum Keys {
-
-    ESCAPE,
-
-    F1,
-    F2,
-    F3,
-    F4,
-    F5,
-    F6,
-    F7,
-    F8,
-    F9,
-    F10,
-    F11,
-    F12,
-
-    INSERT,
-    DELETE,
-    PAGE_UP,
-    PAGE_DOWN,
-
-    HOME,
-    END,
-    BACK_SPACE,
-
-    MULTIPLY,
-    DIVIDE,
-    SUBTRACT,
-    ADD,
-    EQUALS,
-
-    TAB,
-    RETURN,
-    SPACE,
-
-    LEFT,
-    UP,
-    RIGHT,
-    DOWN
+public enum KeysModifier {
+    SHIFT,
+    CONTROL,
+    ALT
 }

@@ -28,8 +28,16 @@ class Keyboard {
         EvaluatorHolder.get().keyboard().enter($('body').id, data)
     }
 
-    static void pressKey(Keys key) {
+    static void type(Keys key)  {
+        EvaluatorHolder.get().keyboard().enter(key)
+    }
 
+    static void press(KeysModifier key) {
+        EvaluatorHolder.get().keyboard().press(key)
+    }
+
+    static void release(KeysModifier key) {
+        EvaluatorHolder.get().keyboard().release(key)
     }
 
 }
