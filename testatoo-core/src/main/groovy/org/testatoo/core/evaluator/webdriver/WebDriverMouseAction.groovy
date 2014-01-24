@@ -18,7 +18,6 @@ package org.testatoo.core.evaluator.webdriver
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
-import org.testatoo.core.evaluator.KeyboardAction
 import org.testatoo.core.evaluator.MouseAction
 
 /**

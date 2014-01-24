@@ -15,8 +15,9 @@
  */
 package org.testatoo.core.evaluator.webdriver
 
-import static org.testatoo.core.input.Keys.*;
 import org.testatoo.core.input.Keys
+
+import static org.testatoo.core.input.Keys.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

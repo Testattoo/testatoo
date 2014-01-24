@@ -25,9 +25,6 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.Cell
-
-//import org.openqa.selenium.server.RemoteControlConfiguration
-//import org.openqa.selenium.server.SeleniumServer
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
@@ -41,12 +38,8 @@ import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
-import static org.junit.Assert.assertThat
-import static org.junit.Assert.assertTrue
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
@@ -268,6 +261,7 @@ class ComponentTest {
 
         select dropDown.items[4]
         assertThat dropDown has selectedItems('Radium')
+        assertThat dropDown.items[4] is selected
 
         dropDown = $('#countries') as DropDown
         assertThat dropDown is disabled
@@ -337,6 +331,7 @@ class ComponentTest {
         assertThat group has 4.items
         assert group.items.size == 4
         assertThat group has items('Mercury', 'Venus', 'Earth', 'Mars')
+        assertThat group.items[0] has value('Mercury')
     }
 
     @Test
@@ -350,6 +345,7 @@ class ComponentTest {
         assertThat listView has 5.items
 
         assertThat listView has items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5')
+        assertThat listView.items[0] has value('Item 1')
     }
 
     @Test

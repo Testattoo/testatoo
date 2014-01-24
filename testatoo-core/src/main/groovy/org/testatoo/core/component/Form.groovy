@@ -37,7 +37,7 @@ class Form extends Component {
         if (reset_button.is(new Available()))
             evaluator.mouse().click(reset_button.id)
         else
-            throw new ComponentException('Cannot reset form without submit button')
+            throw new ComponentException('Cannot reset form without reset button')
     }
 
 }

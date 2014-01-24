@@ -17,7 +17,6 @@ package org.testatoo.core.component.list
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
-import org.testatoo.core.property.Text
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Selected
 import org.testatoo.core.state.UnSelected
@@ -28,8 +27,8 @@ import org.testatoo.core.state.UnSelected
 class Item extends Component {
 
     Item() {
-        support Value, Label
-        support Text, {
+        support Label
+        support Value, {
             Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
         }
         support Selected, UnSelected

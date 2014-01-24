@@ -60,6 +60,8 @@ class Interaction {
     }
 
     void enter(String value) {
+        // Click to focus on component
+        c.evaluator.mouse().click(c.id);
         ((TextField) c).enter(value)
     }
 

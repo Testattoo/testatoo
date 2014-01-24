@@ -23,26 +23,17 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
 import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.input.CheckBox
-import org.testatoo.core.component.list.DropDown
-import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.component.Form
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.junit.Assert.fail
+import static junit.framework.Assert.fail
 import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getVisible
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.Testatoo.reset
+import static org.testatoo.core.Testatoo.submit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -58,7 +49,7 @@ class ErrorTest {
 
         driver = new FirefoxDriver();
         EvaluatorHolder.register(new WebDriverEvaluator(driver))
-        open('http://localhost:8080/component.html')
+        open('http://localhost:8080/error.html')
     }
 
     @AfterClass
@@ -74,6 +65,30 @@ class ErrorTest {
     @Test
     public void not_supported_support() {
 
+    }
+
+    @Test
+    public void cannot_submit_form_if_no_submit_button_available() {
+        Form form = $('#form') as Form
+
+        try {
+            submit form
+            fail()
+        } catch (ComponentException e) {
+            assert e.message.equals('Cannot submit form without submit button')
+        }
+    }
+
+    @Test
+    public void cannot_reset_form_if_no_reset_button_available() {
+        Form form = $('#form') as Form
+
+        try {
+            reset form
+            fail()
+        } catch (ComponentException e) {
+            assert e.message.equals('Cannot reset form without reset button')
+        }
     }
 
 
@@ -108,9 +123,6 @@ class ErrorTest {
 //        }
 //    }
     // try to check component that not support checked state
-    // try to submit a form without submit button
-    // try to reset a form without reset button
-
     // cannot select already selected item
     // cannot unselect already unselected item
 
