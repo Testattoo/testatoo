@@ -23,7 +23,6 @@
         <groupId>com.ovea</groupId>
         <artifactId>ovea</artifactId>
         <version>13</version>
-        <relativePath>../../pom</relativePath>
     </parent>
 
     <groupId>org.testatoo</groupId>

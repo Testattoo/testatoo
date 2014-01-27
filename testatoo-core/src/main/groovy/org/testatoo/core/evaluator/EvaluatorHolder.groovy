@@ -55,6 +55,7 @@ public final class EvaluatorHolder {
         if (evaluator.name == null) {
             throw new IllegalArgumentException("Evaluator name cannot be null")
         }
+        EVALUATOR.remove()
         EVALUATOR.set(evaluator)
 //        EVALUATORS.put(evaluator.name, evaluator)
     }

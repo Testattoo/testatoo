@@ -16,6 +16,7 @@
 package experimental.dsl
 
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -28,6 +29,7 @@ import static org.testatoo.core.Testatoo.*
  * @date 2013-05-01
  */
 @RunWith(JUnit4)
+@Ignore
 class SampleDsl {
 
     @Delegate Testatoo testatoo = new Testatoo()

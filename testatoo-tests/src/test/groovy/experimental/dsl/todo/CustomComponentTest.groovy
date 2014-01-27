@@ -15,6 +15,7 @@
  */
 package experimental.dsl.todo
 
+import org.junit.Ignore
 import org.junit.Test
 
 import org.testatoo.core.component.Button
@@ -27,6 +28,7 @@ import static org.testatoo.core.Testatoo.$
 class CustomComponentTest {
 
     @Test
+    @Ignore
     public void new_dsl() {
         Button button = $('#button') as Button
         MyProp myProp = new MyProp()
