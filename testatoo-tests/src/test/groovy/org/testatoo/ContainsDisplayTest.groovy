@@ -43,16 +43,17 @@ class ContainsDisplayTest {
     static WebDriver driver
 
     @BeforeClass
-    public static void before() {
+    public static void setUp() {
         Testatoo.evaluator = new DeferredEvaluator()
 
-        driver = new FirefoxDriver();
+        driver = new FirefoxDriver()
         EvaluatorHolder.register(new WebDriverEvaluator(driver))
         open('http://localhost:8080/container.html')
     }
 
     @AfterClass
     public static void after() {
+//        driver.close()
         driver.quit()
     }
 

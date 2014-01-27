@@ -29,11 +29,8 @@ import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static junit.framework.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.Testatoo.reset
-import static org.testatoo.core.Testatoo.submit
+import static org.junit.Assert.fail
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

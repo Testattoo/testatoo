@@ -50,10 +50,10 @@ import static org.testatoo.core.state.States.*
 @RunWith(JUnit4)
 class ComponentTest {
 
-    static WebDriver driver;
+    static WebDriver driver
 
     @BeforeClass
-    public static void before() {
+    public static void setup() {
         Testatoo.evaluator = new DeferredEvaluator()
 
         driver = new FirefoxDriver();
@@ -62,8 +62,8 @@ class ComponentTest {
     }
 
     @AfterClass
-    public static void after() {
-        driver.quit();
+    public static void tearDown() {
+        driver.quit()
     }
 
     @Test

@@ -24,7 +24,9 @@ import java.util.concurrent.ExecutorService
  */
 public final class EvaluatorHolder {
 
-    private static ThreadLocal<ExecutorService> EXECUTOR = new ThreadLocal<>();
+//    private static ThreadLocal<ExecutorService> EXECUTOR = new ThreadLocal<>();
+
+    private static ThreadLocal<Evaluator> EVALUATOR = new ThreadLocal<>();
 
     private static Map<String, Evaluator> EVALUATORS = new ConcurrentHashMap<>();
 
@@ -38,13 +40,13 @@ public final class EvaluatorHolder {
     private EvaluatorHolder() {
     }
 
-    public static void setConcurrentExecutor(ExecutorService executor) {
-        EvaluatorHolder.EXECUTOR.set(executor)
-    }
-
-    public static void clearConcurrentExecutor() {
-        EvaluatorHolder.EXECUTOR.remove()
-    }
+//    public static void setConcurrentExecutor(ExecutorService executor) {
+//        EvaluatorHolder.EXECUTOR.set(executor)
+//    }
+//
+//    public static void clearConcurrentExecutor() {
+//        EvaluatorHolder.EXECUTOR.remove()
+//    }
 
     public static void register(Evaluator evaluator) {
         if (evaluator == null) {
@@ -53,67 +55,70 @@ public final class EvaluatorHolder {
         if (evaluator.name == null) {
             throw new IllegalArgumentException("Evaluator name cannot be null")
         }
-        EVALUATORS.put(evaluator.name, evaluator)
+        EVALUATOR.set(evaluator)
+//        EVALUATORS.put(evaluator.name, evaluator)
     }
 
     @SuppressWarnings("unchecked")
     public static Evaluator get() {
-        Evaluator evaluator = currentEvaluators.get().peek()
-        // If for this thread we ave no evaluator set yet, we get the default one
-        if (evaluator == null) {
-            evaluator = EVALUATORS.get(Evaluator.DEFAULT_NAME)
-            currentEvaluators.get().offer(evaluator)
-        }
-        // If still null, not evaluator has been chosen by user
-        if (evaluator == null) {
-            throw new IllegalStateException(String.format("No evaluator is bound to local thread."))
-        }
-        return evaluator
+        EVALUATOR.get()
+
+//        Evaluator evaluator = currentEvaluators.get().peek()
+//        // If for this thread we ave no evaluator set yet, we get the default one
+//        if (evaluator == null) {
+//            evaluator = EVALUATORS.get(Evaluator.DEFAULT_NAME)
+//            currentEvaluators.get().offer(evaluator)
+//        }
+//        // If still null, not evaluator has been chosen by user
+//        if (evaluator == null) {
+//            throw new IllegalStateException(String.format("No evaluator is bound to local thread."))
+//        }
+//        return evaluator
     }
 
-    public static void unregister(String name) {
-        Evaluator evaluator = EVALUATORS.remove(name)
-        if (evaluator != null)
-            currentEvaluators.get().remove(evaluator)
-    }
+//    public static void unregister(String name) {
+//        Evaluator evaluator = EVALUATORS.remove(name)
+//        if (evaluator != null)
+//            currentEvaluators.get().remove(evaluator)
+//    }
+//
+//    public static RunnerBuilder withEvaluator(String evaluatorName) {
+//        return new RunnerBuilder(evaluatorName)
+//    }
 
-    public static RunnerBuilder withEvaluator(String evaluatorName) {
-        return new RunnerBuilder(evaluatorName)
-    }
-
-    public static final class RunnerBuilder {
-
-        private final String evaluatorName
-
-        private RunnerBuilder(String evaluatorName) {
-            this.evaluatorName = evaluatorName
-        }
-
-        public <V> V run(Callable<V> callable) throws Exception {
-            Evaluator evaluator = EVALUATORS.get(evaluatorName)
-            if (evaluator == null) {
-                throw new IllegalArgumentException("Unknown evaluator: " + evaluatorName)
-            }
-            currentEvaluators.get().offerFirst(evaluator)
-            try {
-                return callable.call()
-            } finally {
-                currentEvaluators.get().pop()
-            }
-        }
-
-        public void run(Runnable runnable) {
-            Evaluator evaluator = EVALUATORS.get(evaluatorName)
-            if (evaluator == null) {
-                throw new IllegalArgumentException("Unknown evaluator: " + evaluatorName)
-            }
-            currentEvaluators.get().offerFirst(evaluator)
-            try {
-                runnable.run()
-            } finally {
-                currentEvaluators.get().pop()
-            }
-        }
-    }
+//    public static final class RunnerBuilder {
+//
+//        private final String evaluatorName
+//
+//        private RunnerBuilder(String evaluatorName) {
+//            this.evaluatorName = evaluatorName
+//        }
+//
+//        public <V> V run(Callable<V> callable) throws Exception {
+//            Evaluator evaluator = EVALUATORS.get(evaluatorName)
+//            if (evaluator == null) {
+//                throw new IllegalArgumentException("Unknown evaluator: " + evaluatorName)
+//            }
+//            currentEvaluators.get().offerFirst(evaluator)
+//            try {
+//                return callable.call()
+//            } finally {
+//                currentEvaluators.get().pop()
+//            }
+//        }
+//
+//        public void run(Runnable runnable) {
+//            Evaluator evaluator = EVALUATORS.get(evaluatorName)
+//            if (evaluator == null) {
+//                throw new IllegalArgumentException("Unknown evaluator: " + evaluatorName)
+//            }
+//            currentEvaluators.get().offerFirst(evaluator)
+//            try {
+//                runnable.run()
+//            } finally {
+//                currentEvaluators.get().pop()
+//            }
+//        }
+//    }
 
 }
