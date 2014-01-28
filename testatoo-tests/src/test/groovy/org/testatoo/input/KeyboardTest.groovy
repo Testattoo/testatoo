@@ -10,12 +10,15 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
+import org.testatoo.core.evaluator.KeyboardAction
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.input.Keyboard
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Keys.*
 import static org.testatoo.core.input.KeysModifier.*
+import static org.testatoo.core.state.States.empty
 import static org.testatoo.core.state.States.getAvailable
 import static org.testatoo.core.state.States.getMissing
 
@@ -336,5 +339,22 @@ class KeyboardTest {
         assertThat $('#span_Ctrl_esc') is available
         assertThat $('#span_Shift_esc') is available
         assertThat $('#span_Alt_esc') is available
+    }
+
+    @Test
+    public void release_all_keys_pressed() {
+        KeyboardAction keyboard = EvaluatorHolder.get().keyboard()
+
+        assert keyboard.keysPressed().size().equals(0)
+
+        press(CONTROL)
+        press(ALT)
+
+        assert keyboard.keysPressed().size().equals(2)
+        assert keyboard.keysPressed().contains(CONTROL)
+        assert keyboard.keysPressed().contains(ALT)
+
+        keyboard.releaseAll()
+        assert keyboard.keysPressed().size().equals(0)
     }
 }

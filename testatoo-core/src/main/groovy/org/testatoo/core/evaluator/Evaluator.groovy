@@ -19,11 +19,7 @@ import org.testatoo.core.MetaInfo
 
 public interface Evaluator {
 
-    String DEFAULT_NAME = Evaluator.name + ".DEFAULT";
-
     Object getImplementation()
-
-    String getName()
 
     void open(String url)
 

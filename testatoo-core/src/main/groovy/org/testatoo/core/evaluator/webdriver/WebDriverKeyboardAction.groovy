@@ -60,6 +60,11 @@ class WebDriverKeyboardAction implements KeyboardAction {
     }
 
     @Override
+    Set<KeysModifier> keysPressed() {
+        return Collections.unmodifiableSet(keysDown)
+    }
+
+    @Override
     void releaseAll() {
         keysDown.clear()
     }

@@ -32,18 +32,8 @@ class WebDriverEvaluator implements Evaluator {
     private final JavascriptExecutor js
     private final WebDriverMouseAction mouseAction
     private final WebDriverKeyboardAction keyboardAction
-    private final String name
 
     WebDriverEvaluator(WebDriver webDriver) {
-        this.name = DEFAULT_NAME
-        this.webDriver = webDriver
-        this.js = (JavascriptExecutor) webDriver;
-        this.keyboardAction = new WebDriverKeyboardAction(webDriver)
-        this.mouseAction = new WebDriverMouseAction(webDriver, keyboardAction)
-    }
-
-    WebDriverEvaluator(String name, WebDriver webDriver) {
-        this.name = name
         this.webDriver = webDriver
         this.js = (JavascriptExecutor) webDriver;
         this.keyboardAction = new WebDriverKeyboardAction(webDriver)
@@ -52,9 +42,6 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     WebDriver getImplementation() { webDriver }
-
-    @Override
-    String getName() { name }
 
     @Override
     void open(String url) { webDriver.get(url) }

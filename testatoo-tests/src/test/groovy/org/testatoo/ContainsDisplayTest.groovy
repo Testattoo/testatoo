@@ -53,7 +53,6 @@ class ContainsDisplayTest {
 
     @AfterClass
     public static void after() {
-//        driver.close()
         driver.quit()
     }
 
@@ -108,6 +107,15 @@ class ContainsDisplayTest {
             )
         } catch (AssertionError e) {
             assert e.message == "Component Button with id invisible_button expected visible but was hidden"
+        }
+
+        EmailField email_field = $('[type=email]') as EmailField
+        try {
+            assertThat panel displays(
+                    email_field
+            )
+        } catch (AssertionError e) {
+            assert e.message == "Component Panel:panel does not contains expected component(s): [EmailField:$email_field.id]"
         }
     }
 

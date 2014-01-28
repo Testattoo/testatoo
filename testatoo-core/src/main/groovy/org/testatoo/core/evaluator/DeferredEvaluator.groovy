@@ -26,9 +26,6 @@ class DeferredEvaluator implements Evaluator {
     Object getImplementation() { EvaluatorHolder.get().implementation }
 
     @Override
-    String getName() { EvaluatorHolder.get().name }
-
-    @Override
     void open(String url) { EvaluatorHolder.get().open(url) }
 
     @Override
@@ -49,8 +46,10 @@ class DeferredEvaluator implements Evaluator {
     @Override
     int getInt(String jQueryExpr) {EvaluatorHolder.get().getInt(jQueryExpr) }
 
+    @Override
     boolean getBoolProperty(String id, String prop) { EvaluatorHolder.get().getBoolProperty(id, prop) }
 
+    @Override
     int getIntProperty(String id, String prop) { EvaluatorHolder.get().getIntProperty(id, prop) }
 
     @Override

@@ -17,20 +17,26 @@ package org.testatoo
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Form
+import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.property.Properties.reference
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -56,18 +62,56 @@ class ErrorTest {
 
     @Test
     public void bad_component_type() {
-
+         // THE TEST TODO
     }
 
     @Test
-    public void not_supported_support() {
+    public void not_supported_state_support() {
+        EmailField email = $('#email') as EmailField
+
+        try {
+            assertThat email is checked
+            fail()
+        } catch (ComponentException e) {
+            assert e.message.equals('Component EmailField:email does not support state Checked')
+        }
+    }
+
+    @Test
+    public void not_supported_property_support() {
+        EmailField email = $('#email') as EmailField
+
+        try {
+             assertThat email has reference('reference')
+            fail()
+        } catch (ComponentException e) {
+            assert e.message.equals('Component EmailField:email does not support property Reference')
+        }
+    }
+
+    @Test
+    @Ignore
+    public void call_is_with_property_and_has_with_state() {
+        EmailField email = $('#email') as EmailField
+        try {
+            assertThat email is text('')
+            fail()
+        } catch (ComponentException e) {
+            assert e.message.equals('TODO')
+        }
+
+        try {
+            assertThat email has enabled
+            fail()
+        } catch (ComponentException e) {
+            assert e.message.equals('TODO')
+        }
 
     }
 
     @Test
     public void cannot_submit_form_if_no_submit_button_available() {
         Form form = $('#form') as Form
-
         try {
             submit form
             fail()
@@ -87,6 +131,22 @@ class ErrorTest {
             assert e.message.equals('Cannot reset form without reset button')
         }
     }
+
+    @Test
+    @Ignore
+    public void exception_is_thrown_when_wait_until_condition_is_not_reached() {
+        Button button = $('#inexisting_button') as Button;
+
+        try {
+            waitUntil 2.seconds, {
+                button.is(available)
+            }
+            fail()
+        } catch (RuntimeException e) {
+            assert e.message.equals("Unable to reach the condition within 2 seconds (Component defined by jQuery expression \$('#inexisting_button') not found.)")
+        }
+    }
+
 
 
     // TODO errors on ...
@@ -147,7 +207,6 @@ class ErrorTest {
 //        Custom_2() {
 //        }
 //    }
-
 
 
 }

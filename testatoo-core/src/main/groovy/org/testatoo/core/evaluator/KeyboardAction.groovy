@@ -31,6 +31,8 @@ public interface KeyboardAction {
 
     void release(KeysModifier key)
 
+    Set<Keys> keysPressed()
+
     void releaseAll()
 
 }

@@ -18,6 +18,7 @@ package org.testatoo.core
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
+import org.testatoo.core.component.list.Item
 import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
@@ -29,8 +30,6 @@ import java.util.concurrent.TimeoutException
  */
 class Testatoo {
 
-    // Settings
-    // TODO Mathieu replace  DeferredEvaluator by PerThreadEvaluator
     static Evaluator evaluator = new DeferredEvaluator()
 
     // DSL
@@ -74,19 +73,8 @@ class Testatoo {
     }
 
     static Component select(Component c) {
-        on(c).select(c)
+        on(c).select(c as Item)
         return c
-    }
-
-    static void waitUntil(Block m, TimeDuration duration = 5.seconds) {
-        try {
-            Util.waitUntil duration.toMilliseconds(), 500, {
-                Log.testatoo "waitUntil: ${m}"
-                m.run()
-            }
-        } catch (TimeoutException e) {
-            throw new RuntimeException("${e.message} : ${m}")
-        }
     }
 
     static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {

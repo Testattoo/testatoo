@@ -32,6 +32,6 @@ class Util {
             }
             Thread.sleep(interval)
         }
-        throw new TimeoutException("Unable to reach the condition within ${timeout} seconds (${ex.message})")
+        throw new TimeoutException("Unable to reach the condition within ${timeout / 1000} seconds (${ex.message})")
     }
 }
