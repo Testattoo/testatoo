@@ -17,6 +17,8 @@ package org.testatoo.core
 
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
+import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.input.Key
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
@@ -25,6 +27,17 @@ import org.testatoo.core.state.State
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
+
+    Collection<?> plus(Key a, Key b) { [a, b] }
+    Collection<?> plus(Key a, String b) { [a, b] }
+
+    static void click(Key key, Component c) { click([key], c) }
+    static void doubleClickOn(Key key, Component c) { doubleClickOn([key], c) }
+    static void rightClick(Key key, Component c) { rightClick([key], c) }
+
+    static void click(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, keys) }
+    static void doubleClickOn(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.DOUBLE, keys) }
+    static void rightClick(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, keys) }
 
     static Block are(Collection components, State matcher) {
         Blocks.and(components.collect { ((Component) it).is(matcher) })

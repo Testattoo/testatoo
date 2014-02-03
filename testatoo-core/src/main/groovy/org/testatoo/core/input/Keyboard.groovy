@@ -17,27 +17,13 @@ package org.testatoo.core.input
 
 import org.testatoo.core.Testatoo
 
-import static org.testatoo.core.Testatoo.$
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Keyboard {
 
-    static void type(String data)  {
-        Testatoo.evaluator.keyboard().enter($('body').id, data)
-    }
-
-    static void type(Keys key)  {
-        Testatoo.evaluator.keyboard().enter(key)
-    }
-
-    static void press(KeysModifier key) {
-        Testatoo.evaluator.keyboard().press(key)
-    }
-
-    static void release(KeysModifier key) {
-        Testatoo.evaluator.keyboard().release(key)
-    }
+    static void type(Collection<?> keys)  { Testatoo.evaluator.enter(keys) }
+    static void type(Key key)  { type([key]) }
+    static void type(String text)  { type([text]) }
 
 }

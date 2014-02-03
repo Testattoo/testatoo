@@ -20,16 +20,14 @@ import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.Testatoo.getEvaluator
 import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.input.Keyboard.press
-import static org.testatoo.core.input.Keyboard.release
-import static org.testatoo.core.input.KeysModifier.ALT
-import static org.testatoo.core.input.KeysModifier.CONTROL
-import static org.testatoo.core.input.KeysModifier.SHIFT
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Key.ALT
+import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.input.Key.SHIFT
+import static org.testatoo.core.input.Mouse.click
 import static org.testatoo.core.input.Mouse.doubleClickOn
 import static org.testatoo.core.input.Mouse.drag
 import static org.testatoo.core.input.Mouse.mouseOver
-import static org.testatoo.core.input.Mouse.rightClickOn
+import static org.testatoo.core.input.Mouse.rightClick
 import static org.testatoo.core.property.Properties.selectedItems
 import static org.testatoo.core.property.Properties.text
 import static org.testatoo.core.property.Properties.title
@@ -56,23 +54,23 @@ class MouseTest {
         Button button = $('#button_1') as Button
         assertThat button has text('Button')
         assertThat button has text('Button')
-        clickOn button
+        click button
         assertThat button has text('Button Clicked!')
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assertThat checkBox is unchecked
-        clickOn checkBox
+        click checkBox
         assertThat checkBox is checked
 
         Radio radio = $('#radio') as Radio
         assertThat radio is unchecked
-        clickOn radio
+        click radio
         assertThat radio is checked
 
         DropDown dropDown = $('#elements') as DropDown
         assertThat dropDown has selectedItems('Helium')
 
-        clickOn dropDown.items[2]
+        click dropDown.items[2]
         assertThat dropDown has selectedItems('Polonium')
     }
 
@@ -88,7 +86,7 @@ class MouseTest {
     public void rightClick() {
         Button button = $('#button_5') as Button
         assertThat button has text('Button')
-        rightClickOn button
+        rightClick button
         assertThat button has text('Button Right Clicked!')
     }
 
@@ -137,38 +135,26 @@ class MouseTest {
         assertThat $('#span_Shift_mouseright') is missing
         assertThat $('#span_Alt_mouseright') is missing
 
-        press(CONTROL)
-        clickOn $('#_Ctrl_mouseleft') as Panel
-        release(CONTROL)
-
-        press(SHIFT)
-        clickOn $('#_Shift_mouseleft') as Panel
-        release(SHIFT)
-
-        press(ALT)
-        clickOn $('#_Shift_mouseleft') as Panel
-        release(ALT)
+        CTRL.click $('#_Ctrl_mouseleft') as Panel
+        SHIFT.rightClick $('#_Shift_mouseleft') as Panel
+        ALT.click $('#_Shift_mouseleft') as Panel
 
         assertThat $('#span_Ctrl_mouseleft') is available
         assertThat $('#span_Shift_mouseleft') is available
         assertThat $('#span_Alt_mouseleft') is available
 
         // Not testable cause Handled by the browser
-        press(CONTROL)
-        rightClickOn $('#_Ctrl_mouseright') as Panel
-        release(CONTROL)
 
-        press(SHIFT)
-        rightClickOn $('#_Shift_mouseright') as Panel
-        release(SHIFT)
-
-        press(ALT)
-        rightClickOn $('#_Shift_mouseright') as Panel
-        release(ALT)
+        CTRL.rightClick $('#_Ctrl_mouseright') as Panel
+        SHIFT.rightClick $('#_Shift_mouseright') as Panel
+        ALT.rightClick $('#_Shift_mouseright') as Panel
 
         assertThat $('#span_Ctrl_mouseright') is missing
         assertThat $('#span_Shift_mouseright') is missing
         assertThat $('#span_Alt_mouseright') is missing
+
+        (CTRL + SHIFT).rightClick $('#_Ctrl_mouseright') as Panel
+        [CTRL, SHIFT].rightClick $('#_Ctrl_mouseright') as Panel
     }
 
     class DropPanel extends Panel {

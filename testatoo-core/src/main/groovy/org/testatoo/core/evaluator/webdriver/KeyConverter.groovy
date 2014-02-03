@@ -15,9 +15,44 @@
  */
 package org.testatoo.core.evaluator.webdriver
 
-import org.testatoo.core.input.Keys
+import org.openqa.selenium.Keys
+import org.testatoo.core.input.Key
 
-import static org.testatoo.core.input.Keys.*
+import static org.testatoo.core.input.Key.ADD
+import static org.testatoo.core.input.Key.ALT
+import static org.testatoo.core.input.Key.BACK_SPACE
+import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.input.Key.DELETE
+import static org.testatoo.core.input.Key.DIVIDE
+import static org.testatoo.core.input.Key.DOWN
+import static org.testatoo.core.input.Key.END
+import static org.testatoo.core.input.Key.EQUALS
+import static org.testatoo.core.input.Key.ESCAPE
+import static org.testatoo.core.input.Key.F1
+import static org.testatoo.core.input.Key.F10
+import static org.testatoo.core.input.Key.F11
+import static org.testatoo.core.input.Key.F12
+import static org.testatoo.core.input.Key.F2
+import static org.testatoo.core.input.Key.F3
+import static org.testatoo.core.input.Key.F4
+import static org.testatoo.core.input.Key.F5
+import static org.testatoo.core.input.Key.F6
+import static org.testatoo.core.input.Key.F7
+import static org.testatoo.core.input.Key.F8
+import static org.testatoo.core.input.Key.F9
+import static org.testatoo.core.input.Key.HOME
+import static org.testatoo.core.input.Key.INSERT
+import static org.testatoo.core.input.Key.LEFT
+import static org.testatoo.core.input.Key.MULTIPLY
+import static org.testatoo.core.input.Key.PAGE_DOWN
+import static org.testatoo.core.input.Key.PAGE_UP
+import static org.testatoo.core.input.Key.RETURN
+import static org.testatoo.core.input.Key.RIGHT
+import static org.testatoo.core.input.Key.SHIFT
+import static org.testatoo.core.input.Key.SPACE
+import static org.testatoo.core.input.Key.SUBTRACT
+import static org.testatoo.core.input.Key.TAB
+import static org.testatoo.core.input.Key.UP
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -25,73 +60,79 @@ import static org.testatoo.core.input.Keys.*
 class KeyConverter {
 
 
-    static org.openqa.selenium.Keys convert(Keys key) {
+    static Keys convert(Key key) {
 
         switch (key) {
+            case SHIFT:
+                return Keys.SHIFT
+            case CTRL:
+                return Keys.CONTROL
+            case ALT:
+                return Keys.ALT
             case ESCAPE:
-                return org.openqa.selenium.Keys.ESCAPE
+                return Keys.ESCAPE
             case F1:
-                return org.openqa.selenium.Keys.F1
+                return Keys.F1
             case F2:
-                return org.openqa.selenium.Keys.F2
+                return Keys.F2
             case F3:
-                return org.openqa.selenium.Keys.F3
+                return Keys.F3
             case F4:
-                return org.openqa.selenium.Keys.F4
+                return Keys.F4
             case F5:
-                return org.openqa.selenium.Keys.F5
+                return Keys.F5
             case F6:
-                return org.openqa.selenium.Keys.F6
+                return Keys.F6
             case F7:
-                return org.openqa.selenium.Keys.F7
+                return Keys.F7
             case F8:
-                return org.openqa.selenium.Keys.F8
+                return Keys.F8
             case F9:
-                return org.openqa.selenium.Keys.F9
+                return Keys.F9
             case F10:
-                return org.openqa.selenium.Keys.F10
+                return Keys.F10
             case F11:
-                return org.openqa.selenium.Keys.F11
+                return Keys.F11
             case F12:
-                return org.openqa.selenium.Keys.F12
+                return Keys.F12
             case INSERT:
-                return org.openqa.selenium.Keys.INSERT
+                return Keys.INSERT
             case DELETE:
-                return org.openqa.selenium.Keys.DELETE
+                return Keys.DELETE
             case PAGE_UP:
-                return org.openqa.selenium.Keys.PAGE_UP
+                return Keys.PAGE_UP
             case PAGE_DOWN:
-                return org.openqa.selenium.Keys.PAGE_DOWN
+                return Keys.PAGE_DOWN
             case HOME:
-                return org.openqa.selenium.Keys.HOME
+                return Keys.HOME
             case END:
-                return org.openqa.selenium.Keys.END
+                return Keys.END
             case BACK_SPACE:
-                return org.openqa.selenium.Keys.BACK_SPACE
+                return Keys.BACK_SPACE
             case MULTIPLY:
-                return org.openqa.selenium.Keys.MULTIPLY
+                return Keys.MULTIPLY
             case DIVIDE:
-                return org.openqa.selenium.Keys.DIVIDE
+                return Keys.DIVIDE
             case SUBTRACT:
-                return org.openqa.selenium.Keys.SUBTRACT
+                return Keys.SUBTRACT
             case ADD:
-                return org.openqa.selenium.Keys.ADD
+                return Keys.ADD
             case EQUALS:
-                return org.openqa.selenium.Keys.EQUALS
+                return Keys.EQUALS
             case TAB:
-                return org.openqa.selenium.Keys.TAB
+                return Keys.TAB
             case RETURN:
-                return org.openqa.selenium.Keys.RETURN
+                return Keys.RETURN
             case SPACE:
-                return org.openqa.selenium.Keys.SPACE
+                return Keys.SPACE
             case LEFT:
-                return org.openqa.selenium.Keys.LEFT
+                return Keys.LEFT
             case UP:
-                return org.openqa.selenium.Keys.UP
+                return Keys.UP
             case RIGHT:
-                return org.openqa.selenium.Keys.RIGHT
+                return Keys.RIGHT
             case DOWN:
-                return org.openqa.selenium.Keys.DOWN
+                return Keys.DOWN
         }
     }
 }

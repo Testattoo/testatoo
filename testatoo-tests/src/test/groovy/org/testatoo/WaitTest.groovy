@@ -30,7 +30,7 @@ import static org.testatoo.core.Testatoo.assertThat
 import static org.testatoo.core.Testatoo.getEvaluator
 import static org.testatoo.core.Testatoo.open
 import static org.testatoo.core.Testatoo.waitUntil
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click
 import static org.testatoo.core.state.States.getDisabled
 import static org.testatoo.core.state.States.getEnabled
 import static org.testatoo.core.state.States.getMissing
@@ -60,7 +60,7 @@ class WaitTest {
 
         assertThat message is missing
 
-        clickOn button
+        click button
 
         assertThat button is(disabled)
 
@@ -68,7 +68,7 @@ class WaitTest {
             button.is(enabled)
         }
 
-        clickOn button
+        click button
 
         waitUntil {
             button.is(enabled) or message.is(visible)

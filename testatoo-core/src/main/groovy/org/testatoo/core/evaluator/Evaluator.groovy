@@ -19,6 +19,9 @@ import org.testatoo.core.MetaInfo
 
 public interface Evaluator extends AutoCloseable {
 
+    static enum MouseButton { LEFT, RIGHT }
+    static enum MouseClick { SINGLE, DOUBLE }
+
     Object getImplementation()
 
     void open(String url)
@@ -43,7 +46,15 @@ public interface Evaluator extends AutoCloseable {
 
     List<MetaInfo> getMetaInfo(String jQueryExpr)
 
-    KeyboardAction keyboard()
+    void enter(Collection<?> keys)
 
-    MouseAction mouse()
+    void click(String id, MouseButton button, MouseClick click, Collection<?> keys)
+    void click(String id, MouseButton button, MouseClick click)
+    void click(String id, MouseButton button)
+    void click(String id)
+
+    void mouseOver(String id)
+
+    void dragAndDrop(String originId, String targetId)
+
 }

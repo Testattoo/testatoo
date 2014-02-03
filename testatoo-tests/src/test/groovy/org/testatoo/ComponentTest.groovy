@@ -66,7 +66,7 @@ import static org.testatoo.core.Testatoo.open
 import static org.testatoo.core.Testatoo.reset
 import static org.testatoo.core.Testatoo.select
 import static org.testatoo.core.Testatoo.submit
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click
 import static org.testatoo.core.property.Properties.groupItems
 import static org.testatoo.core.property.Properties.items
 import static org.testatoo.core.property.Properties.label
@@ -407,7 +407,7 @@ class ComponentTest {
         assertThat email_field has text('my@email.org')
         assertThat password_field has text('password')
 
-        clickOn reset_button
+        click reset_button
 
         assertThat email_field has text('')
         assertThat password_field has text('')
@@ -427,7 +427,7 @@ class ComponentTest {
         // Can submit a form
         assertThat message has title('The form was submitted 0 time(s)')
 
-        clickOn submit_button
+        click submit_button
         assertThat message has title('The form was submitted 1 time(s)')
 
         submit form
