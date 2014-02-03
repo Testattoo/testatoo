@@ -22,9 +22,7 @@
         webkit = !!window.webkitRequestAnimationFrame;
 
     $.options = {
-        customType: function(el) {
-            return undefined;
-        }
+        customType: function(el) {}
     };
 
     function getType(el) {
