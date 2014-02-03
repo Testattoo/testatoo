@@ -21,22 +21,27 @@ import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Form
 import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.evaluator.DeferredEvaluator
-import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.assertThat
+import static org.testatoo.core.Testatoo.getEvaluator
+import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.reset
+import static org.testatoo.core.Testatoo.submit
+import static org.testatoo.core.Testatoo.waitUntil
 import static org.testatoo.core.property.Properties.reference
 import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.state.States.getAvailable
+import static org.testatoo.core.state.States.getChecked
+import static org.testatoo.core.state.States.getEnabled
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -44,21 +49,12 @@ import static org.testatoo.core.state.States.*
 @RunWith(JUnit4)
 class ErrorTest {
 
-    static WebDriver driver
-
     @BeforeClass
-    public static void before() {
-        Testatoo.evaluator = new DeferredEvaluator()
-
-        driver = new FirefoxDriver();
-        EvaluatorHolder.register(new WebDriverEvaluator(driver))
+    public static void setup() {
+        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
         open('http://localhost:8080/error.html')
     }
-
-    @AfterClass
-    public static void after() {
-        driver.quit()
-    }
+    @AfterClass public static void tearDown() { evaluator.close() }
 
     @Test
     public void bad_component_type() {

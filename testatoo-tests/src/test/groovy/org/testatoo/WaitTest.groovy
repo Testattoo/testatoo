@@ -20,17 +20,21 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
-import org.testatoo.core.evaluator.DeferredEvaluator
-import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.assertThat
+import static org.testatoo.core.Testatoo.getEvaluator
+import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.waitUntil
 import static org.testatoo.core.input.Mouse.clickOn
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.state.States.getDisabled
+import static org.testatoo.core.state.States.getEnabled
+import static org.testatoo.core.state.States.getMissing
+import static org.testatoo.core.state.States.getVisible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -38,21 +42,12 @@ import static org.testatoo.core.state.States.*
 @RunWith(JUnit4)
 class WaitTest {
 
-    static WebDriver driver
-
     @BeforeClass
-    public static void before() {
-        Testatoo.evaluator = new DeferredEvaluator()
-
-        driver = new FirefoxDriver();
-        EvaluatorHolder.register(new WebDriverEvaluator(driver))
+    public static void setup() {
+        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
         open('http://localhost:8080/wait.html')
     }
-
-    @AfterClass
-    public static void after() {
-        driver.quit()
-    }
+    @AfterClass public static void tearDown() { evaluator.close() }
 
     @Test
     public void test_wait() {

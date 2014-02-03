@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.input
 
-import org.testatoo.core.evaluator.EvaluatorHolder
+import org.testatoo.core.Testatoo
 
 import static org.testatoo.core.Testatoo.$
 
@@ -25,19 +25,19 @@ import static org.testatoo.core.Testatoo.$
 class Keyboard {
 
     static void type(String data)  {
-        EvaluatorHolder.get().keyboard().enter($('body').id, data)
+        Testatoo.evaluator.keyboard().enter($('body').id, data)
     }
 
     static void type(Keys key)  {
-        EvaluatorHolder.get().keyboard().enter(key)
+        Testatoo.evaluator.keyboard().enter(key)
     }
 
     static void press(KeysModifier key) {
-        EvaluatorHolder.get().keyboard().press(key)
+        Testatoo.evaluator.keyboard().press(key)
     }
 
     static void release(KeysModifier key) {
-        EvaluatorHolder.get().keyboard().release(key)
+        Testatoo.evaluator.keyboard().release(key)
     }
 
 }

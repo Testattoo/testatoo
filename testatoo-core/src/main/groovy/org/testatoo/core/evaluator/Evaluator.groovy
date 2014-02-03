@@ -17,7 +17,7 @@ package org.testatoo.core.evaluator
 
 import org.testatoo.core.MetaInfo
 
-public interface Evaluator {
+public interface Evaluator extends AutoCloseable {
 
     Object getImplementation()
 
@@ -46,5 +46,4 @@ public interface Evaluator {
     KeyboardAction keyboard()
 
     MouseAction mouse()
-
 }

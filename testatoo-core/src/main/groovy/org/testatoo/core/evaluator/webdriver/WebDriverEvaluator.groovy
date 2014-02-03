@@ -99,6 +99,11 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     MouseAction mouse() { mouseAction }
 
+    @Override
+    void close() throws Exception {
+        webDriver.quit()
+    }
+
     private String eval(String s) {
         String expr = """var _evaluate = function(\$, jQuery, testatoo) {
             if(!jQuery) return '__TESTATOO_MISSING__';

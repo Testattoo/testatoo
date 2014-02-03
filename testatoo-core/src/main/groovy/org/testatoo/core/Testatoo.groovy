@@ -19,7 +19,6 @@ import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
 import org.testatoo.core.component.list.Item
-import org.testatoo.core.evaluator.DeferredEvaluator
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
 
@@ -30,7 +29,7 @@ import java.util.concurrent.TimeoutException
  */
 class Testatoo {
 
-    static Evaluator evaluator = new DeferredEvaluator()
+    static Evaluator evaluator
 
     // DSL
     static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }

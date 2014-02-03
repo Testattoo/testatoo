@@ -5,21 +5,55 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.evaluator.DeferredEvaluator
-import org.testatoo.core.evaluator.EvaluatorHolder
 import org.testatoo.core.evaluator.KeyboardAction
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.input.Keyboard
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Keys.*
-import static org.testatoo.core.input.KeysModifier.*
-import static org.testatoo.core.state.States.empty
-import static org.testatoo.core.state.States.getAvailable
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.assertThat
+import static org.testatoo.core.Testatoo.getEvaluator
+import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.input.Keyboard.press
+import static org.testatoo.core.input.Keyboard.release
+import static org.testatoo.core.input.Keyboard.type
+import static org.testatoo.core.input.Keys.ADD
+import static org.testatoo.core.input.Keys.BACK_SPACE
+import static org.testatoo.core.input.Keys.DELETE
+import static org.testatoo.core.input.Keys.DIVIDE
+import static org.testatoo.core.input.Keys.DOWN
+import static org.testatoo.core.input.Keys.END
+import static org.testatoo.core.input.Keys.EQUALS
+import static org.testatoo.core.input.Keys.ESCAPE
+import static org.testatoo.core.input.Keys.F1
+import static org.testatoo.core.input.Keys.F10
+import static org.testatoo.core.input.Keys.F11
+import static org.testatoo.core.input.Keys.F12
+import static org.testatoo.core.input.Keys.F2
+import static org.testatoo.core.input.Keys.F3
+import static org.testatoo.core.input.Keys.F4
+import static org.testatoo.core.input.Keys.F5
+import static org.testatoo.core.input.Keys.F6
+import static org.testatoo.core.input.Keys.F7
+import static org.testatoo.core.input.Keys.F8
+import static org.testatoo.core.input.Keys.F9
+import static org.testatoo.core.input.Keys.HOME
+import static org.testatoo.core.input.Keys.INSERT
+import static org.testatoo.core.input.Keys.LEFT
+import static org.testatoo.core.input.Keys.MULTIPLY
+import static org.testatoo.core.input.Keys.PAGE_DOWN
+import static org.testatoo.core.input.Keys.PAGE_UP
+import static org.testatoo.core.input.Keys.RETURN
+import static org.testatoo.core.input.Keys.RIGHT
+import static org.testatoo.core.input.Keys.SPACE
+import static org.testatoo.core.input.Keys.SUBTRACT
+import static org.testatoo.core.input.Keys.TAB
+import static org.testatoo.core.input.Keys.UP
+import static org.testatoo.core.input.KeysModifier.ALT
+import static org.testatoo.core.input.KeysModifier.CONTROL
+import static org.testatoo.core.input.KeysModifier.SHIFT
+import static org.testatoo.core.state.States.available
 import static org.testatoo.core.state.States.getMissing
 
 /**
@@ -28,21 +62,12 @@ import static org.testatoo.core.state.States.getMissing
 @RunWith(JUnit4)
 class KeyboardTest {
 
-    static WebDriver driver
-
     @BeforeClass
-    public static  void before() {
-        Testatoo.evaluator = new DeferredEvaluator()
-
-        driver = new FirefoxDriver();
-        EvaluatorHolder.register(new WebDriverEvaluator(driver))
+    public static void setup() {
+        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
         open('http://localhost:8080/keyboard.html')
     }
-
-    @AfterClass
-    public static void after() {
-        driver.quit()
-    }
+    @AfterClass public static void tearDown() { evaluator.close() }
 
     @Test
     public void test_letters_on_keyboard_() {
@@ -166,6 +191,16 @@ class KeyboardTest {
 
     @Test
     public void test_key() {
+        /*[
+            '#span_esc' : ESCAPE,
+            '#span_f1': F1
+
+        ].each {k, v->
+            assertThat $(k) is missing
+            type v
+            assertThat $(k) is available
+        }*/
+
         assertThat $('#span_esc') is missing
 
         assertThat $('#span_f1') is missing
@@ -205,6 +240,8 @@ class KeyboardTest {
         assertThat $('#span_right') is missing
         assertThat $('#span_down') is missing
 
+        Keyboard.releaseAll()
+
         type(ESCAPE)
 
         type(F1)
@@ -243,6 +280,8 @@ class KeyboardTest {
         type(UP)
         type(RIGHT)
         type(DOWN)
+
+        sleep(5000)
 
         assertThat $('#span_esc') is available
 
@@ -343,7 +382,7 @@ class KeyboardTest {
 
     @Test
     public void release_all_keys_pressed() {
-        KeyboardAction keyboard = EvaluatorHolder.get().keyboard()
+        KeyboardAction keyboard = Testatoo.evaluator.keyboard()
 
         assert keyboard.keysPressed().size().equals(0)
 

@@ -15,21 +15,21 @@
  */
 package org.testatoo.core.input
 
+import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Component
-import org.testatoo.core.evaluator.EvaluatorHolder
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Mouse {
 
-    static void clickOn(Component c) { EvaluatorHolder.get().mouse().click(c.id) }
+    static void clickOn(Component c) { Testatoo.evaluator.mouse().click(c.id) }
 
-    static void doubleClickOn(Component c) { EvaluatorHolder.get().mouse().doubleClick(c.id) }
+    static void doubleClickOn(Component c) { Testatoo.evaluator.mouse().doubleClick(c.id) }
 
-    static void rightClickOn(Component c) { EvaluatorHolder.get().mouse().rightClick(c.id) }
+    static void rightClickOn(Component c) { Testatoo.evaluator.mouse().rightClick(c.id) }
 
-    static void mouseOver(Component c) { EvaluatorHolder.get().mouse().mouseOver(c.id) }
+    static void mouseOver(Component c) { Testatoo.evaluator.mouse().mouseOver(c.id) }
 
     static Dragger drag(Component c) {
         return new Dragger(c)
@@ -43,7 +43,7 @@ class Mouse {
         }
 
         public void on(Component to) {
-            EvaluatorHolder.get().mouse().dragAndDrop(from.id, to.id)
+            Testatoo.evaluator.mouse().dragAndDrop(from.id, to.id)
         }
     }
 
