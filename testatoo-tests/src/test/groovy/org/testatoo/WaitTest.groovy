@@ -15,9 +15,7 @@
  */
 package org.testatoo
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -25,16 +23,9 @@ import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.Testatoo.waitUntil
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.click
-import static org.testatoo.core.state.States.getDisabled
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getMissing
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -45,7 +36,7 @@ class WaitTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open('http://localhost:8080/wait.html')
+        open 'http://localhost:8080/wait.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 

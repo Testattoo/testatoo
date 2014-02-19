@@ -26,8 +26,8 @@ class Column extends Component {
 
     Column() {
         support Size, {
-            int index = evaluator.getInt("\$('#${id}').index()") + 1
-            evaluator.getInt("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})').length")
+            int index = Integer.valueOf(evaluator.getString("\$('#${id}').index()")) + 1
+            Integer.valueOf(evaluator.getString("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})').length"))
         }
         support Title, {
             evaluator.getString("\$('#${id}').text()")
@@ -35,8 +35,8 @@ class Column extends Component {
     }
 
     List<Cell> getCells() {
-        int index = evaluator.getInt("\$('#${id}').index()") + 1
-        this.evaluator.getMetaInfo("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')").collect { it as Cell }
+        int index =  Integer.valueOf(evaluator.getString("\$('#${id}').index()")) + 1
+        evaluator.getMetaInfo("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')").collect { it as Cell }
     }
 
 }

@@ -82,6 +82,7 @@ class Component {
         getClass().simpleName + ":${try { id } catch (Throwable ignored) { meta.metaInfo }}"
     }
 
+    // $('#toto') as String
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()
@@ -109,6 +110,7 @@ class Component {
         _supportedStates.put(type, e)
     }
 
+    // TODO find support that redefine a State
     void support(Class<?> type, Closure<?> c) {
         if (Property.isAssignableFrom(type)) {
             _supportedProperties.put(type as Class<? extends Property>, c as PropertyEvaluator)
@@ -148,10 +150,9 @@ class Component {
 
                 def hierarchy= []
                 def s = c.class
-                while(s != null) {
+                while(s != Object) {
                     hierarchy << s.simpleName; s = s.superclass
                 }
-                hierarchy.pop()
                 if (!hierarchy.contains(info.type)) {
                     println "===============> ${hierarchy}"
                     throw new ComponentException("The Component hierarchy ${hierarchy} doesn't contain the type ${info.type} for component with id ${info.id}")

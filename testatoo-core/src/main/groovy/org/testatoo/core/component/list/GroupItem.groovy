@@ -29,7 +29,7 @@ class GroupItem extends Component {
     GroupItem() {
         support Label, Value
         support Size, {
-            Component c -> c.evaluator.getInt("\$('#${id}').find('option').length")
+            Component c -> Integer.valueOf(c.evaluator.getString("\$('#${id}').find('option').length"))
         }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
@@ -42,7 +42,7 @@ class GroupItem extends Component {
 
     boolean equals(o) {
         if (this.is(o)) return true
-        return value.equals(o)
+        return value == o
     }
 
     String getValue() {

@@ -15,24 +15,16 @@
  */
 package org.testatoo
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.Form
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.component.input.PasswordField
+import org.testatoo.core.component.*
+import org.testatoo.core.component.input.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,7 +35,7 @@ class ContainsDisplayTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open('http://localhost:8080/container.html')
+        open 'http://localhost:8080/container.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 

@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class RowSize extends Property {
 
     RowSize() {
-        evaluator { Component c -> c.evaluator.getInt("\$('#${c.id}').find('tbody tr').length") }
+        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id}').find('tbody tr').length")) }
     }
 
     @Delegate

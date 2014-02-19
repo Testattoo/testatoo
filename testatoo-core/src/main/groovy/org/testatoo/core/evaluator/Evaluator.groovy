@@ -34,16 +34,6 @@ public interface Evaluator extends AutoCloseable {
 
     public <T> T getJson(String jQueryExpr)
 
-    boolean getBool(String jQueryExpr)
-
-    int getInt(String jQueryExpr)
-
-    boolean getBoolProperty(String id, String prop)
-
-    int getIntProperty(String id, String prop)
-
-    String getStringProperty(String id, String prop)
-
     List<MetaInfo> getMetaInfo(String jQueryExpr)
 
     void enter(Collection<?> keys)
@@ -56,5 +46,4 @@ public interface Evaluator extends AutoCloseable {
     void mouseOver(String id)
 
     void dragAndDrop(String originId, String targetId)
-
 }

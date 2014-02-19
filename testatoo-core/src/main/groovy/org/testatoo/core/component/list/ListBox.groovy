@@ -28,7 +28,7 @@ class ListBox extends Component {
     ListBox() {
         support Label, GroupItemsSize, VisibleItemsSize, SelectedItems
         support Size, {
-            Component c -> c.evaluator.getInt("\$('#${id}').find('option').length")
+            Component c -> Integer.valueOf(c.evaluator.getString("\$('#${id}').find('option').length"))
         }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }

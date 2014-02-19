@@ -18,41 +18,7 @@ package org.testatoo.core.evaluator.webdriver
 import org.openqa.selenium.Keys
 import org.testatoo.core.input.Key
 
-import static org.testatoo.core.input.Key.ADD
-import static org.testatoo.core.input.Key.ALT
-import static org.testatoo.core.input.Key.BACK_SPACE
-import static org.testatoo.core.input.Key.CTRL
-import static org.testatoo.core.input.Key.DELETE
-import static org.testatoo.core.input.Key.DIVIDE
-import static org.testatoo.core.input.Key.DOWN
-import static org.testatoo.core.input.Key.END
-import static org.testatoo.core.input.Key.EQUALS
-import static org.testatoo.core.input.Key.ESCAPE
-import static org.testatoo.core.input.Key.F1
-import static org.testatoo.core.input.Key.F10
-import static org.testatoo.core.input.Key.F11
-import static org.testatoo.core.input.Key.F12
-import static org.testatoo.core.input.Key.F2
-import static org.testatoo.core.input.Key.F3
-import static org.testatoo.core.input.Key.F4
-import static org.testatoo.core.input.Key.F5
-import static org.testatoo.core.input.Key.F6
-import static org.testatoo.core.input.Key.F7
-import static org.testatoo.core.input.Key.F8
-import static org.testatoo.core.input.Key.F9
-import static org.testatoo.core.input.Key.HOME
-import static org.testatoo.core.input.Key.INSERT
-import static org.testatoo.core.input.Key.LEFT
-import static org.testatoo.core.input.Key.MULTIPLY
-import static org.testatoo.core.input.Key.PAGE_DOWN
-import static org.testatoo.core.input.Key.PAGE_UP
-import static org.testatoo.core.input.Key.RETURN
-import static org.testatoo.core.input.Key.RIGHT
-import static org.testatoo.core.input.Key.SHIFT
-import static org.testatoo.core.input.Key.SPACE
-import static org.testatoo.core.input.Key.SUBTRACT
-import static org.testatoo.core.input.Key.TAB
-import static org.testatoo.core.input.Key.UP
+import static org.testatoo.core.input.Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

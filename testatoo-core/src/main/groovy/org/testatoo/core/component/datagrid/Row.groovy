@@ -25,7 +25,7 @@ class Row extends Component {
 
     Row() {
         support Size, {
-            evaluator.getInt("\$('#${id}').find('td').length")
+            Integer.valueOf(evaluator.getString("\$('#${id}').find('td').length"))
         }
     }
 

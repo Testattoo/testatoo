@@ -26,7 +26,7 @@ class ListView extends Component {
 
     ListView() {
         support Size, {
-            Component c -> c.evaluator.getInt("\$('#${id}').find('li').length")
+            Component c -> Integer.valueOf(c.evaluator.getString("\$('#${id}').find('li').length"))
         }
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('li')").collect { it as Item }

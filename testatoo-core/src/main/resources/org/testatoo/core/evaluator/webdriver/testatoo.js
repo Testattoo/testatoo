@@ -144,11 +144,6 @@
             }
         },
 
-        isDisabled: function(id) {
-            var el = $('#' + id + '');
-            return el.is(':disabled') || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
-        },
-
         contains: function(id, ids) {
             var el = $('#' + id + '');
             var not = [];

@@ -34,11 +34,11 @@ class Interaction {
     }
 
     void select(String value) {
-        select c.items.find { it.value.equals(value) } as Item
+        select c.items.find { it.value == value } as Item
     }
 
     void select(Item item) {
-        if (c.evaluator.getBool("testatoo.ext.isDisabled('${item.id}')")) {
+        if (isDisabled(item)) {
             throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be selected")
         }
 
@@ -47,11 +47,11 @@ class Interaction {
     }
 
     void unselect(String value) {
-        unselect c.items.find { it.value.equals(value) } as Item
+        unselect c.items.find { it.value == value } as Item
     }
 
     void unselect(Item item) {
-        if (c.evaluator.getBool("testatoo.ext.isDisabled('${item.id}')")) {
+        if (isDisabled(item)) {
             throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be unselected ")
         }
 
@@ -61,8 +61,12 @@ class Interaction {
 
     void enter(String value) {
         // Click to focus on component
-        c.evaluator.mouse().click(c.id);
+        c.evaluator.click(c.id);
         ((TextField) c).enter(value)
+    }
+
+    private static boolean isDisabled(Component c) {
+        Boolean.valueOf(c.evaluator.getString("\$('#${c.id}').is(':disabled') || (\$('#${c.id}').is('option') || \$('#${c.id}').is('optgroup')) && \$('#${c.id}').closest('select').is(':disabled')"))
     }
 
 }

@@ -26,6 +26,7 @@ import org.testatoo.core.input.Key
 
 import static org.testatoo.core.evaluator.Evaluator.MouseButton
 import static org.testatoo.core.evaluator.Evaluator.MouseClick
+import static org.testatoo.core.input.Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -47,25 +48,11 @@ class WebDriverEvaluator implements Evaluator {
     void open(String url) { webDriver.get(url) }
 
     @Override
-    boolean getBool(String jQueryExpr) { Boolean.valueOf(getString(jQueryExpr)) }
-
-    @Override
-    int getInt(String jQueryExpr) { Integer.valueOf(getString(jQueryExpr)) }
-
-    @Override
-    boolean getBoolProperty(String id, String prop) { Boolean.valueOf(getStringProperty(id, prop)) }
-
-    @Override
-    int getIntProperty(String id, String prop) { Integer.valueOf(getStringProperty(id, prop)) }
-
-    @Override
-    String getStringProperty(String id, String prop) { getString("\$('#" + id + "').prop('" + prop + "')") }
-
-    @Override
     public <T> T getJson(String jQueryExpr) {
         getString("JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
+    // TODO REMOVE
     @Override
     String getString(String jQueryExpr) { eval(jQueryExpr) }
 
@@ -100,11 +87,11 @@ class WebDriverEvaluator implements Evaluator {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key) modifiers << k
+            if (k instanceof Key && k in [SHIFT, CTRL, ALT]) modifiers << k
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
-        text.each { action.sendKeys(it) }
+        text.each { it instanceof  Key ? action.sendKeys(KeyConverter.convert(it)) :  action.sendKeys(it)}
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
         action.build().perform()
     }

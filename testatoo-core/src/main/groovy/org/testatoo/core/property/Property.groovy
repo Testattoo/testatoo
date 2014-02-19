@@ -21,7 +21,8 @@ class Property {
 
     void evaluator(PropertyEvaluator p) { evaluator = p }
 
-    void evaluator(Closure<?> c) { evaluator = c as PropertyEvaluator }
+    // TODO test with new groovy version to remove this
+    void evaluator(Closure<?> c) { evaluator(c as PropertyEvaluator) }
 
     @Override
     String toString() { getClass().simpleName }

@@ -107,34 +107,22 @@
         <h2>Special Modifiers + Mouse</h2>
 
         <div style="clear: both;"></div>
-        <strong>Ctrl</strong>
-
         <div id="_Ctrl_mouseleft" class="eventNotifier">Ctrl+mouseleft</div>
         <div style="clear: both;"></div>
-
-        <strong>Shift</strong>
 
         <div id="_Shift_mouseleft" class="eventNotifier">Shift+mouseleft</div>
         <div style="clear:both;"></div>
 
-        <strong>Alt</strong>
-
-        <div id="_Alt_mouseleft" class="eventNotifier">Alt+mouseleft</div>
-        <div style="clear: both;"></div>
-
-        <strong>Ctrl</strong>
-
         <div id="_Ctrl_mouseright" class="eventNotifier">Ctrl+mouseright</div>
         <div style="clear: both;"></div>
-
-        <strong>Shift</strong>
 
         <div id="_Shift_mouseright" class="eventNotifier">Shift+mouseright</div>
         <div style="clear:both;"></div>
 
-        <strong>Alt</strong>
+        <div id="_Alt_Shift_mouseleft" class="eventNotifier">Alt+Shift+mouseleft</div>
+        <div style="clear: both;"></div>
 
-        <div id="_Alt_mouseright" class="eventNotifier">Alt+mouseright</div>
+        <div id="_Ctrl_Shift_mouseleft" class="eventNotifier">Ctrl+Shift+mouseleft</div>
         <div style="clear: both;"></div>
     </div>
     <div class="col-md-2"></div>
@@ -189,11 +177,12 @@ $.fn.dirtyCheck = function () {
         if (e.button == 2) {
             if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
             if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
-            if (e.altKey) $('#_Alt_mouseright').dirtyCheck();
+            if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();
         } else {
             if (e.ctrlKey) $('#_Ctrl_mouseleft').dirtyCheck();
             if (e.shiftKey) $('#_Shift_mouseleft').dirtyCheck();
-            if (e.altKey) $('#_Alt_mouseleft').dirtyCheck();
+            if (e.altKey && e.shiftKey) $('#_Alt_Shift_mouseleft').dirtyCheck();
+            if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
         }
     });
 

@@ -154,90 +154,16 @@
 
         <div style="clear: both;"></div>
 
-        <h2>Special Modifiers and Letters</h2>
-
-        <div style="clear: both;"></div>
-        <strong>Ctrl</strong>
-
-        <div id="_Ctrl_c" class="eventNotifier">Ctrl+c</div>
-        <div style="clear: both;"></div>
-
-        <strong>Shift</strong>
-
-        <div id="_Shift_c" class="eventNotifier">Shift+c</div>
-        <div style="clear: both;"></div>
-
-        <strong>Alt</strong>
-
-        <div id="_Alt_c" class="eventNotifier">Alt+c</div>
-        <div style="clear: both;"></div>
-
-        <h2>Special Modifiers and Digits</h2>
-
-        <div style="clear: both;"></div>
-        <strong>Ctrl</strong>
-
-        <div id="_Ctrl_1" class="eventNotifier">Ctrl+1</div>
-        <div style="clear: both;"></div>
-
-        <strong>Alt</strong>
-
-        <div id="_Alt_1" class="eventNotifier">Alt+1</div>
-        <div style="clear: both;"></div>
-
-        <h2>Special Modifiers + Special Keys</h2>
-
-        <div style="clear: both;"></div>
-        <strong>Ctrl</strong>
-
-        <div id="_Ctrl_esc" class="eventNotifier">Ctrl+esc</div>
-        <div style="clear: both;"></div>
-
-        <strong>Shift</strong>
-
-        <div id="_Shift_esc" class="eventNotifier">Shift+esc</div>
-        <div style="clear:both;"></div>
-
-        <strong>Alt</strong>
-
-        <div id="_Alt_esc" class="eventNotifier">Alt+esc</div>
-
-        <h2>Special Modifiers + Mouse</h2>
-
-        <div style="clear: both;"></div>
-        <strong>Ctrl</strong>
-
-        <div id="_Ctrl_mouseleft" class="eventNotifier">Ctrl+mouseleft</div>
-        <div style="clear: both;"></div>
-
-        <strong>Shift</strong>
-
-        <div id="_Shift_mouseleft" class="eventNotifier">Shift+mouseleft</div>
-        <div style="clear:both;"></div>
-
-        <strong>Alt</strong>
-
-        <div id="_Alt_mouseleft" class="eventNotifier">Alt+mouseleft</div>
-
-        <div style="clear: both;"></div>
-        <strong>Ctrl</strong>
-
-        <div id="_Ctrl_mouseright" class="eventNotifier">Ctrl+mouseright</div>
-        <div style="clear: both;"></div>
-
-        <strong>Shift</strong>
-
-        <div id="_Shift_mouseright" class="eventNotifier">Shift+mouseright</div>
-        <div style="clear:both;"></div>
-
-        <strong>Alt</strong>
-
-        <div id="_Alt_mouseright" class="eventNotifier">Alt+mouseright</div>
-        <div style="clear: both;"></div>
-
         <h2>Input text</h2>
+
         <div style="clear: both;"></div>
-        <input type="input"/>
+        <input id="textfield" type="text"/>
+
+        <div style="clear: both;"></div>
+
+        <h2>Special Modifiers</h2>
+
+        <div id="_Ctrl_Alt_Shift_x" class="eventNotifier">Ctrl+Alt+Shift+x</div>
         <div style="clear: both;"></div>
 
     </div>
@@ -535,44 +461,10 @@ $.fn.dirtyCheck = function () {
         return false;
     });
 
-    //   ============= SPECIAL MODIFIERS AND LETTERS ===============
+    //   ============= SPECIAL MODIFIERS  ===============
 
-    $(document).on('keypress', null, 'Ctrl+c', function () {
-        $('#_Ctrl_c').dirtyCheck();
-        return false;
-    });
-    $(document).on('keypress', null, 'Shift+c', function () {
-        $('#_Shift_c').dirtyCheck();
-        return false;
-    });
-    $(document).on('keypress', null, 'Alt+c', function () {
-        $('#_Alt_c').dirtyCheck();
-        return false;
-    });
-
-    //   ============= SPECIAL MODIFIERS AND DIGIT ===============
-
-    $(document).on('keypress', null, 'Ctrl+1', function () {
-        $('#_Ctrl_1').dirtyCheck();
-        return false;
-    });
-    $(document).on('keypress', null, 'Alt+1', function () {
-        $('#_Alt_1').dirtyCheck();
-        return false;
-    });
-
-    //   ============= SPECIAL MODIFIERS AND KEYS ===============
-
-    $(document).on('keypress', null, 'Ctrl+esc', function () {
-        $('#_Ctrl_esc').dirtyCheck();
-        return false;
-    });
-    $(document).on('keypress', null, 'Shift+esc', function () {
-        $('#_Shift_esc').dirtyCheck();
-        return false;
-    });
-    $(document).on('keypress', null, 'Alt+esc', function () {
-        $('#_Alt_esc').dirtyCheck();
+    $(document).on('keypress', null, 'alt+ctrl+shift+x', function () {
+        $('#_Ctrl_Alt_Shift_x').dirtyCheck();
         return false;
     });
 

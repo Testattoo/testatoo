@@ -15,83 +15,23 @@
  */
 package org.testatoo
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Form
-import org.testatoo.core.component.Image
-import org.testatoo.core.component.Link
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.datagrid.Cell
-import org.testatoo.core.component.datagrid.Column
-import org.testatoo.core.component.datagrid.DataGrid
-import org.testatoo.core.component.datagrid.Row
-import org.testatoo.core.component.input.CheckBox
-import org.testatoo.core.component.input.ColorField
-import org.testatoo.core.component.input.DateField
-import org.testatoo.core.component.input.DateTimeField
-import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.component.input.MonthField
-import org.testatoo.core.component.input.NumberField
-import org.testatoo.core.component.input.PasswordField
-import org.testatoo.core.component.input.PhoneField
-import org.testatoo.core.component.input.Radio
-import org.testatoo.core.component.input.RangeField
-import org.testatoo.core.component.input.SearchField
-import org.testatoo.core.component.input.TextField
-import org.testatoo.core.component.input.TimeField
-import org.testatoo.core.component.input.URLField
-import org.testatoo.core.component.input.WeekField
-import org.testatoo.core.component.list.DropDown
-import org.testatoo.core.component.list.GroupItem
-import org.testatoo.core.component.list.ListBox
-import org.testatoo.core.component.list.ListView
+import org.testatoo.core.component.*
+import org.testatoo.core.component.datagrid.*
+import org.testatoo.core.component.input.*
+import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.check
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.on
-import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.Testatoo.reset
-import static org.testatoo.core.Testatoo.select
-import static org.testatoo.core.Testatoo.submit
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.click
-import static org.testatoo.core.property.Properties.groupItems
-import static org.testatoo.core.property.Properties.items
-import static org.testatoo.core.property.Properties.label
-import static org.testatoo.core.property.Properties.maximum
-import static org.testatoo.core.property.Properties.minimun
-import static org.testatoo.core.property.Properties.pattern
-import static org.testatoo.core.property.Properties.placeholder
-import static org.testatoo.core.property.Properties.reference
-import static org.testatoo.core.property.Properties.selectedItems
-import static org.testatoo.core.property.Properties.source
-import static org.testatoo.core.property.Properties.step
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.property.Properties.title
-import static org.testatoo.core.property.Properties.value
-import static org.testatoo.core.state.States.getChecked
-import static org.testatoo.core.state.States.getDisabled
-import static org.testatoo.core.state.States.getEmpty
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getFilled
-import static org.testatoo.core.state.States.getMultiSelectable
-import static org.testatoo.core.state.States.getSelected
-import static org.testatoo.core.state.States.getSingleSelectable
-import static org.testatoo.core.state.States.getUnSelected
-import static org.testatoo.core.state.States.getUnchecked
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -102,7 +42,7 @@ class ComponentTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open('http://localhost:8080/component.html')
+        open 'http://localhost:8080/component.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 
@@ -146,6 +86,9 @@ class ComponentTest {
         assertThat textField has text('some value')
         assertThat textField has value('some value')
         assertThat textField is filled
+
+        reset textField
+        assertThat textField is empty
 
         // TextArea is treated as TextField
         textField = $('#text_area_field') as TextField
@@ -451,17 +394,12 @@ class ComponentTest {
         assertThat data_grid.columns[1] has title('Column 2 title')
         assertThat data_grid.columns[2] has title('Column 3 title')
 
-        // TODO
-//        assertThat data_grid has titles('Column 1 title', 'Column 2 title', 'Column 3 title')
-
         List<Column> columns = data_grid.columns
 
         assertThat columns[0] has 4.cells
         assert columns[0].cells.size == 4
 
         List<Cell> cells = columns[1].cells
-        // TODO
-//        assertThat cells has values('value 10','value 20', 'value 30')
 
         assertThat cells[0] has value('cell 12')
         assertThat cells[1] has value('cell 22')
@@ -477,8 +415,6 @@ class ComponentTest {
 
         cells = rows[1].cells
 
-        // TODO
-//        assertThat cells has values('value 10','value 20', 'value 30')
         assertThat cells[0] has value('cell 21')
         assertThat cells[1] has value('cell 22')
         assertThat cells[2] has value('cell 23')

@@ -36,7 +36,7 @@ class Item extends Component {
 
     boolean equals(o) {
         if (this.is(o)) return true
-        return value.equals(o)
+        return value == o
     }
 
     String getValue() {

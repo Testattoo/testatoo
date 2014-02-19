@@ -15,33 +15,19 @@
  */
 package org.testatoo
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Form
+import org.testatoo.core.component.*
 import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
-import static org.testatoo.core.Testatoo.reset
-import static org.testatoo.core.Testatoo.submit
-import static org.testatoo.core.Testatoo.waitUntil
-import static org.testatoo.core.property.Properties.reference
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.getAvailable
-import static org.testatoo.core.state.States.getChecked
-import static org.testatoo.core.state.States.getEnabled
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -52,14 +38,15 @@ class ErrorTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open('http://localhost:8080/error.html')
+        open 'http://localhost:8080/error.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 
-    @Test
-    public void bad_component_type() {
-         // THE TEST TODO
-    }
+//    @Test
+//    public void bad_component_type() {
+//        fail()
+//         // THE TEST TODO
+//    }
 
     @Test
     public void not_supported_state_support() {
@@ -69,7 +56,7 @@ class ErrorTest {
             assertThat email is checked
             fail()
         } catch (ComponentException e) {
-            assert e.message.equals('Component EmailField:email does not support state Checked')
+            assert e.message == 'Component EmailField:email does not support state Checked'
         }
     }
 
@@ -81,29 +68,28 @@ class ErrorTest {
              assertThat email has reference('reference')
             fail()
         } catch (ComponentException e) {
-            assert e.message.equals('Component EmailField:email does not support property Reference')
+            assert e.message == 'Component EmailField:email does not support property Reference'
         }
     }
 
-    @Test
-    @Ignore
-    public void call_is_with_property_and_has_with_state() {
-        EmailField email = $('#email') as EmailField
-        try {
-            assertThat email is text('')
-            fail()
-        } catch (ComponentException e) {
-            assert e.message.equals('TODO')
-        }
-
-        try {
-            assertThat email has enabled
-            fail()
-        } catch (ComponentException e) {
-            assert e.message.equals('TODO')
-        }
-
-    }
+//    @Test
+//    public void call_is_with_property_and_has_with_state() {
+//        EmailField email = $('#email') as EmailField
+//        try {
+//            assertThat email is text('')
+//            fail()
+//        } catch (IllegalArgumentException e) {
+//            assert e.message == 'TODO'
+//        }
+//
+//        try {
+//            assertThat email has enabled
+//            fail()
+//        } catch (ComponentException e) {
+//            assert e.message == 'TODO'
+//        }
+//
+//    }
 
     @Test
     public void cannot_submit_form_if_no_submit_button_available() {
@@ -112,7 +98,7 @@ class ErrorTest {
             submit form
             fail()
         } catch (ComponentException e) {
-            assert e.message.equals('Cannot submit form without submit button')
+            assert e.message == 'Cannot submit form without submit button'
         }
     }
 
@@ -124,12 +110,11 @@ class ErrorTest {
             reset form
             fail()
         } catch (ComponentException e) {
-            assert e.message.equals('Cannot reset form without reset button')
+            assert e.message == 'Cannot reset form without reset button'
         }
     }
 
     @Test
-    @Ignore
     public void exception_is_thrown_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button;
 
@@ -139,7 +124,13 @@ class ErrorTest {
             }
             fail()
         } catch (RuntimeException e) {
-            assert e.message.equals("Unable to reach the condition within 2 seconds (Component defined by jQuery expression \$('#inexisting_button') not found.)")
+            String s = "Unable to reach the condition within 2 seconds (Component defined by jQuery expression \$('#inexisting_button') not found.) : "
+            println s
+            println e.message
+            assert e.message == s
+            //Unable to reach the condition within 2 seconds (Component defined by jQuery expression $('#inexisting_button') not found.) :
+            //Unable to reach the condition within 2 seconds (Component defined by jQuery expression $('#inexisting_button') not found.) :
+            //Unable to reach the condition within 2 seconds (Component defined by jQuery expression $('#inexisting_button') not found.) :
         }
     }
 

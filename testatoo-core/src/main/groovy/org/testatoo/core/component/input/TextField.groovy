@@ -27,6 +27,10 @@ class TextField extends Input {
         support Placeholder, Label
     }
 
-    void enter(String text) { evaluator.keyboard().enter(id, text) }
+    void enter(String text) { evaluator.enter([text]) }
+
+    void reset() {
+        evaluator.runScript("\$('#${id}').val('')")
+    }
 
 }

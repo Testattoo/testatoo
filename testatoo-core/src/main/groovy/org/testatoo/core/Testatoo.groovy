@@ -18,6 +18,7 @@ package org.testatoo.core
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
@@ -53,7 +54,7 @@ class Testatoo {
 
     static Component check(Component c) {
         if (!c.getState(new Checked()))
-            evaluator.mouse().click(c.id)
+            evaluator.click(c.id)
         return c
     }
 
@@ -64,6 +65,11 @@ class Testatoo {
     static Form reset(Form form) {
         form.reset()
         return form
+    }
+
+    static TextField reset(TextField textField) {
+        textField.reset()
+        return textField
     }
 
     static Form submit(Form form) {

@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Reference extends Property {
 
     Reference() {
-        evaluator { Component c -> c.evaluator.getStringProperty(c.id, 'href') }
+        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').prop('href')") }
     }
 
     @Delegate

@@ -26,7 +26,7 @@ class State implements Matcher {
 
     void evaluator(StateEvaluator p) { evaluator = p }
 
-    void evaluator(Closure<Boolean> c) { evaluator = c as StateEvaluator }
+    void evaluator(Closure<Boolean> c) { evaluator(c as StateEvaluator) }
 
     void description(Map<String, String> m) { description = m }
 

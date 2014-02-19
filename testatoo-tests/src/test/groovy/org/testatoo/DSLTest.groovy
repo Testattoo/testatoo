@@ -15,26 +15,18 @@
  */
 package org.testatoo
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.input.CheckBox
-import org.testatoo.core.component.list.DropDown
-import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.label
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getUnchecked
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -45,7 +37,7 @@ class DSLTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open('http://localhost:8080/component.html')
+        open 'http://localhost:8080/component.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 

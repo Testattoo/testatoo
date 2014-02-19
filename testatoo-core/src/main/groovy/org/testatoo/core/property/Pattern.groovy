@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Pattern extends Property {
 
     Pattern() {
-        evaluator { Component c -> c.evaluator.getStringProperty(c.id, 'pattern') }
+        evaluator { Component c -> c.evaluator.getString("\$('#${c.id}').prop('pattern')") }
     }
 
     @Delegate
