@@ -60,30 +60,17 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <dependencies>
-                        <!-- SSI -->
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-catalina</artifactId>
-                            <version>7.0.8</version>
-                            <exclusions>
-                                <exclusion>
-                                    <groupId>org.apache.tomcat</groupId>
-                                    <artifactId>tomcat-servlet-api</artifactId>
-                                </exclusion>
-                                <exclusion>
-                                    <groupId>org.apache.tomcat</groupId>
-                                    <artifactId>tomcat-annotations-api</artifactId>
-                                </exclusion>
-                                <exclusion>
-                                    <groupId>org.apache.tomcat</groupId>
-                                    <artifactId>tomcat-api</artifactId>
-                                </exclusion>
-                            </exclusions>
-                        </dependency>
-                    </dependencies>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2-beta-5</version>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

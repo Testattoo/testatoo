@@ -121,10 +121,10 @@ class MouseTest {
         // Not testable cause Rightclick Handled by the browser
 //        assertThat $('#span_Ctrl_mouseright') is missing
 //        assertThat $('#span_Shift_mouseright') is missing
-//
+
 //        CTRL.rightClick $('#_Ctrl_mouseright') as Panel
 //        SHIFT.rightClick $('#_Shift_mouseright') as Panel
-//
+
 //        assertThat $('#span_Ctrl_mouseright') is available
 //        assertThat $('#span_Shift_mouseright') is available
 

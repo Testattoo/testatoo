@@ -19,6 +19,7 @@
         <module>testatoo-pom</module>
         <module>testatoo-core</module>
         <module>testatoo-tests</module>
+        <module>testatoo-site</module>
         <module>testatoo-documentation</module>
     </modules>
 

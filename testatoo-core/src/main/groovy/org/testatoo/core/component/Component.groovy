@@ -82,7 +82,6 @@ class Component {
         getClass().simpleName + ":${try { id } catch (Throwable ignored) { meta.metaInfo }}"
     }
 
-    // $('#toto') as String
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
             Component c = (Component) clazz.newInstance()

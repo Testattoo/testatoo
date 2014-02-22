@@ -52,7 +52,6 @@ class WebDriverEvaluator implements Evaluator {
         getString("JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
-    // TODO REMOVE
     @Override
     String getString(String jQueryExpr) { eval(jQueryExpr) }
 
@@ -103,11 +102,11 @@ class WebDriverEvaluator implements Evaluator {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key) modifiers << k
+            if (k instanceof Key && k in [SHIFT, CTRL, ALT]) modifiers << k
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
-        text.each { action.sendKeys(it) }
+        text.each { it instanceof  Key ? action.sendKeys(KeyConverter.convert(it)) :  action.sendKeys(it) }
         if (button == MouseButton.LEFT && click == MouseClick.SINGLE) {
             action.click(webDriver.findElement(By.id(id)))
         } else if (button == MouseButton.RIGHT && click == MouseClick.SINGLE) {

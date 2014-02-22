@@ -37,10 +37,12 @@ class ErrorTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/error.html'
     }
-    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
 //    @Test
 //    public void bad_component_type() {
@@ -65,31 +67,23 @@ class ErrorTest {
         EmailField email = $('#email') as EmailField
 
         try {
-             assertThat email has reference('reference')
+            assertThat email has reference('reference')
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Component EmailField:email does not support property Reference'
         }
     }
 
-//    @Test
-//    public void call_is_with_property_and_has_with_state() {
-//        EmailField email = $('#email') as EmailField
-//        try {
-//            assertThat email is text('')
-//            fail()
-//        } catch (IllegalArgumentException e) {
-//            assert e.message == 'TODO'
-//        }
-//
-//        try {
-//            assertThat email has enabled
-//            fail()
-//        } catch (ComponentException e) {
-//            assert e.message == 'TODO'
-//        }
-//
-//    }
+    @Test
+    public void call_is_with_property() {
+        EmailField email = $('#email') as EmailField
+        try {
+            assertThat email is text('')
+            fail()
+        } catch (IllegalArgumentException e) {
+            assert e.message == 'Cannot use property matcher for state'
+        }
+    }
 
     @Test
     public void cannot_submit_form_if_no_submit_button_available() {
@@ -124,19 +118,13 @@ class ErrorTest {
             }
             fail()
         } catch (RuntimeException e) {
-            String s = "Unable to reach the condition within 2 seconds (Component defined by jQuery expression \$('#inexisting_button') not found.) : "
-            println s
-            println e.message
-            assert e.message == s
-            //Unable to reach the condition within 2 seconds (Component defined by jQuery expression $('#inexisting_button') not found.) :
-            //Unable to reach the condition within 2 seconds (Component defined by jQuery expression $('#inexisting_button') not found.) :
-            //Unable to reach the condition within 2 seconds (Component defined by jQuery expression $('#inexisting_button') not found.) :
+            assert e.message == "Unable to reach the condition within 2 seconds (Component defined by jQuery expression \$('#inexisting_button') not found.)"
         }
     }
 
-
-
     // TODO errors on ...
+
+//    if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
 
 //    @Test
 //    public void test_AND() {

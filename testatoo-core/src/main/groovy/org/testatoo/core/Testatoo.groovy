@@ -90,7 +90,7 @@ class Testatoo {
                 Blocks.run(Blocks.compose(Blocks.pending()))
             }
         } catch (TimeoutException e) {
-            throw new RuntimeException("${e.message} : ${c}")
+            throw new RuntimeException("${e.message}")
         }
     }
 

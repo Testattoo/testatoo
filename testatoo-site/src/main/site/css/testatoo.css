@@ -1,0 +1,56 @@
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+blockquote {
+    font-size: 20px;
+}
+
+h1 {
+    letter-spacing: -3px;
+    line-height: 0px;
+    font-weight: 700;
+    margin: 1em 0;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    cursor: pointer;
+    color: #F68F67;
+    font-weight: bold;
+}
+
+a.selected {
+    border-bottom: 4px solid #F68F67;
+    font-weight: bold;
+    color: #F68F67;
+}
+
+.navbar-nav > li > a {
+    padding-bottom: 5px;
+}
+
+#slide1 {
+    background-color: #B5D767;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+#slide1 img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#slide3 {
+    background-image: url('../img/footprints.png');
+}
+
+#slide5 {
+    background-image: url('../img/sunglasses.png');
+}
+
+#slide6 {
+    color: #FFFFFF;
+    background-color: #222222;
+}
