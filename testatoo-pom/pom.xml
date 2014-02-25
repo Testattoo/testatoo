@@ -15,15 +15,10 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>com.ovea</groupId>
-        <artifactId>ovea</artifactId>
-        <version>13</version>
-    </parent>
 
     <groupId>org.testatoo</groupId>
     <artifactId>testatoo-pom</artifactId>
@@ -40,11 +35,45 @@
 
     <properties>
         <jdk.version>1.7</jdk.version>
+        <groovy.version>2.2.1</groovy.version>
     </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>1.0</version>
+                    <configuration>
+                        <verbose>true</verbose>
+                        <invokeDynamic>true</invokeDynamic>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>testCompile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy-all</artifactId>
+                            <version>${groovy.version}</version>
+                            <classifier>indy</classifier>
+                        </dependency>
+                    </dependencies>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
@@ -60,14 +89,34 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.2-beta-5</version>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.4</version>
+                    <configuration>
+                        <useAgent>false</useAgent>
+                        <keyname>F82FA7FE</keyname>
+                        <passphrase>${ovea.gpg.passphrase}</passphrase>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+                        <properties>
+                            <owner>Ovea</owner>
+                            <email>dev@ovea.com</email>
+                        </properties>
+                        <excludes>
+                            <exclude>**/README</exclude>
+                            <exclude>src/test/resources/**</exclude>
+                            <exclude>src/main/resources/**</exclude>
+                        </excludes>
+                    </configuration>
                     <executions>
                         <execution>
-                            <id>make-assembly</id>
-                            <phase>package</phase>
                             <goals>
-                                <goal>single</goal>
+                                <goal>check</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -76,4 +125,80 @@
         </pluginManagement>
     </build>
 
+    <developers>
+        <developer>
+            <id>altus34</id>
+            <name>David Avenante</name>
+            <email>d.avenante@ovea.com</email>
+            <organization>Ovea</organization>
+            <organizationUrl>http://www.ovea.com/</organizationUrl>
+            <timezone>-5</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>mathieucarbou</id>
+            <name>Mathieu Carbou</name>
+            <email>m.carbou@ovea.com</email>
+            <organization>Ovea</organization>
+            <organizationUrl>http://www.ovea.com/</organizationUrl>
+            <timezone>-5</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>ovea-oss-staging</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ovea-oss-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
+

@@ -1,12 +1,12 @@
 <!--
 
-    Copyright (C) 2011 Ovea <dev@ovea.com>
+    Copyright (C) 2013 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+            http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.testatoo</groupId>
         <artifactId>testatoo-pom</artifactId>
-        <version>2</version>
+        <version>3-SNAPSHOT</version>
         <relativePath>../testatoo-pom</relativePath>
     </parent>
 
@@ -30,6 +30,7 @@
     <version>2.0.b1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Testatoo :: Tests</name>
+    <inceptionYear>2013</inceptionYear>
 
     <scm>
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
@@ -37,6 +38,25 @@
         <url>http://github.com/Ovea/testatoo</url>
         <tag>HEAD</tag>
     </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/webapp/**</exclude>
+                        <exclude>**/infra/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>

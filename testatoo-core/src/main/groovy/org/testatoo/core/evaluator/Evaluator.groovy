@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2008 Ovea <dev@ovea.com>
+ * Copyright (C) 2008 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,7 +17,7 @@ package org.testatoo.core.evaluator
 
 import org.testatoo.core.MetaInfo
 
-public interface Evaluator extends AutoCloseable {
+public interface Evaluator {
 
     static enum MouseButton { LEFT, RIGHT }
     static enum MouseClick { SINGLE, DOUBLE }

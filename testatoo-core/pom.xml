@@ -1,12 +1,12 @@
 <!--
 
-    Copyright (C) 2008 Ovea <dev@ovea.com>
+    Copyright (C) 2008 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+            http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,14 +15,15 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.testatoo</groupId>
         <artifactId>testatoo-pom</artifactId>
-        <version>2</version>
+        <version>3-SNAPSHOT</version>
         <relativePath>../testatoo-pom</relativePath>
     </parent>
 
@@ -30,7 +31,7 @@
     <version>2.0.b1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Testatoo :: Core</name>
-    <inceptionYear>2008</inceptionYear>
+    <inceptionYear>2013</inceptionYear>
 
     <scm>
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
@@ -41,6 +42,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -57,9 +62,9 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>2.1.6</version>
+            <version>${groovy.version}</version>
+            <classifier>indy</classifier>
         </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
