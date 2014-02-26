@@ -22,10 +22,13 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 import org.testatoo.core.component.input.EmailField
+import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -122,9 +125,100 @@ class ErrorTest {
         }
     }
 
-    // TODO errors on ...
+    @Test
+    public void exception_is_thrown_on_invalid_click_sequence () {
+        Form form = $('#form') as Form
+        try {
+            [CTRL, 'test', ALT].click form
+            fail()
+        } catch (IllegalArgumentException e) {
+            assert e.message == 'Cannot type a modifier after some text'
+        }
 
-//    if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
+        try {
+            evaluator.click('form', Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.DOUBLE)
+            fail()
+        } catch (IllegalArgumentException e) {
+            assert e.message == 'Invalid click sequence'
+        }
+    }
+
+    @Test
+    public void cannot_unselect_disabled_option() {
+        DropDown dropDown = $('#elements') as DropDown
+        assertThat dropDown.items[0] is disabled
+
+        try {
+        on dropDown unselect 'Helium'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Item Helium is disabled and cannot be unselected'
+        }
+    }
+
+    @Test
+    public void equals_to_matcher_on_list_items() {
+        DropDown dropDown = $('#elements') as DropDown
+        try {
+            assertThat dropDown has items.equalsTo('Val1')
+            fail()
+        } catch (AssertionError e) {
+            assert e.message == "Expected Items '[Val1]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+        }
+
+        try {
+            assertThat dropDown has items.equalsTo(['Val1', 'Val2'])
+            fail()
+        } catch (AssertionError e) {
+            assert e.message == "Expected Items '[Val1, Val2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+        }
+    }
+
+    @Test
+    public void equals_to_matcher() {
+        DropDown dropDown = $('#elements') as DropDown
+        try {
+            assertThat dropDown.items[0] has value.equalsTo('Val_1')
+        } catch (AssertionError e) {
+            assert e.message == "Expected Value 'Val_1' but was 'Helium'"
+        }
+
+        try {
+            assertThat dropDown.items[0] has value.equalsTo('Val_1', 'val_2')
+            fail()
+        } catch (AssertionError e) {
+            assert e.message == "Expected one of Value '[Val_1, val_2]' but was 'Helium'"
+        }
+    }
+
+    @Test
+    public void containing_matcher() {
+        DropDown dropDown = $('#elements') as DropDown
+        try {
+            assertThat dropDown has items.containing('Val_1')
+        } catch (AssertionError e) {
+            assert e.message == "Expected Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+        }
+
+        try {
+            assertThat dropDown has items.containing('Val_1', 'Val_2')
+        } catch (AssertionError e) {
+            assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+        }
+    }
+
+    @Test
+    public void missing_component_error() {
+        DropDown dropDown = $('#elements') as DropDown
+        try {
+            assertThat dropDown is missing
+        } catch (AssertionError e) {
+            assert e.message == 'Component DropDown with id elements expected missing but was available'
+        }
+    }
+
+    // try to check component that not support checked state
+    // cannot select already selected item
 
 //    @Test
 //    public void test_AND() {
@@ -154,9 +248,7 @@ class ErrorTest {
 //            dropDown.items.are enabled
 //        }
 //    }
-    // try to check component that not support checked state
-    // cannot select already selected item
-    // cannot unselect already unselected item
+
 
     // USe evaluator.runScript to add new component type
 //    @Test

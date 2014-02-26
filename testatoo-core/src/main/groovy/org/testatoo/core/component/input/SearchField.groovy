@@ -19,7 +19,6 @@ package org.testatoo.core.component.input
  */
 class SearchField extends  TextField {
 
-    SearchField() {
-    }
+    SearchField() {}
 
 }

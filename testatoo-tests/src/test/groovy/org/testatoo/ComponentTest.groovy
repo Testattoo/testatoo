@@ -25,7 +25,10 @@ import org.testatoo.core.component.datagrid.*
 import org.testatoo.core.component.input.*
 import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.property.Size
+import org.testatoo.core.property.Text
 import org.testatoo.core.property.Title
+import org.testatoo.core.state.Selected
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -324,6 +327,7 @@ class ComponentTest {
         assertThat listView is enabled
         assertThat listView is visible
 
+        assertThat listView has size(5)
         assert listView.items.size == 5
         assertThat listView has 5.items
 
@@ -422,6 +426,22 @@ class ComponentTest {
         assertThat rows[2].cells[1] has value('cell 32')
     }
 
+    @Test
+    public void can_redefine_a_state_and_property() {
+        CustomPanel custom_panel = $('#custom_panel') as CustomPanel
+
+        assertThat custom_panel has title('CustomPanel Title')
+        assertThat custom_panel is selected
+    }
+
+    @Test
+    public void test_some_default_properties_and_state() {
+        CustomPanel custom_panel = $('#custom_panel') as CustomPanel
+        assertThat custom_panel has size(2)
+        assertThat custom_panel has text('TEXT')
+    }
+
+
 //    @Test
 //    public void test_page() {
 //        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
@@ -430,6 +450,15 @@ class ComponentTest {
     class Message extends Panel {
         Message() {
             support Title, { Component c -> c.evaluator.getString("\$('#${id}').text()") }
+
+        }
+    }
+
+    class CustomPanel extends Panel {
+        CustomPanel() {
+            support Title, { return 'CustomPanel Title' }
+            support Selected, { return true }
+            support Size, Text
         }
     }
 

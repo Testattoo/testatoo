@@ -26,14 +26,14 @@ import org.testatoo.core.component.input.TextField
  */
 class MyComponents {
 
-    @Delegate private Testatoo testatoo = new Testatoo()
-
-    Component login_view = $("#login_view")
-    Component dashboard_view = $("#dashboard_view")
-    TextField login_email = $("#login_form :input[name=\"email\"]") as TextField
-    TextField login_password = $("#login_form :input[name=\"password\"]") as TextField
-    Button login_button = $("#login_form [type=submit]") as Button
-    Button logout_button = $("[data-role=logout]:visible") as Button
-    Component login_error_message = $("#login_form .alert-error")
+//    @Delegate private Testatoo testatoo = new Testatoo()
+//
+//    Component login_view = $("#login_view")
+//    Component dashboard_view = $("#dashboard_view")
+//    TextField login_email = $("#login_form :input[name=\"email\"]") as TextField
+//    TextField login_password = $("#login_form :input[name=\"password\"]") as TextField
+//    Button login_button = $("#login_form [type=submit]") as Button
+//    Button logout_button = $("[data-role=logout]:visible") as Button
+//    Component login_error_message = $("#login_form .alert-error")
 
 }

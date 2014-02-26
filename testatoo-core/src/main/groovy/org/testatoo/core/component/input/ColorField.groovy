@@ -20,7 +20,6 @@ package org.testatoo.core.component.input
  */
 class ColorField extends TextField {
 
-    ColorField() {
-    }
+    ColorField() {}
 
 }

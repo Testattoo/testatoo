@@ -72,5 +72,4 @@ class GroovyExtensions {
     }
 
     public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
-
 }

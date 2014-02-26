@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testatoo Sample</title>
+
+    <link href="css/bootstrap-3.1.1.min.css" rel="stylesheet">
+
+    <script src="js/platform-0.1.4.js"></script>
+    <script src="js/polymer-0.1.4.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/bootstrap-3.1.1.min.js"></script>
+
+    <link rel="import" href="components/knob/knob.html"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Testatoo Custom component support</a>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6">
+        <h1 class="page-header">Knob bars</h1>
+        <x-knob step="10" value="25"></x-knob>
+    </div>
+    <div class="col-xs-3"></div>
+</div>
+
+<script type="application/javascript">
+    jQuery(document).ready(function ($) {
+    });
+</script>
+
+
+</body>
+</html>

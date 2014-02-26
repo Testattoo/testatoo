@@ -19,7 +19,6 @@ package org.testatoo.core.component.input
  */
 class MonthField extends TextField {
 
-    MonthField() {
-    }
+    MonthField() {}
 
 }

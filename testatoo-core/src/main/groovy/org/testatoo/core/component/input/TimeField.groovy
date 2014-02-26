@@ -19,7 +19,6 @@ package org.testatoo.core.component.input
  */
 class TimeField extends TextField {
 
-    TimeField() {
-    }
+    TimeField() {}
 
 }

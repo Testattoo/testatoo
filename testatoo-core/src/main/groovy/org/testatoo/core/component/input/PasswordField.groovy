@@ -19,7 +19,6 @@ package org.testatoo.core.component.input
  */
 class PasswordField extends TextField {
 
-    PasswordField() {
-    }
+    PasswordField() {}
 
 }

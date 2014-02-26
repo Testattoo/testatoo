@@ -19,6 +19,5 @@ package org.testatoo.core.component.input
  */
 class WeekField extends TextField {
 
-    WeekField() {
-    }
+    WeekField() {}
 }

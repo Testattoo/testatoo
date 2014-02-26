@@ -106,7 +106,7 @@ class WebDriverEvaluator implements Evaluator {
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
-        text.each { it instanceof  Key ? action.sendKeys(KeyConverter.convert(it)) :  action.sendKeys(it) }
+        text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         if (button == MouseButton.LEFT && click == MouseClick.SINGLE) {
             action.click(webDriver.findElement(By.id(id)))
         } else if (button == MouseButton.RIGHT && click == MouseClick.SINGLE) {

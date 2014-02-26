@@ -150,6 +150,10 @@ class MouseTest {
         assertThat $('#span_Crtl_Shift_mouseleft') is missing
         [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Panel
         assertThat $('#span_Crtl_Shift_mouseleft') is missing
+
+        // For code coverage
+        [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
+        ['data'].click $('#_Ctrl_Shift_mouseleft') as Panel
     }
 
     class DropPanel extends Panel {

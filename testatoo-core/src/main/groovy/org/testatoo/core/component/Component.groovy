@@ -109,7 +109,6 @@ class Component {
         _supportedStates.put(type, e)
     }
 
-    // TODO find support that redefine a State
     void support(Class<?> type, Closure<?> c) {
         if (Property.isAssignableFrom(type)) {
             _supportedProperties.put(type as Class<? extends Property>, c as PropertyEvaluator)
@@ -163,5 +162,4 @@ class Component {
     }
 
     static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout)) }
-
 }

@@ -52,7 +52,7 @@ class Interaction {
 
     void unselect(Item item) {
         if (isDisabled(item)) {
-            throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be unselected ")
+            throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be unselected")
         }
 
         if (item.is(new Selected()))
