@@ -20,7 +20,6 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 import org.testatoo.core.property.Properties
-import org.testatoo.core.property.Property
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.State
 
