@@ -88,6 +88,7 @@ class Component {
             c.meta = this.meta
             return c
         }
+        // TODO Math comment pn passe la (code coverage)
         return super.asType(clazz)
     }
 
@@ -145,14 +146,12 @@ class Component {
         String getId(Component c) throws ComponentException {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfo(evaluator)
-
                 def hierarchy= []
                 def s = c.class
                 while(s != Object) {
                     hierarchy << s.simpleName; s = s.superclass
                 }
                 if (!hierarchy.contains(info.type)) {
-                    println "===============> ${hierarchy}"
                     throw new ComponentException("The Component hierarchy ${hierarchy} doesn't contain the type ${info.type} for component with id ${info.id}")
                 }
                 metaInfo = info
