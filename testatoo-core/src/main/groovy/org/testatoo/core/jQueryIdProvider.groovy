@@ -39,6 +39,4 @@ class jQueryIdProvider implements IdProvider {
         throw new ComponentException("Component defined by jQuery expression ${expression} is not unique: got ${metaInfos.size()}")
     }
 
-    @Override
-    public String toString() { expression }
 }

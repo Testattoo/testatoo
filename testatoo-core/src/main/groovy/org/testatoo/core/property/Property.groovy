@@ -21,7 +21,7 @@ class Property {
 
     void evaluator(PropertyEvaluator p) { evaluator = p }
 
-    // TODO test with new groovy version to remove this
+    // TODO Math test with new groovy version to remove this
     void evaluator(Closure<?> c) { evaluator(c as PropertyEvaluator) }
 
     @Override

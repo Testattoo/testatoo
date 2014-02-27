@@ -52,7 +52,6 @@ class WaitTest {
         assertThat message is missing
 
         click button
-
         assertThat button is(disabled)
 
         waitUntil 10.seconds, {
@@ -60,12 +59,11 @@ class WaitTest {
         }
 
         click button
-
         waitUntil {
             button.is(enabled) or message.is(visible)
         }
 
-        // TODO
+        // TODO David
 //        waitUntil button is enabled
 //        waitFor 10.seconds that button.is(enabled)
 //        waitFor 10.seconds that button is enabled

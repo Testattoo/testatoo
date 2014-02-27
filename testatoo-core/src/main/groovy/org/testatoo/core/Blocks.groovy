@@ -50,6 +50,7 @@ class Blocks {
 
     static Block and(Collection<Block> blocks) {
         if (blocks.empty) {
+            // TODO Math how to pass here (code coverage)
             throw new IllegalArgumentException('Empty block')
         }
         BLOCKS.removeAll(blocks)
@@ -73,6 +74,7 @@ class Blocks {
 
     static Block or(Collection<Block> blocks) {
         if (blocks.empty) {
+            // TODO Math how to pass here (code coverage)
             throw new IllegalArgumentException('Empty block')
         }
         BLOCKS.removeAll(blocks)

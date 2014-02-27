@@ -34,10 +34,12 @@ class ContainsDisplayTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/container.html'
     }
-    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void test_contains() {
@@ -46,8 +48,8 @@ class ContainsDisplayTest {
         Button invisible_button = $('#invisible_button') as Button
 
         assertThat panel contains(
-                visible_button,
-                invisible_button
+            visible_button,
+            invisible_button
         )
 
         Form form = $('#form') as Form
@@ -57,16 +59,16 @@ class ContainsDisplayTest {
         Button reset_button = $('[type=reset]') as Button
 
         assertThat form contains(
-                email_field,
-                password_field,
-                submit_button,
-                reset_button
+            email_field,
+            password_field,
+            submit_button,
+            reset_button
         )
 
         try {
             assertThat panel contains(
-                    submit_button,
-                    reset_button
+                submit_button,
+                reset_button
             )
         } catch (AssertionError e) {
             assert e.message == "Component Panel:panel does not contains expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
@@ -80,13 +82,13 @@ class ContainsDisplayTest {
         Button invisible_button = $('#invisible_button') as Button
 
         assertThat panel displays(
-                visible_button
+            visible_button
         )
 
         try {
             assertThat panel displays(
-                    visible_button,
-                    invisible_button
+                visible_button,
+                invisible_button
             )
         } catch (AssertionError e) {
             assert e.message == "Component Button with id invisible_button expected visible but was hidden"
@@ -95,7 +97,7 @@ class ContainsDisplayTest {
         EmailField email_field = $('[type=email]') as EmailField
         try {
             assertThat panel displays(
-                    email_field
+                email_field
             )
         } catch (AssertionError e) {
             assert e.message == "Component Panel:panel does not contains expected component(s): [EmailField:$email_field.id]"

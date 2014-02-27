@@ -22,7 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
@@ -56,7 +56,6 @@ class ErrorTest {
     @Test
     public void not_supported_state_support() {
         EmailField email = $('#email') as EmailField
-
         try {
             assertThat email is checked
             fail()
@@ -68,7 +67,6 @@ class ErrorTest {
     @Test
     public void not_supported_property_support() {
         EmailField email = $('#email') as EmailField
-
         try {
             assertThat email has reference('reference')
             fail()
@@ -102,7 +100,6 @@ class ErrorTest {
     @Test
     public void cannot_reset_form_if_no_reset_button_available() {
         Form form = $('#form') as Form
-
         try {
             reset form
             fail()
@@ -114,7 +111,6 @@ class ErrorTest {
     @Test
     public void exception_is_thrown_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button;
-
         try {
             waitUntil 2.seconds, {
                 button.is(available)
@@ -126,9 +122,10 @@ class ErrorTest {
     }
 
     @Test
-    public void exception_is_thrown_on_invalid_click_sequence () {
+    public void exception_is_thrown_on_invalid_click_sequence() {
         Form form = $('#form') as Form
         try {
+            // TODO Math why intelliJ waring
             [CTRL, 'test', ALT].click form
             fail()
         } catch (IllegalArgumentException e) {
@@ -144,12 +141,22 @@ class ErrorTest {
     }
 
     @Test
+    public void test_hidden_state_on_visible_component_throw_exception() {
+        DropDown dropDown = $('#elements') as DropDown
+        try {
+            assertThat dropDown is hidden
+            fail()
+        } catch (AssertionError e) {
+            assert e.message == 'Component DropDown with id elements expected hidden but was visible'
+        }
+    }
+
+    @Test
     public void cannot_unselect_disabled_option() {
         DropDown dropDown = $('#elements') as DropDown
         assertThat dropDown.items[0] is disabled
-
         try {
-        on dropDown unselect 'Helium'
+            on dropDown unselect 'Helium'
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Item Helium is disabled and cannot be unselected'
@@ -217,37 +224,21 @@ class ErrorTest {
         }
     }
 
+    @Test
+    public void multiple_elements_selector_throw_exception() {
+        try {
+            Item item = $('#elements option') as Item;
+            assertThat item is visible
+            fail()
+        } catch (ComponentException e) {
+            e.message == "Component defined by jQuery expression \$('#elements option') is not unique: got 5"
+        }
+
+
+    }
+
     // try to check component that not support checked state
     // cannot select already selected item
-
-//    @Test
-//    public void test_AND() {
-//        CheckBox checkBox = $('#checkbox') as CheckBox
-//
-//        assertThat {
-//            checkBox.is(enabled) and checkBox.is(visible)
-//            checkBox.is(enabled) & checkBox.is(visible)
-//        }
-//    }
-//
-//    @Test
-//    public void test_OR() {
-//        ListBox listBox = $('#cities') as ListBox
-//
-//        assertThat {
-//            listBox.has(8.items) or listBox.has(3.visibleItems)
-//            listBox.has(8.items) | listBox.has(3.visibleItems)
-//        }
-//    }
-//
-//    @Test
-//    public void test_ARE() {
-//        DropDown dropDown = $('#elements') as DropDown
-//
-//        assertThat {
-//            dropDown.items.are enabled
-//        }
-//    }
 
 
     // USe evaluator.runScript to add new component type

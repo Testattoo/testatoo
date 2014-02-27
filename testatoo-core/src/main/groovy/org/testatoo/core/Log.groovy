@@ -25,7 +25,4 @@ class Log {
 
     static void testatoo(String msg) { if (testatoo) println "[TESTATOO] [${Thread.currentThread().name}] ${msg}" }
 
-    static boolean selenium
-
-    static void selenium(String msg) { if (selenium) println "[SELENIUM] [${Thread.currentThread().name}] ${msg}" }
 }
