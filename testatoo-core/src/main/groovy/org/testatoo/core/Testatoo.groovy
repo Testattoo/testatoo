@@ -16,8 +16,7 @@
 package org.testatoo.core
 
 import groovy.time.TimeDuration
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.Form
+import org.testatoo.core.component.*
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.evaluator.Evaluator

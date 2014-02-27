@@ -17,8 +17,7 @@ package org.testatoo.core.component
 
 import org.testatoo.core.*
 import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.property.Property
-import org.testatoo.core.property.PropertyEvaluator
+import org.testatoo.core.property.*
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
 

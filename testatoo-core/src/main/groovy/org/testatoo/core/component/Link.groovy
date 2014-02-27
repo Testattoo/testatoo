@@ -15,8 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.property.Reference
-import org.testatoo.core.property.Text
+import org.testatoo.core.property.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

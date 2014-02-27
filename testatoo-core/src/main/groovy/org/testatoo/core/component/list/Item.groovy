@@ -16,10 +16,8 @@
 package org.testatoo.core.component.list
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.Label
-import org.testatoo.core.property.Value
-import org.testatoo.core.state.Selected
-import org.testatoo.core.state.UnSelected
+import org.testatoo.core.property.*
+import org.testatoo.core.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

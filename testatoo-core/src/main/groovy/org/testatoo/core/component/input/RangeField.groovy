@@ -15,9 +15,7 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.property.Maximum
-import org.testatoo.core.property.Minimum
-import org.testatoo.core.property.Step
+import org.testatoo.core.property.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

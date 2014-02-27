@@ -15,14 +15,9 @@
  */
 package experimental.dsl
 
-import org.junit.Before
 import org.junit.Ignore
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.Testatoo
-
-import static org.testatoo.core.Testatoo.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

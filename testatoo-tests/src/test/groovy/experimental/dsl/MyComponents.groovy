@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 package experimental.dsl
-
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.Component
-import org.testatoo.core.Testatoo
-import org.testatoo.core.component.input.TextField
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2013-05-01

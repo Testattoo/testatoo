@@ -25,9 +25,7 @@ import org.testatoo.core.component.datagrid.*
 import org.testatoo.core.component.input.*
 import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Size
-import org.testatoo.core.property.Text
-import org.testatoo.core.property.Title
+import org.testatoo.core.property.*
 import org.testatoo.core.state.Selected
 
 import static org.junit.Assert.fail

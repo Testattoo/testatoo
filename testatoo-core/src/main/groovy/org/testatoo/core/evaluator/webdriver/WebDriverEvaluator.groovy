@@ -16,16 +16,13 @@
 package org.testatoo.core.evaluator.webdriver
 
 import groovy.json.JsonSlurper
-import org.openqa.selenium.By
-import org.openqa.selenium.JavascriptExecutor
-import org.openqa.selenium.WebDriver
+import org.openqa.selenium.*
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 
-import static org.testatoo.core.evaluator.Evaluator.MouseButton
-import static org.testatoo.core.evaluator.Evaluator.MouseClick
+import static org.testatoo.core.evaluator.Evaluator.*
 import static org.testatoo.core.input.Key.*
 
 /**

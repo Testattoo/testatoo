@@ -15,9 +15,7 @@
  */
 package experimental.dsl.todo
 
-import org.junit.Ignore
-import org.junit.Test
-
+import org.junit.*
 import org.testatoo.core.component.Button
 
 import static org.testatoo.core.Testatoo.$

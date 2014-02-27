@@ -15,8 +15,7 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.property.Label
-import org.testatoo.core.property.Placeholder
+import org.testatoo.core.property.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

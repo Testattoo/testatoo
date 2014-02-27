@@ -15,8 +15,7 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
