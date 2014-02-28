@@ -20,7 +20,7 @@ h1 {
     font-weight: bold;
 }
 
-a.selected {
+li.active a {
     border-bottom: 4px solid #F68F67;
     font-weight: bold;
     color: #F68F67;
