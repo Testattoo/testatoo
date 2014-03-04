@@ -249,32 +249,4 @@ class ErrorTest {
 
     // try to check component that not support checked state
     // cannot select already selected item
-
-
-    // USe evaluator.runScript to add new component type
-//    @Test
-//    public void custom_component_type() {
-////        Custom_1 custom_1 = $('#button') as Custom_1
-////        assertThat custom_1 has text('Button')
-//
-//        Custom_2 custom_2 = $('#button') as Custom_2
-//        try {
-//            assertThat custom_2 has text('Button')
-//            fail()
-//        } catch (ComponentException e) {
-//            assert e.message == "The Component hierarchy [Custom_2, Panel, Component] doesn't contain the evaluated type Button for component with id button"
-//        }
-//    }
-
-//    class Custom_1 extends Button {
-//        Custom_1() {
-//        }
-//    }
-//
-//    class Custom_2 extends Panel {
-//        Custom_2() {
-//        }
-//    }
-
-
 }

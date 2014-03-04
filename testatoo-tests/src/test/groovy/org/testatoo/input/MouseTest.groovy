@@ -147,6 +147,7 @@ class MouseTest {
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
+        // TODO Math why intelliJ waring
         ['data'].click $('#_Ctrl_Shift_mouseleft') as Panel
     }
 
