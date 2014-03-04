@@ -32,6 +32,7 @@
         if (el.is('textarea')) return 'TextField';
         if (el.is('img')) return 'Image';
         if (el.is('a')) return 'Link';
+        if (el.is('h1') || el.is('h2') || el.is('h3') || el.is('h4') || el.is('h5') || el.is('h6')) return 'Heading';
         if (el.is('div')) return 'Panel';
         if (el.is('ul')) return 'ListView';
         if (el.is('ol')) return 'ListView';

@@ -28,6 +28,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.*
 import org.testatoo.core.state.Selected
 
+import static org.junit.Assert.assertThat
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.click
@@ -422,6 +423,27 @@ class ComponentTest {
         assertThat cells[2] has value('cell 23')
 
         assertThat rows[2].cells[1] has value('cell 32')
+    }
+
+    @Test
+    public void test_heading() {
+        Heading heading_1 = $('#heading_1') as Heading
+        assertThat heading_1 has text('heading 1')
+
+        Heading heading_2 = $('#heading_2') as Heading
+        assertThat heading_2 has text('heading 2')
+
+        Heading heading_3 = $('#heading_3') as Heading
+        assertThat heading_3 has text('heading 3')
+
+        Heading heading_4 = $('#heading_4') as Heading
+        assertThat heading_4 has text('heading 4')
+
+        Heading heading_5 = $('#heading_5') as Heading
+        assertThat heading_5 has text('heading 5')
+
+        Heading heading_6 = $('#heading_6') as Heading
+        assertThat heading_6 has text('heading 6')
     }
 
     @Test
