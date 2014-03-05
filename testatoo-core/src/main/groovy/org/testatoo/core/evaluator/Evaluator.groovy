@@ -26,9 +26,9 @@ public interface Evaluator extends AutoCloseable {
 
     void open(String url)
 
-    String  evalScript(String script)
-
     void  runScript(String script)
+
+    void registerScripts(String... scripts)
 
     String getString(String jQueryExpr)
 

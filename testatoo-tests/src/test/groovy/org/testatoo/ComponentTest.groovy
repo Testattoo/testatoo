@@ -28,7 +28,6 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.*
 import org.testatoo.core.state.Selected
 
-import static org.junit.Assert.assertThat
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.click

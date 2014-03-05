@@ -32,6 +32,7 @@ class WebDriverEvaluator implements Evaluator {
 
     private final WebDriver webDriver
     private final JavascriptExecutor js
+    private final List<String> registeredScripts = new ArrayList<>()
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -53,15 +54,13 @@ class WebDriverEvaluator implements Evaluator {
     String getString(String jQueryExpr) { eval(jQueryExpr) }
 
     @Override
-    String evalScript(String script) {
-        eval("""(function(){
-        ${removeTrailingChars(script)};
-    }());""")
+    void runScript(String script) {
+        js.executeScript(script);
     }
 
     @Override
-    void runScript(String script) {
-        ((JavascriptExecutor) webDriver).executeScript(script);
+    void registerScripts(String... scripts) {
+        registeredScripts.addAll(scripts);
     }
 
     @Override
@@ -139,6 +138,7 @@ class WebDriverEvaluator implements Evaluator {
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.0.3.min.js").text + getClass().getResource("testatoo.js").text)
+            registeredScripts.collect { js.executeScript(it)  }
             v = js.executeScript(expr)
         }
         return v == 'null' || v == 'undefined' ? null : v

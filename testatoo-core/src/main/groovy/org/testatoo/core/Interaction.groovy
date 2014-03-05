@@ -41,7 +41,7 @@ class Interaction {
         }
 
         if (item.is(new UnSelected()))
-            c.evaluator.evalScript("\$('#${item.id}').prop('selected', true);")
+            c.evaluator.runScript("\$('#${item.id}').prop('selected', true);")
     }
 
     void unselect(String value) {
@@ -54,7 +54,7 @@ class Interaction {
         }
 
         if (item.is(new Selected()))
-            c.evaluator.evalScript("\$('#${item.id}').prop('selected', false);")
+            c.evaluator.runScript("\$('#${item.id}').prop('selected', false);")
     }
 
     void enter(String value) {
