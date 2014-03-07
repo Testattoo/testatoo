@@ -18,7 +18,6 @@ package org.testatoo.core
 import groovy.time.TimeDuration
 import org.testatoo.core.component.*
 import org.testatoo.core.component.input.TextField
-import org.testatoo.core.component.list.Item
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
 
@@ -77,7 +76,7 @@ class Testatoo {
     }
 
     static Component select(Component c) {
-        on(c).select(c as Item)
+        on(c).select(c)
         return c
     }
 

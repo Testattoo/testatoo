@@ -3,6 +3,8 @@ package bootstrap
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Panel
 import org.testatoo.core.property.*
+import org.testatoo.core.state.Selected
+import org.testatoo.core.state.UnSelected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,6 +29,12 @@ class Accordion extends Component {
         Item() {
             support Title, {
                 Component c -> c.evaluator.getString("\$('#${id}').text()").trim()
+            }
+            support Selected, {
+                Component c ->  Boolean.valueOf(c.evaluator.getString("\$('#${panel.id}').hasClass('in')"))
+            }
+            support UnSelected, {
+                Component c ->  !Boolean.valueOf(c.evaluator.getString("\$('#${panel.id}').hasClass('in')"))
             }
         }
 

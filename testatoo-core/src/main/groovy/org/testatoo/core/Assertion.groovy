@@ -34,8 +34,8 @@ class Assertion {
         assert component.is(matcher)
     }
 
-    void is(PropertyMatcher matcher) {
-        throw new IllegalArgumentException('Cannot use property matcher for state')
+    static void is(PropertyMatcher m) {
+        throw new IllegalArgumentException("Cannot use property matcher (${m}) for state")
     }
 
     void has(PropertyMatcher matcher) {

@@ -20,6 +20,8 @@ import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.state.*
 
+import static org.testatoo.core.input.Mouse.click
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -35,13 +37,13 @@ class Interaction {
         select c.items.find { it.value == value } as Item
     }
 
-    void select(Item item) {
+    static void select(Component item) {
         if (isDisabled(item)) {
             throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be selected")
         }
 
         if (item.is(new UnSelected()))
-            c.evaluator.runScript("\$('#${item.id}').prop('selected', true);")
+            click item
     }
 
     void unselect(String value) {

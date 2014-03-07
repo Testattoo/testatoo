@@ -90,7 +90,7 @@ class ErrorTest {
             assertThat email is text('')
             fail()
         } catch (IllegalArgumentException e) {
-            assert e.message == 'Cannot use property matcher for state'
+            assert e.message == 'Cannot use property matcher (Text equals to ) for state'
         }
     }
 

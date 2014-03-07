@@ -37,12 +37,14 @@ class CustomComponentsTest {
         assertThat progress_bar has value('60%')
 
         click plus
-        assertThat progress_bar has value('70%')
+        click plus
+        assertThat progress_bar has value('80%')
 
         click minus
         click minus
-
-        assertThat progress_bar has value('50%')
+        click minus
+        click minus
+        assertThat progress_bar has value('40%')
     }
 
     @Test
@@ -61,14 +63,13 @@ class CustomComponentsTest {
         waitUntil { tab_panel.tabs[0].panel.is(hidden) }
         assertThat tab_panel.tabs[1].panel is visible
 
-//        assertThat tab_panel.tabs[0] is unSelected
-//        assertThat tab_panel.tabs[1] is selected
-//
-//        select tab_panel.tabs[0]
-//
-//        assertThat tab_panel.tabs[0] is selected
-//        assertThat tab_panel.tabs[1] is unSelected
+        assertThat tab_panel.tabs[0] is unSelected
+        assertThat tab_panel.tabs[1] is selected
 
+        select tab_panel.tabs[0]
+
+        assertThat tab_panel.tabs[0] is selected
+        assertThat tab_panel.tabs[1] is unSelected
     }
 
     @Test
@@ -84,29 +85,18 @@ class CustomComponentsTest {
         assertThat accordion.items[1].panel is hidden
         assertThat accordion.items[2].panel is hidden
 
-//        assertThat accordion.items[0] is selected
-//        assertThat accordion.items[1] is unSelected
-//        assertThat accordion.items[2] is unSelected
-//
-//        click accordion.items[1]
-//        assertThat accordion.items[0] is unSelected
-//        assertThat accordion.items[1] is selected
-//        assertThat accordion.items[2] is unSelected
-//
-//        select accordion.items[2]
-//        assertThat accordion.items[0] is unSelected
-//        assertThat accordion.items[1] is unSelected
-//        assertThat accordion.items[2] is selected
+        assertThat accordion.items[0] is selected
+        assertThat accordion.items[1] is unSelected
+        assertThat accordion.items[2] is unSelected
 
+        click accordion.items[1]
+        waitUntil { accordion.items[1].is(selected) }
+        assertThat accordion.items[0] is unSelected
+        assertThat accordion.items[2] is unSelected
 
-
-
-
-
-
-
-
-
-
+        select accordion.items[2]
+        waitUntil { accordion.items[2].is(selected) }
+        assertThat accordion.items[0] is unSelected
+        assertThat accordion.items[1] is unSelected
     }
 }

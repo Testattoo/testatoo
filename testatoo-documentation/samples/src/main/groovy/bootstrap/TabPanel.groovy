@@ -3,6 +3,7 @@ package bootstrap
 import bootstrap.property.Tabs
 import org.testatoo.core.component.*
 import org.testatoo.core.property.*
+import org.testatoo.core.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -26,6 +27,12 @@ class TabPanel extends Component {
         Tab() {
             support Title, {
                 Component c -> c.evaluator.getString("\$('#${id}').text()")
+            }
+            support Selected, {
+                Component c ->  Boolean.valueOf(c.evaluator.getString("\$('#${id}').closest('li').hasClass('active')"))
+            }
+            support UnSelected, {
+                Component c ->  !Boolean.valueOf(c.evaluator.getString("\$('#${id}').closest('li').hasClass('active')"))
             }
         }
 
