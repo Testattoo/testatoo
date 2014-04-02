@@ -33,7 +33,7 @@ But Testatoo adds a powerful DSL while maintaining the usage of pure Java and ke
 
 Example of a test syntax :
 
-[source, java]
+[source, groovy]
 .Listing 1.0 : a sample syntax
 -------------------------------------------------------------------------------
     assertThat textField has label('Text')
