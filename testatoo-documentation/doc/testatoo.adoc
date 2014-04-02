@@ -8,7 +8,35 @@ v2.0, 2014
 :homepage: https://github.com/Ovea/testatoo
 :desc: This is the documentation of Testatoo
 
-[preface]
-= TODO
-
 image:logo.png[float="left"]
+
+= Introduction
+
+Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
+Working for many years to promote the TDD approaches, we often faced difficulties in their implementation for the graphical layer of applications.
+
+The "test FIRST" principle excludes all scenario recorder based approaches that only allow you to write a posteriori tests.
+Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
+
+Another problem is GUI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
+
+Testatoo provides on one hand an abstraction of the UI business domain through an expressive API and on the other hand a way to express this domain via a DSL (a button semantically stays a buttons whatever the technology).
+With Testatoo you can therefore write tests with a seldom achieved level of expressiveness and make these tests INDEPENDENT of the underlying technology.
+
+Testatoo can therefore transform the test in real assets, present throughout the life of the application and always in tune with the latest version of the application.
+
+= Technologies
+
+Testatoo is built on top of [WebDriver](http://code.google.com/p/selenium/), it can work [with any browser supported by WebDriver](http://http://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions#Q:_Which_browsers_does_WebDriver_support?) (IE, Google-chrome, Firefox, ...).
+Testatoo provides like [geb](http://www.gebish.org/testing) an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly should you need to.
+But Testatoo adds a powerful DSL while maintaining the usage of pure Java and keeps the advantage of a strong typed language.
+
+Example of a test syntax :
+
+[source, java]
+.Listing 1.0 : a sample syntax
+-------------------------------------------------------------------------------
+    assertThat textField has label('Text')
+    assertThat textField has placeholder('Text')
+    assertThat textField is empty
+-------------------------------------------------------------------------------
