@@ -1,1 +1,12 @@
- 
+= Testatoo documentation
+v2.0, 2014
+:toc:
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:imagesdir: images
+:homepage: https://github.com/Ovea/testatoo
+:desc: This is the documentation of Testatoo
+
+[preface]
+= TODO
