@@ -27,8 +27,8 @@ Testatoo can therefore transform the test in real assets, present throughout the
 
 = Technologies
 
-Testatoo is built on top of [WebDriver](http://code.google.com/p/selenium/), it can work [with any browser supported by WebDriver](http://http://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions#Q:_Which_browsers_does_WebDriver_support?) (IE, Google-chrome, Firefox, ...).
-Testatoo provides like [geb](http://www.gebish.org/testing) an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly should you need to.
+Testatoo is built on top of WebDriver[http://code.google.com/p/selenium/], it can work with any browser supported by WebDriver[http://http://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions#Q:_Which_browsers_does_WebDriver_support?] (IE, Google-chrome, Firefox, ...).
+Testatoo provides like geb [http://www.gebish.org/testing] an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly should you need to.
 But Testatoo adds a powerful DSL while maintaining the usage of pure Java and keeps the advantage of a strong typed language.
 
 Example of a test syntax :
