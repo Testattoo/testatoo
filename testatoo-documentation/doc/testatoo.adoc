@@ -10,3 +10,5 @@ v2.0, 2014
 
 [preface]
 = TODO
+
+image:logo.png[float="left"]
