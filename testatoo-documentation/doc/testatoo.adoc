@@ -7,7 +7,7 @@ v2.0, 2014
 :imagesdir: images
 :homepage: https://github.com/Ovea/testatoo
 :desc: This is the documentation of Testatoo
-:testaoo-version: 2.0.0-b1
+:testaoo-version: 2.0.b1
 
 image:logo.png[float="left"]
 
@@ -46,6 +46,30 @@ Example of a test syntax :
 
 = Installation & Usage
 
-{testaoo-version}
+Via Maven…
+
+[source, xml]
+-------------------------------------------------------------------------------
+<dependency>
+    <groupId>org.testatoo</groupId>
+    <artifactId>testatoo-core</artifactId>
+    <version>{testaoo-version}</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.11</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>2.39.0</version>
+    <scope>test</scope>
+</dependency>
+-------------------------------------------------------------------------------
+
+
 
 
