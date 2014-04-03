@@ -52,23 +52,23 @@ class MouseTest {
         Button button = $('#button_1') as Button
         assertThat button has text('Button')
         assertThat button has text('Button')
-        click button
+        clickOn button
         assertThat button has text('Button Clicked!')
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assertThat checkBox is unchecked
-        click checkBox
+        clickOn checkBox
         assertThat checkBox is checked
 
         Radio radio = $('#radio') as Radio
         assertThat radio is unchecked
-        click radio
+        clickOn radio
         assertThat radio is checked
 
         DropDown dropDown = $('#elements') as DropDown
         assertThat dropDown has selectedItems('Helium')
 
-        click dropDown.items[2]
+        clickOn dropDown.items[2]
         assertThat dropDown has selectedItems('Polonium')
     }
 
@@ -76,7 +76,7 @@ class MouseTest {
     public void doubleClick() {
         Button button = $('#button_2') as Button
         assertThat button has text('Button')
-        doubleClick button
+        doubleClickOn button
         assertThat button has text('Button Double Clicked!')
     }
 
@@ -84,7 +84,7 @@ class MouseTest {
     public void rightClick() {
         Button button = $('#button_5') as Button
         assertThat button has text('Button')
-        rightClick button
+        rightClickOn button
         assertThat button has text('Button Right Clicked!')
     }
 
@@ -92,7 +92,7 @@ class MouseTest {
     public void mouseOver() {
         Button button = $('#button_3') as Button
         assertThat button has text('Button')
-        mouseOver button
+        hoveringMouseOn button
         assertThat button has text('Button Mouse Over!')
     }
 
@@ -104,9 +104,9 @@ class MouseTest {
         // To simulate mouse out
 
         // 1 - mouse over the component
-        mouseOver button
+        hoveringMouseOn button
         // 2 - mouse over an another component
-        mouseOver $('#button_5') as Button
+        hoveringMouseOn $('#button_5') as Button
         // The mouse out is triggered
         assertThat button has text('Button Mouse Out!')
     }
@@ -147,7 +147,7 @@ class MouseTest {
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
-        // TODO Math why intelliJ waring
+        // TODO Math why intelliJ warning
         ['data'].click $('#_Ctrl_Shift_mouseleft') as Panel
     }
 

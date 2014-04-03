@@ -24,13 +24,13 @@ import org.testatoo.core.evaluator.Evaluator
  */
 class Mouse {
 
-    static void click(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, []) }
+    static void clickOn(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, []) }
 
-    static void doubleClick(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.DOUBLE, []) }
+    static void doubleClickOn(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.DOUBLE, []) }
 
-    static void rightClick(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, []) }
+    static void rightClickOn(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, []) }
 
-    static void mouseOver(Component c) { Testatoo.evaluator.mouseOver(c.id) }
+    static void hoveringMouseOn(Component c) { Testatoo.evaluator.mouseOver(c.id) }
 
     static Dragger drag(Component c) { return new Dragger(c) }
 
