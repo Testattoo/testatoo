@@ -37,8 +37,8 @@ Example of a test syntax :
 
 [source, groovy]
 -------------------------------------------------------------------------------
-    assertThat textField has label('Text')
-    assertThat textField has placeholder('Text')
+    assertThat textField has label('myLabel')
+    assertThat textField has placeholder('My placeholder')
     assertThat textField is empty
 -------------------------------------------------------------------------------
 
@@ -70,6 +70,11 @@ Via Maven…
 </dependency>
 -------------------------------------------------------------------------------
 
+Testatoo work with existing popular unit test libraries like JUnit.
+In our first test (BaseGoogleTest) we test a simple search on Google.
+
+The test looks like :
+
 [source, groovy]
 -------------------------------------------------------------------------------
 package starter
@@ -90,9 +95,7 @@ import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
-/**
- * @author davenante
- */
+
 @RunWith(JUnit4)
 class BaseGoogleTest {
 
@@ -122,18 +125,41 @@ class BaseGoogleTest {
 
 }
 -------------------------------------------------------------------------------
-<1> Import ...
-<2> First callout.
-<3> First callout.
-<4> First callout.
-<5> First callout.
 
-.Optional Title
-****
-*Sidebar* Block
+If you run the test it should process a simple search on google engine.
+Some interesting thing can be show in this test :
 
-Use: sidebar notes :)
-****
+[horizontal]
+.Labeled horizontal
+We work with Strongly typed components:: Definition 1
+Term 2:: Definition 2
+Term 3::
+    Definition 3
+
+ 1 - We work with Strongly typed components (TextField, Button, ListView)
+ 2 - The evaluation of properties or states are deferred in the time.
+ You can instantiate ListView also the component is not available in the page.
+ You can also test that the component is missing.
+
+ 3 - The DSL is very clean and functional
+ 4 - The code never refer to a technical layer, DOM manipulation and interaction are totally hidden
+
+
+In general rule when you create a test with Testatoo we recomand to add some default import to facilitate the auto completion on your favorite IDE(A) ;)
+
+[source, groovy]
+-------------------------------------------------------------------------------
+
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
+
+-------------------------------------------------------------------------------
+
+
+
+
 
 
 
