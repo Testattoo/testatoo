@@ -21,6 +21,7 @@ import org.testatoo.core.component.list.Item
 import org.testatoo.core.state.*
 
 import static org.testatoo.core.input.Mouse.click
+import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,7 +44,7 @@ class Interaction {
         }
 
         if (item.is(new UnSelected()))
-            click item
+            clickOn item
     }
 
     void unselect(String value) {

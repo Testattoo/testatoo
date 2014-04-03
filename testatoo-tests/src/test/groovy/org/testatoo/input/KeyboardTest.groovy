@@ -26,7 +26,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.click
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.text
 import static org.testatoo.core.state.States.*
 
@@ -156,7 +156,7 @@ class KeyboardTest {
         TextField textField = $('#textfield') as TextField
 
         assertThat textField has text('')
-        click textField
+        clickOn textField
         type(SHIFT + 'testatoo')
         assertThat textField has text('TESTATOO')
 

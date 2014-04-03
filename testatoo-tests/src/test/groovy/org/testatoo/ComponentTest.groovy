@@ -30,7 +30,7 @@ import org.testatoo.core.state.Selected
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.click
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -352,7 +352,7 @@ class ComponentTest {
         assertThat email_field has text('my@email.org')
         assertThat password_field has text('password')
 
-        click reset_button
+        clickOn reset_button
 
         assertThat email_field has text('')
         assertThat password_field has text('')
@@ -372,7 +372,7 @@ class ComponentTest {
         // Can submit a form
         assertThat message has title('The form was submitted 0 time(s)')
 
-        click submit_button
+        clickOn submit_button
         assertThat message has title('The form was submitted 1 time(s)')
 
         submit form
