@@ -129,25 +129,14 @@ class BaseGoogleTest {
 If you run the test it should process a simple search on google engine.
 Some interesting thing can be show in this test :
 
- . We work with Strongly typed components:: The brain of the computer.
-Hard drive:: Permanent storage for operating system and/or user files.
-RAM:: Temporarily stores information the CPU uses during operation.
-Keyboard:: Used to enter text or control items on the screen.
-Mouse:: Used to point to and select items on your computer screen.
-Monitor:: Displays information in visual form using text and graphics.
+We work with Strongly typed components:: As you can see Testatoo manipulate typed components like TextField, Button, ListView.
+                                         The power of Testatoo
 
- . - We work with Strongly typed components::fdsfdsfdsfdsfdsfdsfdsfds fdsfdsfdsfdsfds fsdfdsfsdfsd
+We work with deferred evaluation:: You can instantiate ListView also the component is not available in the page.
+                                   You can also test that the component is missing.
 
-
-
- 1 - We work with Strongly typed components (TextField, Button, ListView)
- 2 - The evaluation of properties or states are deferred in the time.
- You can instantiate ListView also the component is not available in the page.
- You can also test that the component is missing.
-
- 3 - The DSL is very clean and functional
- 4 - The code never refer to a technical layer, DOM manipulation and interaction are totally hidden
-
+The DSL is very clean and functional:: TODO
+The code never refer to a technical layer:: Used to enter text or control items on the screen.
 
 In general rule when you create a test with Testatoo we recomand to add some default import to facilitate the auto completion on your favorite IDE(A) ;)
 
