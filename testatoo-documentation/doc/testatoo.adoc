@@ -130,7 +130,8 @@ If you run the test it should process a simple search on google engine.
 Some interesting element can be show in this test :
 
 Testatoo work with Strongly typed components:: As you can see Testatoo manipulate typed components like TextField, Button, ListView.
-                                         The power of Testatoo
+                                         The power of Testatoo is in one hand to provide a rich list of components and on the other one the possibility
+                                         to easily create and compose your own components set
 
 Testatoo use deferred evaluation:: You can instantiate ListView event if the component is not available in the page.
                                    You can also test that the component is missing.
@@ -141,7 +142,7 @@ Testatoo code never refer to a technical layer:: Used to enter text or control i
 
 [NOTE]
 ===============================
-In general rule when you create a test with Testatoo we recomand to add some default import to facilitate the auto completion on your favorite IDE(A) ;)
+As a rule when you create a test with Testatoo we recommend to add some default import to facilitate the auto completion on your favorite IDE(A) (ninja)
 
 [source, groovy]
 -------------------------------------------------------------------------------
