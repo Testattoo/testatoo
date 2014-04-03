@@ -129,20 +129,19 @@ class BaseGoogleTest {
 If you run the test it should process a simple search on google engine.
 Some interesting element can be show in this test :
 
-Testatoo work with Strongly typed components:: As you can see Testatoo manipulate typed components like TextField, Button, ListView.
+Testatoo work with Strongly typed components:: Testatoo manipulate typed components like TextField, Button, ListView.
                                          The power of Testatoo is in one hand to provide a rich list of components and on the other one the possibility
-                                         to easily create and compose your own components set
+                                         to easily create and compose your own components set.
 
-Testatoo use deferred evaluation:: You can instantiate ListView event if the component is not available in the page.
-                                   You can also test that the component is missing.
+Testatoo use deferred evaluation:: As you can see we instantiate a ListView event if the component is not available in the page.
+                                   You can test if the component is missing
 
-Testatoo DSL is very clean and functional:: TODO
-Testatoo code never refer to a technical layer:: Used to enter text or control items on the screen.
-
+Testatoo DSL is very clean and functional:: Testatoo is based on a clear and powerful syntax.
+Testatoo code never refer to a technical layer:: Under no circumstances in this test the underline DOM technology transpire in our code.
 
 [NOTE]
 ===============================
-As a rule when you create a test with Testatoo we recommend to add some default import to facilitate the auto completion on your favorite IDE(A) (ninja)
+As a rule when you create a test with Testatoo we recommend to add some default import to facilitate the automatic completion on your favorite IDE(A).
 
 [source, groovy]
 -------------------------------------------------------------------------------
@@ -156,6 +155,50 @@ import static org.testatoo.core.state.States.*
 ===============================
 
 
+= Back to the future
+
+Well well well (my mitchel), as explained Testatoo is library to write functional test. Functional test mean SPECIFICATION.
+
+As a SPECIFIER I want to express my test (intention) BEFORE to code my UI. So if the intention is to have
+a page with two radio buttons to select the gender (male or female). The test can be expressed like this :
+
+-------------------------------------------------------------------------------
+assert that the maleRadio is unchecked
+and it has label "Male"
+
+assert that the femaleRadio is unchecked
+and it has label "Female"
+
+check the maleRadio
+assert that the maleRadio is checked
+assert that the femaleRadio is unchecked
+
+check the femaleRadio
+assert that the femaleRadio checked
+assert that the maleRadio is unchecked
+-------------------------------------------------------------------------------
+
+
+The Testatoo syntax to express this specification is :
+
+
+[source, groovy]
+-------------------------------------------------------------------------------
+assertThat {
+    maleRadio.is(unchecked) and maleRadio.has label('Male')
+    femaleRadio.is(unchecked) and femaleRadio.has label('Female')
+}
+
+check maleRadio
+assertThat maleRadio is checked
+assertThat femaleRadio is unchecked
+
+check femaleRadio
+assertThat femaleRadio is checked
+assertThat maleRadio is unchecked
+-------------------------------------------------------------------------------
+
+Pretty close isn't it ;)
 
 
 
