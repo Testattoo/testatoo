@@ -129,14 +129,13 @@ class BaseGoogleTest {
 If you run the test it should process a simple search on google engine.
 Some interesting thing can be show in this test :
 
-. We work with Strongly typed components.
+ . We work with Strongly typed components.
 fdsfdsfdsfdsfdsfdsfdsfds
 fdsfdsfdsfdsfds
 fsdfdsfsdfsd
-. number
-  .. letter
-  .. letter
-. number
+ . number
+ . number
+ . number
 
 [horizontal]
 .Labeled horizontal
