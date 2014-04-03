@@ -7,6 +7,7 @@ v2.0, 2014
 :imagesdir: images
 :homepage: https://github.com/Ovea/testatoo
 :desc: This is the documentation of Testatoo
+:testaoo-version: 2.0.0-b1
 
 image:logo.png[float="left"]
 
@@ -34,9 +35,17 @@ But Testatoo adds a powerful DSL while maintaining the usage of pure Java and ke
 Example of a test syntax :
 
 [source, groovy]
-.Listing 1.0 : A sample syntax
 -------------------------------------------------------------------------------
     assertThat textField has label('Text')
     assertThat textField has placeholder('Text')
     assertThat textField is empty
 -------------------------------------------------------------------------------
+
+= Why should I use Testatoo
+
+
+= Installation & Usage
+
+{testaoo-version}
+
+
