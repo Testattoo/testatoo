@@ -56,7 +56,6 @@ class DSLTest {
     @Test
     public void test_AND() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-
         assertThat {
             checkBox.is(enabled) and checkBox.is(visible)
             checkBox.is(enabled) & checkBox.is(visible)
@@ -66,7 +65,6 @@ class DSLTest {
     @Test
     public void test_OR() {
         ListBox listBox = $('#cities') as ListBox
-
         assertThat {
             listBox.has(8.items) or listBox.has(3.visibleItems)
             listBox.has(8.items) | listBox.has(3.visibleItems)
@@ -76,7 +74,6 @@ class DSLTest {
     @Test
     public void test_ARE() {
         DropDown dropDown = $('#elements') as DropDown
-
         assertThat {
             dropDown.items.are enabled
         }

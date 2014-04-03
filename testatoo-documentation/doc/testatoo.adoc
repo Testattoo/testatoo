@@ -44,8 +44,7 @@ Example of a test syntax :
 
 = Why should I use Testatoo
 
-
-= Installation & Usage
+= Installation & Usage (I want to ride my bicycle)
 
 Via Maven…
 
@@ -54,7 +53,7 @@ Via Maven…
 <dependency>
     <groupId>org.testatoo</groupId>
     <artifactId>testatoo-core</artifactId>
-    <version>${testaoo-version}</version>
+    <version>{testaoo-version}</version>
     <scope>test</scope>
 </dependency>
 <dependency>
@@ -71,6 +70,60 @@ Via Maven…
 </dependency>
 -------------------------------------------------------------------------------
 
+[source, groovy]
+-------------------------------------------------------------------------------
+package starter
+
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.list.ListView
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+
+import static org.testatoo.core.Testatoo.*                  # <1>
+import static org.testatoo.core.input.Keyboard.*            # <2>
+import static org.testatoo.core.input.Mouse.*               # <3>
+import static org.testatoo.core.property.Properties.*       # <4>
+import static org.testatoo.core.state.States.*              # <5>
+/**
+ * @author davenante
+ */
+@RunWith(JUnit4)
+class BaseGoogleTest {
+
+    @BeforeClass
+    public static void setup() {
+        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        open 'http://www.google.com'
+    }
+    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @Test
+    public void simple_test() {
+        TextField searchField = $('#gbqfq') as TextField
+        Button searchButton = $('#gbqfb') as Button
+        ListView resultList = $('#rso') as ListView
+
+        assertThat resultList is missing
+        assertThat searchField is visible
+
+        click searchField
+        type('testatoo')
+        click searchButton
+
+        waitUntil {resultList.is visible}
+
+        assertThat resultList.items[0] has value.containing('Testatoo')
+    }
+
+}
 
 
 
+-------------------------------------------------------------------------------
