@@ -3,11 +3,9 @@ v2.0, 2014
 :toc:
 :doctype: book
 :icons: font
-:source-highlighter: highlightjs
-:imagesdir: images
 :homepage: https://github.com/Ovea/testatoo
 :desc: This is the documentation of Testatoo
-:testaoo-version: 2.0.b1
+include::attributes.conf[]
 
 image:logo.png[float="left"]
 
@@ -53,7 +51,7 @@ Via Maven…
 <dependency>
     <groupId>org.testatoo</groupId>
     <artifactId>testatoo-core</artifactId>
-    <version>{{testaoo-version}}</version>
+    <version>{testaoo-version}</version>
     <scope>test</scope>
 </dependency>
 <dependency>
