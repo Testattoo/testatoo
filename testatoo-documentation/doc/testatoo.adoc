@@ -5,7 +5,10 @@ v2.0, 2014
 :icons: font
 :homepage: https://github.com/Ovea/testatoo
 :desc: This is the documentation of Testatoo
-include::attributes.conf[]
+:testaoo-version: 2.0.b1
+
+:source-highlighter: highlightjs
+:imagesdir: images
 
 image:logo.png[float="left"]
 
