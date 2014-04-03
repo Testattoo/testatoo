@@ -129,17 +129,9 @@ class BaseGoogleTest {
 If you run the test it should process a simple search on google engine.
 Some interesting thing can be show in this test :
 
- 1 - We work with Strongly typed components::fdsfdsfdsfdsfdsfdsfdsfds fdsfdsfdsfdsfds fsdfdsfsdfsd
- . number
- . number
- . number
+1 - We work with Strongly typed components::fdsfdsfdsfdsfdsfdsfdsfds fdsfdsfdsfdsfds fsdfdsfsdfsd
 
-[horizontal]
-.Labeled horizontal
-We work with Strongly typed components:: Definition 1
-Term 2:: Definition 2
-Term 3::
-    Definition 3
+
 
  1 - We work with Strongly typed components (TextField, Button, ListView)
  2 - The evaluation of properties or states are deferred in the time.
