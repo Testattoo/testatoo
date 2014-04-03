@@ -30,7 +30,7 @@ Testatoo can therefore transform the test in real assets, present throughout the
 = Technologies
 
 Testatoo is built on top of http://code.google.com/p/selenium/[WebDriver], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[WebDriver] (IE, Google-chrome, Firefox, ...).
-Testatoo provides like http://www.gebish.org/testing[geb] an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly should you need to.
+If Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity. It's always possible to "fallback" to the WebDriver level to do something directly should you need to.
 But Testatoo adds a powerful DSL while maintaining the usage of Groovy and keeps the advantage of a strong typed language.
 
 Example of a test syntax :
@@ -154,10 +154,9 @@ import static org.testatoo.core.state.States.*
 -------------------------------------------------------------------------------
 ===============================
 
-
 = Back to the future
 
-Well well well (my mitchel), as explained Testatoo is library to write functional test. Functional test mean SPECIFICATION.
+Well well well (My Michelle), as explained Testatoo is library to write functional test. Functional test mean SPECIFICATION.
 
 As a SPECIFIER I want to express my test (intention) BEFORE to code my UI. So if the intention is to have
 a page with two radio buttons to select the gender (male or female). The test can be expressed like this :
@@ -178,9 +177,7 @@ assert that the femaleRadio checked
 assert that the maleRadio is unchecked
 -------------------------------------------------------------------------------
 
-
 The Testatoo syntax to express this specification is :
-
 
 [source, groovy]
 -------------------------------------------------------------------------------
@@ -199,6 +196,11 @@ assertThat maleRadio is unchecked
 -------------------------------------------------------------------------------
 
 Pretty close isn't it ;)
+
+Testatoo provides a DSL to write tests in a natural language easy to manipulate for a specifications point of view.
+As this is a high level language, it allows tests to be written before UI coding.
+
+YES, for the first time with Testatoo you can write UI functional test FIRST (yea pretty cool!!!!)
 
 
 
