@@ -86,11 +86,10 @@ import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.ListView
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*                  # <1>
-import static org.testatoo.core.input.Keyboard.*            # <2>
-import static org.testatoo.core.input.Mouse.*               # <3>
-import static org.testatoo.core.property.Properties.*       # <4>
-import static org.testatoo.core.state.States.*              # <5>
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 /**
  * @author davenante
  */
@@ -113,9 +112,8 @@ class BaseGoogleTest {
         assertThat resultList is missing
         assertThat searchField is visible
 
-        click searchField
-        type('testatoo')
-        click searchButton
+        on searchField enter 'Testatoo'
+        clickOn searchButton
 
         waitUntil {resultList.is visible}
 
@@ -123,12 +121,19 @@ class BaseGoogleTest {
     }
 
 }
-
+-------------------------------------------------------------------------------
 <1> Import ...
 <2> First callout.
 <3> First callout.
 <4> First callout.
 <5> First callout.
 
+.Optional Title
+****
+*Sidebar* Block
 
--------------------------------------------------------------------------------
+Use: sidebar notes :)
+****
+
+
+

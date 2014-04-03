@@ -12,7 +12,6 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 

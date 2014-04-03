@@ -13,7 +13,6 @@ import org.testatoo.core.component.list.ListView
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
@@ -39,9 +38,8 @@ class BaseGoogleTest {
         assertThat resultList is missing
         assertThat searchField is visible
 
-        click searchField
-        type('testatoo')
-        click searchButton
+        on searchField enter 'Testatoo'
+        clickOn searchButton
 
         waitUntil {resultList.is visible}
 
