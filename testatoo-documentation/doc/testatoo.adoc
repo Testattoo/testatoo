@@ -20,7 +20,7 @@ Working for many years to promote the TDD approaches, we often faced difficultie
 The "test FIRST" principle excludes all scenario recorder based approaches that only allow you to write a posteriori tests.
 Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
 
-Another problem is GUI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
+Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
 
 Testatoo provides on one hand an abstraction of the UI business domain through an expressive API and on the other hand a way to express this domain via a DSL (a button semantically stays a buttons whatever the technology).
 With Testatoo you can therefore write tests with a seldom achieved level of expressiveness and make these tests INDEPENDENT of the underlying technology.
@@ -44,9 +44,14 @@ Example of a test syntax :
 
 = Why should I use Testatoo
 
+If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
+
 = Installation & Usage (I want to ride my bicycle)
 
-Via Maven…
+One snipet of code is worth a thousand words
+So go ......
+
+Get Testatoo and dependencies libraries via Maven…
 
 [source, xml]
 -------------------------------------------------------------------------------
@@ -200,7 +205,7 @@ Pretty close isn't it ;)
 Testatoo provides a DSL to write tests in a natural language easy to manipulate for a specifications point of view.
 As this is a high level language, it allows tests to be written before UI coding.
 
-YES, for the first time with Testatoo you can write UI functional test FIRST (yea pretty cool!!!!)
+YES, for the first time with Testatoo you can write UI functional test FIRST (yeah, it's pretty cool)
 
 
 
