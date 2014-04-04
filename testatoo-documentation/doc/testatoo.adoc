@@ -12,7 +12,7 @@ v2.0, 2014
 
 image:logo.png[float="left"]
 
-= Introduction
+== Introduction
 
 Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
 Working for many years to promote the TDD approaches, we often faced difficulties in their implementation for the graphical layer of applications.
@@ -27,7 +27,7 @@ With Testatoo you can therefore write tests with a seldom achieved level of expr
 
 Testatoo can therefore transform the test in real assets, present throughout the life of the application and always in tune with the latest version of the application.
 
-= Technologies
+== Technologies
 
 Testatoo is built on top of http://code.google.com/p/selenium/[WebDriver], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[WebDriver] (IE, Google-chrome, Firefox, ...).
 If Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity. It's always possible to "fallback" to the WebDriver level to do something directly should you need to.
@@ -42,11 +42,11 @@ Example of a test syntax :
     assertThat textField is empty
 -------------------------------------------------------------------------------
 
-= Why should I use Testatoo
+== Why should I use Testatoo
 
 If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
 
-= Installation & Usage (I want to ride my bicycle)
+== Installation & Usage (I want to ride my bicycle)
 
 One snipet of code is worth a thousand words
 So go ......
@@ -159,7 +159,7 @@ import static org.testatoo.core.state.States.*
 -------------------------------------------------------------------------------
 ===============================
 
-= Back to the future
+== Back to the future
 
 Well well well (My Michelle), as explained Testatoo is library to write functional test. Functional test mean SPECIFICATION.
 
