@@ -49,7 +49,7 @@ If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's 
 == Installation & Usage (I want to ride my bicycle)
 
 One snipet of code is worth a thousand words.
-So lt's go...
+So let's go...
 
 Get Testatoo and dependencies libraries via Maven...
 
@@ -205,10 +205,9 @@ Pretty close isn't it ;)
 Testatoo provides a DSL to write tests in a natural language easy to manipulate for a specifications point of view.
 As this is a high level language, it allows tests to be written before UI coding.
 
-YES, for the first time with Testatoo you can write UI functional test FIRST (yeah, it's pretty cool)
+YES, for the first time with Testatoo you can write UI functional test FIRST (yeah I know, it's pretty cool)
 
-
-
+==
 
 
 
