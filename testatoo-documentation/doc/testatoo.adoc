@@ -48,10 +48,10 @@ If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's 
 
 == Installation & Usage (I want to ride my bicycle)
 
-One snipet of code is worth a thousand words
-So go ......
+One snipet of code is worth a thousand words.
+So lt's go...
 
-Get Testatoo and dependencies libraries via Maven…
+Get Testatoo and dependencies libraries via Maven...
 
 [source, xml]
 -------------------------------------------------------------------------------
