@@ -207,7 +207,28 @@ As this is a high level language, it allows tests to be written before UI coding
 
 YES, for the first time with Testatoo you can write UI functional test FIRST (yeah I know, it's pretty cool)
 
-==
+== How Testatoo works
+
+You setup Testatoo easly
+
+Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+
+1 - The browser is launched through Webdriver
+2 -
+
+
+== The Testatoo API: How to interact with content
+
+
+
+
+=== The $ Function
+
+The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
+In fact in Testatoo the $ groovy function is a wrapper on the underline jQuery function.
+
+
+
 
 
 
