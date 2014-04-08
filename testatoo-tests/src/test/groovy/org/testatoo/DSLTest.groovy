@@ -74,8 +74,17 @@ class DSLTest {
     @Test
     public void test_ARE() {
         DropDown dropDown = $('#elements') as DropDown
+//        CheckBox checkBox = $('#checkbox') as CheckBox
+
         assertThat {
             dropDown.items.are enabled
         }
+
+//        assertThat {
+//            [dropDown, checkBox]*.are visible
+//        }
+//        assertThat([login_email, login_password, login_button].are(visible))
     }
+
+
 }
