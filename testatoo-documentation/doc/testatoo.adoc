@@ -213,8 +213,11 @@ You setup Testatoo easly
 
 Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
 
-1 - The browser is launched through Webdriver
-2 -
+.The browser is launched through Webdriver
+
+open 'http://www.google.com'
+
+.The application under testing URL is opened
 
 
 == The Testatoo API: How to interact with content
