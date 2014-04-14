@@ -209,14 +209,14 @@ YES, for the first time with Testatoo you can write UI functional test FIRST (ye
 
 == How Testatoo works
 
-You setup Testatoo easly
-
 1 - The browser is launched through Webdriver
 
 [source, groovy]
 -------------------------------------------------------------------------------
 Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
 -------------------------------------------------------------------------------
+
+You can add all the required "DesiredCapabilities" on your WebDriver config
 
 2 - The application under testing URL is opened
 
@@ -226,17 +226,43 @@ open 'http://www.google.com'
 -------------------------------------------------------------------------------
 
 
+3 - Testatoo inject the isolated (noConflict mode) jQuery lib in application under test. Testatoo use the jQuery functional API
+to make complex DOM evaluations.
+
+
+
+
+
 
 == The Testatoo API: How to interact with content
-
-
-
 
 === The $ Function
 
 The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
 In fact in Testatoo the $ groovy function is a wrapper on the underline jQuery function.
 
+
+=== The components
+
+Testatoo come with a bunch of predefined HTML components. These components are not only the standard representation of HTML element
+but also a powerful base to build your own components. Each component support States and Properties. One of the strength of Testatoo
+is the capability to add support to new States and Properties as override existing States and Properties on existing or new components.
+
+[options="header"]
+|==================================================================================
+| Component             |   Supported properties      |       Supported states
+|      aa                 |            aaa                 | aaa
+|==================================================================================
+
+
+
+
+
+=== The Action
+
+==== Mouse
+
+==== Keyboard
 
 
 
