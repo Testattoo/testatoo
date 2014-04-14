@@ -211,7 +211,8 @@ YES, for the first time with Testatoo you can write UI functional test FIRST (ye
 
 You setup Testatoo easly
 
- 1 - The browser is launched through Webdriver
+1 - The browser is launched through Webdriver
+
 [source, groovy]
 -------------------------------------------------------------------------------
 Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
