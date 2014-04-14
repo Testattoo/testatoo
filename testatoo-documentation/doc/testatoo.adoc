@@ -225,14 +225,8 @@ You can add all the required "DesiredCapabilities" on your WebDriver config
 open 'http://www.google.com'
 -------------------------------------------------------------------------------
 
-
 3 - Testatoo inject the isolated (noConflict mode) jQuery lib in application under test. Testatoo use the jQuery functional API
 to make complex DOM evaluations.
-
-
-
-
-
 
 == The Testatoo API: How to interact with content
 
@@ -241,17 +235,50 @@ to make complex DOM evaluations.
 The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
 In fact in Testatoo the $ groovy function is a wrapper on the underline jQuery function.
 
-
 === The components
 
 Testatoo come with a bunch of predefined HTML components. These components are not only the standard representation of HTML element
 but also a powerful base to build your own components. Each component support States and Properties. One of the strength of Testatoo
 is the capability to add support to new States and Properties as override existing States and Properties on existing or new components.
 
+[NOTE]
+===============================
+All Testatoo component inherit from the base class Component.groovy
+
 [options="header"]
 |==================================================================================
 | Component             |   Supported properties      |       Supported states
-|      aa                 |            aaa                 | aaa
+|      Button           |                             |
+|      Form             |                             |
+|      Heading          |                             |
+|      Image            |                             |
+|      Link             |                             |
+|      Panel            |                             |
+|      DropDown         |                             |
+|      GroupItem        |                             |
+|      Item             |                             |
+|      ListBox          |                             |
+|      ListView         |                             |
+|      DataGrid         |                             |
+|      Column           |                             |
+|      Cell             |                             |
+|      Row              |                             |
+|      CheckBox         |                             |
+|      ColorField       |                             |
+|      DateField        |                             |
+|      DateTimeField    |                             |
+|      EmailField       |                             |
+|      MonthField       |                             |
+|      NumberField      |                             |
+|      PasswordField    |                             |
+|      PhoneField       |                             |
+|      Radio            |                             |
+|      RangeField       |                             |
+|      SearchField      |                             |
+|      TextField        |                             |
+|      TimeField        |                             |
+|      URLField         |                             |
+|      WeekField        |                             |
 |==================================================================================
 
 
