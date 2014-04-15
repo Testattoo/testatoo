@@ -245,43 +245,45 @@ is the capability to add support to new States and Properties as override existi
 ===============================
 All Testatoo component inherit from the base class Component.groovy
 
+
 [options="header"]
-|==================================================================================
-| Component             |   Supported properties      |       Supported states
-|      Button           |                             |
-|      Form             |                             |
-|      Heading          |                             |
-|      Image            |                             |
-|      Link             |                             |
-|      Panel            |                             |
-|      DropDown         |                             |
-|      GroupItem        |                             |
-|      Item             |                             |
-|      ListBox          |                             |
-|      ListView         |                             |
-|      DataGrid         |                             |
-|      Column           |                             |
-|      Cell             |                             |
-|      Row              |                             |
-|      CheckBox         |                             |
-|      ColorField       |                             |
-|      DateField        |                             |
-|      DateTimeField    |                             |
-|      EmailField       |                             |
-|      MonthField       |                             |
-|      NumberField      |                             |
-|      PasswordField    |                             |
-|      PhoneField       |                             |
-|      Radio            |                             |
-|      RangeField       |                             |
-|      SearchField      |                             |
-|      TextField        |                             |
-|      TimeField        |                             |
-|      URLField         |                             |
-|      WeekField        |                             |
-|==================================================================================
+|=========================================================================================================================================================================
+| Component             |                   Supported properties                                            |                   Supported states
+|      Button           |   Text                                                                            |   *
+|      Form             |                                                                                   |   *
+|      Heading          |   Text                                                                            |   *
+|      Image            |   Source                                                                          |   *
+|      Link             |   Text,  Reference                                                                |   *
+|      Panel            |   Title                                                                           |   *
+|      DropDown         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   *
+|      GroupItem        |   Label, Value, Size, Items                                                       |   *
+|      Item             |   Label, Value                                                                    |   *, Selected, UnSelected
+|      ListBox          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   *, MultiSelectable, SingleSelectable
+|      ListView         |   Size. Items                                                                     |   *
+|      DataGrid         |   Size, ColumnSize, RowSize                                                       |   *
+|      Column           |   Size, Title                                                                     |   *
+|      Cell             |   Value                                                                           |   *
+|      Row              |   Size                                                                            |   *
+|      CheckBox         |   Label   TODO                                                                    |   *, Checked, Unchecked, TODO
+|      ColorField       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      DateField        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
+|      DateTimeField    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      EmailField       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      MonthField       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      NumberField      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
+|      PasswordField    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      PhoneField       |   Pattern, Placeholder, Label, Text, Value                                        |   *, Empty, Filled
+|      Radio            |                             |   *
+|      RangeField       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
+|      SearchField      |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      TextField        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      TimeField        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      URLField         |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      WeekField        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|=========================================================================================================================================================================
 
 
+* Enabled, Disabled, Available, Missing, Hidden, Visible
 
 
 
