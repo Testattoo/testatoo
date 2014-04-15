@@ -279,38 +279,38 @@ is the capability to add support to new States and Properties as override existi
 
 [options="header"]
 |=========================================================================================================================================================================
-| Component             |                   Supported properties                                            |                   Supported states
-|      Button           |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      Form             |                                                                                   |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      Heading          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      Image            |   Source                                                                          |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      Link             |   Text,  Reference                                                                |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      Panel            |   Title                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      DropDown         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      GroupItem        |   Label, Value, Size, Items                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      Item             |   Label, Value                                                                    |   Enabled, Disabled, Available, Missing, Hidden, Visible, Selected, UnSelected
-|      ListBox          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   *, MultiSelectable, SingleSelectable
-|      ListView         |   Size. Items                                                                     |   *
-|      DataGrid         |   Size, ColumnSize, RowSize                                                       |   *
-|      Column           |   Size, Title                                                                     |   *
-|      Cell             |   Value                                                                           |   *
-|      Row              |   Size                                                                            |   *
-|      CheckBox         |   Label   TODO                                                                    |   *, Checked, Unchecked, TODO
-|      ColorField       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      DateField        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
-|      DateTimeField    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      EmailField       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      MonthField       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      NumberField      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
-|      PasswordField    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      PhoneField       |   Pattern, Placeholder, Label, Text, Value                                        |   *, Empty, Filled
-|      Radio            |                             |   *
-|      RangeField       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
-|      SearchField      |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      TextField        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      TimeField        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      URLField         |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
-|      WeekField        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+| Component               |                   Supported properties                                            |                   Supported states
+|      *Button*           |   Text                                                                            |   *
+|      *Form*             |                                                                                   |   *
+|      *Heading*          |   Text                                                                            |   *
+|      *Image*            |   Source                                                                          |   *
+|      *Link*             |   Text,  Reference                                                                |   *
+|      *Panel*            |   Title                                                                           |   *
+|      *DropDown*         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   *
+|      *GroupItem*        |   Label, Value, Size, Items                                                       |   *
+|      *Item*             |   Label, Value                                                                    |   *, Selected, UnSelected
+|      *ListBox*          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   *, MultiSelectable, SingleSelectable
+|      *ListView*         |   Size. Items                                                                     |   *
+|      *DataGrid*         |   Size, ColumnSize, RowSize                                                       |   *
+|      *Column*           |   Size, Title                                                                     |   *
+|      *Cell*             |   Value                                                                           |   *
+|      *Row*              |   Size                                                                            |   *
+|      *CheckBox*         |   Label   TODO                                                                    |   *, Checked, Unchecked, TODO
+|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
+|      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *EmailField*       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *MonthField*       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
+|      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   *, Empty, Filled
+|      *Radio*            |                             |   *
+|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
+|      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *TextField*        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *URLField*         |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
+|      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
 |=========================================================================================================================================================================
 
 
