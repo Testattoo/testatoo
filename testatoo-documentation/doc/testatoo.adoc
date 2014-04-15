@@ -235,17 +235,47 @@ to make complex DOM evaluations.
 The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
 In fact in Testatoo the $ groovy function is a wrapper on the underline jQuery function.
 
+The signature of the $ function is as follows…
+
+[source, groovy]
+-------------------------------------------------------------------------------
+$('css selector');
+
+// Some examples
+$('#myId');
+$('.myClass');
+$('ul li:first-child');
+$('[data-role=button]');
+-------------------------------------------------------------------------------
+
+Our experience demonstrated that we never need to use complex selector. If you write test first the component tested carry
+a semantic and this semantic must be reflected in the code by and ID or a role (data-role attribute is commonly used in web development).
+
+Once the component is selected it must be *TYPED* throw "as" keyword.
+
+[source, groovy]
+-------------------------------------------------------------------------------
+TextField textField = $('#text_field') as TextField
+Button button = $('#button') as Button
+-------------------------------------------------------------------------------
+
+But wait a moment. how can you know if a button is a button. Indeed in  HTML a Button can be represented in many way.
+
+[source, html]
+-------------------------------------------------------------------------------
+<button id="button">My Button</button>
+<input id="button" type="button" value="My Button">
+<input id="button" type="submit" value="My Button">
+
+-------------------------------------------------------------------------------
+
+This all the magic of Testatoo. We will see later how this works and how to override this behavior to add easily new components type.
+
 === The components
 
 Testatoo come with a bunch of predefined HTML components. These components are not only the standard representation of HTML element
 but also a powerful base to build your own components. Each component support States and Properties. One of the strength of Testatoo
 is the capability to add support to new States and Properties as override existing States and Properties on existing or new components.
-
-[NOTE]
-===============================
-All Testatoo component inherit from the base class Component.groovy
-===============================
-
 
 [options="header"]
 |=========================================================================================================================================================================
@@ -286,6 +316,14 @@ All Testatoo component inherit from the base class Component.groovy
 
 * Enabled, Disabled, Available, Missing, Hidden, Visible
 
+[NOTE]
+===============================
+All Testatoo components inherit from the base class Component.groovy
+===============================
+
+Evaluate a property
+
+Evaluate a State
 
 
 === The Action
@@ -293,6 +331,9 @@ All Testatoo component inherit from the base class Component.groovy
 ==== Mouse
 
 ==== Keyboard
+
+
+=== Under the hood
 
 
 
