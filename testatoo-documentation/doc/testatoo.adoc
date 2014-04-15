@@ -314,7 +314,7 @@ is the capability to add support to new States and Properties as override existi
 |=========================================================================================================================================================================
 
 
-* Enabled, Disabled, Available, Missing, Hidden, Visible
+[*]: Enabled, Disabled, Available, Missing, Hidden, Visible
 
 [NOTE]
 ===============================
