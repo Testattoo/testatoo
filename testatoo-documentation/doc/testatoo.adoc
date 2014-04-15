@@ -244,6 +244,7 @@ is the capability to add support to new States and Properties as override existi
 [NOTE]
 ===============================
 All Testatoo component inherit from the base class Component.groovy
+===============================
 
 
 [options="header"]
