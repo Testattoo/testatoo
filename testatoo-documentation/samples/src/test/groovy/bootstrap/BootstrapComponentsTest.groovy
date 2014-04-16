@@ -17,7 +17,7 @@ import static org.testatoo.core.state.States.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class CustomComponentsTest {
+class BootstrapComponentsTest {
 
     @BeforeClass
     public static void setup() {

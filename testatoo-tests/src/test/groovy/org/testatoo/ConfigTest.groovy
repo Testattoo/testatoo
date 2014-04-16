@@ -16,6 +16,8 @@
 package org.testatoo
 
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
@@ -24,6 +26,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@RunWith(JUnit4)
 class ConfigTest {
 
     @Test
