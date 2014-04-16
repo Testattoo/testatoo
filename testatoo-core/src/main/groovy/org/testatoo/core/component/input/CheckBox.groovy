@@ -15,17 +15,17 @@
  */
 package org.testatoo.core.component.input
 
+import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class CheckBox extends Input {
+class CheckBox extends Component {
 
     CheckBox() {
-        support Label
-        support Checked, Unchecked
+        support Label, Checked, Unchecked
     }
 
 }

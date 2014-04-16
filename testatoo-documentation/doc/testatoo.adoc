@@ -279,7 +279,7 @@ is the capability to add support to new States and Properties as override existi
 
 [options="header"]
 |=========================================================================================================================================================================
-| Component               |                   Supported properties                                            |                   Supported states
+| Component               |                   Properties                                                      |                    States
 |      *Button*           |   Text                                                                            |   *
 |      *Form*             |                                                                                   |   *
 |      *Heading*          |   Text                                                                            |   *
@@ -295,7 +295,7 @@ is the capability to add support to new States and Properties as override existi
 |      *Column*           |   Size, Title                                                                     |   *
 |      *Cell*             |   Value                                                                           |   *
 |      *Row*              |   Size                                                                            |   *
-|      *CheckBox*         |   Label   TODO                                                                    |   *, Checked, Unchecked, TODO
+|      *CheckBox*         |   Label                                                                           |   *, Checked, Unchecked
 |      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
 |      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
 |      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
@@ -304,7 +304,7 @@ is the capability to add support to new States and Properties as override existi
 |      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
 |      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
 |      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   *, Empty, Filled
-|      *Radio*            |                             |   *
+|      *Radio*            |   Label                                                                           |   *, Checked, Unchecked
 |      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   *, Empty, Filled
 |      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
 |      *TextField*        |   Placeholder, Label, Text, Value                                                 |   *, Empty, Filled
