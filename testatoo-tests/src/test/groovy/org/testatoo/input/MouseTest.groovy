@@ -156,6 +156,4 @@ class MouseTest {
             support Title, { Component c -> c.evaluator.getString("\$('#${id}').find('h1').text()") }
         }
     }
-
-
 }
