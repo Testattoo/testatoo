@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component.input
+package org.testatoo.core.component
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
