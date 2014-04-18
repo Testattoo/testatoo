@@ -21,7 +21,6 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
-import org.testatoo.core.component.input.*
 import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title

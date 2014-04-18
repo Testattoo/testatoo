@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.input.CheckBox
+import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
