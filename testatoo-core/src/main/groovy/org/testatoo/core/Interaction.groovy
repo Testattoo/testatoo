@@ -15,13 +15,12 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.*
+import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
-import org.testatoo.core.state.*
-
-import static org.testatoo.core.input.Mouse.click
-import static org.testatoo.core.input.Mouse.clickOn
+import org.testatoo.core.state.Selected
+import org.testatoo.core.state.UnSelected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -44,7 +43,7 @@ class Interaction {
         }
 
         if (item.is(new UnSelected()))
-            clickOn item
+            item.evaluator.runScript("\$('#${item.id}').prop('selected', true).trigger('change');")
     }
 
     void unselect(String value) {
@@ -57,7 +56,7 @@ class Interaction {
         }
 
         if (item.is(new Selected()))
-            c.evaluator.runScript("\$('#${item.id}').prop('selected', false);")
+            c.evaluator.runScript("\$('#${item.id}').prop('selected', false).trigger('change');")
     }
 
     void enter(String value) {
