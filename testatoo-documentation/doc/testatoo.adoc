@@ -22,16 +22,16 @@ Our experience has taught us that this path is a dead end (but we reserve this f
 
 Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
 
-Testatoo provides on one hand an abstraction of the UI business domain through an expressive API and on the other hand a way to express this domain via a DSL (a button semantically stays a buttons whatever the technology).
-With Testatoo you can therefore write tests with a seldom achieved level of expressiveness and make these tests INDEPENDENT of the underlying technology.
+Testatoo provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
+With Testatoo, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
 
-Testatoo can therefore transform the test in real assets, present throughout the life of the application and always in tune with the latest version of the application.
+Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
 
 == Technologies
 
 Testatoo is built on top of http://code.google.com/p/selenium/[WebDriver], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[WebDriver] (IE, Google-chrome, Firefox, ...).
-If Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity. It's always possible to "fallback" to the WebDriver level to do something directly should you need to.
-But Testatoo adds a powerful DSL while maintaining the usage of Groovy and keeps the advantage of a strong typed language.
+Even though Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity, it's always possible to "fallback" to the WebDriver level to do something directly, should you need to.
+But Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
 
 Example of a test syntax :
 
@@ -42,13 +42,13 @@ Example of a test syntax :
     assertThat textField is empty
 -------------------------------------------------------------------------------
 
-== Why should I use Testatoo
+== Why should I use Testatoo?
 
 If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
 
-== Installation & Usage (I want to ride my bicycle)
+== Installation & Usage (I want to ride my bicycle!)
 
-One snipet of code is worth a thousand words.
+One snippet of code is worth a thousand words.
 So let's go...
 
 Get Testatoo and dependencies libraries via Maven...
@@ -75,10 +75,10 @@ Get Testatoo and dependencies libraries via Maven...
 </dependency>
 -------------------------------------------------------------------------------
 
-Testatoo work with existing popular unit test libraries like JUnit.
-In our first test (BaseGoogleTest) we test a simple search on Google.
+Testatoo works with existing popular unit test libraries, like JUnit.
+In our first test (BaseGoogleTest), we test a simple search on Google.
 
-The test looks like :
+The test looks like this :
 
 [source, groovy]
 -------------------------------------------------------------------------------
@@ -131,22 +131,22 @@ class BaseGoogleTest {
 }
 -------------------------------------------------------------------------------
 
-If you run the test it should process a simple search on google engine.
-Some interesting element can be show in this test :
+If you run the test, it should process a simple search on google engine.
+Some interesting elements can be shown in this test :
 
-Testatoo work with Strongly typed components:: Testatoo manipulate typed components like TextField, Button, ListView.
-                                         The power of Testatoo is in one hand to provide a rich list of components and on the other one the possibility
+Testatoo works with Strongly typed components:: Testatoo manipulates typed components like TextField, Button, ListView.
+                                         The power of Testatoo is in one hand to provide a rich list of components, and on the other one the possibility
                                          to easily create and compose your own components set.
 
-Testatoo use deferred evaluation:: As you can see we instantiate a ListView event if the component is not available in the page.
+Testatoo uses deferred evaluation:: As you can see, we instantiate a ListView event if the component is not available in the page.
                                    You can test if the component is missing
 
 Testatoo DSL is very clean and functional:: Testatoo is based on a clear and powerful syntax.
-Testatoo code never refer to a technical layer:: Under no circumstances in this test the underline DOM technology transpire in our code.
+Testatoo code never refers to a technical layer:: Under no circumstances in this test does the underline DOM technology transpire in our code.
 
 [NOTE]
 ===============================
-As a rule when you create a test with Testatoo we recommend to add some default import to facilitate the automatic completion on your favorite IDE(A).
+As a rule, when you create a test with Testatoo, we recommend to add some default imports to facilitate the automatic completion in your favorite IDE(A).
 
 [source, groovy]
 -------------------------------------------------------------------------------
@@ -161,10 +161,10 @@ import static org.testatoo.core.state.States.*
 
 == Back to the future
 
-Well well well (My Michelle), as explained Testatoo is library to write functional test. Functional test mean SPECIFICATION.
+Well well well (My Michelle), as explained, Testatoo is a library to write functional tests. Functional tests mean SPECIFICATIONS.
 
-As a SPECIFIER I want to express my test (intention) BEFORE to code my UI. So if the intention is to have
-a page with two radio buttons to select the gender (male or female). The test can be expressed like this :
+As a SPECIFIER, I want to express my test (intention) BEFORE I code my UI. So, if the intention is to have
+a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
 -------------------------------------------------------------------------------
 assert that the maleRadio is unchecked
@@ -200,12 +200,12 @@ assertThat femaleRadio is checked
 assertThat maleRadio is unchecked
 -------------------------------------------------------------------------------
 
-Pretty close isn't it ;)
+Pretty close, isn't it? ;)
 
-Testatoo provides a DSL to write tests in a natural language easy to manipulate for a specifications point of view.
+Testatoo provides a DSL to write tests in a natural language, easy to manipulate from a specifications point of view.
 As this is a high level language, it allows tests to be written before UI coding.
 
-YES, for the first time with Testatoo you can write UI functional test FIRST (yeah I know, it's pretty cool)
+YES, for the first time, with Testatoo, you can write UI functional tests FIRST (yeah I know, it's pretty cool!)
 
 == How Testatoo works
 
@@ -218,14 +218,14 @@ Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
 
 You can add all the required "DesiredCapabilities" on your WebDriver config
 
-2 - The application under testing URL is opened
+2 - The application under test's URL is opened
 
 [source, groovy]
 -------------------------------------------------------------------------------
 open 'http://www.google.com'
 -------------------------------------------------------------------------------
 
-3 - Testatoo inject the isolated (noConflict mode) jQuery lib in application under test. Testatoo use the jQuery functional API
+3 - Testatoo injects the isolated (noConflict mode) jQuery lib in the application under test. Testatoo uses the jQuery functional API
 to make complex DOM evaluations.
 
 == The Testatoo API: How to interact with content
@@ -233,7 +233,7 @@ to make complex DOM evaluations.
 === The $ Function
 
 The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
-In fact in Testatoo the $ groovy function is a wrapper on the underline jQuery function.
+In fact, in Testatoo the $ groovy function is a wrapper on the underlying jQuery function.
 
 The signature of the $ function is as follows…
 
@@ -248,10 +248,10 @@ $('ul li:first-child');
 $('[data-role=button]');
 -------------------------------------------------------------------------------
 
-Our experience demonstrated that we never need to use complex selector. If you write test first the component tested carry
-a semantic and this semantic must be reflected in the code by and ID or a role (data-role attribute is commonly used in web development).
+Our experience demonstrated that we never need to use complex selector. If you write tests first, the component tested carries
+a semantic and this semantic must be reflected in the code by an ID or a role (data-role attribute is commonly used in web development).
 
-Once the component is selected it must be *TYPED* throw the *"as"* keyword.
+Once the component is selected, it must be *TYPED* throw the *"as"* keyword.
 
 [source, groovy]
 -------------------------------------------------------------------------------
@@ -259,7 +259,7 @@ TextField textField = $('#text_field') as TextField
 Button button = $('#button') as Button
 -------------------------------------------------------------------------------
 
-But wait a moment. how can you know if a button is a button. Indeed in  HTML a Button can be represented in many way.
+But wait a moment: How can you know if a button is a button!? Indeed, in  HTML, a Button can be represented in many ways.
 
 [source, html]
 -------------------------------------------------------------------------------
@@ -269,13 +269,13 @@ But wait a moment. how can you know if a button is a button. Indeed in  HTML a B
 
 -------------------------------------------------------------------------------
 
-This all the magic of Testatoo. We will see later how this works and how to override this behavior to add easily new components type.
+This is the magic of Testatoo. We will see later how this works and how to override this behavior, to easily add new component types.
 
 === The components
 
-Testatoo come with a bunch of predefined HTML components. These components are not only the standard representation of HTML element
-but also a powerful base to build your own components. Each component support States and Properties. One of the strength of Testatoo
-is the capability to add support to new States and Properties as override existing States and Properties on existing or new components.
+Testatoo comes with a bunch of predefined HTML components. These components are not only the standard representation of HTML elements,
+but also a powerful base to build your own components. Each component supports States and Properties. One of the strength of Testatoo
+is the capability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
 
 [options="header"]
 |=========================================================================================================================================================================
