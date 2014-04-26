@@ -9,7 +9,7 @@ import org.testatoo.core.component.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.click
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -36,14 +36,14 @@ class BootstrapComponentsTest {
 
         assertThat progress_bar has value('60%')
 
-        click plus
-        click plus
+        clickOn plus
+        clickOn plus
         assertThat progress_bar has value('80%')
 
-        click minus
-        click minus
-        click minus
-        click minus
+        clickOn minus
+        clickOn minus
+        clickOn minus
+        clickOn minus
         assertThat progress_bar has value('40%')
     }
 
@@ -58,7 +58,7 @@ class BootstrapComponentsTest {
         assertThat tab_panel.tabs[0].panel is visible
         assertThat tab_panel.tabs[1].panel is hidden
 
-        click tab_panel.tabs[1]
+        clickOn tab_panel.tabs[1]
 
         waitUntil { tab_panel.tabs[0].panel.is(hidden) }
         assertThat tab_panel.tabs[1].panel is visible
@@ -89,7 +89,7 @@ class BootstrapComponentsTest {
         assertThat accordion.items[1] is unSelected
         assertThat accordion.items[2] is unSelected
 
-        click accordion.items[1]
+        clickOn accordion.items[1]
         waitUntil { accordion.items[1].is(selected) }
         assertThat accordion.items[0] is unSelected
         assertThat accordion.items[2] is unSelected

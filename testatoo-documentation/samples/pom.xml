@@ -38,14 +38,12 @@
                 <executions>
                     <execution>
                         <id>start-jetty</id>
-                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>start</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>stop-jetty</id>
-                        <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
                         </goals>
@@ -73,24 +71,24 @@
             <version>LATEST</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>sauce_junit</artifactId>
-            <version>[1.0.0,)</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>sauce-connect</artifactId>
-            <version>3.0.29</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.saucelabs</groupId>-->
+            <!--<artifactId>sauce_junit</artifactId>-->
+            <!--<version>[1.0.0,)</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.saucelabs</groupId>-->
+            <!--<artifactId>sauce-connect</artifactId>-->
+            <!--<version>3.0.29</version>-->
+        <!--</dependency>-->
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>Sauce Maven Repository</id>
-            <url>https://repository-saucelabs.forge.cloudbees.com/release</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>Sauce Maven Repository</id>-->
+            <!--<url>https://repository-saucelabs.forge.cloudbees.com/release</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
 
 </project>

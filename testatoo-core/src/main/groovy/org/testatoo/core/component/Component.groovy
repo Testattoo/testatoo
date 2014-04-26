@@ -87,7 +87,7 @@ class Component {
             c.meta = this.meta
             return c
         }
-        // TODO Math comment pn passe la (code coverage)
+        // TODO Math comment on passe la (code coverage)
         return super.asType(clazz)
     }
 

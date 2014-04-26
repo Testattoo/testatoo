@@ -19,7 +19,7 @@ import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
+import org.testatoo.core.*
 import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.*
 import org.testatoo.core.component.input.*
@@ -446,6 +446,46 @@ class ComponentTest {
     }
 
     @Test
+    public void test_article() {
+        Article article = $('#article') as Article
+
+        assertThat article is enabled
+        assertThat article is visible
+    }
+
+    @Test
+    public void test_aside() {
+        Aside aside = $('#aside') as Aside
+
+        assertThat aside is enabled
+        assertThat aside is visible
+    }
+
+    @Test
+    public void test_footer() {
+        Footer footer = $('#footer') as Footer
+
+        assertThat footer is enabled
+        assertThat footer is visible
+    }
+
+    @Test
+    public void test_header() {
+        Header header = $('#header') as Header
+
+        assertThat header is enabled
+        assertThat header is visible
+    }
+
+    @Test
+    public void test_section() {
+        Section section = $('#section') as Section
+
+        assertThat section is enabled
+        assertThat section is visible
+    }
+
+    @Test
     public void can_redefine_a_state_and_property() {
         CustomPanel custom_panel = $('#custom_panel') as CustomPanel
 
@@ -459,7 +499,6 @@ class ComponentTest {
         assertThat custom_panel has size(2)
         assertThat custom_panel has text('TEXT')
     }
-
 
 //    @Test
 //    public void test_page() {

@@ -44,6 +44,11 @@
         if (el.is('tr')) return 'Row';
         if (el.is('td')) return 'Cell';
         if (el.is('th')) return 'Column';
+        if (el.is('article')) return 'Article';
+        if (el.is('aside')) return 'Aside';
+        if (el.is('footer')) return 'Footer';
+        if (el.is('header')) return 'Header';
+        if (el.is('section')) return 'Section';
         if (el.is('input')) {
             switch (el.attr('type').toLowerCase() || '') {
                 case 'radio':
@@ -114,7 +119,6 @@
     };
 
     $.ext = {
-
         getLabel: function (id) {
             var el = $('#' + id + '');
             if (el.is('option') || el.is('optgroup'))  {
