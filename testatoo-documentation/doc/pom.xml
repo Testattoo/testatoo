@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>testatoo-doc</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Testatoo :: Documentation :: Doc</name>
 
 </project>

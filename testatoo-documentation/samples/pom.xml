@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>testatoo-samples</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>Testatoo :: Documentation :: Samples</name>
 
     <build>
@@ -51,6 +51,25 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <daemon>true</daemon>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jetty-start</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jetty-stop</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -70,7 +89,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>LATEST</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <!--<dependency>-->

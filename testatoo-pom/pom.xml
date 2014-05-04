@@ -38,7 +38,7 @@
         <jdk.version>1.7</jdk.version>
         <groovy.version>2.2.1</groovy.version>
         <selenium.version>2.41.0</selenium.version>
-        <jetty-version>9.1.4.v20140401</jetty-version>
+        <jetty.version>9.1.4.v20140401</jetty.version>
     </properties>
 
     <licenses>
@@ -79,7 +79,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>${jetty-version}</version>
+                    <version>${jetty.version}</version>
                     <configuration>
                         <useTestClasspath>false</useTestClasspath>
                         <stopKey>testatoo-rocks</stopKey>
