@@ -110,6 +110,7 @@ class MouseTest {
         assertThat button has text('Button Mouse Out!')
     }
 
+    @Ignore
     @Test
     public void dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
