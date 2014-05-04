@@ -1,6 +1,6 @@
 ## Build Status
 
-[![Build Status](https://travis-ci.org/Ovea/testatoo.png?branch=master)](https://travis-ci.org/Ovea/testatoo)
+[![Build Status](https://drone.io/github.com/Ovea/testatoo/status.png)](https://drone.io/github.com/Ovea/testatoo/latest)
 
 ## How to build
 
