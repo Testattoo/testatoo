@@ -82,21 +82,9 @@
                     <version>${jetty-version}</version>
                     <configuration>
                         <useTestClasspath>false</useTestClasspath>
+                        <stopKey>testatoo-rocks</stopKey>
+                        <stopPort>6666</stopPort>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <id>start-jetty</id>
-                            <goals>
-                                <goal>start</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>stop-jetty</id>
-                            <goals>
-                                <goal>stop</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
