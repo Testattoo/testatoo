@@ -162,12 +162,12 @@ class PresentationTest {
     public void simpler_explanation() {
         open 'http://localhost:8080/presentation/index.html#13.0'
         assertThat {
-            what_message.is(visible) and what_message.has(text('WHAT: are business tests'))
+            what_message.is(visible) and what_message.has(text('WHAT: business tests'))
         }
 
         open 'http://localhost:8080/presentation/index.html#14.0'
         assertThat {
-            how_message.is(visible) and how_message.has(text('HOW: are functional tests'))
+            how_message.is(visible) and how_message.has(text('HOW: functional tests'))
         }
 
 
