@@ -118,7 +118,7 @@ class MouseTest {
         Panel dragPanel = $('#draggable') as Panel
 
         drag dragPanel on dropPanel
-        assertThat dropPanel has title('Dropped!')
+        waitUntil { dropPanel.has(title('Dropped!')) }
     }
 
     @Test
