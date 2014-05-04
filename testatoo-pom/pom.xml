@@ -37,6 +37,8 @@
     <properties>
         <jdk.version>1.7</jdk.version>
         <groovy.version>2.2.1</groovy.version>
+        <selenium.version>2.41.0</selenium.version>
+        <jetty-version>9.1.4.v20140401</jetty-version>
     </properties>
 
     <licenses>
@@ -56,7 +58,7 @@
                     <version>1.0</version>
                     <configuration>
                         <verbose>true</verbose>
-                        <invokeDynamic>true</invokeDynamic>
+                        <invokeDynamic>false</invokeDynamic>
                     </configuration>
                     <executions>
                         <execution>
@@ -71,9 +73,30 @@
                             <groupId>org.codehaus.groovy</groupId>
                             <artifactId>groovy-all</artifactId>
                             <version>${groovy.version}</version>
-                            <classifier>indy</classifier>
                         </dependency>
                     </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty-version}</version>
+                    <configuration>
+                        <useTestClasspath>false</useTestClasspath>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>start-jetty</id>
+                            <goals>
+                                <goal>start</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>stop-jetty</id>
+                            <goals>
+                                <goal>stop</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

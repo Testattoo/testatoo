@@ -62,12 +62,11 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>${groovy.version}</version>
-            <classifier>indy</classifier>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
-            <version>LATEST</version>
+            <version>${selenium.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
