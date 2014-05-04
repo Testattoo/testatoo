@@ -78,7 +78,7 @@ section.intro {
 section.intro h1,
 section.intro h2 {
     color: #D5EE5E;
-    text-transform: lowercase;
+    /*text-transform: lowercase;*/
     line-height: .7em;
     text-align: left;
     font-size: 4.4em; /* duplicated here for h2 */
