@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2013 Ovea (dev@ovea.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package bootstrap
 
 import org.junit.*
@@ -9,7 +24,7 @@ import org.testatoo.core.component.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -66,7 +81,7 @@ class BootstrapComponentsTest {
         assertThat tab_panel.tabs[0] is unSelected
         assertThat tab_panel.tabs[1] is selected
 
-        select tab_panel.tabs[0]
+        clickOn tab_panel.tabs[0]
 
         assertThat tab_panel.tabs[0] is selected
         assertThat tab_panel.tabs[1] is unSelected
@@ -94,7 +109,7 @@ class BootstrapComponentsTest {
         assertThat accordion.items[0] is unSelected
         assertThat accordion.items[2] is unSelected
 
-        select accordion.items[2]
+        clickOn accordion.items[2]
         waitUntil { accordion.items[2].is(selected) }
         assertThat accordion.items[0] is unSelected
         assertThat accordion.items[1] is unSelected

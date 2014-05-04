@@ -17,6 +17,8 @@
 
     w.testatoo.options = {
         customType: function(el) {
+            if (el.data('role') == 'slides')
+                return 'Presentation';
             return undefined;
         }
     };

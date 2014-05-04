@@ -25,6 +25,7 @@
     <version>3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Testatoo :: POM</name>
+    <inceptionYear>2013</inceptionYear>
 
     <scm>
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>

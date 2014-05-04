@@ -13,19 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package bootstrap
+package presentation
 
-import org.testatoo.core.component.Component
-import org.testatoo.core.property.Value
+import org.testatoo.core.component.*
+import org.testatoo.core.property.*
+import presentation.property.Author
+import presentation.property.Company
+import presentation.property.Slides
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class ProgressBar extends Component {
+class Presentation extends Component {
 
-    public ProgressBar() {
-        support Value, {
-            Component c -> c.evaluator.getString("document.getElementById('${c.id}').style.width")
+    Presentation() {
+        support Title, {
+            evaluator.getString("\$('#${id}').find('h1').text()")
         }
+        support Size, {
+            Component c -> Integer.valueOf(c.evaluator.getString("\$('#${id}').find('section').length"))
+        }
+        support Slides, Author, Company
     }
 }

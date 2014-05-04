@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2013 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function (w) {
+import org.testatoo.core.property.matcher.PropertyMatcher
 
-    w.testatoo.options = {
-        customType: function(el) {
-            return undefined;
-        }
-    };
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
+class GroovyExtensions {
 
-}(window));
+    public static PropertyMatcher getTabs(Integer expected) {
+        org.testatoo.core.property.Properties.size.equalsTo(expected)
+    }
+
+    public static PropertyMatcher getSlides(Integer expected) {
+        org.testatoo.core.property.Properties.size.equalsTo(expected)
+    }
+
+}
