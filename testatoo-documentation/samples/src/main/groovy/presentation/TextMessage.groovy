@@ -6,9 +6,8 @@ import org.testatoo.core.property.Text
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Warning extends Component {
-
-    Warning() {
+class TextMessage extends Component {
+    TextMessage() {
         support Text, {
             Component c -> c.evaluator.getString("\$('#${id}').text()")
         }
