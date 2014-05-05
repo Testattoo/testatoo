@@ -17,6 +17,7 @@ package login.unit
 
 import login.Factory
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -26,6 +27,7 @@ import static org.testatoo.core.Testatoo.open
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Ignore
 @RunWith(JUnit4)
 class LoginPageTest {
 
