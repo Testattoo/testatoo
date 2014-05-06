@@ -15,36 +15,57 @@
  */
 package login.functional
 
-import org.junit.BeforeClass
-import org.junit.Ignore
+import login.Factory
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.Testatoo
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Keyboard.type
+import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.state.States.getHidden
+import static org.testatoo.core.state.States.getVisible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Ignore
 @RunWith(JUnit4)
 class LoginTest {
 
-    @BeforeClass
-    public static void setup() {
-        open '/login/index.html'
+    @Delegate
+    private static Factory factory
+
+    @Before
+    public void setup() {
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator.registerScripts(this.getClass().getResourceAsStream('/login/jquery-mockjax.js').text)
+        evaluator.registerScripts(this.getClass().getResourceAsStream('/login/mocked-data.js').text)
+
+        open 'http://localhost:8080/login/index.html'
+        factory = new Factory()
     }
+
+    @After
+    public void tearDown() { evaluator.close() }
 
     @Test
     public void can_login() {
-//        assert user_is_not_logged()
+        user_is_not_logged()
 
-//        email_field.type('test@email.org')
-//        password_field.type('password666')
+        clickOn email_field
+        type('test@email.org')
 
-//        login_button.click()
+        clickOn password_field
+        type('password666')
 
-//        assert user_is_logged()
+        clickOn login_button
+
+        assert user_is_logged()
     }
 
     @Test
@@ -52,16 +73,12 @@ class LoginTest {
 
     }
 
-    /* expected */
-//    @Test
-//    public void can_login() {
-//        assert user_is_not_logged()
-//
-//        on(emailField).type('test@email.org')
-//        on(passwordField).type('password666')
-//
-//        clickOn loginView.loginButton
-//
-//        assert user_is_logged()
-//    }
+    private void user_is_logged() {
+        assertThat login_succes is visible
+    }
+
+    private void user_is_not_logged() {
+        assertThat login_succes is hidden
+    }
+
 }

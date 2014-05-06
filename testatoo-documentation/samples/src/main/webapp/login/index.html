@@ -31,22 +31,50 @@
 
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jQuery.formToObject.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery-mockjax.js"></script>
+    <script type="text/javascript" src="js/mocked-data.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".username").focus(function () {
+        $(function () {
+            var $usernameField = $(".username");
+            var $passwordField = $(".password");
+
+            $usernameField.focus(function () {
                 $(".user-icon").css("left", "-48px");
             });
-            $(".username").blur(function () {
+            $usernameField.blur(function () {
                 $(".user-icon").css("left", "0px");
             });
 
-            $(".password").focus(function () {
+            $passwordField.focus(function () {
                 $(".pass-icon").css("left", "-48px");
             });
-            $(".password").blur(function () {
+            $passwordField.blur(function () {
                 $(".pass-icon").css("left", "0px");
             });
+
+            $('form').bind('submit', function (e) {
+                e.preventDefault();
+
+                var data = JSON.stringify($(this).formToObject());
+
+                $.ajax({
+                    url: '/api/security/login',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: data,
+                    dataType: 'json'
+                }).done(function() {
+                    console.log('success');
+                }).fail(function() {
+                    console.log('fail');
+                });
+                return false;
+            });
+
         });
     </script>
 
@@ -77,6 +105,8 @@
         </form>
     </div>
 </div>
+
+<h1 data-role="logged" style="display: none">User login success</h1>
 
 <div class="gradient"></div>
 

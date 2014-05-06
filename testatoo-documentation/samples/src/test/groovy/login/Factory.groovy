@@ -18,6 +18,7 @@ package login
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Heading
 import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.PasswordField
@@ -28,16 +29,16 @@ import org.testatoo.core.property.Title
  */
 class Factory extends Testatoo {
 
-    def email_field = $('[name="email"]') as EmailField
-    def password_field = $('[name="password"]') as PasswordField
-    def login_button = $('input[type=submit]') as Button
-    def login_panel =  $('#login-form') as LoginPanel
+    EmailField email_field = $('[name="email"]') as EmailField
+    PasswordField password_field = $('[name="password"]') as PasswordField
+    Button login_button = $('input[type=submit]') as Button
+    LoginPanel login_panel =  $('#login-form') as LoginPanel
+    Heading login_succes = $('[data-role=logged]') as Heading
+
 
     class LoginPanel extends Panel {
         LoginPanel() {
             support Title, {Component c -> c.evaluator.getString("\$('#${c.id} h1').text()") }
         }
-
     }
-
 }

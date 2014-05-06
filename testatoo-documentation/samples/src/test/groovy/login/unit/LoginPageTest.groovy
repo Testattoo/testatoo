@@ -16,45 +16,62 @@
 package login.unit
 
 import login.Factory
+import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.Testatoo
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.getVisible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Ignore
 @RunWith(JUnit4)
 class LoginPageTest {
 
     @Delegate
-    private static Factory factory = new Factory()
+    private static Factory factory
 
     @BeforeClass
     public static void setup() {
-        open '/login/index.html'
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        open 'http://localhost:8080/login/index.html'
+        factory = new Factory()
     }
+
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void page_contains_expected_elements() {
-        assert login_panel.is(visible)
+        assertThat {
+            login_panel.is(visible) and login_panel.has(title('Login Form'))
+        }
 
-//        assertThat login_button is visible
+        assertThat login_panel contains(
+                email_field,
+                password_field,
+                login_button
+        )
 
-//        assert login_panel.has(title.equalsTo('Login Form'))
+        assertThat {
+            email_field.is(visible)
+            email_field.has(placeholder('joe@blow.org'))
+            email_field.has(label('Email'))
 
-//        assert login_panel.contains(email_field, password_field, login_button)
+            password_field.is(visible)
+            password_field.has(label('Password'))
+        }
 
-//        assert email_field.has(label.equalsTo('Email'))
-//        assert email_field.has(placeholder.equalsTo('joe@blow.org'))
-
-//        assert password_field.has(label.equalsTo('Password'))
-//
-//        assert login_button.has(text.equalsTo('Login'))
+        assertThat {
+            login_button.is(visible) and login_button.has(text('Login'))
+        }
     }
 
 }
