@@ -20,26 +20,28 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.input.TextField
-import org.testatoo.core.component.list.ListView
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.clickOn
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.title
 import static org.testatoo.core.state.States.*
+import static starter.property.Properties.*
 
 /**
  * @author davenante
  */
 class AdvancedGoogleTest {
 
+    @Delegate
+    private static Factory factory
+
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator.registerScripts(this.getClass().getResourceAsStream('/starter/custom.js').text)
         open 'http://www.google.com'
+        factory = new Factory()
     }
 
     @AfterClass
@@ -47,19 +49,19 @@ class AdvancedGoogleTest {
 
     @Test
     public void simple_test() {
-        TextField searchField = $('#gbqfq') as TextField
-        Button searchButton = $('#gbqfb') as Button
-        ListView resultList = $('#rso') as ListView
-
         assertThat resultList is missing
         assertThat searchField is visible
 
-        clickOn searchField
-        type('testatoo')
+        on searchField enter 'Testatoo'
         clickOn searchButton
 
-        waitUntil { resultList.is visible }
+        waitUntil { googleResultList.is visible }
 
-        assertThat resultList.items[0] has value.containing('Testatoo')
+        GoogleItem item = googleResultList.items[0];
+        assertThat {
+            item.has(title('Testatoo documentation'))
+            item.has(url.containing('www.testatoo.org'))
+            item.has(description.containing('Testatoo is the result of numerous real-world observations of developers'))
+        }
     }
 }

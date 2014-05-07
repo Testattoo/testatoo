@@ -13,17 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package bootstrap.property
+package starter
 
-import org.testatoo.core.property.Property
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.list.ListView
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * Created by david on 07/05/14.
  */
-class Tabs extends Property {
+class Factory extends Testatoo {
+    TextField searchField = $('#gbqfq') as TextField
+    Button searchButton = $('#gbqfb') as Button
+    ListView resultList = $('#rso') as ListView
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
-
+    GoogleListView googleResultList = $('#rso') as GoogleListView
 }

@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package bootstrap.property
+package starter.property
 
-import org.testatoo.core.property.Property
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.property.matcher.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Tabs extends Property {
+class Properties {
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
+    static final Url url = new Url()
+    static final PropertyMatcher url(String expected) { url.equalsTo(expected) }
 
+    static final Description description = new Description()
 }

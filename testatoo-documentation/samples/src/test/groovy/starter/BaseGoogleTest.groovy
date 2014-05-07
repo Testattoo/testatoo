@@ -22,9 +22,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.input.TextField
-import org.testatoo.core.component.list.ListView
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -37,19 +34,19 @@ import static org.testatoo.core.state.States.*
 @RunWith(JUnit4)
 class BaseGoogleTest {
 
+    @Delegate
+    private static Factory factory
+
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
         open 'http://www.google.com'
+        factory = new Factory()
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 
     @Test
     public void simple_test() {
-        TextField searchField = $('#gbqfq') as TextField
-        Button searchButton = $('#gbqfb') as Button
-        ListView resultList = $('#rso') as ListView
-
         assertThat resultList is missing
         assertThat searchField is visible
 

@@ -13,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package bootstrap.property
+package starter
 
-import org.testatoo.core.property.Property
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.component.Component
+import org.testatoo.core.property.Title
+import starter.property.Description
+import starter.property.Url
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * Created by david on 07/05/14.
  */
-class Tabs extends Property {
+class GoogleItem extends Component {
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
-
+    GoogleItem() {
+        support Title, {
+            Component c -> c.evaluator.getString("\$('#${id} h3').text()")
+        }
+        support Url, Description
+    }
 }

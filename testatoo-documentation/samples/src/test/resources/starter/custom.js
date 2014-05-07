@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2013 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package bootstrap.property
+(function (w) {
 
-import org.testatoo.core.property.Property
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+    w.testatoo.options = {
+        customType: function (el) {
+            if (el.is('li') && el.hasClass('g'))
+                return 'GoogleItem';
+            return undefined;
+        }
+    };
 
-/**
- * @author David Avenante (d.avenante@gmail.com)
- */
-class Tabs extends Property {
-
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
-
-}
+}(window));
