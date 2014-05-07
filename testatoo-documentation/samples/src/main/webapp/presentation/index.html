@@ -30,7 +30,7 @@
 </head>
 <body data-role="slides">
 
-    <section id="slide_1" class="title">
+    <section class="title">
         <img id="logo" src="img/logoTestatoo.jpg" alt="testatoo-logo">
         <h1>
             <strong>Functional Tests With Testatoo</strong>
@@ -38,8 +38,8 @@
         <footer><span data-role="author">David Avenante</span> - <span data-role="company">Ovea.inc</span></footer>
     </section>
 
-    <section id="slide_2" class="topic intro">
-        <h2><strong data-role="first_teaser">Testing</strong>...</h2>
+    <section class="topic intro">
+        <h2><strong data-role="first-teaser">Testing</strong>...</h2>
     </section>
 
     <section>
@@ -53,7 +53,7 @@
     </section>
 
     <section>
-        <p class="graffiti"><em data-role="second_teaser">Think again</em></p>
+        <p class="graffiti"><em data-role="second-teaser">Think again</em></p>
     </section>
 
     <section>
@@ -105,7 +105,19 @@
         <p data-role="how"><strong>HOW:</strong> functional tests</p>
     </section>
 
-    <section>
+    <section class="topic intro"><h2 data-role="func-test-spec-title">Functional tests have some <strong>specificities</strong></h2></section>
+
+    <section style="background-color: #F1F2EC">
+        <ul data-role="func-test-spec-list" class="graffiti incremental">
+            <li>they are mainly UI tests</li>
+            <li>they are hard to setup and configure</li>
+            <li>the ROI is low</li>
+            <li>they cannot be done FIRST!</li>
+        </ul>
+    </section>
+
+    <section class="topic intro">
+        <h2><strong data-role="last-teaser">Testatoo</strong>...</h2>
     </section>
 
 <script src="js/dzslides.js"></script>

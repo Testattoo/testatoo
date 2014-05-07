@@ -50,7 +50,7 @@ class PresentationTest {
 
     @Test
     public void except_to_not_be_boring() {
-        assertThat presentation has 15.slides
+        assertThat presentation has 17.slides
     }
 
     @Test
@@ -151,8 +151,8 @@ class PresentationTest {
         }
 
         open 'http://localhost:8080/presentation/index.html#12.0'
-            assertThat this.terms_list has 3.items
-        assertThat this.terms_list has items(
+            assertThat terms_list has 3.items
+        assertThat terms_list has items(
             'Unit Tests: Dev to Dev',
             'Business Tests: Dev to BA',
             'Functional tests: Dev - BA - Client')
@@ -169,10 +169,31 @@ class PresentationTest {
         assertThat {
             how_message.is(visible) and how_message.has(text('HOW: functional tests'))
         }
-
-
-
     }
 
+    @Test
+    public void the_specificity_of_functional_test() {
+        open 'http://localhost:8080/presentation/index.html#15.0'
 
+        assertThat {
+            functional_tests_specificity_title.is(visible) and functional_tests_specificity_title.has(text('Functional tests have some specificities'))
+        }
+
+        open 'http://localhost:8080/presentation/index.html#16.0'
+        assertThat functional_tests_specificity_list has 4.items
+        assertThat functional_tests_specificity_list has items(
+                'they are mainly UI tests',
+                'they are hard to setup and configure',
+                'the ROI is low',
+                'they cannot be done FIRST!')
+    }
+
+    @Test
+    public void presentation_end_with_a_teaser() {
+        open 'http://localhost:8080/presentation/index.html#17.0'
+
+        assertThat {
+            last_teaser.is(visible) and last_teaser.has(text('Testatoo'))
+        }
+    }
 }

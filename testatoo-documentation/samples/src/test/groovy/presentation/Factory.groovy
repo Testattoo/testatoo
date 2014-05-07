@@ -28,8 +28,8 @@ class Factory extends Testatoo {
 
     Image testatoo_logo = $('#logo') as Image
 
-    Teaser first_teaser = $('[data-role=first_teaser]') as Teaser
-    Teaser second_teaser = $('[data-role=second_teaser]') as Teaser
+    Teaser first_teaser = $('[data-role=first-teaser]') as Teaser
+    Teaser second_teaser = $('[data-role=second-teaser]') as Teaser
 
     ListView reproaches_list = $('[data-role=reproaches-list]') as ListView
     ListView rethink_list = $('[data-role=rethink-list]') as ListView
@@ -50,6 +50,8 @@ class Factory extends Testatoo {
     TextMessage what_message = $('[data-role=what]') as TextMessage
     TextMessage how_message = $('[data-role=how]') as TextMessage
 
+    Heading functional_tests_specificity_title = $('[data-role=func-test-spec-title]') as Heading
+    ListView functional_tests_specificity_list = $('[data-role=func-test-spec-list]') as ListView
 
-
+    Teaser last_teaser = $('[data-role=last-teaser]') as Teaser
 }
