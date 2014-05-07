@@ -4,7 +4,8 @@ $(function () {
     type: 'POST',
     response: function (settings) {
       // set data to json object
-      (settings.data.email === 'test@email.org' && settings.data.password === 'password666') ? this.status = 200 : this.status = 500;
+      var data = JSON.parse(settings.data);
+      (data.email === 'test@email.org' && data.password === 'password666') ? this.status = 204 : this.status = 403;
     }
   });
 });

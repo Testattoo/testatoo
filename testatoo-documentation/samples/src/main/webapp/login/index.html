@@ -34,13 +34,13 @@
     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/jQuery.formToObject.min.js"></script>
 
-    <script type="text/javascript" src="js/jquery-mockjax.js"></script>
-    <script type="text/javascript" src="js/mocked-data.js"></script>
-
     <script type="text/javascript">
         $(function () {
             var $usernameField = $(".username");
             var $passwordField = $(".password");
+
+            var $form = $('#wrapper');
+            var $heading = $('[data-role="logged"]');
 
             $usernameField.focus(function () {
                 $(".user-icon").css("left", "-48px");
@@ -68,9 +68,10 @@
                     data: data,
                     dataType: 'json'
                 }).done(function() {
-                    console.log('success');
+                    $form.hide();
+                    $heading.show();
                 }).fail(function() {
-                    console.log('fail');
+                    $('[data-role="invalid-credentials"]').show();
                 });
                 return false;
             });
@@ -89,6 +90,7 @@
 
             <div class="header">
                 <h1>Login Form</h1>
+                <h4 data-role="invalid-credentials">Invalid Credentials</h4>
             </div>
 
             <div class="content">
@@ -109,6 +111,9 @@
 <h1 data-role="logged" style="display: none">User login success</h1>
 
 <div class="gradient"></div>
+
+<!--<script type="text/javascript" src="js/jquery-mockjax.js"></script>-->
+<!--<script type="text/javascript" src="js/mocked-data.js"></script>-->
 
 </body>
 </html>

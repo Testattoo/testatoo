@@ -65,16 +65,27 @@ class LoginTest {
 
         clickOn login_button
 
-        assert user_is_logged()
+        user_is_logged()
     }
 
     @Test
     public void login_failure() {
+        user_is_not_logged()
 
+        clickOn email_field
+        type('test@email.org')
+
+        clickOn password_field
+        type('bad_credential')
+
+        clickOn login_button
+
+        waitUntil { error_message.is(visible) }
+        user_is_not_logged()
     }
 
     private void user_is_logged() {
-        assertThat login_succes is visible
+        waitUntil { login_succes.is(visible) }
     }
 
     private void user_is_not_logged() {

@@ -34,7 +34,7 @@ class Factory extends Testatoo {
     Button login_button = $('input[type=submit]') as Button
     LoginPanel login_panel =  $('#login-form') as LoginPanel
     Heading login_succes = $('[data-role=logged]') as Heading
-
+    Heading error_message = $('[data-role="invalid-credentials"]') as Heading
 
     class LoginPanel extends Panel {
         LoginPanel() {
