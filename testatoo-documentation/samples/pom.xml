@@ -43,8 +43,12 @@
                 <configuration>
                     <excludes>
                         <exclude>**/*.min.js</exclude>
+                        <exclude>**/*.css</exclude>
+                        <exclude>**/presentation/js/*.js</exclude>
+                        <exclude>**/login/js/*.js</exclude>
                         <exclude>**/platform-0.1.4.js</exclude>
                         <exclude>**/polymer-0.1.4.js</exclude>
+                        <exclude>**/resources/login/jquery-mockjax.js</exclude>
                     </excludes>
                 </configuration>
             </plugin>
