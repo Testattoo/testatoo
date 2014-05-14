@@ -60,7 +60,7 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <daemon>true</daemon>
+                    <daemon>${jetty.deamon}</daemon>
                 </configuration>
                 <executions>
                     <execution>

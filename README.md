@@ -44,19 +44,16 @@ Follow the instructions [here](http://groovy.codehaus.org/Installing+Groovy "Gro
     $ cd /wherever
     $ git clone https://github.com/Ovea/testatoo
     $ cd testatoo
-    
-### Mac OSX
-    
-Open a separate Terminal window in /wherever/testatoo/testatoo-tests/webapp/
 
-    $ python -m SimpleHTTPServer 8080
-    
 In your original Terminal
 
-    $ cd mvn package
+    $ cd mvn install
 
 To just build and skip the tests
 
     $ mvn package -Dmaven.test.skip=true
+
+If you want to start manually the jetty web server to execute the tests manually you can run in testatoo-test and testatoo-documentation/samples
+the command mvn jetty:run -Pdev
     
     

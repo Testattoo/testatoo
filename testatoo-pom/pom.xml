@@ -39,6 +39,7 @@
         <groovy.version>2.2.1</groovy.version>
         <selenium.version>2.41.0</selenium.version>
         <jetty.version>9.1.4.v20140401</jetty.version>
+        <jetty.deamon>true</jetty.deamon>
     </properties>
 
     <licenses>
@@ -209,6 +210,12 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <jetty.deamon>false</jetty.deamon>
+            </properties>
         </profile>
     </profiles>
 
