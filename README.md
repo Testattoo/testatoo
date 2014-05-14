@@ -29,7 +29,7 @@ Follow the instructions [here](http://maven.apache.org/download.cgi#Installation
 
 #### Groovy
 
-Follow the instructions [here](http://groovy.codehaus.org/Installing+Groovy "Groovy Installation Instructions")
+Follow the instructions [here](http://gvmtool.net/ "Groovy Installation Instructions")
 
     $ curl -s get.gvmtool.net | bash
     $ source "$HOME/.gvm/bin/gvm-init.sh"
