@@ -54,6 +54,8 @@ To just build and skip the tests
     $ mvn package -Dmaven.test.skip=true
 
 If you want to start manually the jetty web server to execute the tests manually you can run in testatoo-test and testatoo-documentation/samples
-the command mvn jetty:run -Pdev
+the command :
+
+    $ mvn jetty:run -Pdev
     
     
