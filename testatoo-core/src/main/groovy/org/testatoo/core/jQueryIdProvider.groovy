@@ -24,19 +24,25 @@ import org.testatoo.core.evaluator.Evaluator
 class jQueryIdProvider implements IdProvider {
     final String expression
     final long timeout
+    final boolean singleElement
 
-    jQueryIdProvider(String expression, long timeout) {
+    jQueryIdProvider(String expression, long timeout, boolean singleElement) {
         this.expression = expression.startsWith('$') ? expression : ('$(\'' + expression + '\')')
         this.timeout = timeout
+        this.singleElement = singleElement
     }
 
     @Override
-    MetaInfo getMetaInfo(Evaluator evaluator) throws ComponentException {
+    List<MetaInfo> getMetaInfos(Evaluator evaluator) throws ComponentException {
         Log.testatoo "getMetaInfos: ${expression}"
         List<MetaInfo> metaInfos = evaluator.getMetaInfo(expression)
-        if (metaInfos.size() == 1) return metaInfos[0]
-        if (metaInfos.size() == 0) throw new ComponentException("Component defined by jQuery expression ${expression} not found.")
-        throw new ComponentException("Component defined by jQuery expression ${expression} is not unique: got ${metaInfos.size()}")
+        if (singleElement) {
+            if (metaInfos.size() == 1) return metaInfos
+            if (metaInfos.size() == 0) throw new ComponentException("Component defined by jQuery expression ${expression} not found.")
+            throw new ComponentException("Component defined by jQuery expression ${expression} is not unique: got ${metaInfos.size()}")
+        } else {
+            return metaInfos
+        }
     }
 
 }

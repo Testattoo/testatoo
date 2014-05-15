@@ -17,7 +17,8 @@ package org.testatoo.core.component
 
 import org.testatoo.core.*
 import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.property.*
+import org.testatoo.core.property.Property
+import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
 
@@ -77,6 +78,18 @@ class Component {
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 
     @Override
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+        Component component = (Component) o
+        if (getId() != component.getId()) return false
+        return true
+    }
+
+    @Override
+    int hashCode() { getId().hashCode() }
+
+    @Override
     String toString() {
         getClass().simpleName + ":${try { id } catch (Throwable ignored) { meta.metaInfo }}"
     }
@@ -87,7 +100,6 @@ class Component {
             c.meta = this.meta
             return c
         }
-        // TODO Math comment on passe la (code coverage)
         return super.asType(clazz)
     }
 
@@ -144,7 +156,7 @@ class Component {
 
         String getId(Component c) throws ComponentException {
             if (!metaInfo) {
-                MetaInfo info = idProvider.getMetaInfo(evaluator)
+                MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
                 def hierarchy= []
                 def s = c.class
                 while(s != Object) {
@@ -159,5 +171,6 @@ class Component {
         }
     }
 
-    static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout)) }
+    static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, true)) }
+
 }

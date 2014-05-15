@@ -13,24 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.state
+package org.testatoo.core
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
+import org.testatoo.core.evaluator.Evaluator
 
 /**
+ * date 2014-05-15
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Available extends State {
-    Available() {
-        evaluator { Component c ->
-            try {
-                c.meta.idProvider.getMetaInfos(c.evaluator)
-                return true
-            } catch (ComponentException ignored) {
-                return false
-            }
-        }
-        description e: 'available', w: 'missing'
+class MetaInfoProvider implements IdProvider {
+
+    final MetaInfo metaInfo
+
+    MetaInfoProvider(MetaInfo metaInfo) {
+        this.metaInfo = metaInfo
+    }
+
+    @Override
+    List<MetaInfo> getMetaInfos(Evaluator e) throws ComponentException {
+        return [metaInfo]
     }
 }

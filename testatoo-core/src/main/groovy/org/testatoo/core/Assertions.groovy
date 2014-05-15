@@ -13,24 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.state
+package org.testatoo.core
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentException
+import org.testatoo.core.property.matcher.PropertyMatcher
+import org.testatoo.core.state.State
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class Available extends State {
-    Available() {
-        evaluator { Component c ->
-            try {
-                c.meta.idProvider.getMetaInfos(c.evaluator)
-                return true
-            } catch (ComponentException ignored) {
-                return false
-            }
-        }
-        description e: 'available', w: 'missing'
+class Assertions<T extends Component> {
+
+    final Components<T> components
+
+    Assertions(Components<T> cs) {
+        this.components = cs;
     }
+
+    void are(State matcher) {
+        components.each { assert it.is(matcher) }
+    }
+
+    void have(PropertyMatcher matcher) {
+        components.each { assert it.has(matcher) }
+    }
+
 }

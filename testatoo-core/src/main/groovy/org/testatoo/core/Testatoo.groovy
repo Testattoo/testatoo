@@ -16,7 +16,8 @@
 package org.testatoo.core
 
 import groovy.time.TimeDuration
-import org.testatoo.core.component.*
+import org.testatoo.core.component.Component
+import org.testatoo.core.component.Form
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
@@ -33,10 +34,16 @@ class Testatoo {
     // DSL
     static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
 
+    static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
+
     static void open(String uri) { evaluator.open(uri) }
 
     static Assertion assertThat(Component c) {
         new Assertion(c)
+    }
+
+    static <T extends Component> Assertions<T> assertThat(Components<T> cc) {
+        new Assertions<T>(cc)
     }
 
     static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
@@ -58,6 +65,10 @@ class Testatoo {
 
     static Interaction on(Component c) {
         return new Interaction(c)
+    }
+
+    static <T extends Component> Interactions<T> on(Components<T> cc) {
+        return new Interactions<T>(cc)
     }
 
     static Form reset(Form form) {
