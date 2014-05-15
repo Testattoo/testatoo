@@ -56,7 +56,7 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <daemon>${jetty.deamon}</daemon>
+                    <daemon>${jetty.daemon}</daemon>
                 </configuration>
                 <executions>
                     <execution>
@@ -92,28 +92,16 @@
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
+            <artifactId>selenium-firefox-driver</artifactId>
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.saucelabs</groupId>-->
-            <!--<artifactId>sauce_junit</artifactId>-->
-            <!--<version>[1.0.0,)</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.saucelabs</groupId>-->
-            <!--<artifactId>sauce-connect</artifactId>-->
-            <!--<version>3.0.29</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-
-    <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>Sauce Maven Repository</id>-->
-            <!--<url>https://repository-saucelabs.forge.cloudbees.com/release</url>-->
-        <!--</repository>-->
-    <!--</repositories>-->
 
 </project>

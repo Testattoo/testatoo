@@ -60,7 +60,8 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <daemon>${jetty.deamon}</daemon>
+                    <webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+                    <daemon>${jetty.daemon}</daemon>
                 </configuration>
                 <executions>
                     <execution>
@@ -97,7 +98,13 @@
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>${selenium.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
