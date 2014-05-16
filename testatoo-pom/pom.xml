@@ -214,7 +214,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <jetty.deamon>false</jetty.deamon>
+                <jetty.daemon>false</jetty.daemon>
             </properties>
         </profile>
     </profiles>
