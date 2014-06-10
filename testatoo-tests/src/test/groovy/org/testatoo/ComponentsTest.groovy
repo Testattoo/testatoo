@@ -15,29 +15,17 @@
  */
 package org.testatoo
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Components
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
-import org.testatoo.core.component.datagrid.Cell
-import org.testatoo.core.component.datagrid.Column
-import org.testatoo.core.component.datagrid.DataGrid
-import org.testatoo.core.component.datagrid.Row
+import org.testatoo.core.component.datagrid.*
 import org.testatoo.core.component.input.*
-import org.testatoo.core.component.list.DropDown
-import org.testatoo.core.component.list.GroupItem
-import org.testatoo.core.component.list.ListBox
-import org.testatoo.core.component.list.ListView
+import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Size
-import org.testatoo.core.property.Text
-import org.testatoo.core.property.Title
+import org.testatoo.core.property.*
 import org.testatoo.core.state.Selected
 
 import static org.junit.Assert.fail
@@ -50,32 +38,14 @@ import static org.testatoo.core.state.States.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class ComponentTest {
+class ComponentsTest {
 
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/component.html'
+        open 'http://localhost:8080/components.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
-
-
-    @Test
-    @Ignore
-    public void test_muti() {
-        open 'http://localhost:8080/multi.html'
-
-        Components<TextField> textfields = $$('input[type=text]') of TextField
-        assertThat textfields are enabled
-        assertThat textfields are visible
-        on textfields enter 'HELLO!'
-        sleep(10000)
-
-        // essaie de creer une liste e txt fields a partir de components non textfields (auttre types input)
-        // => crash
-        $$('input') of TextField
-        assertThat textfields are enabled
-    }
 
     @Test
     public void test_button() {
@@ -212,7 +182,7 @@ class ComponentTest {
         assertThat link is visible
 
         assertThat link has text('Link to component page')
-        assertThat link has reference('http://localhost:8080/component.html')
+        assertThat link has reference('http://localhost:8080/components.html')
         assertThat link has reference.containing('component')
     }
 

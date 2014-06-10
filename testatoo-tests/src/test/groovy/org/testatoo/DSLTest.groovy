@@ -37,7 +37,7 @@ class DSLTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/component.html'
+        open 'http://localhost:8080/components.html'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 

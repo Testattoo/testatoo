@@ -48,20 +48,6 @@ class ErrorTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void bad_component_type() {
-        CustomComponent customComponent = $('#custom_component') as CustomComponent
-        try {
-            assertThat customComponent is visible
-            fail()
-        } catch (ComponentException e) {
-            assert  e.message == "The Component hierarchy [CustomComponent, Component] doesn\'t contain the type Panel for component with id custom_component"
-        }
-
-        evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
-        assertThat customComponent is visible
-    }
-
-    @Test
     public void not_supported_state_support() {
         EmailField email = $('#email') as EmailField
         try {
@@ -241,10 +227,6 @@ class ErrorTest {
         } catch (ComponentException e) {
             e.message == "Component defined by jQuery expression \$('#elements option') is not unique: got 5"
         }
-    }
-
-    private class CustomComponent extends Component {
-
     }
 
     // try to check component that not support checked state
