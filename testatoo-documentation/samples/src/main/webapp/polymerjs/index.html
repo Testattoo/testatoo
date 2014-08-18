@@ -23,34 +23,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Testatoo Sample</title>
 
-    <link href="css/bootstrap-3.1.1.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="components/paper/0.3.5/platform/platform.js"></script>
+    <link rel="import" href="components/paper/0.3.5/font-roboto/roboto.html">
+    <link rel="import" href="components/paper/0.3.5/core-header-panel/core-header-panel.html">
+    <link rel="import" href="components/paper/0.3.5/core-toolbar/core-toolbar.html">
+    <link rel="import" href="components/paper/0.3.5/paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="components/paper/0.3.5/paper-tabs/paper-tabs.html">
 
-    <script src="js/platform.js"></script>
+    <style shim-shadowdom>
+        body {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            margin: 0;
+            padding: 24px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+        }
 
-    <link rel="import" href="components/knob/knob.html"/>
+        core-toolbar {
+            color: #f1f1f1;
+            fill: #f1f1f1;
+        }
+
+        paper-tabs, core-toolbar {
+            background-color: #00bcd4;
+            color: #fff;
+            box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        core-toolbar paper-tabs {
+            box-shadow: none;
+        }
+    </style>
 </head>
-<body>
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Custom component support</a>
+<body unresolved touch-action="auto">
+
+<core-toolbar style="background: #4285f4;">
+    <span flex>Testatoo Sample</span>
+</core-toolbar>
+
+<br>
+
+<section style="width: 200px">
+    <div center horizontal layout>
+        <div flex>Wi-Fi</div>
+        <paper-toggle-button checked></paper-toggle-button>
     </div>
-</nav>
-
-<div class="row">
-    <div class="col-xs-3"></div>
-    <div class="col-xs-6">
-        <h1 class="page-header">Knob bars</h1>
-        <x-knob step="10" value="25"></x-knob>
+    <br>
+    <div center horizontal layout>
+        <div flex>Bluetooth</div>
+        <paper-toggle-button class="blue"></paper-toggle-button>
     </div>
-    <div class="col-xs-3"></div>
-</div>
+</section>
 
-<script type="application/javascript">
-    jQuery(document).ready(function ($) {
-    });
-</script>
-
+<section style="width: 600px">
+    <br>
+    <paper-tabs selected="0">
+        <paper-tab>ITEM ONE</paper-tab>
+        <paper-tab>ITEM TWO</paper-tab>
+        <paper-tab>ITEM THREE</paper-tab>
+    </paper-tabs>
+</section>
 
 </body>
+
 </html>
