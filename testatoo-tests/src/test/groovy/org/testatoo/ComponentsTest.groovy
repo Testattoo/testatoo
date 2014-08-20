@@ -162,6 +162,9 @@ class ComponentsTest {
 
         check checkBox
         assertThat checkBox is checked
+
+        clickOn checkBox
+        assertThat checkBox is unchecked
     }
 
     @Test
@@ -182,6 +185,7 @@ class ComponentsTest {
         assertThat link is visible
 
         assertThat link has text('Link to component page')
+        assertThat link has reference.equalsTo('http://localhost:8080/components.html')
         assertThat link has reference('http://localhost:8080/components.html')
         assertThat link has reference.containing('component')
     }
