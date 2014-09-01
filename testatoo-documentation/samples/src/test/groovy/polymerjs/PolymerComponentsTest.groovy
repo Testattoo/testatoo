@@ -56,14 +56,13 @@ class PolymerComponentsTest {
 
         clickOn tab_panel.tabs[1]
 
-        waitUntil { tab_panel.tabs[1].is(selected) }
-
+        waitUntil 10.seconds, { tab_panel.tabs[1].is(selected) }
         assertThat tab_panel.tabs[0] is unSelected
         assertThat tab_panel.tabs[2] is unSelected
 
         clickOn tab_panel.tabs[2]
 
-        waitUntil { tab_panel.tabs[2].is(selected) }
+        waitUntil 10.seconds, { tab_panel.tabs[2].is(selected) }
 
         assertThat tab_panel.tabs[0] is unSelected
         assertThat tab_panel.tabs[1] is unSelected
