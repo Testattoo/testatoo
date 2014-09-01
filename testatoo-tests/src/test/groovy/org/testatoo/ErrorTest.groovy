@@ -157,6 +157,8 @@ class ErrorTest {
         }
     }
 
+    // TODO tes cannot select already selected item
+
     @Test
     public void equals_to_matcher_on_list_items() {
         DropDown dropDown = $('#elements') as DropDown
@@ -229,6 +231,4 @@ class ErrorTest {
         }
     }
 
-    // try to check component that not support checked state
-    // cannot select already selected item
 }
