@@ -65,7 +65,6 @@ class Components<T extends Component> implements Collection<T> {
     @Override
     Object[] toArray() { components.toArray() }
 
-    @Override
     def <T> T[] toArray(T[] a) { components.toArray(a) }
 
     @Override

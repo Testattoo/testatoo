@@ -36,8 +36,8 @@
 
     <properties>
         <jdk.version>1.7</jdk.version>
-        <groovy.version>2.2.1</groovy.version>
-        <selenium.version>2.41.0</selenium.version>
+        <groovy.version>2.3.6</groovy.version>
+        <selenium.version>2.43.1</selenium.version>
         <jetty.version>9.1.4.v20140401</jetty.version>
         <jetty.daemon>true</jetty.daemon>
     </properties>
@@ -56,7 +56,7 @@
                 <plugin>
                     <groupId>org.codehaus.gmavenplus</groupId>
                     <artifactId>gmavenplus-plugin</artifactId>
-                    <version>1.0</version>
+                    <version>1.2</version>
                     <configuration>
                         <verbose>true</verbose>
                         <invokeDynamic>false</invokeDynamic>
