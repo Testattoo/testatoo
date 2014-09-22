@@ -17,6 +17,7 @@ package starter
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -31,6 +32,7 @@ import static org.testatoo.core.state.States.*
 /**
  * @author davenante
  */
+@Ignore // TODO Ignore until FF issue on new driver is fixed.
 @RunWith(JUnit4)
 class BaseGoogleTest {
 

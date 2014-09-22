@@ -33,7 +33,7 @@ import static org.testatoo.core.state.States.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Ignore // Ignore until FF issue on new driver is fixed.
+@Ignore // TODO Ignore until FF issue on new driver is fixed.
 @RunWith(JUnit4)
 class KeyboardTest {
 
