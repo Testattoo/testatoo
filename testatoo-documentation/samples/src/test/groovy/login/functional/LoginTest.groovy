@@ -43,7 +43,7 @@ class LoginTest {
     @Before
     public void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        evaluator.registerScripts(this.getClass().getResourceAsStream('/login/jquery-mockjax.js').text)
+        evaluator.registerScripts(this.getClass().getResourceAsStream('/login/jquery.mockjax-1.5.3.min.js').text)
         evaluator.registerScripts(this.getClass().getResourceAsStream('/login/mocked-data.js').text)
 
         open 'http://localhost:8080/login/index.html'

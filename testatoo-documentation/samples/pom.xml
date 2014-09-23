@@ -43,12 +43,15 @@
                 <configuration>
                     <excludes>
                         <exclude>**/*.min.js</exclude>
-                        <exclude>**/*.css</exclude>
-                        <exclude>**/presentation/js/*.js</exclude>
-                        <exclude>**/login/js/*.js</exclude>
-                        <exclude>**/resources/login/jquery-mockjax.js</exclude>
-                        <exclude>**/bootstrap/**/*.*</exclude>
-                        <exclude>**/paper/**/*.*</exclude>
+                        <exclude>**/webapp/presentation/js/*.*</exclude>
+                        <exclude>**/webapp/presentation/css/*.*</exclude>
+                        <exclude>**/webapp/presentation/js/*.*</exclude>
+                        <exclude>**/webapp/login/js/*.js</exclude>
+                        <exclude>**/webapp/resources/login/jquery.mockjax-1.5.3.min.js</exclude>
+                        <exclude>**/webapp/bootstrap/**/*.*</exclude>
+                        <exclude>**/webapp/**/paper/**/*.*</exclude>
+                        <exclude>**/webapp/login/**/*.*</exclude>
+                        <exclude>**/webapp/angularjs/**/*.*</exclude>
                     </excludes>
                 </configuration>
             </plugin>

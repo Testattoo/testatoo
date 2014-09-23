@@ -1,0 +1,35 @@
+<!--
+
+    Copyright Martin Angelov
+    http://tutorialzine.com/2013/08/learn-angularjs-5-examples/
+
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testatoo Sample</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <link href="main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.2/angular.min.js"></script>
+</head>
+<body>
+
+<div>
+    <nav id="menu" class="{{active}}" ng-click="$event.preventDefault()">
+        <a href="#" class="home" ng-click="active='home'">Home</a>
+        <a href="#" class="projects" ng-click="active='projects'">Projects</a>
+        <a href="#" class="services" ng-click="active='services'">Services</a>
+        <a href="#" class="contact" ng-click="active='contact'">Contact</a>
+    </nav>
+
+    <p ng-hide="active">Please click a menu item</p>
+    <p ng-show="active">You chose <b>{{active}}</b></p>
+</div>
+</body>
+</html>
