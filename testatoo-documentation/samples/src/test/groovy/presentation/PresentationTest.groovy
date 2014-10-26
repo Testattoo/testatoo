@@ -62,8 +62,8 @@ class PresentationTest {
 
     @Test
     public void do_not_forget_the_creator_himself() {
-        assertThat presentation has author('David Avenante')
-        assertThat presentation has company('Ovea.inc')
+        expect presentation has author('David Avenante')
+        expect presentation has company('Ovea.inc')
     }
 
     @Test

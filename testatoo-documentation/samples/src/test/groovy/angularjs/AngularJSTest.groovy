@@ -24,10 +24,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.assertThat
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.state.States.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.input.Mouse.*
@@ -77,6 +74,4 @@ class AngularJSTest {
         expect navigationMenu.items[2] is unSelected
         expect navigationMenu.items[3] is unSelected
     }
-
-
 }
