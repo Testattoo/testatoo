@@ -80,10 +80,10 @@ class DSLTest {
             dropDown.items.are enabled
         }
 
-//        assertThat {
+//        expect {
 //            [dropDown, checkBox]*.are visible
 //        }
-//        assertThat([login_email, login_password, login_button].are(visible))
+//        expect([login_email, login_password, login_button].are(visible))
     }
 
 

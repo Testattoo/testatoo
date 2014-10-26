@@ -89,7 +89,7 @@ class LoginTest {
     }
 
     private void user_is_not_logged() {
-        assertThat login_succes is hidden
+        expect login_succes is hidden
     }
 
 }

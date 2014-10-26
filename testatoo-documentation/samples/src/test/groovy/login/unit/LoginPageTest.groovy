@@ -50,17 +50,17 @@ class LoginPageTest {
 
     @Test
     public void page_contains_expected_elements() {
-        assertThat {
+        expect {
             login_panel.is(visible) and login_panel.has(title('Login Form'))
         }
 
-        assertThat login_panel contains(
+        expect login_panel contains(
                 email_field,
                 password_field,
                 login_button
         )
 
-        assertThat {
+        expect {
             email_field.is(visible)
             email_field.has(placeholder('joe@blow.org'))
             email_field.has(label('Email'))
@@ -69,7 +69,7 @@ class LoginPageTest {
             password_field.has(label('Password'))
         }
 
-        assertThat {
+        expect {
             login_button.is(visible) and login_button.has(text('Login'))
         }
     }

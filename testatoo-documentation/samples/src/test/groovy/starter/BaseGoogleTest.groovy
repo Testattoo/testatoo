@@ -49,15 +49,15 @@ class BaseGoogleTest {
 
     @Test
     public void simple_test() {
-        assertThat resultList is missing
-        assertThat searchField is visible
+        expect resultList is missing
+        expect searchField is visible
 
         on searchField enter 'Testatoo'
         clickOn searchButton
 
         waitUntil {resultList.is visible}
 
-        assertThat resultList.items[0] has value.containing('Testatoo')
+        expect resultList.items[0] has value.containing('Testatoo')
     }
 
 }

@@ -49,69 +49,69 @@ class BootstrapComponentsTest {
         Button plus = $('#plus') as Button
         Button minus = $('#minus') as Button
 
-        assertThat progress_bar has value('60%')
+        expect progress_bar has value('60%')
 
         clickOn plus
         clickOn plus
-        assertThat progress_bar has value('80%')
+        expect progress_bar has value('80%')
 
         clickOn minus
         clickOn minus
         clickOn minus
         clickOn minus
-        assertThat progress_bar has value('40%')
+        expect progress_bar has value('40%')
     }
 
     @Test
     public void test_tab_panel() {
         TabPanel tab_panel = $('#myTab') as TabPanel
 
-        assertThat tab_panel has 2.tabs
-        assertThat tab_panel.tabs[0] has title('Home')
-        assertThat tab_panel.tabs[1] has title('Profile')
+        expect tab_panel has 2.tabs
+        expect tab_panel.tabs[0] has title('Home')
+        expect tab_panel.tabs[1] has title('Profile')
 
-        assertThat tab_panel.tabs[0].panel is visible
-        assertThat tab_panel.tabs[1].panel is hidden
+        expect tab_panel.tabs[0].panel is visible
+        expect tab_panel.tabs[1].panel is hidden
 
         clickOn tab_panel.tabs[1]
 
         waitUntil { tab_panel.tabs[0].panel.is(hidden) }
-        assertThat tab_panel.tabs[1].panel is visible
+        expect tab_panel.tabs[1].panel is visible
 
-        assertThat tab_panel.tabs[0] is unSelected
-        assertThat tab_panel.tabs[1] is selected
+        expect tab_panel.tabs[0] is unSelected
+        expect tab_panel.tabs[1] is selected
 
         clickOn tab_panel.tabs[0]
 
-        assertThat tab_panel.tabs[0] is selected
-        assertThat tab_panel.tabs[1] is unSelected
+        expect tab_panel.tabs[0] is selected
+        expect tab_panel.tabs[1] is unSelected
     }
 
     @Test
     public void test_accordion() {
         Accordion accordion = $('#accordion') as Accordion
-        assertThat accordion has 3.items
+        expect accordion has 3.items
 
-        assertThat accordion.items[0] has title('Item 1')
-        assertThat accordion.items[1] has title('Item 2')
-        assertThat accordion.items[2] has title('Item 3')
+        expect accordion.items[0] has title('Item 1')
+        expect accordion.items[1] has title('Item 2')
+        expect accordion.items[2] has title('Item 3')
 
-        assertThat accordion.items[0].panel is visible
-        assertThat accordion.items[1].panel is hidden
-        assertThat accordion.items[2].panel is hidden
+        expect accordion.items[0].panel is visible
+        expect accordion.items[1].panel is hidden
+        expect accordion.items[2].panel is hidden
 
-        assertThat accordion.items[0] is selected
-        assertThat accordion.items[1] is unSelected
-        assertThat accordion.items[2] is unSelected
+        expect accordion.items[0] is selected
+        expect accordion.items[1] is unSelected
+        expect accordion.items[2] is unSelected
 
         clickOn accordion.items[1]
         waitUntil { accordion.items[1].is(selected) }
-        assertThat accordion.items[0] is unSelected
-        assertThat accordion.items[2] is unSelected
+        expect accordion.items[0] is unSelected
+        expect accordion.items[2] is unSelected
 
         clickOn accordion.items[2]
         waitUntil { accordion.items[2].is(selected) }
-        assertThat accordion.items[0] is unSelected
-        assertThat accordion.items[1] is unSelected
+        expect accordion.items[0] is unSelected
+        expect accordion.items[1] is unSelected
     }
 }

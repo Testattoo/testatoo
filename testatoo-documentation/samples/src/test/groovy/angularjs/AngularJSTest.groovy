@@ -50,32 +50,32 @@ class AngularJSTest {
     public void test_navigation_menu() {
         NavigationMenu navigationMenu = $('#menu') as NavigationMenu
 
-        assertThat {
+        expect {
             navigationMenu.is(visible)
             navigationMenu.has(4.items)
         }
 
-        assertThat navigationMenu.items[0] has title('Home')
-        assertThat navigationMenu.items[1] has title('Projects')
-        assertThat navigationMenu.items[2] has title('Services')
-        assertThat navigationMenu.items[3] has title('Contact')
+        expect navigationMenu.items[0] has title('Home')
+        expect navigationMenu.items[1] has title('Projects')
+        expect navigationMenu.items[2] has title('Services')
+        expect navigationMenu.items[3] has title('Contact')
 
-        assertThat navigationMenu.items[0] is unSelected
-        assertThat navigationMenu.items[1] is unSelected
-        assertThat navigationMenu.items[2] is unSelected
-        assertThat navigationMenu.items[3] is unSelected
+        expect navigationMenu.items[0] is unSelected
+        expect navigationMenu.items[1] is unSelected
+        expect navigationMenu.items[2] is unSelected
+        expect navigationMenu.items[3] is unSelected
 
         clickOn(navigationMenu.items[0])
-        assertThat navigationMenu.items[0] is selected
-        assertThat navigationMenu.items[1] is unSelected
-        assertThat navigationMenu.items[2] is unSelected
-        assertThat navigationMenu.items[3] is unSelected
+        expect navigationMenu.items[0] is selected
+        expect navigationMenu.items[1] is unSelected
+        expect navigationMenu.items[2] is unSelected
+        expect navigationMenu.items[3] is unSelected
 
         clickOn(navigationMenu.items[1])
-        assertThat navigationMenu.items[0] is unSelected
-        assertThat navigationMenu.items[1] is selected
-        assertThat navigationMenu.items[2] is unSelected
-        assertThat navigationMenu.items[3] is unSelected
+        expect navigationMenu.items[0] is unSelected
+        expect navigationMenu.items[1] is selected
+        expect navigationMenu.items[2] is unSelected
+        expect navigationMenu.items[3] is unSelected
     }
 
 
