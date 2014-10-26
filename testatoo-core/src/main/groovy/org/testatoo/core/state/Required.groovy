@@ -13,24 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component.input
+package org.testatoo.core.state
 
-import org.testatoo.core.property.*
-import org.testatoo.core.state.*
+import org.testatoo.core.component.Component
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class TextField extends Input {
-
-    TextField() {
-        support Placeholder, Label, Optional, Required
+class Required extends State {
+    Required() {
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getString("\$('#" + c.id + "').prop('required')")) }
+        description e: 'required', w: 'optional'
     }
-
-    void enter(String text) { evaluator.enter([text]) }
-
-    void reset() {
-        evaluator.runScript("\$('#${id}').val('')")
-    }
-
 }

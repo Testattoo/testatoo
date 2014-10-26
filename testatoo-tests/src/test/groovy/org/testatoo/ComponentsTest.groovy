@@ -77,6 +77,7 @@ class ComponentsTest {
 
         expect textField is enabled
         expect textField is visible
+        expect textField is optional
 
         expect textField has label('Text')
         expect textField has placeholder('Text')
@@ -132,9 +133,11 @@ class ComponentsTest {
 
         ColorField colorField = $('#color_field') as ColorField
         expect colorField is enabled
+        expect colorField is optional
 
         MonthField monthField = $('#month_field') as MonthField
         expect monthField is enabled
+        expect monthField is required
 
         WeekField weekField = $('#week_field') as WeekField
         expect weekField is enabled
@@ -506,7 +509,7 @@ class ComponentsTest {
 
 //    @Test
 //    public void test_page() {
-//        assertThat(page().has(title()).equalsTo('Testatoo Rocks'));
+//        expect(page().has(title()).equalsTo('Testatoo Rocks'));
 //    }
 
     class Message extends Panel {
