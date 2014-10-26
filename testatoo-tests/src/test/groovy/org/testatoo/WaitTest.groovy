@@ -45,14 +45,14 @@ class WaitTest {
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
-        assertThat button, { Button c ->
+        expect button, { Button c ->
             c.is(enabled) and c.is(visible)
         }
 
-        assertThat message is missing
+        expect message is missing
 
         clickOn button
-        assertThat button is(disabled)
+        expect button is(disabled)
 
         waitUntil 10.seconds, {
             button.is(enabled)

@@ -37,9 +37,9 @@ Example of a test syntax :
 
 [source, groovy]
 -------------------------------------------------------------------------------
-    assertThat textField has label('myLabel')
-    assertThat textField has placeholder('My placeholder')
-    assertThat textField is empty
+    expect textField has label('myLabel')
+    expect textField has placeholder('My placeholder')
+    expect textField is empty
 -------------------------------------------------------------------------------
 
 == Why should I use Testatoo?
@@ -117,15 +117,15 @@ class BaseGoogleTest {
         Button searchButton = $('#gbqfb') as Button
         ListView resultList = $('#rso') as ListView
 
-        assertThat resultList is missing
-        assertThat searchField is visible
+        expect resultList is missing
+        expect searchField is visible
 
         on searchField enter 'Testatoo'
         clickOn searchButton
 
         waitUntil {resultList.is visible}
 
-        assertThat resultList.items[0] has value.containing('Testatoo')
+        expect resultList.items[0] has value.containing('Testatoo')
     }
 
 }
@@ -186,18 +186,18 @@ The Testatoo syntax to express this specification is :
 
 [source, groovy]
 -------------------------------------------------------------------------------
-assertThat {
+expect {
     maleRadio.is(unchecked) and maleRadio.has label('Male')
     femaleRadio.is(unchecked) and femaleRadio.has label('Female')
 }
 
 check maleRadio
-assertThat maleRadio is checked
-assertThat femaleRadio is unchecked
+expect maleRadio is checked
+expect femaleRadio is unchecked
 
 check femaleRadio
-assertThat femaleRadio is checked
-assertThat maleRadio is unchecked
+expect femaleRadio is checked
+expect maleRadio is unchecked
 -------------------------------------------------------------------------------
 
 Pretty close, isn't it? ;)

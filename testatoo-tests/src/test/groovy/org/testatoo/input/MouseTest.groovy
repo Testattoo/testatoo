@@ -49,56 +49,56 @@ class MouseTest {
     @Test
     public void click() {
         Button button = $('#button_1') as Button
-        assertThat button has text('Button')
-        assertThat button has text('Button')
+        expect button has text('Button')
+        expect button has text('Button')
         clickOn button
-        assertThat button has text('Button Clicked!')
+        expect button has text('Button Clicked!')
 
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat checkBox is unchecked
+        expect checkBox is unchecked
         clickOn checkBox
-        assertThat checkBox is checked
+        expect checkBox is checked
 
         Radio radio = $('#radio') as Radio
-        assertThat radio is unchecked
+        expect radio is unchecked
         clickOn radio
-        assertThat radio is checked
+        expect radio is checked
 
         DropDown dropDown = $('#elements') as DropDown
-        assertThat dropDown has selectedItems('Helium')
+        expect dropDown has selectedItems('Helium')
 
         clickOn dropDown.items[2]
-        assertThat dropDown has selectedItems('Polonium')
+        expect dropDown has selectedItems('Polonium')
     }
 
     @Test
     public void doubleClick() {
         Button button = $('#button_2') as Button
-        assertThat button has text('Button')
+        expect button has text('Button')
         doubleClickOn button
-        assertThat button has text('Button Double Clicked!')
+        expect button has text('Button Double Clicked!')
     }
 
     @Test
     public void rightClick() {
         Button button = $('#button_5') as Button
-        assertThat button has text('Button')
+        expect button has text('Button')
         rightClickOn button
-        assertThat button has text('Button Right Clicked!')
+        expect button has text('Button Right Clicked!')
     }
 
     @Test
     public void mouseOver() {
         Button button = $('#button_3') as Button
-        assertThat button has text('Button')
+        expect button has text('Button')
         hoveringMouseOn button
-        assertThat button has text('Button Mouse Over!')
+        expect button has text('Button Mouse Over!')
     }
 
     @Test
     public void mouseOut() {
         Button button = $('#button_4') as Button
-        assertThat button has text('Button')
+        expect button has text('Button')
 
         // To simulate mouse out
 
@@ -107,14 +107,14 @@ class MouseTest {
         // 2 - mouse over an another component
         hoveringMouseOn $('#button_5') as Button
         // The mouse out is triggered
-        assertThat button has text('Button Mouse Out!')
+        expect button has text('Button Mouse Out!')
     }
 
     @Ignore
     @Test
     public void dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
-        assertThat dropPanel has title('Drop here')
+        expect dropPanel has title('Drop here')
 
         Panel dragPanel = $('#draggable') as Panel
 
@@ -124,26 +124,26 @@ class MouseTest {
 
     @Test
     public void test_mouse_with_key_modifier() {
-        assertThat $('#span_Ctrl_mouseleft') is missing
-        assertThat $('#span_Shift_mouseleft') is missing
+        expect $('#span_Ctrl_mouseleft') is missing
+        expect $('#span_Shift_mouseleft') is missing
 
         CTRL.click $('#_Ctrl_mouseleft') as Panel
         SHIFT.click $('#_Shift_mouseleft') as Panel
 
-        assertThat $('#span_Ctrl_mouseleft') is available
-        assertThat $('#span_Shift_mouseleft') is available
+        expect $('#span_Ctrl_mouseleft') is available
+        expect $('#span_Shift_mouseleft') is available
 
         // Not testable cause Rightclick Handled by the browser
         CTRL.rightClick $('#_Ctrl_mouseright') as Panel
         [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Panel
 
-        assertThat $('#span_Alt_Shift_mouseleft') is missing
+        expect $('#span_Alt_Shift_mouseleft') is missing
         (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Panel
-        assertThat $('#span_Alt_Shift_mouseleft') is available
+        expect $('#span_Alt_Shift_mouseleft') is available
 
-        assertThat $('#span_Crtl_Shift_mouseleft') is missing
+        expect $('#span_Crtl_Shift_mouseleft') is missing
         [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Panel
-        assertThat $('#span_Crtl_Shift_mouseleft') is missing
+        expect $('#span_Crtl_Shift_mouseleft') is missing
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel

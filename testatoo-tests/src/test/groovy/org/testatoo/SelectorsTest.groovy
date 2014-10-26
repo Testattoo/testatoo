@@ -46,8 +46,8 @@ class SelectorsTest {
     public void $_as_a_single_selector() {
         Button button = $('#button') as Button
 
-        assertThat button is enabled
-        assertThat button is visible
+        expect button is enabled
+        expect button is visible
     }
 
     @Test
@@ -58,16 +58,16 @@ class SelectorsTest {
         Components<TextField> textFields = $$('[type="text"]') of TextField
         assert textFields.size() == 3
 
-        assertThat textFields are enabled
-        assertThat textFields are visible
-        assertThat textFields are empty
+        expect textFields are enabled
+        expect textFields are visible
+        expect textFields are empty
 
         on textFields enter 'TESTATOO!'
 
-        assertThat textFields are filled
+        expect textFields are filled
 
         textFields.each {
-            assertThat it has text('TESTATOO!')
+            expect it has text('TESTATOO!')
         }
     }
 
@@ -75,21 +75,21 @@ class SelectorsTest {
     public void bad_component_type() {
         CustomComponent customComponent = $('#custom_component') as CustomComponent
         try {
-            assertThat customComponent is visible
+            expect customComponent is visible
             fail()
         } catch (ComponentException e) {
             assert  e.message == "The Component hierarchy [CustomComponent, Component] doesn\'t contain the type Panel for component with id custom_component"
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
-        assertThat customComponent is visible
+        expect customComponent is visible
     }
 
     @Test
     public void bad_list_of_component_type() {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button
-            assertThat buttons are enabled
+            expect buttons are enabled
         } catch (ComponentException e) {
             assert  e.message.startsWith("The Component hierarchy [Button, Component] doesn't contain the type TextField for component with id")
         }

@@ -47,7 +47,7 @@ class ContainsDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        assertThat panel contains(
+        expect panel contains(
             visible_button,
             invisible_button
         )
@@ -58,7 +58,7 @@ class ContainsDisplayTest {
         Button submit_button = $('[type=submit]') as Button
         Button reset_button = $('[type=reset]') as Button
 
-        assertThat form contains(
+        expect form contains(
             email_field,
             password_field,
             submit_button,
@@ -66,7 +66,7 @@ class ContainsDisplayTest {
         )
 
         try {
-            assertThat panel contains(
+            expect panel contains(
                 submit_button,
                 reset_button
             )
@@ -81,12 +81,12 @@ class ContainsDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        assertThat panel displays(
+        expect panel displays(
             visible_button
         )
 
         try {
-            assertThat panel displays(
+            expect panel displays(
                 visible_button,
                 invisible_button
             )
@@ -96,7 +96,7 @@ class ContainsDisplayTest {
 
         EmailField email_field = $('[type=email]') as EmailField
         try {
-            assertThat panel displays(
+            expect panel displays(
                 email_field
             )
         } catch (AssertionError e) {

@@ -38,21 +38,21 @@ class Testatoo {
 
     static void open(String uri) { evaluator.open(uri) }
 
-    static Assertion assertThat(Component c) {
+    static Assertion expect(Component c) {
         new Assertion(c)
     }
 
-    static <T extends Component> Assertions<T> assertThat(Components<T> cc) {
+    static <T extends Component> Assertions<T> expect(Components<T> cc) {
         new Assertions<T>(cc)
     }
 
-    static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
+    static void expect(Component component, @DelegatesTo(Component) Closure c) {
         c.delegate = component
         c(component)
         Blocks.run(Blocks.compose(Blocks.pending()))
     }
 
-    static void assertThat(Closure c) {
+    static void expect(Closure c) {
         c()
         Blocks.run(Blocks.compose(Blocks.pending()))
     }

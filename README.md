@@ -58,4 +58,9 @@ testatoo-tests and testatoo-documentation/samples the command :
 
     $ mvn jetty:run -Pdev
     
+    TODO
+    assert that button have text 'Add a BBM configuration'
+    expect button have text 'Add a BBM configuration'
+    button should have text 'Add a BBM configuration'
+    
     
