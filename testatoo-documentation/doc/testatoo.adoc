@@ -70,7 +70,7 @@ Get Testatoo and dependencies libraries via Maven...
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
-    <version>2.39.0</version>
+    <version>2.42.2</version>
     <scope>test</scope>
 </dependency>
 -------------------------------------------------------------------------------
@@ -167,19 +167,19 @@ As a SPECIFIER, I want to express my test (intention) BEFORE I code my UI. So, i
 a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
 -------------------------------------------------------------------------------
-assert that the maleRadio is unchecked
+expect the maleRadio is unchecked
 and it has label "Male"
 
-assert that the femaleRadio is unchecked
+expect the femaleRadio is unchecked
 and it has label "Female"
 
 check the maleRadio
-assert that the maleRadio is checked
-assert that the femaleRadio is unchecked
+expect the maleRadio is checked
+expect the femaleRadio is unchecked
 
 check the femaleRadio
-assert that the femaleRadio checked
-assert that the maleRadio is unchecked
+expect the femaleRadio checked
+expect the maleRadio is unchecked
 -------------------------------------------------------------------------------
 
 The Testatoo syntax to express this specification is :
@@ -205,7 +205,7 @@ Pretty close, isn't it? ;)
 Testatoo provides a DSL to write tests in a natural language, easy to manipulate from a specifications point of view.
 As this is a high level language, it allows tests to be written before UI coding.
 
-YES, for the first time, with Testatoo, you can write UI functional tests FIRST (yeah I know, it's pretty cool!)
+YES, for the first time, with Testatoo, you can write UI functional tests FIRST (yeah we know, it's pretty cool!)
 
 == How Testatoo works
 
@@ -249,7 +249,8 @@ $('[data-role=button]');
 -------------------------------------------------------------------------------
 
 Our experience demonstrated that we never need to use complex selector. If you write tests first, the component tested carries
-a semantic and this semantic must be reflected in the code by an ID or a role (data-role attribute is commonly used in web development).
+a semantic and this semantic must be reflected in the code by an ID a role (role attribute is commonly used in web development) or
+better a specific tag (with Angular Directive or Web Components)
 
 Once the component is selected, it must be *TYPED* throw the *"as"* keyword.
 
