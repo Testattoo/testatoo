@@ -54,8 +54,8 @@ class AdvancedGoogleTest {
 
     @Test
     public void simple_test() {
-        expect resultList is missing
-        expect searchField is visible
+        assertThat resultList is missing
+        assertThat searchField is visible
 
         on searchField enter 'Testatoo'
         clickOn searchButton
@@ -63,7 +63,7 @@ class AdvancedGoogleTest {
         waitUntil { googleResultList.is visible }
 
         GoogleItem item = googleResultList.items[0];
-        expect {
+        assertThat {
             item.has(title('Testatoo documentation'))
             item.has(url.containing('www.testatoo.org'))
             item.has(description.containing('Testatoo is the result of numerous real-world observations of developers'))

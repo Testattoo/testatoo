@@ -47,7 +47,7 @@ class ContainsDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        expect panel contains(
+        assertThat panel contains(
             visible_button,
             invisible_button
         )
@@ -58,7 +58,7 @@ class ContainsDisplayTest {
         Button submit_button = $('[type=submit]') as Button
         Button reset_button = $('[type=reset]') as Button
 
-        expect form contains(
+        assertThat form contains(
             email_field,
             password_field,
             submit_button,
@@ -66,12 +66,12 @@ class ContainsDisplayTest {
         )
 
         try {
-            expect panel contains(
+            assertThat panel contains(
                 submit_button,
                 reset_button
             )
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contains expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
+            assert e.message == "Component Panel:panel does not contains assertThated component(s): [Button:$submit_button.id, Button:$reset_button.id]"
         }
     }
 
@@ -81,26 +81,26 @@ class ContainsDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        expect panel displays(
+        assertThat panel displays(
             visible_button
         )
 
         try {
-            expect panel displays(
+            assertThat panel displays(
                 visible_button,
                 invisible_button
             )
         } catch (AssertionError e) {
-            assert e.message == "Component Button with id invisible_button expected visible but was hidden"
+            assert e.message == "Component Button with id invisible_button assertThated visible but was hidden"
         }
 
         EmailField email_field = $('[type=email]') as EmailField
         try {
-            expect panel displays(
+            assertThat panel displays(
                 email_field
             )
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contains expected component(s): [EmailField:$email_field.id]"
+            assert e.message == "Component Panel:panel does not contains assertThated component(s): [EmailField:$email_field.id]"
         }
     }
 

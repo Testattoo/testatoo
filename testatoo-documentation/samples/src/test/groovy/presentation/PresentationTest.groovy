@@ -50,26 +50,26 @@ class PresentationTest {
 
     @Test
     public void except_to_not_be_boring() {
-        expect presentation has 17.slides
+        assertThat presentation has 17.slides
     }
 
     @Test
     public void try_to_capture_the_audience_with_a_punching_title() {
-        expect presentation has title.containing('Functional Tests With Testatoo')
+        assertThat presentation has title.containing('Functional Tests With Testatoo')
         // Most important Testatoo logo is here
-        expect testatoo_logo is visible
+        assertThat testatoo_logo is visible
     }
 
     @Test
     public void do_not_forget_the_creator_himself() {
-        expect presentation has author('David Avenante')
-        expect presentation has company('Ovea.inc')
+        assertThat presentation has author('David Avenante')
+        assertThat presentation has company('Ovea.inc')
     }
 
     @Test
     public void presentation_start_with_a_teaser() {
         open 'http://localhost:8080/presentation/index.html#2.0'
-        expect {
+        assertThat {
             first_teaser.is(visible) and first_teaser.has(text('Testing'))
         }
     }
@@ -78,8 +78,8 @@ class PresentationTest {
     public void the_first_topic_discusses_how_the_tests_are_felt() {
         open 'http://localhost:8080/presentation/index.html#3.0'
 
-        expect reproaches_list has 5.items
-        expect reproaches_list has items(
+        assertThat reproaches_list has 5.items
+        assertThat reproaches_list has items(
             'Testing is too hard',
             'Testing is not fun',
             'Testing is sloooow',
@@ -90,7 +90,7 @@ class PresentationTest {
     @Test
     public void second_teaser_is_about_thinking() {
         open 'http://localhost:8080/presentation/index.html#4.0'
-        expect {
+        assertThat {
             second_teaser.is(visible) and second_teaser.has(text('Think again'))
         }
     }
@@ -99,8 +99,8 @@ class PresentationTest {
     public void the_second_topic_discusses_how_without_test_you_cannot_develop() {
         open 'http://localhost:8080/presentation/index.html#5.1'
 
-        expect rethink_list has 5.items
-        expect rethink_list has items(
+        assertThat rethink_list has 5.items
+        assertThat rethink_list has items(
             'too hard: improve your skills',
             'not fun: be disciplined',
             'is sloooow: change your design',
@@ -111,12 +111,12 @@ class PresentationTest {
     @Test
     public void conclusion_on_testing() {
         open 'http://localhost:8080/presentation/index.html#6.0'
-        expect {
+        assertThat {
             first_conclusion.is(visible) and first_conclusion.has(text('Testing is a development activity'))
         }
 
         open 'http://localhost:8080/presentation/index.html#7.0'
-        expect {
+        assertThat {
             second_conclusion.is(visible) and second_conclusion.has(text('Testing rulez!'))
         }
     }
@@ -124,7 +124,7 @@ class PresentationTest {
     @Test
     public void last_recap_for_lazy_brain() {
         open 'http://localhost:8080/presentation/index.html#8.0'
-        expect {
+        assertThat {
             lens.is(visible) and lens.has(text('Reminder'))
             recap.is(visible) and recap.has(text('Develop by test (TDD/BDD)'))
         }
@@ -133,12 +133,12 @@ class PresentationTest {
     @Test
     public void what_tests_are() {
         open 'http://localhost:8080/presentation/index.html#9.0'
-        expect {
+        assertThat {
             philosophy_title.is(visible) and philosophy_title.has(text('TDD/BDD are not a Philosophy'))
         }
 
         open 'http://localhost:8080/presentation/index.html#11.0'
-        expect {
+        assertThat {
             practice_title.is(visible) and practice_title.has(text('TDD/BDD are industrial practices'))
         }
     }
@@ -146,13 +146,13 @@ class PresentationTest {
     @Test
     public void terms() {
         open 'http://localhost:8080/presentation/index.html#11.0'
-        expect {
+        assertThat {
             term_title.is(visible) and term_title.has(text('Terms... Terms'))
         }
 
         open 'http://localhost:8080/presentation/index.html#12.0'
-        expect terms_list has 3.items
-        expect terms_list has items(
+        assertThat terms_list has 3.items
+        assertThat terms_list has items(
             'Unit Tests: Dev to Dev',
             'Business Tests: Dev to BA',
             'Functional tests: Dev - BA - Client')
@@ -161,12 +161,12 @@ class PresentationTest {
     @Test
     public void simpler_explanation() {
         open 'http://localhost:8080/presentation/index.html#13.0'
-        expect {
+        assertThat {
             what_message.is(visible) and what_message.has(text('WHAT: business tests'))
         }
 
         open 'http://localhost:8080/presentation/index.html#14.0'
-        expect {
+        assertThat {
             how_message.is(visible) and how_message.has(text('HOW: functional tests'))
         }
     }
@@ -175,13 +175,13 @@ class PresentationTest {
     public void the_specificity_of_functional_test() {
         open 'http://localhost:8080/presentation/index.html#15.0'
 
-        expect {
+        assertThat {
             functional_tests_specificity_title.is(visible) and functional_tests_specificity_title.has(text('Functional tests have some specificities'))
         }
 
         open 'http://localhost:8080/presentation/index.html#16.0'
-        expect functional_tests_specificity_list has 4.items
-        expect functional_tests_specificity_list has items(
+        assertThat functional_tests_specificity_list has 4.items
+        assertThat functional_tests_specificity_list has items(
                 'they are mainly UI tests',
                 'they are hard to setup and configure',
                 'the ROI is low',
@@ -192,7 +192,7 @@ class PresentationTest {
     public void presentation_end_with_a_teaser() {
         open 'http://localhost:8080/presentation/index.html#17.0'
 
-        expect {
+        assertThat {
             last_teaser.is(visible) and last_teaser.has(text('Testatoo'))
         }
     }

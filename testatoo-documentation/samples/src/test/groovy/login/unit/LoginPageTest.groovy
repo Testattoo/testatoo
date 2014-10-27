@@ -49,18 +49,18 @@ class LoginPageTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void page_contains_expected_elements() {
-        expect {
+    public void page_contains_assertThated_elements() {
+        assertThat {
             login_panel.is(visible) and login_panel.has(title('Login Form'))
         }
 
-        expect login_panel contains(
+        assertThat login_panel contains(
                 email_field,
                 password_field,
                 login_button
         )
 
-        expect {
+        assertThat {
             email_field.is(visible)
             email_field.has(placeholder('joe@blow.org'))
             email_field.has(label('Email'))
@@ -69,7 +69,7 @@ class LoginPageTest {
             password_field.has(label('Password'))
         }
 
-        expect {
+        assertThat {
             login_button.is(visible) and login_button.has(text('Login'))
         }
     }

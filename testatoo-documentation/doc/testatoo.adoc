@@ -37,9 +37,9 @@ Example of a test syntax :
 
 [source, groovy]
 -------------------------------------------------------------------------------
-    expect textField has label('myLabel')
-    expect textField has placeholder('My placeholder')
-    expect textField is empty
+    assertThat textField has label('myLabel')
+    assertThat textField has placeholder('My placeholder')
+    assertThat textField is empty
 -------------------------------------------------------------------------------
 
 == Why should I use Testatoo?
@@ -117,15 +117,15 @@ class BaseGoogleTest {
         Button searchButton = $('#gbqfb') as Button
         ListView resultList = $('#rso') as ListView
 
-        expect resultList is missing
-        expect searchField is visible
+        assertThat resultList is missing
+        assertThat searchField is visible
 
         on searchField enter 'Testatoo'
         clickOn searchButton
 
         waitUntil {resultList.is visible}
 
-        expect resultList.items[0] has value.containing('Testatoo')
+        assertThat resultList.items[0] has value.containing('Testatoo')
     }
 
 }
@@ -167,37 +167,37 @@ As a SPECIFIER, I want to express my test (intention) BEFORE I code my UI. So, i
 a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
 -------------------------------------------------------------------------------
-expect the maleRadio is unchecked
+assert that the maleRadio is unchecked
 and it has label "Male"
 
-expect the femaleRadio is unchecked
+assert that the femaleRadio is unchecked
 and it has label "Female"
 
 check the maleRadio
-expect the maleRadio is checked
-expect the femaleRadio is unchecked
+assert that the maleRadio is checked
+assert that the femaleRadio is unchecked
 
 check the femaleRadio
-expect the femaleRadio checked
-expect the maleRadio is unchecked
+assert that the femaleRadio checked
+assert that the maleRadio is unchecked
 -------------------------------------------------------------------------------
 
 The Testatoo syntax to express this specification is :
 
 [source, groovy]
 -------------------------------------------------------------------------------
-expect {
+assertThat {
     maleRadio.is(unchecked) and maleRadio.has label('Male')
     femaleRadio.is(unchecked) and femaleRadio.has label('Female')
 }
 
 check maleRadio
-expect maleRadio is checked
-expect femaleRadio is unchecked
+assertThat maleRadio is checked
+assertThat femaleRadio is unchecked
 
 check femaleRadio
-expect femaleRadio is checked
-expect maleRadio is unchecked
+assertThat femaleRadio is checked
+assertThat maleRadio is unchecked
 -------------------------------------------------------------------------------
 
 Pretty close, isn't it? ;)

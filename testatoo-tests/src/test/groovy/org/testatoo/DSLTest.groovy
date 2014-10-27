@@ -44,7 +44,7 @@ class DSLTest {
     @Test
     public void test_chaining_assert() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        expect {
+        assertThat {
             checkBox.is enabled
             checkBox.is visible
 
@@ -56,16 +56,17 @@ class DSLTest {
     @Test
     public void test_AND() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        expect {
+        assertThat {
             checkBox.is(enabled) and checkBox.is(visible)
             checkBox.is(enabled) & checkBox.is(visible)
+
         }
     }
 
     @Test
     public void test_OR() {
         ListBox listBox = $('#cities') as ListBox
-        expect {
+        assertThat {
             listBox.has(8.items) or listBox.has(3.visibleItems)
             listBox.has(8.items) | listBox.has(3.visibleItems)
         }
@@ -76,15 +77,14 @@ class DSLTest {
         DropDown dropDown = $('#elements') as DropDown
 //        CheckBox checkBox = $('#checkbox') as CheckBox
 
-        expect {
+        assertThat {
             dropDown.items.are enabled
         }
 
-//        expect {
+//        assertThat {
 //            [dropDown, checkBox]*.are visible
 //        }
-//        expect([login_email, login_password, login_button].are(visible))
+//        assertThat([login_email, login_password, login_button].are(visible))
     }
-
 
 }

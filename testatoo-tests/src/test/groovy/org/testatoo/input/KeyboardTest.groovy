@@ -80,9 +80,9 @@ class KeyboardTest {
             '#span_y': 'y',
             '#span_z': 'z'
         ].each { k, v ->
-            expect $(k) is missing
+            assertThat $(k) is missing
             type v
-            expect $(k) is available
+            assertThat $(k) is available
         }
     }
 
@@ -100,9 +100,9 @@ class KeyboardTest {
             '#span_9': '9',
             '#span_0': '0'
         ].each { k, v ->
-            expect $(k) is missing
+            assertThat $(k) is missing
             type v
-            expect $(k) is available
+            assertThat $(k) is available
         }
     }
 
@@ -142,34 +142,34 @@ class KeyboardTest {
             '#span_right': RIGHT,
             '#span_down': DOWN
         ].each { k, v ->
-            expect $(k) is missing
+            assertThat $(k) is missing
             type v
-            expect $(k) is available
+            assertThat $(k) is available
         }
     }
 
     @Test
     public void test_key_modifier() {
-        expect $('#span_Ctrl_Alt_Shift_x') is missing
+        assertThat $('#span_Ctrl_Alt_Shift_x') is missing
         type(CTRL + ALT + SHIFT + 'x')
-        expect $('#span_Ctrl_Alt_Shift_x') is available
+        assertThat $('#span_Ctrl_Alt_Shift_x') is available
 
         TextField textField = $('#textfield') as TextField
 
-        expect textField has text('')
+        assertThat textField has text('')
         clickOn textField
         type(SHIFT + 'testatoo')
-        expect textField has text('TESTATOO')
+        assertThat textField has text('TESTATOO')
 
         reset textField
-        expect textField has text('')
+        assertThat textField has text('')
         type('~!@#$%^&*()_+')
-        expect textField has text('~!@#$%^&*()_+')
+        assertThat textField has text('~!@#$%^&*()_+')
 
         reset textField
-        expect textField has text('')
+        assertThat textField has text('')
         type(SHIFT + '`1234567890-=')
-        expect textField has text('~!@#$%^&*()_+')
+        assertThat textField has text('~!@#$%^&*()_+')
     }
 
 }
