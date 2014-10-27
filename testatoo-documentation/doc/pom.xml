@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.testatoo.doc</groupId>
         <artifactId>testatoo-documentation</artifactId>
-        <version>2.0.b1</version>
+        <version>2.0.b1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
