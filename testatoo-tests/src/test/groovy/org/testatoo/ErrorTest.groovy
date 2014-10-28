@@ -141,7 +141,7 @@ class ErrorTest {
             assertThat dropDown is hidden
             fail()
         } catch (AssertionError e) {
-            assert e.message == 'Component DropDown with id elements assertThated hidden but was visible'
+            assert e.message == 'Component DropDown with id elements expected hidden but was visible'
         }
     }
 
@@ -158,7 +158,6 @@ class ErrorTest {
     }
 
     // TODO tes cannot select already selected item
-
     @Test
     public void equals_to_matcher_on_list_items() {
         DropDown dropDown = $('#elements') as DropDown
@@ -166,14 +165,14 @@ class ErrorTest {
             assertThat dropDown has items.equalsTo('Val1')
             fail()
         } catch (AssertionError e) {
-            assert e.message == "assertThated Items '[Val1]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected Items '[Val1]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
         }
 
         try {
             assertThat dropDown has items.equalsTo(['Val1', 'Val2'])
             fail()
         } catch (AssertionError e) {
-            assert e.message == "assertThated Items '[Val1, Val2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected Items '[Val1, Val2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
         }
     }
 
@@ -183,14 +182,14 @@ class ErrorTest {
         try {
             assertThat dropDown.items[0] has value.equalsTo('Val_1')
         } catch (AssertionError e) {
-            assert e.message == "assertThated Value 'Val_1' but was 'Helium'"
+            assert e.message == "Expected Value 'Val_1' but was 'Helium'"
         }
 
         try {
             assertThat dropDown.items[0] has value.equalsTo('Val_1', 'val_2')
             fail()
         } catch (AssertionError e) {
-            assert e.message == "assertThated one of Value '[Val_1, val_2]' but was 'Helium'"
+            assert e.message == "Expected one of Value '[Val_1, val_2]' but was 'Helium'"
         }
     }
 
@@ -200,13 +199,13 @@ class ErrorTest {
         try {
             assertThat dropDown has items.containing('Val_1')
         } catch (AssertionError e) {
-            assert e.message == "assertThated Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
         }
 
         try {
             assertThat dropDown has items.containing('Val_1', 'Val_2')
         } catch (AssertionError e) {
-            assert e.message == "assertThated one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
         }
     }
 
@@ -216,7 +215,7 @@ class ErrorTest {
         try {
             assertThat dropDown is missing
         } catch (AssertionError e) {
-            assert e.message == 'Component DropDown with id elements assertThated missing but was available'
+            assert e.message == 'Component DropDown with id elements expected missing but was available'
         }
     }
 

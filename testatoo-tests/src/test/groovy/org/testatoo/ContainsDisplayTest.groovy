@@ -71,7 +71,7 @@ class ContainsDisplayTest {
                 reset_button
             )
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contains assertThated component(s): [Button:$submit_button.id, Button:$reset_button.id]"
+            assert e.message == "Component Panel:panel does not contains expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
         }
     }
 
@@ -91,7 +91,7 @@ class ContainsDisplayTest {
                 invisible_button
             )
         } catch (AssertionError e) {
-            assert e.message == "Component Button with id invisible_button assertThated visible but was hidden"
+            assert e.message == "Component Button with id invisible_button expected visible but was hidden"
         }
 
         EmailField email_field = $('[type=email]') as EmailField
@@ -100,7 +100,7 @@ class ContainsDisplayTest {
                 email_field
             )
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contains assertThated component(s): [EmailField:$email_field.id]"
+            assert e.message == "Component Panel:panel does not contains expected component(s): [EmailField:$email_field.id]"
         }
     }
 

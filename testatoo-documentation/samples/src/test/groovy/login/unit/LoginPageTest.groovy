@@ -49,7 +49,7 @@ class LoginPageTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void page_contains_assertThated_elements() {
+    public void page_contains_expected_elements() {
         assertThat {
             login_panel.is(visible) and login_panel.has(title('Login Form'))
         }
