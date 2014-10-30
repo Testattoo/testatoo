@@ -55,6 +55,18 @@ class ComponentsTest {
         assertThat button is enabled
         assertThat button is visible
 
+        assertThat(button).is(enabled)
+
+        button.should { be enabled }
+        // Synthax qu'il serait bien d'avoir mais pas obligatoire
+//        button.should be enabled
+
+        button.should {
+            be enabled
+            have text('Button')
+            be visible and have(text('Button'))
+        }
+
         assertThat button has text('Button')
 
         // input type=submit

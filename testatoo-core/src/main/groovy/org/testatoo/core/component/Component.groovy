@@ -53,7 +53,11 @@ class Component {
 
     Block is(State matcher) { block 'is', matcher }
 
+    Block be(State matcher) { block 'be', matcher }
+
     Block has(PropertyMatcher matcher) { block 'has', matcher }
+
+    Block have(PropertyMatcher matcher) { block 'have', matcher }
 
     Block contains(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
@@ -74,6 +78,32 @@ class Component {
             }
         }
     }
+
+    // ######################################################
+
+    public Assertion should(Block block) {
+        new Assertion(this)
+    }
+
+    void should(Closure c) {
+        c.delegate = this
+        c(this)
+        Blocks.run(Blocks.compose(Blocks.pending()))
+    }
+
+//    static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
+//        c.delegate = component
+//        c(component)
+//        Blocks.run(Blocks.compose(Blocks.pending()))
+//    }
+
+//    static void assertThat(Closure c) {
+//        c()
+//        Blocks.run(Blocks.compose(Blocks.pending()))
+//    }
+
+
+    // ######################################################
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 

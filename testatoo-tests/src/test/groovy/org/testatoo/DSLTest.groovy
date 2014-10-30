@@ -26,6 +26,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.label
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.text
 import static org.testatoo.core.state.States.*
 
 /**
@@ -61,6 +63,13 @@ class DSLTest {
             checkBox.is(enabled) & checkBox.is(visible)
 
         }
+
+        // A decommenter et voir pourquoi le & ne marche pas
+        checkBox.should {
+            be enabled and be(visible)
+//            be enabled & be(visible)
+//            be enabled & be visible
+        }
     }
 
     @Test
@@ -69,6 +78,12 @@ class DSLTest {
         assertThat {
             listBox.has(8.items) or listBox.has(3.visibleItems)
             listBox.has(8.items) | listBox.has(3.visibleItems)
+        }
+
+        listBox.should {
+            // A decommenter et voir pourquoi le | ne marche pas
+            have 8.items or have (3.visibleItems)
+//            have 8.items | have(3.visibleItems)
         }
     }
 
