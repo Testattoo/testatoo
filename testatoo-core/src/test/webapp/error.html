@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2013 Ovea (dev@ovea.com)
+    Copyright (C) 2014 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Wait</a>
+        <a class="navbar-brand" href="#">Testatoo Errors</a>
     </div>
 </nav>
 
@@ -41,29 +41,35 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
-        <button type="button" id="add-message" class="btn btn-primary">Add message</button>
-        <div id="messages"></div>
+        <form id="form">
+            <div class="form-group">
+                <label>Email address
+                    <input id="email" type="email" class="form-control" placeholder="Enter email">
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Password
+                    <input type="password" class="form-control" placeholder="Password">
+                </label>
+            </div>
+        </form>
+
+        <hr>
+
+        <label class="control-label" for="elements">Elements list</label>
+        <div class="controls">
+            <select id="elements">
+                <option label="H" value="1" disabled>Helium</option>
+                <option label="B" value="5">Boron</option>
+                <option label="Pol" value="84">Polonium</option>
+                <option label="Ca" value="20">Calcium</option>
+                <option label="Ra" value="88">Radium</option>
+            </select>
+        </div>
 
     </div>
     <div class="col-md-2"></div>
 </div>
-
-<script>
-    (function ($) {
-        $(function () {
-            $('#add-message').on('click', function () {
-                $('#messages').empty();
-                setTimeout(function () {
-                    $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
-                    setTimeout(function () {
-                        $('#add-message').prop('disabled', false);
-                    }, 5000);
-                }, 2000);
-                $('#add-message').prop('disabled', true);
-            });
-        });
-    }(jQuery));
-</script>
 
 </body>
 </html>

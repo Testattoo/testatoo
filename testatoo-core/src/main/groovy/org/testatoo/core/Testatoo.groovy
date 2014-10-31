@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,24 +38,24 @@ class Testatoo {
 
     static void open(String uri) { evaluator.open(uri) }
 
-    static Assertion assertThat(Component c) {
-        new Assertion(c)
-    }
-
-    static <T extends Component> Assertions<T> assertThat(Components<T> cc) {
-        new Assertions<T>(cc)
-    }
-
-    static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
-        c.delegate = component
-        c(component)
-        Blocks.run(Blocks.compose(Blocks.pending()))
-    }
-
-    static void assertThat(Closure c) {
-        c()
-        Blocks.run(Blocks.compose(Blocks.pending()))
-    }
+//    static Assertion assertThat(Component c) {
+//        new Assertion(c)
+//    }
+//
+//    static <T extends Component> Assertions<T> assertThat(Components<T> cc) {
+//        new Assertions<T>(cc)
+//    }
+//
+//    static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
+//        c.delegate = component
+//        c(component)
+//        Blocks.run(Blocks.compose(Blocks.pending()))
+//    }
+//
+//    static void assertThat(Closure c) {
+//        c()
+//        Blocks.run(Blocks.compose(Blocks.pending()))
+//    }
 
     static Component check(Component c) {
         if (!c.getState(new Checked()))

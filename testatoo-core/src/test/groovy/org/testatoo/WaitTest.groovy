@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,38 +35,35 @@ class WaitTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/wait.html'
     }
-    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void test_wait() {
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
-        assertThat button, { Button c ->
-            c.is(enabled) and c.is(visible)
+        button.should {
+            be enabled and be(visible)
         }
 
-        assertThat message is missing
+        message.should { be missing }
 
         clickOn button
-        assertThat button is(disabled)
+        button.should { be disabled }
 
         waitUntil 10.seconds, {
-            button.is(enabled)
+            button.be(enabled)
         }
 
         clickOn button
         waitUntil {
-            button.is(enabled) or message.is(visible)
+            button.be(enabled) or message.be(visible)
         }
-
-        // TODO David
-//        waitUntil button is enabled
-//        waitFor 10.seconds that button.is(enabled)
-//        waitFor 10.seconds that button is enabled
     }
 }
 

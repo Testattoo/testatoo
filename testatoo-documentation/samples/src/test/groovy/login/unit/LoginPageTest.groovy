@@ -28,6 +28,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.state.States.visible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -50,27 +51,32 @@ class LoginPageTest {
 
     @Test
     public void page_contains_expected_elements() {
-        assertThat {
-            login_panel.is(visible) and login_panel.has(title('Login Form'))
+        login_panel.should {
+            be visible and have(title('Login Form'))
         }
 
-        assertThat login_panel contains(
+
+        login_panel.should {
+            contains(
                 email_field,
                 password_field,
                 login_button
-        )
-
-        assertThat {
-            email_field.is(visible)
-            email_field.has(placeholder('joe@blow.org'))
-            email_field.has(label('Email'))
-
-            password_field.is(visible)
-            password_field.has(label('Password'))
+            )
         }
 
-        assertThat {
-            login_button.is(visible) and login_button.has(text('Login'))
+        email_field.should {
+            be visible
+            have placeholder('joe@blow.org')
+            have label('Email')
+        }
+
+        password_field.should {
+            be visible
+            have label('Password')
+        }
+
+        login_button.should {
+            be visible and have(text('Login'))
         }
     }
 

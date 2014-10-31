@@ -47,31 +47,31 @@ class AngularJSTest {
     public void test_navigation_menu() {
         NavigationMenu navigationMenu = $('#menu') as NavigationMenu
 
-        assertThat {
-            navigationMenu.is(visible)
-            navigationMenu.has(4.items)
+        navigationMenu.should {
+            be visible
+            have 4.items
         }
 
-        assertThat navigationMenu.items[0] has title('Home')
-        assertThat navigationMenu.items[1] has title('Projects')
-        assertThat navigationMenu.items[2] has title('Services')
-        assertThat navigationMenu.items[3] has title('Contact')
+        navigationMenu.items[0].should { have title('Home') }
+        navigationMenu.items[1].should { have title('Projects') }
+        navigationMenu.items[2].should { have title('Services') }
+        navigationMenu.items[3].should { have title('Contact') }
 
-        assertThat navigationMenu.items[0] is unSelected
-        assertThat navigationMenu.items[1] is unSelected
-        assertThat navigationMenu.items[2] is unSelected
-        assertThat navigationMenu.items[3] is unSelected
+        navigationMenu.items[0].should { be unSelected }
+        navigationMenu.items[1].should { be unSelected }
+        navigationMenu.items[2].should { be unSelected }
+        navigationMenu.items[3].should { be unSelected }
 
         clickOn(navigationMenu.items[0])
-        assertThat navigationMenu.items[0] is selected
-        assertThat navigationMenu.items[1] is unSelected
-        assertThat navigationMenu.items[2] is unSelected
-        assertThat navigationMenu.items[3] is unSelected
+        navigationMenu.items[0].should { be selected }
+        navigationMenu.items[1].should { be unSelected }
+        navigationMenu.items[2].should { be unSelected }
+        navigationMenu.items[3].should { be unSelected }
 
         clickOn(navigationMenu.items[1])
-        assertThat navigationMenu.items[0] is unSelected
-        assertThat navigationMenu.items[1] is selected
-        assertThat navigationMenu.items[2] is unSelected
-        assertThat navigationMenu.items[3] is unSelected
+        navigationMenu.items[0].should { be unSelected }
+        navigationMenu.items[1].should { be selected }
+        navigationMenu.items[2].should { be unSelected }
+        navigationMenu.items[3].should { be unSelected }
     }
 }

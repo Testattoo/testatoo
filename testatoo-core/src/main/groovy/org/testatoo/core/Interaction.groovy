@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ class Interaction {
             throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be selected")
         }
 
-        if (item.is(new UnSelected()))
+        if (item.be(new UnSelected()))
             item.evaluator.runScript("\$('#${item.id}').prop('selected', true).trigger('change');")
     }
 
@@ -55,7 +55,7 @@ class Interaction {
             throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be unselected")
         }
 
-        if (item.is(new Selected()))
+        if (item.be(new Selected()))
             c.evaluator.runScript("\$('#${item.id}').prop('selected', false).trigger('change');")
     }
 

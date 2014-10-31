@@ -51,21 +51,21 @@ class PolymerComponentsTest {
     public void test_tab_panel() {
         TabPanel tab_panel = $('#myTab') as TabPanel
 
-        assertThat tab_panel has 3.tabs
-        assertThat tab_panel.tabs[0] has title('Home')
-        assertThat tab_panel.tabs[1] has title('Profile')
-        assertThat tab_panel.tabs[2] has title('Options')
+        tab_panel.should { have 3.tabs }
+        tab_panel.tabs[0].should { have title('Home') }
+        tab_panel.tabs[1].should { have title('Profile') }
+        tab_panel.tabs[2].should { have title('Options') }
 
         clickOn tab_panel.tabs[1]
 
-        assertThat tab_panel.tabs[0] is unSelected
-        assertThat tab_panel.tabs[1] is selected
-        assertThat tab_panel.tabs[2] is unSelected
+        tab_panel.tabs[0].should { be unSelected }
+        tab_panel.tabs[1].should { be selected }
+        tab_panel.tabs[2].should { be unSelected }
 
         clickOn tab_panel.tabs[2]
 
-        assertThat tab_panel.tabs[0] is unSelected
-        assertThat tab_panel.tabs[1] is unSelected
-        assertThat tab_panel.tabs[2] is selected
+        tab_panel.tabs[0].should { be unSelected }
+        tab_panel.tabs[1].should { be unSelected }
+        tab_panel.tabs[2].should { be selected }
     }
 }

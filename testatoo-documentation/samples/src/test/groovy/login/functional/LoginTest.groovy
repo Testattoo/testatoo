@@ -80,16 +80,16 @@ class LoginTest {
 
         clickOn login_button
 
-        waitUntil { error_message.is(visible) }
+        waitUntil { error_message.be(visible) }
         user_is_not_logged()
     }
 
     private void user_is_logged() {
-        waitUntil { login_succes.is(visible) }
+        waitUntil { login_succes.be(visible) }
     }
 
     private void user_is_not_logged() {
-        assertThat login_succes is hidden
+        login_succes.should { be hidden }
     }
 
 }

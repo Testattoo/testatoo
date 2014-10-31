@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,7 @@ import org.testatoo.core.component.list.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.label
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
 /**
@@ -46,55 +44,42 @@ class DSLTest {
     @Test
     public void test_chaining_assert() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat {
-            checkBox.is enabled
-            checkBox.is visible
+        checkBox.should {
+            be enabled
+            be visible
 
-            checkBox.is unchecked
-            checkBox.has label('Check me out')
+            be unchecked
+            have label('Check me out')
+
         }
     }
 
     @Test
     public void test_AND() {
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assertThat {
-            checkBox.is(enabled) and checkBox.is(visible)
-            checkBox.is(enabled) & checkBox.is(visible)
-
-        }
-
-        // A decommenter et voir pourquoi le & ne marche pas
         checkBox.should {
             be enabled and be(visible)
-//            be enabled & be(visible)
-//            be enabled & be visible
         }
     }
 
     @Test
     public void test_OR() {
         ListBox listBox = $('#cities') as ListBox
-        assertThat {
-            listBox.has(8.items) or listBox.has(3.visibleItems)
-            listBox.has(8.items) | listBox.has(3.visibleItems)
-        }
-
         listBox.should {
-            // A decommenter et voir pourquoi le | ne marche pas
-            have 8.items or have (3.visibleItems)
-//            have 8.items | have(3.visibleItems)
+            have 8.items or have(3.visibleItems)
         }
     }
 
     @Test
+    @Ignore
     public void test_ARE() {
-        DropDown dropDown = $('#elements') as DropDown
+//        DropDown dropDown = $('#elements') as DropDown
 //        CheckBox checkBox = $('#checkbox') as CheckBox
 
-        assertThat {
-            dropDown.items.are enabled
-        }
+//        dropDown.items.are
+//        assertThat {
+//            dropDown.items.are enabled
+//        }
 
 //        assertThat {
 //            [dropDown, checkBox]*.are visible

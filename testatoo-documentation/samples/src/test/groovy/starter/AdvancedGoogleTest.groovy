@@ -27,6 +27,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.items
 import static org.testatoo.core.property.Properties.title
 import static org.testatoo.core.state.States.*
 import static starter.property.Properties.*
@@ -54,8 +55,8 @@ class AdvancedGoogleTest {
 
     @Test
     public void simple_test() {
-        assertThat resultList is missing
-        assertThat searchField is visible
+        resultList.should { be missing }
+        searchField.should { be visible }
 
         on searchField enter 'Testatoo'
         clickOn searchButton
@@ -63,10 +64,10 @@ class AdvancedGoogleTest {
         waitUntil { googleResultList.is visible }
 
         GoogleItem item = googleResultList.items[0];
-        assertThat {
-            item.has(title('Testatoo documentation'))
-            item.has(url.containing('www.testatoo.org'))
-            item.has(description.containing('Testatoo is the result of numerous real-world observations of developers'))
+        item.should {
+            have title('Testatoo documentation')
+            have url.containing('www.testatoo.org')
+            have description.containing('Testatoo is the result of numerous real-world observations of developers')
         }
     }
 }

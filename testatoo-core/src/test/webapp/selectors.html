@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2013 Ovea (dev@ovea.com)
+    Copyright (C) 2014 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Errors</a>
+        <a class="navbar-brand" href="#">Testatoo Selectors</a>
     </div>
 </nav>
 
@@ -41,31 +41,26 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
-        <form id="form">
-            <div class="form-group">
-                <label>Email address
-                    <input id="email" type="email" class="form-control" placeholder="Enter email">
-                </label>
-            </div>
-            <div class="form-group">
-                <label>Password
-                    <input type="password" class="form-control" placeholder="Password">
-                </label>
-            </div>
-        </form>
+        <h1>Button</h1>
+
+        <input type="button" id="button" class="btn btn-primary" value="Button"/>
+        <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
+        <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
+        <button type="submit" id="btn" class="btn btn-primary" value="value">My Button Text</button>
+
+        <hr/>
+
+        <h1>TextFields</h1>
+
+        <div class="controls">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+        </div>
 
         <hr>
 
-        <label class="control-label" for="elements">Elements list</label>
-        <div class="controls">
-            <select id="elements">
-                <option label="H" value="1" disabled>Helium</option>
-                <option label="B" value="5">Boron</option>
-                <option label="Pol" value="84">Polonium</option>
-                <option label="Ca" value="20">Calcium</option>
-                <option label="Ra" value="88">Radium</option>
-            </select>
-        </div>
+        <div id="custom_component" data-role="custom_comp"></div>
 
     </div>
     <div class="col-md-2"></div>

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,10 +47,12 @@ class ContainsDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        assertThat panel contains(
-            visible_button,
-            invisible_button
-        )
+        panel.should {
+            contains(
+                visible_button,
+                invisible_button
+            )
+        }
 
         Form form = $('#form') as Form
         EmailField email_field = $('[type=email]') as EmailField
@@ -58,18 +60,22 @@ class ContainsDisplayTest {
         Button submit_button = $('[type=submit]') as Button
         Button reset_button = $('[type=reset]') as Button
 
-        assertThat form contains(
-            email_field,
-            password_field,
-            submit_button,
-            reset_button
-        )
-
-        try {
-            assertThat panel contains(
+        form.should {
+            contains(
+                email_field,
+                password_field,
                 submit_button,
                 reset_button
             )
+        }
+
+        try {
+            panel.should {
+                contains(
+                    submit_button,
+                    reset_button
+                )
+            }
         } catch (AssertionError e) {
             assert e.message == "Component Panel:panel does not contains expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
         }
@@ -81,24 +87,30 @@ class ContainsDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        assertThat panel displays(
-            visible_button
-        )
+        panel.should {
+            displays(
+                visible_button
+            )
+        }
 
         try {
-            assertThat panel displays(
-                visible_button,
-                invisible_button
-            )
+            panel.should {
+                displays(
+                    visible_button,
+                    invisible_button
+                )
+            }
         } catch (AssertionError e) {
             assert e.message == "Component Button with id invisible_button expected visible but was hidden"
         }
 
         EmailField email_field = $('[type=email]') as EmailField
         try {
-            assertThat panel displays(
-                email_field
-            )
+            panel.should {
+                displays(
+                    email_field
+                )
+            }
         } catch (AssertionError e) {
             assert e.message == "Component Panel:panel does not contains expected component(s): [EmailField:$email_field.id]"
         }

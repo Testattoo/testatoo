@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
@@ -43,7 +44,7 @@ class KeyboardTest {
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { Testatoo.evaluator.close() }
 
     @Before
     public void before() {
@@ -80,9 +81,9 @@ class KeyboardTest {
             '#span_y': 'y',
             '#span_z': 'z'
         ].each { k, v ->
-            assertThat $(k) is missing
+            $(k).should { be States.missing }
             type v
-            assertThat $(k) is available
+            $(k).should { be States.available }
         }
     }
 
@@ -100,9 +101,9 @@ class KeyboardTest {
             '#span_9': '9',
             '#span_0': '0'
         ].each { k, v ->
-            assertThat $(k) is missing
+            $(k).should { be States.missing }
             type v
-            assertThat $(k) is available
+            $(k).should { be States.available }
         }
     }
 
@@ -142,34 +143,34 @@ class KeyboardTest {
             '#span_right': RIGHT,
             '#span_down': DOWN
         ].each { k, v ->
-            assertThat $(k) is missing
+            $(k).should { be States.missing }
             type v
-            assertThat $(k) is available
+            $(k).should { be States.available }
         }
     }
 
     @Test
     public void test_key_modifier() {
-        assertThat $('#span_Ctrl_Alt_Shift_x') is missing
+        $('#span_Ctrl_Alt_Shift_x').should { be States.missing }
         type(CTRL + ALT + SHIFT + 'x')
-        assertThat $('#span_Ctrl_Alt_Shift_x') is available
+        $('#span_Ctrl_Alt_Shift_x').should { be States.available }
 
         TextField textField = $('#textfield') as TextField
 
-        assertThat textField has text('')
+        textField.should { have text('') }
         clickOn textField
         type(SHIFT + 'testatoo')
-        assertThat textField has text('TESTATOO')
+        textField.should { have text('TESTATOO') }
 
         reset textField
-        assertThat textField has text('')
+        textField.should { have text('') }
         type('~!@#$%^&*()_+')
-        assertThat textField has text('~!@#$%^&*()_+')
+        textField.should { have text('~!@#$%^&*()_+') }
 
         reset textField
-        assertThat textField has text('')
+        textField.should { have text('') }
         type(SHIFT + '`1234567890-=')
-        assertThat textField has text('~!@#$%^&*()_+')
+        textField.should { have text('~!@#$%^&*()_+') }
     }
 
 }

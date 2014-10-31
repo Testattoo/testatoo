@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2013 Ovea (dev@ovea.com)
+    Copyright (C) 2014 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Selectors</a>
+        <a class="navbar-brand" href="#">Testatoo Wait</a>
     </div>
 </nav>
 
@@ -41,30 +41,29 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
-        <h1>Button</h1>
-
-        <input type="button" id="button" class="btn btn-primary" value="Button"/>
-        <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
-        <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
-        <button type="submit" id="btn" class="btn btn-primary" value="value">My Button Text</button>
-
-        <hr/>
-
-        <h1>TextFields</h1>
-
-        <div class="controls">
-            <input type="text">
-            <input type="text">
-            <input type="text">
-        </div>
-
-        <hr>
-
-        <div id="custom_component" data-role="custom_comp"></div>
+        <button type="button" id="add-message" class="btn btn-primary">Add message</button>
+        <div id="messages"></div>
 
     </div>
     <div class="col-md-2"></div>
 </div>
+
+<script>
+    (function ($) {
+        $(function () {
+            $('#add-message').on('click', function () {
+                $('#messages').empty();
+                setTimeout(function () {
+                    $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
+                    setTimeout(function () {
+                        $('#add-message').prop('disabled', false);
+                    }, 5000);
+                }, 2000);
+                $('#add-message').prop('disabled', true);
+            });
+        });
+    }(jQuery));
+</script>
 
 </body>
 </html>

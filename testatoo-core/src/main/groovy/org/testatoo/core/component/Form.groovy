@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Ovea (dev@ovea.com)
+ * Copyright (C) 2014 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ class Form extends Component {
 
     void submit() {
         Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button
-        if (submit_button.is(new Available()))
+        if (submit_button && submit_button.be(new Available()))
             evaluator.click(submit_button.id)
         else
             throw new ComponentException('Cannot submit form without submit button')
@@ -34,7 +34,7 @@ class Form extends Component {
 
     void reset() {
         Button reset_button = evaluator.getMetaInfo("\$('#${id}').find('[type=reset]:first')")[0] as Button
-        if (reset_button.is(new Available()))
+        if (reset_button && reset_button.be(new Available()))
             evaluator.click(reset_button.id)
         else
             throw new ComponentException('Cannot reset form without reset button')

@@ -36,12 +36,13 @@ class BootstrapComponentsTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         evaluator.registerScripts(this.getClass().getResourceAsStream('/bootstrap/custom.js').text)
         open 'http://localhost:8080/bootstrap/index.html'
     }
 
-    @AfterClass public static void tearDown() { evaluator.close() }
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void test_progress_bar() {
@@ -49,69 +50,69 @@ class BootstrapComponentsTest {
         Button plus = $('#plus') as Button
         Button minus = $('#minus') as Button
 
-        assertThat progress_bar has value('60%')
+        progress_bar.should { have value('60%') }
 
         clickOn plus
         clickOn plus
-        assertThat progress_bar has value('80%')
+        progress_bar.should { have value('80%') }
 
         clickOn minus
         clickOn minus
         clickOn minus
         clickOn minus
-        assertThat progress_bar has value('40%')
+        progress_bar.should { have value('40%') }
     }
 
     @Test
     public void test_tab_panel() {
         TabPanel tab_panel = $('#myTab') as TabPanel
 
-        assertThat tab_panel has 2.tabs
-        assertThat tab_panel.tabs[0] has title('Home')
-        assertThat tab_panel.tabs[1] has title('Profile')
+        tab_panel.should { have 2.tabs }
+        tab_panel.tabs[0].should { have title('Home') }
+        tab_panel.tabs[1].should { have title('Profile') }
 
-        assertThat tab_panel.tabs[0].panel is visible
-        assertThat tab_panel.tabs[1].panel is hidden
+        tab_panel.tabs[0].panel.should { be visible }
+        tab_panel.tabs[1].panel.should { be hidden }
 
         clickOn tab_panel.tabs[1]
 
-        waitUntil { tab_panel.tabs[0].panel.is(hidden) }
-        assertThat tab_panel.tabs[1].panel is visible
+        waitUntil { tab_panel.tabs[0].panel.be(hidden) }
+        tab_panel.tabs[1].panel.should { be visible }
 
-        assertThat tab_panel.tabs[0] is unSelected
-        assertThat tab_panel.tabs[1] is selected
+        tab_panel.tabs[0].should { be unSelected }
+        tab_panel.tabs[1].should { be selected }
 
         clickOn tab_panel.tabs[0]
 
-        assertThat tab_panel.tabs[0] is selected
-        assertThat tab_panel.tabs[1] is unSelected
+        tab_panel.tabs[0].should { be selected }
+        tab_panel.tabs[1].should { be unSelected }
     }
 
     @Test
     public void test_accordion() {
         Accordion accordion = $('#accordion') as Accordion
-        assertThat accordion has 3.items
+        accordion.should { have 3.items }
 
-        assertThat accordion.items[0] has title('Item 1')
-        assertThat accordion.items[1] has title('Item 2')
-        assertThat accordion.items[2] has title('Item 3')
+        accordion.items[0].should { have title('Item 1') }
+        accordion.items[1].should { have title('Item 2') }
+        accordion.items[2].should { have title('Item 3') }
 
-        assertThat accordion.items[0].panel is visible
-        assertThat accordion.items[1].panel is hidden
-        assertThat accordion.items[2].panel is hidden
+        accordion.items[0].panel.should { be visible }
+        accordion.items[1].panel.should { be hidden }
+        accordion.items[2].panel.should { be hidden }
 
-        assertThat accordion.items[0] is selected
-        assertThat accordion.items[1] is unSelected
-        assertThat accordion.items[2] is unSelected
+        accordion.items[0].should { be selected }
+        accordion.items[1].should { be unSelected }
+        accordion.items[2].should { be unSelected }
 
         clickOn accordion.items[1]
-        waitUntil { accordion.items[1].is(selected) }
-        assertThat accordion.items[0] is unSelected
-        assertThat accordion.items[2] is unSelected
+        waitUntil { accordion.items[1].be(selected) }
+        accordion.items[0].should { be unSelected }
+        accordion.items[2].should { be unSelected }
 
         clickOn accordion.items[2]
         waitUntil { accordion.items[2].is(selected) }
-        assertThat accordion.items[0] is unSelected
-        assertThat accordion.items[1] is unSelected
+        accordion.items[0].should { be unSelected }
+        accordion.items[1].should { be unSelected }
     }
 }
