@@ -14,12 +14,10 @@ You need version **1.7** and more **(1.8 ...)** of the Java JDK installed
     java version "1.8.0_25"
     Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
     Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
-
     
 #### Maven
 
 Follow the instructions [here](http://maven.apache.org/download.cgi#Installation "Maven Installation Instructions")
-  
 
     $ mvn --version  
     Apache Maven 3.0.5
@@ -29,7 +27,6 @@ Follow the instructions [here](http://maven.apache.org/download.cgi#Installation
     Default locale: en_US, platform encoding: UTF-8
     OS name: "linux", version: "3.16.0-24-generic", arch: "amd64", family: "unix"
     
-
 ### Installation Steps
 
     $ cd /wherever
