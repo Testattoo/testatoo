@@ -27,7 +27,6 @@ import org.testatoo.core.component.*
 import org.testatoo.core.component.list.DropDown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
@@ -71,7 +70,7 @@ class MouseTest {
         dropDown.should { have selectedItems('Helium') }
 
         clickOn dropDown.items[2]
-        dropDown.should { have  selectedItems('Polonium') }
+        dropDown.should { have selectedItems('Polonium') }
     }
 
     @Test
