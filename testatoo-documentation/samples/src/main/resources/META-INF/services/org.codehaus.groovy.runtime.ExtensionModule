@@ -1,4 +1,0 @@
-moduleName=testatoo-sample-extension
-moduleVersion=1
-extensionClasses=GroovyExtensions
-staticExtensionClasses=
