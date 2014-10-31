@@ -140,13 +140,13 @@ class MouseTest {
         CTRL.rightClick $('#_Ctrl_mouseright') as Panel
         [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Panel
 
-        $('#span_Alt_Shift_mouseleft').should { be States.missing }
+        $('#span_Alt_Shift_mouseleft').should { be missing }
         (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Panel
-        $('#span_Alt_Shift_mouseleft').should { be States.available }
+        $('#span_Alt_Shift_mouseleft').should { be available }
 
-        $('#span_Crtl_Shift_mouseleft').should { be States.missing }
+        $('#span_Crtl_Shift_mouseleft').should { be missing }
         [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Panel
-        $('#span_Crtl_Shift_mouseleft').should { be States.missing }
+        $('#span_Crtl_Shift_mouseleft').should { be missing }
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
