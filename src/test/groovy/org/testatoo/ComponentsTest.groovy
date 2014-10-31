@@ -198,7 +198,7 @@ class ComponentsTest {
         radio.should { be visible }
         radio.should { be checked }
 
-        radio.should { have label('Radio label') }
+        radio.should { have label('Radio label checked') }
     }
 
     @Test
