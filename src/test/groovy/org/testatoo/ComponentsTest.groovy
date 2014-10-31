@@ -92,13 +92,19 @@ class ComponentsTest {
         textField.should { be optional }
 
         textField.should { have label('Text') }
+        textField.should { have label.containing('xt') }
+
         textField.should { have placeholder('Text') }
+        textField.should { have placeholder.containing('xt') }
         textField.should { be empty }
 
         on textField enter 'some value'
 
         textField.should { have text('some value') }
+        textField.should { have text.containing('value') }
+
         textField.should { have value('some value') }
+        textField.should { have value.containing('value') }
         textField.should { be filled }
 
         reset textField
@@ -135,15 +141,13 @@ class ComponentsTest {
 
         NumberField numberField = $('#number_field') as NumberField
         numberField.should { be enabled }
-        // TODO David and Mathieu
-//        numberField.should { have minimum(0) }
+        numberField.should { have minimun(0) }
         numberField.should { have maximum(64) }
         numberField.should { have step(8) }
 
         RangeField rangeField = $('#range_field') as RangeField
         rangeField.should { be enabled }
-        // TODO David and Mathieu
-//        rangeField.should { have minimum(0)}
+        rangeField.should { have minimun(0)}
         rangeField.should { have maximum(50) }
         rangeField.should { have step(5) }
 
@@ -160,8 +164,7 @@ class ComponentsTest {
 
         DateField dateField = $('#date_field') as DateField
         dateField.should { be enabled }
-        // TODO David and Mathieu
-//        dateField.should { have minimum('2011-08-13')}
+        dateField.should { have minimun('2011-08-13') }
         dateField.should { have maximum('2012-06-25') }
 
         TimeField timeField = $('#time_field') as TimeField
@@ -283,6 +286,7 @@ class ComponentsTest {
 
         dropDown.should { have 3.groupItems }
         dropDown.should { have groupItems('linux', 'win32', 'BSD') }
+        dropDown.should { have groupItems.containing('linux') }
 
         GroupItem group = dropDown.groupItems[0]
         group.should { have label('linux') }
@@ -399,6 +403,7 @@ class ComponentsTest {
 
         // Can submit a form
         message.should { have title('The form was submitted 0 time(s)') }
+        message.should { have title.containing('The form was submitted') }
 
         clickOn submit_button
         message.should { have title('The form was submitted 1 time(s)') }
@@ -526,6 +531,17 @@ class ComponentsTest {
 
         custom_panel.should { have size(2) }
         custom_panel.should { have text('TEXT') }
+    }
+
+    @Test
+    public void test_component_equality() {
+        Radio radio_1 = $('#radio') as Radio
+        // The selector select the same component as radio_1
+        Radio radio_2 = $('[type=radio]:checked') as Radio
+        Radio radio_3  = $('#otherRadio') as Radio
+
+        assert radio_1 == radio_2
+        assert radio_1 != radio_3
     }
 
     class Message extends Panel {
