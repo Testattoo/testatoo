@@ -48,28 +48,5 @@ If you want just start the jetty web server to execute the tests manually you ca
 testatoo-tests and testatoo-documentation/samples the command :
 
     $ mvn jetty:run -Pdev
-
-### IDE Integration
-
-For a better integration on your IDE you can add at the root level of the project
-this pom aggregator
-
-    <project>
-  
-        <modelVersion>4.0.0</modelVersion>
     
-        <groupId>com.ovea.testatoo</groupId>
-        <artifactId>testatoo</artifactId>
-        <version>testatoo-1</version>
-        <packaging>pom</packaging>
-        <name>Testatoo</name>
     
-        <modules>
-            <module>testatoo-pom</module>
-            <module>testatoo-core</module>
-            <module>testatoo-tests</module>
-            <module>testatoo-documentation</module>
-            <module>testatoo-site</module>
-        </modules>
-    
-    </project>
