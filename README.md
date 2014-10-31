@@ -8,10 +8,13 @@
 
 #### Java 1.7
 
-You need version **1.7** of the Java JDK installed
+You need version **1.7** and more **(1.8 ...)** of the Java JDK installed
 
     $ java -version
-    java version "1.7.0_45"
+    java version "1.8.0_25"
+    Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+
     
 #### Maven
 
@@ -19,23 +22,13 @@ Follow the instructions [here](http://maven.apache.org/download.cgi#Installation
   
 
     $ mvn --version  
-    Apache Maven 3.0.3 (r1075438; 2011-02-28 12:31:09-0500)
+    Apache Maven 3.0.5
     Maven home: /usr/share/maven
-    Java version: 1.7.0_45, vendor: Oracle Corporation
-    Java home: /Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre
+    Java version: 1.8.0_25, vendor: Oracle Corporation
+    Java home: /usr/lib/jvm/java-8-oracle/jre
     Default locale: en_US, platform encoding: UTF-8
-    OS name: "mac os x", version: "10.7.5", arch: "x86_64", family: "mac"
-
-
-#### Groovy
-
-Follow the instructions [here](http://gvmtool.net/ "Groovy Installation Instructions")
-
-    $ curl -s get.gvmtool.net | bash
-    $ source "$HOME/.gvm/bin/gvm-init.sh"
-    $ gvm install groovy
-    $ groovy -version
-    Groovy Version: 2.2.1 JVM: 1.7.0_45 Vendor: Oracle Corporation OS: Mac OS X
+    OS name: "linux", version: "3.16.0-24-generic", arch: "amd64", family: "unix"
+    
 
 ### Installation Steps
 
