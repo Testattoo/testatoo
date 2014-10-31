@@ -15,17 +15,20 @@
  */
 package org.testatoo
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.CheckBox
-import org.testatoo.core.component.list.*
+import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.property.Properties.label
 import static org.testatoo.core.state.States.*
 
 /**
@@ -36,10 +39,12 @@ class DSLTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
-    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void test_chaining_assert() {
@@ -50,7 +55,6 @@ class DSLTest {
 
             be unchecked
             have label('Check me out')
-
         }
     }
 

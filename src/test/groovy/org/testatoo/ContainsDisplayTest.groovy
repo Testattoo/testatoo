@@ -15,13 +15,18 @@
  */
 package org.testatoo
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.*
-import org.testatoo.core.component.input.*
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.Form
+import org.testatoo.core.component.Panel
+import org.testatoo.core.component.input.EmailField
+import org.testatoo.core.component.input.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*

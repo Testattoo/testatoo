@@ -15,18 +15,25 @@
  */
 package org.testatoo
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.*
-import org.testatoo.core.component.*
+import org.testatoo.core.Components
+import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -54,23 +61,31 @@ class SelectorsTest {
     @Test
     @Ignore
     public void $$_as_a_multi_selector() {
-//        Components<Button> buttons = $$('.btn') of Button
-//        assert buttons.size() == 4
-//
-//        Components<TextField> textFields = $$('[type="text"]') of TextField
-//        assert textFields.size() == 3
+        Components<Button> buttons = $$('.btn') of Button
+        assert buttons.size() == 4
 
+        Components<TextField> textFields = $$('[type="text"]') of TextField
+        assert textFields.size() == 3
+
+//        textFields.should {
+//            be enabled
+//            be visible
+//            be empty
+//        }
 //        assertThat textFields are enabled
 //        assertThat textFields are visible
 //        assertThat textFields are empty
 
-//        on textFields enter 'TESTATOO!'
+        on textFields enter 'TESTATOO!'
 
+//        textFields.should { be filled }
 //        assertThat textFields are filled
 //
-//        textFields.each {
-//            assertThat it has text('TESTATOO!')
-//        }
+         // TODO Math best syntax
+//        all textFields have text('TESTATOO')
+        textFields.each {
+            it.should { have text('TESTATOO!') }
+        }
     }
 
     @Test

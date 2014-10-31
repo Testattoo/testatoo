@@ -15,18 +15,28 @@
  */
 package org.testatoo
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
-import org.testatoo.core.component.datagrid.*
+import org.testatoo.core.component.datagrid.Cell
+import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.component.datagrid.DataGrid
+import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.component.input.*
-import org.testatoo.core.component.list.*
+import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.GroupItem
+import org.testatoo.core.component.list.ListBox
+import org.testatoo.core.component.list.ListView
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.*
-import org.testatoo.core.state.*
+import org.testatoo.core.property.Size
+import org.testatoo.core.property.Text
+import org.testatoo.core.property.Title
+import org.testatoo.core.state.Selected
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*

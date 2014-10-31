@@ -15,7 +15,9 @@
  */
 package org.testatoo.input
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -45,7 +47,7 @@ class MouseTest {
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void click() {
@@ -55,14 +57,14 @@ class MouseTest {
         button.should { have text('Button Clicked!') }
 
         CheckBox checkBox = $('#checkbox') as CheckBox
-        checkBox.should { be States.unchecked }
+        checkBox.should { be unchecked }
         clickOn checkBox
-        checkBox.should { be States.checked }
+        checkBox.should { be checked }
 
         Radio radio = $('#radio') as Radio
-        radio.should { be States.unchecked }
+        radio.should { be unchecked }
         clickOn radio
-        radio.should { be States.checked }
+        radio.should { be checked }
 
         DropDown dropDown = $('#elements') as DropDown
         dropDown.should { have selectedItems('Helium') }
@@ -110,7 +112,6 @@ class MouseTest {
         button.should { have text('Button Mouse Out!') }
     }
 
-    @Ignore
     @Test
     public void dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
@@ -119,19 +120,19 @@ class MouseTest {
         Panel dragPanel = $('#draggable') as Panel
 
         drag dragPanel on dropPanel
-        waitUntil { dropPanel.has(title('Dropped!')) }
+        waitUntil { dropPanel.have title('Dropped!') }
     }
 
     @Test
     public void test_mouse_with_key_modifier() {
-        $('#span_Ctrl_mouseleft').should { be States.missing }
-        $('#span_Shift_mouseleft').should { be States.missing }
+        $('#span_Ctrl_mouseleft').should { be missing }
+        $('#span_Shift_mouseleft').should { be missing }
 
         CTRL.click $('#_Ctrl_mouseleft') as Panel
         SHIFT.click $('#_Shift_mouseleft') as Panel
 
-        $('#span_Ctrl_mouseleft').should { be States.available }
-        $('#span_Shift_mouseleft').should { be States.available }
+        $('#span_Ctrl_mouseleft').should { be available }
+        $('#span_Shift_mouseleft').should { be available }
 
         // Not testable cause Rightclick Handled by the browser
         CTRL.rightClick $('#_Ctrl_mouseright') as Panel

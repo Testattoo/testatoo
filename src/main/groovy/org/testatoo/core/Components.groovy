@@ -17,6 +17,7 @@ package org.testatoo.core
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.state.State
 
 /**
  * date 2014-05-15

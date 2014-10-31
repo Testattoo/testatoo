@@ -15,20 +15,26 @@
  */
 package org.testatoo
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.*
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.Form
 import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.component.list.*
+import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.Item
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.Key.ALT
+import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -92,12 +98,11 @@ class ErrorTest {
     }
 
     @Test
-    @Ignore
     public void exception_is_thrown_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button;
         try {
             waitUntil 2.seconds, {
-                button.is(available)
+                button.be(available)
             }
             fail()
         } catch (RuntimeException e) {
