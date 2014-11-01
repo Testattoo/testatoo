@@ -17,7 +17,6 @@ package org.testatoo.core
 
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.state.State
 
 /**
  * date 2014-05-15
@@ -29,6 +28,12 @@ class Components<T extends Component> implements Collection<T> {
     private final IdProvider _idProvider
     private final Class<T> _type;
     private List<T> _components
+
+    public void should(Closure c) {
+        for (T component : _components) {
+            component.should c
+        }
+    }
 
     private Components(Class<T> type, Evaluator evaluator, IdProvider idProvider) {
         this._evaluator = evaluator
@@ -50,7 +55,6 @@ class Components<T extends Component> implements Collection<T> {
     static Components<? extends Component> $$(String jQuery, long timeout = 2000) { new Components<>(Component, Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, false)) }
 
     // DELEGATES
-
     @Override
     int size() { components.size() }
 
@@ -72,7 +76,6 @@ class Components<T extends Component> implements Collection<T> {
     boolean containsAll(Collection<?> c) { components.containsAll(c) }
 
     // UNSUPPORTED
-
     @Override
     boolean add(Component component) {
         throw new UnsupportedOperationException()
