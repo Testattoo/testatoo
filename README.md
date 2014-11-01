@@ -47,3 +47,9 @@ testatoo-tests and testatoo-documentation/samples the command :
     $ mvn jetty:run -Pdev
     
     
+### Documentation and Samples
+
+The documentation is available [here](https://github.com/Ovea/testatoo-documentation)
+Samples are available [here](https://github.com/Ovea/testatoo-sample)
+    
+    
