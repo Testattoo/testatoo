@@ -6,15 +6,17 @@ package experimental
  */
 class Term {
 
-    static Term enabled
+    static Term enabled = new Term()
 
-    static Term should
+    static Term should = new Term()
 
-    static Term label
+    static Term label = new Term()
 
     static Term be(Term term) { term }
     static Term is(Term term) { term }
+
     static Term have(Term term) { term }
+
     static Term containing(String s) { new Term() }
 
 }
