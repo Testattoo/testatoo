@@ -35,7 +35,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class ContainsDisplayTest {
+class ContainAndDisplayTest {
 
     @BeforeClass
     public static void setup() {
@@ -53,7 +53,7 @@ class ContainsDisplayTest {
         Button invisible_button = $('#invisible_button') as Button
 
         panel.should {
-            contains(
+            contain(
                     visible_button,
                     invisible_button
             )
@@ -66,7 +66,7 @@ class ContainsDisplayTest {
         Button reset_button = $('[type=reset]') as Button
 
         form.should {
-            contains(
+            contain(
                     email_field,
                     password_field,
                     submit_button,
@@ -76,13 +76,13 @@ class ContainsDisplayTest {
 
         try {
             panel.should {
-                contains(
+                contain(
                         submit_button,
                         reset_button
                 )
             }
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contains expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
+            assert e.message == "Component Panel:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
         }
     }
 
@@ -93,14 +93,14 @@ class ContainsDisplayTest {
         Button invisible_button = $('#invisible_button') as Button
 
         panel.should {
-            displays(
+            display(
                     visible_button
             )
         }
 
         try {
             panel.should {
-                displays(
+                display(
                         visible_button,
                         invisible_button
                 )
@@ -112,12 +112,12 @@ class ContainsDisplayTest {
         EmailField email_field = $('[type=email]') as EmailField
         try {
             panel.should {
-                displays(
+                display(
                         email_field
                 )
             }
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contains expected component(s): [EmailField:$email_field.id]"
+            assert e.message == "Component Panel:panel does not contain expected component(s): [EmailField:$email_field.id]"
         }
     }
 

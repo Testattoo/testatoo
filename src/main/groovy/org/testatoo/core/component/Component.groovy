@@ -55,20 +55,20 @@ class Component {
 
     Block have(PropertyMatcher matcher) { block 'have', matcher }
 
-    Block contains(Component... components) {
+    Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
             List ret = evaluator.getJson("testatoo.ext.contains('${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
             if(ret) {
-                throw new AssertionError("Component ${this} does not contains expected component(s): ${components.findAll { it.id in ret } }");
+                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
             }
         }
     }
 
-    Block displays(Component... components) {
-        Blocks.block "matching ${this} displays ${components}", {
+    Block display(Component... components) {
+        Blocks.block "matching ${this} display ${components}", {
             List ret = evaluator.getJson("testatoo.ext.contains('${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
             if(ret) {
-                throw new AssertionError("Component ${this} does not contains expected component(s): ${components.findAll { it.id in ret } }");
+                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
             } else {
                 components.findAll { !it.is(new Visible()) }
             }

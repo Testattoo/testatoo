@@ -47,11 +47,11 @@ class Assertion {
     }
 
     void contains(Component... components) {
-        assert component.contains(components)
+        assert component.contain(components)
     }
 
     void displays(Component... components) {
-        assert component.displays(components)
+        assert component.display(components)
     }
 
 }
