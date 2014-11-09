@@ -19,19 +19,22 @@ package experimental
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  * @date 2014-11-04
  */
-class Term {
+class Term extends Closure<Term> {
 
-    static Term enabled = new Term()
+    static Term enabled  = { it } as Term
+    static Term should = { it } as Term
+    static Term label = { it } as Term
+    static Term be = { it } as Term
+    static Term is = { it } as Term
+    static Term have = { it } as Term
+    static Term not = { it } as Term
+    static Term containing = { it } as Term
 
-    static Term should = new Term()
+    Term(Object owner, Object thisObject) {
+        super(owner, thisObject)
+    }
 
-    static Term label = new Term()
-
-    static Term be(Term term) { term }
-    static Term is(Term term) { term }
-
-    static Term have(Term term) { term }
-
-    static Term containing(String s) { new Term() }
-
+    Term(Object owner) {
+        super(owner)
+    }
 }

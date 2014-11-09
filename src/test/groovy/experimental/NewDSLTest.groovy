@@ -19,8 +19,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-import static Term.*
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -29,10 +27,11 @@ class NewDSLTest {
 
     @Test
     public void dsl() {
-        def button = { new Term() }
+        /*def button = { it } as Term
         button should be enabled
         button should have label containing 'dsd'
-
+        button should not have label containing 'dsd'
+        button should not be enabled*/
     }
 
 //
