@@ -114,7 +114,7 @@ class ErrorTest {
     public void exception_is_thrown_on_invalid_click_sequence() {
         Form form = $('#form') as Form
         try {
-            // TODO Math why intelliJ waring
+            // TODO why intelliJ waring
             [CTRL, 'test', ALT].click form
             fail()
         } catch (IllegalArgumentException e) {
@@ -152,7 +152,7 @@ class ErrorTest {
         }
     }
 
-    // TODO tes cannot select already selected item
+    // TODO test that we cannot select already selected item
     @Test
     public void equals_to_matcher_on_list_items() {
         DropDown dropDown = $('#elements') as DropDown

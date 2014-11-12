@@ -17,7 +17,6 @@ package org.testatoo
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -73,22 +72,4 @@ class DSLTest {
             have 8.items or have(3.visibleItems)
         }
     }
-
-    @Test
-    @Ignore
-    public void test_ARE() {
-//        DropDown dropDown = $('#elements') as DropDown
-//        CheckBox checkBox = $('#checkbox') as CheckBox
-
-//        dropDown.items.are
-//        assertThat {
-//            dropDown.items.are enabled
-//        }
-
-//        assertThat {
-//            [dropDown, checkBox]*.are visible
-//        }
-//        assertThat([login_email, login_password, login_button].are(visible))
-    }
-
 }

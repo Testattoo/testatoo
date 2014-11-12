@@ -17,7 +17,6 @@ package org.testatoo
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -59,7 +58,6 @@ class SelectorsTest {
     }
 
     @Test
-    @Ignore
     public void $$_as_a_multi_selector() {
         Components<Button> buttons = $$('.btn') of Button
         assert buttons.size() == 4
@@ -67,24 +65,27 @@ class SelectorsTest {
         Components<TextField> textFields = $$('[type="text"]') of TextField
         assert textFields.size() == 3
 
-//        textFields.should {
-//            be enabled
-//            be visible
-//            be empty
-//        }
-//        assertThat textFields are enabled
-//        assertThat textFields are visible
-//        assertThat textFields are empty
+        textFields.each {
+            it.should {
+                be enabled
+                be visible
+                be empty
+            }
+        }
 
         on textFields enter 'TESTATOO!'
 
-//        textFields.should { be filled }
-//        assertThat textFields are filled
-//
-         // TODO Math best syntax
-//        all textFields have text('TESTATOO')
         textFields.each {
-            it.should { have text('TESTATOO!') }
+            it.should {
+                be filled
+            }
+        }
+
+        textFields.each {
+            it.should {
+                be filled
+                have text('TESTATOO!')
+            }
         }
     }
 
@@ -103,14 +104,17 @@ class SelectorsTest {
     }
 
     @Test
-    @Ignore
     public void bad_list_of_component_type() {
-//        try {
-//            Components<Button> buttons = $$('[type="text"]') of Button
-//            assertThat buttons are enabled
-//        } catch (ComponentException e) {
-//            assert  e.message.startsWith("The Component hierarchy [Button, Component] doesn't contain the type TextField for component with id")
-//        }
+        try {
+            Components<Button> buttons = $$('[type="text"]') of Button
+            buttons.each {
+                it.should {
+                    be enabled
+                }
+            }
+        } catch (ComponentException e) {
+            assert  e.message.startsWith("The Component hierarchy [Button, Component] doesn't contain the type TextField for component with id")
+        }
     }
 
     private class CustomComponent extends Component {
