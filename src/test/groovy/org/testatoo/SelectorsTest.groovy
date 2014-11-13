@@ -31,8 +31,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.property.Properties.text
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

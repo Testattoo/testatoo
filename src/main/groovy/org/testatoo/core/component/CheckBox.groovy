@@ -16,7 +16,8 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.property.Label
-import org.testatoo.core.state.*
+import org.testatoo.core.state.Checked
+import org.testatoo.core.state.Unchecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

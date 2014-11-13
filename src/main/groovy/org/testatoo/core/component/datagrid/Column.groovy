@@ -16,7 +16,8 @@
 package org.testatoo.core.component.datagrid
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.*
+import org.testatoo.core.property.Size
+import org.testatoo.core.property.Title
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

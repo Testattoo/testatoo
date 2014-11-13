@@ -22,7 +22,6 @@ import org.testatoo.core.MetaInfo
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 
-import static org.testatoo.core.evaluator.Evaluator.*
 import static org.testatoo.core.input.Key.*
 
 /**
@@ -92,7 +91,7 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void click(String id, MouseButton button = MouseButton.LEFT, MouseClick click = MouseClick.SINGLE, Collection<?> keys = []) {
+    void click(String id, Evaluator.MouseButton button = Evaluator.MouseButton.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -103,11 +102,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (button == MouseButton.LEFT && click == MouseClick.SINGLE) {
+        if (button == Evaluator.MouseButton.LEFT && click == Evaluator.MouseClick.SINGLE) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (button == MouseButton.RIGHT && click == MouseClick.SINGLE) {
+        } else if (button == Evaluator.MouseButton.RIGHT && click == Evaluator.MouseClick.SINGLE) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (button == MouseButton.LEFT && click == MouseClick.DOUBLE) {
+        } else if (button == Evaluator.MouseButton.LEFT && click == Evaluator.MouseClick.DOUBLE) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')

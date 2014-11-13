@@ -16,7 +16,8 @@
 package org.testatoo.core.component.list
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.*
+import org.testatoo.core.property.Items
+import org.testatoo.core.property.Size
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
