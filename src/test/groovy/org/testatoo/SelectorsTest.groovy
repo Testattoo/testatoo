@@ -96,7 +96,7 @@ class SelectorsTest {
             customComponent.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn\'t contain the type Panel for component with id custom_component"
+            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn't contain the type Panel for component with id custom_component"
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
