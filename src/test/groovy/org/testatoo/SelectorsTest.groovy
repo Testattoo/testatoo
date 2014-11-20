@@ -104,6 +104,20 @@ class SelectorsTest {
     }
 
     @Test
+    public void bad_component_type_for_custom_tag() {
+        CustomTag customTag = $('custom-tag') as CustomTag
+        try {
+            customTag.should { be visible }
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "The Component hierarchy [CustomTag, Component] doesn't contain the type CUSTOM-TAG for component with id custom_tag"
+        }
+
+        evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
+        customTag.should { be visible }
+    }
+
+    @Test
     public void bad_list_of_component_type() {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button
@@ -118,6 +132,9 @@ class SelectorsTest {
     }
 
     private class CustomComponent extends Component {
+    }
+
+    private class CustomTag extends Component {
     }
 
 }

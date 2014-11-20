@@ -19,6 +19,8 @@
         customType: function(el) {
             if (el.attr('data-role') == 'custom_comp')
                 return 'CustomComponent';
+            if (el.is('CUSTOM-TAG'))
+                return 'CustomTag';
             return undefined;
         }
     };

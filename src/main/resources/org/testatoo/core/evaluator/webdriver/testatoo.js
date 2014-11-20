@@ -97,7 +97,7 @@
                     return 'Undefined';
             }
         }
-        return 'Component';
+        return el.prop("tagName");
     }
 
     $.fn.getMetaInfos = function () {
