@@ -16,6 +16,7 @@
 package org.testatoo
 
 import org.junit.AfterClass
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,6 +44,11 @@ class SelectorsTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+    }
+
+    @Before
+    public void before() {
+        // Due to script injection in some tests the page must be reloaded at each test
         open 'http://localhost:8080/selectors.html'
     }
 
