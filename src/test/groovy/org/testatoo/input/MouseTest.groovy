@@ -38,7 +38,7 @@ import static org.testatoo.core.state.States.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class MouseTest {
+class   MouseTest {
 
     @BeforeClass
     public static void setup() {

@@ -16,7 +16,8 @@
 package org.testatoo.core.property
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.matcher.*
+import org.testatoo.core.property.matcher.ContainingMatcher
+import org.testatoo.core.property.matcher.EqualsToMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -16,8 +16,10 @@
 package org.testatoo.core.component.input
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.property.*
-import org.testatoo.core.state.*
+import org.testatoo.core.property.Text
+import org.testatoo.core.property.Value
+import org.testatoo.core.state.Empty
+import org.testatoo.core.state.Filled
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

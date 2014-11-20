@@ -20,6 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
@@ -34,8 +35,6 @@ import static org.testatoo.core.state.States.getMissing
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Ignore
-// TODO Ignore until FF issue on new driver is fixed.
 @RunWith(JUnit4)
 class KeyboardTest {
 
@@ -50,6 +49,9 @@ class KeyboardTest {
     @Before
     public void before() {
         open 'http://localhost:8080/keyboard.html'
+        // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
+        clickOn($('#button') as Button)
+        Thread.sleep(500);
     }
 
     @Test

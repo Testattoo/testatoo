@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 package org.testatoo.core.component
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
