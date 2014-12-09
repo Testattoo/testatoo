@@ -16,6 +16,7 @@
 package org.testatoo
 
 import org.junit.AfterClass
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,6 +44,11 @@ class SelectorsTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+    }
+
+    @Before
+    public void before() {
+        // Due to script injection in some tests the page must be reloaded at each test
         open 'http://localhost:8080/selectors.html'
     }
 
@@ -96,11 +102,25 @@ class SelectorsTest {
             customComponent.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn\'t contain the type Panel for component with id custom_component"
+            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn't contain the type Panel for component with id custom_component"
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
         customComponent.should { be visible }
+    }
+
+    @Test
+    public void bad_component_type_for_custom_tag() {
+        CustomTag customTag = $('custom-tag') as CustomTag
+        try {
+            customTag.should { be visible }
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "The Component hierarchy [CustomTag, Component] doesn't contain the type CUSTOM-TAG for component with id custom_tag"
+        }
+
+        evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
+        customTag.should { be visible }
     }
 
     @Test
@@ -118,6 +138,9 @@ class SelectorsTest {
     }
 
     private class CustomComponent extends Component {
+    }
+
+    private class CustomTag extends Component {
     }
 
 }
