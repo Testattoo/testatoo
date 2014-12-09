@@ -32,6 +32,7 @@ class WebDriverEvaluator implements Evaluator {
     private final WebDriver webDriver
     private final JavascriptExecutor js
     private final List<String> registeredScripts = new ArrayList<>()
+    private final String MODULE_EXTENSION_FILE = 'testatoo-ext.js'
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -137,7 +138,12 @@ class WebDriverEvaluator implements Evaluator {
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.0.3.min.js").text + getClass().getResource("testatoo.js").text)
+
             registeredScripts.collect { js.executeScript(it)  }
+
+            List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
+            resources.each { js.executeScript(it.text) }
+
             v = js.executeScript(expr)
         }
         return v == 'null' || v == 'undefined' ? null : v

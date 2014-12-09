@@ -21,7 +21,12 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.state.States.getVisible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,4 +44,20 @@ class ConfigTest {
 
         Testatoo.evaluator.close()
     }
+
+    @Test
+    public void extensions_are_auto_loaded() {
+        WebDriver driver = new FirefoxDriver();
+        Testatoo.evaluator = new WebDriverEvaluator(driver)
+
+        open 'http://localhost:8080/selectors.html'
+
+        MyCustomComponent myCustomComponent = $('#my_custom_component') as MyCustomComponent
+        myCustomComponent.should { be visible }
+
+    }
+
+    private class MyCustomComponent extends Component {
+    }
+
 }

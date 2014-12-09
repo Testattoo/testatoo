@@ -38,25 +38,6 @@ class Testatoo {
 
     static void open(String uri) { evaluator.open(uri) }
 
-//    static Assertion assertThat(Component c) {
-//        new Assertion(c)
-//    }
-//
-//    static <T extends Component> Assertions<T> assertThat(Components<T> cc) {
-//        new Assertions<T>(cc)
-//    }
-//
-//    static void assertThat(Component component, @DelegatesTo(Component) Closure c) {
-//        c.delegate = component
-//        c(component)
-//        Blocks.run(Blocks.compose(Blocks.pending()))
-//    }
-//
-//    static void assertThat(Closure c) {
-//        c()
-//        Blocks.run(Blocks.compose(Blocks.pending()))
-//    }
-
     static Component check(Component c) {
         if (!c.getState(new Checked()))
             evaluator.click(c.id)
