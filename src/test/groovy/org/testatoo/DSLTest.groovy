@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.CheckBox
+import org.testatoo.core.component.Checkbox
 import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
@@ -47,7 +47,7 @@ class DSLTest {
 
     @Test
     public void test_chaining_assert() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
+        Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should {
             be enabled
             be visible
@@ -59,7 +59,7 @@ class DSLTest {
 
     @Test
     public void test_AND() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
+        Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should {
             be enabled and be(visible)
         }

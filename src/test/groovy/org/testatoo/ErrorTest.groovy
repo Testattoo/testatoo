@@ -26,7 +26,7 @@ import org.testatoo.core.component.Button
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Form
 import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.Dropdown
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -131,18 +131,18 @@ class ErrorTest {
 
     @Test
     public void test_hidden_state_on_visible_component_throw_exception() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { be hidden }
             fail()
         } catch (AssertionError e) {
-            assert e.message == 'Component DropDown with id elements expected hidden but was visible'
+            assert e.message == 'Component Dropdown with id elements expected hidden but was visible'
         }
     }
 
     @Test
     public void cannot_unselect_disabled_option() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         dropDown.items[0].should { be disabled }
         try {
             on dropDown unselect 'Helium'
@@ -155,7 +155,7 @@ class ErrorTest {
     // TODO test that we cannot select already selected item
     @Test
     public void equals_to_matcher_on_list_items() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { have items.equalsTo('Val1') }
             fail()
@@ -173,7 +173,7 @@ class ErrorTest {
 
     @Test
     public void equals_to_matcher() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.items[0].should { have value.equalsTo('Val_1') }
         } catch (AssertionError e) {
@@ -190,7 +190,7 @@ class ErrorTest {
 
     @Test
     public void containing_matcher() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { have items.containing('Val_1') }
         } catch (AssertionError e) {
@@ -206,11 +206,11 @@ class ErrorTest {
 
     @Test
     public void missing_component_error() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { be missing }
         } catch (AssertionError e) {
-            assert e.message == 'Component DropDown with id elements expected missing but was available'
+            assert e.message == 'Component Dropdown with id elements expected missing but was available'
         }
     }
 

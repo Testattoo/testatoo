@@ -24,7 +24,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
-import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.Dropdown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
@@ -56,7 +56,7 @@ class   MouseTest {
         clickOn button
         button.should { have text('Button Clicked!') }
 
-        CheckBox checkBox = $('#checkbox') as CheckBox
+        Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should { be unchecked }
         clickOn checkBox
         checkBox.should { be checked }
@@ -66,7 +66,7 @@ class   MouseTest {
         clickOn radio
         radio.should { be checked }
 
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
         dropDown.should { have selectedItems('Helium') }
 
         clickOn dropDown.items[2]

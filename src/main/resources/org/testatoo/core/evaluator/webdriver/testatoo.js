@@ -36,7 +36,7 @@
         if (el.is('div')) return 'Panel';
         if (el.is('ul')) return 'ListView';
         if (el.is('ol')) return 'ListView';
-        if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'DropDown';
+        if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'Dropdown';
         if (el.is('option') || el.is('li')) return 'Item';
         if (el.is('optgroup')) return 'GroupItem';
         if (el.is('form')) return 'Form';
@@ -54,7 +54,7 @@
                 case 'radio':
                     return 'Radio';
                 case 'checkbox':
-                    return 'CheckBox';
+                    return 'Checkbox';
                 case 'text':
                     return 'TextField';
                 case 'password':

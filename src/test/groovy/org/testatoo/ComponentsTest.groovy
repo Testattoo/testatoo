@@ -28,7 +28,7 @@ import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.component.input.*
-import org.testatoo.core.component.list.DropDown
+import org.testatoo.core.component.list.Dropdown
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.component.list.ListView
@@ -176,7 +176,7 @@ class ComponentsTest {
 
     @Test
     public void test_checkbox() {
-        CheckBox checkBox = $('#checkbox') as CheckBox
+        Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should { be enabled }
         checkBox.should { be visible }
 
@@ -242,7 +242,7 @@ class ComponentsTest {
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
     public void test_dropDown() {
-        DropDown dropDown = $('#elements') as DropDown
+        Dropdown dropDown = $('#elements') as Dropdown
 
         dropDown.should { be enabled }
         dropDown.should { be visible }
@@ -275,12 +275,12 @@ class ComponentsTest {
         dropDown.should { have selectedItems('Radium') }
         dropDown.items[4].should { be selected }
 
-        dropDown = $('#countries') as DropDown
+        dropDown = $('#countries') as Dropdown
         dropDown.should { be disabled }
         dropDown.should { have items('Canada', 'France', 'Spain') }
         dropDown.items[0].should { be disabled }
 
-        dropDown = $('#os') as DropDown
+        dropDown = $('#os') as Dropdown
         dropDown.should { have 8.items }
         dropDown.should { have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD') }
 

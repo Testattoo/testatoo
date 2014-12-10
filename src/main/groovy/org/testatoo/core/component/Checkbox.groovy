@@ -22,9 +22,9 @@ import org.testatoo.core.state.Unchecked
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class CheckBox extends Component {
+class Checkbox extends Component {
 
-    CheckBox() {
+    Checkbox() {
         support Label, Checked, Unchecked
     }
 
