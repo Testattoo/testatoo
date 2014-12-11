@@ -21,7 +21,7 @@
 
     <groupId>org.testatoo</groupId>
     <artifactId>testatoo</artifactId>
-    <version>2.0.b2-SNAPSHOT</version>
+    <version>2.0.b1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Testatoo</name>
     <inceptionYear>2014</inceptionYear>
@@ -136,6 +136,15 @@
                     <keyname>F82FA7FE</keyname>
                     <passphrase>${ovea.gpg.passphrase}</passphrase>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
