@@ -26,14 +26,15 @@
     <name>Testatoo</name>
     <inceptionYear>2014</inceptionYear>
 
+    <description>Functional testing API</description>
+    <url>http://www.testatoo.org</url>
+
     <scm>
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
         <developerConnection>scm:git:git@github.com:Ovea/testatoo.git</developerConnection>
         <url>http://github.com/Ovea/testatoo</url>
         <tag>HEAD</tag>
     </scm>
-
-    <url>http://www.testatoo.org</url>
 
     <properties>
         <jdk.version>1.7</jdk.version>
