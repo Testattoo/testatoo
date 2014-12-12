@@ -1,0 +1,476 @@
+= Testatoo documentation
+v2.0.b1-SNAPSHOT, 2014
+:toc: left
+:doctype: book
+:icons: font
+:homepage: http://www.testatoo.org
+:desc: This is the Testatoo documentation
+:testaoo-version: 2.0.b1
+:imagesdir: images
+
+image:logo.png[float="center"]
+
+== Introduction
+
+Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
+Working for many years to promote the TDD approaches, we often faced difficulties in their implementation for the graphical layer of applications.
+
+The "TEST FIRST" principle excludes all scenario recorder based approaches that only allow you to write a posteriori tests.
+Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
+
+Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
+
+Testatoo provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
+With Testatoo, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
+
+Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
+
+== Technologies
+
+Testatoo is built on top of http://code.google.com/p/selenium/[WebDriver], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[WebDriver] (IE, Google-chrome, Firefox, ...).
+Even though Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity, it's always possible to "fallback" to the WebDriver level to do something directly, should you need to.
+But Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
+
+Example of a test syntax :
+
+[source, groovy]
+-------------------------------------------------------------------------------
+    textField.should { have label('myLabel') }
+    textField.should { have placeholder('My placeholder') }
+    textField.should { be empty }
+-------------------------------------------------------------------------------
+
+== Why Should I Use Testatoo?
+
+If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
+
+== Installation & Usage (I want to ride my bicycle!)
+
+One snippet of code is worth a thousand words.
+So let's go...
+
+Get Testatoo and dependencies libraries via Maven...
+
+[source, xml]
+-------------------------------------------------------------------------------
+<dependency>
+    <groupId>org.testatoo</groupId>
+    <artifactId>testatoo</artifactId>
+    <version>{testaoo-version}</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.11</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>{always-the-latest}</version>
+    <scope>test</scope>
+</dependency>
+-------------------------------------------------------------------------------
+
+Testatoo works with existing popular unit test libraries, like JUnit.
+In our first test (BaseGoogleTest), we test a simple search on Google.
+
+The test looks like this :
+
+[source, groovy]
+-------------------------------------------------------------------------------
+package starter
+
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.list.ListView
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
+
+@RunWith(JUnit4)
+class BaseGoogleTest {
+
+    @BeforeClass
+    public static void setup() {
+        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        open 'http://www.google.com'
+    }
+    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @Test
+    public void simple_test() {
+        TextField searchField = $('#gbqfq') as TextField        <1>
+        Button searchButton = $('#gbqfb') as Button
+
+        ListView resultList = $('#rso') as ListView             <2>
+        resultList.should { be missing }
+
+        searchField.should { be visible }
+        on searchField enter 'Testatoo'                         <3>
+        clickOn searchButton
+        waitUntil { resultList.be visible }
+
+        resultList.items[0].should { have value.containing('Testatoo') }
+    }
+
+}
+-------------------------------------------------------------------------------
+
+If you run the test, it should process a simple search on google engine.
+Some interesting elements can be shown in this test :
+
+<1> Testatoo works with Strongly typed components. Testatoo manipulates typed components like TextField, Button, ListView.
+                                         The power of Testatoo is in one hand to provide a rich list of components, and on the other one the possibility
+                                         to easily create and compose your own components set.
+
+<2> Testatoo uses deferred evaluation. As you can see, we instantiate a ListView event if the component is not available in the page.
+                                   You can test if the component is missing
+
+<3> Testatoo DSL is very clean and functional. Testatoo is based on a clear and powerful syntax.
+Testatoo code never refers to a technical layer Under no circumstances in this test does the underline DOM technology transpire in our code.
+
+[NOTE]
+===============================
+As a rule, when you create a test with Testatoo, we recommend to add some default imports to facilitate the automatic completion in your favorite IDE(A).
+
+[source, groovy]
+-------------------------------------------------------------------------------
+
+    import static org.testatoo.core.Testatoo.*
+    import static org.testatoo.core.input.Mouse.*
+    import static org.testatoo.core.property.Properties.*
+    import static org.testatoo.core.state.States.*
+
+-------------------------------------------------------------------------------
+===============================
+
+== Back To The Future
+
+Well well well (My Michelle), as explained, Testatoo is a library to write functional tests. Functional tests mean SPECIFICATIONS.
+
+As a SPECIFIER, I want to express my test (intention) BEFORE I code my UI. So, if the intention is to have
+a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
+
+-------------------------------------------------------------------------------
+the maleRadio should be unchecked
+and it have label "Male"
+
+the femaleRadio should be unchecked
+and it have label "Female"
+
+check the maleRadio
+the maleRadio should be checked
+the femaleRadio should be unchecked
+
+check the femaleRadio
+the femaleRadio should be checked
+the maleRadio should be unchecked
+-------------------------------------------------------------------------------
+
+The Testatoo syntax to express this specification is :
+
+[source, groovy]
+-------------------------------------------------------------------------------
+maleRadio.should {
+    be unchecked
+    have label('Male')
+}
+
+femaleRadio.should {
+    be unchecked
+    have label('Female')
+}
+
+check maleRadio
+maleRadio.should { be checked }
+femaleRadio.should { be unchecked }
+
+check femaleRadio
+femaleRadio.should { be checked }
+maleRadio.should { be unchecked }
+-------------------------------------------------------------------------------
+
+Pretty close, isn't it? ;)
+
+Testatoo provides a DSL to write tests in a natural language, easy to manipulate from a specifications point of view.
+As this is a high level language, it allows tests to be written before UI coding.
+
+YES, for the first time, with Testatoo, you can write UI functional tests FIRST (yeah we know, it's pretty cool!)
+
+== How Testatoo Works
+
+1 - The browser is launched through Webdriver
+
+[source, groovy]
+-------------------------------------------------------------------------------
+Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+-------------------------------------------------------------------------------
+
+You can add all the required "DesiredCapabilities" on your WebDriver config
+
+2 - The application under test's URL is opened
+
+[source, groovy]
+-------------------------------------------------------------------------------
+open 'http://www.google.com'
+-------------------------------------------------------------------------------
+
+3 - Testatoo injects the isolated (noConflict mode) jQuery lib in the application under test. Testatoo uses the jQuery functional API
+to make complex DOM evaluations.
+
+== The Testatoo API: How to interact with content
+
+=== The $ Function
+
+The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
+In fact, in Testatoo the $ groovy function is a wrapper on the underlying jQuery function.
+
+The signature of the $ function is as follows…
+
+[source, groovy]
+-------------------------------------------------------------------------------
+$('css selector');
+
+// Samples
+$('#myId');
+$('.myClass');
+$('ul li:first-child');
+$('[data-role=button]');
+-------------------------------------------------------------------------------
+
+Our experience demonstrated that we never need to use complex selector. If you write tests first, the component tested carries
+a semantic and this semantic must be reflected in the code by an ID, a role (role attribute is commonly used in web development) or
+better a specific tag (with Angular Directive or Web Components)
+
+Once the component is selected, it must be *TYPED* throw the *"as"* keyword.
+
+[source, groovy]
+-------------------------------------------------------------------------------
+TextField textField = $('#text_field') as TextField
+Button button = $('#button') as Button
+-------------------------------------------------------------------------------
+
+But wait a moment: How can you know if a button is a button!? Indeed, in  HTML, a Button can be represented in many ways.
+
+[source, html]
+-------------------------------------------------------------------------------
+<button id="button">My Button</button>
+<input id="button" type="button" value="My Button">
+<input id="button" type="submit" value="My Button">
+
+-------------------------------------------------------------------------------
+
+This is the magic of Testatoo. We will see later how this works and how to override this behavior, to easily add new component types.
+
+WARNING: The $ function *NEED* to target an *UNIQUE* component. If you want to work with list of components you need to use the $$ function.
+
+This code fail
+[source, groovy]
+-------------------------------------------------------------------------------
+Item item = $('#mySelect option') as Item;
+item.should { be visible }
+-------------------------------------------------------------------------------
+We target through the selector expression a list of items (options) of a select and evaluate the visibility.
+This code fail with the message *"Component defined by jQuery expression $('#mySelect option') is not unique: got x"*
+
+=== The $$ Function
+
+The $$ function allow to make assertion on a list of elements.
+
+[source, groovy]
+-------------------------------------------------------------------------------
+Item items = $$('#mySelect option') as Item;
+items.should { be visible }
+-------------------------------------------------------------------------------
+
+=== The Components
+
+Testatoo comes with a bunch of predefined HTML components. These components are not only the standard representation of HTML elements,
+but also a powerful base to build your own components. Each component supports States and Properties. One of the strength of Testatoo
+is the capability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
+
+[options="header"]
+|=========================================================================================================================================================================
+| Component               |                   Properties                                                      |                    States
+|      *Button*           |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Form*             |                                                                                   |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Heading*          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Image*            |   Source                                                                          |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Link*             |   Text,  Reference                                                                |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Panel*            |   Title                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *DropDown*         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *GroupItem*        |   Label, Value, Size, Items                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Item*             |   Label, Value                                                                    |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Selected*, *UnSelected*
+|      *ListBox*          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   Enabled, Disabled, Available, Missing, Hidden, Visible, *MultiSelectable*, *SingleSelectable*
+|      *ListView*         |   Size. Items                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *DataGrid*         |   Size, ColumnSize, RowSize                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Column*           |   Size, Title                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Cell*             |   Value                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *Row*              |   Size                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *CheckBox*         |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
+|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *EmailField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *MonthField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *Radio*            |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
+|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *TextField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *URLField*         |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|=========================================================================================================================================================================
+
+
+[NOTE]
+===============================
+All Testatoo components inherit from the base class Component.groovy
+===============================
+
+=== Evaluate State
+
+States evaluations are applied thought the keyword *be*
+
+[source, groovy]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+button.should {
+  be enabled
+  be visible
+}
+-------------------------------------------------------------------------------
+
+=== Evaluate Property
+
+Properties evaluations are applied thought the keyword *have*
+
+[source, groovy]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+button.should {
+  have text('Ok')
+}
+-------------------------------------------------------------------------------
+
+All properties that implied a *String* support some pattern methods
+
+[options="header"]
+|====================================================================================================
+| Method            |   Description
+| *startsWith*      |   Matches values that start with the given value
+| *contains*        |	Matches values that contain the given value anywhere
+| *endsWith*	    |	Matches values that end with the given value
+| *containsWord*	|	Matches values that contain the given value surrounded by either whitespace or the beginning or end of the value
+| *notStartsWith*	|	Matches values that DO NOT start with the given value
+| *notContains*	    |	Matches values that DO NOT contain the given value anywhere
+| *notEndsWith*	    |	Matches values that DO NOT end with the given value
+| *notContainsWord* |	Matches values that DO NOT contain the given value surrounded by either whitespace or the beginning or end of the value
+|====================================================================================================
+
+=== The Action
+
+Testatoo allow specifier to interact with the application thought the usage of default input like Keyboard and Mouse.
+
+WARNING: Finger / Pointer are not supported for the moment
+
+==== Mouse
+
+The mouse usages supported are :
+
+*clickOn*, +
+*doubleClickOn*, +
+*rightClickOn*, +
+*hoveringMouseOn*, +
+*drag ... on ...*
+
+[source, groovy]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+Panel panel_1 = $('#Panel_1) as Panel
+Panel panel_2 = $('#Panel_2) as Panel
+
+clickOn button
+doubleClickOn button
+rightClickOn button
+hoveringMouseOn panel_1
+drag panel_1 on panel_2
+
+-------------------------------------------------------------------------------
+
+==== Keyboard
+
+For the keyboard input we have done a nice work to make this easy.
+One Method to rule them all: *the type(...) method*
+
+[source, groovy]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+clickOn textField
+type('testatoo')
+
+-------------------------------------------------------------------------------
+
+If you need the usage of a simple key modifier.
+
+[source, groovy]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+clickOn textField
+type(SHIFT + 'testatoo')
+
+-------------------------------------------------------------------------------
+
+Or a complex.
+
+[source, groovy]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+clickOn textField
+type(CTRL + ALT + SHIFT + 'x')
+
+-------------------------------------------------------------------------------
+
+== The DSL
+
+=== Form
+
+TODO
+
+
+
+== Under the hood (Welcome to the Jungle)
+
+So, now you have probably write and execute your first test, you encounter the first obstacle.
+Yes indeed now we need to create un custom component like a Progress Bar, a Date Picker, a Carousel or some Tab Panel.
+
+This is here where you discover the power of Testatoo.
+
+=== How Stuff Works
+
+
+
+
+
+
+
+
+
