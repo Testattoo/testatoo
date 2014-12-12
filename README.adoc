@@ -1,12 +1,20 @@
+= Testatoo
+
+[.left.text-left]
+image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.png[]
+
+
+== Downloading
+
 ## Build Status
 
 [![Build Status](https://drone.io/github.com/Ovea/testatoo/status.png)](https://drone.io/github.com/Ovea/testatoo/latest)
 
-## How to build
+== Building
 
-### Prerequisites
+=== Prerequisites
 
-#### Java 1.7
+==== Java 1.7
 
 You need version **1.7** and more **(1.8 ...)** of the Java JDK installed
 
@@ -15,7 +23,7 @@ You need version **1.7** and more **(1.8 ...)** of the Java JDK installed
     Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
     Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
     
-#### Maven
+==== Maven
 
 Follow the instructions [here](http://maven.apache.org/download.cgi#Installation "Maven Installation Instructions")
 
@@ -27,7 +35,7 @@ Follow the instructions [here](http://maven.apache.org/download.cgi#Installation
     Default locale: en_US, platform encoding: UTF-8
     OS name: "linux", version: "3.16.0-24-generic", arch: "amd64", family: "unix"
     
-### Installation Steps
+=== Installation Steps
 
     $ cd /wherever
     $ git clone https://github.com/Ovea/testatoo
@@ -47,7 +55,7 @@ testatoo-tests and testatoo-documentation/samples the command :
     $ mvn jetty:run -Pdev
     
     
-### Documentation and Samples
+=== Documentation and Samples
 
 The documentation is available [here](https://github.com/Ovea/testatoo-documentation)
 Samples are available [here](https://github.com/Ovea/testatoo-sample)
