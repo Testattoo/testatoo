@@ -1,14 +1,26 @@
 = Testatoo
+The Testatoo development team
+:revdate: 11-12-2014
+:build-icon: https://drone.io/github.com/Ovea/testatoo/status.png[https://drone.io/github.com/Ovea/testatoo/latest]
+:download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b1/testatoo-2.0.b1-javadoc.jar
+:noheader:
 
 [.left.text-left]
 image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.png[]
 
+== Documentation and Samples
+
+The documentation is available https://github.com/Ovea/testatoo/blob/master/src/doc/testatoo.adoc[here]
+
+Samples are available https://github.com/Ovea/testatoo-sample[here]
 
 == Downloading
 
+Latest Groovy version is available on {download-url}[Maven Central]
+
 ## Build Status
 
-image::https://drone.io/github.com/Ovea/testatoo/status.png[https://drone.io/github.com/Ovea/testatoo/latest]
+image:{build-icon}
 
 == Building
 
@@ -25,7 +37,7 @@ You need version **1.7** and more **(1.8 ...)** of the Java JDK installed
     
 ==== Maven
 
-Follow the instructions [here](http://maven.apache.org/download.cgi#Installation "Maven Installation Instructions")
+Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven Installation Instructions"]
 
     $ mvn --version  
     Apache Maven 3.0.5
@@ -55,9 +67,6 @@ testatoo-tests and testatoo-documentation/samples the command :
     $ mvn jetty:run -Pdev
     
     
-=== Documentation and Samples
 
-The documentation is available [here](https://github.com/Ovea/testatoo-documentation)
-Samples are available [here](https://github.com/Ovea/testatoo-sample)
     
     
