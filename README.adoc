@@ -8,7 +8,7 @@ image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.png[]
 
 ## Build Status
 
-image:[![Build Status](https://drone.io/github.com/Ovea/testatoo/status.png)](https://drone.io/github.com/Ovea/testatoo/latest)
+image::https://drone.io/github.com/Ovea/testatoo/status.png[https://drone.io/github.com/Ovea/testatoo/latest]
 
 == Building
 
