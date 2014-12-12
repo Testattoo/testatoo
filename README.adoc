@@ -16,7 +16,7 @@ Samples are available https://github.com/Ovea/testatoo-sample[here]
 
 == Downloading
 
-Latest Groovy version is available on {download-url}[Maven Central]
+Latest Testatoo version is available on {download-url}[Maven Central]
 
 ## Build Status
 
