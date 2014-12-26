@@ -6,7 +6,7 @@ The Testatoo development team
 :noheader:
 
 [.left.text-left]
-image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.svg[]
+image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.jpg[]
 
 == Documentation and Samples
 
