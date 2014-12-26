@@ -8,8 +8,6 @@ v2.0.b1-SNAPSHOT, 2014
 :testaoo-version: 2.0.b1
 :imagesdir: images
 
-image:logo.png[float="center"]
-
 == Introduction
 
 Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
@@ -33,7 +31,7 @@ But Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keep
 
 Example of a test syntax :
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
     textField.should { have label('myLabel') }
     textField.should { have placeholder('My placeholder') }
@@ -78,7 +76,7 @@ In our first test (BaseGoogleTest), we test a simple search on Google.
 
 The test looks like this :
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 package starter
 
@@ -145,7 +143,7 @@ Testatoo code never refers to a technical layer Under no circumstances in this t
 ===============================
 As a rule, when you create a test with Testatoo, we recommend to add some default imports to facilitate the automatic completion in your favorite IDE(A).
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 
     import static org.testatoo.core.Testatoo.*
@@ -181,7 +179,7 @@ the maleRadio should be unchecked
 
 The Testatoo syntax to express this specification is :
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 maleRadio.should {
     be unchecked
@@ -213,7 +211,7 @@ YES, for the first time, with Testatoo, you can write UI functional tests FIRST 
 
 1 - The browser is launched through Webdriver
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
 -------------------------------------------------------------------------------
@@ -222,7 +220,7 @@ You can add all the required "DesiredCapabilities" on your WebDriver config
 
 2 - The application under test's URL is opened
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 open 'http://www.google.com'
 -------------------------------------------------------------------------------
@@ -239,7 +237,7 @@ In fact, in Testatoo the $ groovy function is a wrapper on the underlying jQuery
 
 The signature of the $ function is as follows…
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 $('css selector');
 
@@ -256,7 +254,7 @@ better a specific tag (with Angular Directive or Web Components)
 
 Once the component is selected, it must be *TYPED* throw the *"as"* keyword.
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 TextField textField = $('#text_field') as TextField
 Button button = $('#button') as Button
@@ -277,7 +275,7 @@ This is the magic of Testatoo. We will see later how this works and how to overr
 WARNING: The $ function *NEED* to target an *UNIQUE* component. If you want to work with list of components you need to use the $$ function.
 
 This code fail
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 Item item = $('#mySelect option') as Item;
 item.should { be visible }
@@ -289,7 +287,7 @@ This code fail with the message *"Component defined by jQuery expression $('#myS
 
 The $$ function allow to make assertion on a list of elements.
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 Item items = $$('#mySelect option') as Item;
 items.should { be visible }
@@ -347,7 +345,7 @@ All Testatoo components inherit from the base class Component.groovy
 
 States evaluations are applied thought the keyword *be*
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 Button button = $('#button') as Button
 button.should {
@@ -360,7 +358,7 @@ button.should {
 
 Properties evaluations are applied thought the keyword *have*
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 Button button = $('#button') as Button
 button.should {
@@ -399,7 +397,7 @@ The mouse usages supported are :
 *hoveringMouseOn*, +
 *drag ... on ...*
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 Button button = $('#button') as Button
 Panel panel_1 = $('#Panel_1) as Panel
@@ -418,7 +416,7 @@ drag panel_1 on panel_2
 For the keyboard input we have done a nice work to make this easy.
 One Method to rule them all: *the type(...) method*
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 TextField textField = $('#textfield') as TextField
 
@@ -429,7 +427,7 @@ type('testatoo')
 
 If you need the usage of a simple key modifier.
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 TextField textField = $('#textfield') as TextField
 
@@ -440,7 +438,7 @@ type(SHIFT + 'testatoo')
 
 Or a complex.
 
-[source, groovy]
+[source, java]
 -------------------------------------------------------------------------------
 TextField textField = $('#textfield') as TextField
 
