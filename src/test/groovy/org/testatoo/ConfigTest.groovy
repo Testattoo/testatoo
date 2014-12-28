@@ -20,12 +20,10 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.state.States.getVisible
 
 /**
@@ -36,28 +34,33 @@ class ConfigTest {
 
     @Test
     public void can_obtain_the_underline_implementation() {
-        WebDriver driver = new FirefoxDriver();
-        Testatoo.evaluator = new WebDriverEvaluator(driver)
+        try {
+            WebDriver driver = new FirefoxDriver();
+            evaluator = new WebDriverEvaluator(driver)
 
-        assert Testatoo.evaluator.implementation instanceof WebDriver
-        assert Testatoo.evaluator.implementation == driver
-
-        Testatoo.evaluator.close()
+            assert evaluator.implementation instanceof WebDriver
+            assert evaluator.implementation == driver
+        } finally {
+            evaluator.close()
+        }
     }
 
     @Test
     public void extensions_are_auto_loaded() {
-        WebDriver driver = new FirefoxDriver();
-        Testatoo.evaluator = new WebDriverEvaluator(driver)
+        try {
+            WebDriver driver = new FirefoxDriver();
+            evaluator = new WebDriverEvaluator(driver)
 
-        open 'http://localhost:8080/selectors.html'
+            open 'http://localhost:8080/selectors.html'
 
-        MyCustomComponent myCustomComponent = $('#my_custom_component') as MyCustomComponent
-        myCustomComponent.should { be visible }
+            MyCustomComponent myCustomComponent = $('#my_custom_component') as MyCustomComponent
+            myCustomComponent.should { be visible }
 
+        } finally {
+            evaluator.close()
+        }
     }
 
     private class MyCustomComponent extends Component {
     }
-
 }

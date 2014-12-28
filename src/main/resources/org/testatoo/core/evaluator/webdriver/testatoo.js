@@ -21,13 +21,13 @@
         $ = w.testatoo,
         webkit = !!window.webkitRequestAnimationFrame;
 
-    $.options = {
-        customType: function(el) {}
+    var cartridges = [];
+
+    w.testatoo.registerCartridge = function (cartridge) {
+        cartridges.unshift(cartridge);
     };
 
-    function getType(el) {
-        var type = $.options.customType(el);
-        if (type) return type;
+    cartridges.push(function (el) {
         if (el.is('button')) return 'Button';
         if (el.is('textarea')) return 'TextField';
         if (el.is('img')) return 'Image';
@@ -94,10 +94,20 @@
                 case 'image':
                     return 'Button';
                 default:
-                    return 'Undefined';
+                    return undefined;
             }
         }
         return el.prop("tagName");
+    });
+
+    function getType(el) {
+        var type = undefined;
+
+        cartridges.forEach(function (cartridge) {
+            if (!type)
+                type = cartridge(el);
+        });
+        return type;
     }
 
     $.fn.getMetaInfos = function () {
@@ -121,7 +131,7 @@
     $.ext = {
         getLabel: function (id) {
             var el = $('#' + id + '');
-            if (el.is('option') || el.is('optgroup'))  {
+            if (el.is('option') || el.is('optgroup')) {
                 return el.attr('label');
             }
 
@@ -149,10 +159,10 @@
             }
         },
 
-        contains: function(id, ids) {
+        contains: function (id, ids) {
             var el = $('#' + id + '');
             var not = [];
-            $.each(ids, function(index, _id) {
+            $.each(ids, function (index, _id) {
                 !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
             });
             return not;

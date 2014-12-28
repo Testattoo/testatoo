@@ -15,12 +15,10 @@
  */
 (function (w) {
 
-    w.testatoo.options = {
-        customType: function(el) {
-            if (el.attr('data-role') == 'my_custom_comp')
-                return 'MyCustomComponent';
-            return undefined;
-        }
-    };
+    w.testatoo.registerCartridge(function (el) {
+        if (el.attr('data-role') == 'my_custom_comp')
+            return 'MyCustomComponent';
+        return undefined;
+    });
 
 }(window));

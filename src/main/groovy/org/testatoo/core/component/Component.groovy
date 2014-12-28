@@ -97,7 +97,7 @@ class Component {
 
     @Override
     String toString() {
-        getClass().simpleName + ":${try { id } catch (Throwable ignored) { meta.metaInfo }}"
+        getClass().simpleName + ":${try { id } catch (ComponentException ignored) { meta.metaInfo }}"
     }
 
     Object asType(Class clazz) {

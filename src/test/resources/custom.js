@@ -15,14 +15,12 @@
  */
 (function (w) {
 
-    w.testatoo.options = {
-        customType: function(el) {
-            if (el.attr('data-role') == 'custom_comp')
-                return 'CustomComponent';
-            if (el.is('CUSTOM-TAG'))
-                return 'CustomTag';
-            return undefined;
-        }
-    };
+    w.testatoo.registerCartridge(function (el) {
+        if (el.attr('data-role') == 'custom_comp')
+            return 'CustomComponent';
+        if (el.is('CUSTOM-TAG'))
+            return 'CustomTag';
+        return undefined;
+    });
 
 }(window));
