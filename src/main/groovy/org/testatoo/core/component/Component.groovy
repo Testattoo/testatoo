@@ -87,7 +87,7 @@ class Component {
     boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
-        Component component = o as Component
+        Component component = (Component) o
         if (getId() != component.getId()) return false
         return true
     }
