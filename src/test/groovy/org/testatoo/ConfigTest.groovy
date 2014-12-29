@@ -15,6 +15,7 @@
  */
 package org.testatoo
 
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -60,6 +61,19 @@ class ConfigTest {
             evaluator.close()
         }
     }
+
+    @Test
+    @Ignore
+    public void can_register_a_script() {
+        // TODO
+        // test method @Override
+//        void registerScripts(String... scripts) {
+//            registeredScripts.addAll(scripts);
+//        }
+
+        // in WebDriver Evaluator
+    }
+
 
     private class MyCustomComponent extends Component {
     }

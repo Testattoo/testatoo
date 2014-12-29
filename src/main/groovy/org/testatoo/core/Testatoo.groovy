@@ -75,13 +75,27 @@ class Testatoo {
     static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {
         c()
         try {
-            Util.waitUntil duration.toMilliseconds(), 500, {
+            _waitUntil duration.toMilliseconds(), 500, {
                 Log.testatoo "waitUntil: ${c}"
                 Blocks.run(Blocks.compose(Blocks.pending()))
             }
         } catch (TimeoutException e) {
             throw new RuntimeException("${e.message}")
         }
+    }
+
+    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
+        Throwable ex = null
+        long t = timeout
+        for (; t > 0; t -= interval) {
+            try {
+                return c.call()
+            } catch (Throwable e) {
+                ex = e
+            }
+            Thread.sleep(interval)
+        }
+        throw new TimeoutException("Unable to reach the condition within ${timeout / 1000} seconds (${ex.message})")
     }
 
 }
