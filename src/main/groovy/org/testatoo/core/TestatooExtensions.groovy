@@ -37,10 +37,6 @@ class TestatooExtensions {
     static void click(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, keys) }
     static void rightClick(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, keys) }
 
-    static Block are(Collection components, State matcher) {
-        Blocks.and(components.collect { ((Component) it).is(matcher) })
-    }
-
     static boolean asBoolean(Block block) {
         Blocks.run(block)
         return true
