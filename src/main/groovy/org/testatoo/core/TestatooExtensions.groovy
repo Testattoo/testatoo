@@ -26,7 +26,7 @@ import org.testatoo.core.state.State
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class GroovyExtensions {
+class TestatooExtensions {
 
     public static Collection<?> plus(Key a, Key b) { [a, b] }
     public  static Collection<?> plus(Key a, String b) { [a, b] }
