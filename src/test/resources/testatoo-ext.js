@@ -15,10 +15,15 @@
  */
 (function (w) {
 
-    w.testatoo.registerCartridge(function (el) {
-        if (el.attr('data-role') == 'my_custom_comp')
-            return 'MyCustomComponent';
-        return undefined;
-    });
+    w.testatoo.registerCartridge(
+        {
+            name: 'my_custom_cartridge',
+            type: function(el) {
+                if (el.attr('data-role') == 'my_custom_comp')
+                        return 'MyCustomComponent';
+                    return undefined;
+            }
+        }
+    );
 
 }(window));

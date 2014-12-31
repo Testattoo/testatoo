@@ -70,7 +70,8 @@ class WebDriverEvaluator implements Evaluator {
             new MetaInfo(
                 id: it.id,
                 type: it.type,
-                node: it.node
+                node: it.node,
+                cartridge: it.cartridge
             )
         }
     }

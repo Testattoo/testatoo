@@ -27,87 +27,96 @@
         cartridges.unshift(cartridge);
     };
 
-    cartridges.push(function (el) {
-        if (el.is('button')) return 'Button';
-        if (el.is('textarea')) return 'TextField';
-        if (el.is('img')) return 'Image';
-        if (el.is('a')) return 'Link';
-        if (el.is('h1') || el.is('h2') || el.is('h3') || el.is('h4') || el.is('h5') || el.is('h6')) return 'Heading';
-        if (el.is('div')) return 'Panel';
-        if (el.is('ul')) return 'ListView';
-        if (el.is('ol')) return 'ListView';
-        if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'Dropdown';
-        if (el.is('option') || el.is('li')) return 'Item';
-        if (el.is('optgroup')) return 'GroupItem';
-        if (el.is('form')) return 'Form';
-        if (el.is('table')) return 'DataGrid';
-        if (el.is('tr')) return 'Row';
-        if (el.is('td')) return 'Cell';
-        if (el.is('th')) return 'Column';
-        if (el.is('article')) return 'Article';
-        if (el.is('aside')) return 'Aside';
-        if (el.is('footer')) return 'Footer';
-        if (el.is('header')) return 'Header';
-        if (el.is('section')) return 'Section';
-        if (el.is('input')) {
-            switch (el.attr('type').toLowerCase() || '') {
-                case 'radio':
-                    return 'Radio';
-                case 'checkbox':
-                    return 'Checkbox';
-                case 'text':
-                    return 'TextField';
-                case 'password':
-                    return 'PasswordField';
-                case 'email':
-                    return 'EmailField';
-                case 'tel':
-                    return 'PhoneField';
-                case 'url':
-                    return 'URLField';
-                case 'search':
-                    return 'SearchField';
-                case 'number':
-                    return 'NumberField';
-                case 'range':
-                    return 'RangeField';
-                case 'color':
-                    return 'ColorField';
-                case 'file':
-                    return 'FileDialog';
-                case 'month':
-                    return 'MonthField';
-                case 'week':
-                    return 'WeekField';
-                case 'date':
-                    return 'DateField';
-                case 'time':
-                    return 'TimeField';
-                case 'datetime':
-                    return 'DateTimeField';
-                case 'button':
-                    return 'Button';
-                case 'submit':
-                    return 'Button';
-                case 'reset':
-                    return 'Button';
-                case 'image':
-                    return 'Button';
-                default:
-                    return undefined;
+    var html5_cartridge = {
+        name: 'html5',
+        type: function (el) {
+            console.log(el);
+            if (el.is('button')) return 'Button';
+            if (el.is('textarea')) return 'TextField';
+            if (el.is('img')) return 'Image';
+            if (el.is('a')) return 'Link';
+            if (el.is('h1') || el.is('h2') || el.is('h3') || el.is('h4') || el.is('h5') || el.is('h6')) return 'Heading';
+            if (el.is('div')) return 'Panel';
+            if (el.is('ul')) return 'ListView';
+            if (el.is('ol')) return 'ListView';
+            if (el.is('select')) return (el.attr('multiple') || el.prop('size') > 0) ? 'ListBox' : 'Dropdown';
+            if (el.is('option') || el.is('li')) return 'Item';
+            if (el.is('optgroup')) return 'GroupItem';
+            if (el.is('form')) return 'Form';
+            if (el.is('table')) return 'DataGrid';
+            if (el.is('tr')) return 'Row';
+            if (el.is('td')) return 'Cell';
+            if (el.is('th')) return 'Column';
+            if (el.is('article')) return 'Article';
+            if (el.is('aside')) return 'Aside';
+            if (el.is('footer')) return 'Footer';
+            if (el.is('header')) return 'Header';
+            if (el.is('section')) return 'Section';
+            if (el.is('input')) {
+                switch (el.attr('type').toLowerCase() || '') {
+                    case 'radio':
+                        return 'Radio';
+                    case 'checkbox':
+                        return 'Checkbox';
+                    case 'text':
+                        return 'TextField';
+                    case 'password':
+                        return 'PasswordField';
+                    case 'email':
+                        return 'EmailField';
+                    case 'tel':
+                        return 'PhoneField';
+                    case 'url':
+                        return 'URLField';
+                    case 'search':
+                        return 'SearchField';
+                    case 'number':
+                        return 'NumberField';
+                    case 'range':
+                        return 'RangeField';
+                    case 'color':
+                        return 'ColorField';
+                    case 'file':
+                        return 'FileDialog';
+                    case 'month':
+                        return 'MonthField';
+                    case 'week':
+                        return 'WeekField';
+                    case 'date':
+                        return 'DateField';
+                    case 'time':
+                        return 'TimeField';
+                    case 'datetime':
+                        return 'DateTimeField';
+                    case 'button':
+                        return 'Button';
+                    case 'submit':
+                        return 'Button';
+                    case 'reset':
+                        return 'Button';
+                    case 'image':
+                        return 'Button';
+                    default:
+                        return undefined;
+                }
             }
+            return el.prop("tagName");
         }
-        return el.prop("tagName");
-    });
+    };
 
-    function getType(el) {
-        var type = undefined;
+    w.testatoo.registerCartridge(html5_cartridge);
+
+    function getInfo(el) {
+        var _type = undefined;
+        var _cartridge = undefined;
 
         cartridges.forEach(function (cartridge) {
-            if (!type)
-                type = cartridge(el);
-        });
-        return type;
+            if (!_type) {
+                _type = cartridge.type(el);
+                _cartridge = cartridge.name;
+            }
+        }, this);
+        return { type: _type, cartridge: _cartridge };
     }
 
     $.fn.getMetaInfos = function () {
@@ -119,10 +128,14 @@
                 id = 'gen-' + Math.round(new Date().getTime() * Math.random());
                 me.attr('id', id);
             }
+            var info = getInfo(me);
+
+
             metaInfos.push({
                 id: id,
                 node: me.prop('nodeName').toLowerCase(),
-                type: getType(me)
+                type: info ? info.type : info,
+                cartridge: info ? info.cartridge : info
             });
         });
         return metaInfos;
