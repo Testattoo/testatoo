@@ -23,14 +23,13 @@
 
     var cartridges = [];
 
-    w.testatoo.registerCartridge = function (cartridge) {
+    $.registerCartridge = function (cartridge) {
         cartridges.unshift(cartridge);
     };
 
     var html5_cartridge = {
         name: 'html5',
         type: function (el) {
-            console.log(el);
             if (el.is('button')) return 'Button';
             if (el.is('textarea')) return 'TextField';
             if (el.is('img')) return 'Image';
@@ -101,10 +100,30 @@
                 }
             }
             return el.prop("tagName");
+        },
+        states: {
+        },
+        properties: {
+            label: function(id) {
+                var el = $('#' + id + '');
+                if (el.is('option') || el.is('optgroup')) {
+                    return el.attr('label');
+                }
+
+                var label = $('label[for="' + id + '"]');
+                if (label.length > 0) return label.text();
+
+                var p = el.prev('label');
+                if (p.length > 0) return p.text();
+                return el.parent().text().trim();
+            }
         }
+
+
+
     };
 
-    w.testatoo.registerCartridge(html5_cartridge);
+    $.registerCartridge(html5_cartridge);
 
     function getInfo(el) {
         var _type = undefined;
@@ -141,20 +160,18 @@
         return metaInfos;
     };
 
+    $.property = function(cartridge, property, id) {
+        var used_cartridge = {};
+        cartridges.forEach(function (_cartridge) {
+            if (_cartridge.name === cartridge)
+                used_cartridge = _cartridge;
+        });
+
+        return used_cartridge.properties[property] ? used_cartridge.properties[property](id) : html5_cartridge.properties[property](id)
+    };
+
+
     $.ext = {
-        getLabel: function (id) {
-            var el = $('#' + id + '');
-            if (el.is('option') || el.is('optgroup')) {
-                return el.attr('label');
-            }
-
-            var label = $('label[for="' + id + '"]');
-            if (label.length > 0) return label.text();
-
-            var p = el.prev('label');
-            if (p.length > 0) return p.text();
-            return el.parent().text().trim();
-        },
 
         isEmpty: function (id) {
             var el = $('#' + id + '');
