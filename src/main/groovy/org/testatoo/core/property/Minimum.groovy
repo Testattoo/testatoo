@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Minimum extends Property {
 
     Minimum() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id}').prop('min')")) }
+        evaluator { Component c -> Integer.valueOf(c.evaluator.getProperty('minimum', c)) }
     }
 
     @Delegate

@@ -105,7 +105,7 @@
         },
         properties: {
             label: function(id) {
-                var el = $('#' + id + '');
+                var el = $('#' + id);
                 if (el.is('option') || el.is('optgroup')) {
                     return el.attr('label');
                 }
@@ -116,10 +116,39 @@
                 var p = el.prev('label');
                 if (p.length > 0) return p.text();
                 return el.parent().text().trim();
+            },
+            maximum: function(id) {
+                return $('#' + id).prop('max');
+            },
+            minimum: function(id) {
+                return $('#' + id).prop('min');
+            },
+            placeholder: function(id) {
+                return $('#' + id).prop('placeholder');
+            },
+            pattern: function(id) {
+                return $('#' + id).prop('pattern');
+            },
+            reference: function(id) {
+                return $('#' + id).prop('href');
+            },
+            source: function(id) {
+                return $('#' + id).prop('src');
+            },
+            step: function(id) {
+                return $('#' + id).prop('step');
+            },
+            text: function(id) {
+                return $('#' + id).text();
+            },
+            title: function(id) {
+                return $('#' + id).prop('title');
+            },
+            value: function(id) {
+                return $('#' + id).val();
             }
+
         }
-
-
 
     };
 
@@ -148,7 +177,6 @@
                 me.attr('id', id);
             }
             var info = getInfo(me);
-
 
             metaInfos.push({
                 id: id,

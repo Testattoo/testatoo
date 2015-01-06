@@ -56,7 +56,7 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     String getProperty(String property, Component c) {
-        eval("\$.property('${c.meta.cartridge}', '${property}', '${c.id}')")
+        eval("\$.property('${c.cartridge}', '${property}', '${c.id}')")
     }
 
     @Override

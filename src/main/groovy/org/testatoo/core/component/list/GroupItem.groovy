@@ -46,7 +46,7 @@ class GroupItem extends Component {
     }
 
     String getValue() {
-        return evaluator.getString("testatoo.ext.getLabel('${id}')")
+        return evaluator.getProperty('label', this)
     }
 
     @Override

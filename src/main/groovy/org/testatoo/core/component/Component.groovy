@@ -47,7 +47,9 @@ class Component {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    String getId() throws ComponentException { meta.getId(this) }
+    String getId() throws ComponentException { meta.getMetaInfo(this).id }
+
+    String getCartridge() throws ComponentException { meta.getMetaInfo(this).cartridge }
 
     Evaluator getEvaluator() { meta.evaluator }
 
@@ -88,12 +90,12 @@ class Component {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
         Component component = (Component) o
-        if (getId() != component.getId()) return false
+        if (id != component.id) return false
         return true
     }
 
     @Override
-    int hashCode() { getId().hashCode() }
+    int hashCode() { id.hashCode() }
 
     @Override
     String toString() {
@@ -160,7 +162,7 @@ class Component {
 
         IdProvider idProvider
 
-        String getId(Component c) throws ComponentException {
+        MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
                 def hierarchy= []
@@ -173,10 +175,9 @@ class Component {
                 }
                 metaInfo = info
             }
-            return metaInfo.id
+            return metaInfo
         }
     }
 
     static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, true)) }
-
 }
