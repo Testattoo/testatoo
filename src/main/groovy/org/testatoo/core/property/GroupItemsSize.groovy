@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class GroupItemsSize extends Property {
 
     GroupItemsSize() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id}').find('optgroup').length")) }
+        evaluator { Component c -> Integer.valueOf(c.evaluator.getProperty(this, c)) }
     }
 
     @Delegate

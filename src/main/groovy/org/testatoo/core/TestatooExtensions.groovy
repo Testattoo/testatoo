@@ -55,7 +55,7 @@ class TestatooExtensions {
     }
 
     public static PropertyMatcher getRows(Integer expected) {
-        Properties.rowSize.equalsTo(expected)
+        Properties.size.equalsTo(expected)
     }
 
     public static PropertyMatcher getCells(Integer expected) {

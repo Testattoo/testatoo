@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class ColumnSize extends Property {
 
     ColumnSize() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id}').find('thead tr:last th').length")) }
+        evaluator { Component c -> Integer.valueOf(c.evaluator.getProperty(this, c)) }
     }
 
     @Delegate

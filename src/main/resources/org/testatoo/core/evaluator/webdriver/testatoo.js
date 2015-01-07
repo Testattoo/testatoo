@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function (w) {
+(function(w) {
 
     // See http://api.jquery.com/jQuery.noConflict/ and Stack Overflow
     w.testatoo = w.jQuery.noConflict(true);
@@ -23,13 +23,13 @@
 
     var cartridges = [];
 
-    $.registerCartridge = function (cartridge) {
+    $.registerCartridge = function(cartridge) {
         cartridges.unshift(cartridge);
     };
 
     var html5_cartridge = {
         name: 'html5',
-        type: function (el) {
+        type: function(el) {
             if (el.is('button')) return 'Button';
             if (el.is('textarea')) return 'TextField';
             if (el.is('img')) return 'Image';
@@ -102,35 +102,35 @@
             return el.prop("tagName");
         },
         states: {
-            enabled: function (id) {
+            enabled: function(id) {
                 return !this.disabled(id);
             },
-            disabled: function (id) {
+            disabled: function(id) {
                 var el = $('#' + id);
                 return el.is(':disabled') || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
             },
-            hidden: function (id) {
+            hidden: function(id) {
                 return $('#' + id).is(':hidden');
             },
-            visible: function (id) {
+            visible: function(id) {
                 return !this.hidden(id);
             },
-            checked: function (id) {
+            checked: function(id) {
                 return $('#' + id).is(':checked');
             },
-            unchecked: function (id) {
+            unchecked: function(id) {
                 return !this.checked(id);
             },
-            required: function (id) {
+            required: function(id) {
                 return $('#' + id).prop('required');
             },
-            optional: function (id) {
+            optional: function(id) {
                 return !this.required(id);
             },
-            selected: function (id) {
+            selected: function(id) {
                 return $('#' + id).prop('selected');
             },
-            unselected: function (id) {
+            unselected: function(id) {
                 return !this.selected(id);
             },
             multiselectable: function(id) {
@@ -140,7 +140,7 @@
             singleselectable: function(id) {
                 return !this.multiselectable(id);
             },
-            empty: function (id) {
+            empty: function(id) {
                 var el = $('#' + id + '');
                 var nodeName = el.prop('nodeName').toLowerCase() || '';
                 switch (nodeName) {
@@ -157,7 +157,7 @@
             }
         },
         properties: {
-            label: function (id) {
+            label: function(id) {
                 var el = $('#' + id);
                 if (el.is('option') || el.is('optgroup')) {
                     return el.attr('label');
@@ -170,37 +170,54 @@
                 if (p.length > 0) return p.text();
                 return el.parent().text().trim();
             },
-            maximum: function (id) {
+            maximum: function(id) {
                 return $('#' + id).prop('max');
             },
-            minimum: function (id) {
+            minimum: function(id) {
                 return $('#' + id).prop('min');
             },
-            placeholder: function (id) {
+            placeholder: function(id) {
                 return $('#' + id).prop('placeholder');
             },
-            pattern: function (id) {
+            pattern: function(id) {
                 return $('#' + id).prop('pattern');
             },
-            reference: function (id) {
+            reference: function(id) {
                 return $('#' + id).prop('href');
             },
-            source: function (id) {
+            source: function(id) {
                 return $('#' + id).prop('src');
             },
-            step: function (id) {
+            step: function(id) {
                 return $('#' + id).prop('step');
             },
-            text: function (id) {
+            text: function(id) {
                 return $('#' + id).text();
             },
-            title: function (id) {
+            title: function(id) {
                 return $('#' + id).prop('title');
             },
-            value: function (id) {
+            value: function(id) {
                 return $('#' + id).val();
+            },
+            size: function(id) {
+                var el = $('#' + id);
+                if (el.is('table'))
+                    return el.find('tbody tr').length;
+                return el.children().length;
+            },
+            columnsize: function(id) {
+                var el = $('#' + id);
+                if (el.is('table'))
+                    return el.find('thead tr:last th').length;
+                return undefined;
+            },
+            groupitemssize: function(id) {
+                return $('#' + id).find('optgroup').length;
+            },
+            visibleitemssize: function(id) {
+                return $('#' + id).prop('size');
             }
-
         }
 
     };
@@ -211,7 +228,7 @@
         var _type = undefined;
         var _cartridge = undefined;
 
-        cartridges.forEach(function (cartridge) {
+        cartridges.forEach(function(cartridge) {
             if (!_type) {
                 _type = cartridge.type(el);
                 _cartridge = cartridge.name;
@@ -220,9 +237,9 @@
         return {type: _type, cartridge: _cartridge};
     }
 
-    $.fn.getMetaInfos = function () {
+    $.fn.getMetaInfos = function() {
         var metaInfos = [];
-        this.each(function () {
+        this.each(function() {
             var me = $(this),
                 id = $(this).attr('id');
             if (!id) {
@@ -241,9 +258,9 @@
         return metaInfos;
     };
 
-    $.property = function (cartridge, property, id) {
+    $.property = function(cartridge, property, id) {
         var used_cartridge = {};
-        cartridges.forEach(function (_cartridge) {
+        cartridges.forEach(function(_cartridge) {
             if (_cartridge.name === cartridge)
                 used_cartridge = _cartridge;
         });
@@ -251,9 +268,9 @@
         return used_cartridge.properties[property] ? used_cartridge.properties[property](id) : html5_cartridge.properties[property](id)
     };
 
-    $.state = function (cartridge, state, id) {
+    $.state = function(cartridge, state, id) {
         var used_cartridge = {};
-        cartridges.forEach(function (_cartridge) {
+        cartridges.forEach(function(_cartridge) {
             if (_cartridge.name === cartridge)
                 used_cartridge = _cartridge;
         });
@@ -264,7 +281,7 @@
 
     $.ext = {
 
-        isEmpty: function (id) {
+        isEmpty: function(id) {
             var el = $('#' + id + '');
             var nodeName = el.prop('nodeName').toLowerCase() || '';
             switch (nodeName) {
@@ -280,10 +297,10 @@
             }
         },
 
-        contains: function (id, ids) {
+        contains: function(id, ids) {
             var el = $('#' + id + '');
             var not = [];
-            $.each(ids, function (index, _id) {
+            $.each(ids, function(index, _id) {
                 !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
             });
             return not;

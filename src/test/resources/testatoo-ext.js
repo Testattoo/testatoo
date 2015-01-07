@@ -22,7 +22,9 @@
                 if (el.attr('data-role') == 'my_custom_comp')
                         return 'MyCustomComponent';
                     return undefined;
-            }
+            },
+            states: {},
+            properties: {}
         }
     );
 

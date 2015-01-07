@@ -54,7 +54,6 @@ class Properties {
     static final VisibleItemsSize visibleItemsSize = new VisibleItemsSize()
 
     static final ColumnSize columnSize = new  ColumnSize()
-    static final RowSize rowSize = new RowSize()
 
     static final Size size = new Size()
     static final PropertyMatcher size(Integer expected) { size.equalsTo(expected) }

@@ -24,7 +24,9 @@
                 if (el.is('CUSTOM-TAG'))
                     return 'CustomTag';
                 return undefined;
-            }
+            },
+            states: {},
+            properties: {}
         }
     );
 
