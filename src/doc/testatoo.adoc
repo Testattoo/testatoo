@@ -1,11 +1,9 @@
 = Testatoo documentation
-v2.0.b1-SNAPSHOT, 2014
 :toc: left
 :doctype: book
 :icons: font
 :homepage: http://www.testatoo.org
 :desc: This is the Testatoo documentation
-:testaoo-version: 2.0.b1
 :imagesdir: images
 
 == Introduction
