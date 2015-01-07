@@ -22,6 +22,7 @@ import org.testatoo.core.MetaInfo
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
+import org.testatoo.core.property.Property
 
 import static org.testatoo.core.input.Key.*
 
@@ -55,8 +56,8 @@ class WebDriverEvaluator implements Evaluator {
     String getString(String jQueryExpr) { eval(jQueryExpr) }
 
     @Override
-    String getProperty(String property, Component c) {
-        eval("\$.property('${c.cartridge}', '${property}', '${c.id}')")
+    String getProperty(Property property, Component c) {
+        eval("\$.property('${c.cartridge}', '${property.class.simpleName.toLowerCase()}', '${c.id}')")
     }
 
     @Override

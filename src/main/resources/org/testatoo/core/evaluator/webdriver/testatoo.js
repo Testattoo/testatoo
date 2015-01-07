@@ -102,6 +102,9 @@
             return el.prop("tagName");
         },
         states: {
+            checked: function(id) {
+
+            }
         },
         properties: {
             label: function(id) {

@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Reference extends Property {
 
     Reference() {
-        evaluator {Component c -> c.evaluator.getProperty('reference', c) }
+        evaluator {Component c -> c.evaluator.getProperty(this, c) }
     }
 
     @Delegate

@@ -17,6 +17,7 @@ package org.testatoo.core.evaluator
 
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.component.Component
+import org.testatoo.core.property.Property
 
 public interface Evaluator extends AutoCloseable {
 
@@ -33,7 +34,7 @@ public interface Evaluator extends AutoCloseable {
 
     String getString(String jQueryExpr)
 
-    String getProperty(String property, Component component)
+    String getProperty(Property property, Component component)
 
     public <T> T getJson(String jQueryExpr)
 

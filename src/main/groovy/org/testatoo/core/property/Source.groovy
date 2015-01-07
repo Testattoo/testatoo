@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Source extends Property {
 
     Source() {
-        evaluator { Component c -> c.evaluator.getProperty('source', c) }
+        evaluator { Component c -> c.evaluator.getProperty(this, c) }
     }
 
     @Delegate
