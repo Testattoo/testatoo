@@ -23,7 +23,7 @@ import org.testatoo.core.component.Component
 class Selected extends State {
 
     Selected() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getString("\$('#${c.id}').prop('selected')")) }
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
         description e: 'selected', w: 'unselected'
     }
 

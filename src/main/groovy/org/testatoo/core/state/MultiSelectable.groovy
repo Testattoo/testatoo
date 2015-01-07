@@ -23,7 +23,7 @@ import org.testatoo.core.component.Component
 class MultiSelectable extends State {
 
     MultiSelectable() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getString("\$('#${c.id}').is('select') && \$('#${c.id}').prop('multiple');")) }
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
         description e: 'multi selectable', w: 'not multi selectable'
     }
 

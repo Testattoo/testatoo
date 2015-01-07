@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Disabled extends State {
     Disabled() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getString("\$('#${c.id}').is(':disabled') || (\$('#${c.id}').is('option') || \$('#${c.id}').is('optgroup')) && \$('#${c.id}').closest('select').is(':disabled')"))  }
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c))  }
         description e: 'disabled', w: 'enabled'
     }
 }

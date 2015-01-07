@@ -23,6 +23,7 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 import org.testatoo.core.property.Property
+import org.testatoo.core.state.State
 
 import static org.testatoo.core.input.Key.*
 
@@ -58,6 +59,11 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     String getProperty(Property property, Component c) {
         eval("\$.property('${c.cartridge}', '${property.class.simpleName.toLowerCase()}', '${c.id}')")
+    }
+
+    @Override
+    String getState(State state, Component c) {
+        eval("\$.state('${c.cartridge}', '${state.class.simpleName.toLowerCase()}', '${c.id}')")
     }
 
     @Override

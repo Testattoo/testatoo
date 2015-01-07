@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Required extends State {
     Required() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getString("\$('#" + c.id + "').prop('required')")) }
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
         description e: 'required', w: 'optional'
     }
 }

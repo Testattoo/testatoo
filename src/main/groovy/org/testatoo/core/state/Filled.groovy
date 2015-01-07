@@ -23,7 +23,7 @@ import org.testatoo.core.component.Component
 class Filled extends State {
 
     Filled() {
-        evaluator { Component c -> !Boolean.valueOf(c.evaluator.getString("testatoo.ext.isEmpty('${c.id}')")) }
+        evaluator { Component c -> !Boolean.valueOf(c.evaluator.getState(new Empty(), c)) }
         description e: 'not empty', w: 'empty'
     }
 }

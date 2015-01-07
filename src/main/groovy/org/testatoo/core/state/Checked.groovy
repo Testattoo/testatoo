@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Checked extends State {
     Checked() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getString("\$('#" + c.id + "').is(':checked')")) }
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
         description e: 'checked', w: 'unchecked'
     }
 }

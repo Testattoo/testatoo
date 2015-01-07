@@ -102,12 +102,62 @@
             return el.prop("tagName");
         },
         states: {
-            checked: function(id) {
-
+            enabled: function (id) {
+                return !this.disabled(id);
+            },
+            disabled: function (id) {
+                var el = $('#' + id);
+                return el.is(':disabled') || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
+            },
+            hidden: function (id) {
+                return $('#' + id).is(':hidden');
+            },
+            visible: function (id) {
+                return !this.hidden(id);
+            },
+            checked: function (id) {
+                return $('#' + id).is(':checked');
+            },
+            unchecked: function (id) {
+                return !this.checked(id);
+            },
+            required: function (id) {
+                return $('#' + id).prop('required');
+            },
+            optional: function (id) {
+                return !this.required(id);
+            },
+            selected: function (id) {
+                return $('#' + id).prop('selected');
+            },
+            unselected: function (id) {
+                return !this.selected(id);
+            },
+            multiselectable: function(id) {
+                var el = $('#' + id);
+                return el.is('select') && el.prop('multiple');
+            },
+            singleselectable: function(id) {
+                return !this.multiselectable(id);
+            },
+            empty: function (id) {
+                var el = $('#' + id + '');
+                var nodeName = el.prop('nodeName').toLowerCase() || '';
+                switch (nodeName) {
+                    case 'input':
+                        return $.trim(el.val()).length == 0;
+                        break;
+                    case 'ol':
+                    case 'ul':
+                        return el.find('li').length == 0;
+                        break;
+                    default:
+                        return false;
+                }
             }
         },
         properties: {
-            label: function(id) {
+            label: function (id) {
                 var el = $('#' + id);
                 if (el.is('option') || el.is('optgroup')) {
                     return el.attr('label');
@@ -120,34 +170,34 @@
                 if (p.length > 0) return p.text();
                 return el.parent().text().trim();
             },
-            maximum: function(id) {
+            maximum: function (id) {
                 return $('#' + id).prop('max');
             },
-            minimum: function(id) {
+            minimum: function (id) {
                 return $('#' + id).prop('min');
             },
-            placeholder: function(id) {
+            placeholder: function (id) {
                 return $('#' + id).prop('placeholder');
             },
-            pattern: function(id) {
+            pattern: function (id) {
                 return $('#' + id).prop('pattern');
             },
-            reference: function(id) {
+            reference: function (id) {
                 return $('#' + id).prop('href');
             },
-            source: function(id) {
+            source: function (id) {
                 return $('#' + id).prop('src');
             },
-            step: function(id) {
+            step: function (id) {
                 return $('#' + id).prop('step');
             },
-            text: function(id) {
+            text: function (id) {
                 return $('#' + id).text();
             },
-            title: function(id) {
+            title: function (id) {
                 return $('#' + id).prop('title');
             },
-            value: function(id) {
+            value: function (id) {
                 return $('#' + id).val();
             }
 
@@ -167,7 +217,7 @@
                 _cartridge = cartridge.name;
             }
         }, this);
-        return { type: _type, cartridge: _cartridge };
+        return {type: _type, cartridge: _cartridge};
     }
 
     $.fn.getMetaInfos = function () {
@@ -191,7 +241,7 @@
         return metaInfos;
     };
 
-    $.property = function(cartridge, property, id) {
+    $.property = function (cartridge, property, id) {
         var used_cartridge = {};
         cartridges.forEach(function (_cartridge) {
             if (_cartridge.name === cartridge)
@@ -199,6 +249,16 @@
         });
 
         return used_cartridge.properties[property] ? used_cartridge.properties[property](id) : html5_cartridge.properties[property](id)
+    };
+
+    $.state = function (cartridge, state, id) {
+        var used_cartridge = {};
+        cartridges.forEach(function (_cartridge) {
+            if (_cartridge.name === cartridge)
+                used_cartridge = _cartridge;
+        });
+
+        return used_cartridge.states[state] ? used_cartridge.states[state](id) : html5_cartridge.states[state](id)
     };
 
 
