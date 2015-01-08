@@ -19,7 +19,4 @@ package org.testatoo.core.component.input
  * @author David Avenante (d.avenante@gmail.com)
  */
 class ColorField extends TextField {
-
-    ColorField() {}
-
 }

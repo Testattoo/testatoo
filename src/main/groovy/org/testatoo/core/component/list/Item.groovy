@@ -27,10 +27,7 @@ import org.testatoo.core.state.UnSelected
 class Item extends Component {
 
     Item() {
-        support Label
-        support Value, {
-            Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
-        }
+        support Label, Value
         support Selected, UnSelected
     }
 
@@ -40,7 +37,7 @@ class Item extends Component {
     }
 
     String getValue() {
-        return evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
+        return evaluator.getProperty(new Value(), this)
     }
 
     @Override

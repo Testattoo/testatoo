@@ -77,6 +77,41 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
+    String getTitle() {
+        return webDriver.title
+    }
+
+    @Override
+    String getPageSource() {
+        return webDriver.pageSource
+    }
+
+    @Override
+    String getUrl() {
+        return webDriver.currentUrl
+    }
+
+    @Override
+    void to(String url) {
+        webDriver.navigate().to(url)
+    }
+
+    @Override
+    void back() {
+        webDriver.navigate().back()
+    }
+
+    @Override
+    void forward() {
+        webDriver.navigate().forward()
+    }
+
+    @Override
+    void refresh() {
+        webDriver.navigate().refresh()
+    }
+
+    @Override
     List<MetaInfo> getMetaInfo(String jQueryExpr) {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {

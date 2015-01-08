@@ -26,8 +26,8 @@ import org.testatoo.core.property.Step
 class DateField extends TextField {
 
     DateField() {
-        support Minimum, { Component c -> c.evaluator.getString("\$('#${c.id}').prop('min')") }
-        support Maximum, { Component c -> c.evaluator.getString("\$('#${c.id}').prop('max')") }
+        support Minimum, { Component c -> c.evaluator.getProperty(new Minimum(), c) }
+        support Maximum, { Component c -> c.evaluator.getProperty(new Maximum(), c) }
         support Step
     }
 

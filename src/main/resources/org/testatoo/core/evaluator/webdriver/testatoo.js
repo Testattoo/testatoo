@@ -192,18 +192,38 @@
                 return $('#' + id).prop('step');
             },
             text: function(id) {
-                return $('#' + id).text();
+                var el = $('#' + id);
+                if (el.is('input'))
+                    return el.val();
+                return el.text();
             },
             title: function(id) {
-                return $('#' + id).prop('title');
+                var el =  $('#' + id);
+                if (el.is('th'))
+                    return el.text();
+                return el.prop('title');
             },
             value: function(id) {
-                return $('#' + id).val();
+                var el = $('#' + id);
+                if (el.is('input'))
+                    return el.val();
+                return el.text();
             },
             size: function(id) {
                 var el = $('#' + id);
+                if (el.is('ul') || el.is('ol'))
+                    return el.find('li').length;
                 if (el.is('table'))
                     return el.find('tbody tr').length;
+                if (el.is('select') || el.is('optgroup'))
+                    return el.find('option').length;
+                if (el.is('tr'))
+                    return el.find('td').length;
+                if (el.is('th')) {
+                    var index = el.index() + 1;
+                    return el.closest('table').find('tbody tr').find('td:nth-child(' + index + ')').length;
+                }
+
                 return el.children().length;
             },
             columnsize: function(id) {

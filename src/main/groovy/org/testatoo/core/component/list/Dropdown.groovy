@@ -24,10 +24,7 @@ import org.testatoo.core.property.*
 class Dropdown extends Component {
 
     Dropdown() {
-        support Label, GroupItemsSize, SelectedItems
-        support Size, {
-            Component c -> Integer.valueOf(c.evaluator.getString("\$('#${id}').find('option').length"))
-        }
+        support Label, GroupItemsSize, SelectedItems, Size
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

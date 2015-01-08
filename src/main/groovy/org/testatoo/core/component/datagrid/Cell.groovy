@@ -24,6 +24,6 @@ import org.testatoo.core.property.Value
 class Cell extends Component {
 
     Cell() {
-        support Value, { evaluator.getString("\$('#${id}').text()") }
+        support Value
     }
 }

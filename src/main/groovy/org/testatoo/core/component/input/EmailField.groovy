@@ -18,7 +18,4 @@ package org.testatoo.core.component.input
  * @author David Avenante (d.avenante@gmail.com)
  */
 class EmailField extends TextField {
-
-    EmailField() {}
-
 }

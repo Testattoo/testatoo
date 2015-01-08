@@ -39,6 +39,20 @@ public interface Evaluator extends AutoCloseable {
 
     String getState(State state, Component component)
 
+    String getTitle()
+
+    String getPageSource()
+
+    String getUrl()
+
+    void to(String url)
+
+    void back()
+
+    void forward()
+
+    void refresh()
+
     public <T> T getJson(String jQueryExpr)
 
     List<MetaInfo> getMetaInfo(String jQueryExpr)

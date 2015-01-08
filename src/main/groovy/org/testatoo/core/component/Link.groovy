@@ -24,10 +24,7 @@ import org.testatoo.core.property.Text
 class Link extends Component {
 
     Link() {
-        support Text, {
-            Component c -> c.evaluator.getString("\$('#${id}').text()")
-        }
-        support Reference
+        support Text, Reference
     }
 
 }

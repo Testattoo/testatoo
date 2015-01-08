@@ -26,10 +26,7 @@ import org.testatoo.core.state.SingleSelectable
 class ListBox extends Component {
 
     ListBox() {
-        support Label, GroupItemsSize, VisibleItemsSize, SelectedItems
-        support Size, {
-            Component c -> Integer.valueOf(c.evaluator.getString("\$('#${id}').find('option').length"))
-        }
+        support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }

@@ -36,12 +36,16 @@ class Testatoo {
 
     static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
 
-    static void open(String uri) { evaluator.open(uri) }
+    static void open(String uri) { browser.open(uri) }
 
     static Component check(Component c) {
         if (!c.getState(new Checked()))
             evaluator.click(c.id)
         return c
+    }
+
+    static Browser getBrowser() {
+        return new Browser(evaluator)
     }
 
     static Interaction on(Component c) {

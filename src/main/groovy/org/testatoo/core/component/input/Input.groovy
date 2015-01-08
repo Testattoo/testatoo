@@ -27,11 +27,7 @@ import org.testatoo.core.state.Filled
 class Input extends Component {
 
     Input() {
-        support Text, {
-            Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
-        }
-        support Value
-        support Empty, Filled
+        support Text, Value, Empty, Filled
     }
 
 }

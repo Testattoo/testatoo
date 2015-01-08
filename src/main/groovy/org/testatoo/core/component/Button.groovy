@@ -21,9 +21,9 @@ import org.testatoo.core.property.Text
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Button extends Component {
+
     Button() {
-        support Text, {
-            Component c -> c.evaluator.getString("\$('#${id}').prop('nodeName').toLowerCase() == 'input' ? \$('#${id}').val() : \$('#${id}').text()")
-        }
+        support Text
     }
+
 }

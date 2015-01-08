@@ -24,9 +24,7 @@ import org.testatoo.core.property.Size
 class Row extends Component {
 
     Row() {
-        support Size, {
-            Integer.valueOf(evaluator.getString("\$('#${id}').find('td').length"))
-        }
+        support Size
     }
 
     List<Cell> getCells() {

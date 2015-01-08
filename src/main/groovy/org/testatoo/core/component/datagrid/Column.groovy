@@ -25,13 +25,7 @@ import org.testatoo.core.property.Title
 class Column extends Component {
 
     Column() {
-        support Size, {
-            int index = Integer.valueOf(evaluator.getString("\$('#${id}').index()")) + 1
-            Integer.valueOf(evaluator.getString("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})').length"))
-        }
-        support Title, {
-            evaluator.getString("\$('#${id}').text()")
-        }
+        support Size, Title
     }
 
     List<Cell> getCells() {
