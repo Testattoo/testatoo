@@ -546,7 +546,7 @@ class ComponentsTest {
 
     class Message extends Panel {
         Message() {
-            support Title, { Component c -> c.evaluator.getString("\$('#${id}').text()") }
+            support Title, { Component c -> c.evaluator.getString("testatoo('#${id}').text()") }
         }
     }
 

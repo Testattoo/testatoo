@@ -50,7 +50,7 @@ class Interactions<T extends Component> {
 
         if (item.is(new Selected())) {
             cc.each { c ->
-                c.evaluator.runScript("\$('#${item.id}').prop('selected', false).trigger('change');")
+                c.evaluator.runScript("testatoo('#${item.id}').prop('selected', false).trigger('change');")
             }
         }
 
@@ -69,11 +69,11 @@ class Interactions<T extends Component> {
             throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be selected")
         }
         if (item.is(new UnSelected()))
-            item.evaluator.runScript("\$('#${item.id}').prop('selected', true).trigger('change');")
+            item.evaluator.runScript("testatoo('#${item.id}').prop('selected', true).trigger('change');")
     }
 
     private static boolean isDisabled(Component c) {
-        Boolean.valueOf(c.evaluator.getString("\$('#${c.id}').is(':disabled') || (\$('#${c.id}').is('option') || \$('#${c.id}').is('optgroup')) && \$('#${c.id}').closest('select').is(':disabled')"))
+        Boolean.valueOf(c.evaluator.getString("testatoo('#${c.id}').is(':disabled') || (testatoo('#${c.id}').is('option') || testatoo('#${c.id}').is('optgroup')) && testatoo('#${c.id}').closest('select').is(':disabled')"))
     }
 
 }

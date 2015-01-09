@@ -301,22 +301,6 @@
 
     $.ext = {
 
-        isEmpty: function(id) {
-            var el = $('#' + id + '');
-            var nodeName = el.prop('nodeName').toLowerCase() || '';
-            switch (nodeName) {
-                case 'input':
-                    return $.trim(el.val()).length == 0;
-                    break;
-                case 'ol':
-                case 'ul':
-                    return el.find('li').length == 0;
-                    break;
-                default:
-                    return false;
-            }
-        },
-
         contains: function(id, ids) {
             var el = $('#' + id + '');
             var not = [];

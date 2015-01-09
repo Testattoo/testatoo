@@ -106,7 +106,7 @@ class ErrorTest {
             }
             fail()
         } catch (RuntimeException e) {
-            assert e.message == "Unable to reach the condition within 2 seconds (Component defined by jQuery expression \$('#inexisting_button') not found.)"
+            assert e.message == "Unable to reach the condition within 2 seconds (Component defined by expression testatoo('#inexisting_button') not found.)"
         }
     }
 
@@ -221,7 +221,7 @@ class ErrorTest {
             item.should { be visible }
             fail()
         } catch (ComponentException e) {
-            e.message == "Component defined by jQuery expression \$('#elements option') is not unique: got 5"
+            e.message == "Component defined by jQuery expression testatoo('#elements option') is not unique: got 5"
         }
     }
 

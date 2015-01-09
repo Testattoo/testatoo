@@ -27,11 +27,11 @@ class ListView extends Component {
     ListView() {
         support Size
         support Items, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('li')").collect { it as Item }
+            Component c -> c.evaluator.getMetaInfo("testatoo('#${id}').find('li')").collect { it as Item }
         }
     }
 
     List<Item> getItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('li')").collect { it as Item }
+        this.evaluator.getMetaInfo("testatoo('#${id}').find('li')").collect { it as Item }
     }
 }

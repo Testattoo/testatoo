@@ -29,10 +29,10 @@ class DataGrid extends Component {
     }
 
     List<Column> getColumns() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('thead tr:last th')").collect { it as Column }
+        this.evaluator.getMetaInfo("testatoo('#${id}').find('thead tr:last th')").collect { it as Column }
     }
 
     List<Row> getRows() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('tbody tr')").collect { it as Row }
+        this.evaluator.getMetaInfo("testatoo('#${id}').find('tbody tr')").collect { it as Row }
     }
 }

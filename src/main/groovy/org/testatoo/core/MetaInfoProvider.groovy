@@ -19,7 +19,6 @@ import org.testatoo.core.component.ComponentException
 import org.testatoo.core.evaluator.Evaluator
 
 /**
- * date 2014-05-15
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class MetaInfoProvider implements IdProvider {

@@ -28,7 +28,7 @@ class Row extends Component {
     }
 
     List<Cell> getCells() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('td')").collect { it as Cell }
+        this.evaluator.getMetaInfo("testatoo('#${id}').find('td')").collect { it as Cell }
     }
 
 }

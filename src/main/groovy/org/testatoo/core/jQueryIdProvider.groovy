@@ -27,7 +27,7 @@ class jQueryIdProvider implements IdProvider {
     final boolean singleElement
 
     jQueryIdProvider(String expression, long timeout, boolean singleElement) {
-        this.expression = expression.startsWith('$') ? expression : ('$(\'' + expression + '\')')
+        this.expression = expression.startsWith('testatoo') ? expression : ('testatoo(\'' + expression + '\')')
         this.timeout = timeout
         this.singleElement = singleElement
     }
@@ -38,8 +38,8 @@ class jQueryIdProvider implements IdProvider {
         List<MetaInfo> metaInfos = evaluator.getMetaInfo(expression)
         if (singleElement) {
             if (metaInfos.size() == 1) return metaInfos
-            if (metaInfos.size() == 0) throw new ComponentException("Component defined by jQuery expression ${expression} not found.")
-            throw new ComponentException("Component defined by jQuery expression ${expression} is not unique: got ${metaInfos.size()}")
+            if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression ${expression} not found.")
+            throw new ComponentException("Component defined by expression ${expression} is not unique: got ${metaInfos.size()}")
         } else {
             return metaInfos
         }

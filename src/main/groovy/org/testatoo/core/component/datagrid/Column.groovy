@@ -29,8 +29,8 @@ class Column extends Component {
     }
 
     List<Cell> getCells() {
-        int index =  Integer.valueOf(evaluator.getString("\$('#${id}').index()")) + 1
-        evaluator.getMetaInfo("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')").collect { it as Cell }
+        int index =  Integer.valueOf(evaluator.getString("testatoo('#${id}').index()")) + 1
+        evaluator.getMetaInfo("testatoo('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')").collect { it as Cell }
     }
 
 }

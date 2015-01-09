@@ -28,20 +28,20 @@ class ListBox extends Component {
     ListBox() {
         support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size
         support Items, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+            Component c -> c.evaluator.getMetaInfo("testatoo('#${id}').find('option')").collect { it as Item }
         }
         support GroupItems, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
+            Component c -> c.evaluator.getMetaInfo("testatoo('#${id}').find('optgroup')").collect { it as GroupItem }
         }
         support MultiSelectable, SingleSelectable
     }
 
     List<Item> getItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+        this.evaluator.getMetaInfo("testatoo('#${id}').find('option')").collect { it as Item }
     }
 
     List<GroupItem> getGroupItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
+        this.evaluator.getMetaInfo("testatoo('#${id}').find('optgroup')").collect { it as GroupItem }
     }
 
 }
