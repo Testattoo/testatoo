@@ -17,6 +17,9 @@ package org.testatoo.core
 
 import org.testatoo.core.component.Component
 
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
 public interface Matcher {
     void matches(Component c)
 }

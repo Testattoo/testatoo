@@ -18,6 +18,9 @@ package org.testatoo.core.state
 import org.testatoo.core.Matcher
 import org.testatoo.core.component.Component
 
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
 class State implements Matcher {
 
     StateEvaluator evaluator

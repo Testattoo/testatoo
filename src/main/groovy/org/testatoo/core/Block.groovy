@@ -15,6 +15,9 @@
  */
 package org.testatoo.core
 
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
 public abstract class Block {
 
     abstract void run()

@@ -20,7 +20,6 @@ import org.testatoo.core.evaluator.Evaluator
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
 class Browser {
 
     private Evaluator evaluator

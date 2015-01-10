@@ -18,6 +18,9 @@ package org.testatoo.core
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.evaluator.Evaluator
 
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
 public interface IdProvider {
     List<MetaInfo> getMetaInfos(Evaluator e) throws ComponentException
 }

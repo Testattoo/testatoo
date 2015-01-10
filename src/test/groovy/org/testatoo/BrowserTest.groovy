@@ -31,7 +31,6 @@ import static org.testatoo.core.Testatoo.open
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
 @RunWith(JUnit4)
 class BrowserTest {
 

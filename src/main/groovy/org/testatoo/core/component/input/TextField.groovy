@@ -32,7 +32,7 @@ class TextField extends Input {
     void enter(String text) { evaluator.enter([text]) }
 
     void reset() {
-        evaluator.runScript("testatoo('#${id}').val('')")
+        evaluator.runScript("\$('#${id}').val('')")
     }
 
 }

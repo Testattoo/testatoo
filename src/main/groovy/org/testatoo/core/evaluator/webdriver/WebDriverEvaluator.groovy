@@ -68,7 +68,7 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     void runScript(String script) {
-        js.executeScript(script);
+        js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/ , 'testatoo') : script);
     }
 
     @Override

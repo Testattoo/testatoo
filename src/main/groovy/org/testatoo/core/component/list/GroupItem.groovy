@@ -29,12 +29,12 @@ class GroupItem extends Component {
     GroupItem() {
         support Label, Value, Size
         support Items, {
-            Component c -> c.evaluator.getMetaInfo("testatoo('#${id}').find('option')").collect { it as Item }
+            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }
     }
 
     List<Item> getItems() {
-        this.evaluator.getMetaInfo("testatoo('#${id}').find('option')").collect { it as Item }
+        this.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
     }
 
     boolean equals(o) {

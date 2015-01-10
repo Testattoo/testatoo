@@ -27,7 +27,7 @@ class jQueryIdProvider implements IdProvider {
     final boolean singleElement
 
     jQueryIdProvider(String expression, long timeout, boolean singleElement) {
-        this.expression = expression.startsWith('testatoo') ? expression : ('testatoo(\'' + expression + '\')')
+        this.expression = expression.startsWith('$') ? expression : ('$(\'' + expression + '\')')
         this.timeout = timeout
         this.singleElement = singleElement
     }

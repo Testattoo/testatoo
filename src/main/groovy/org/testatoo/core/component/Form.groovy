@@ -25,7 +25,7 @@ class Form extends Component {
     Form() {}
 
     void submit() {
-        Button submit_button = evaluator.getMetaInfo("testatoo('#${id}').find('[type=submit]:first')")[0] as Button
+        Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button
         if (submit_button && submit_button.be(new Available()))
             evaluator.click(submit_button.id)
         else
@@ -33,7 +33,7 @@ class Form extends Component {
     }
 
     void reset() {
-        Button reset_button = evaluator.getMetaInfo("testatoo('#${id}').find('[type=reset]:first')")[0] as Button
+        Button reset_button = evaluator.getMetaInfo("\$('#${id}').find('[type=reset]:first')")[0] as Button
         if (reset_button && reset_button.be(new Available()))
             evaluator.click(reset_button.id)
         else

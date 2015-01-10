@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package org.testatoo.core
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
