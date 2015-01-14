@@ -107,7 +107,7 @@
       },
       disabled: function (id) {
         var el = $('#' + id);
-        return el.is(':disabled') || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
+        return el.is(':disabled') || el.attr('disabled') != undefined || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
       },
       hidden: function (id) {
         return $('#' + id).is(':hidden');

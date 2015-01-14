@@ -231,6 +231,9 @@ class ComponentsTest {
         panel.should { be visible }
 
         panel.should { have title.equalsTo('') }
+
+        panel = $('#disabled-panel') as Panel
+        panel.should { be disabled }
     }
 
     // http://en.wikipedia.org/wiki/Combo_box
