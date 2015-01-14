@@ -19,6 +19,7 @@ import groovy.json.JsonSlurper
 import org.openqa.selenium.*
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.action.Action
 import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
@@ -64,6 +65,11 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     String getState(State state, Component c) {
         eval("testatoo.state('${c.cartridge}', '${state.class.simpleName.toLowerCase()}', '${c.id}')")
+    }
+
+    @Override
+    void runAction(Action action, Component c) {
+        eval("testatoo.action('${c.cartridge}', '${action.class.simpleName.toLowerCase()}', '${c.id}')")
     }
 
     @Override

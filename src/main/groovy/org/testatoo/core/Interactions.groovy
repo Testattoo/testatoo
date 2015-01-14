@@ -15,10 +15,13 @@
  */
 package org.testatoo.core
 
+import org.testatoo.core.action.Select
+import org.testatoo.core.action.Unselect
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.Item
+import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Selected
 import org.testatoo.core.state.UnSelected
 
@@ -43,17 +46,24 @@ class Interactions<T extends Component> {
         }
     }
 
-    void unselect(Item item) {
-        if (isDisabled(item)) {
-            throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be unselected")
+    static void select(Component c) {
+        if (isDisabled(c)) {
+            throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be selected")
+        }
+        if (c.is(new UnSelected()))
+            c.evaluator.runAction(new Select(), c)
+    }
+
+    void unselect(Component c) {
+        if (isDisabled(c)) {
+            throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be unselected")
         }
 
-        if (item.is(new Selected())) {
-            cc.each { c ->
-                c.evaluator.runScript("\$('#${item.id}').prop('selected', false).trigger('change');")
+        if (c.is(new Selected())) {
+            cc.each { it ->
+                it.evaluator.runAction(new Unselect(), it)
             }
         }
-
     }
 
     void enter(String value) {
@@ -64,16 +74,8 @@ class Interactions<T extends Component> {
         }
     }
 
-    static void select(Component item) {
-        if (isDisabled(item)) {
-            throw new ComponentException("${item.meta.type} ${item} is disabled and cannot be selected")
-        }
-        if (item.is(new UnSelected()))
-            item.evaluator.runScript("\$('#${item.id}').prop('selected', true).trigger('change');")
-    }
-
     private static boolean isDisabled(Component c) {
-        Boolean.valueOf(c.evaluator.getString("\$('#${c.id}').is(':disabled') || (\$('#${c.id}').is('option') || \$('#${c.id}').is('optgroup')) && \$('#${c.id}').closest('select').is(':disabled')"))
+        Boolean.valueOf(c.evaluator.getState(new Disabled(), c))
     }
 
 }

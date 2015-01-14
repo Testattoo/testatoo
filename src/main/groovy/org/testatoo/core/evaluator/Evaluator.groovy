@@ -16,6 +16,8 @@
 package org.testatoo.core.evaluator
 
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.action.Action
+import org.testatoo.core.action.Unselect
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Property
 import org.testatoo.core.state.State
@@ -41,6 +43,8 @@ public interface Evaluator extends AutoCloseable {
     String getProperty(Property property, Component component)
 
     String getState(State state, Component component)
+
+    void runAction(Action action, Component component)
 
     String getTitle()
 
