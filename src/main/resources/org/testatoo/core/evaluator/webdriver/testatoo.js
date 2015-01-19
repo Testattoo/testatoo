@@ -246,6 +246,24 @@
       unselect: function (id) {
         $('#' + id).prop('selected', false).trigger('change');
       }
+    },
+    functions: {
+      contains: function (id, ids) {
+        var el = $('#' + id + '');
+        var not = [];
+        $.each(ids, function (index, _id) {
+          !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
+        });
+        return not;
+      },
+      display: function (id, ids) {
+        var el = $('#' + id + '');
+        var not = [];
+        $.each(ids, function (index, _id) {
+          !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
+        });
+        return not;
+      }
     }
   };
 
@@ -262,6 +280,16 @@
       }
     }, this);
     return {type: _type, cartridge: _cartridge};
+  }
+
+  function getCartridge(name) {
+    var resultList = $.grep(cartridges, function (element) {
+      return element.name === name;
+    });
+
+    if (resultList.length)
+      return resultList[0];
+    return html5_cartridge;
   }
 
   $.fn.getMetaInfos = function () {
@@ -286,44 +314,34 @@
   };
 
   $.property = function (cartridge, property, id) {
-    var used_cartridge = {};
-    cartridges.forEach(function (_cartridge) {
-      if (_cartridge.name === cartridge)
-        used_cartridge = _cartridge;
-    });
-
-    return used_cartridge.properties[property] ? used_cartridge.properties[property](id) : html5_cartridge.properties[property](id)
+    var used_cartridge = getCartridge(cartridge);
+    if (used_cartridge.properties[property] && used_cartridge.properties[property](id))
+      return used_cartridge.properties[property](id);
+    return html5_cartridge.properties[property](id);
   };
 
   $.state = function (cartridge, state, id) {
-    var used_cartridge = {};
-    cartridges.forEach(function (_cartridge) {
-      if (_cartridge.name === cartridge)
-        used_cartridge = _cartridge;
-    });
-
-    return used_cartridge.states[state] ? used_cartridge.states[state](id) : html5_cartridge.states[state](id)
+    var used_cartridge = getCartridge(cartridge);
+    if (used_cartridge.states[state] && used_cartridge.states[state](id))
+      return used_cartridge.states[state](id);
+    return html5_cartridge.states[state](id);
   };
 
   $.action = function (cartridge, action, id) {
-    var used_cartridge = {};
-    cartridges.forEach(function (_cartridge) {
-      if (_cartridge.name === cartridge)
-        used_cartridge = _cartridge;
-    });
-
-    return used_cartridge.actions[action] ? used_cartridge.actions[action](id) : html5_cartridge.actions[action](id)
+    var used_cartridge = getCartridge(cartridge);
+    if (used_cartridge.actions[action] && used_cartridge.actions[action](id))
+      return used_cartridge.actions[action](id);
+    return html5_cartridge.actions[action](id);
   };
 
-  $.ext = {
-    contains: function (id, ids) {
-      var el = $('#' + id + '');
-      var not = [];
-      $.each(ids, function (index, _id) {
-        !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
-      });
-      return not;
-    }
-  };
+  $.run = function() {
+    var used_cartridge = getCartridge(arguments[0]);
+    var function_name = arguments[1];
+    [].shift.apply(arguments);
+    [].shift.apply(arguments);
+    if (used_cartridge.functions[function_name])
+       return used_cartridge.functions[function_name].apply(this, arguments);
+    return html5_cartridge.functions[function_name].apply(this, arguments);
+  }
 
 }(window));

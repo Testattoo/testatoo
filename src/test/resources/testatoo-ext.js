@@ -23,8 +23,16 @@
                         return 'MyCustomComponent';
                     return undefined;
             },
-            states: {},
-            properties: {}
+            states: {
+                enabled: function(id) {
+                    return false;
+                },
+                visible: function(id) {
+                    return undefined;
+                }
+            },
+            properties: {},
+            functions: {}
         }
     );
 
