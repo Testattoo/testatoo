@@ -15,8 +15,23 @@
  */
 package org.testatoo.core.component.input
 
+import org.testatoo.core.property.Label
+import org.testatoo.core.property.Placeholder
+import org.testatoo.core.state.Optional
+import org.testatoo.core.state.Required
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class PasswordField extends TextField {
+class PasswordField extends Input {
+
+    PasswordField() {
+        support Placeholder, Label, Optional, Required
+    }
+
+    void enter(String text) { evaluator.enter([text]) }
+
+    void reset() {
+        evaluator.runScript("\$('#${id}').val('')")
+    }
 }
