@@ -16,11 +16,15 @@
 package org.testatoo.core.component.input
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.property.Label
+import org.testatoo.core.property.Placeholder
 import org.testatoo.core.property.Text
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Empty
 import org.testatoo.core.state.Filled
 import org.testatoo.core.state.Invalid
+import org.testatoo.core.state.Optional
+import org.testatoo.core.state.Required
 import org.testatoo.core.state.Valid
 
 /**
@@ -29,7 +33,7 @@ import org.testatoo.core.state.Valid
 class Input extends Component {
 
     Input() {
-        support Text, Value, Empty, Filled, Valid, Invalid
+        support Placeholder, Label, Optional, Required, Text, Value, Empty, Filled, Valid, Invalid
     }
 
     void enter(String text) { evaluator.enter([text]) }

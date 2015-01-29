@@ -14,19 +14,8 @@
  * limitations under the License.
  */
 package org.testatoo.core.component.input
-
-import org.testatoo.core.property.Label
-import org.testatoo.core.property.Placeholder
-import org.testatoo.core.state.Optional
-import org.testatoo.core.state.Required
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class PasswordField extends Input {
-
-    PasswordField() {
-        support Placeholder, Label, Optional, Required
-    }
-
 }
