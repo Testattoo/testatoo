@@ -102,6 +102,12 @@
       return el.prop("tagName");
     },
     states: {
+      valid: function(id) {
+        return $('#' + id).is(':valid');
+      },
+      invalid: function(id) {
+        return $('#' + id).is(':invalid');
+      },
       enabled: function (id) {
         return !this.disabled(id);
       },

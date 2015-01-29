@@ -19,7 +19,7 @@ import org.testatoo.core.action.Select
 import org.testatoo.core.action.Unselect
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.input.Input
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Selected
@@ -65,7 +65,7 @@ class Interaction {
     void enter(String value) {
         // Click to focus on component
         c.evaluator.click(c.id);
-        ((TextField) c).enter(value)
+        ((Input) c).enter(value)
     }
 
     private static boolean isDisabled(Component c) {

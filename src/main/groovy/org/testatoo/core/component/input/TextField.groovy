@@ -17,8 +17,10 @@ package org.testatoo.core.component.input
 
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
+import org.testatoo.core.state.Invalid
 import org.testatoo.core.state.Optional
 import org.testatoo.core.state.Required
+import org.testatoo.core.state.Valid
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -27,12 +29,6 @@ class TextField extends Input {
 
     TextField() {
         support Placeholder, Label, Optional, Required
-    }
-
-    void enter(String text) { evaluator.enter([text]) }
-
-    void reset() {
-        evaluator.runScript("\$('#${id}').val('')")
     }
 
 }

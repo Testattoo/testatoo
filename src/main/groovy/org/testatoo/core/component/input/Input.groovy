@@ -20,6 +20,8 @@ import org.testatoo.core.property.Text
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Empty
 import org.testatoo.core.state.Filled
+import org.testatoo.core.state.Invalid
+import org.testatoo.core.state.Valid
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -27,7 +29,13 @@ import org.testatoo.core.state.Filled
 class Input extends Component {
 
     Input() {
-        support Text, Value, Empty, Filled
+        support Text, Value, Empty, Filled, Valid, Invalid
+    }
+
+    void enter(String text) { evaluator.enter([text]) }
+
+    void reset() {
+        evaluator.runScript("\$('#${id}').val('')")
     }
 
 }

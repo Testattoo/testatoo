@@ -128,9 +128,22 @@ class ComponentsTest {
         emailField.should { be disabled }
 
         PhoneField phoneField = $('#phone_field') as PhoneField
-        phoneField.should { be enabled }
         phoneField.should {
             have pattern('^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$')
+            be enabled
+            be invalid
+        }
+
+        on phoneField enter 'bad phone number'
+        phoneField.should {
+            be invalid
+        }
+
+        reset phoneField
+
+        on phoneField enter '5146666666'
+        phoneField.should {
+            be valid
         }
 
         URLField urlField = $('#url_field') as URLField

@@ -26,6 +26,8 @@ class States {
     static final Visible visible = new Visible()
     static final Hidden hidden = new Hidden()
     static final Available available = new Available()
+    static final Valid valid = new Valid()
+    static final Invalid invalid = new Invalid()
     static final Missing missing = new Missing()
     static final Checked checked = new Checked()
     static final Unchecked unchecked = new Unchecked()

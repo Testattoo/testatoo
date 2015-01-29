@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component.input
+package org.testatoo.core.state
 
-import org.testatoo.core.property.Label
-import org.testatoo.core.property.Placeholder
-import org.testatoo.core.state.Optional
-import org.testatoo.core.state.Required
+import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class PasswordField extends Input {
-
-    PasswordField() {
-        support Placeholder, Label, Optional, Required
+class Valid extends State {
+    Valid() {
+        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
+        description e: 'valid', w: 'invalid'
     }
-
 }
