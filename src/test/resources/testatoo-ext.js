@@ -32,7 +32,8 @@
                 }
             },
             properties: {},
-            functions: {}
+            functions: {},
+            extensions: {}
         }
     );
 

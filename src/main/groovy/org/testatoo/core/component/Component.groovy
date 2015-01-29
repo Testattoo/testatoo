@@ -59,7 +59,7 @@ class Component {
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
-            List ret = evaluator.getJson("testatoo.run('${cartridge}', 'contains', '${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
+            List ret = evaluator.getJson("testatoo.extension('${cartridge}', 'contains', '${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
             if(ret) {
                 throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
             }
@@ -68,7 +68,7 @@ class Component {
 
     Block display(Component... components) {
         Blocks.block "matching ${this} display ${components}", {
-            List ret = evaluator.getJson("testatoo.run('${cartridge}', 'display', '${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
+            List ret = evaluator.getJson("testatoo.extension('${cartridge}', 'display', '${id}', [${components.collect {"'${it.id}'"}.join(', ')}])")
             if(ret) {
                 throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
             } else {

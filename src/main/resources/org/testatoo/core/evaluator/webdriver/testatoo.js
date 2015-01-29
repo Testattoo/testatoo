@@ -253,7 +253,7 @@
         $('#' + id).prop('selected', false).trigger('change');
       }
     },
-    functions: {
+    extensions: {
       contains: function (id, ids) {
         var el = $('#' + id + '');
         var not = [];
@@ -340,14 +340,14 @@
     return html5_cartridge.actions[action](id);
   };
 
-  $.run = function() {
+  $.extension = function() {
     var used_cartridge = getCartridge(arguments[0]);
-    var function_name = arguments[1];
+    var extension_name = arguments[1];
     [].shift.apply(arguments);
     [].shift.apply(arguments);
-    if (used_cartridge.functions[function_name])
-       return used_cartridge.functions[function_name].apply(this, arguments);
-    return html5_cartridge.functions[function_name].apply(this, arguments);
+    if (used_cartridge.extensions[extension_name])
+       return used_cartridge.extensions[extension_name].apply(this, arguments);
+    return html5_cartridge.extensions[extension_name].apply(this, arguments);
   }
 
 }(window));

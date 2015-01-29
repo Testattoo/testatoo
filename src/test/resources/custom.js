@@ -26,7 +26,8 @@
                 return undefined;
             },
             states: {},
-            properties: {}
+            properties: {},
+            extensions: {}
         }
     );
 
