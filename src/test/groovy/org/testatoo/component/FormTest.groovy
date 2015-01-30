@@ -34,6 +34,7 @@ import org.testatoo.core.property.Title
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * Created by david on 29/01/15.
@@ -44,7 +45,7 @@ class FormTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/components.html'
+        open 'http://localhost:8080/form.html'
     }
 
     @AfterClass
@@ -85,6 +86,19 @@ class FormTest {
 
         email_field.should { have text('') }
         password_field.should { have text('') }
+
+        // Field in error
+        on email_field enter 'bad email'
+        email_field.should {
+            be invalid
+        }
+
+        reset email_field
+
+        on email_field enter 'y@email.org'
+        email_field.should {
+            be valid
+        }
 
         // Can submit a form
         message.should { have title('The form was submitted 0 time(s)') }
