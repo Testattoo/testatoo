@@ -15,26 +15,36 @@
  */
 (function (w) {
 
-    w.testatoo.registerCartridge(
-        {
-            name: 'my_custom_cartridge',
-            type: function(el) {
-                if (el.attr('data-role') == 'my_custom_comp')
-                        return 'MyCustomComponent';
-                    return undefined;
-            },
-            states: {
-                enabled: function(id) {
-                    return false;
-                },
-                visible: function(id) {
-                    return undefined;
-                }
-            },
-            properties: {},
-            functions: {},
-            extensions: {}
+  w.testatoo.registerCartridge(
+    {
+      name: 'my_custom_cartridge',
+      type: function (el) {
+        if (el.attr('data-role') == 'my-custom-comp')
+          return 'MyCustomComponent';
+        if (el.attr('data-role') == 'custom-field')
+          return 'CustomField';
+        return undefined;
+      },
+      states: {
+        enabled: function () {
+          return false;
+        },
+        visible: function () {
+          return undefined;
         }
-    );
+      },
+      properties: {
+        label: function (id) {
+          if ($('#' + id).attr('data-role') == 'custom-field')
+            return 'Label overridden';
+        },
+        placeholder: function() {
+          return undefined;
+        }
+      },
+      functions: {},
+      extensions: {}
+    }
+  );
 
 }(window));

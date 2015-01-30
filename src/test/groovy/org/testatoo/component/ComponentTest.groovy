@@ -24,10 +24,12 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.Radio
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Text
 import org.testatoo.core.property.Title
+import org.testatoo.core.state.Selected
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
@@ -49,14 +51,38 @@ class ComponentTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void can_override_a_state_and_property() {
-        CustomPanel custom_panel = $('#custom_panel') as CustomPanel
+    public void can_override_a_state_and_property_directly_on_component_definition() {
+        CustomPanel custom_panel = $('#custom-panel') as CustomPanel
 
         custom_panel.should { have title('CustomPanel Title') }
         custom_panel.should { be selected }
 
+        // default size evaluation is on number of children
         custom_panel.should { have size(2) }
+        // default text evaluation is on text of node
         custom_panel.should { have text('TEXT') }
+    }
+
+    @Test
+    public void given_override_undefined_on_the_cartridge_evaluation_then_fallback_to_html5_cartridge() {
+        CustomField custom_field = $('#custom-field') as CustomField
+
+        // Property not overridden
+        custom_field.should { have value('The Value') }
+
+        // Property overridden
+        custom_field.should { have label('Label overridden') }
+    }
+
+    @Test
+    public void given_override_is_defined_but_return_undefined_on_the_cartridge_evaluation_then_fallback_to_html5_cartridge() {
+        CustomField custom_field = $('#custom-field') as CustomField
+
+        // Property not overridden
+        custom_field.should { have value('The Value') }
+
+        // Property overridden but fallback with the return of an undefined
+        custom_field.should { have placeholder('The placeholder') }
     }
 
     @Test
@@ -65,7 +91,7 @@ class ComponentTest {
 
         // The selector select the same component as radio_1
         Radio radio_2 = $('[type=radio]:checked') as Radio
-        Radio radio_3  = $('#otherRadio') as Radio
+        Radio radio_3 = $('#otherRadio') as Radio
 
         assert radio_1 == radio_2
         assert radio_1 != radio_3
@@ -74,8 +100,12 @@ class ComponentTest {
     class CustomPanel extends Panel {
         CustomPanel() {
             support Title, { return 'CustomPanel Title' }
-            support org.testatoo.core.state.Selected, { return true }
+            support Selected, { return true }
             support Size, Text
         }
+    }
+
+    class CustomField extends TextField {
+
     }
 }

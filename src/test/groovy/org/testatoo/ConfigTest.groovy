@@ -54,7 +54,7 @@ class ConfigTest {
 
             open 'http://localhost:8080/selectors.html'
 
-            MyCustomComponent myCustomComponent = $('#my_custom_component') as MyCustomComponent
+            MyCustomComponent myCustomComponent = $('#my-custom-component') as MyCustomComponent
             myCustomComponent.should { be visible }
 
         } finally {

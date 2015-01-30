@@ -97,12 +97,12 @@ class SelectorsTest {
 
     @Test
     public void bad_component_type() {
-        CustomComponent customComponent = $('#custom_component') as CustomComponent
+        CustomComponent customComponent = $('#custom-component') as CustomComponent
         try {
             customComponent.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn't contain the type Panel for component with id custom_component"
+            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn't contain the type Panel for component with id custom-component"
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
@@ -116,7 +116,7 @@ class SelectorsTest {
             customTag.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [CustomTag, Component] doesn't contain the type CUSTOM-TAG for component with id custom_tag"
+            assert e.message == "The Component hierarchy [CustomTag, Component] doesn't contain the type CUSTOM-TAG for component with id custom-tag"
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)

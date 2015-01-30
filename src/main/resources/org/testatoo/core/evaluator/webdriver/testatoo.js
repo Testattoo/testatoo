@@ -320,24 +320,15 @@
   };
 
   $.property = function (cartridge, property, id) {
-    var used_cartridge = getCartridge(cartridge);
-    if (used_cartridge.properties[property] && used_cartridge.properties[property](id))
-      return used_cartridge.properties[property](id);
-    return html5_cartridge.properties[property](id);
+    return evaluate('properties', cartridge, property, id);
   };
 
   $.state = function (cartridge, state, id) {
-    var used_cartridge = getCartridge(cartridge);
-    if (used_cartridge.states[state] && used_cartridge.states[state](id))
-      return used_cartridge.states[state](id);
-    return html5_cartridge.states[state](id);
+    return evaluate('states', cartridge, state, id);
   };
 
   $.action = function (cartridge, action, id) {
-    var used_cartridge = getCartridge(cartridge);
-    if (used_cartridge.actions[action] && used_cartridge.actions[action](id))
-      return used_cartridge.actions[action](id);
-    return html5_cartridge.actions[action](id);
+    return evaluate('actions', cartridge, action, id);
   };
 
   $.extension = function() {
@@ -348,6 +339,13 @@
     if (used_cartridge.extensions[extension_name])
        return used_cartridge.extensions[extension_name].apply(this, arguments);
     return html5_cartridge.extensions[extension_name].apply(this, arguments);
+  };
+
+  function evaluate(scope, cartridge, target, id) {
+    var used_cartridge = getCartridge(cartridge);
+    if (used_cartridge[scope][target] && used_cartridge[scope][target](id) != undefined)
+      return used_cartridge[scope][target](id);
+    return html5_cartridge[scope][target](id);
   }
 
 }(window));
