@@ -215,9 +215,9 @@
           return el.val();
         return el.text();
       },
-      size: function (id) {
+      size: function (id, type) {
         var el = $('#' + id);
-        if (el.is('ul') || el.is('ol'))
+        if (type === 'ListView')
           return el.find('li').length;
         if (el.is('table'))
           return el.find('tbody tr').length;
@@ -319,16 +319,16 @@
     return metaInfos;
   };
 
-  $.property = function (cartridge, property, id) {
-    return evaluate('properties', cartridge, property, id);
+  $.property = function (cartridge, type, property, id) {
+    return evaluate('properties', cartridge, property, id, type);
   };
 
-  $.state = function (cartridge, state, id) {
-    return evaluate('states', cartridge, state, id);
+  $.state = function (cartridge, type, state, id) {
+    return evaluate('states', cartridge, state, id, type);
   };
 
-  $.action = function (cartridge, action, id) {
-    return evaluate('actions', cartridge, action, id);
+  $.action = function (cartridge, type, action, id) {
+    return evaluate('actions', cartridge, type, action, id, type);
   };
 
   $.extension = function() {
@@ -341,11 +341,11 @@
     return html5_cartridge.extensions[extension_name].apply(this, arguments);
   };
 
-  function evaluate(scope, cartridge, target, id) {
+  function evaluate(scope, cartridge, target, id, type) {
     var used_cartridge = getCartridge(cartridge);
-    if (used_cartridge[scope][target] && used_cartridge[scope][target](id) != undefined)
-      return used_cartridge[scope][target](id);
-    return html5_cartridge[scope][target](id);
+    if (used_cartridge[scope][target] && used_cartridge[scope][target](id, type) != undefined)
+      return used_cartridge[scope][target](id, type);
+    return html5_cartridge[scope][target](id, type);
   }
 
 }(window));
