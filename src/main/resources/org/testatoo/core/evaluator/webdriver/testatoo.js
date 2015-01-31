@@ -254,7 +254,7 @@
       }
     },
     extensions: {
-      contains: function (id, ids) {
+      contains: function (id, ids, type) {
         var el = $('#' + id + '');
         var not = [];
         $.each(ids, function (index, _id) {
@@ -319,16 +319,16 @@
     return metaInfos;
   };
 
-  $.property = function (cartridge, type, property, id) {
+  $.property = function (cartridge, property, id, type) {
     return evaluate('properties', cartridge, property, id, type);
   };
 
-  $.state = function (cartridge, type, state, id) {
+  $.state = function (cartridge, state, id, type) {
     return evaluate('states', cartridge, state, id, type);
   };
 
-  $.action = function (cartridge, type, action, id) {
-    return evaluate('actions', cartridge, type, action, id, type);
+  $.action = function (cartridge, action, id, type) {
+    return evaluate('actions', cartridge, action, id, type);
   };
 
   $.extension = function() {
