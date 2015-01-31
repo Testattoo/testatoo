@@ -16,13 +16,17 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.state.Available
+import org.testatoo.core.state.Invalid
+import org.testatoo.core.state.Valid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Form extends Component {
 
-    Form() {}
+    Form() {
+        support Valid, Invalid
+    }
 
     void submit() {
         Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button

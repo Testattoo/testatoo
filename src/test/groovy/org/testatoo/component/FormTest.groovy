@@ -87,11 +87,13 @@ class FormTest {
         email_field.should { have text('') }
         password_field.should { have text('') }
 
+        form.should { be valid }
         // Field in error
         on email_field enter 'bad email'
         email_field.should {
             be invalid
         }
+        form.should { be invalid }
 
         reset email_field
 
@@ -99,6 +101,7 @@ class FormTest {
         email_field.should {
             be valid
         }
+        form.should { be valid }
 
         // Can submit a form
         message.should { have title('The form was submitted 0 time(s)') }

@@ -215,9 +215,9 @@
           return el.val();
         return el.text();
       },
-      size: function (id, type) {
+      size: function (id) {
         var el = $('#' + id);
-        if (type === 'ListView')
+        if (el.is('ul') || el.is('ol'))
           return el.find('li').length;
         if (el.is('table'))
           return el.find('tbody tr').length;
@@ -254,7 +254,7 @@
       }
     },
     extensions: {
-      contains: function (id, ids, type) {
+      contains: function (id, ids) {
         var el = $('#' + id + '');
         var not = [];
         $.each(ids, function (index, _id) {
