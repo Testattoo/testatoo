@@ -30,7 +30,7 @@ import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
 /**
- * Created by david on 29/01/15.
+ * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class FieldsTest {

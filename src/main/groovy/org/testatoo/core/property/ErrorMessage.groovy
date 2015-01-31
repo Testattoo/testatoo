@@ -20,7 +20,7 @@ import org.testatoo.core.property.matcher.ContainingMatcher
 import org.testatoo.core.property.matcher.EqualsToMatcher
 
 /**
- * Created by david on 29/01/15.
+ *  * @author David Avenante (d.avenante@gmail.com)
  */
 class ErrorMessage extends Property {
 
