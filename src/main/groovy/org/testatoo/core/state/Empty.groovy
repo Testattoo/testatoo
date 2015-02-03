@@ -24,6 +24,6 @@ class Empty extends State {
 
     Empty() {
         evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
-        description e: 'empty', w: 'not empty'
+        description e: 'empty', w: 'filled'
     }
 }
