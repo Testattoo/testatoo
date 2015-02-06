@@ -22,10 +22,11 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -36,7 +37,7 @@ class CartridgeTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/components.html'
+        open 'http://localhost:8080/cartridge.html'
     }
 
     @AfterClass
@@ -44,7 +45,16 @@ class CartridgeTest {
 
     @Test
     public void user_cartridge_can_fallback_to_default_html5_cartridge() {
-        // TODO test cartridge fallback on undefined property / state / action in cartidge is fallbacked to html5
+        // TODO test cartridge fallback on undefined property / state / action in cartridge is fallback to html5
+
+        CustomField valid_field = $('#valid_input') as CustomField
+        valid_field.should { be valid }
+
+        CustomField invalid_field = $('#invalid_input') as CustomField
+        invalid_field.should { be invalid }
+    }
+
+    class CustomField extends TextField {
     }
 
 }

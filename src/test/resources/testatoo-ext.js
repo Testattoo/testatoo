@@ -31,6 +31,12 @@
         },
         visible: function () {
           return undefined;
+        },
+        valid: function(id) {
+          return $('#' + id).hasClass('valid');
+        },
+        invalid: function(id) {
+          return $('#' + id).hasClass('invalid');
         }
       },
       properties: {
