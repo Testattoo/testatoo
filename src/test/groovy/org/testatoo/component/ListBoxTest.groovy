@@ -22,13 +22,12 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -62,18 +61,11 @@ class ListBoxTest {
         listBox.items[0].should { be enabled }
         listBox.items[1].should { be disabled }
 
-        on listBox unselect 'New York'
-        on listBox unselect 'Munich'
+        CTRL.click listBox.items[3]
+        CTRL.click listBox.items[5]
 
-        on listBox select 'Montreal'
-        on listBox select 'Montpellier'
-
-        try {
-            on listBox select 'Quebec'
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Item Quebec is disabled and cannot be selected'
-        }
+        CTRL.click listBox.items[0]
+        CTRL.click listBox.items[2]
 
         listBox.should { have selectedItems('Montreal', 'Montpellier') }
 

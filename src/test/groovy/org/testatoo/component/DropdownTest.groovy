@@ -29,6 +29,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.input.Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -63,7 +64,7 @@ class DropdownTest {
         dropdown.should { have selectedItems('Helium') }
         dropdown.items[2].should { be unSelected }
 
-        on dropdown select 'Polonium'
+        clickOn dropdown.items[2]
 
         dropdown.should { have selectedItems('Polonium') }
         dropdown.items[2].should { be selected }
@@ -77,16 +78,17 @@ class DropdownTest {
         dropdown.items[3].should { have label('Ca') }
         dropdown.items[4].should { have label('Ra') }
 
-        select dropdown.items[4]
+        clickOn dropdown.items[4]
+
         dropdown.should { have selectedItems('Radium') }
         dropdown.items[4].should { be selected }
 
-        dropdown = $('#countries') as org.testatoo.core.component.list.Dropdown
+        dropdown = $('#countries') as Dropdown
         dropdown.should { be disabled }
         dropdown.should { have items('Canada', 'France', 'Spain') }
         dropdown.items[0].should { be disabled }
 
-        dropdown = $('#os') as org.testatoo.core.component.list.Dropdown
+        dropdown = $('#os') as Dropdown
         dropdown.should { have 8.items }
         dropdown.should { have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD') }
 
