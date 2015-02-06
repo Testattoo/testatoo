@@ -65,7 +65,9 @@ class Interaction {
     void enter(String value) {
         // Click to focus on component
         c.evaluator.click(c.id);
-        ((Input) c).enter(value)
+        Input input = (Input) c
+        input.reset()
+        input.enter(value)
     }
 
     private static boolean isDisabled(Component c) {

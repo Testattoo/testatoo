@@ -18,7 +18,7 @@ package org.testatoo.core
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
-import org.testatoo.core.component.input.TextField
+import org.testatoo.core.component.input.Input
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
 
@@ -61,9 +61,9 @@ class Testatoo {
         return form
     }
 
-    static TextField reset(TextField textField) {
-        textField.reset()
-        return textField
+    static Input reset(Input input) {
+        input.reset()
+        return input
     }
 
     static Form submit(Form form) {
