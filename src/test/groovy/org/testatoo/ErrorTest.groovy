@@ -141,7 +141,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_unselect_disabled_option() {
+    public void cannot_unSelect_disabled_option() {
         Dropdown dropDown = $('#elements') as Dropdown
         dropDown.items[0].should { be disabled }
         try {

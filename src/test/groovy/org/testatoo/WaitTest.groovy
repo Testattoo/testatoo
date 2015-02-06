@@ -45,7 +45,7 @@ class WaitTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void test_wait() {
+    public void should_be_able_to_wait_on_condition() {
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 

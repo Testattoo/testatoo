@@ -43,7 +43,7 @@ class BrowserTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void test_browser() {
+    public void should_be_able_to_have_browser_properties_access() {
         open 'http://localhost:8080/components.html'
 
         assert browser.title == 'Testatoo Rocks'
@@ -55,7 +55,7 @@ class BrowserTest {
     }
 
     @Test
-    public void test_navigate() {
+    public void should_be_able_to_navigate() {
         open 'http://localhost:8080/components.html'
 
         assert browser.url == 'http://localhost:8080/components.html'

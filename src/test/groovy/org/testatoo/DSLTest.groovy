@@ -23,12 +23,21 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Checkbox
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.label
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.title
+import static org.testatoo.core.property.Properties.value
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.input.Keyboard.*
+import static org.testatoo.core.input.Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -56,6 +65,47 @@ class DSLTest {
             have label('Check me out')
         }
     }
+
+    @Test
+    public void given_input_with_value_when_enter_value_the_field_is_reset_before() {
+        TextField textField = $('#text_field') as TextField
+
+        clickOn textField
+        type 'Some input'
+
+        textField.should {
+            have value('Some input')
+        }
+
+        on textField enter 'Other input'
+
+        textField.should {
+            have value('Other input')
+        }
+
+    }
+
+//    @Test
+//    public void given_
+
+    // reset
+    // select
+
+    // set a form easly
+    // By the DSL
+//    clickOn email_field
+//    on email_field enter 'my@email.org'
+//    on password_field enter 'password'
+//
+//    email_field.should { have text('my@email.org') }
+//    password_field.should { have text('password') }
+//
+//    reset form
+//
+//    email_field.should { have text('') }
+//    password_field.should { have text('') }
+//    submit form
+//    message.should { have title('The form was submitted 2 time(s)') }
 
     @Test
     public void test_AND() {

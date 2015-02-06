@@ -50,7 +50,7 @@ class   MouseTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void click() {
+    public void should_be_able_to_click() {
         Button button = $('#button_1') as Button
         button.should { have text('Button') }
         clickOn button
@@ -74,7 +74,7 @@ class   MouseTest {
     }
 
     @Test
-    public void doubleClick() {
+    public void should_be_able_to_doubleClick() {
         Button button = $('#button_2') as Button
         button.should { have text('Button') }
         doubleClickOn button
@@ -82,7 +82,7 @@ class   MouseTest {
     }
 
     @Test
-    public void rightClick() {
+    public void should_be_able_to_rightClick() {
         Button button = $('#button_5') as Button
         button.should { have text('Button') }
         rightClickOn button
@@ -90,7 +90,7 @@ class   MouseTest {
     }
 
     @Test
-    public void mouseOver() {
+    public void should_be_able_to_mouseOver() {
         Button button = $('#button_3') as Button
         button.should { have text('Button') }
         hoveringMouseOn button
@@ -98,7 +98,7 @@ class   MouseTest {
     }
 
     @Test
-    public void mouseOut() {
+    public void should_be_able_to_mouseOut() {
         Button button = $('#button_4') as Button
         button.should { have text('Button') }
 
@@ -114,7 +114,7 @@ class   MouseTest {
 
     @Test
     @Ignore
-    public void dragAndDrop() {
+    public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
         dropPanel.should { have title('Drop here') }
 
@@ -125,7 +125,7 @@ class   MouseTest {
     }
 
     @Test
-    public void test_mouse_with_key_modifier() {
+    public void should_be_able_to_use_mouse_with_key_modifier() {
         $('#span_Ctrl_mouseleft').should { be missing }
         $('#span_Shift_mouseleft').should { be missing }
 

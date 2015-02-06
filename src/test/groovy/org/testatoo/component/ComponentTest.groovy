@@ -86,7 +86,7 @@ class ComponentTest {
     }
 
     @Test
-    public void test_component_equality() {
+    public void should_evaluate_component_equality() {
         Radio radio_1 = $('#radio') as Radio
 
         // The selector select the same component as radio_1

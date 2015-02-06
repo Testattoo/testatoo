@@ -43,7 +43,7 @@ class CartridgeTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void test_cartridge_html5_fallback() {
+    public void user_cartridge_can_fallback_to_default_html5_cartridge() {
         // TODO test cartridge fallback on undefined property / state / action in cartidge is fallbacked to html5
     }
 

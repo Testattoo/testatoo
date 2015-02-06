@@ -33,6 +33,7 @@ import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -63,8 +64,10 @@ class FormTest {
         Message message = $('#form .alert') as Message
 
         // Can reset a form
-        on email_field enter 'my@email.org'
-        on password_field enter 'password'
+        clickOn email_field
+        type 'my@email.org'
+        clickOn password_field
+        type 'password'
 
         // By clicking on the button
         email_field.should { have text('my@email.org') }
@@ -75,29 +78,19 @@ class FormTest {
         email_field.should { have text('') }
         password_field.should { have text('') }
 
-        // By the DSL
-        on email_field enter 'my@email.org'
-        on password_field enter 'password'
-
-        email_field.should { have text('my@email.org') }
-        password_field.should { have text('password') }
-
-        reset form
-
-        email_field.should { have text('') }
-        password_field.should { have text('') }
-
         form.should { be valid }
         // Field in error
-        on email_field enter 'bad email'
+        clickOn email_field
+        type 'bad email'
         email_field.should {
             be invalid
         }
         form.should { be invalid }
 
-        reset email_field
+        email_field.reset()
 
-        on email_field enter 'y@email.org'
+        clickOn email_field
+        type 'y@email.org'
         email_field.should {
             be valid
         }
@@ -110,7 +103,7 @@ class FormTest {
         clickOn submit_button
         message.should { have title('The form was submitted 1 time(s)') }
 
-        submit form
+        clickOn submit_button
         message.should { have title('The form was submitted 2 time(s)') }
     }
 

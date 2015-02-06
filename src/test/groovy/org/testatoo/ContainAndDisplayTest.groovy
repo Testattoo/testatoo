@@ -47,7 +47,7 @@ class ContainAndDisplayTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void test_contains() {
+    public void should_be_able_to_test_if_component_contains_other_component() {
         Panel panel = $('#panel') as Panel
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
@@ -87,7 +87,7 @@ class ContainAndDisplayTest {
     }
 
     @Test
-    public void test_display() {
+    public void should_be_able_to_test_if_component_display_other_component() {
         Panel panel = $('#panel') as Panel
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button

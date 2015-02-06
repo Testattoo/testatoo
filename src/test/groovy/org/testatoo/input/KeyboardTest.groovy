@@ -55,7 +55,7 @@ class KeyboardTest {
     }
 
     @Test
-    public void test_letters_on_keyboard_() {
+    public void should_type_letters_on_keyboard() {
         [
                 '#span_a': 'a',
                 '#span_b': 'b',
@@ -91,7 +91,7 @@ class KeyboardTest {
     }
 
     @Test
-    public void test_number() {
+    public void should_type_number_on_keyboard() {
         [
                 '#span_1': '1',
                 '#span_2': '2',
@@ -111,7 +111,7 @@ class KeyboardTest {
     }
 
     @Test
-    public void test_special_key() {
+    public void should_type_special_key_on_keyboard() {
         [
                 '#span_esc'      : ESCAPE,
                 '#span_f1'       : F1,
@@ -153,7 +153,7 @@ class KeyboardTest {
     }
 
     @Test
-    public void test_key_modifier() {
+    public void should_use_key_modifier_on_keyboard() {
         $('#span_Ctrl_Alt_Shift_x').should { be missing }
         type(CTRL + ALT + SHIFT + 'x')
         $('#span_Ctrl_Alt_Shift_x').should { be available }

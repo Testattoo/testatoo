@@ -28,6 +28,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.input.Keyboard.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -62,7 +64,8 @@ class FieldsTest {
         textField.should { have placeholder.containing('xt') }
         textField.should { be empty }
 
-        on textField enter 'some value'
+        clickOn textField
+        type 'some value'
 
         textField.should { have text('some value') }
         textField.should { have text.containing('value') }
@@ -71,7 +74,7 @@ class FieldsTest {
         textField.should { have value.containing('value') }
         textField.should { be filled }
 
-        reset textField
+        textField.reset()
         textField.should { be empty }
 
         // TextArea is treated as TextField
@@ -98,14 +101,16 @@ class FieldsTest {
             be invalid
         }
 
-        on phoneField enter 'bad phone number'
+        clickOn phoneField
+        type 'bad phone number'
         phoneField.should {
             be invalid
         }
 
-        reset phoneField
+        phoneField.reset()
 
-        on phoneField enter '5146666666'
+        clickOn phoneField
+        type '5146666666'
         phoneField.should {
             be valid
         }
