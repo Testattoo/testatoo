@@ -47,6 +47,7 @@ class CartridgeTest {
     public void user_cartridge_can_fallback_to_default_html5_cartridge() {
         // TODO test cartridge fallback on undefined property / state / action in cartridge is fallback to html5
 
+        // Valid an invalid are override in the cartridge
         CustomField valid_field = $('#valid_input') as CustomField
         valid_field.should { be valid }
 
