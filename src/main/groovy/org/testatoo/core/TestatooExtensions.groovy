@@ -66,5 +66,13 @@ class TestatooExtensions {
         Properties.visibleItemsSize.equalsTo(expected)
     }
 
+    public static PropertyMatcher getParagraphs(Integer expected) {
+        Properties.paragraphSize.equalsTo(expected)
+    }
+
+    public static PropertyMatcher getArticles(Integer expected) {
+        Properties.articleSize.equalsTo(expected)
+    }
+
     public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
 }

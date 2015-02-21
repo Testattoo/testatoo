@@ -78,4 +78,7 @@ class Properties {
     static final ErrorMessage errorMessage = new ErrorMessage()
     static final PropertyMatcher errorMessage(String expected) { errorMessage.equalsTo(expected) }
 
+    static final ParagraphSize paragraphSize = new ParagraphSize()
+    static final ArticleSize articleSize = new ArticleSize()
+
 }

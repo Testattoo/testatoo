@@ -51,6 +51,7 @@
       if (el.is('footer')) return 'Footer';
       if (el.is('header')) return 'Header';
       if (el.is('section')) return 'Section';
+      if (el.is('p')) return 'Paragraph';
       if (el.is('input')) {
         switch (el.attr('type').toLowerCase() || '') {
           case 'radio':
@@ -240,9 +241,6 @@
       },
       groupitemssize: function (id) {
         return $('#' + id).find('optgroup').length;
-      },
-      visibleitemssize: function (id) {
-        return $('#' + id).prop('size');
       }
     },
     actions: {

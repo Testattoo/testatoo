@@ -15,8 +15,15 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.property.ParagraphSize
+import org.testatoo.core.property.ArticleSize
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Section extends Component {
+
+    Section() {
+        support ArticleSize, ParagraphSize
+    }
 }

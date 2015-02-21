@@ -66,42 +66,62 @@ class StructureTest {
     }
 
     @Test
+    public void paragraph_should_have_expected_behaviours() {
+        Paragraph paragraph = $('#p_1') as Paragraph
+
+        paragraph.should { have text('Paragraph 1') }
+    }
+
+    @Test
     public void article_should_have_expected_behaviours() {
         Article article = $('#article') as Article
 
-        article.should { be enabled }
-        article.should { be visible }
+        article.should {
+            be enabled
+            be visible
+            have 2.paragraphs
+        }
     }
 
     @Test
     public void aside_should_have_expected_behaviours() {
         Aside aside = $('#aside') as Aside
 
-        aside.should { be enabled }
-        aside.should { be visible }
+        aside.should {
+            be enabled
+            be visible
+        }
     }
 
     @Test
     public void footer_should_have_expected_behaviours() {
         Footer footer = $('#footer') as Footer
 
-        footer.should { be enabled }
-        footer.should { be visible }
+        footer.should {
+            be enabled
+            be visible
+        }
     }
 
     @Test
     public void header_should_have_expected_behaviours() {
         Header header = $('#header') as Header
 
-        header.should { be enabled }
-        header.should { be visible }
+        header.should {
+            be enabled
+            be visible
+        }
     }
 
     @Test
     public void section_should_have_expected_behaviours() {
         Section section = $('#section') as Section
 
-        section.should { be enabled }
-        section.should { be visible }
+        section.should {
+            be enabled
+            be visible
+            have 1.paragraphs
+            have 1.articles
+        }
     }
 }
