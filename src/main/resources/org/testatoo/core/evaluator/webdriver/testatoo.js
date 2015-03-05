@@ -212,7 +212,7 @@
       },
       value: function (id) {
         var el = $('#' + id);
-        if (el.is('input'))
+        if (el.is('input') || el.is('textarea'))
           return el.val();
         return el.text();
       },
