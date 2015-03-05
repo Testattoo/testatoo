@@ -395,7 +395,18 @@ dropdown.should {
 
 dropdown.items      // Return the list of items
 dropdown.items[2]   // Return the item at the specific position
+
+on dropdown select 'item 2 value'   // Select the 'item 2 value' in the dropdown or throw an exception if the item is disabled
 -------------------------------------------------------------------------------
+
+
+
+Item
+
+GroupItem
+
+ListBox
+on listBox unselect 'item 2 value'  // Un-select the 'item 2 value' in the dropdown
 
 
 
