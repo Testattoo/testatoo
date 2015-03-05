@@ -247,8 +247,8 @@ $('[data-role=button]');
 -------------------------------------------------------------------------------
 
 Our experience demonstrated that we never need to use complex selector. If you write tests first, the component tested carries
-a semantic and this semantic must be reflected in the code by an ID, a role (role attribute is commonly used in web development) or
-better a specific tag (with Angular Directive or Web Components)
+a semantic and this semantic must be reflected in the code by a role attribute, a sequence in a form of course an ID but in the best case
+with a specific tag (with Angular Directive or Web Components)
 
 Once the component is selected, it must be *TYPED* throw the *"as"* keyword.
 
@@ -297,16 +297,136 @@ Testatoo comes with a bunch of predefined HTML components. These components are 
 but also a powerful base to build your own components. Each component supports States and Properties. One of the strength of Testatoo
 is the capability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
 
+
+==== Component
+[source, java]
+-------------------------------------------------------------------------------
+Component component = $('#component') as Component
+component.should {
+    be enabled
+    be disabled
+    be available
+    be missing
+    be hidden
+    be visible
+}
+-------------------------------------------------------------------------------
+
+==== Button
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+button.should {
+    be enabled
+    be disabled
+    be available
+    be missing
+    be hidden
+
+    have text('my button text')
+}
+
+clickOn button
+
+-------------------------------------------------------------------------------
+
+==== CheckBox
+[source, java]
+-------------------------------------------------------------------------------
+CheckBox checkbox = $('#checkbox') as CheckBox
+checkbox.should {
+    be enabled
+    be disabled
+    be available
+    be missing
+    be hidden
+
+    have label('my checkbox label')
+
+    be checked
+    be unchecked
+}
+
+clickOn checkbox // check or uncheck
+
+check checkbox // check your checkbox and throw and exception if the checkbox is already checked
+-------------------------------------------------------------------------------
+
+==== Radio
+[source, java]
+-------------------------------------------------------------------------------
+Radio radio = $('#radio') as Radio
+radio.should {
+    be enabled
+    be disabled
+    be available
+    be missing
+    be hidden
+
+    have label('my radio label')
+
+    be checked
+    be unchecked
+}
+
+clickOn radio // check
+
+check radio // check your radio and throw and exception if the radio is already checked
+
+-------------------------------------------------------------------------------
+
+==== DropDown
+[source, java]
+-------------------------------------------------------------------------------
+DropDown dropdown = $('#dropdown') as DropDown
+dropdown.should {
+    be enabled
+    be disabled
+    be available
+    be missing
+    be hidden
+    be visible
+
+    have label('my dropdown label')
+    have size(3)
+    have 3.items
+    have 1.groupItems
+    have items('item 1 value', 'item 2 value', 'item 3 value')
+    have groupItem('group item value')
+    have selectedItems('item 1 value', 'item 3 value')
+}
+
+dropdown.items      // Return the list of items
+dropdown.items[2]   // Return the item at the specific position
+
+
+-------------------------------------------------------------------------------
+
+
+
+
 [options="header"]
 |=========================================================================================================================================================================
 | Component               |                   Properties                                                      |                    States
 |      *Button*           |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
+|      *CheckBox*         |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
+|      *Radio*            |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
+|      *DropDown*         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   Enabled, Disabled, Available, Missing, Hidden, Visible
+
+
+
+
+
+
+
+
+
 |      *Form*             |                                                                                   |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Heading*          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Image*            |   Source                                                                          |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Link*             |   Text,  Reference                                                                |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Panel*            |   Title                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *DropDown*         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   Enabled, Disabled, Available, Missing, Hidden, Visible
+
 |      *GroupItem*        |   Label, Value, Size, Items                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Item*             |   Label, Value                                                                    |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Selected*, *UnSelected*
 |      *ListBox*          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   Enabled, Disabled, Available, Missing, Hidden, Visible, *MultiSelectable*, *SingleSelectable*
@@ -315,7 +435,7 @@ is the capability to add support for new States and Properties and to override e
 |      *Column*           |   Size, Title                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Cell*             |   Value                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Row*              |   Size                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *CheckBox*         |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
+
 |      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
@@ -324,7 +444,7 @@ is the capability to add support for new States and Properties and to override e
 |      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *Radio*            |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
+
 |      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *TextField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*

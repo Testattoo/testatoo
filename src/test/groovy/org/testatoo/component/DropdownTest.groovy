@@ -55,7 +55,7 @@ class DropdownTest {
         dropdown.should { be visible }
 
         dropdown.should { have label('Elements list') }
-
+        dropdown.should { have size(5) }
         dropdown.should { have items.equalsTo('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
         dropdown.should { have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
 
