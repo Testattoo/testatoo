@@ -347,9 +347,8 @@ checkbox.should {
     be unchecked
 }
 
-clickOn checkbox // check or uncheck
-
-check checkbox // check your checkbox and throw and exception if the checkbox is already checked
+clickOn checkbox    // Check or uncheck
+check checkbox      // Check your checkbox and throw and exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
 ==== Radio
@@ -369,10 +368,8 @@ radio.should {
     be unchecked
 }
 
-clickOn radio // check
-
-check radio // check your radio and throw and exception if the radio is already checked
-
+clickOn radio   // Check
+check radio     // Check your radio and throw and exception if the radio is already checked
 -------------------------------------------------------------------------------
 
 ==== DropDown
@@ -398,8 +395,6 @@ dropdown.should {
 
 dropdown.items      // Return the list of items
 dropdown.items[2]   // Return the item at the specific position
-
-
 -------------------------------------------------------------------------------
 
 
