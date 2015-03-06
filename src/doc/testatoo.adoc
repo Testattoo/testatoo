@@ -361,26 +361,32 @@ checkbox.should {
 -------------------------------------------------------------------------------
 
 
-
 ==== Radio
+
+image::components/Radio.png[Radio]
+
 [source, java]
 -------------------------------------------------------------------------------
-Radio radio = $('#radio') as Radio
-radio.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
+Radio radio_checked = $('#radio_1') as Radio
+Radio radio_unchecked = $('#radio_2') as Radio
 
-    have label('my radio label')
+radio_checked.should {
+    have label('Radio label checked')
 
     be checked
-    be unchecked
 }
 
-clickOn radio   // Check
-check radio     // Check your radio and throw and exception if the radio is already checked
+radio_unchecked.should {
+    have label('Radio label unchecked')
+
+    be checked
+}
+
+clickOn radio_checked   // Check
+OR
+check radio_unchecked   // Check your radio
+check radio_checked     // Throw and exception (the radio is already checked)
+
 -------------------------------------------------------------------------------
 
 ==== DropDown
