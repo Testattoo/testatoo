@@ -382,7 +382,7 @@ radio_unchecked.should {
     be checked
 }
 
-clickOn radio_checked   // Check
+clickOn radio_unchecked   // Check
 OR
 check radio_unchecked   // Check your radio
 check radio_checked     // Throw and exception (the radio is already checked)
