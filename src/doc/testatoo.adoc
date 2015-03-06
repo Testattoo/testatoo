@@ -322,13 +322,7 @@ image::components/Button.png[Button]
 -------------------------------------------------------------------------------
 Button button = $('#button') as Button
 button.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
-
-    have text('my button text')
+    have text('My Button Text')
 }
 
 clickOn button
@@ -336,25 +330,37 @@ clickOn button
 -------------------------------------------------------------------------------
 
 ==== CheckBox
+
+image::components/CheckBox.png[CheckBox]
+
 [source, java]
 -------------------------------------------------------------------------------
 CheckBox checkbox = $('#checkbox') as CheckBox
 checkbox.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
+    have label('Check me out ')
 
-    have label('my checkbox label')
-
-    be checked
     be unchecked
 }
 
 clickOn checkbox    // Check or uncheck
+OR
 check checkbox      // Check your checkbox and throw and exception if the checkbox is already checked
+
 -------------------------------------------------------------------------------
+
+image::components/CheckBox_checked.png[CheckBox]
+
+[source, java]
+-------------------------------------------------------------------------------
+CheckBox checkbox = $('#checkbox') as CheckBox
+checkbox.should {
+    have label('Check me out ')
+
+    be checked
+}
+-------------------------------------------------------------------------------
+
+
 
 ==== Radio
 [source, java]
