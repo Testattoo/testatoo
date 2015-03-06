@@ -305,14 +305,20 @@ Component component = $('#component') as Component
 component.should {
     be enabled
     be disabled
-    be available
+    be available    <1>
     be missing
     be hidden
     be visible
 }
 -------------------------------------------------------------------------------
 
+<1> All other components in Testatoo inherit from this base Component can be tested on it's base states
+
 ==== Button
+
+image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/components/Button.png[Button]
+image::components/Button.png[Button]
+
 [source, java]
 -------------------------------------------------------------------------------
 Button button = $('#button') as Button
