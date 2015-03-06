@@ -316,7 +316,6 @@ component.should {
 
 ==== Button
 
-image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/components/Button.png[Button]
 image::components/Button.png[Button]
 
 [source, java]
@@ -380,7 +379,7 @@ check radio     // Check your radio and throw and exception if the radio is alre
 
 ==== DropDown
 
-image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/components/DropDown.png[DropDown]
+image::components/DropDown.png[DropDown]
 
 [source, java]
 -------------------------------------------------------------------------------
