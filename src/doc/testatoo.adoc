@@ -374,7 +374,7 @@ check radio     // Check your radio and throw and exception if the radio is alre
 
 ==== DropDown
 
-image:components/DropDown.png
+image:"components/DropDown.png[DropDown]
 
 [source, java]
 -------------------------------------------------------------------------------
