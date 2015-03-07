@@ -17,10 +17,13 @@ package org.testatoo.core
 
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Form
+import org.testatoo.core.component.Radio
 import org.testatoo.core.component.input.Input
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
+import org.testatoo.core.state.Unchecked
 
 import java.util.concurrent.TimeoutException
 
@@ -39,8 +42,22 @@ class Testatoo {
     static void open(String uri) { browser.open(uri) }
 
     static Component check(Component c) {
-        if (!c.getState(new Checked()))
+        if (c.hasState(Unchecked))
             evaluator.click(c.id)
+        else
+            throw new ComponentException("${c.meta.type} ${c} is already checked and cannot be checked")
+        return c
+    }
+
+    static Component uncheck(Component c) {
+        if (c instanceof Radio) {
+            throw new ComponentException("Operation not supported for ${c.meta.type}")
+        }
+
+        if (c.hasState(Checked))
+            evaluator.click(c.id)
+        else
+            throw new ComponentException("${c.meta.type} ${c} is already unchecked and cannot be unchecked")
         return c
     }
 
@@ -101,5 +118,4 @@ class Testatoo {
         }
         throw new TimeoutException("Unable to reach the condition within ${timeout / 1000} seconds (${ex.message})")
     }
-
 }

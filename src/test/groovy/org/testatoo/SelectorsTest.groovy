@@ -84,12 +84,6 @@ class SelectorsTest {
         textFields.each {
             it.should {
                 be filled
-            }
-        }
-
-        textFields.each {
-            it.should {
-                be filled
                 have text('TESTATOO!')
             }
         }

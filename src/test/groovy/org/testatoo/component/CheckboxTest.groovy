@@ -57,6 +57,12 @@ class CheckboxTest {
         check checkbox
         checkbox.should { be checked }
 
+        uncheck checkbox
+        checkbox.should { be unchecked }
+
+        clickOn checkbox
+        checkbox.should { be checked }
+
         clickOn checkbox
         checkbox.should { be unchecked }
     }

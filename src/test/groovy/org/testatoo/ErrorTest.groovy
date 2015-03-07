@@ -23,8 +23,10 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
+import org.testatoo.core.component.Checkbox
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.Form
+import org.testatoo.core.component.Radio
 import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.component.list.Dropdown
 import org.testatoo.core.component.list.Item
@@ -152,6 +154,45 @@ class ErrorTest {
         }
     }
 
+    @Test
+    public void cannot_check_checked_element() {
+        Checkbox checkbox = $('#checkbox_1') as Checkbox
+        checkbox.should { be checked }
+
+        try {
+            check checkbox
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Checkbox Checkbox:checkbox_1 is already checked and cannot be checked'
+        }
+    }
+
+    @Test
+    public void cannot_uncheck_unchecked_element() {
+        Checkbox checkbox = $('#checkbox_2') as Checkbox
+        checkbox.should { be unchecked }
+
+        try {
+            uncheck checkbox
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Checkbox Checkbox:checkbox_2 is already unchecked and cannot be unchecked'
+        }
+    }
+
+    @Test
+    public void cannot_unchek_a_radio() {
+        Radio radio = $('#radio') as Radio
+        radio.should { be checked }
+
+        try {
+            uncheck radio
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Operation not supported for Radio'
+        }
+    }
+
     // TODO test that we cannot select already selected item
     @Test
     public void equals_to_matcher_on_list_items() {
@@ -176,6 +217,7 @@ class ErrorTest {
         Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.items[0].should { have value.equalsTo('Val_1') }
+            fail()
         } catch (AssertionError e) {
             assert e.message == "Expected Value 'Val_1' but was 'Helium'"
         }
@@ -193,12 +235,14 @@ class ErrorTest {
         Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { have items.containing('Val_1') }
+            fail()
         } catch (AssertionError e) {
             assert e.message == "Expected Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
         }
 
         try {
             dropDown.should { have items.containing('Val_1', 'Val_2') }
+            fail()
         } catch (AssertionError e) {
             assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
         }
@@ -209,6 +253,7 @@ class ErrorTest {
         Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { be missing }
+            fail()
         } catch (AssertionError e) {
             assert e.message == 'Component Dropdown with id elements expected missing but was available'
         }

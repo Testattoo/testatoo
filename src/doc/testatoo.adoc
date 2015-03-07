@@ -287,8 +287,132 @@ The $$ function allow to make assertion on a list of elements.
 
 [source, java]
 -------------------------------------------------------------------------------
-Item items = $$('#mySelect option') as Item;
-items.should { be visible }
+Components<TextField> textFields = $$('[type="text"]') of TextField     // Find all TextField in the page
+assert textFields.size() == 3
+
+textFields.each {           // Iterate on TextFields
+    it.should {
+        be enabled
+        be visible
+        be empty
+    }
+}
+
+on textFields enter 'My Value!' // Enter 'My Value!' on all TextFields
+
+textFields.each {
+    it.should {
+        be filled
+        have text('My Value!')
+    }
+}
+
+-------------------------------------------------------------------------------
+
+=== Evaluate State
+
+States evaluations are applied thought the keyword *be*
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+button.should {
+  be enabled
+  be visible
+}
+-------------------------------------------------------------------------------
+
+=== Evaluate Property
+
+Properties evaluations are applied thought the keyword *have*
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+button.should {
+  have text('Ok')
+}
+-------------------------------------------------------------------------------
+
+All properties that implied a *String* support some pattern methods
+
+[options="header"]
+|====================================================================================================
+| Method            |   Description
+| *startsWith*      |   Matches values that start with the given value
+| *contains*        |	Matches values that contain the given value anywhere
+| *endsWith*	    |	Matches values that end with the given value
+| *containsWord*	|	Matches values that contain the given value surrounded by either whitespace or the beginning or end of the value
+| *notStartsWith*	|	Matches values that DO NOT start with the given value
+| *notContains*	    |	Matches values that DO NOT contain the given value anywhere
+| *notEndsWith*	    |	Matches values that DO NOT end with the given value
+| *notContainsWord* |	Matches values that DO NOT contain the given value surrounded by either whitespace or the beginning or end of the value
+|====================================================================================================
+
+=== The Action
+
+Testatoo allow specifier to interact with the application thought the usage of default input like Keyboard and Mouse.
+
+WARNING: Finger / Pointer are not supported for the moment
+
+==== Mouse
+
+The mouse usages supported are :
+
+*clickOn*, +
+*doubleClickOn*, +
+*rightClickOn*, +
+*hoveringMouseOn*, +
+*drag ... on ...*
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+Panel panel_1 = $('#Panel_1) as Panel
+Panel panel_2 = $('#Panel_2) as Panel
+
+clickOn button
+doubleClickOn button
+rightClickOn button
+hoveringMouseOn panel_1
+drag panel_1 on panel_2
+
+-------------------------------------------------------------------------------
+
+==== Keyboard
+
+For the keyboard input we have done a nice work to make this easy.
+One Method to rule them all: *the type(...) method*
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+clickOn textField
+type('testatoo')
+
+-------------------------------------------------------------------------------
+
+If you need the usage of a simple key modifier.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+clickOn textField
+type(SHIFT + 'testatoo')
+
+-------------------------------------------------------------------------------
+
+Or a complex.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+clickOn textField
+type(CTRL + ALT + SHIFT + 'x')
+
 -------------------------------------------------------------------------------
 
 === The Components
@@ -297,11 +421,10 @@ Testatoo comes with a bunch of predefined HTML components. These components are 
 but also a powerful base to build your own components. Each component supports States and Properties. One of the strength of Testatoo
 is the capability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
 
-
 ==== Component (the base class)
 [source, java]
 -------------------------------------------------------------------------------
-Component component = $('#component') as Component
+Component component = $('#component') as Component <1>
 component.should {
     be enabled
     be disabled
@@ -312,7 +435,8 @@ component.should {
 }
 -------------------------------------------------------------------------------
 
-<1> All other components in Testatoo inherit from this base Component can be tested on it's base states
+<1> *All other components in Testatoo inherit from it
+<2> *All components owns this base states*
 
 ==== Button
 
@@ -326,7 +450,6 @@ button.should {
 }
 
 clickOn button
-
 -------------------------------------------------------------------------------
 
 ==== CheckBox
@@ -338,14 +461,12 @@ image::components/CheckBox.png[CheckBox]
 CheckBox checkbox = $('#checkbox') as CheckBox
 checkbox.should {
     have label('Check me out ')
-
     be unchecked
 }
 
-clickOn checkbox    // Check or uncheck
+clickOn checkbox    // Check the checkbox
 OR
-check checkbox      // Check your checkbox and throw and exception if the checkbox is already checked
-
+check checkbox      // Check the checkbox or throw and exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
 image::components/CheckBox_checked.png[CheckBox]
@@ -355,11 +476,13 @@ image::components/CheckBox_checked.png[CheckBox]
 CheckBox checkbox = $('#checkbox') as CheckBox
 checkbox.should {
     have label('Check me out ')
-
     be checked
 }
--------------------------------------------------------------------------------
 
+clickOn checkbox    // Uncheck the checkbox
+OR
+uncheck checkbox    // Uncheck the checkbox or throw and exception if the checkbox is already checked
+-------------------------------------------------------------------------------
 
 ==== Radio
 
@@ -372,21 +495,20 @@ Radio radio_unchecked = $('#radio_2') as Radio
 
 radio_checked.should {
     have label('Radio label checked')
-
     be checked
 }
 
 radio_unchecked.should {
     have label('Radio label unchecked')
-
-    be checked
+    be unchecked
 }
 
-clickOn radio_unchecked   // Check
+clickOn radio_unchecked     // Check the radio
 OR
-check radio_unchecked   // Check your radio
-check radio_checked     // Throw and exception (the radio is already checked)
+check radio_unchecked       // Check the radio
 
+check radio_checked         // Throw an exception (the radio is already checked)
+uncheck radio_checked       // Throw an exception (cannot unckeck a Radio)
 -------------------------------------------------------------------------------
 
 ==== DropDown
@@ -536,111 +658,7 @@ on listBox unselect 'item 2 value'  // Un-select the 'item 2 value' in the dropd
 All Testatoo components inherit from the base class Component.groovy
 ===============================
 
-=== Evaluate State
 
-States evaluations are applied thought the keyword *be*
-
-[source, java]
--------------------------------------------------------------------------------
-Button button = $('#button') as Button
-button.should {
-  be enabled
-  be visible
-}
--------------------------------------------------------------------------------
-
-=== Evaluate Property
-
-Properties evaluations are applied thought the keyword *have*
-
-[source, java]
--------------------------------------------------------------------------------
-Button button = $('#button') as Button
-button.should {
-  have text('Ok')
-}
--------------------------------------------------------------------------------
-
-All properties that implied a *String* support some pattern methods
-
-[options="header"]
-|====================================================================================================
-| Method            |   Description
-| *startsWith*      |   Matches values that start with the given value
-| *contains*        |	Matches values that contain the given value anywhere
-| *endsWith*	    |	Matches values that end with the given value
-| *containsWord*	|	Matches values that contain the given value surrounded by either whitespace or the beginning or end of the value
-| *notStartsWith*	|	Matches values that DO NOT start with the given value
-| *notContains*	    |	Matches values that DO NOT contain the given value anywhere
-| *notEndsWith*	    |	Matches values that DO NOT end with the given value
-| *notContainsWord* |	Matches values that DO NOT contain the given value surrounded by either whitespace or the beginning or end of the value
-|====================================================================================================
-
-=== The Action
-
-Testatoo allow specifier to interact with the application thought the usage of default input like Keyboard and Mouse.
-
-WARNING: Finger / Pointer are not supported for the moment
-
-==== Mouse
-
-The mouse usages supported are :
-
-*clickOn*, +
-*doubleClickOn*, +
-*rightClickOn*, +
-*hoveringMouseOn*, +
-*drag ... on ...*
-
-[source, java]
--------------------------------------------------------------------------------
-Button button = $('#button') as Button
-Panel panel_1 = $('#Panel_1) as Panel
-Panel panel_2 = $('#Panel_2) as Panel
-
-clickOn button
-doubleClickOn button
-rightClickOn button
-hoveringMouseOn panel_1
-drag panel_1 on panel_2
-
--------------------------------------------------------------------------------
-
-==== Keyboard
-
-For the keyboard input we have done a nice work to make this easy.
-One Method to rule them all: *the type(...) method*
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#textfield') as TextField
-
-clickOn textField
-type('testatoo')
-
--------------------------------------------------------------------------------
-
-If you need the usage of a simple key modifier.
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#textfield') as TextField
-
-clickOn textField
-type(SHIFT + 'testatoo')
-
--------------------------------------------------------------------------------
-
-Or a complex.
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#textfield') as TextField
-
-clickOn textField
-type(CTRL + ALT + SHIFT + 'x')
-
--------------------------------------------------------------------------------
 
 == The DSL
 

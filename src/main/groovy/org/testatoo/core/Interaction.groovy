@@ -41,7 +41,7 @@ class Interaction {
     }
 
     static void select(Component c) {
-        if (isDisabled(c)) {
+        if (c.hasState(Disabled)) {
             throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be selected")
         }
 
@@ -54,7 +54,7 @@ class Interaction {
     }
 
     static void unselect(Component c) {
-        if (isDisabled(c)) {
+        if (c.hasState(Disabled)) {
             throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be unselected")
         }
 
@@ -69,9 +69,4 @@ class Interaction {
         input.reset()
         input.enter(value)
     }
-
-    private static boolean isDisabled(Component c) {
-        Boolean.valueOf(c.evaluator.getState(new Disabled(), c))
-    }
-
 }

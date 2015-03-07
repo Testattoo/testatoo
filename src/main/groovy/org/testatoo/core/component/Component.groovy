@@ -147,12 +147,13 @@ class Component {
         return (pe == DEFAULT_PE ? property.evaluator : pe).getValue(this)
     }
 
-    boolean getState(State state) {
-        StateEvaluator se = _supportedStates.get(state.class)
+
+    boolean hasState(Class<State> clazz) {
+        StateEvaluator se = _supportedStates.get(clazz)
         if (se == null) {
-            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
+            throw new ComponentException("Component ${this} does not support state ${clazz.simpleName}")
         }
-        return (se == DEFAULT_SE ? state.evaluator : se).getState(this)
+        return (se == DEFAULT_SE ? clazz.newInstance().evaluator : se).getState(this)
     }
 
     static class CachedMetaData {

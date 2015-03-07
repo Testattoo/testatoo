@@ -34,7 +34,7 @@ class State implements Matcher {
     void description(Map<String, String> m) { description = m }
 
     @Override
-    void matches(Component c) { Assert.ensure c, c.getState(this), description }
+    void matches(Component c) { Assert.ensure c, c.hasState(this.class), description }
 
     @Override
     String toString() { getClass().simpleName }
