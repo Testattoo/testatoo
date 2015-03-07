@@ -50,7 +50,7 @@ class ListBoxTest {
     public void should_have_expected_behaviours() {
         ListBox listBox = $('#cities') as ListBox
 
-        listBox.should { label('Cities list') }
+        listBox.should { have label('Cities list') }
         listBox.should { have 6.items }
         listBox.should { have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich') }
 

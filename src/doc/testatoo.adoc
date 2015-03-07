@@ -559,21 +559,56 @@ item.should {
 
 image::components/ListBox_1.png[ListBox]
 
+This image is to show all the items available in the ListBox
 image::components/ListBox_2.png[ListBox]
 
 [source, java]
 -------------------------------------------------------------------------------
-ListBox listbox = $('#listbox') as ListBox
+ListBox listBox = $('#cities') as ListBox
 listbox.should {
+    have label('Cities list')
+    have 6.items
+    have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
+    have selectedItems('Montreal')
 
-    have label('my dropdown label')
-    have value('my value')
+    have 3.visibleItems     // See the first image
+    be multiSelectable      // We can select more than on item
 }
 
-groupItem.items     // Return the items of the group
+// Try to select a another item with a click
+CTRL.click listBox.items[2]
+OR
+select listBox.items[2]
+OR
+Item montpellier = listBox.items[2]
+on listBox select montpellier
+
+listbox.should {
+    have selectedItems('Montreal', 'Montpellier')
+}
+
+select listBox.items[2]     // Throw an exception if we try to select a disabled element
+
+unselect listBox.items[0]   // Can unselect an item
+listbox.should {
+    have selectedItems('Montpellier')
+}
 -------------------------------------------------------------------------------
 
-on listBox unselect 'item 2 value'  // Un-select the 'item 2 value' in the dropdown
+==== ListView
+
+image::components/ListView.png[ListBox]
+[source, java]
+-------------------------------------------------------------------------------
+ ListView listView = $('#list_view') as ListView
+listView.should {
+    have 5.items
+    have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5')
+}
+
+listView.items[0].should { have value('Item 1') }
+-------------------------------------------------------------------------------
+
 
 
 
@@ -588,7 +623,7 @@ on listBox unselect 'item 2 value'  // Un-select the 'item 2 value' in the dropd
 |      *Item*             |   Label, Value                                                                    |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Selected*, *UnSelected*
 |      *GroupItem*        |   Label, Value, Size, Items                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *ListBox*          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   Enabled, Disabled, Available, Missing, Hidden, Visible, *MultiSelectable*, *SingleSelectable*
-
+|      *ListView*         |   Size. Items                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
 
 
 
@@ -603,7 +638,7 @@ on listBox unselect 'item 2 value'  // Un-select the 'item 2 value' in the dropd
 
 
 
-|      *ListView*         |   Size. Items                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
+
 |      *DataGrid*         |   Size, ColumnSize, RowSize                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Column*           |   Size, Title                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Cell*             |   Value                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible

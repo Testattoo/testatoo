@@ -93,6 +93,11 @@ class Testatoo {
         return c
     }
 
+    static Component unselect(Component c) {
+        on(c).unselect(c)
+        return c
+    }
+
     static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {
         c()
         try {
