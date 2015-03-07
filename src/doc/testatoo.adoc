@@ -421,7 +421,7 @@ Testatoo comes with a bunch of predefined HTML components. These components are 
 but also a powerful base to build your own components. Each component supports States and Properties. One of the strength of Testatoo
 is the capability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
 
-==== Component (the base class)
+==== Component (the base Class)
 [source, java]
 -------------------------------------------------------------------------------
 Component component = $('#component') as Component <1>
@@ -435,7 +435,7 @@ component.should {
 }
 -------------------------------------------------------------------------------
 
-<1> *All other components in Testatoo inherit from it
+<1> *All other components in Testatoo inherit from it*
 <2> *All components owns this base states*
 
 ==== Button
@@ -519,78 +519,52 @@ image::components/DropDown.png[DropDown]
 -------------------------------------------------------------------------------
 DropDown dropdown = $('#dropdown') as DropDown
 dropdown.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
-    be visible
+    have label('OS')
+    have selectedItems('None')
 
-    have label('my dropdown label')
-    have size(3)
-    have 3.items
-    have 1.groupItems
-    have items('item 1 value', 'item 2 value', 'item 3 value', ...)
-    have groupItems('group item value', ...)
-    have selectedItems('item 1 value', 'item 3 value')
+    have 8.items
+    have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
+
+    have 3.groupItems
+    have groupItems('linux', 'win32', 'BSD')
 }
 
-dropdown.items      // Return the list of items
-dropdown.items[2]   // Return the item at the specific position
-
-on dropdown select 'item 2 value'   // Select the 'item 2 value' in the dropdown or throw an exception if the item is disabled
--------------------------------------------------------------------------------
-
-==== Item
-[source, java]
--------------------------------------------------------------------------------
-Item item = $('#item') as Item
-item.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
-    be visible
-
-    be selected
-    be unselected
-
-    have label('my dropdown label')
-    have value('my value')
-}
+on dropdown select 'Ubuntu'   // Select the 'Ubuntu' in the dropdown or throw an exception if the item is disabled
 -------------------------------------------------------------------------------
 
 ==== GroupItem
 [source, java]
 -------------------------------------------------------------------------------
-GroupItem groupItem = $('#groupItem') as GroupItem
-groupItem.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
-    be visible
+DropDown dropdown = $('#dropdown') as DropDown
+GroupItem group = dropdown.groupItems[0]
 
-    have label('my dropdown label')
-    have value('my value')
+group.should {
+    have label('linux')
+    have items('Ubuntu', 'Fedora', 'Gentoo')
 }
+-------------------------------------------------------------------------------
 
-groupItem.items     // Return the items of the group
+==== Item
+[source, java]
+-------------------------------------------------------------------------------
+DropDown dropdown = $('#dropdown') as DropDown
+Item item = dropdown.item[1]
+item.should {
+    be unselected
+    have label('Ubuntu')
+}
 -------------------------------------------------------------------------------
 
 ==== ListBox
+
+image::components/ListBox_1.png[ListBox]
+
+image::components/ListBox_2.png[ListBox]
+
 [source, java]
 -------------------------------------------------------------------------------
 ListBox listbox = $('#listbox') as ListBox
 listbox.should {
-    be enabled
-    be disabled
-    be available
-    be missing
-    be hidden
-    be visible
 
     have label('my dropdown label')
     have value('my value')
