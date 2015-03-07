@@ -560,6 +560,7 @@ item.should {
 image::components/ListBox_1.png[ListBox]
 
 This image is to show all the items available in the ListBox
+
 image::components/ListBox_2.png[ListBox]
 
 [source, java]
