@@ -576,7 +576,7 @@ listbox.should {
     be multiSelectable      // We can select more than on item
 }
 
-// Try to select a another item with a click
+// Try to select an another item with a control + click
 CTRL.click listBox.items[2]
 OR
 select listBox.items[2]
@@ -599,15 +599,68 @@ listbox.should {
 ==== ListView
 
 image::components/ListView.png[ListBox]
+
 [source, java]
 -------------------------------------------------------------------------------
- ListView listView = $('#list_view') as ListView
+ListView listView = $('#list_view') as ListView
 listView.should {
     have 5.items
     have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5')
 }
 
 listView.items[0].should { have value('Item 1') }
+-------------------------------------------------------------------------------
+
+==== DataGrid
+
+image::components/DataGrid.png[DataGrid]
+
+[source, java]
+-------------------------------------------------------------------------------
+DataGrid data_grid = $('#data_grid') as DataGrid
+data_grid.should {
+    have 3.columns
+    have 4.rows
+}
+
+// Can work at the Column Level
+Column column = data_grid.columns[0]
+column.should {
+    have title('Column 1 title')
+    have 4.cells
+}
+
+// Or at the Row Level
+Row row = data_grid.rows[0]
+row.should {
+    have 3.cells
+}
+
+// Can evaluate a cell
+row.cells[1].should {
+    have value('cell 12')
+}
+-------------------------------------------------------------------------------
+
+==== Form
+
+image::components/Form.png[Form]
+
+[source, java]
+-------------------------------------------------------------------------------
+Form form = $('#form') as Form
+form.should {
+    contains(
+        emailField,
+        passwordField
+    )
+}
+
+// Could Submit a form
+submit form
+
+// Or reset a form
+reset form
 -------------------------------------------------------------------------------
 
 
@@ -617,20 +670,9 @@ listView.items[0].should { have value('Item 1') }
 [options="header"]
 |=========================================================================================================================================================================
 | Component               |                   Properties                                                      |                    States
-|      *Button*           |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *CheckBox*         |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
-|      *Radio*            |   Label                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Checked*, *Unchecked*
-|      *DropDown*         |   Label, GroupItemsSize, SelectedItems, Size, Items GroupItems                    |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Item*             |   Label, Value                                                                    |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Selected*, *UnSelected*
-|      *GroupItem*        |   Label, Value, Size, Items                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *ListBox*          |   Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size, Items, GroupItems |   Enabled, Disabled, Available, Missing, Hidden, Visible, *MultiSelectable*, *SingleSelectable*
-|      *ListView*         |   Size. Items                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
 
 
 
-
-
-|      *Form*             |                                                                                   |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Heading*          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Image*            |   Source                                                                          |   Enabled, Disabled, Available, Missing, Hidden, Visible
 |      *Link*             |   Text,  Reference                                                                |   Enabled, Disabled, Available, Missing, Hidden, Visible
@@ -639,42 +681,21 @@ listView.items[0].should { have value('Item 1') }
 
 
 
-
-|      *DataGrid*         |   Size, ColumnSize, RowSize                                                       |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Column*           |   Size, Title                                                                     |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Cell*             |   Value                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Row*              |   Size                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
-
-|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *EmailField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *MonthField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-
-|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *TextField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *URLField*         |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |=========================================================================================================================================================================
-
-
-[NOTE]
-===============================
-All Testatoo components inherit from the base class Component.groovy
-===============================
-
-
-
-== The DSL
-
-=== Form
-
-TODO
 
 
 
