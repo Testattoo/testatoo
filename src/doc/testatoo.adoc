@@ -465,7 +465,7 @@ checkbox.should {
 }
 
 clickOn checkbox    // Check the checkbox
-OR
+//  OR
 check checkbox      // Check the checkbox or throw and exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
@@ -480,7 +480,7 @@ checkbox.should {
 }
 
 clickOn checkbox    // Uncheck the checkbox
-OR
+//  OR
 uncheck checkbox    // Uncheck the checkbox or throw and exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
@@ -504,7 +504,7 @@ radio_unchecked.should {
 }
 
 clickOn radio_unchecked     // Check the radio
-OR
+//  OR
 check radio_unchecked       // Check the radio
 
 check radio_checked         // Throw an exception (the radio is already checked)
@@ -559,7 +559,7 @@ item.should {
 
 image::components/ListBox_1.png[ListBox]
 
-This image is to show all the items available in the ListBox
+This image show all the items available in the ListBox
 
 image::components/ListBox_2.png[ListBox]
 
@@ -578,9 +578,9 @@ listbox.should {
 
 // Try to select an another item with a control + click
 CTRL.click listBox.items[2]
-OR
+//  OR
 select listBox.items[2]
-OR
+//  OR
 Item montpellier = listBox.items[2]
 on listBox select montpellier
 
@@ -663,6 +663,21 @@ submit form
 reset form
 -------------------------------------------------------------------------------
 
+==== The INPUT
+
+===== TextField
+===== PasswordField
+
+===== DateTimeField
+===== EmailField
+===== MonthField
+===== ColorField
+===== SearchField
+===== TimeField
+===== URLField
+===== WeekField
+
+
 
 
 
@@ -671,6 +686,16 @@ reset form
 |=========================================================================================================================================================================
 | Component               |                   Properties                                                      |                    States
 
+|      *TextField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *EmailField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *MonthField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *URLField*         |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 
 
 |      *Heading*          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
@@ -685,16 +710,7 @@ reset form
 |      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *EmailField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *MonthField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *TextField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *URLField*         |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+
 |=========================================================================================================================================================================
 
 
