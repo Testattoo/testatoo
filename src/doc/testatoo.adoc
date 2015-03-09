@@ -649,37 +649,102 @@ image::components/Form.png[Form]
 [source, java]
 -------------------------------------------------------------------------------
 Form form = $('#form') as Form
+EmailField email_field = $('#email') as EmailField
+PasswordField password_field = $('#password') as PasswordField
+Button submit_button = $('#submit]') as Button
+Button reset_button = $('#reset') as Button
+
+
 form.should {
     contains(
         emailField,
-        passwordField
+        passwordField,
+        submit_button,
+        reset_button
     )
 }
 
-// Could Submit a form
+// Could Submit the form
 submit form
+// OR
+clickOn submit_button
 
-// Or reset a form
+// Could Reset the form
 reset form
+// OR
+clickOn reset_button
 -------------------------------------------------------------------------------
 
-==== The INPUT
+==== INPUT
 
 ===== TextField
+
+image::components/TextField.png[TextField]
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#text_field') as TextField
+textField.should {
+    have label('Text')
+    have placeholder('Text')
+    be empty
+    be optional     // Or required
+}
+-------------------------------------------------------------------------------
+
+
 ===== PasswordField
 
+image::components/PasswordField.png[PasswordField]
+
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== DateTimeField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== EmailField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== MonthField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== ColorField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== SearchField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== TimeField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== URLField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
 ===== WeekField
+[source, java]
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
-
-
-
+==== DateField
+==== RangeField
+==== NumberField
+==== PhoneField
 
 
 [options="header"]
@@ -696,6 +761,12 @@ reset form
 |      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *URLField*         |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 |      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
+
+
 
 
 |      *Heading*          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
@@ -706,10 +777,6 @@ reset form
 
 
 
-|      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
 
 |=========================================================================================================================================================================
 

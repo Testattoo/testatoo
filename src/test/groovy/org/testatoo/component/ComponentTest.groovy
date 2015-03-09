@@ -105,7 +105,5 @@ class ComponentTest {
         }
     }
 
-    class CustomField extends TextField {
-
-    }
+    class CustomField extends TextField {}
 }
