@@ -75,10 +75,6 @@ class Properties {
     static final SelectedItems selectedItems = new SelectedItems()
     static final PropertyMatcher selectedItems(String... expected) { selectedItems.equalsTo(expected) }
 
-    static final ErrorMessage errorMessage = new ErrorMessage()
-    static final PropertyMatcher errorMessage(String expected) { errorMessage.equalsTo(expected) }
-
     static final ParagraphSize paragraphSize = new ParagraphSize()
     static final ArticleSize articleSize = new ArticleSize()
-
 }
