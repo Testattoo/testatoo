@@ -46,6 +46,8 @@ public interface Evaluator extends AutoCloseable {
 
     void runAction(Action action, Component component)
 
+    void triggerEvent(String event, Component c)
+
     String getTitle()
 
     String getPageSource()

@@ -79,7 +79,9 @@ class SelectorsTest {
             }
         }
 
-        on textFields enter 'TESTATOO!'
+        textFields.each { it ->
+            on it enter 'TESTATOO!'
+        }
 
         textFields.each {
             it.should {
@@ -127,8 +129,64 @@ class SelectorsTest {
                 }
             }
         } catch (ComponentException e) {
-            assert  e.message.startsWith("The Component hierarchy [Button, Component] doesn't contain the type TextField for component with id")
+            assert e.message.startsWith("The Component hierarchy [Button, Component] doesn't contain the type TextField for component with id")
         }
+    }
+
+    @Test
+    public void Components_implements_Collection_but_not_support_all_method() {
+        assert Components.interfaces.contains(Collection.class)
+
+        Components<Button> buttons = $$('[type="text"]') of Button
+
+        assert buttons.size() == 3
+        assert !buttons.isEmpty()
+        assert buttons.iterator() != null
+        assert buttons.toArray().length == 3
+        assert buttons.toArray(Button).length == 3
+
+        try {
+            assert buttons.containsAll(buttons)
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
+        try {
+            assert buttons.add(null)
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
+        try {
+            assert buttons.remove(null)
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
+        try {
+            assert buttons.addAll(null)
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
+        try {
+            assert buttons.removeAll(buttons)
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
+        try {
+            assert buttons.retainAll(new ArrayList<Object>())
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
+        try {
+            assert buttons.clear()
+            fail()
+        } catch (UnsupportedOperationException e) {
+        }
+
     }
 
     private class CustomComponent extends Component {

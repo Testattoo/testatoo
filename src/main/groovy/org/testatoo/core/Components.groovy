@@ -28,12 +28,6 @@ class Components<T extends Component> implements Collection<T> {
     private final Class<T> _type;
     private List<T> _components
 
-    public void should(Closure c) {
-        for (T component : _components) {
-            component.should c
-        }
-    }
-
     private Components(Class<T> type, Evaluator evaluator, IdProvider idProvider) {
         this._evaluator = evaluator
         this._idProvider = idProvider
@@ -41,8 +35,10 @@ class Components<T extends Component> implements Collection<T> {
     }
 
     private List<T> getComponents() {
-        if(_components == null) {
-            _components = _idProvider.getMetaInfos(_evaluator).collect { new Component(_evaluator, new MetaInfoProvider(it)).asType(_type) } as List<T>
+        if (_components == null) {
+            _components = _idProvider.getMetaInfos(_evaluator).collect {
+                new Component(_evaluator, new MetaInfoProvider(it)).asType(_type)
+            } as List<T>
         }
         return _components
     }
@@ -51,7 +47,9 @@ class Components<T extends Component> implements Collection<T> {
         return new Components(type, _evaluator, _idProvider)
     }
 
-    static Components<? extends Component> $$(String jQuery, long timeout = 2000) { new Components<>(Component, Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, false)) }
+    static Components<? extends Component> $$(String jQuery, long timeout = 2000) {
+        new Components<>(Component, Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, false))
+    }
 
     // DELEGATES
     @Override
@@ -71,10 +69,12 @@ class Components<T extends Component> implements Collection<T> {
 
     def <T> T[] toArray(T[] a) { components.toArray(a) }
 
-    @Override
-    boolean containsAll(Collection<?> c) { components.containsAll(c) }
-
     // UNSUPPORTED
+    @Override
+    boolean containsAll(Collection<?> c) {
+        throw new UnsupportedOperationException()
+    }
+
     @Override
     boolean add(Component component) {
         throw new UnsupportedOperationException()

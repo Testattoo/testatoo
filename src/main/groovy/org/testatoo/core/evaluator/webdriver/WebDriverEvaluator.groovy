@@ -73,6 +73,11 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
+    void triggerEvent(String event, Component c) {
+        runScript("\$('#${c.id}').trigger('${event}')");
+    }
+
+    @Override
     void runScript(String script) {
         js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/ , 'testatoo') : script);
     }
@@ -143,7 +148,7 @@ class WebDriverEvaluator implements Evaluator {
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof  Key ? action.sendKeys(KeyConverter.convert(it)) :  action.sendKeys(it)}
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
-        action.build().perform()
+        action.build().perform();
     }
 
     @Override

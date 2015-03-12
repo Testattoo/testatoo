@@ -97,6 +97,13 @@ class ComponentTest {
         assert radio_1 != radio_3
     }
 
+    @Test
+    public void the_hashCode_of_a_component_is_based_on_its_id() {
+        Radio radio_1 = $('#radio') as Radio
+
+        assert radio_1.hashCode() == radio_1.id.hashCode()
+    }
+
     class CustomPanel extends Panel {
         CustomPanel() {
             support Title, { return 'CustomPanel Title' }

@@ -75,15 +75,25 @@ class DSLTest {
         clickOn textField
         type 'Some input'
 
-        textField.should {
-            have value('Some input')
-        }
+        textField.should { have value('Some input') }
 
         on textField enter 'Other input'
 
-        textField.should {
-            have value('Other input')
-        }
+        textField.should { have value('Other input') }
+    }
+
+    @Test
+    public void given_input_with_value_when_enter_value_we_trigger_a_blur_event() {
+        open 'http://localhost:8080/form.html'
+
+        EmailField emailField = $('[type=email]') as EmailField
+        Panel error = $('#error_message') as Panel
+
+        error.should { be hidden }
+
+        on emailField enter 'invalid value'
+
+        waitUntil { error.be(visible) }
     }
 
     @Test
@@ -111,7 +121,6 @@ class DSLTest {
         open 'http://localhost:8080/components.html'
 
         Dropdown dropdown = $('#elements') as Dropdown
-
         dropdown.should { have selectedItems('Helium') }
 
         on dropdown select 'Polonium'
@@ -167,9 +176,7 @@ class DSLTest {
         open 'http://localhost:8080/components.html'
 
         Checkbox checkBox = $('#checkbox') as Checkbox
-        checkBox.should {
-            be enabled and be(visible)
-        }
+        checkBox.should { be enabled and be(visible) }
     }
 
     @Test
@@ -177,9 +184,7 @@ class DSLTest {
         open 'http://localhost:8080/components.html'
 
         ListBox listBox = $('#cities') as ListBox
-        listBox.should {
-            have 8.items or have(3.visibleItems)
-        }
+        listBox.should { have 8.items or have(3.visibleItems) }
     }
 
     class Message extends Panel {

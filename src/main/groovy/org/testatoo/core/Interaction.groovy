@@ -68,5 +68,6 @@ class Interaction {
         Input input = (Input) c
         input.reset()
         input.enter(value)
+        c.evaluator.triggerEvent('blur', c)
     }
 }

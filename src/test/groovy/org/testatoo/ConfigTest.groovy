@@ -22,10 +22,16 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Panel
+import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.state.States.empty
+import static org.testatoo.core.state.States.filled
+import static org.testatoo.core.state.States.getHidden
 import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.state.States.visible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -63,17 +69,36 @@ class ConfigTest {
     }
 
     @Test
-    @Ignore
     public void can_register_a_script() {
-        // TODO
-        // test method @Override
-//        void registerScripts(String... scripts) {
-//            registeredScripts.addAll(scripts);
-//        }
+        try {
+            WebDriver driver = new FirefoxDriver();
+            evaluator = new WebDriverEvaluator(driver)
 
-        // in WebDriver Evaluator
+            open 'http://localhost:8080/form.html'
+
+            EmailField emailField = $('[type=email]') as EmailField
+            Panel error = $('#error_message') as Panel
+
+            emailField.should { be empty }
+            error.should { be hidden }
+
+            // Register scripts who
+            // 1 - show the error_message
+            // 2 - set an email in email field
+            evaluator.registerScripts("function A_test() { \$('#error_message').show()  }; A_test()")
+            evaluator.registerScripts("function B_test() { \$('[type=email]').val('email@email.org') }; B_test()")
+
+            open 'http://localhost:8080/form.html'
+
+            emailField = $('[type=email]') as EmailField
+            error = $('#error_message') as Panel
+
+            emailField.be(filled)
+            error.should { be visible }
+        } finally {
+            evaluator.close()
+        }
     }
-
 
     private class MyCustomComponent extends Component {
     }

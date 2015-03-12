@@ -69,10 +69,6 @@ class Testatoo {
         return new Interaction(c)
     }
 
-    static <T extends Component> Interactions<T> on(Components<T> cc) {
-        return new Interactions<T>(cc)
-    }
-
     static Form reset(Form form) {
         form.reset()
         return form
