@@ -105,7 +105,7 @@ class DSLTest {
 
         reset field
 
-        waitUntil { panel.is(visible) }
+        waitUntil { panel.becomes(visible) }
     }
 
     @Test
