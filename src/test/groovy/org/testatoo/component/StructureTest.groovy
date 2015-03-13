@@ -26,8 +26,9 @@ import org.testatoo.core.component.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.state.States.getEnabled
+import static org.testatoo.core.state.States.getVisible
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -22,11 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.Checkbox
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Form
-import org.testatoo.core.component.Radio
+import org.testatoo.core.component.*
 import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.component.list.Dropdown
 import org.testatoo.core.component.list.Item
@@ -104,7 +100,7 @@ class ErrorTest {
         Button button = $('#inexisting_button') as Button;
         try {
             waitUntil 2.seconds, {
-                button.be(available)
+                button.is(available)
             }
             fail()
         } catch (RuntimeException e) {

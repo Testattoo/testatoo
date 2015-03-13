@@ -15,7 +15,6 @@
  */
 package org.testatoo
 
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -23,15 +22,11 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Panel
-import org.testatoo.core.component.input.EmailField
+import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.state.States.empty
-import static org.testatoo.core.state.States.filled
-import static org.testatoo.core.state.States.getHidden
-import static org.testatoo.core.state.States.getVisible
-import static org.testatoo.core.state.States.visible
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -74,26 +69,26 @@ class ConfigTest {
             WebDriver driver = new FirefoxDriver();
             evaluator = new WebDriverEvaluator(driver)
 
-            open 'http://localhost:8080/form.html'
+            open 'http://localhost:8080/dsl.html'
 
-            EmailField emailField = $('[type=email]') as EmailField
-            Panel error = $('#error_message') as Panel
+            TextField field = $('#firstname') as TextField
+            Panel error = $('#firstname_blur') as Panel
 
-            emailField.should { be empty }
+            field.should { be empty }
             error.should { be hidden }
 
             // Register scripts who
-            // 1 - show the error_message
+            // 1 - show the firstname_blur message
             // 2 - set an email in email field
-            evaluator.registerScripts("function A_test() { \$('#error_message').show()  }; A_test()")
-            evaluator.registerScripts("function B_test() { \$('[type=email]').val('email@email.org') }; B_test()")
+            evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
+            evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
-            open 'http://localhost:8080/form.html'
+            open 'http://localhost:8080/dsl.html'
 
-            emailField = $('[type=email]') as EmailField
-            error = $('#error_message') as Panel
+            field = $('#firstname') as TextField
+            error = $('#firstname_blur') as Panel
 
-            emailField.be(filled)
+            field.is(filled)
             error.should { be visible }
         } finally {
             evaluator.close()

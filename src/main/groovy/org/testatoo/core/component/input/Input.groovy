@@ -27,6 +27,9 @@ import org.testatoo.core.state.Optional
 import org.testatoo.core.state.Required
 import org.testatoo.core.state.Valid
 
+import static org.testatoo.core.Testatoo.getEvaluator
+import static org.testatoo.core.input.Key.BACK_SPACE
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -39,7 +42,8 @@ class Input extends Component {
     void enter(String text) { evaluator.enter([text]) }
 
     void reset() {
-        evaluator.runScript("\$('#${id}').val('')")
+        evaluator.runScript("\$('#${id}').val(' ').change()")
+        evaluator.enter([BACK_SPACE])
     }
 
 }

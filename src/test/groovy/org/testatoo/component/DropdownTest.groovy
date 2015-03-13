@@ -27,9 +27,9 @@ import org.testatoo.core.component.list.GroupItem
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.input.Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -62,7 +62,7 @@ class DropdownTest {
         dropdown.should { have items.containing('Polonium', 'Calcium') }
 
         dropdown.should { have selectedItems('Helium') }
-        dropdown.items[2].should { be unSelected }
+        dropdown.items[2].should { be unselected }
 
         clickOn dropdown.items[2]
 

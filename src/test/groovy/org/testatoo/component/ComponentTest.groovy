@@ -33,7 +33,7 @@ import org.testatoo.core.state.Selected
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.state.States.getSelected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

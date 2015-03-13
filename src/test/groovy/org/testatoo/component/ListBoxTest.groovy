@@ -27,7 +27,7 @@ import org.testatoo.core.component.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 

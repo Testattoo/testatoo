@@ -57,7 +57,13 @@ class Component {
 
     Block be(State matcher) { block 'be', matcher }
 
+    Block is(State matcher) { block 'is', matcher }
+
     Block have(PropertyMatcher matcher) { block 'have', matcher }
+
+    Block has(PropertyMatcher matcher) { block 'has', matcher }
+
+    Block becomes(PropertyMatcher matcher) { block 'becomes', matcher }
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {

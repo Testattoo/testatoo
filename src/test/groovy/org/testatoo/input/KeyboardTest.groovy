@@ -15,7 +15,10 @@
  */
 package org.testatoo.input
 
-import org.junit.*
+import org.junit.AfterClass
+import org.junit.Before
+import org.junit.BeforeClass
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -165,12 +168,12 @@ class KeyboardTest {
         type(SHIFT + 'testatoo')
         textField.should { have text('TESTATOO') }
 
-        reset textField
+        textField.reset()
         textField.should { have text('') }
         type('~!@#$%^&*()_+')
         textField.should { have text('~!@#$%^&*()_+') }
 
-        reset textField
+        textField.reset()
         textField.should { have text('') }
         type(SHIFT + '`1234567890-=')
         textField.should { have text('~!@#$%^&*()_+') }

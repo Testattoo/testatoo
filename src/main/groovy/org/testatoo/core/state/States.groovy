@@ -36,7 +36,7 @@ class States {
     static final MultiSelectable multiSelectable = new MultiSelectable()
     static final SingleSelectable singleSelectable = new SingleSelectable()
     static final Selected selected = new Selected()
-    static final UnSelected unSelected = new UnSelected()
+    static final Unselected unselected = new Unselected()
     static final Required required = new Required()
     static final Optional optional = new Optional()
 

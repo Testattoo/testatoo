@@ -23,7 +23,7 @@ import org.testatoo.core.component.input.Input
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Selected
-import org.testatoo.core.state.UnSelected
+import org.testatoo.core.state.Unselected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -45,7 +45,7 @@ class Interaction {
             throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be selected")
         }
 
-        if (c.be(new UnSelected()))
+        if (c.is(new Unselected()))
             c.evaluator.runAction(new Select(), c)
     }
 
@@ -58,12 +58,11 @@ class Interaction {
             throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be unselected")
         }
 
-        if (c.be(new Selected()))
+        if (c.is(new Selected()))
             c.evaluator.runAction(new Unselect(), c)
     }
 
     void enter(String value) {
-        // Click to focus on component
         c.evaluator.click(c.id);
         Input input = (Input) c
         input.reset()

@@ -26,7 +26,8 @@ import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.state.States.getInvalid
+import static org.testatoo.core.state.States.getValid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -46,6 +47,10 @@ class CartridgeTest {
     @Test
     public void user_cartridge_can_fallback_to_default_html5_cartridge() {
         // TODO test cartridge fallback on undefined property / state / action in cartridge is fallback to html5
+        // Fallback for states
+        // Fallback for properties
+        // Fallback for actions
+        // Fallback for extensions
 
         // Valid an invalid are override in the cartridge
         CustomField valid_field = $('#valid_input') as CustomField

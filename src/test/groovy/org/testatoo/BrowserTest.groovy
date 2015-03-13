@@ -24,9 +24,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.browser
-import static org.testatoo.core.Testatoo.getEvaluator
-import static org.testatoo.core.Testatoo.open
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

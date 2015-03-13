@@ -59,12 +59,12 @@ class WaitTest {
         button.should { be disabled }
 
         waitUntil 10.seconds, {
-            button.be(enabled)
+            button.is(enabled)
         }
 
         clickOn button
         waitUntil {
-            button.be(enabled) or message.be(visible)
+            button.is(enabled) or message.is(visible)
         }
     }
 }

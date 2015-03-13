@@ -27,6 +27,8 @@ import org.testatoo.core.state.Unchecked
 
 import java.util.concurrent.TimeoutException
 
+import static org.testatoo.core.Testatoo.getEvaluator
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -75,7 +77,9 @@ class Testatoo {
     }
 
     static Input reset(Input input) {
+        input.evaluator.click(input.id);
         input.reset()
+        evaluator.triggerEvent('blur', input)
         return input
     }
 

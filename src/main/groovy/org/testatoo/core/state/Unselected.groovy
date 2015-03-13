@@ -20,9 +20,9 @@ import org.testatoo.core.component.Component
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class UnSelected extends State {
+class Unselected extends State {
 
-    UnSelected() {
+    Unselected() {
         evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
         description e: 'unselected', w: 'selected'
     }

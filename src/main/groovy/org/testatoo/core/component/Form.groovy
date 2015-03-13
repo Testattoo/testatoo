@@ -30,7 +30,7 @@ class Form extends Component {
 
     void submit() {
         Button submit_button = evaluator.getMetaInfo("\$('#${id}').find('[type=submit]:first')")[0] as Button
-        if (submit_button && submit_button.be(new Available()))
+        if (submit_button && submit_button.is(new Available()))
             evaluator.click(submit_button.id)
         else
             throw new ComponentException('Cannot submit form without submit button')
@@ -38,7 +38,7 @@ class Form extends Component {
 
     void reset() {
         Button reset_button = evaluator.getMetaInfo("\$('#${id}').find('[type=reset]:first')")[0] as Button
-        if (reset_button && reset_button.be(new Available()))
+        if (reset_button && reset_button.is(new Available()))
             evaluator.click(reset_button.id)
         else
             throw new ComponentException('Cannot reset form without reset button')

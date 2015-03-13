@@ -32,10 +32,11 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.input.Keyboard.*
+import static org.testatoo.core.input.Keyboard.type
+import static org.testatoo.core.input.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.state.States.getInvalid
+import static org.testatoo.core.state.States.getValid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

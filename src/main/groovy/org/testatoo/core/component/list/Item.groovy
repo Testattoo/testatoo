@@ -19,7 +19,7 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Selected
-import org.testatoo.core.state.UnSelected
+import org.testatoo.core.state.Unselected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,7 +28,7 @@ class Item extends Component {
 
     Item() {
         support Label, Value
-        support Selected, UnSelected
+        support Selected, Unselected
     }
 
     boolean equals(o) {
