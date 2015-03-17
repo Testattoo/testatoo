@@ -2,7 +2,7 @@
 The Testatoo development team
 :revdate: 11-12-2014
 :build-icon: https://drone.io/github.com/Ovea/testatoo/status.png[https://drone.io/github.com/Ovea/testatoo/latest]
-:download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b13/testatoo-2.0.b13-javadoc.jar
+:download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b13/testatoo-2.0.b13.jar
 :noheader:
 
 image:{build-icon}
