@@ -5,6 +5,9 @@ The Testatoo development team
 :download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b1/testatoo-2.0.b1-javadoc.jar
 :noheader:
 
+image:{build-icon}
+image:{https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg}
+
 [.left.text-left]
 image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.jpg[]
 
@@ -17,10 +20,6 @@ Samples are available https://github.com/Ovea/testatoo-sample[here]
 == Downloading
 
 Latest Testatoo version is available on {download-url}[Maven Central]
-
-## Build Status
-
-image:{build-icon}
 
 == Building
 
