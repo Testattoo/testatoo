@@ -57,9 +57,9 @@ class ComponentTest {
         custom_panel.should { have title('CustomPanel Title') }
         custom_panel.should { be selected }
 
-        // default size evaluation is on number of children
+        // Default size evaluation is on number of children
         custom_panel.should { have size(2) }
-        // default text evaluation is on text of node
+        // Default text evaluation is on text of node
         custom_panel.should { have text('TEXT') }
     }
 
