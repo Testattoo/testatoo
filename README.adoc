@@ -2,7 +2,7 @@
 The Testatoo development team
 :revdate: 11-12-2014
 :build-icon: https://drone.io/github.com/Ovea/testatoo/status.png[https://drone.io/github.com/Ovea/testatoo/latest]
-:maven-icon: https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg?style=flat-square
+:maven-icon: https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg?style=flat-square[]
 :download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b1/testatoo-2.0.b1-javadoc.jar
 :noheader:
 
