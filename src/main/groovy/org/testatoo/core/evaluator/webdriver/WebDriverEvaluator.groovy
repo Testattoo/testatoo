@@ -59,17 +59,17 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     String getProperty(Property property, Component c) {
-        eval("testatoo.property('${c.cartridge}', '${property.class.simpleName.toLowerCase()}', '${c.id}', '${c.type}')")
+        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${property.class.simpleName.toLowerCase()}')")
     }
 
     @Override
     String getState(State state, Component c) {
-        eval("testatoo.state('${c.cartridge}', '${state.class.simpleName.toLowerCase()}', '${c.id}', '${c.type}')")
+        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${state.class.simpleName.toLowerCase()}')")
     }
 
     @Override
     void runAction(Action action, Component c) {
-        eval("testatoo.action('${c.cartridge}', '${action.class.simpleName.toLowerCase()}', '${c.id}', '${c.type}')")
+        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${action.class.simpleName.toLowerCase()}')")
     }
 
     @Override
@@ -199,10 +199,10 @@ class WebDriverEvaluator implements Evaluator {
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text + getClass().getResource("testatoo.js").text)
 
-            registeredScripts.collect { js.executeScript(it)  }
-
             List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
             resources.each { js.executeScript(it.text) }
+
+            registeredScripts.collect { js.executeScript(it)  }
 
             v = js.executeScript(expr)
         }

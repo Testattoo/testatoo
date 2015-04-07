@@ -15,42 +15,64 @@
  */
 (function (w) {
 
-  w.testatoo.registerCartridge(
-    {
-      name: 'my_custom_cartridge',
-      type: function (el) {
-        if (el.attr('data-role') == 'my-custom-comp')
-          return 'MyCustomComponent';
-        if (el.attr('data-role') == 'custom-field')
-          return 'CustomField';
-        return undefined;
-      },
-      states: {
-        enabled: function () {
-          return false;
-        },
-        visible: function () {
-          return undefined;
-        },
-        valid: function(id) {
-          return $('#' + id).hasClass('valid');
-        },
-        invalid: function(id) {
-          return $('#' + id).hasClass('invalid');
-        }
-      },
-      properties: {
-        label: function (id) {
-          if ($('#' + id).attr('data-role') == 'custom-field')
-            return 'Label overridden';
-        },
-        placeholder: function() {
-          return undefined;
-        }
-      },
-      functions: {},
-      extensions: {}
+  var cartridge = {
+    name: 'my_custom_cartridge',
+    components: []
+  };
+
+  w.testatoo.registerCartridge(cartridge);
+
+  cartridge.components.push({
+    type: 'MyCustomComponent',
+    match: function(el) {
+      return el.attr('data-role') == 'my-custom-comp'
     }
-  );
+  });
+
+  cartridge.components.push({
+    type: 'CustomField',
+    match: function(el) {
+      return el.attr('data-role') == 'custom-field'
+    }
+  });
+
+
+//  w.testatoo.registerCartridge(
+//    {
+//      name: 'my_custom_cartridge',
+//      type: function (el) {
+//        if (el.attr('data-role') == 'my-custom-comp')
+//          return 'MyCustomComponent';
+//        if (el.attr('data-role') == 'custom-field')
+//          return 'CustomField';
+//        return undefined;
+//      },
+//      states: {
+//        enabled: function () {
+//          return false;
+//        },
+//        visible: function () {
+//          return undefined;
+//        },
+//        valid: function(id) {
+//          return $('#' + id).hasClass('valid');
+//        },
+//        invalid: function(id) {
+//          return $('#' + id).hasClass('invalid');
+//        }
+//      },
+//      properties: {
+//        label: function (id) {
+//          if ($('#' + id).attr('data-role') == 'custom-field')
+//            return 'Label overridden';
+//        },
+//        placeholder: function() {
+//          return undefined;
+//        }
+//      },
+//      functions: {},
+//      extensions: {}
+//    }
+//  );
 
 }(window));

@@ -15,20 +15,42 @@
  */
 (function (w) {
 
-  w.testatoo.registerCartridge(
-    {
-      name: 'custom_cartridge',
-      type: function (el) {
-        if (el.attr('data-role') == 'custom-comp')
-          return 'CustomComponent';
-        if (el.is('CUSTOM-TAG'))
-          return 'CustomTag';
-        return undefined;
-      },
-      states: {},
-      properties: {},
-      extensions: {}
-    }
-  );
+  var cartridge = {
+    name: 'custom_cartridge',
+    components: []
+  };
 
+  w.testatoo.registerCartridge(cartridge);
+
+  cartridge.components.push({
+    type: 'CustomComponent',
+    match: function(el) {
+      return el.attr('data-role') == 'custom-comp'
+    }
+  });
+
+  cartridge.components.push({
+    type: 'CustomTag',
+    match: function(el) {
+      return el.is('CUSTOM-TAG')
+    }
+  });
+
+
+// w.testatoo.registerCartridge(
+//    {
+//      name: 'custom_cartridge',
+//      type: function (el) {
+//        if (el.attr('data-role') == 'custom-comp')
+//          return 'CustomComponent';
+//        if (el.is('CUSTOM-TAG'))
+//          return 'CustomTag';
+//        return undefined;
+//      },
+//      states: {},
+//      properties: {},
+//      extensions: {}
+//    }
+//  );
+//
 }(window));
