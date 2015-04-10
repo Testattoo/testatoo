@@ -64,39 +64,6 @@ class FormTest {
 
         Message message = $('#form .alert') as Message
 
-        // Can reset a form
-        clickOn email_field
-        type 'my@email.org'
-        clickOn password_field
-        type 'password'
-
-        // By clicking on the button
-        email_field.should { have text('my@email.org') }
-        password_field.should { have text('password') }
-
-        clickOn reset_button
-
-        email_field.should { have text('') }
-        password_field.should { have text('') }
-
-        form.should { be valid }
-        // Field in error
-        clickOn email_field
-        type 'bad email'
-        email_field.should {
-            be invalid
-        }
-        form.should { be invalid }
-
-        email_field.reset()
-
-        clickOn email_field
-        type 'y@email.org'
-        email_field.should {
-            be valid
-        }
-        form.should { be valid }
-
         // Can submit a form
         message.should { have title('The form was submitted 0 time(s)') }
         message.should { have title.containing('The form was submitted') }
@@ -106,6 +73,39 @@ class FormTest {
 
         clickOn submit_button
         message.should { have title('The form was submitted 2 time(s)') }
+
+        // Can reset a form
+        clickOn email_field
+        type 'my@email.org'
+        clickOn password_field
+        type 'password'
+
+        // By clicking on the button
+        email_field.should { have value('my@email.org') }
+        password_field.should { have value('password') }
+
+        clickOn reset_button
+
+        email_field.should { have value('') }
+        password_field.should { have value('') }
+
+        form.should { be valid }
+        // Field in error
+        clickOn email_field
+        type 'bad email'
+        clickOn submit_button
+
+        email_field.should { be invalid }
+        form.should { be invalid }
+
+        email_field.reset()
+
+        clickOn email_field
+        type 'y@email.org'
+        clickOn submit_button
+        email_field.should { be valid }
+        form.should { be valid }
+
     }
 
     class Message extends Panel {

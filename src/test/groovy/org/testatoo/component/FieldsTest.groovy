@@ -67,9 +67,6 @@ class FieldsTest {
         clickOn textField
         type 'some value'
 
-        textField.should { have text('some value') }
-        textField.should { have text.containing('value') }
-
         textField.should { have value('some value') }
         textField.should { have value.containing('value') }
         textField.should { be filled }
@@ -89,7 +86,7 @@ class FieldsTest {
         passwordField.should { be visible }
 
         passwordField.should { have label('Password') }
-        passwordField.should { have text('?art') }
+        passwordField.should { have value('?art') }
 
         EmailField emailField = $('#email_field') as EmailField
         emailField.should { be disabled }

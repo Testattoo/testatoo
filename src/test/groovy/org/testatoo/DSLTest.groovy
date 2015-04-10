@@ -78,9 +78,7 @@ class DSLTest {
         type 'Some input'
 
         textField.should { have value('Some input') }
-
         on textField enter 'Other input'
-
         textField.should { have value('Other input') }
     }
 
@@ -90,9 +88,7 @@ class DSLTest {
         Panel panel = $('#firstname_blur') as Panel
 
         panel.should { be hidden }
-
         on field enter 'invalid value'
-
         waitUntil { panel.is(visible) }
     }
 
@@ -102,9 +98,7 @@ class DSLTest {
         Panel panel = $('#lastname_reset') as Panel
 
         panel.should { be hidden }
-
         reset field
-
         waitUntil { panel.becomes(visible) }
     }
 
@@ -164,13 +158,13 @@ class DSLTest {
         on email_field enter 'my@email.org'
         on password_field enter 'password'
 
-        email_field.should { have text('my@email.org') }
-        password_field.should { have text('password') }
+        email_field.should { have value('my@email.org') }
+        password_field.should { have value('password') }
 
         reset form
 
-        email_field.should { have text('') }
-        password_field.should { have text('') }
+        email_field.should { have value('') }
+        password_field.should { have value('') }
 
         submit form
 

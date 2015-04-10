@@ -28,7 +28,7 @@
   };
 
   function getInfo(el) {
-    var info = { cartridge: 'html5', type: el.prop("tagName")};
+    var info = { cartridge: 'html5', type: el.prop('tagName')};
     Object.keys(cartridges).forEach(function(key) {
       cartridges[key].forEach(function(component) {
         if (component.match(el)) {
@@ -49,7 +49,10 @@
         id = 'gen-' + Math.round(new Date().getTime() * Math.random());
         me.attr('id', id);
       }
+      console.log('====> Me ', me);
       var info = getInfo(me);
+      console.log('====> Info ', info);
+
 
       metaInfos.push({
         id: id,
@@ -61,12 +64,12 @@
     return metaInfos;
   };
 
-  $.evaluate = function(id, cartridge, type, method) {
+  $.evaluate = function(id, cartridge, type, method, params) {
     var evaluation;
       cartridges[cartridge].forEach(function(component) {
         if (component.type === type) {
           try {
-            evaluation = component[method]($('#' + id));
+            evaluation = component[method]($('#' + id), params);
           } catch (e) {
             throw new Error('Unable to find method "' + method + '" on component type "' + type + '"');
           }
@@ -86,26 +89,6 @@
   //    if (el.is('div')) return 'Panel';
   //    if (el.is('ul')) return 'ListView';
   //    if (el.is('ol')) return 'ListView';
-  //    if (el.is('form')) return 'Form';
-  //    if (el.is('p')) return 'Paragraph';
-  //    if (el.is('input')) {
-  //      switch (el.attr('type').toLowerCase() || '') {
-  //        case 'radio':
-  //          return 'Radio';
-  //        case 'text':
-  //          return 'TextField';
-  //        case 'password':
-  //          return 'PasswordField';
-  //        case 'email':
-  //          return 'EmailField';
-  //        case 'tel':
-  //          return 'PhoneField';
-  //        case 'url':
-  //          return 'URLField';
-  //        case 'search':
-  //          return 'SearchField';
-  //        case 'number':
-  //          return 'NumberField';
   //        case 'range':
   //          return 'RangeField';
   //        case 'color':
@@ -129,31 +112,6 @@
   //    return el.prop("tagName");
   //  },
   //  states: {
-  //    valid: function(id) {
-  //      return $('#' + id).is(':valid');
-  //    },
-  //    invalid: function(id) {
-  //      return $('#' + id).is(':invalid');
-  //    },
-  //    enabled: function (id) {
-  //      return !this.disabled(id);
-  //    },
-  //    disabled: function (id) {
-  //      var el = $('#' + id);
-  //      return el.is(':disabled') || el.attr('disabled') != undefined || (el.is('option') || el.is('optgroup')) && el.closest('select').is(':disabled');
-  //    },
-  //    hidden: function (id) {
-  //      return $('#' + id).is(':hidden');
-  //    },
-  //    visible: function (id) {
-  //      return !this.hidden(id);
-  //    }
-  //    required: function (id) {
-  //      return $('#' + id).prop('required');
-  //    },
-  //    optional: function (id) {
-  //      return !this.required(id);
-  //    },
   //    selected: function (id) {
   //      return $('#' + id).prop('selected');
   //    },
@@ -182,9 +140,6 @@
   //    },
   //    minimum: function (id) {
   //      return $('#' + id).prop('min');
-  //    },
-  //    placeholder: function (id) {
-  //      return $('#' + id).prop('placeholder');
   //    },
   //    pattern: function (id) {
   //      return $('#' + id).prop('pattern');

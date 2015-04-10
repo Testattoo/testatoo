@@ -29,11 +29,10 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.clickOn
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.getAvailable
-import static org.testatoo.core.state.States.getMissing
+import static org.testatoo.core.input.Keyboard.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -163,20 +162,20 @@ class KeyboardTest {
 
         TextField textField = $('#textfield') as TextField
 
-        textField.should { have text('') }
+        textField.should { have value('') }
         clickOn textField
         type(SHIFT + 'testatoo')
-        textField.should { have text('TESTATOO') }
+        textField.should { have value('TESTATOO') }
 
         textField.reset()
-        textField.should { have text('') }
+        textField.should { have value('') }
         type('~!@#$%^&*()_+')
-        textField.should { have text('~!@#$%^&*()_+') }
+        textField.should { have value('~!@#$%^&*()_+') }
 
         textField.reset()
-        textField.should { have text('') }
+        textField.should { have value('') }
         type(SHIFT + '`1234567890-=')
-        textField.should { have text('~!@#$%^&*()_+') }
+        textField.should { have value('~!@#$%^&*()_+') }
     }
 
 }

@@ -117,7 +117,7 @@ class ContainAndDisplayTest {
                 )
             }
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contain expected component(s): [EmailField:$email_field.id]"
+            assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]"
         }
     }
 

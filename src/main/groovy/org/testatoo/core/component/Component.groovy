@@ -67,7 +67,7 @@ class Component {
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
-            List ret = evaluator.getJson("testatoo.extension('${cartridge}', 'contains', '${id}', [${components.collect {"'${it.id}'"}.join(', ')}], '${type}')")
+            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'contains', [${components.collect {"'${it.id}'"}.join(', ')}])")
             if(ret) {
                 throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
             }
@@ -76,9 +76,9 @@ class Component {
 
     Block display(Component... components) {
         Blocks.block "matching ${this} display ${components}", {
-            List ret = evaluator.getJson("testatoo.extension('${cartridge}', 'display', '${id}', [${components.collect {"'${it.id}'"}.join(', ')}], '${type}')")
+            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'display', [${components.collect {"'${it.id}'"}.join(', ')}])")
             if(ret) {
-                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
+                throw new AssertionError("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret } }");
             } else {
                 components.findAll { !it.is(new Visible()) }
             }
