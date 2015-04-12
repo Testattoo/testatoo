@@ -51,41 +51,6 @@ class ComponentTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void can_override_a_state_and_property_directly_on_component_definition() {
-        CustomPanel custom_panel = $('#custom-panel') as CustomPanel
-
-        custom_panel.should { have title('CustomPanel Title') }
-        custom_panel.should { be selected }
-
-        // Default size evaluation is on number of children
-        custom_panel.should { have size(2) }
-        // Default text evaluation is on text of node
-        custom_panel.should { have text('TEXT') }
-    }
-
-    @Test
-    public void given_override_undefined_on_the_cartridge_evaluation_then_fallback_to_html5_cartridge() {
-        CustomField custom_field = $('#custom-field') as CustomField
-
-        // Property not overridden
-        custom_field.should { have value('The Value') }
-
-        // Property overridden
-        custom_field.should { have label('Label overridden') }
-    }
-
-    @Test
-    public void given_override_is_defined_but_return_undefined_on_the_cartridge_evaluation_then_fallback_to_html5_cartridge() {
-        CustomField custom_field = $('#custom-field') as CustomField
-
-        // Property not overridden
-        custom_field.should { have value('The Value') }
-
-        // Property overridden but fallback with the return of an undefined
-        custom_field.should { have placeholder('The placeholder') }
-    }
-
-    @Test
     public void should_evaluate_component_equality() {
         Radio radio_1 = $('#radio') as Radio
 
@@ -103,14 +68,4 @@ class ComponentTest {
 
         assert radio_1.hashCode() == radio_1.id.hashCode()
     }
-
-    class CustomPanel extends Panel {
-        CustomPanel() {
-            support Title, { return 'CustomPanel Title' }
-            support Selected, { return true }
-            support Size, Text
-        }
-    }
-
-    class CustomField extends TextField {}
 }

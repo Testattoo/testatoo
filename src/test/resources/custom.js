@@ -20,37 +20,24 @@
     components: []
   };
 
-  w.testatoo.registerCartridge(cartridge);
+  var $ = w.testatoo;
+
+  $.registerCartridge(cartridge);
 
   cartridge.components.push({
     type: 'CustomComponent',
-    match: function(el) {
-      return el.attr('data-role') == 'custom-comp'
+    match: function(el) { return el.attr('data-role') == 'custom-comp' },
+    visible: function(el) {
+      return el.is(':visible');
     }
   });
 
   cartridge.components.push({
     type: 'CustomTag',
-    match: function(el) {
-      return el.is('CUSTOM-TAG')
+    match: function(el) { return el.is('CUSTOM-TAG') },
+    visible: function(el) {
+      return el.is(':visible');
     }
   });
 
-
-// w.testatoo.registerCartridge(
-//    {
-//      name: 'custom_cartridge',
-//      type: function (el) {
-//        if (el.attr('data-role') == 'custom-comp')
-//          return 'CustomComponent';
-//        if (el.is('CUSTOM-TAG'))
-//          return 'CustomTag';
-//        return undefined;
-//      },
-//      states: {},
-//      properties: {},
-//      extensions: {}
-//    }
-//  );
-//
 }(window));

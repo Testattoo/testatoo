@@ -22,11 +22,23 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.property.Size
+import org.testatoo.core.property.Text
+import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.property.Properties.label
+import static org.testatoo.core.property.Properties.placeholder
+import static org.testatoo.core.property.Properties.size
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.property.Properties.title
+import static org.testatoo.core.property.Properties.value
+import static org.testatoo.core.property.Properties.value
 import static org.testatoo.core.state.States.getInvalid
+import static org.testatoo.core.state.States.getSelected
 import static org.testatoo.core.state.States.getValid
 
 /**
@@ -45,22 +57,20 @@ class CartridgeTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void user_cartridge_can_fallback_to_default_html5_cartridge() {
-        // TODO test cartridge fallback on undefined property / state / action in cartridge is fallback to html5
-        // Fallback for states
-        // Fallback for properties
-        // Fallback for actions
-        // Fallback for extensions
+    public void can_override_a_state_and_property_directly_on_component_definition() {
+        CustomPanel custom_panel = $('#custom-panel') as CustomPanel
 
-        // Valid an invalid are override in the cartridge
-        CustomField valid_field = $('#valid_input') as CustomField
-        valid_field.should { be valid }
-
-        CustomField invalid_field = $('#invalid_input') as CustomField
-        invalid_field.should { be invalid }
+        custom_panel.should { have title('CustomPanel Title') }
+        custom_panel.should { be selected }
+        custom_panel.should { have text('TEXT') }
     }
 
-    class CustomField extends TextField {
+    class CustomPanel extends Panel {
+        CustomPanel() {
+            support Title, { return 'CustomPanel Title' }
+            support org.testatoo.core.state.Selected, { return true }
+            support Size
+            support Text, { return 'TEXT' }
+        }
     }
-
 }

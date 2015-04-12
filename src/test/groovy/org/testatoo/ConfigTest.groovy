@@ -57,7 +57,6 @@ class ConfigTest {
 
             MyCustomComponent myCustomComponent = $('#my-custom-component') as MyCustomComponent
             myCustomComponent.should { be visible }
-
         } finally {
             evaluator.close()
         }
@@ -95,6 +94,5 @@ class ConfigTest {
         }
     }
 
-    private class MyCustomComponent extends Component {
-    }
+    private class MyCustomComponent extends Component {}
 }

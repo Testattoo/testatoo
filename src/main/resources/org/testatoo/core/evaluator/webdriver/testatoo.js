@@ -24,15 +24,16 @@
   var cartridges = [];
 
   $.registerCartridge = function(cartridge) {
-    cartridges[cartridge.name] = cartridge.components;
+    cartridges.push(cartridge);
   };
 
   function getInfo(el) {
-    var info = { cartridge: 'html5', type: el.prop('tagName')};
-    Object.keys(cartridges).forEach(function(key) {
-      cartridges[key].forEach(function(component) {
+    var info = { cartridge: 'html5', type:  el.prop('tagName') };
+
+    cartridges.forEach(function(cartridge) {
+      cartridge.components.forEach(function(component) {
         if (component.match(el)) {
-          info.cartridge = key;
+          info.cartridge = cartridge.name;
           info.type = component.type;
         }
       });
@@ -49,10 +50,7 @@
         id = 'gen-' + Math.round(new Date().getTime() * Math.random());
         me.attr('id', id);
       }
-      console.log('====> Me ', me);
       var info = getInfo(me);
-      console.log('====> Info ', info);
-
 
       metaInfos.push({
         id: id,
@@ -66,178 +64,20 @@
 
   $.evaluate = function(id, cartridge, type, method, params) {
     var evaluation;
-      cartridges[cartridge].forEach(function(component) {
-        if (component.type === type) {
-          try {
-            evaluation = component[method]($('#' + id), params);
-          } catch (e) {
-            throw new Error('Unable to find method "' + method + '" on component type "' + type + '"');
+    cartridges.forEach(function(_cartridge) {
+      if (_cartridge.name === cartridge) {
+        _cartridge.components.forEach(function(component) {
+          if (component.type === type) {
+            try {
+              evaluation = component[method]($('#' + id), params);
+            } catch (e) {
+              throw new Error('Unable to find method "' + method + '" on component type "' + type + '"');
+            }
           }
-        }
-      });
+        });
+      }
+    });
     return evaluation;
   };
-
-
-  //var html5_cartridge = {
-  //  name: 'html5',
-  //
-  //  type: function (el) {
-  //    if (el.is('textarea')) return 'TextField';
-  //    if (el.is('img')) return 'Image';
-  //    if (el.is('h1') || el.is('h2') || el.is('h3') || el.is('h4') || el.is('h5') || el.is('h6')) return 'Heading';
-  //    if (el.is('div')) return 'Panel';
-  //    if (el.is('ul')) return 'ListView';
-  //    if (el.is('ol')) return 'ListView';
-  //        case 'range':
-  //          return 'RangeField';
-  //        case 'color':
-  //          return 'ColorField';
-  //        case 'file':
-  //          return 'FileDialog';
-  //        case 'month':
-  //          return 'MonthField';
-  //        case 'week':
-  //          return 'WeekField';
-  //        case 'date':
-  //          return 'DateField';
-  //        case 'time':
-  //          return 'TimeField';
-  //        case 'datetime':
-  //          return 'DateTimeField';
-  //        default:
-  //          return undefined;
-  //      }
-  //    }
-  //    return el.prop("tagName");
-  //  },
-  //  states: {
-  //    selected: function (id) {
-  //      return $('#' + id).prop('selected');
-  //    },
-  //    unselected: function (id) {
-  //      return !this.selected(id);
-  //    },
-  //    empty: function (id) {
-  //      var el = $('#' + id + '');
-  //      var nodeName = el.prop('nodeName').toLowerCase() || '';
-  //      switch (nodeName) {
-  //        case 'input':
-  //          return $.trim(el.val()).length == 0;
-  //          break;
-  //        case 'ol':
-  //        case 'ul':
-  //          return el.find('li').length == 0;
-  //          break;
-  //        default:
-  //          return false;
-  //      }
-  //    }
-  //  },
-  //  properties: {
-  //    maximum: function (id) {
-  //      return $('#' + id).prop('max');
-  //    },
-  //    minimum: function (id) {
-  //      return $('#' + id).prop('min');
-  //    },
-  //    pattern: function (id) {
-  //      return $('#' + id).prop('pattern');
-  //    },
-  //    step: function (id) {
-  //      return $('#' + id).prop('step');
-  //    },
-  //
-  //    title: function (id) {
-  //      var el = $('#' + id);
-  //      if (el.is('th'))
-  //        return el.text();
-  //      return el.prop('title');
-  //    },
-  //    value: function (id) {
-  //      var el = $('#' + id);
-  //      if (el.is('input') || el.is('textarea'))
-  //        return el.val();
-  //      return el.text();
-  //    },
-  //    size: function (id) {
-  //      var el = $('#' + id);
-  //      if (el.is('ul') || el.is('ol'))
-  //        return el.find('li').length;
-  //      }
-  //
-  //      return el.children().length;
-  //    },
-  //  },
-  //  actions: {
-  //    select: function (id) {
-  //      $('#' + id).prop('selected', true).trigger('change');
-  //    },
-  //    unselect: function (id) {
-  //      $('#' + id).prop('selected', false).trigger('change');
-  //    }
-  //  },
-  //  extensions: {
-  //    contains: function (id, ids) {
-  //      var el = $('#' + id + '');
-  //      var not = [];
-  //      $.each(ids, function (index, _id) {
-  //        !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
-  //      });
-  //      return not;
-  //    },
-  //    display: function (id, ids) {
-  //      var el = $('#' + id + '');
-  //      var not = [];
-  //      $.each(ids, function (index, _id) {
-  //        !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
-  //      });
-  //      return not;
-  //    }
-  //  }
-  //};
-
-  //$.registerCartridge(html5_cartridge);
-
-
-  //function getCartridge(name) {
-  //  var resultList = $.grep(cartridges, function (element) {
-  //    return element.name === name;
-  //  });
-  //
-  //  if (resultList.length)
-  //    return resultList[0];
-  //  return html5_cartridge;
-  //}
-
-
-  //$.property = function (cartridge, property, id, type) {
-  //  return evaluate('properties', cartridge, property, id, type);
-  //};
-  //
-  //$.state = function (cartridge, state, id, type) {
-  //  return evaluate('states', cartridge, state, id, type);
-  //};
-  //
-  //$.action = function (cartridge, action, id, type) {
-  //  return evaluate('actions', cartridge, action, id, type);
-  //};
-  //
-  //$.extension = function() {
-  //  var used_cartridge = getCartridge(arguments[0]);
-  //  var extension_name = arguments[1];
-  //  [].shift.apply(arguments);
-  //  [].shift.apply(arguments);
-  //  if (used_cartridge.extensions[extension_name])
-  //     return used_cartridge.extensions[extension_name].apply(this, arguments);
-  //  return html5_cartridge.extensions[extension_name].apply(this, arguments);
-  //};
-
-  //function evaluate(scope, cartridge, target, id, type) {
-  //  var used_cartridge = getCartridge(cartridge);
-  //  if (used_cartridge[scope][target] && used_cartridge[scope][target](id, type) != undefined)
-  //    return used_cartridge[scope][target](id, type);
-  //  return html5_cartridge[scope][target](id, type);
-  //}
 
 }(window));

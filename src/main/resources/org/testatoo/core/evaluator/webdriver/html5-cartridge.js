@@ -1,5 +1,4 @@
 // HTML5 Cartridge
-
 (function(w) {
 
   var cartridge = {
@@ -184,6 +183,12 @@
     },
     disabled: function(el) {
       return el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');
+    },
+    select: function(el) {
+      el.prop('selected', true).trigger('change');
+    },
+    unselect: function(el) {
+      el.prop('selected', false).trigger('change');
     }
   }));
 
@@ -249,7 +254,10 @@
 
   cartridge.components.push($.extend({}, base, {
     type: 'ListView',
-    match: function(el) { return el.is('ul') || el.is('ol'); }
+    match: function(el) { return el.is('ul') || el.is('ol'); },
+    empty: function(el) {
+      return el.find('li').length == 0;
+    }
   }));
 
   cartridge.components.push($.extend({}, field, {
