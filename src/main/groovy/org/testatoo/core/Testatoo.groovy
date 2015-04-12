@@ -27,8 +27,6 @@ import org.testatoo.core.state.Unchecked
 
 import java.util.concurrent.TimeoutException
 
-import static org.testatoo.core.Testatoo.getEvaluator
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -86,16 +84,6 @@ class Testatoo {
     static Form submit(Form form) {
         form.submit()
         return form
-    }
-
-    static Component select(Component c) {
-        on(c).select(c)
-        return c
-    }
-
-    static Component unselect(Component c) {
-        on(c).unselect(c)
-        return c
     }
 
     static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {

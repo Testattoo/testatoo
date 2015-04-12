@@ -68,4 +68,5 @@ class ComponentTest {
 
         assert radio_1.hashCode() == radio_1.id.hashCode()
     }
+
 }

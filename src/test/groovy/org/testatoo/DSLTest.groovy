@@ -112,12 +112,16 @@ class DSLTest {
             have value('Some input')
         }
 
+        assert textField.has(value('Some input'))
+
         reset textField
 
         textField.should {
             be empty
             have value('')
         }
+
+
     }
 
     @Test

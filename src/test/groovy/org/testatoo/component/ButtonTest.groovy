@@ -66,5 +66,8 @@ class ButtonTest {
         // button element
         button = $('#btn') as Button
         button.should { have text('My Button Text') }
+        button.should { have text.containing('My') }
+        button.should { have text.containing('Button') }
+        button.should { have text.containing('Text') }
     }
 }
