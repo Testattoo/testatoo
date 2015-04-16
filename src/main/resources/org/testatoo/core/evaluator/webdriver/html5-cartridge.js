@@ -86,6 +86,21 @@
     }
   };
 
+  cartridge.support.selectable = {
+    selected: function(el) {
+      return el.prop('selected');
+    },
+    unselected: function(el) {
+      return !this.selected(el);
+    },
+    select: function(el) {
+      el.prop('selected', true).trigger('change');
+    },
+    unselect: function(el) {
+      el.prop('selected', false).trigger('change');
+    }
+  };
+
   cartridge.components.push($.support([cartridge.support.base, cartridge.support.container], {
     type: 'Panel',
     match: function(el) { return el.is('div'); },
@@ -155,7 +170,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([cartridge.support.base, cartridge.support.selectable], {
     type: 'Item',
     match: function(el) { return el.is('option') || el.is('li'); },
     label: function(el) {
@@ -164,21 +179,8 @@
     value: function(el) {
       return el.text().trim();
     },
-    selected: function(el) {
-      return el.prop('selected');
-    },
-    unselected: function(el) {
-      return !this.selected(el);
-    },
     disabled: function(el) {
-      console.log('Je passse');
       return el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');
-    },
-    select: function(el) {
-      el.prop('selected', true).trigger('change');
-    },
-    unselect: function(el) {
-      el.prop('selected', false).trigger('change');
     }
   }));
 
