@@ -27,6 +27,14 @@
     cartridges.push(cartridge);
   };
 
+  $.getCartridge = function(name) {
+    var selected = {};
+    cartridges.forEach(function(cartridge) {
+      cartridge.name === name ? selected = cartridge : {};
+    });
+    return selected;
+  };
+
   function getInfo(el) {
     var info = { cartridge: 'html5', type:  el.prop('tagName') };
 
@@ -78,6 +86,14 @@
       }
     });
     return evaluation;
+  };
+
+  $.support = function(supports, object) {
+    var all_support = {};
+    supports.forEach(function(support) {
+      $.extend(all_support, support);
+    });
+    return  $.extend(all_support, object);
   };
 
 }(window));
