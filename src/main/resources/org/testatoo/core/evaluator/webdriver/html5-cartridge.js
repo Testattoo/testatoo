@@ -101,7 +101,9 @@
     }
   };
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.container], {
+  var support = cartridge.support;
+
+  cartridge.components.push($.support([support.base, support.container], {
     type: 'Panel',
     match: function(el) { return el.is('div'); },
     title: function() {
@@ -109,7 +111,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Button',
     match: function(el) {
       var type = ['button', 'submit', 'reset', 'image'];
@@ -122,17 +124,17 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input, cartridge.support.checkable], {
+  cartridge.components.push($.support([support.base, support.input, support.checkable], {
     type: 'Checkbox',
     match: function(el) { return el.is('input') && el.attr('type') === 'checkbox'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input, cartridge.support.checkable], {
+  cartridge.components.push($.support([support.base, support.input, support.checkable], {
     type: 'Radio',
     match: function(el) { return el.is('input') && el.attr('type').toLowerCase() === 'radio'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'DataGrid',
     match: function(el) { return el.is('table'); },
     columnsize: function(el) {
@@ -143,7 +145,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Column',
     match: function(el) { return el.is('th'); },
     title: function(el) {
@@ -154,7 +156,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Row',
     match: function(el) { return el.is('tr'); },
     size: function(el) {
@@ -162,7 +164,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Cell',
     match: function(el) { return el.is('td'); },
     value: function(el) {
@@ -170,7 +172,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.selectable], {
+  cartridge.components.push($.support([support.base, support.selectable], {
     type: 'Item',
     match: function(el) { return el.is('option') || el.is('li'); },
     label: function(el) {
@@ -184,7 +186,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Link',
     match: function(el) { return el.is('a'); },
     text: function(el) {
@@ -195,7 +197,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Image',
     match: function(el) { return el.is('img'); },
     source: function(el) {
@@ -203,7 +205,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.container], {
+  cartridge.components.push($.support([support.base, support.container], {
     type: 'Form',
     match: function(el) { return el.is('form'); },
     valid: function(el) {
@@ -214,7 +216,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'Dropdown',
     match: function(el) { return el.is('select') && !el.attr('multiple') && !el.prop('size') > 0; },
     size: function(el) {
@@ -225,7 +227,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'GroupItem',
     match: function(el) { return el.is('optgroup'); },
     label: function(el) {
@@ -236,7 +238,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input, cartridge.support.size], {
+  cartridge.components.push($.support([support.base, support.input, support.size], {
     type: 'ListBox',
     match: function(el) { return el.is('select') && (el.attr('multiple') || el.prop('size') > 0); },
     multiselectable: function(el) {
@@ -250,7 +252,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.size], {
+  cartridge.components.push($.support([support.base, support.size], {
     type: 'ListView',
     match: function(el) { return el.is('ul') || el.is('ol'); },
     empty: function(el) {
@@ -258,22 +260,22 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'TextField',
     match: function(el) { return el.is('textarea') || (el.is('input') && el.attr('type') === 'text'); }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'EmailField',
     match: function(el) { return el.is('input') && el.attr('type') === 'email'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'PasswordField',
     match: function(el) { return el.is('input') && el.attr('type') === 'password'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'PhoneField',
     match: function(el) { return el.is('input') && el.attr('type') === 'tel'; },
     pattern: function(el) {
@@ -281,17 +283,17 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'URLField',
     match: function(el) { return el.is('input') && el.attr('type') === 'url'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'SearchField',
     match: function(el) { return el.is('input') && el.attr('type') === 'search'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'NumberField',
     match: function(el) { return el.is('input') && el.attr('type') === 'number'; },
     maximum: function(el) {
@@ -305,7 +307,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'RangeField',
     match: function(el) { return el.is('input') && el.attr('type') === 'range'; },
     maximum: function(el) {
@@ -319,27 +321,27 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'ColorField',
     match: function(el) { return el.is('input') && el.attr('type') === 'color'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'FileDialog',
     match: function(el) { return el.is('input') && el.attr('type') === 'file'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'MonthField',
     match: function(el) { return el.is('input') && el.attr('type') === 'month'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'WeekField',
     match: function(el) { return el.is('input') && el.attr('type') === 'week'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'DateField',
     match: function(el) { return el.is('input') && el.attr('type') === 'date'; },
     maximum: function(el) {
@@ -350,42 +352,42 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'TimeField',
     match: function(el) { return el.is('input') && el.attr('type') === 'time'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base, cartridge.support.input], {
+  cartridge.components.push($.support([support.base, support.input], {
     type: 'DateTimeField',
     match: function(el) { return el.is('input') && el.attr('type') === 'datetime'; }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Article',
     match: function(el) { return el.is('article'); }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Aside',
     match: function(el) { return el.is('aside'); }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Footer',
     match: function(el) { return el.is('footer'); }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Header',
     match: function(el) { return el.is('header'); }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Section',
     match: function(el) { return el.is('section'); }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Paragraph',
     match: function(el) { return el.is('p'); },
     text: function(el) {
@@ -393,7 +395,7 @@
     }
   }));
 
-  cartridge.components.push($.support([cartridge.support.base], {
+  cartridge.components.push($.support([support.base], {
     type: 'Heading',
     match: function(el) { return el.is('h1') || el.is('h2') || el.is('h3') || el.is('h4') || el.is('h5') || el.is('h6'); },
     text: function(el) {
