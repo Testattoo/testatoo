@@ -21,8 +21,8 @@
     hidden: function(el) {
       return el.is(':hidden');
     },
-    visible: function(id) {
-      return !this.hidden(id);
+    visible: function(el) {
+      return !this.hidden(el);
     }
   };
 
