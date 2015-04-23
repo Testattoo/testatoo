@@ -45,6 +45,18 @@ class Browser {
     }
 
     Navigation getNavigate() {
-        return new Navigation(evaluator)
+        new Navigation(evaluator)
+    }
+
+    List<Window> getWindows() {
+        List<Window> windows = new ArrayList<>()
+        evaluator.windowIds.each { String id ->
+            windows.add(new Window(evaluator, id))
+        }
+        return windows
+    }
+
+    void switchTo(Window window) {
+        evaluator.switchToWindow(window.id)
     }
 }

@@ -24,12 +24,13 @@ import org.testatoo.core.component.Component
 @Immutable
 class MetaInfo {
     String type
+    String inherits
     String cartridge
     String node
     String id
 
     @Override
-    String toString() { "type=${type},id=${id},node=${node},cartridge=${cartridge}" }
+    String toString() { "id=${id}, type=${type}, inherits=${inherits}, node=${node}, cartridge=${cartridge}" }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {

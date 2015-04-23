@@ -24,9 +24,11 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.property.Label
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -56,7 +58,10 @@ class ConfigTest {
             open 'http://localhost:8080/selectors.html'
 
             MyCustomComponent myCustomComponent = $('#my-custom-component') as MyCustomComponent
-            myCustomComponent.should { be visible }
+            myCustomComponent.should {
+                be visible
+                have label('Label overridden')
+            }
         } finally {
             evaluator.close()
         }
@@ -94,5 +99,9 @@ class ConfigTest {
         }
     }
 
-    private class MyCustomComponent extends Component {}
+    private class MyCustomComponent extends Component {
+        MyCustomComponent() {
+            support Label
+        }
+    }
 }

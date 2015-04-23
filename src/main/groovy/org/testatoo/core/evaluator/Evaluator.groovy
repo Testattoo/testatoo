@@ -17,7 +17,6 @@ package org.testatoo.core.evaluator
 
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.action.Action
-import org.testatoo.core.action.Unselect
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Property
 import org.testatoo.core.state.State
@@ -53,6 +52,12 @@ public interface Evaluator extends AutoCloseable {
     String getPageSource()
 
     String getUrl()
+
+    Set<String> getWindowIds()
+
+    void closeWindow(String id)
+
+    void switchToWindow(String id)
 
     void to(String url)
 

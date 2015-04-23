@@ -22,9 +22,13 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Form
+import org.testatoo.core.component.Link
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -71,4 +75,31 @@ class BrowserTest {
         assert browser.url == 'http://localhost:8080/keyboard.html'
     }
 
+    @Test
+    public void should_manage_windows() {
+        open 'http://localhost:8080/components.html'
+
+        assert browser.windows.size() == 1
+        String main_window_id = browser.windows[0].id
+
+        Link link = $('#link') as Link
+        Form form = $('#form') as Form
+
+        link.should { be available }
+        form.should { be missing }
+
+        clickOn link
+
+        assert browser.windows.size() == 2
+        link.should { be available }
+        form.should { be missing }
+
+        browser.switchTo(browser.windows[1])
+        link.should { be missing }
+        form.should { be available }
+
+        browser.windows[1].close()
+        assert browser.windows.size() == 1
+        assert browser.windows[0].id == main_window_id
+    }
 }

@@ -18,62 +18,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Testatoo Rocks</title>
+  <meta charset="utf-8">
+  <title>Testatoo Rocks</title>
 
-    <meta name="description" content="HTML5 Rocks">
-    <meta name="author" content="ovea">
+  <meta name="description" content="HTML5 Rocks">
+  <meta name="author" content="ovea">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-2.0.3.min.js"></script>
 </head>
 <body>
 
 <nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Form</a>
-    </div>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Testatoo Form</a>
+  </div>
 </nav>
 
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
 
-        <h1>Form</h1>
+    <h1>Form</h1>
 
-        <form id="form">
-            <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
-            <div class="form-group">
-                <label>Email address
-                    <input type="email" class="form-control" placeholder="Enter email">
-                </label>
-            </div>
-            <div class="form-group">
-                <label>Password
-                    <input type="password" class="form-control" placeholder="Password">
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-        </form>
+    <form id="form">
+      <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
+      <div class="form-group">
+        <label>Email address
+          <input type="email" class="form-control" placeholder="Enter email">
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Password
+          <input type="password" class="form-control" placeholder="Password">
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
 
-        <div id="custom_panel">
-            <div style="display: none">TEXT</div>
-            <div></div>
-        </div>
-
-        <div class="col-md-2"></div>
+    <div id="custom_panel">
+      <div style="display: none">TEXT</div>
+      <div></div>
     </div>
+
+    <div class="col-md-2"></div>
+  </div>
 
 </div>
 
 <script>
-    $('#form').on('submit', function (e) {
-        e.preventDefault();
-        $(this).find('span').text(+$(this).find('span').text() + 1);
-    })
+  $('#form').on('submit', function(e) {
+    e.preventDefault();
+    $(this).find('span').text(+$(this).find('span').text() + 1);
+  })
 </script>
 
 </body>

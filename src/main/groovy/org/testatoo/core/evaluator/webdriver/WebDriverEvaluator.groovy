@@ -89,17 +89,32 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     String getTitle() {
-        return webDriver.title
+        webDriver.title
     }
 
     @Override
     String getPageSource() {
-        return webDriver.pageSource
+        webDriver.pageSource
     }
 
     @Override
     String getUrl() {
-        return webDriver.currentUrl
+        webDriver.currentUrl
+    }
+
+    @Override
+    Set<String> getWindowIds() {
+        webDriver.windowHandles
+    }
+
+    @Override
+    void switchToWindow(String id) {
+        webDriver.switchTo().window(id)
+    }
+
+    @Override
+    void closeWindow(String id) {
+        webDriver.switchTo().window(id).close()
     }
 
     @Override
@@ -127,10 +142,11 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
             new MetaInfo(
-                id: it.id,
-                type: it.type,
-                node: it.node,
-                cartridge: it.cartridge
+                    id: it.id,
+                    type: it.type,
+                    inherits: it.inherits,
+                    node: it.node,
+                    cartridge: it.cartridge
             )
         }
     }

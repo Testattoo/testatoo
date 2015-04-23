@@ -18,459 +18,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Testatoo Rocks</title>
+  <meta charset="utf-8">
+  <title>Testatoo Rocks</title>
 
-    <meta name="description" content="HTML5 Rocks">
-    <meta name="author" content="ovea">
+  <meta name="description" content="HTML5 Rocks">
+  <meta name="author" content="ovea">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <style>
-        * {
-            font-family: Helvetica, Verdana, Arial, sans-serif;
-            font-size: 0.95em
-        }
+  <style>
+    * {
+      font-family: Helvetica, Verdana, Arial, sans-serif;
+      font-size: 0.95em
+    }
 
-        .eventNotifier {
-            width: 100px;
-            float: left;
-            color: navy;
-            border: dotted 1px navy;
-            padding: 4px;
-            background-color: white;
-            margin: 3px
-        }
+    .eventNotifier {
+      width: 100px;
+      float: left;
+      color: navy;
+      border: dotted 1px navy;
+      padding: 4px;
+      background-color: white;
+      margin: 3px
+    }
 
-        .dirty {
-            border: solid 1px #0ca2ff;
-            color: white;
-            background-color: #0ca2ff
-        }
-    </style>
+    .dirty {
+      border: solid 1px #0ca2ff;
+      color: white;
+      background-color: #0ca2ff
+    }
+  </style>
 
-    <script src="js/jquery-2.0.3.min.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.hotkeys.js"></script>
+  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="js/jquery.hotkeys.js"></script>
 </head>
 <body>
 
 <nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Keyboard Tests</a>
-    </div>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Testatoo Keyboard Tests</a>
+  </div>
 </nav>
 
 <button id="button">Remove me when WebDriver FF issue is fixed</button>
 
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
 
 
-        <h2>A-Z Letters</h2>
+    <h2>A-Z Letters</h2>
 
-        <div id="_a" class="eventNotifier">a</div>
-        <div id="_b" class="eventNotifier">b</div>
-        <div id="_c" class="eventNotifier">c</div>
-        <div id="_d" class="eventNotifier">d</div>
-        <div id="_e" class="eventNotifier">e</div>
-        <div id="_f" class="eventNotifier">f</div>
-        <div id="_g" class="eventNotifier">g</div>
-        <div id="_h" class="eventNotifier">h</div>
-        <div id="_i" class="eventNotifier">i</div>
-        <div id="_j" class="eventNotifier">j</div>
-        <div id="_k" class="eventNotifier">k</div>
-        <div id="_l" class="eventNotifier">l</div>
-        <div id="_m" class="eventNotifier">m</div>
-        <div id="_n" class="eventNotifier">n</div>
-        <div id="_o" class="eventNotifier">o</div>
-        <div id="_p" class="eventNotifier">p</div>
-        <div id="_q" class="eventNotifier">q</div>
-        <div id="_r" class="eventNotifier">r</div>
-        <div id="_s" class="eventNotifier">s</div>
-        <div id="_t" class="eventNotifier">t</div>
-        <div id="_u" class="eventNotifier">u</div>
-        <div id="_v" class="eventNotifier">v</div>
-        <div id="_w" class="eventNotifier">w</div>
-        <div id="_x" class="eventNotifier">x</div>
-        <div id="_y" class="eventNotifier">y</div>
-        <div id="_z" class="eventNotifier">z</div>
-        <div style="clear: both;"></div>
+    <div id="_a" class="eventNotifier">a</div>
+    <div id="_b" class="eventNotifier">b</div>
+    <div id="_c" class="eventNotifier">c</div>
+    <div id="_d" class="eventNotifier">d</div>
+    <div id="_e" class="eventNotifier">e</div>
+    <div id="_f" class="eventNotifier">f</div>
+    <div id="_g" class="eventNotifier">g</div>
+    <div id="_h" class="eventNotifier">h</div>
+    <div id="_i" class="eventNotifier">i</div>
+    <div id="_j" class="eventNotifier">j</div>
+    <div id="_k" class="eventNotifier">k</div>
+    <div id="_l" class="eventNotifier">l</div>
+    <div id="_m" class="eventNotifier">m</div>
+    <div id="_n" class="eventNotifier">n</div>
+    <div id="_o" class="eventNotifier">o</div>
+    <div id="_p" class="eventNotifier">p</div>
+    <div id="_q" class="eventNotifier">q</div>
+    <div id="_r" class="eventNotifier">r</div>
+    <div id="_s" class="eventNotifier">s</div>
+    <div id="_t" class="eventNotifier">t</div>
+    <div id="_u" class="eventNotifier">u</div>
+    <div id="_v" class="eventNotifier">v</div>
+    <div id="_w" class="eventNotifier">w</div>
+    <div id="_x" class="eventNotifier">x</div>
+    <div id="_y" class="eventNotifier">y</div>
+    <div id="_z" class="eventNotifier">z</div>
+    <div style="clear: both;"></div>
 
-        <h2>0-9 Digits</h2>
+    <h2>0-9 Digits</h2>
 
-        <div id="_1" class="eventNotifier">1</div>
-        <div id="_2" class="eventNotifier">2</div>
-        <div id="_3" class="eventNotifier">3</div>
-        <div id="_4" class="eventNotifier">4</div>
-        <div id="_5" class="eventNotifier">5</div>
-        <div id="_6" class="eventNotifier">6</div>
-        <div id="_7" class="eventNotifier">7</div>
+    <div id="_1" class="eventNotifier">1</div>
+    <div id="_2" class="eventNotifier">2</div>
+    <div id="_3" class="eventNotifier">3</div>
+    <div id="_4" class="eventNotifier">4</div>
+    <div id="_5" class="eventNotifier">5</div>
+    <div id="_6" class="eventNotifier">6</div>
+    <div id="_7" class="eventNotifier">7</div>
 
-        <div id="_8" class="eventNotifier">8</div>
-        <div id="_9" class="eventNotifier">9</div>
-        <div id="_0" class="eventNotifier">0</div>
-        <div style="clear: both;"></div>
+    <div id="_8" class="eventNotifier">8</div>
+    <div id="_9" class="eventNotifier">9</div>
+    <div id="_0" class="eventNotifier">0</div>
+    <div style="clear: both;"></div>
 
-        <h2>Special Keys</h2>
+    <h2>Special Keys</h2>
 
-        <div id="_esc" class="eventNotifier">esc</div>
+    <div id="_esc" class="eventNotifier">esc</div>
 
-        <div id="_f1" class="eventNotifier">f1</div>
-        <div id="_f2" class="eventNotifier">f2</div>
-        <div id="_f3" class="eventNotifier">f3</div>
-        <div id="_f4" class="eventNotifier">f4</div>
-        <div id="_f5" class="eventNotifier">f5</div>
-        <div id="_f6" class="eventNotifier">f6</div>
-        <div id="_f7" class="eventNotifier">f7</div>
-        <div id="_f8" class="eventNotifier">f8</div>
-        <div id="_f9" class="eventNotifier">f9</div>
-        <div id="_f10" class="eventNotifier">f10</div>
-        <div id="_f11" class="eventNotifier">f11</div>
-        <div id="_f12" class="eventNotifier">f12</div>
+    <div id="_f1" class="eventNotifier">f1</div>
+    <div id="_f2" class="eventNotifier">f2</div>
+    <div id="_f3" class="eventNotifier">f3</div>
+    <div id="_f4" class="eventNotifier">f4</div>
+    <div id="_f5" class="eventNotifier">f5</div>
+    <div id="_f6" class="eventNotifier">f6</div>
+    <div id="_f7" class="eventNotifier">f7</div>
+    <div id="_f8" class="eventNotifier">f8</div>
+    <div id="_f9" class="eventNotifier">f9</div>
+    <div id="_f10" class="eventNotifier">f10</div>
+    <div id="_f11" class="eventNotifier">f11</div>
+    <div id="_f12" class="eventNotifier">f12</div>
 
-        <div id="_insert" class="eventNotifier">insert</div>
-        <div id="_del" class="eventNotifier">del</div>
-        <div id="_pageup" class="eventNotifier">pageup</div>
-        <div id="_pagedown" class="eventNotifier">pagedown</div>
-        <div id="_home" class="eventNotifier">home</div>
-        <div id="_end" class="eventNotifier">end</div>
-        <div id="_backspace" class="eventNotifier">backspace</div>
+    <div id="_insert" class="eventNotifier">insert</div>
+    <div id="_del" class="eventNotifier">del</div>
+    <div id="_pageup" class="eventNotifier">pageup</div>
+    <div id="_pagedown" class="eventNotifier">pagedown</div>
+    <div id="_home" class="eventNotifier">home</div>
+    <div id="_end" class="eventNotifier">end</div>
+    <div id="_backspace" class="eventNotifier">backspace</div>
 
-        <div id="_divide" class="eventNotifier">/</div>
-        <div id="_multiply" class="eventNotifier">*</div>
-        <div id="_substract" class="eventNotifier">-</div>
-        <div id="_add" class="eventNotifier">+</div>
-        <div id="_equals" class="eventNotifier">=</div>
+    <div id="_divide" class="eventNotifier">/</div>
+    <div id="_multiply" class="eventNotifier">*</div>
+    <div id="_substract" class="eventNotifier">-</div>
+    <div id="_add" class="eventNotifier">+</div>
+    <div id="_equals" class="eventNotifier">=</div>
 
-        <div id="_tab" class="eventNotifier">tab</div>
-        <div id="_return" class="eventNotifier">return</div>
-        <div id="_space" class="eventNotifier">space</div>
+    <div id="_tab" class="eventNotifier">tab</div>
+    <div id="_return" class="eventNotifier">return</div>
+    <div id="_space" class="eventNotifier">space</div>
 
-        <div id="_left" class="eventNotifier">left</div>
-        <div id="_up" class="eventNotifier">up</div>
-        <div id="_right" class="eventNotifier">right</div>
-        <div id="_down" class="eventNotifier">down</div>
+    <div id="_left" class="eventNotifier">left</div>
+    <div id="_up" class="eventNotifier">up</div>
+    <div id="_right" class="eventNotifier">right</div>
+    <div id="_down" class="eventNotifier">down</div>
 
-        <div style="clear: both;"></div>
+    <div style="clear: both;"></div>
 
-        <h2>Input text</h2>
+    <h2>Input text</h2>
 
-        <div style="clear: both;"></div>
-        <input id="textfield" type="text"/>
+    <div style="clear: both;"></div>
+    <input id="textfield" type="text"/>
 
-        <div style="clear: both;"></div>
+    <div style="clear: both;"></div>
 
-        <h2>Special Modifiers</h2>
+    <h2>Special Modifiers</h2>
 
-        <div id="_Ctrl_Alt_Shift_x" class="eventNotifier">Ctrl+Alt+Shift+x</div>
-        <div style="clear: both;"></div>
+    <div id="_Ctrl_Alt_Shift_x" class="eventNotifier">Ctrl+Alt+Shift+x</div>
+    <div style="clear: both;"></div>
 
-    </div>
-    <div class="col-md-2"></div>
+  </div>
+  <div class="col-md-2"></div>
 
 </div>
 <script>
 
-$.fn.dirtyCheck = function () {
+  $.fn.dirtyCheck = function() {
     this.addClass('dirty');
     this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
-};
+  };
 
-(function ($) {
+  (function($) {
 
     // ==================== KEYBOARD ===================
 
     //        ============= LETTERS ===============
-    $(document).on('keypress', null, 'a', function () {
-        $('#_a').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'a', function() {
+      $('#_a').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'b', function () {
-        $('#_b').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'b', function() {
+      $('#_b').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'c', function () {
-        $('#_c').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'c', function() {
+      $('#_c').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'd', function () {
-        $('#_d').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'd', function() {
+      $('#_d').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'e', function () {
-        $('#_e').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'e', function() {
+      $('#_e').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f', function () {
-        $('#_f').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f', function() {
+      $('#_f').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'g', function () {
-        $('#_g').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'g', function() {
+      $('#_g').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'h', function () {
-        $('#_h').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'h', function() {
+      $('#_h').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'i', function () {
-        $('#_i').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'i', function() {
+      $('#_i').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'j', function () {
-        $('#_j').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'j', function() {
+      $('#_j').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'k', function () {
-        $('#_k').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'k', function() {
+      $('#_k').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'l', function () {
-        $('#_l').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'l', function() {
+      $('#_l').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'm', function () {
-        $('#_m').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'm', function() {
+      $('#_m').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'n', function () {
-        $('#_n').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'n', function() {
+      $('#_n').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'o', function () {
-        $('#_o').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'o', function() {
+      $('#_o').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'p', function () {
-        $('#_p').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'p', function() {
+      $('#_p').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'q', function () {
-        $('#_q').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'q', function() {
+      $('#_q').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'r', function () {
-        $('#_r').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'r', function() {
+      $('#_r').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 's', function () {
-        $('#_s').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 's', function() {
+      $('#_s').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 't', function () {
-        $('#_t').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 't', function() {
+      $('#_t').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'u', function () {
-        $('#_u').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'u', function() {
+      $('#_u').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'v', function () {
-        $('#_v').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'v', function() {
+      $('#_v').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'w', function () {
-        $('#_w').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'w', function() {
+      $('#_w').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'x', function () {
-        $('#_x').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'x', function() {
+      $('#_x').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'y', function () {
-        $('#_y').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'y', function() {
+      $('#_y').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'z', function () {
-        $('#_z').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'z', function() {
+      $('#_z').dirtyCheck();
+      return false;
     });
 
     //        ============= DIGITS ===============
 
-    $(document).on('keypress', null, '1', function () {
-        $('#_1').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '1', function() {
+      $('#_1').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '2', function () {
-        $('#_2').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '2', function() {
+      $('#_2').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '3', function () {
-        $('#_3').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '3', function() {
+      $('#_3').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '4', function () {
-        $('#_4').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '4', function() {
+      $('#_4').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '5', function () {
-        $('#_5').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '5', function() {
+      $('#_5').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '6', function () {
-        $('#_6').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '6', function() {
+      $('#_6').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '7', function () {
-        $('#_7').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '7', function() {
+      $('#_7').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '8', function () {
-        $('#_8').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '8', function() {
+      $('#_8').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '9', function () {
-        $('#_9').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '9', function() {
+      $('#_9').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '0', function () {
-        $('#_0').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '0', function() {
+      $('#_0').dirtyCheck();
+      return false;
     });
 
     //     ============= SPECIAL KEYS ===============
 
-    $(document).on('keypress', null, 'esc', function () {
-        $('#_esc').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'esc', function() {
+      $('#_esc').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f1', function () {
-        $('#_f1').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f1', function() {
+      $('#_f1').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f2', function () {
-        $('#_f2').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f2', function() {
+      $('#_f2').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f3', function () {
-        $('#_f3').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f3', function() {
+      $('#_f3').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f4', function () {
-        $('#_f4').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f4', function() {
+      $('#_f4').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f5', function () {
-        $('#_f5').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f5', function() {
+      $('#_f5').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f6', function () {
-        $('#_f6').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f6', function() {
+      $('#_f6').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f7', function () {
-        $('#_f7').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f7', function() {
+      $('#_f7').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f8', function () {
-        $('#_f8').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f8', function() {
+      $('#_f8').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f9', function () {
-        $('#_f9').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f9', function() {
+      $('#_f9').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f10', function () {
-        $('#_f10').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f10', function() {
+      $('#_f10').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f11', function () {
-        $('#_f11').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f11', function() {
+      $('#_f11').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'f12', function () {
-        $('#_f12').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'f12', function() {
+      $('#_f12').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'insert', function () {
-        $('#_insert').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'insert', function() {
+      $('#_insert').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'del', function () {
-        $('#_del').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'del', function() {
+      $('#_del').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'pageup', function () {
-        $('#_pageup').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'pageup', function() {
+      $('#_pageup').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'pagedown', function () {
-        $('#_pagedown').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'pagedown', function() {
+      $('#_pagedown').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'home', function () {
-        $('#_home').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'home', function() {
+      $('#_home').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'end', function () {
-        $('#_end').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'end', function() {
+      $('#_end').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'backspace', function () {
-        $('#_backspace').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'backspace', function() {
+      $('#_backspace').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '/', function () {
-        $('#_divide').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '/', function() {
+      $('#_divide').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '*', function () {
-        $('#_multiply').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '*', function() {
+      $('#_multiply').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '-', function () {
-        $('#_substract').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '-', function() {
+      $('#_substract').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '+', function () {
-        $('#_add').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '+', function() {
+      $('#_add').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, '=', function () {
-        $('#_equals').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, '=', function() {
+      $('#_equals').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'tab', function () {
-        $('#_tab').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'tab', function() {
+      $('#_tab').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'return', function () {
-        $('#_return').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'return', function() {
+      $('#_return').dirtyCheck();
+      return false;
     });
-    $(document).on('keydown', null, 'space', function () {
-        $('#_space').dirtyCheck();
-        return false;
+    $(document).on('keydown', null, 'space', function() {
+      $('#_space').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'left', function () {
-        $('#_left').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'left', function() {
+      $('#_left').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'up', function () {
-        $('#_up').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'up', function() {
+      $('#_up').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'right', function () {
-        $('#_right').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'right', function() {
+      $('#_right').dirtyCheck();
+      return false;
     });
-    $(document).on('keypress', null, 'down', function () {
-        $('#_down').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'down', function() {
+      $('#_down').dirtyCheck();
+      return false;
     });
 
     //   ============= SPECIAL MODIFIERS  ===============
 
-    $(document).on('keypress', null, 'alt+ctrl+shift+x', function () {
-        $('#_Ctrl_Alt_Shift_x').dirtyCheck();
-        return false;
+    $(document).on('keypress', null, 'alt+ctrl+shift+x', function() {
+      $('#_Ctrl_Alt_Shift_x').dirtyCheck();
+      return false;
     });
 
-}(jQuery));
+  }(jQuery));
 
 </script>
 

@@ -21,32 +21,11 @@
   };
 
   var $ = w.testatoo;
+  var html5 = $.getCartridge('html5').support;
 
   $.registerCartridge(cartridge);
 
-  var base = {
-    enabled: function() {
-      return false;
-    },
-    visible: function() {
-      return undefined;
-    },
-    valid: function(id) {
-      return $('#' + id).hasClass('valid');
-    },
-    invalid: function(id) {
-      return $('#' + id).hasClass('invalid');
-    },
-    label: function(id) {
-      if ($('#' + id).attr('data-role') == 'custom-field')
-        return 'Label overridden';
-    },
-    placeholder: function() {
-      return undefined;
-    }
-  };
-
-  cartridge.components.push($.extend({}, base, {
+  cartridge.components.push($.support([html5.base], {
     type: 'MyCustomComponent',
     match: function(el) { return el.attr('data-role') == 'my-custom-comp' },
     value: function() {
@@ -54,11 +33,13 @@
     },
     visible: function(el) {
       return el.is(':visible');
+    },
+    label: function(el) {
+      return 'Label overridden';
     }
-
   }));
 
-  cartridge.components.push($.extend({}, base, {
+  cartridge.components.push($.support([html5.base], {
     type: 'CustomField',
     match: function(el) { return el.attr('data-role') == 'custom-field' }
   }));

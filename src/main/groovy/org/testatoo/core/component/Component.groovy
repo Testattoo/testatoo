@@ -53,6 +53,10 @@ class Component {
 
     String getType() throws ComponentException { meta.getMetaInfo(this).type }
 
+    Component find(String expression, long timeout = 2000) {
+        $("#${id} " + expression, timeout)
+    }
+
     Evaluator getEvaluator() { meta.evaluator }
 
     Block be(State matcher) { block 'be', matcher }
@@ -174,13 +178,15 @@ class Component {
         MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
-                def hierarchy= []
+                def hierarchy = []
                 def s = c.class
-                while(s != Object) {
+                while (s != Object) {
                     hierarchy << s.simpleName; s = s.superclass
                 }
                 if (!hierarchy.contains(info.type)) {
-                    throw new ComponentException("The Component hierarchy ${hierarchy} doesn't contain the type ${info.type} for component with id ${info.id}")
+                    if (!info.inherits.split(',').contains(hierarchy[0])) {
+                        throw new ComponentException("The Component hierarchy ${hierarchy} doesn't contain the type ${info.type} for component with id ${info.id}")
+                    }
                 }
                 metaInfo = info
             }

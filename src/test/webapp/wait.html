@@ -18,51 +18,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Testatoo Rocks</title>
+  <meta charset="utf-8">
+  <title>Testatoo Rocks</title>
 
-    <meta name="description" content="HTML5 Rocks">
-    <meta name="author" content="ovea">
+  <meta name="description" content="HTML5 Rocks">
+  <meta name="author" content="ovea">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-2.0.3.min.js"></script>
 </head>
 <body>
 
 <nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Testatoo Wait</a>
-    </div>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Testatoo Wait</a>
+  </div>
 </nav>
 
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
 
-        <button type="button" id="add-message" class="btn btn-primary">Add message</button>
-        <div id="messages"></div>
+    <button type="button" id="add-message" class="btn btn-primary">Add message</button>
+    <div id="messages"></div>
 
-    </div>
-    <div class="col-md-2"></div>
+  </div>
+  <div class="col-md-2"></div>
 </div>
 
 <script>
-    (function ($) {
-        $(function () {
-            $('#add-message').on('click', function () {
-                $('#messages').empty();
-                setTimeout(function () {
-                    $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
-                    setTimeout(function () {
-                        $('#add-message').prop('disabled', false);
-                    }, 5000);
-                }, 2000);
-                $('#add-message').prop('disabled', true);
-            });
-        });
-    }(jQuery));
+  (function($) {
+    $(function() {
+      $('#add-message').on('click', function() {
+        $('#messages').empty();
+        setTimeout(function() {
+          $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
+          setTimeout(function() {
+            $('#add-message').prop('disabled', false);
+          }, 5000);
+        }, 2000);
+        $('#add-message').prop('disabled', true);
+      });
+    });
+  }(jQuery));
 </script>
 
 </body>

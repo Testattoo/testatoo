@@ -43,6 +43,7 @@
         if (component.match(el)) {
           info.cartridge = cartridge.name;
           info.type = component.type;
+          info.inherits = component.inherits;
         }
       });
     });
@@ -64,6 +65,7 @@
         id: id,
         node: me.prop('nodeName').toLowerCase(),
         type: info.type,
+        inherits: info.inherits ? info.inherits : '',
         cartridge: info.cartridge
       });
     });
