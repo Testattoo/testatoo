@@ -33,7 +33,6 @@
         <connection>scm:git:git@github.com:Ovea/testatoo.git</connection>
         <developerConnection>scm:git:git@github.com:Ovea/testatoo.git</developerConnection>
         <url>http://github.com/Ovea/testatoo</url>
-        <tag>testatoo-2.0.b1</tag>
     </scm>
 
     <properties>
