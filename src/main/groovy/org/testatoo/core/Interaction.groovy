@@ -63,6 +63,9 @@ class Interaction {
     }
 
     void enter(String value) {
+        // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
+        c.evaluator.runScript("\$('#${c.id}').trigger('blur')")
+
         c.evaluator.click(c.id);
         Input input = (Input) c
         input.reset()
