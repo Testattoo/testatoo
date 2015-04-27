@@ -53,9 +53,7 @@ class Component {
 
     String getType() throws ComponentException { meta.getMetaInfo(this).type }
 
-    Component find(String expression, long timeout = 2000) {
-        $("#${id} " + expression, timeout)
-    }
+    Component find(String expression, long timeout = 2000) { $("#${id} " + expression, timeout) }
 
     Evaluator getEvaluator() { meta.evaluator }
 
