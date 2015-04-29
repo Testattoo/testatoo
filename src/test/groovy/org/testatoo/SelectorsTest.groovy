@@ -98,7 +98,7 @@ class SelectorsTest {
             customComponent.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [CustomComponent, Component] doesn't contain the type Panel for component with id custom-component"
+            assert e.message == 'Expected a Panel (id=custom-component) but was a CustomComponent (hierarchy: [CustomComponent, Component])'
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
@@ -112,7 +112,7 @@ class SelectorsTest {
             customTag.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "The Component hierarchy [CustomTag, Component] doesn't contain the type CUSTOM-TAG for component with id custom-tag"
+            assert e.message == 'Expected a CUSTOM-TAG (id=custom-tag) but was a CustomTag (hierarchy: [CustomTag, Component])'
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
@@ -129,7 +129,8 @@ class SelectorsTest {
                 }
             }
         } catch (ComponentException e) {
-            assert e.message.startsWith("The Component hierarchy [Button, Component] doesn't contain the type TextField for component with id")
+            assert e.message.contains('Expected a TextField')
+            assert e.message.contains('but was a Button (hierarchy: [Button, Component])')
         }
     }
 

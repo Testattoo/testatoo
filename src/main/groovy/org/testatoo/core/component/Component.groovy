@@ -183,7 +183,7 @@ class Component {
                 }
                 if (!hierarchy.contains(info.type)) {
                     if (!info.inherits.split(',').contains(hierarchy[0])) {
-                        throw new ComponentException("The Component hierarchy ${hierarchy} doesn't contain the type ${info.type} for component with id ${info.id}")
+                        throw new ComponentException("Expected a ${info.type} (id=${info.id}) but was a ${hierarchy[0]} (hierarchy: ${hierarchy})")
                     }
                 }
                 metaInfo = info

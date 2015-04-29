@@ -98,7 +98,7 @@ class ComponentTest {
             primary_button.should { have text('Primary') }
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'The Component hierarchy [PrimaryButton, Button, Component] doesn\'t contain the type WarningButton for component with id btn_warning'
+            assert e.message == 'Expected a WarningButton (id=btn_warning) but was a PrimaryButton (hierarchy: [PrimaryButton, Button, Component])'
         }
     }
 
