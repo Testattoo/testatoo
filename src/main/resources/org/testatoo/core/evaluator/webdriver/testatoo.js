@@ -36,14 +36,14 @@
   };
 
   function getInfo(el) {
-    var info = { cartridge: 'html5', type:  el.prop('tagName') };
+    var info = { cartridge: 'html5', type:  el.prop('tagName') , inherits: ['Component']};
 
     cartridges.forEach(function(cartridge) {
       cartridge.components.forEach(function(component) {
         if (component.match(el)) {
           info.cartridge = cartridge.name;
           info.type = component.type;
-          info.inherits = component.inherits;
+          component.inherits ? info.inherits.unshift(component.inherits) : $.noop();
         }
       });
     });
@@ -65,7 +65,7 @@
         id: id,
         node: me.prop('nodeName').toLowerCase(),
         type: info.type,
-        inherits: info.inherits ? info.inherits : '',
+        inherits: info.inherits.join(','),
         cartridge: info.cartridge
       });
     });
