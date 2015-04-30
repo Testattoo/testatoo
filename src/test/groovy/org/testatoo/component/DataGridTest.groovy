@@ -56,33 +56,39 @@ class DataGridTest {
         data_grid.should { be enabled }
         data_grid.should { be visible }
 
-        data_grid.should { have 3.columns }
-        assert data_grid.columns.size == 3
+        data_grid.should { have 4.columns }
+        assert data_grid.columns.size == 4
 
         data_grid.should { have 4.rows }
         assert data_grid.rows.size == 4
 
-        data_grid.columns[0].should { have title('Column 1 title') }
-        data_grid.columns[1].should { have title('Column 2 title') }
-        data_grid.columns[2].should { have title('Column 3 title') }
-
         List<Column> columns = data_grid.columns
 
-        columns[0].should { have 4.cells }
-        assert columns[0].cells.size == 4
+        columns[0].should { have title('') }
+        columns[1].should { have title('Column 1 title') }
+        columns[2].should { have title('Column 2 title') }
+        columns[3].should { have title('Column 3 title') }
+
+        columns[1].should { have 4.cells }
+        assert columns[1].cells.size == 4
 
         List<Cell> cells = columns[1].cells
 
-        cells[0].should { have value('cell 12') }
-        cells[1].should { have value('cell 22') }
-        cells[2].should { have value('cell 32') }
-        cells[3].should { have value('cell 42') }
+        cells[0].should { have value('cell 11') }
+        cells[1].should { have value('cell 21') }
+        cells[2].should { have value('cell 31') }
+        cells[3].should { have value('cell 41') }
 
-        columns[2].cells[3].should { have value('cell 43') }
+        columns[2].cells[3].should { have value('cell 42') }
 
         List<Row> rows = data_grid.rows
         rows[0].should { have 3.cells }
         assert rows[0].cells.size == 3
+
+        rows[0].should { have title('row 1') }
+        rows[1].should { have title('row 2') }
+        rows[2].should { have title('row 3') }
+        rows[3].should { have title('row 4') }
 
         cells = rows[1].cells
 

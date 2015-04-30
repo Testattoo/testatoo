@@ -166,13 +166,17 @@
       return el.text().trim();
     },
     size: function(el) {
-      return el.closest('table').find('tbody tr').find('td:nth-child(' + el.index() + 1 + ')').length;
+      var index = el.index() + 1;
+      return el.closest('table').find('tbody tr').find('td:nth-child(' + index + ')').length;
     }
   }));
 
   cartridge.components.push($.support([support.base], {
     type: 'Row',
     match: function(el) { return el.is('tr'); },
+    title: function(el) {
+      return el.find('th:first').text().trim();
+    },
     size: function(el) {
       return el.find('td').length;
     }
