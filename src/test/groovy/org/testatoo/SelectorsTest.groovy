@@ -98,7 +98,7 @@ class SelectorsTest {
             customComponent.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Expected a Panel (id=custom-component) but was a CustomComponent (hierarchy: [CustomComponent, Component])'
+            assert e.message == 'Expected a CustomComponent (id=custom-component, hierarchy: [CustomComponent, Component]) but was a Panel'
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
@@ -112,7 +112,7 @@ class SelectorsTest {
             customTag.should { be visible }
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Expected a CUSTOM-TAG (id=custom-tag) but was a CustomTag (hierarchy: [CustomTag, Component])'
+            assert e.message == 'Expected a CustomTag (id=custom-tag, hierarchy: [CustomTag, Component]) but was a CUSTOM-TAG'
         }
 
         evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
@@ -129,8 +129,8 @@ class SelectorsTest {
                 }
             }
         } catch (ComponentException e) {
-            assert e.message.contains('Expected a TextField')
-            assert e.message.contains('but was a Button (hierarchy: [Button, Component])')
+            assert e.message.contains('Expected a Button')
+            assert e.message.contains('but was a TextField')
         }
     }
 
