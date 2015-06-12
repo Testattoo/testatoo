@@ -47,6 +47,18 @@ class Component {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
+    String evaluateString(String jqueryExpr) {
+        return evaluator.getString(getId(), jqueryExpr)
+    }
+
+    boolean evaluateBool(String jqueryExpr) {
+        return evaluator.getBoolean(getId(), jqueryExpr)
+    }
+
+    int evaluateInt(String jqueryExpr) {
+        return evaluator.getInteger(getId(), jqueryExpr)
+    }
+
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
     String getCartridge() throws ComponentException { meta.getMetaInfo(this).cartridge }
