@@ -25,7 +25,7 @@ import org.testatoo.core.property.Text
 class Button extends Component {
 
     Button() {
-        support Text, { Component c -> c.evaluateString("el.is('input') ? el.val() : el.text().trim()") }
+        support Text, { eval("el.is('input') ? el.val() : el.text().trim()") }
     }
 
 }

@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Disabled extends State {
     Disabled() {
-        evaluator { Component c -> c.evaluateBool("el.is(':disabled') || el.attr('disabled') != undefined") }
+        evaluator { Component c -> c.eval("el.is(':disabled') || el.attr('disabled') != undefined") as boolean }
         description e: 'disabled', w: 'enabled'
     }
 }

@@ -47,16 +47,8 @@ class Component {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    String evaluateString(String jqueryExpr) {
+    String eval(String jqueryExpr) {
         return evaluator.getString(getId(), jqueryExpr)
-    }
-
-    boolean evaluateBool(String jqueryExpr) {
-        return evaluator.getBoolean(getId(), jqueryExpr)
-    }
-
-    int evaluateInt(String jqueryExpr) {
-        return evaluator.getInteger(getId(), jqueryExpr)
     }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
@@ -205,9 +197,9 @@ class Component {
                     throw new ComponentException("Missing @Assert in class " + c.class.name)
                 }
 
-                if (!evaluator.getBoolean(info.id, anAssert.value())) {
+                if (!(evaluator.getString(info.id, anAssert.value()) as boolean)) {
                     Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
-                        evaluator.getBoolean(info.id, it.getAnnotation(Assert).value())
+                        evaluator.getString(info.id, it.getAnnotation(Assert).value()) as boolean
                     }
                     throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
                 }
