@@ -69,18 +69,18 @@ class Component {
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
-            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'contains', [${components.collect {"'${it.id}'"}.join(', ')}])")
-            if(ret) {
-                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret } }");
+            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'contains', [${components.collect { "'${it.id}'" }.join(', ')}])")
+            if (ret) {
+                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
             }
         }
     }
 
     Block display(Component... components) {
         Blocks.block "matching ${this} display ${components}", {
-            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'display', [${components.collect {"'${it.id}'"}.join(', ')}])")
-            if(ret) {
-                throw new AssertionError("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret } }");
+            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'display', [${components.collect { "'${it.id}'" }.join(', ')}])")
+            if (ret) {
+                throw new AssertionError("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
             } else {
                 components.findAll { !it.is(new Visible()) }
             }
@@ -109,7 +109,13 @@ class Component {
 
     @Override
     String toString() {
-        getClass().simpleName + ":${try { id } catch (ComponentException ignored) { meta.metaInfo }}"
+        String str
+        try {
+            str = id
+        } catch (ComponentException ignored) {
+            str = meta.metaInfo
+        }
+        getClass().simpleName + ":${str}"
     }
 
     Object asType(Class clazz) {
@@ -176,16 +182,22 @@ class Component {
         MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
-                def hierarchy = []
-                def s = c.class
-                while (s != Object) {
-                    hierarchy << s.simpleName; s = s.superclass
+                Assert anAssert = c.class.getAnnotation(Assert)
+
+                // no assert annot & component class => this is the higher class in hierarchy
+                if (!anAssert && c.class == Component) return metaInfo
+
+                if (!anAssert) {
+                    throw new ComponentException("Missing @Assert in class " + c.class.name)
                 }
-                if (!hierarchy.contains(info.type)) {
-                    if (!info.inherits.split(',').contains(hierarchy[0])) {
-                        throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, hierarchy: ${hierarchy}) but was a ${info.type}")
+
+                if (!evaluator.getBoolean(info.id, anAssert.value())) {
+                    Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
+                        evaluator.getBoolean(info.id, it.getAnnotation(Assert).value())
                     }
+                    throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type.simpleName}")
                 }
+
                 metaInfo = info
             }
             return metaInfo

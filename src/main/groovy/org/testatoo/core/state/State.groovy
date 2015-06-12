@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.state
 
+import org.testatoo.core.AssertUtils
 import org.testatoo.core.Matcher
 import org.testatoo.core.component.Component
 
@@ -34,7 +35,7 @@ class State implements Matcher {
     void description(Map<String, String> m) { description = m }
 
     @Override
-    void matches(Component c) { Assert.ensure c, c.hasState(this.class), description }
+    void matches(Component c) { AssertUtils.ensure c, c.hasState(this.class), description }
 
     @Override
     String toString() { getClass().simpleName }

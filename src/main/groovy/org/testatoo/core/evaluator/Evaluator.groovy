@@ -39,6 +39,14 @@ public interface Evaluator extends AutoCloseable {
 
     String getString(String jQueryExpr)
 
+    String getString(String id, String jQueryExpr)
+
+    boolean getBoolean(String jQueryExpr)
+
+    boolean getBoolean(String id, String jQueryExpr)
+
+    int getInteger(String jQueryExpr)
+
     String getProperty(Property property, Component component)
 
     String getState(State state, Component component)

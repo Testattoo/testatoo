@@ -14,44 +14,25 @@
  * limitations under the License.
  */
 
-package com.mycila.inject.service;
-
-import com.mycila.inject.util.DefaultLoader;
-import com.mycila.inject.util.Loader;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.ServiceConfigurationError;
-
+package org.testatoo.core
 /**
  * @author Mathieu Carbou <mathieu.carbou@gmail.com>
- * @param <S> The type of the service to be loaded by this loader
+ * @param < S >  The type of the service to be loaded by this loader
  */
 public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
 
     private static final String PREFIX = "META-INF/services/";
     private final Class<S> service;
-    private final Loader loader;
     private LinkedHashMap<String, Class<S>> providers = new LinkedHashMap<String, Class<S>>();
     private LazyIterator lookupIterator;
 
     public void reload() {
         providers.clear();
-        lookupIterator = new LazyIterator(service, loader);
+        lookupIterator = new LazyIterator(service);
     }
 
-    private ServiceClassLoader(Class<S> svc, Loader loader) {
+    private ServiceClassLoader(Class<S> svc) {
         this.service = svc;
-        this.loader = loader;
         reload();
     }
 
@@ -64,7 +45,7 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
     }
 
     private static void fail(Class service, URL u, int line, String msg) throws ServiceConfigurationError {
-        fail(service, u + ":" + line + ": " + msg);
+        fail(service, u.toString() + ":" + line + ": " + msg);
     }
 
     private int parseLine(Class service, URL u, BufferedReader r, int lc, List<String> names) throws IOException, ServiceConfigurationError {
@@ -92,20 +73,20 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
     }
 
     private Iterator<String> parse(Class service, URL u) throws ServiceConfigurationError {
-        InputStream in = null;
+        InputStream is = null;
         BufferedReader r = null;
         ArrayList<String> names = new ArrayList<String>();
         try {
-            in = u.openStream();
-            r = new BufferedReader(new InputStreamReader(in, "utf-8"));
+            is = u.openStream();
+            r = new BufferedReader(new InputStreamReader(is, "utf-8"));
             int lc = 1;
-            while ((lc = parseLine(service, u, r, lc, names)) >= 0) ;
+            while ((lc = parseLine(service, u, r, lc, names)) >= 0);
         } catch (IOException x) {
             fail(service, "Error reading configuration file", x);
         } finally {
             try {
                 if (r != null) r.close();
-                if (in != null) in.close();
+                if (is != null) is.close();
             } catch (IOException y) {
                 fail(service, "Error closing configuration file", y);
             }
@@ -115,12 +96,11 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
 
     private class LazyIterator implements Iterator<Class<S>> {
         final Class<? super S> service;
-        final Loader loader;
         Iterator<URL> configs = null;
         Iterator<String> pending = null;
         String nextName = null;
 
-        private LazyIterator(Class<? super S> service, Loader loader) {
+        private LazyIterator(Class<? super S> service) {
             this.service = service;
             this.loader = loader;
         }
@@ -131,7 +111,7 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
             }
             if (configs == null) {
                 String fullName = PREFIX + service.getName();
-                configs = loader.getResources(fullName).iterator();
+                configs = Thread.currentThread().getContextClassLoader().getResources(fullName).iterator();
             }
             while ((pending == null) || !pending.hasNext()) {
                 if (!configs.hasNext()) {
@@ -143,20 +123,20 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
             return true;
         }
 
-        @SuppressWarnings({"unchecked"})
+        @SuppressWarnings(["unchecked"])
         public Class<S> next() {
             if (!hasNext())
                 throw new NoSuchElementException();
             String cn = nextName;
             nextName = null;
             try {
-                Class<S> p = (Class<S>) loader.loadClass(cn);
+                Class<S> p = (Class<S>) Thread.currentThread().getContextClassLoader().loadClass(cn);
                 providers.put(cn, p);
                 return p;
             } catch (RuntimeException x) {
                 fail(service,
-                        "Provider " + cn + " could not be instantiated: " + x,
-                        x);
+                    "Provider " + cn + " could not be instantiated: " + x,
+                    x);
             }
             throw new Error();        // This cannot happen
         }
@@ -187,12 +167,8 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
         };
     }
 
-    public static <S> ServiceClassLoader<S> load(Class<S> service, Loader loader) {
-        return new ServiceClassLoader<S>(service, loader);
-    }
-
     public static <S> ServiceClassLoader<S> load(Class<S> service) {
-        return new ServiceClassLoader<S>(service, new DefaultLoader());
+        return new ServiceClassLoader<S>(service);
     }
 
     public String toString() {

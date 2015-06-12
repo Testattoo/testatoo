@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.state
+package org.testatoo.core
 
 import org.testatoo.core.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Assert {
+class AssertUtils {
 
     static void ensure(Component c, boolean test, Map<String, ?> opts) {
         if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")

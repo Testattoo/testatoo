@@ -15,11 +15,13 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
 import org.testatoo.core.property.Text
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
+@Assert("el.is('button') || (el.is('input') && ['button', 'submit', 'reset', 'image'].indexOf(el.attr('type')) !== -1);")
 class Button extends Component {
 
     Button() {

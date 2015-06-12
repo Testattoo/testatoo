@@ -16,7 +16,9 @@
 package org.testatoo.core.evaluator.webdriver
 
 import groovy.json.JsonSlurper
-import org.openqa.selenium.*
+import org.openqa.selenium.By
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.action.Action
@@ -56,6 +58,26 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     String getString(String jQueryExpr) { eval(jQueryExpr) }
+
+    @Override
+    String getString(String id, String jQueryExpr) {
+        eval(id, jQueryExpr)
+    }
+
+    @Override
+    boolean getBoolean(String jQueryExpr) {
+        Boolean.valueOf(getString(jQueryExpr))
+    }
+
+    @Override
+    boolean getBoolean(String id, String jQueryExpr) {
+        Boolean.valueOf(getString(id, jQueryExpr))
+    }
+
+    @Override
+    int getInteger(String jQueryExpr) {
+        Integer.valueOf(getString(jQueryExpr))
+    }
 
     @Override
     String getProperty(Property property, Component c) {
@@ -214,8 +236,34 @@ class WebDriverEvaluator implements Evaluator {
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
-                    + getClass().getResource("testatoo.js").text
-                    + getClass().getResource("html5-cartridge.js").text)
+                    + getClass().getResource("testatoo.js").text)
+
+            List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
+            resources.each { js.executeScript(it.text) }
+
+            registeredScripts.collect { js.executeScript(it)  }
+
+            v = js.executeScript(expr)
+        }
+        return v == 'null' || v == 'undefined' ? null : v
+    }
+
+    //TODO: David: refactor this method and the one above
+    private String eval(String id, String s) {
+        String expr = """
+        (function(\$, jQuery, testatoo) {
+            if(!jQuery) {
+                return '__TESTATOO_MISSING__';
+            } else {
+                var el = \${'#${id}'}
+                return ${removeTrailingChars(s)};
+            }
+        }(window.testatoo, window.testatoo, window.testatoo));"""
+
+        String v = js.executeScript(expr)
+        if (v == '__TESTATOO_MISSING__') {
+            js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
+                    + getClass().getResource("testatoo.js").text)
 
             List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
             resources.each { js.executeScript(it.text) }

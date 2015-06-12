@@ -9,11 +9,14 @@ class ComponentDiscovery {
 
     private static final ComponentDiscovery INSTANCE = new ComponentDiscovery()
 
+    final List<Class<Component>> componentClasses
+
     private ComponentDiscovery() {
-        ServiceLoader<Component>
+        componentClasses = ServiceClassLoader.load(Component).findAll { it.isAnnotationPresent(Assert) }
     }
 
     static ComponentDiscovery getInstance() {
         return INSTANCE
     }
+
 }
