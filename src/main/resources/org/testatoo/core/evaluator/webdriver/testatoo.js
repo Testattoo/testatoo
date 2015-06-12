@@ -35,20 +35,20 @@
     return selected;
   };
 
-  function getInfo(el) {
-    var info = { cartridge: 'html5', type:  el.prop('tagName') , inherits: ['Component']};
-
-    cartridges.forEach(function(cartridge) {
-      cartridge.components.forEach(function(component) {
-        if (component.match(el)) {
-          info.cartridge = cartridge.name;
-          info.type = component.type;
-          component.inherits ? info.inherits.unshift(component.inherits) : $.noop();
-        }
-      });
-    });
-    return info;
-  }
+  //function getInfo(el) {
+  //  var info = { cartridge: 'html5', type:  el.prop('tagName') , inherits: ['Component']};
+  //
+  //  cartridges.forEach(function(cartridge) {
+  //    cartridge.components.forEach(function(component) {
+  //      if (component.match(el)) {
+  //        info.cartridge = cartridge.name;
+  //        info.type = component.type;
+  //        component.inherits ? info.inherits.unshift(component.inherits) : $.noop();
+  //      }
+  //    });
+  //  });
+  //  return info;
+  //}
 
   $.fn.getMetaInfos = function() {
     var metaInfos = [];
@@ -59,20 +59,16 @@
         id = 'gen-' + Math.round(new Date().getTime() * Math.random());
         me.attr('id', id);
       }
-      var info = getInfo(me);
 
       metaInfos.push({
         id: id,
-        node: me.prop('nodeName').toLowerCase(),
-        type: info.type,
-        inherits: info.inherits.join(','),
-        cartridge: info.cartridge
+        node: me.prop('nodeName').toLowerCase()
       });
     });
     return metaInfos;
   };
 
-  $.evaluate = function(id, cartridge, type, method, params) {
+  $.evaluate = function(id, method, params) {
     var evaluation;
     cartridges.forEach(function(_cartridge) {
       if (_cartridge.name === cartridge) {

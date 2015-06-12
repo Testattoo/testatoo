@@ -81,17 +81,17 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     String getProperty(Property property, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${property.class.simpleName.toLowerCase()}')")
+        eval("testatoo.evaluate('${c.id}', '${property.class.simpleName.toLowerCase()}')")
     }
 
     @Override
     String getState(State state, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${state.class.simpleName.toLowerCase()}')")
+        eval("testatoo.evaluate('${c.id}', '${state.class.simpleName.toLowerCase()}')")
     }
 
     @Override
     void runAction(Action action, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${action.class.simpleName.toLowerCase()}')")
+        eval("testatoo.evaluate('${c.id}', '${action.class.simpleName.toLowerCase()}')")
     }
 
     @Override
