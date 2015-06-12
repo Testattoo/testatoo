@@ -165,10 +165,7 @@ class WebDriverEvaluator implements Evaluator {
         return infos.collect {
             new MetaInfo(
                     id: it.id,
-                    type: it.type,
-                    inherits: it.inherits,
-                    node: it.node,
-                    cartridge: it.cartridge
+                    node: it.node
             )
         }
     }
@@ -255,11 +252,12 @@ class WebDriverEvaluator implements Evaluator {
             if(!jQuery) {
                 return '__TESTATOO_MISSING__';
             } else {
-                var el = \${'#${id}'}
+                var el = \$('#${id}');
                 return ${removeTrailingChars(s)};
             }
         }(window.testatoo, window.testatoo, window.testatoo));"""
 
+        println(expr)
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
