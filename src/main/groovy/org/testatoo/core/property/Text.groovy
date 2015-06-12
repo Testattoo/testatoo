@@ -25,7 +25,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Text extends Property {
 
     Text() {
-        evaluator { Component c -> c.evaluator.getProperty(this, c).trim() }
+        evaluator { Component c -> c.evaluateString("el.text().trim()") }
     }
 
     @Delegate

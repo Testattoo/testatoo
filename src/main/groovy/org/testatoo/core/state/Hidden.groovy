@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Hidden extends State {
     Hidden() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
+        evaluator { Component c -> c.evaluateBool("el.is(':hidden')") }
         description e: 'hidden', w: 'visible'
     }
 }
