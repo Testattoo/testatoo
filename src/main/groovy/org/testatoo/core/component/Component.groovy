@@ -159,6 +159,10 @@ class Component {
         }
     }
 
+    void support(Class<?> type, String exp) {
+        support(type, { eval(exp) })
+    }
+
     Object getValue(Property property) {
         PropertyEvaluator pe = _supportedProperties.get(property.class)
         if (pe == null) {

@@ -21,11 +21,11 @@ import org.testatoo.core.property.Text
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@Assert("el.is('button') || (el.is('input') && ['button', 'submit', 'reset', 'image'].indexOf(el.attr('type')) !== -1);")
+@Assert("it.is('button') || (it.is('input') && ['button', 'submit', 'reset', 'image'].indexOf(it.attr('type')) !== -1);")
 class Button extends Component {
 
     Button() {
-        support Text, { eval("el.is('input') ? el.val() : el.text().trim()") }
+        support Text, "it.is('input') ? it.val() : it.text().trim()"
     }
 
 }

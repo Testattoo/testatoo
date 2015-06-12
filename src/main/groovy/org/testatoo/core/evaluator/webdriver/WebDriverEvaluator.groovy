@@ -237,7 +237,7 @@ class WebDriverEvaluator implements Evaluator {
             if(!jQuery) {
                 return '__TESTATOO_MISSING__';
             } else {
-                var el = \$('#${id}');
+                var it = el = \$('#${id}');
                 return ${removeTrailingChars(s)};
             }
         }(window.testatoo, window.testatoo, window.testatoo));"""
