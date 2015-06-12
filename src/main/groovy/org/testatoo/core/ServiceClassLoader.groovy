@@ -102,7 +102,6 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
 
         private LazyIterator(Class<? super S> service) {
             this.service = service;
-            this.loader = loader;
         }
 
         public boolean hasNext() {
