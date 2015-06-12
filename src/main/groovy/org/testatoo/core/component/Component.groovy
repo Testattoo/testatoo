@@ -65,7 +65,7 @@ class Component {
 
     String getType() throws ComponentException { meta.getMetaInfo(this).type }
 
-    public <T extends Component> List<T> find(String expression, Class<T> type = Component) {
+    protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
         evaluator.getMetaInfo("\$('#${id}').find(${expression})", ).collect { it.asType(type) } as List<T>
     }
 
