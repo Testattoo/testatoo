@@ -248,7 +248,7 @@ class WebDriverEvaluator implements Evaluator {
     //TODO: David: refactor this method and the one above
     private String eval(String id, String s) {
         String expr = """
-        (function(\$, jQuery, testatoo) {
+        return (function(\$, jQuery, testatoo) {
             if(!jQuery) {
                 return '__TESTATOO_MISSING__';
             } else {

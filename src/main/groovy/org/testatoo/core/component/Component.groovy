@@ -207,7 +207,7 @@ class Component {
                     Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
                         evaluator.getBoolean(info.id, it.getAnnotation(Assert).value())
                     }
-                    throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type.simpleName}")
+                    throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
                 }
 
                 metaInfo = info
