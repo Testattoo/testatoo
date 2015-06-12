@@ -65,7 +65,9 @@ class Component {
 
     String getType() throws ComponentException { meta.getMetaInfo(this).type }
 
-    Component find(String expression, long timeout = 2000) { $("#${id} " + expression, timeout) }
+    public <T extends Component> List<T> find(String expression, Class<T> type = Component) {
+        evaluator.getMetaInfo("\$('#${id}').find(${expression})", ).collect { it.asType(type) } as List<T>
+    }
 
     Evaluator getEvaluator() { meta.evaluator }
 

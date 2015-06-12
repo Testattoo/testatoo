@@ -22,16 +22,12 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Paragraph
-import org.testatoo.core.component.Radio
-import org.testatoo.core.component.Section
+import org.testatoo.core.component.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.property.Properties.text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -65,7 +61,8 @@ class ComponentTest {
     @Test
     public void should_be_able_to_find_nested_component() {
         Section section = $('#section') as Section
-        Paragraph paragraph = section.find('p:first') as Paragraph
+        //TODO; david improve
+        Paragraph paragraph = section.find('p:first')[0] as Paragraph
 
         paragraph.should { have text('Paragraph 1')}
     }
