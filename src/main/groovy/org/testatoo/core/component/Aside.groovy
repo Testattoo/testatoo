@@ -15,8 +15,10 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Aside extends Component {
-}
+@Assert("it.is('aside')")
+class Aside extends Component {}

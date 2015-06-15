@@ -15,11 +15,13 @@
  */
 package org.testatoo.core.component.input
 
+import org.testatoo.core.Assert
 import org.testatoo.core.property.Pattern
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('input') && it.attr('type') === 'tel'")
 class PhoneField extends TextField {
 
     PhoneField() {

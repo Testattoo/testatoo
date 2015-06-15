@@ -15,11 +15,13 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
 import org.testatoo.core.property.ParagraphSize
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('article')")
 class Article extends Component {
 
     Article() {

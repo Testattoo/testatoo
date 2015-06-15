@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class ParagraphSize extends Property {
 
     ParagraphSize() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id} > p').length")) }
+        evaluator { Component c -> c.eval("it.find('> p').length") as int }
     }
 
     @Delegate

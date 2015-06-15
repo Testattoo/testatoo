@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Visible extends State {
     Visible() {
-        evaluator { Component c -> c.eval("!el.is(':hidden')") as boolean }
+        evaluator { Component c -> c.eval("!it.is(':hidden')") as boolean }
         description e: 'visible', w: 'hidden'
     }
 }

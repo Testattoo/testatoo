@@ -21,6 +21,7 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.property.Property
 import org.testatoo.core.state.State
 
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -36,9 +37,6 @@ public interface Evaluator extends AutoCloseable {
     void  runScript(String script)
 
     void registerScripts(String... scripts)
-
-    // TODO; rename to eval
-    String getString(String jQueryExpr)
 
     // TODO; rename to eval
     String getString(String id, String jQueryExpr)

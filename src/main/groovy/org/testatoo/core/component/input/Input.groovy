@@ -29,7 +29,8 @@ import static org.testatoo.core.input.Key.BACK_SPACE
 class Input extends Component {
 
     Input() {
-        support Placeholder, Label, Optional, Required, Value, Empty, Filled, Valid, Invalid
+        support Placeholder, Label, Optional, Required, Empty, Filled, Valid, Invalid
+        support Value, "it.val()"
     }
 
     void enter(String text) { evaluator.enter([text]) }

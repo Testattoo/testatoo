@@ -15,12 +15,14 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
 import org.testatoo.core.property.ParagraphSize
 import org.testatoo.core.property.ArticleSize
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('section')")
 class Section extends Component {
 
     Section() {

@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component.list
 
+import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Label
@@ -24,10 +25,12 @@ import org.testatoo.core.property.Value
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('optgroup')")
 class GroupItem extends Component {
 
     GroupItem() {
-        support Label, Value, Size
+        support Label, "it.attr('label')"
+        support Value, Size
         support Items, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }
@@ -43,7 +46,7 @@ class GroupItem extends Component {
     }
 
     String getValue() {
-        return evaluator.getProperty(new Label(), this)
+        this.eval("it.attr('label')")
     }
 
     @Override

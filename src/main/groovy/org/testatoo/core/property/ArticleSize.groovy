@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class ArticleSize extends Property {
 
     ArticleSize() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id}').find('article').length")) }
+        evaluator { Component c -> c.eval("it.find('article').length") as int }
     }
 
     @Delegate

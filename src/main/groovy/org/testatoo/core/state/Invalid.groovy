@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 class Invalid extends State {
     Invalid() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
+        evaluator { Component c -> c.eval("it.is(':invalid')") as boolean }
         description e: 'invalid', w: 'valid'
     }
 }

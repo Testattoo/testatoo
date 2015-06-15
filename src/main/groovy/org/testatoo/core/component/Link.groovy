@@ -15,12 +15,14 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
 import org.testatoo.core.property.Reference
 import org.testatoo.core.property.Text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('a')")
 class Link extends Component {
 
     Link() {

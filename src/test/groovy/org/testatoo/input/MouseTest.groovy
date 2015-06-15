@@ -155,7 +155,7 @@ class MouseTest {
 
     class DropPanel extends Panel {
         DropPanel() {
-            support Title, { Component c -> c.evaluator.getString("\$('#${id}').find('h1').text()") }
+            support Title, "it.find('h1').text()"
         }
     }
 }

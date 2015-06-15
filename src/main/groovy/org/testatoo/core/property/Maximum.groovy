@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Maximum extends Property {
 
     Maximum() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getProperty(this, c)) }
+        evaluator { Component c -> c.eval("it.prop('max')") as int }
     }
 
     @Delegate

@@ -47,18 +47,12 @@ class Component {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    String eval(String jqueryExpr) {
-        return evaluator.getString(getId(), jqueryExpr)
-    }
+    String eval(String jqueryExpr) { return evaluator.getString(getId(), jqueryExpr) }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
-    String getCartridge() throws ComponentException { meta.getMetaInfo(this).cartridge }
-
-    String getType() throws ComponentException { meta.getMetaInfo(this).type }
-
     protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
-        evaluator.getMetaInfo("\$('#${id}').find(${expression})", ).collect { it.asType(type) } as List<T>
+        evaluator.getMetaInfo("\$('#${id}').find('${expression}')", ).collect { it.asType(type) } as List<T>
     }
 
     Evaluator getEvaluator() { meta.evaluator }

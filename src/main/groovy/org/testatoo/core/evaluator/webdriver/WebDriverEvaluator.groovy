@@ -53,11 +53,8 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     public <T> T getJson(String jQueryExpr) {
-        getString("JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
+        getString(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
-
-    @Override
-    String getString(String jQueryExpr) { eval(jQueryExpr) }
 
     @Override
     String getString(String id, String jQueryExpr) {
@@ -209,28 +206,6 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void close() throws Exception { webDriver.quit() }
 
-    private String eval(String s) {
-        String expr = """var _evaluate = function(\$, jQuery, testatoo) {
-            if(!jQuery) return '__TESTATOO_MISSING__';
-                else return ${removeTrailingChars(s)};
-            }; return _evaluate(window.testatoo, window.testatoo, window.testatoo);"""
-
-        String v = js.executeScript(expr)
-        if (v == '__TESTATOO_MISSING__') {
-            js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
-                    + getClass().getResource("testatoo.js").text)
-
-            List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
-            resources.each { js.executeScript(it.text) }
-
-            registeredScripts.collect { js.executeScript(it)  }
-
-            v = js.executeScript(expr)
-        }
-        return v == 'null' || v == 'undefined' ? null : v
-    }
-
-    //TODO: David: refactor this method and the one above
     private String eval(String id, String s) {
         String expr = """
         return (function(\$, jQuery, testatoo) {

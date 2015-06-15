@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component.list
 
+import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.*
 import org.testatoo.core.state.MultiSelectable
@@ -23,6 +24,7 @@ import org.testatoo.core.state.SingleSelectable
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('select') && (it.attr('multiple') || it.prop('size') > 0)")
 class ListBox extends Component {
 
     ListBox() {

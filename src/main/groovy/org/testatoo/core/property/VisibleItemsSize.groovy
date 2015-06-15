@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class VisibleItemsSize extends Property {
 
     VisibleItemsSize() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getString("\$('#${c.id}').prop('size')")) }
+        evaluator { Component c -> c.eval("it.prop('size')") as int }
     }
 
     @Delegate

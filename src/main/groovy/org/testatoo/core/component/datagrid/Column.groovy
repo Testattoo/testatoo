@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component.datagrid
 
+import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Title
@@ -22,15 +23,21 @@ import org.testatoo.core.property.Title
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('th')")
 class Column extends Component {
 
     Column() {
-        support Size, Title
+        support Size, { it.eval("function() {" +
+                "var index = it.index() + 1;" +
+                "return it.closest('table').find('tbody tr').find('td:nth-child(' + index + ')').length;" +
+                "}();") as int
+        }
+        support Title, "it.text().trim()"
     }
 
     List<Cell> getCells() {
-        int index =  Integer.valueOf(evaluator.getString("\$('#${id}').index()")) + 1
-        evaluator.getMetaInfo("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')").collect { it as Cell }
+        int index = this.eval("it.index + 1") as int
+        find("it.closest('table').find('tbody tr').find('td:nth-child(${index})')", Cell)
     }
 
 }

@@ -18,5 +18,4 @@ package org.testatoo.core.action
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Unselect implements Action {
-}
+class Unselect implements Action {}

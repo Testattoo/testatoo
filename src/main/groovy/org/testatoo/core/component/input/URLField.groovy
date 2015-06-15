@@ -15,8 +15,10 @@
  */
 package org.testatoo.core.component.input
 
+import org.testatoo.core.Assert
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class URLField extends TextField {
-}
+@Assert("it.is('input') && it.attr('type') === 'url'")
+class URLField extends TextField {}

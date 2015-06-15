@@ -15,8 +15,11 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('footer')")
 class Footer extends Component {
 }

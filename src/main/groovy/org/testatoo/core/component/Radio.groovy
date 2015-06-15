@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.Assert
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked
@@ -22,6 +23,7 @@ import org.testatoo.core.state.Unchecked
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
+@Assert("it.is('input') && it.attr('type').toLowerCase() === 'radio'")
 class Radio extends Component {
 
     Radio() {

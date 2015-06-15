@@ -15,18 +15,24 @@
  */
 package org.testatoo.core.component.list
 
+import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.property.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
 class Dropdown extends Component {
 
     Dropdown() {
-        support Label, GroupItemsSize, SelectedItems, Size
+        support Label, GroupItemsSize, SelectedItems
+        support Size, { Component c -> c.eval("it.find('option').length") as int }
+
         support Items, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+            find("'option'", Item)
+//            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
         }
         support GroupItems, {
             Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
@@ -34,7 +40,8 @@ class Dropdown extends Component {
     }
 
     List<Item> getItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+        find("'option'", Item)
+//        this.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
     }
 
     List<GroupItem> getGroupItems() {

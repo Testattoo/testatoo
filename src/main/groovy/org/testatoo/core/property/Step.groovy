@@ -24,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Step extends Property {
 
     Step() {
-        evaluator { Component c -> Integer.valueOf(c.evaluator.getProperty(this, c)) }
+        evaluator { Component c -> c.eval("it.prop('step')") as int }
     }
 
     @Delegate

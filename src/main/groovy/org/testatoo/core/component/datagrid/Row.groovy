@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component.datagrid
 
+import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Title
@@ -22,14 +23,15 @@ import org.testatoo.core.property.Title
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('tr')")
 class Row extends Component {
 
     Row() {
-        support Title, Size
+        support Title, "it.find('th:first').text().trim()"
+        support Size, { it.eval("it.find('td').length") as int }
     }
 
     List<Cell> getCells() {
         this.evaluator.getMetaInfo("\$('#${id}').find('td')").collect { it as Cell }
     }
-
 }

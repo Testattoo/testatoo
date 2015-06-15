@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.component.input
 
+import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Maximum
 import org.testatoo.core.property.Minimum
@@ -23,11 +24,12 @@ import org.testatoo.core.property.Step
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@Assert("it.is('input') && it.attr('type') === 'date'")
 class DateField extends TextField {
 
     DateField() {
-        support Minimum, { Component c -> c.evaluator.getProperty(new Minimum(), c) }
-        support Maximum, { Component c -> c.evaluator.getProperty(new Maximum(), c) }
+        support Minimum, "it.prop('min')"
+        support Maximum, "it.prop('max')"
         support Step
     }
 

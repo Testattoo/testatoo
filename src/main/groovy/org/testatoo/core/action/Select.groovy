@@ -18,5 +18,4 @@ package org.testatoo.core.action
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Select implements Action {
-}
+class Select implements Action {}
