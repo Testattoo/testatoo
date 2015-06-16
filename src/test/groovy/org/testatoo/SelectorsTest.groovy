@@ -92,34 +92,6 @@ class SelectorsTest {
     }
 
     @Test
-    public void bad_component_type() {
-        CustomComponent customComponent = $('#custom-component') as CustomComponent
-        try {
-            customComponent.should { be visible }
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Expected a CustomComponent (id=custom-component, hierarchy: [CustomComponent, Component]) but was a Panel'
-        }
-
-        evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
-        customComponent.should { be visible }
-    }
-
-    @Test
-    public void bad_component_type_for_custom_tag() {
-        CustomTag customTag = $('custom-tag') as CustomTag
-        try {
-            customTag.should { be visible }
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Expected a CustomTag (id=custom-tag, hierarchy: [CustomTag, Component]) but was a CUSTOM-TAG'
-        }
-
-        evaluator.runScript(this.getClass().getResourceAsStream('/custom.js').text)
-        customTag.should { be visible }
-    }
-
-    @Test
     public void bad_list_of_component_type() {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button

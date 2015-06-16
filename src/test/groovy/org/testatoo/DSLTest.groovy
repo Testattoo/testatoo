@@ -120,8 +120,6 @@ class DSLTest {
             be empty
             have value('')
         }
-
-
     }
 
     @Test

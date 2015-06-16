@@ -17,7 +17,6 @@ package org.testatoo.core.component.list
 
 import org.testatoo.core.Assert
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.property.*
 
 /**
@@ -31,21 +30,19 @@ class Dropdown extends Component {
         support Size, { Component c -> c.eval("it.find('option').length") as int }
 
         support Items, {
-            find("'option'", Item)
-//            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+            find("option", Item)
         }
         support GroupItems, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
+            find("optgroup", GroupItem)
         }
     }
 
     List<Item> getItems() {
-        find("'option'", Item)
-//        this.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+        find("option", Item)
     }
 
     List<GroupItem> getGroupItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('optgroup')").collect { it as GroupItem }
+        find("optgroup", GroupItem)
     }
 
 }

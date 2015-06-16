@@ -51,10 +51,6 @@ class Component {
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
-    protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
-        evaluator.getMetaInfo("\$('#${id}').find('${expression}')", ).collect { it.asType(type) } as List<T>
-    }
-
     Evaluator getEvaluator() { meta.evaluator }
 
     Block be(State matcher) { block 'be', matcher }
@@ -69,7 +65,7 @@ class Component {
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
-            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'contains', [${components.collect { "'${it.id}'" }.join(', ')}])")
+            List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
                 throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
             }
@@ -78,7 +74,7 @@ class Component {
 
     Block display(Component... components) {
         Blocks.block "matching ${this} display ${components}", {
-            List ret = evaluator.getJson("testatoo.evaluate('${id}', '${cartridge}', '${type}', 'display', [${components.collect { "'${it.id}'" }.join(', ')}])")
+            List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
                 throw new AssertionError("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
             } else {
@@ -91,6 +87,10 @@ class Component {
         c.delegate = this
         c(this)
         Blocks.run(Blocks.compose(Blocks.pending()))
+    }
+
+    protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
+        evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
     }
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
@@ -188,7 +188,6 @@ class Component {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
                 Assert anAssert = c.class.getAnnotation(Assert)
 
-                // no assert annot & component class => this is the higher class in hierarchy
                 if (!anAssert && c.class == Component) return metaInfo
 
                 if (!anAssert) {

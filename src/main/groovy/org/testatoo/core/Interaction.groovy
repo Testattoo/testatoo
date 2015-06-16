@@ -42,7 +42,7 @@ class Interaction {
 
     static void select(Component c) {
         if (c.hasState(Disabled)) {
-            throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be selected")
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be selected")
         }
 
         if (c.is(new Unselected()))
@@ -55,7 +55,7 @@ class Interaction {
 
     static void unselect(Component c) {
         if (c.hasState(Disabled)) {
-            throw new ComponentException("${c.meta.type} ${c} is disabled and cannot be unselected")
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unselected")
         }
 
         if (c.is(new Selected()))

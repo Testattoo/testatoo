@@ -32,11 +32,11 @@ class DataGrid extends Component {
     }
 
     List<Column> getColumns() {
-        //TODO: davic check if it works
-        find("'thead tr:last th'", Column)
+        find("thead tr:last th", Column)
     }
 
     List<Row> getRows() {
+        find("tbody tr", Row)
         this.evaluator.getMetaInfo("\$('#${id}').find('tbody tr')").collect { it as Row }
     }
 }

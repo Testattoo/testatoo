@@ -36,7 +36,7 @@ class Column extends Component {
     }
 
     List<Cell> getCells() {
-        int index = this.eval("it.index + 1") as int
+        int index = this.eval("it.index() + 1") as int
         find("it.closest('table').find('tbody tr').find('td:nth-child(${index})')", Cell)
     }
 

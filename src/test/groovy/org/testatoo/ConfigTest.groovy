@@ -50,24 +50,6 @@ class ConfigTest {
     }
 
     @Test
-    public void extensions_are_auto_loaded() {
-        try {
-            WebDriver driver = new FirefoxDriver();
-            evaluator = new WebDriverEvaluator(driver)
-
-            open 'http://localhost:8080/selectors.html'
-
-            MyCustomComponent myCustomComponent = $('#my-custom-component') as MyCustomComponent
-            myCustomComponent.should {
-                be visible
-                have label('Label overridden')
-            }
-        } finally {
-            evaluator.close()
-        }
-    }
-
-    @Test
     public void can_register_a_script() {
         try {
             WebDriver driver = new FirefoxDriver();

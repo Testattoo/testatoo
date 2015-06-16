@@ -45,19 +45,19 @@ class Testatoo {
         if (c.hasState(Unchecked))
             evaluator.click(c.id)
         else
-            throw new ComponentException("${c.meta.type} ${c} is already checked and cannot be checked")
+            throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
         return c
     }
 
     static Component uncheck(Component c) {
         if (c instanceof Radio) {
-            throw new ComponentException("Operation not supported for ${c.meta.type}")
+            throw new ComponentException("Operation not supported for ${c.class.simpleName}")
         }
 
         if (c.hasState(Checked))
             evaluator.click(c.id)
         else
-            throw new ComponentException("${c.meta.type} ${c} is already unchecked and cannot be unchecked")
+            throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
         return c
     }
 
