@@ -27,10 +27,11 @@ import org.testatoo.core.property.Title
 class Column extends Component {
 
     Column() {
-        support Size, { it.eval("function() {" +
-                "var index = it.index() + 1;" +
-                "return it.closest('table').find('tbody tr').find('td:nth-child(' + index + ')').length;" +
-                "}();") as int
+        support Size, {
+            it.eval("function() {" +
+                    "var index = it.index() + 1;" +
+                    "return it.closest('table').find('tbody tr').find('td:nth-child(' + index + ')').length;" +
+                    "}();") as int
         }
         support Title, "it.text().trim()"
     }
