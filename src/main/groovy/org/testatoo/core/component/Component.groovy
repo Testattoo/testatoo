@@ -192,7 +192,7 @@ class Component {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
                     if (!(evaluator.getBool(info.id, identifyingExpr))) {
                         Class<Component> type = ComponentDiscovery.instance.componentTypes.find {
-                            evaluator.getString(info.id, Identifiers.getIdentifyingExpression(it)) as boolean
+                            evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }
