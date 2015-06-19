@@ -27,7 +27,7 @@ class Dropdown extends Component {
 
     Dropdown() {
         support Label, GroupItemsSize, SelectedItems
-        support Size, { Component c -> c.eval("it.find('option').length") as int }
+        support Size, { it.eval("it.find('option').length") as int }
 
         support Items, {
             find("option", Item)

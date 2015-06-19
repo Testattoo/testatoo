@@ -31,13 +31,11 @@ class GroupItem extends Component {
     GroupItem() {
         support Label, "it.attr('label')"
         support Value, Size
-        support Items, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
-        }
+        support Items, { it.find("option", Item) }
     }
 
     List<Item> getItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('option')").collect { it as Item }
+        find("option", Item)
     }
 
     boolean equals(o) {
