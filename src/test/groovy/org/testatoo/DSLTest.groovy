@@ -22,7 +22,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Checkbox
 import org.testatoo.core.component.ComponentException
@@ -39,7 +38,7 @@ import org.testatoo.core.property.Title
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click_on
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -79,7 +78,7 @@ class DSLTest {
     public void given_input_with_value_when_enter_value_the_field_is_reset_before() {
         TextField textField = $('#text_field') as TextField
 
-        clickOn textField
+        click_on textField
         type 'Some input'
 
         textField.should { have value('Some input') }

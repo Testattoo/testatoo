@@ -24,7 +24,6 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
-import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.EmailField
@@ -34,7 +33,7 @@ import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click_on
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.getInvalid
 import static org.testatoo.core.state.States.getValid
@@ -69,41 +68,41 @@ class FormTest {
         message.should { have title('The form was submitted 0 time(s)') }
         message.should { have title.containing('The form was submitted') }
 
-        clickOn submit_button
+        click_on submit_button
         message.should { have title('The form was submitted 1 time(s)') }
 
-        clickOn submit_button
+        click_on submit_button
         message.should { have title('The form was submitted 2 time(s)') }
 
         // Can reset a form
-        clickOn email_field
+        click_on email_field
         type 'my@email.org'
-        clickOn password_field
+        click_on password_field
         type 'password'
 
         // By clicking on the button
         email_field.should { have value('my@email.org') }
         password_field.should { have value('password') }
 
-        clickOn reset_button
+        click_on reset_button
 
         email_field.should { have value('') }
         password_field.should { have value('') }
 
         form.should { be valid }
         // Field in error
-        clickOn email_field
+        click_on email_field
         type 'bad email'
-        clickOn submit_button
+        click_on submit_button
 
         email_field.should { be invalid }
         form.should { be invalid }
 
         email_field.reset()
 
-        clickOn email_field
+        click_on email_field
         type 'y@email.org'
-        clickOn submit_button
+        click_on submit_button
         email_field.should { be valid }
         form.should { be valid }
 

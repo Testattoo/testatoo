@@ -26,7 +26,7 @@ import org.testatoo.core.component.Checkbox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click_on
 import static org.testatoo.core.property.Properties.label
 import static org.testatoo.core.state.States.*
 
@@ -60,10 +60,10 @@ class CheckboxTest {
         uncheck checkbox
         checkbox.should { be unchecked }
 
-        clickOn checkbox
+        click_on checkbox
         checkbox.should { be checked }
 
-        clickOn checkbox
+        click_on checkbox
         checkbox.should { be unchecked }
     }
 }

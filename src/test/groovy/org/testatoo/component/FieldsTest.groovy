@@ -27,7 +27,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click_on
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -64,7 +64,7 @@ class FieldsTest {
         textField.should { have placeholder.containing('xt') }
         textField.should { be empty }
 
-        clickOn textField
+        click_on textField
         type 'some value'
 
         textField.should { have value('some value') }
@@ -98,7 +98,7 @@ class FieldsTest {
             be invalid
         }
 
-        clickOn phoneField
+        click_on phoneField
         type 'bad phone number'
         phoneField.should {
             be invalid
@@ -106,7 +106,7 @@ class FieldsTest {
 
         phoneField.reset()
 
-        clickOn phoneField
+        click_on phoneField
         type '5146666666'
         phoneField.should {
             be valid

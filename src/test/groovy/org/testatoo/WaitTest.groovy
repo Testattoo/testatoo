@@ -26,7 +26,7 @@ import org.testatoo.core.component.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click_on
 import static org.testatoo.core.state.States.*
 
 /**
@@ -55,14 +55,14 @@ class WaitTest {
 
         message.should { be missing }
 
-        clickOn button
+        click_on button
         button.should { be disabled }
 
         waitUntil 10.seconds, {
             button.is(enabled)
         }
 
-        clickOn button
+        click_on button
         waitUntil {
             button.is(enabled) or message.is(visible)
         }

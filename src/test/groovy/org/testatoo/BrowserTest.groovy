@@ -88,7 +88,7 @@ class BrowserTest {
         link.should { be available }
         form.should { be missing }
 
-        clickOn link
+        click_on link
 
         assert browser.windows.size() == 2
         link.should { be available }

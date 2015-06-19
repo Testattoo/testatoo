@@ -30,7 +30,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.click_on
 import static org.testatoo.core.property.Properties.value
 import static org.testatoo.core.state.States.getAvailable
 import static org.testatoo.core.state.States.getMissing
@@ -53,7 +53,7 @@ class KeyboardTest {
     public void before() {
         open 'http://localhost:8080/keyboard.html'
         // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
-        clickOn($('#button') as Button)
+        click_on($('#button') as Button)
         Thread.sleep(500);
     }
 
@@ -127,7 +127,7 @@ class KeyboardTest {
         TextField textField = $('#textfield') as TextField
 
         textField.should { have value('') }
-        clickOn textField
+        click_on textField
         type(SHIFT + 'testatoo')
         textField.should { have value('TESTATOO') }
 

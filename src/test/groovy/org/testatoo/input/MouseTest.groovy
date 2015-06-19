@@ -53,23 +53,23 @@ class MouseTest {
     public void should_be_able_to_click() {
         Button button = $('#button_1') as Button
         button.should { have text('Button') }
-        clickOn button
+        click_on button
         button.should { have text('Button Clicked!') }
 
         Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should { be unchecked }
-        clickOn checkBox
+        click_on checkBox
         checkBox.should { be checked }
 
         Radio radio = $('#radio') as Radio
         radio.should { be unchecked }
-        clickOn radio
+        click_on radio
         radio.should { be checked }
 
         Dropdown dropDown = $('#elements') as Dropdown
         dropDown.should { have selectedItems('Helium') }
 
-        clickOn dropDown.items[2]
+        click_on dropDown.items[2]
         dropDown.should { have selectedItems('Polonium') }
     }
 
@@ -77,7 +77,7 @@ class MouseTest {
     public void should_be_able_to_doubleClick() {
         Button button = $('#button_2') as Button
         button.should { have text('Button') }
-        doubleClickOn button
+        double_click_on button
         button.should { have text('Button Double Clicked!') }
     }
 
@@ -85,7 +85,7 @@ class MouseTest {
     public void should_be_able_to_rightClick() {
         Button button = $('#button_5') as Button
         button.should { have text('Button') }
-        rightClickOn button
+        right_click_on button
         button.should { have text('Button Right Clicked!') }
     }
 
@@ -93,7 +93,7 @@ class MouseTest {
     public void should_be_able_to_mouseOver() {
         Button button = $('#button_3') as Button
         button.should { have text('Button') }
-        hoveringMouseOn button
+        hovering_mouse_on button
         button.should { have text('Button Mouse Over!') }
     }
 
@@ -105,9 +105,9 @@ class MouseTest {
         // To simulate mouse out
 
         // 1 - mouse over the component
-        hoveringMouseOn button
+        hovering_mouse_on button
         // 2 - mouse over an another component
-        hoveringMouseOn $('#button_5') as Button
+        hovering_mouse_on $('#button_5') as Button
         // The mouse out is triggered
         button.should { have text('Button Mouse Out!') }
     }
