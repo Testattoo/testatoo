@@ -21,12 +21,8 @@ import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.action.Action
-import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
-import org.testatoo.core.property.Property
-import org.testatoo.core.state.State
 
 import static org.testatoo.core.input.Key.*
 
@@ -39,6 +35,8 @@ class WebDriverEvaluator implements Evaluator {
     private final JavascriptExecutor js
     private final List<String> registeredScripts = new ArrayList<>()
     private final String MODULE_EXTENSION_FILE = 'testatoo-ext.js'
+
+    static boolean debug = false
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -67,23 +65,8 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    String getProperty(Property property, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${property.class.simpleName.toLowerCase()}')")
-    }
-
-    @Override
-    String getState(State state, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${state.class.simpleName.toLowerCase()}')")
-    }
-
-    @Override
-    void runAction(Action action, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${action.class.simpleName.toLowerCase()}')")
-    }
-
-    @Override
-    void triggerEvent(String event, Component c) {
-        runScript("\$('#${c.id}').trigger('${event}')");
+    void trigger(String id, String event) {
+        runScript("\$('#${id}').trigger('${event}')");
     }
 
     @Override
@@ -221,6 +204,10 @@ class WebDriverEvaluator implements Evaluator {
                 return ${removeTrailingChars(s)};
             }
         }(window.testatoo, window.testatoo, window.testatoo));"""
+
+        if(debug) {
+            println expr
+        }
 
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
