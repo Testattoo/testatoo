@@ -71,3 +71,4 @@ class ButtonTest {
         button.should { have text.containing('Text') }
     }
 }
+

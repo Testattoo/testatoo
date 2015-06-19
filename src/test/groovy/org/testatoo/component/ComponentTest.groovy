@@ -21,17 +21,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.Checkbox
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Paragraph
-import org.testatoo.core.component.Radio
-import org.testatoo.core.component.Section
+import org.testatoo.core.component.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -70,7 +62,7 @@ class ComponentTest {
             fail()
         } catch (e) {
             assert e instanceof ComponentException
-            assert e.message == "Missing @Identifier annotation on type $CustomButton.name"
+            assert e.message == "Missing @Identifier annotation on type $CustomButton.name" as String
         }
 
     }
