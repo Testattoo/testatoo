@@ -20,7 +20,7 @@ package org.testatoo.core.state
 class Selected extends State {
 
     Selected() {
-        check "it.prop('selected', true).trigger('change')"
+        check "!!it.prop('selected')"
         description e: 'selected', w: 'unselected'
     }
 

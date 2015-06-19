@@ -19,7 +19,7 @@ package org.testatoo.core.state
  */
 class Disabled extends State {
     Disabled() {
-        check "it.is(':disabled') || it.attr('disabled') != undefined"
+        check "it.is(':disabled') || !!it.attr('disabled')"
         description e: 'disabled', w: 'enabled'
     }
 }
