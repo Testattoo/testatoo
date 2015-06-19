@@ -186,16 +186,16 @@ class Component {
         MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
-                IdentifiedByJs anAssert = c.class.getAnnotation(IdentifiedByJs)
+                String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
 
-                if (anAssert || c.class != Component) {
-                    if (!anAssert) {
-                        throw new ComponentException("Missing @Assert in class " + c.class.name)
+                if (identifyingExpr || c.class != Component) {
+                    if (!identifyingExpr) {
+                        throw new ComponentException("Missing @Identifier in class " + c.class.name)
                     }
 
-                    if (!(evaluator.getString(info.id, anAssert.value()) as boolean)) {
-                        Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
-                            evaluator.getString(info.id, it.getAnnotation(IdentifiedByJs).value()) as boolean
+                    if (!(evaluator.getString(info.id, identifyingExpr) as boolean)) {
+                        Class<Component> type = ComponentDiscovery.instance.componentTypes.find {
+                            evaluator.getString(info.id, Identifiers.getIdentifyingExpression(it)) as boolean
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
                     }

@@ -9,10 +9,10 @@ class ComponentDiscovery {
 
     private static final ComponentDiscovery INSTANCE = new ComponentDiscovery()
 
-    final List<Class<Component>> componentClasses
+    final List<Class<Component>> componentTypes
 
     private ComponentDiscovery() {
-        componentClasses = ServiceClassLoader.load(Component).findAll { it.isAnnotationPresent(IdentifiedByJs) }
+        componentTypes = ServiceClassLoader.load(Component).findAll { Identifiers.hasIdentifier(it) }
     }
 
     static ComponentDiscovery getInstance() {
