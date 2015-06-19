@@ -32,6 +32,8 @@ class State implements Matcher {
 
     void evaluator(Closure<Boolean> c) { evaluator(c as StateEvaluator) }
 
+    void check(String expr) { evaluator({ Component c -> c.check(expr) }) }
+
     void description(Map<String, String> m) { description = m }
 
     @Override
