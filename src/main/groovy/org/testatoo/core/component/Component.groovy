@@ -186,7 +186,6 @@ class Component {
         MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
-
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
                     if (!(evaluator.getString(info.id, identifyingExpr) as boolean)) {
@@ -196,7 +195,6 @@ class Component {
                         throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
                     }
                 }
-
                 metaInfo = info
             }
             return metaInfo
