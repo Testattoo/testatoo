@@ -91,7 +91,6 @@ class DataGridTest {
         rows[3].should { have title('row 4') }
 
         cells = rows[1].cells
-
         cells[0].should { have value('cell 21') }
         cells[1].should { have value('cell 22') }
         cells[2].should { have value('cell 23') }

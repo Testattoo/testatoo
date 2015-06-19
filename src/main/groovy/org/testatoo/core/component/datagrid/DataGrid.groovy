@@ -37,6 +37,5 @@ class DataGrid extends Component {
 
     List<Row> getRows() {
         find("tbody tr", Row)
-        this.evaluator.getMetaInfo("\$('#${id}').find('tbody tr')").collect { it as Row }
     }
 }
