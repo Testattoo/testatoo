@@ -49,6 +49,8 @@ class Component {
 
     String eval(String jqueryExpr) { return evaluator.getString(getId(), jqueryExpr) }
 
+    boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
+
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
     Evaluator getEvaluator() { meta.evaluator }
@@ -188,7 +190,7 @@ class Component {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(evaluator.getString(info.id, identifyingExpr) as boolean)) {
+                    if (!(evaluator.getBool(info.id, identifyingExpr))) {
                         Class<Component> type = ComponentDiscovery.instance.componentTypes.find {
                             evaluator.getString(info.id, Identifiers.getIdentifyingExpression(it)) as boolean
                         }
