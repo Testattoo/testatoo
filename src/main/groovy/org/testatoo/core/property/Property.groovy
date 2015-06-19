@@ -29,7 +29,7 @@ class Property {
     // TODO Math test with new groovy version to remove this
     void evaluator(Closure<?> c) { evaluator(c as PropertyEvaluator) }
 
-    void number(String expr) { evaluator { Component c -> c.eval(expr) as double } }
+    void number(String expr) { evaluator { Component c -> c.eval(expr) as BigDecimal } }
 
     void string(String expr) { evaluator { Component c -> c.eval(expr).trim() } }
 

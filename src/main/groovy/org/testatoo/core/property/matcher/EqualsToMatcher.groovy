@@ -32,11 +32,15 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
 
     @Override
     void doMatch(Component c, Object currentValue) {
-        if (!(currentValue in expected)) {
-            if (expected.size() == 1) {
-                throw new AssertionError("Expected ${property.class.simpleName} '${expected[0]}' but was '${currentValue}'")
+        Collection<?> exp = expected
+        if (currentValue instanceof BigDecimal) {
+            exp = exp.collect { it as BigDecimal }
+        }
+        if (!(currentValue in exp)) {
+            if (exp.size() == 1) {
+                throw new AssertionError("Expected ${property.class.simpleName} '${exp[0]}' but was '${currentValue}'")
             } else {
-                throw new AssertionError("Expected one of ${property.class.simpleName} '${expected}' but was '${currentValue}'")
+                throw new AssertionError("Expected one of ${property.class.simpleName} '${exp}' but was '${currentValue}'")
             }
         }
     }
@@ -49,10 +53,12 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
     static class Matchers extends PropertyMatchers {
 
         EqualsToMatcher equalsTo(String expected) { equalsTo([expected]) }
+
         EqualsToMatcher equalsTo(String... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
 
         EqualsToMatcher equalsTo(Number expected) { equalsTo([expected]) }
-        EqualsToMatcher equalsTo(Number ... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
+
+        EqualsToMatcher equalsTo(Number... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
 
         EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(property, anyOfExpected) }
     }
