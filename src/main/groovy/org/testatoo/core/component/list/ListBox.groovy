@@ -24,7 +24,7 @@ import org.testatoo.core.state.SingleSelectable
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('select') && (it.attr('multiple') || it.prop('size') > 0)")
+@IdentifiedByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
 class ListBox extends Component {
 
     ListBox() {
