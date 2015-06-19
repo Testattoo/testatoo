@@ -21,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
@@ -108,6 +109,7 @@ class FormTest {
 
     }
 
+    @IdentifiedByCss('div')
     class Message extends Panel {
         Message() {
             support Title, "it.text()"

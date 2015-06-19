@@ -21,6 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -66,7 +68,10 @@ class ComponentTest {
         }
     }
 
-    // custom component without identifier
+    @Test
+    public void top_level_component_identifier_is_used() {
+        ($('#button') as CustomComponent).should { be enabled }
+    }
 
     @Test
     public void on_bad_component_definition_an_error_it_thrown() {
@@ -158,7 +163,11 @@ class ComponentTest {
 
     private class CustomButton extends Button {}
 
-//    private class CustomRadio extends Component {}
+    @IdentifiedByJs("it.is('not_used')")
+    private class BaseCustomComponent extends Component {}
+
+    @IdentifiedByCss('button')
+    private class CustomComponent extends BaseCustomComponent {}
 
 
 }
