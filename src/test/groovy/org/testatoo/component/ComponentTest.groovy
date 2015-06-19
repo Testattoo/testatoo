@@ -64,15 +64,19 @@ class ComponentTest {
             assert e instanceof ComponentException
             assert e.message == "Missing @Identifier annotation on type $CustomButton.name" as String
         }
-
     }
 
     // custom component without identifier
 
     @Test
     public void on_bad_component_definition_an_error_it_thrown() {
-//        Checkbox radio_1 = $('#radio') as Radio
-
+        try {
+            ($('#radio') as Button).should { be enabled }
+            fail()
+        } catch (e) {
+            assert e instanceof ComponentException
+            assert e.message == "Expected a $Button.simpleName for component with id 'radio', but was: $Radio.simpleName"
+        }
     }
 
     @Test
@@ -153,6 +157,8 @@ class ComponentTest {
 //    private class DangerButton extends  Button {}
 
     private class CustomButton extends Button {}
+
+//    private class CustomRadio extends Component {}
 
 
 }
