@@ -15,13 +15,13 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.property.Pattern
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('input') && it.attr('type') === 'tel'")
+@IdentifiedByCss('input[type=tel]')
 class PhoneField extends TextField {
 
     PhoneField() {

@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked
@@ -23,7 +23,7 @@ import org.testatoo.core.state.Unchecked
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('input') && it.attr('type') === 'checkbox'")
+@IdentifiedByCss('input[type=checkbox]')
 class Checkbox extends Component {
 
     Checkbox() {

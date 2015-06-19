@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.list
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Label
@@ -25,7 +25,7 @@ import org.testatoo.core.property.Value
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('optgroup')")
+@IdentifiedByCss('optgroup')
 class GroupItem extends Component {
 
     GroupItem() {

@@ -15,13 +15,13 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.property.Text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('h1') || it.is('h2') || it.is('h3') || it.is('h4') || it.is('h5') || it.is('h6')")
+@IdentifiedByCss('h1,h2,h3,h4,h5,h6')
 class Heading extends Component {
 
     Heading() {

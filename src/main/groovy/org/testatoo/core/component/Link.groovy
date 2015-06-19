@@ -15,14 +15,14 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.property.Reference
 import org.testatoo.core.property.Text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('a')")
+@IdentifiedByCss('a')
 class Link extends Component {
 
     Link() {

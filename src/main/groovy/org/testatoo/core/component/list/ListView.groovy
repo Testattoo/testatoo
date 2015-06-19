@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.list
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Size
@@ -23,17 +23,15 @@ import org.testatoo.core.property.Size
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('ul') || it.is('ol')")
+@IdentifiedByCss('ul,ol')
 class ListView extends Component {
 
     ListView() {
         support Size
-        support Items, {
-            Component c -> c.evaluator.getMetaInfo("\$('#${id}').find('li')").collect { it as Item }
-        }
+        support Items, { find('li', Item) }
     }
 
     List<Item> getItems() {
-        this.evaluator.getMetaInfo("\$('#${id}').find('li')").collect { it as Item }
+        find('li', Item)
     }
 }

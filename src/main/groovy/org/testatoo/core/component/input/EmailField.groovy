@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('input') && it.attr('type') === 'email'")
+@IdentifiedByCss('input[type=email]')
 class EmailField extends TextField {}
