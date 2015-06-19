@@ -15,13 +15,13 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.property.Title
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('div')")
+@IdentifiedByJs("it.is('div')")
 class Panel extends Component {
     Panel() {
         support Title, "''"

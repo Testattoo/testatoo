@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('aside')")
+@IdentifiedByJs("it.is('aside')")
 class Aside extends Component {}

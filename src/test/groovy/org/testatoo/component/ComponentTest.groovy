@@ -21,12 +21,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.*
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.Paragraph
+import org.testatoo.core.component.Radio
+import org.testatoo.core.component.Section
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.text
 
@@ -106,19 +108,19 @@ class ComponentTest {
         assert radio_1.hashCode() == radio_1.id.hashCode()
     }
 
-    @Assert("it.is('button') && it.hasClass('btn-primary')")
+    @IdentifiedByJs("it.is('button') && it.hasClass('btn-primary')")
     private class PrimaryButton extends Button {}
 
-    @Assert("it.is('button') && it.hasClass('btn-success')")
+    @IdentifiedByJs("it.is('button') && it.hasClass('btn-success')")
     private class SuccessButton extends  Button {}
 
-    @Assert("it.is('button') && it.hasClass('btn-info')")
+    @IdentifiedByJs("it.is('button') && it.hasClass('btn-info')")
     private class InfoButton extends  Button {}
 
-    @Assert("it.is('button') && it.hasClass('btn-warning')")
+    @IdentifiedByJs("it.is('button') && it.hasClass('btn-warning')")
     private class WarningButton extends  Button {}
 
-    @Assert("it.is('button') && it.hasClass('btn-danger')")
+    @IdentifiedByJs("it.is('button') && it.hasClass('btn-danger')")
     private class DangerButton extends  Button {}
 
 }

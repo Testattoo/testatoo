@@ -12,7 +12,7 @@ class ComponentDiscovery {
     final List<Class<Component>> componentClasses
 
     private ComponentDiscovery() {
-        componentClasses = ServiceClassLoader.load(Component).findAll { it.isAnnotationPresent(Assert) }
+        componentClasses = ServiceClassLoader.load(Component).findAll { it.isAnnotationPresent(IdentifiedByJs) }
     }
 
     static ComponentDiscovery getInstance() {

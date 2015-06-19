@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@Assert("it.is('textarea') || (it.is('input') && it.attr('type') === 'text')")
+@IdentifiedByJs("it.is('textarea') || (it.is('input') && it.attr('type') === 'text')")
 class TextField extends Input {}

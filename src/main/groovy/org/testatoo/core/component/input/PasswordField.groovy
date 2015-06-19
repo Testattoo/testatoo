@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('input') && it.attr('type') === 'password'")
+@IdentifiedByJs("it.is('input') && it.attr('type') === 'password'")
 class PasswordField extends Input {}

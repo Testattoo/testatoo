@@ -15,13 +15,13 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.property.Source
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('img')")
+@IdentifiedByJs("it.is('img')")
 class Image extends Component {
 
     Image() {

@@ -15,14 +15,14 @@
  */
 package org.testatoo.core.component.list
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
+@IdentifiedByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
 class Dropdown extends Component {
 
     Dropdown() {

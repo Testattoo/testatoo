@@ -15,11 +15,11 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('header')")
+@IdentifiedByJs("it.is('header')")
 class Header extends Component {
 }

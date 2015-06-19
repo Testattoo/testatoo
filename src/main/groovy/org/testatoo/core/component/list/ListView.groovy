@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.list
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Size
@@ -23,7 +23,7 @@ import org.testatoo.core.property.Size
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('ul') || it.is('ol')")
+@IdentifiedByJs("it.is('ul') || it.is('ol')")
 class ListView extends Component {
 
     ListView() {

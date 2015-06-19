@@ -5,6 +5,7 @@ import java.lang.annotation.*
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Inherited
-@interface Assert {
+@Identifier
+@interface IdentifiedByJs {
     String value()
 }

@@ -15,8 +15,7 @@
  */
 package org.testatoo.core.component.input
 
-import org.testatoo.core.Assert
-import org.testatoo.core.component.Component
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.property.Maximum
 import org.testatoo.core.property.Minimum
 import org.testatoo.core.property.Step
@@ -24,7 +23,7 @@ import org.testatoo.core.property.Step
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('input') && it.attr('type') === 'date'")
+@IdentifiedByJs("it.is('input') && it.attr('type') === 'date'")
 class DateField extends TextField {
 
     DateField() {

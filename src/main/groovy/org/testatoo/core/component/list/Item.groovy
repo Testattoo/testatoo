@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.list
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Value
@@ -25,7 +25,7 @@ import org.testatoo.core.state.Unselected
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('option') || it.is('li')")
+@IdentifiedByJs("it.is('option') || it.is('li')")
 class Item extends Component {
 
     Item() {

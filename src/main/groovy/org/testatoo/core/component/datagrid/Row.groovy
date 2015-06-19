@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.datagrid
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Title
@@ -23,7 +23,7 @@ import org.testatoo.core.property.Title
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('tr')")
+@IdentifiedByJs("it.is('tr')")
 class Row extends Component {
 
     Row() {

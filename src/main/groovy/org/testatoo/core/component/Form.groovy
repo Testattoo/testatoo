@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.state.Available
 import org.testatoo.core.state.Invalid
 import org.testatoo.core.state.Valid
@@ -23,7 +23,7 @@ import org.testatoo.core.state.Valid
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('form')")
+@IdentifiedByJs("it.is('form')")
 class Form extends Component {
 
     Form() {

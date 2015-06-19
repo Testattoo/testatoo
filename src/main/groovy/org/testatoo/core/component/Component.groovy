@@ -186,7 +186,7 @@ class Component {
         MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
-                Assert anAssert = c.class.getAnnotation(Assert)
+                IdentifiedByJs anAssert = c.class.getAnnotation(IdentifiedByJs)
 
                 if (anAssert || c.class != Component) {
                     if (!anAssert) {
@@ -195,7 +195,7 @@ class Component {
 
                     if (!(evaluator.getString(info.id, anAssert.value()) as boolean)) {
                         Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
-                            evaluator.getString(info.id, it.getAnnotation(Assert).value()) as boolean
+                            evaluator.getString(info.id, it.getAnnotation(IdentifiedByJs).value()) as boolean
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
                     }

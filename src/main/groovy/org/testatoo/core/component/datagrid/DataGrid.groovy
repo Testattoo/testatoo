@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.datagrid
 
-import org.testatoo.core.Assert
+import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.ColumnSize
 import org.testatoo.core.property.Size
@@ -23,7 +23,7 @@ import org.testatoo.core.property.Size
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@Assert("it.is('table')")
+@IdentifiedByJs("it.is('table')")
 class DataGrid extends Component {
 
     DataGrid() {
