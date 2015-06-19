@@ -191,7 +191,7 @@ class DSLTest {
     }
 
     // TODO OPTIONAL
-    @IdentifiedByCss('div')
+//    @IdentifiedByCss('div')
     class Message extends Panel {
         Message() {
             support Title, "it.text()"

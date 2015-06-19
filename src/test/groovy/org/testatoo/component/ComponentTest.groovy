@@ -75,6 +75,11 @@ class ComponentTest {
     }
 
     @Test
+    public void low_level_identifier_is_used_if_not_available_on_top() {
+        // TODO
+    }
+
+    @Test
     public void on_bad_component_definition_an_error_it_thrown() {
         try {
             ($('#radio') as Button).should { be enabled }
