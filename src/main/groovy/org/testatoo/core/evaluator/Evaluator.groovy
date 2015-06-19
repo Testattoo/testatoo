@@ -41,6 +41,8 @@ public interface Evaluator extends AutoCloseable {
     // TODO; rename to eval
     String getString(String id, String jQueryExpr)
 
+    boolean getBool(String id, String jQueryExpr)
+
     String getProperty(Property property, Component component)
 
     String getState(State state, Component component)

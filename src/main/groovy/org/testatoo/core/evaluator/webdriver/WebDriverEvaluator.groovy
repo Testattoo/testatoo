@@ -62,6 +62,11 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
+    boolean getBool(String id, String jQueryExpr) {
+        Boolean.parseBoolean(getString(id, jQueryExpr))
+    }
+
+    @Override
     String getProperty(Property property, Component c) {
         eval("testatoo.evaluate('${c.id}', '${property.class.simpleName.toLowerCase()}')")
     }
