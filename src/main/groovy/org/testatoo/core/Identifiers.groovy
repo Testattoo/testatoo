@@ -15,11 +15,11 @@ class Identifiers {
     ]
 
     static boolean hasIdentifier(Class<? extends Component> c) {
-        return c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+        return c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
     }
 
     static String getIdentifyingExpression(Class<? extends Component> c) {
-        Annotation annotation = c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+        Annotation annotation = c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
         if (!annotation) {
             throw new IllegalStateException("Missing @Identifier annotation on type " + c.name)
         }
