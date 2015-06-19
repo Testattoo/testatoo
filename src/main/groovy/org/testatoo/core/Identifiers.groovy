@@ -1,6 +1,7 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentException
 
 import java.lang.annotation.Annotation
 
@@ -21,11 +22,11 @@ class Identifiers {
     static String getIdentifyingExpression(Class<? extends Component> c) {
         Annotation annotation = c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
         if (!annotation) {
-            throw new IllegalStateException("Missing @Identifier annotation on type " + c.name)
+            throw new ComponentException("Missing @Identifier annotation on type " + c.name)
         }
         Closure<String> handler = factories[annotation.annotationType()]
         if (!handler) {
-            throw new IllegalStateException("Missing handler for annotation type " + annotation.annotationType().name)
+            throw new ComponentException("Missing handler for annotation type " + annotation.annotationType().name)
         }
         return handler.call(annotation)
     }
