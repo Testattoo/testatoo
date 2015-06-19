@@ -1,6 +1,5 @@
 package org.testatoo.core
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
 
 import java.lang.annotation.Annotation
@@ -15,12 +14,15 @@ class Identifiers {
         (IdentifiedByCss): { IdentifiedByCss annotation -> return "it.is('${annotation.value()}')" },
     ]
 
-    static boolean hasIdentifier(Class<? extends Component> c) {
-        return c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+    static boolean hasIdentifier(Class<?> c) {
+        return c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
     }
 
-    static String getIdentifyingExpression(Class<? extends Component> c) {
+    static String getIdentifyingExpression(Class<?> c) {
         Annotation annotation = c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+        if (!annotation) {
+            annotation = c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+        }
         if (!annotation) {
             throw new ComponentException("Missing @Identifier annotation on type " + c.name)
         }
