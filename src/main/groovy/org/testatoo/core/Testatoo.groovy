@@ -17,11 +17,11 @@ package org.testatoo.core
 
 import com.google.common.reflect.ClassPath
 import groovy.time.TimeDuration
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.Form
-import org.testatoo.core.component.Radio
-import org.testatoo.core.component.input.Input
+import org.testatoo.bundle.html5.components.Component
+import org.testatoo.bundle.html5.components.ComponentException
+import org.testatoo.bundle.html5.components.Form
+import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.input.Input
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked

@@ -15,10 +15,10 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.ComponentException
-import org.testatoo.core.component.input.Input
-import org.testatoo.core.component.list.Item
+import org.testatoo.bundle.html5.components.Component
+import org.testatoo.bundle.html5.components.ComponentException
+import org.testatoo.bundle.html5.components.input.Input
+import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Selected
 import org.testatoo.core.state.Unselected

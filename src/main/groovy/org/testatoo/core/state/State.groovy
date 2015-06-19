@@ -17,7 +17,7 @@ package org.testatoo.core.state
 
 import org.testatoo.core.AssertUtils
 import org.testatoo.core.Matcher
-import org.testatoo.core.component.Component
+import org.testatoo.bundle.html5.components.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

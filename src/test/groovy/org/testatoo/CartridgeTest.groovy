@@ -22,24 +22,16 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.input.TextField
+import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Text
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.label
-import static org.testatoo.core.property.Properties.placeholder
-import static org.testatoo.core.property.Properties.size
 import static org.testatoo.core.property.Properties.text
 import static org.testatoo.core.property.Properties.title
-import static org.testatoo.core.property.Properties.value
-import static org.testatoo.core.property.Properties.value
-import static org.testatoo.core.state.States.getInvalid
 import static org.testatoo.core.state.States.getSelected
-import static org.testatoo.core.state.States.getValid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

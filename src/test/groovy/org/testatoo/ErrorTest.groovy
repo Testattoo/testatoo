@@ -21,11 +21,15 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.components.ComponentException
+import org.testatoo.bundle.html5.components.Form
+import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.*
-import org.testatoo.core.component.input.EmailField
-import org.testatoo.core.component.list.Dropdown
-import org.testatoo.core.component.list.Item
+import org.testatoo.bundle.html5.components.input.EmailField
+import org.testatoo.bundle.html5.components.list.Dropdown
+import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 

@@ -20,15 +20,14 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.Panel
-import org.testatoo.core.component.input.TextField
+import org.testatoo.bundle.html5.components.Component
+import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Label
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

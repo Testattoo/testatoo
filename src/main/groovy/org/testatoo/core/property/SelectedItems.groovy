@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.list.Item
+import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.property.matcher.EqualsToListMatcher
 
 /**

@@ -16,7 +16,7 @@
 package org.testatoo.core.input
 
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Component
+import org.testatoo.bundle.html5.components.Component
 import org.testatoo.core.evaluator.Evaluator
 
 /**
