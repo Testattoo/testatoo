@@ -188,17 +188,17 @@ class Component {
                 MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
                 Assert anAssert = c.class.getAnnotation(Assert)
 
-                if (!anAssert && c.class == Component) return metaInfo
-
-                if (!anAssert) {
-                    throw new ComponentException("Missing @Assert in class " + c.class.name)
-                }
-
-                if (!(evaluator.getString(info.id, anAssert.value()) as boolean)) {
-                    Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
-                        evaluator.getString(info.id, it.getAnnotation(Assert).value()) as boolean
+                if (anAssert || c.class != Component) {
+                    if (!anAssert) {
+                        throw new ComponentException("Missing @Assert in class " + c.class.name)
                     }
-                    throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
+
+                    if (!(evaluator.getString(info.id, anAssert.value()) as boolean)) {
+                        Class<Component> type = ComponentDiscovery.getInstance().componentClasses.find {
+                            evaluator.getString(info.id, it.getAnnotation(Assert).value()) as boolean
+                        }
+                        throw new ComponentException("Expected a ${c.class.simpleName} (id=${info.id}, but was a ${type?.simpleName ?: 'unknown'}")
+                    }
                 }
 
                 metaInfo = info

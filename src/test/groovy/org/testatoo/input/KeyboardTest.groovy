@@ -29,10 +29,11 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.input.Keyboard.type
+import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.property.Properties.value
+import static org.testatoo.core.state.States.getAvailable
+import static org.testatoo.core.state.States.getMissing
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -58,57 +59,20 @@ class KeyboardTest {
 
     @Test
     public void should_type_letters_on_keyboard() {
-        [
-                '#span_a': 'a',
-                '#span_b': 'b',
-                '#span_c': 'c',
-                '#span_d': 'd',
-                '#span_e': 'e',
-                '#span_f': 'f',
-                '#span_g': 'g',
-                '#span_h': 'h',
-                '#span_i': 'i',
-                '#span_j': 'j',
-                '#span_k': 'k',
-                '#span_l': 'l',
-                '#span_m': 'm',
-                '#span_n': 'n',
-                '#span_o': 'o',
-                '#span_p': 'p',
-                '#span_q': 'q',
-                '#span_r': 'r',
-                '#span_s': 's',
-                '#span_t': 't',
-                '#span_u': 'u',
-                '#span_v': 'v',
-                '#span_w': 'w',
-                '#span_x': 'x',
-                '#span_y': 'y',
-                '#span_z': 'z'
-        ].each { k, v ->
-            $(k).should { be missing }
-            type v
-            $(k).should { be available }
+        (0..25).each {
+            char letter = (char)(('a' as char) + it)
+            $("#span_$letter").should { be missing }
+            type "$letter"
+            $("#span_$letter").should { be available }
         }
     }
 
     @Test
     public void should_type_number_on_keyboard() {
-        [
-                '#span_1': '1',
-                '#span_2': '2',
-                '#span_3': '3',
-                '#span_4': '4',
-                '#span_5': '5',
-                '#span_6': '6',
-                '#span_7': '7',
-                '#span_8': '8',
-                '#span_9': '9',
-                '#span_0': '0'
-        ].each { k, v ->
-            $(k).should { be missing }
-            type v
-            $(k).should { be available }
+        (0..9).each {
+            $("#span_$it").should { be missing }
+            type "$it"
+            $("#span_$it").should { be available }
         }
     }
 
