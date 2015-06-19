@@ -22,6 +22,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.*
 import org.testatoo.core.component.input.EmailField
@@ -185,6 +186,8 @@ class DSLTest {
         listBox.should { have 8.items or have(3.visibleItems) }
     }
 
+    // TODO OPTIONAL
+    @IdentifiedByCss('div')
     class Message extends Panel {
         Message() {
             support Title, "it.text()"
