@@ -59,6 +59,8 @@ class Component {
 
     Block is(State matcher) { block 'is', matcher }
 
+    Block is(Class<? extends State> c) { block 'is', c.newInstance() }
+
     Block becomes(State matcher) { block 'becomes', matcher }
 
     Block have(PropertyMatcher matcher) { block 'have', matcher }
@@ -93,6 +95,10 @@ class Component {
 
     protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
         evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
+    }
+
+    protected <T extends Component> List<T> findjs(String expression, Class<T> type = Component) {
+        evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
     }
 
     private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
@@ -191,7 +197,7 @@ class Component {
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
                     if (!(evaluator.getBool(info.id, identifyingExpr))) {
-                        Class<Component> type = ComponentDiscovery.instance.componentTypes.find {
+                        Class<Component> type = Testatoo.componentTypes.find {
                             evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
