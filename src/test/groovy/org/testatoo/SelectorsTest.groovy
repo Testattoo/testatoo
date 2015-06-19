@@ -32,7 +32,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.property.Properties.value
 import static org.testatoo.core.state.States.*
 
 /**
@@ -44,6 +44,7 @@ class SelectorsTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        scan 'org.testatoo'
     }
 
     @Before
@@ -102,7 +103,7 @@ class SelectorsTest {
             }
         } catch (ComponentException e) {
             assert e.message.contains('Expected a Button')
-            assert e.message.contains('but was a TextField')
+            assert e.message.contains('but was: TextField')
         }
     }
 
@@ -162,10 +163,10 @@ class SelectorsTest {
 
     }
 
-    private class CustomComponent extends Component {
+    static class CustomComponent extends Component {
     }
 
-    private class CustomTag extends Component {
+    static class CustomTag extends Component {
     }
 
 }

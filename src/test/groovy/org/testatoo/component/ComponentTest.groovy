@@ -41,6 +41,7 @@ class ComponentTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        scan 'org.testatoo.component'
         open 'http://localhost:8080/components.html'
     }
 
@@ -60,17 +61,17 @@ class ComponentTest {
     @Test
     public void component_without_identifier_fail() {
         try {
-            ($('#button') as CustomButton).should { be enabled }
+            ($('#button') as UnidentifiedComponent).should { be enabled }
             fail()
         } catch (e) {
             assert e instanceof ComponentException
-            assert e.message == "Missing @Identifier annotation on type $CustomButton.name" as String
+            assert e.message == "Missing @Identifier annotation on type $UnidentifiedComponent.name" as String
         }
     }
 
     @Test
     public void top_level_component_identifier_is_used() {
-        ($('#button') as CustomComponent).should { be enabled }
+        ($('#button') as CustomButton).should { be enabled }
     }
 
     @Test
@@ -161,13 +162,15 @@ class ComponentTest {
 //    @IdentifiedByJs("it.is('button') && it.hasClass('btn-danger')")
 //    private class DangerButton extends  Button {}
 
-    private class CustomButton extends Button {}
+    static class CustomButton extends Button {}
 
     @IdentifiedByJs("it.is('not_used')")
-    private class BaseCustomComponent extends Component {}
+    static class BaseCustomComponent extends Component {}
+
+    static class UnidentifiedComponent extends Component {}
 
     @IdentifiedByCss('button')
-    private class CustomComponent extends BaseCustomComponent {}
+    static class CustomComponent extends BaseCustomComponent {}
 
 
 }

@@ -24,7 +24,10 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.*
+import org.testatoo.core.component.Checkbox
+import org.testatoo.core.component.ComponentException
+import org.testatoo.core.component.Form
+import org.testatoo.core.component.Panel
 import org.testatoo.core.component.input.EmailField
 import org.testatoo.core.component.input.PasswordField
 import org.testatoo.core.component.input.TextField
@@ -49,6 +52,7 @@ class DSLTest {
     @BeforeClass
     public static void setup() {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        scan DSLTest.package.name
     }
 
     @Before
