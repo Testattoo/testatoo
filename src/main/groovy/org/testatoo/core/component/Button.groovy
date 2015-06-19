@@ -15,14 +15,13 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.property.Text
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@IdentifiedByJs("it.is('button') || (it.is('input') && ['button', 'submit', 'reset', 'image'].indexOf(it.attr('type')) !== -1);")
-// TODO maybe @XXX('button,input[type=submit],input[type=button]....')
+@IdentifiedByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends Component {
 
     Button() {
