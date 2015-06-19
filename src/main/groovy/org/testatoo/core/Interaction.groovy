@@ -15,8 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.action.Select
-import org.testatoo.core.action.Unselect
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
 import org.testatoo.core.component.input.Input
@@ -45,8 +43,8 @@ class Interaction {
             throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be selected")
         }
 
-        if (c.is(new Unselected()))
-            c.evaluator.runAction(new Select(), c)
+        if (c.is(Unselected))
+            c.evaluator.trigger(c.id, 'change')
     }
 
     void unselect(String value) {
@@ -58,18 +56,18 @@ class Interaction {
             throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unselected")
         }
 
-        if (c.is(new Selected()))
-            c.evaluator.runAction(new Unselect(), c)
+        if (c.is(Selected))
+            c.evaluator.trigger(c.id, 'change')
     }
 
     void enter(String value) {
         // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
-        c.evaluator.runScript("\$('#${c.id}').trigger('blur')")
+        c.evaluator.trigger(c.id, 'blur')
 
         c.evaluator.click(c.id);
         Input input = (Input) c
         input.reset()
         input.enter(value)
-        c.evaluator.triggerEvent('blur', c)
+        c.evaluator.trigger(c.id, 'blur')
     }
 }
