@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.property.matcher.ContainingMatcher
 import org.testatoo.core.property.matcher.EqualsToMatcher
 
@@ -24,14 +23,16 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Label extends Property {
 
-    Label() { evaluator { Component c -> c.eval("" +
+    Label() {
+        string "" +
             "function() {" +
             "   var label = \$('label[for=' + it.attr('id') + ']');" +
             "   if (label.length > 0) return label.text().trim();" +
             "   var p = it.prev('label');" +
             "   if (p.length > 0) return p.text();" +
             "   return it.parent().text().trim();" +
-            "}()") } }
+            "}()"
+    }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

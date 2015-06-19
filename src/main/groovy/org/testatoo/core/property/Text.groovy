@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.property.matcher.ContainingMatcher
 import org.testatoo.core.property.matcher.EqualsToMatcher
 
@@ -25,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Text extends Property {
 
     Text() {
-        evaluator { Component c -> c.eval("it.text().trim()") }
+        string "it.text()"
     }
 
     @Delegate

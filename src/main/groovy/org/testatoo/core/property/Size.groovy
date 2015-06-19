@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.property.matcher.EqualsToMatcher
 
 /**
@@ -24,7 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Size extends Property {
 
     Size() {
-        evaluator { Component c -> c.eval("it.children().length") as int }
+        number "it.children().length"
     }
 
     @Delegate

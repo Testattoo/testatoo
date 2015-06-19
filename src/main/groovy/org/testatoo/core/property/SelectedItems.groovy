@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.component.list.Item
 import org.testatoo.core.property.matcher.EqualsToListMatcher
 
@@ -24,7 +23,9 @@ import org.testatoo.core.property.matcher.EqualsToListMatcher
  */
 class SelectedItems extends Property {
 
-    SelectedItems() { evaluator { Component c -> c.find("option:selected", Item) } }
+    SelectedItems() {
+        evaluator { it.find("option:selected", Item) }
+    }
 
     @Delegate
     private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
