@@ -15,14 +15,12 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Unchecked extends State {
     Unchecked() {
-        evaluator { Component c -> c.eval("!it.is(':checked')") as boolean }
+        check "!it.is(':checked')"
         description e: 'unchecked', w: 'checked'
     }
 }

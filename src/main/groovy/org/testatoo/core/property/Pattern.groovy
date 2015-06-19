@@ -23,7 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
 class Pattern extends Property {
 
     Pattern() {
-        number "it.prop('pattern')") }
+        string "it.prop('pattern')"
     }
 
     @Delegate

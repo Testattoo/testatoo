@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Invalid extends State {
     Invalid() {
-        evaluator { Component c -> c.eval("it.is(':invalid')") as boolean }
+        check "it.is(':invalid')"
         description e: 'invalid', w: 'valid'
     }
 }

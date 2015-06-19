@@ -15,15 +15,13 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Empty extends State {
 
     Empty() {
-        evaluator { Component c -> c.eval("\$.trim(it.val()).length == 0") as boolean }
+        check "\$.trim(it.val()).length == 0"
         description e: 'empty', w: 'filled'
     }
 }

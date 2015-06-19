@@ -55,7 +55,5 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
         EqualsToMatcher equalsTo(Number ... anyOfExpected) { new EqualsToMatcher(property, Arrays.asList(anyOfExpected)) }
 
         EqualsToMatcher equalsTo(Collection<String> anyOfExpected) { new EqualsToMatcher(property, anyOfExpected) }
-
     }
-
 }

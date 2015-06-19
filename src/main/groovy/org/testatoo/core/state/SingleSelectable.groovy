@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class SingleSelectable extends State {
 
     SingleSelectable() {
-        evaluator { Component c -> c.eval("!(it.is('select') && it.prop('multiple'))") as boolean }
+        check "!(it.is('select') && it.prop('multiple'))"
         description e: 'single selectable', w: 'not single selectable'
     }
 

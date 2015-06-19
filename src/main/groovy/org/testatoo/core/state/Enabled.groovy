@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Enabled extends State {
     Enabled() {
-        evaluator { Component c -> c.eval("!(it.is(':disabled') || it.attr('disabled') != undefined)") as boolean }
+        check "!(it.is(':disabled') || it.attr('disabled') != undefined)"
         description e: 'enabled', w: 'disabled'
     }
 }

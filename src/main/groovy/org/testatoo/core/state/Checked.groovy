@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Checked extends State {
     Checked() {
-        evaluator { Component c -> c.eval("it.is(':checked')") as boolean }
+        check "it.is(':checked')"
         description e: 'checked', w: 'unchecked'
     }
 }

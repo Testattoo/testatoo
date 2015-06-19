@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Unselected extends State {
 
     Unselected() {
-        evaluator { Component c -> c.eval("!it.prop('selected', true).trigger('change')") as boolean }
+        check "!it.prop('selected', true).trigger('change')"
         description e: 'unselected', w: 'selected'
     }
 
