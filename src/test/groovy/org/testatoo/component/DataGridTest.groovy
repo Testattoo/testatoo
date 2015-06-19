@@ -42,7 +42,7 @@ class DataGridTest {
 
     @BeforeClass
     public static void setup() {
-        WebDriverEvaluator.debug = true
+        Testatoo.debug = true
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }

@@ -21,6 +21,7 @@ import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 
@@ -36,8 +37,6 @@ class WebDriverEvaluator implements Evaluator {
     private final List<String> registeredScripts = new ArrayList<>()
     private final String MODULE_EXTENSION_FILE = 'testatoo-ext.js'
 
-    static boolean debug = false
-
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
         this.js = (JavascriptExecutor) webDriver;
@@ -51,17 +50,17 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     public <T> T getJson(String jQueryExpr) {
-        getString(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
+        eval(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
     @Override
-    String getString(String id, String jQueryExpr) {
-        eval(id, jQueryExpr)
+    String eval(String id, String jQueryExpr) {
+        execute(id, jQueryExpr)
     }
 
     @Override
     boolean getBool(String id, String jQueryExpr) {
-        Boolean.parseBoolean(getString(id, jQueryExpr))
+        Boolean.parseBoolean(eval(id, jQueryExpr))
     }
 
     @Override
@@ -194,20 +193,21 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void close() throws Exception { webDriver.quit() }
 
-    private String eval(String id, String s) {
+    private String execute(String id, String s) {
+        String element = ''
+        if (id) { element = "var it = el = \$('#${id}');" }
+
         String expr = """
         return (function(\$, jQuery, testatoo) {
             if(!jQuery) {
                 return '__TESTATOO_MISSING__';
             } else {
-                var it = el = \$('#${id}');
+                $element
                 return ${removeTrailingChars(s)};
             }
         }(window.testatoo, window.testatoo, window.testatoo));"""
 
-        if(debug) {
-            println expr
-        }
+        if(Testatoo.debug) { println expr }
 
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {

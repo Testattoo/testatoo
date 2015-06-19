@@ -33,6 +33,8 @@ import java.util.concurrent.TimeoutException
  */
 class Testatoo {
 
+    static boolean debug = false
+
     static final Collection<Class<Component>> componentTypes = new HashSet<>()
 
     static Evaluator evaluator

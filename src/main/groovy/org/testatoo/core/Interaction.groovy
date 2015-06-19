@@ -44,6 +44,7 @@ class Interaction {
         }
 
         if (c.is(Unselected))
+            c.evaluator.click(c.id);
             c.evaluator.trigger(c.id, 'change')
     }
 
@@ -57,6 +58,7 @@ class Interaction {
         }
 
         if (c.is(Selected))
+            c.evaluator.click(c.id);
             c.evaluator.trigger(c.id, 'change')
     }
 

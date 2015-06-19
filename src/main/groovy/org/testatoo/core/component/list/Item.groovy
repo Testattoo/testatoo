@@ -19,6 +19,8 @@ import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.component.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Value
+import org.testatoo.core.state.Disabled
+import org.testatoo.core.state.Enabled
 import org.testatoo.core.state.Selected
 import org.testatoo.core.state.Unselected
 
@@ -31,6 +33,8 @@ class Item extends Component {
     Item() {
         support Label, "it.attr('label')"
         support Value, "it.text().trim()"
+        support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
+        support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
         support Selected, Unselected
     }
 

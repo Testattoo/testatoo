@@ -47,7 +47,7 @@ class Component {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
-    String eval(String jqueryExpr) { return evaluator.getString(getId(), jqueryExpr) }
+    String eval(String jqueryExpr) { return evaluator.eval(getId(), jqueryExpr) }
 
     boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
 

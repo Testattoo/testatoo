@@ -33,8 +33,7 @@ public interface Evaluator extends AutoCloseable {
 
     void registerScripts(String... scripts)
 
-    // TODO; rename to eval
-    String getString(String id, String jQueryExpr)
+    String eval(String id, String jQueryExpr)
 
     boolean getBool(String id, String jQueryExpr)
 
