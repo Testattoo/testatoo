@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import com.google.common.reflect.ClassPath
 import groovy.time.TimeDuration
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.ComponentException
@@ -32,7 +33,17 @@ import java.util.concurrent.TimeoutException
  */
 class Testatoo {
 
+    static final Collection<Class<Component>> componentTypes = new HashSet<>()
+
     static Evaluator evaluator
+
+    static void scan(String... packageNames) {
+        componentTypes.addAll(packageNames
+            .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
+            .flatten()
+            .collect { it.load() }
+            .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
+    }
 
     // DSL
     static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
@@ -77,7 +88,7 @@ class Testatoo {
     static Input reset(Input input) {
         input.evaluator.click(input.id);
         input.reset()
-        evaluator.triggerEvent('blur', input)
+        evaluator.trigger(input.id, 'blur')
         return input
     }
 
@@ -96,6 +107,10 @@ class Testatoo {
         } catch (TimeoutException e) {
             throw new RuntimeException("${e.message}")
         }
+    }
+
+    static {
+        scan Component.package.name
     }
 
     private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
