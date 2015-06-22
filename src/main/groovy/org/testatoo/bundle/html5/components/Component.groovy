@@ -165,12 +165,12 @@ class Component {
         support(type, { eval(exp) })
     }
 
-    Object getValue(Property property) {
-        PropertyEvaluator pe = _supportedProperties.get(property.class)
+    Object valueFor(Class<Property> clazz) {
+        PropertyEvaluator pe = _supportedProperties.get(clazz)
         if (pe == null) {
-            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
+            throw new ComponentException("Component ${this} does not support property ${clazz.simpleName}")
         }
-        return (pe == DEFAULT_PE ? property.evaluator : pe).getValue(this)
+        return (pe == DEFAULT_PE ? clazz.newInstance().evaluator : pe).getValue(this)
     }
 
 

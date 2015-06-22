@@ -24,6 +24,8 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.IdentifiedByJs
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.property.Label
+import org.testatoo.core.state.Checked
 import org.testatoo.core.state.States
 
 import static org.junit.Assert.fail
@@ -103,7 +105,6 @@ class ComponentTest {
     @Test
     public void should_be_able_to_find_nested_component() {
         Section section = $('#section') as Section
-        //TODO; david improve
         Paragraph paragraph = section.find('p:first')[0] as Paragraph
 
         paragraph.should { have text('Paragraph 1')}
@@ -113,6 +114,15 @@ class ComponentTest {
     public void the_hashCode_of_a_component_is_based_on_its_id() {
         Radio radio_1 = $('#radio') as Radio
         assert radio_1.hashCode() == radio_1.id.hashCode()
+    }
+
+    @Test
+    public void can_evaluate_state_and_property() {
+        Radio checked_radio = $('[type=radio]:checked') as Radio
+
+        assert checked_radio.hasState(Checked)
+        assert checked_radio.valueFor(Label) == 'Radio label checked'
+
     }
 
     static class CustomButton extends Button {}

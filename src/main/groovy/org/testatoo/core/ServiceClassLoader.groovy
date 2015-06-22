@@ -16,7 +16,7 @@
 package org.testatoo.core
 /**
  * @author Mathieu Carbou <mathieu.carbou@gmail.com>
- * @param < S >  The type of the service to be loaded by this loader
+ * @param < S >   The type of the service to be loaded by this loader
  */
 public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
 
@@ -133,8 +133,8 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
                 return p;
             } catch (RuntimeException x) {
                 fail(service,
-                    "Provider " + cn + " could not be instantiated: " + x,
-                    x);
+                        "Provider " + cn + " could not be instantiated: " + x,
+                        x);
             }
             throw new Error();        // This cannot happen
         }
@@ -142,7 +142,6 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
         public void remove() {
             throw new UnsupportedOperationException();
         }
-
     }
 
     public Iterator<Class<S>> iterator() {
@@ -172,5 +171,4 @@ public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
     public String toString() {
         return "ServiceClassLoader[" + service.getName() + "]";
     }
-
 }
