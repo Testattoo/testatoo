@@ -21,16 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
-import org.testatoo.bundle.html5.components.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Properties
 import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,12 +35,12 @@ class ButtonTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
@@ -68,8 +63,8 @@ class ButtonTest {
         // button element
         button = $('#btn') as Button
         button.should { have text('My Button Text') }
-        button.should { have Properties.text.containing('My') }
-        button.should { have Properties.text.containing('Button') }
-        button.should { have Properties.text.containing('Text') }
+        button.should { have text.containing('My') }
+        button.should { have text.containing('Button') }
+        button.should { have text.containing('Text') }
     }
 }

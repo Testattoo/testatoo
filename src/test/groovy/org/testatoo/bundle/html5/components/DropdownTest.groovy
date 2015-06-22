@@ -21,17 +21,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.bundle.html5.components.list.GroupItem
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Properties
 import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.click_on
+import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -41,12 +38,12 @@ class DropdownTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
@@ -58,10 +55,10 @@ class DropdownTest {
 
         dropdown.should { have label('Elements list') }
         dropdown.should { have size(5) }
-        dropdown.should { have Properties.items.equalsTo('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
+        dropdown.should { have items.equalsTo('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
         dropdown.should { have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
 
-        dropdown.should { have Properties.items.containing('Polonium', 'Calcium') }
+        dropdown.should { have items.containing('Polonium', 'Calcium') }
 
         dropdown.should { have selectedItems('Helium') }
         dropdown.items[2].should { be States.unselected }
@@ -96,7 +93,7 @@ class DropdownTest {
 
         dropdown.should { have 3.groupItems }
         dropdown.should { have groupItems('linux', 'win32', 'BSD') }
-        dropdown.should { have Properties.groupItems.containing('linux') }
+        dropdown.should { have groupItems.containing('linux') }
 
         GroupItem group = dropdown.groupItems[0]
         group.should { have label('linux') }

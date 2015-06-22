@@ -21,7 +21,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Size
@@ -29,9 +28,8 @@ import org.testatoo.core.property.Text
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.property.Properties.title
-import static org.testatoo.core.state.States.getSelected
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -41,7 +39,7 @@ class CartridgeTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/cartridge.html'
     }
 

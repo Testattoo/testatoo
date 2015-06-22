@@ -26,7 +26,6 @@ import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.Checkbox
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
@@ -45,7 +44,7 @@ class MouseTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/mouse.html'
     }
 

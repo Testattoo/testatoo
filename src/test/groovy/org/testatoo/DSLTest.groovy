@@ -22,7 +22,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.Checkbox
 import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.bundle.html5.components.Form
@@ -37,8 +36,8 @@ import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.click_on
+import static org.testatoo.core.input.Keyboard.*
+import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -50,7 +49,7 @@ class DSLTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan DSLTest.package.name
     }
 

@@ -23,16 +23,14 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Components
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.Component
 import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.value
+import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
 /**
@@ -43,14 +41,14 @@ class SelectorsTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan 'org.testatoo'
+        open 'http://localhost:8080/selectors.html'
     }
 
     @Before
     public void before() {
         // Due to script injection in some tests the page must be reloaded at each test
-        open 'http://localhost:8080/selectors.html'
     }
 
     @AfterClass
@@ -162,11 +160,4 @@ class SelectorsTest {
         }
 
     }
-
-    static class CustomComponent extends Component {
-    }
-
-    static class CustomTag extends Component {
-    }
-
 }

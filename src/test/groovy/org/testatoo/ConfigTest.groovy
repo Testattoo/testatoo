@@ -20,11 +20,9 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Component
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Label
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.state.States.*
@@ -77,12 +75,6 @@ class ConfigTest {
             error.should { be visible }
         } finally {
             evaluator.close()
-        }
-    }
-
-    private class MyCustomComponent extends Component {
-        MyCustomComponent() {
-            support Label
         }
     }
 }

@@ -21,21 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Article
-import org.testatoo.bundle.html5.components.Aside
-import org.testatoo.bundle.html5.components.Footer
-import org.testatoo.bundle.html5.components.Header
-import org.testatoo.bundle.html5.components.Heading
-import org.testatoo.bundle.html5.components.Paragraph
-import org.testatoo.bundle.html5.components.Section
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -45,12 +35,12 @@ class StructureTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void heading_should_have_expected_behaviours() {
@@ -85,8 +75,8 @@ class StructureTest {
         Article article = $('#article') as Article
 
         article.should {
-            be States.enabled
-            be States.visible
+            be enabled
+            be visible
             have 2.paragraphs
         }
     }
@@ -96,8 +86,8 @@ class StructureTest {
         Aside aside = $('#aside') as Aside
 
         aside.should {
-            be States.enabled
-            be States.visible
+            be enabled
+            be visible
         }
     }
 
@@ -106,8 +96,8 @@ class StructureTest {
         Footer footer = $('#footer') as Footer
 
         footer.should {
-            be States.enabled
-            be States.visible
+            be enabled
+            be visible
         }
     }
 
@@ -116,8 +106,8 @@ class StructureTest {
         Header header = $('#header') as Header
 
         header.should {
-            be States.enabled
-            be States.visible
+            be enabled
+            be visible
         }
     }
 
@@ -126,8 +116,8 @@ class StructureTest {
         Section section = $('#section') as Section
 
         section.should {
-            be States.enabled
-            be States.visible
+            be enabled
+            be visible
             have 1.paragraphs
             have 1.articles
         }

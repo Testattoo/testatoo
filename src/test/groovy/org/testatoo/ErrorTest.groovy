@@ -26,7 +26,6 @@ import org.testatoo.bundle.html5.components.Checkbox
 import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.input.EmailField
 import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.bundle.html5.components.list.Item
@@ -35,8 +34,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.ALT
-import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -48,7 +46,7 @@ class ErrorTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/error.html'
     }
 
@@ -116,7 +114,6 @@ class ErrorTest {
     public void exception_is_thrown_on_invalid_click_sequence() {
         Form form = $('#form') as Form
         try {
-            // TODO why intelliJ waring
             [CTRL, 'test', ALT].click form
             fail()
         } catch (IllegalArgumentException e) {

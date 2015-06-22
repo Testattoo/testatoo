@@ -21,7 +21,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.datagrid.Cell
 import org.testatoo.bundle.html5.components.datagrid.Column
 import org.testatoo.bundle.html5.components.datagrid.DataGrid
@@ -30,10 +29,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.title
-import static org.testatoo.core.property.Properties.value
-import static org.testatoo.core.state.States.getEnabled
-import static org.testatoo.core.state.States.getVisible
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,13 +39,13 @@ class DataGridTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.debug = true
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        debug = true
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {

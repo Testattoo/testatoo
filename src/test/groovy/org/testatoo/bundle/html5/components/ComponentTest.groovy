@@ -21,22 +21,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.Component
-import org.testatoo.bundle.html5.components.ComponentException
-import org.testatoo.bundle.html5.components.Paragraph
-import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.bundle.html5.components.Section
 import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.IdentifiedByJs
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.state.States
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.enabled
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -46,13 +38,13 @@ class ComponentTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan 'org.testatoo.component'
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_identify_component_by_css() {
@@ -92,7 +84,7 @@ class ComponentTest {
             fail()
         } catch (e) {
             assert e instanceof ComponentException
-            assert e.message == "Expected a $Button.simpleName for component with id 'radio', but was: $Radio.simpleName"
+            assert e.message == "Expected a $Button.simpleName for component with id 'radio', but was: $Radio.simpleName" as String
         }
     }
 
@@ -123,65 +115,12 @@ class ComponentTest {
         assert radio_1.hashCode() == radio_1.id.hashCode()
     }
 
-//    @Test
-//    public void should_be_able_to_manage_inheritance() {
-//        Button button = $('#btn_default') as Button
-//        button.should { have text('Default') }
-//
-//        PrimaryButton primary_button = $('#btn_primary') as PrimaryButton
-//        primary_button.should { have text('Primary') }
-//
-//        SuccessButton success_button = $('#btn_success') as SuccessButton
-//        success_button.should { have text('Success') }
-//
-//        InfoButton info_button = $('#btn_info') as InfoButton
-//        info_button.should { have text('Info') }
-//
-//        WarningButton warning_button = $('#btn_warning') as WarningButton
-//        warning_button.should { have text('Warning') }
-//
-//        DangerButton danger_button = $('#btn_danger') as DangerButton
-//        danger_button.should { have text('Danger') }
-//
-//        Button button_1 = $('#btn_primary') as Button
-//        button_1.should { have text('Primary') }
-//        // TODO update test on inheritance
-////        try {
-////            primary_button = $('#btn_warning') as PrimaryButton
-////            primary_button.should { have text('Primary') }
-////            fail()
-////        } catch (Exception e) {
-////            assert e.message == "Expected Text 'Primary' but was 'Warning'"
-////        }
-//    }
-
-
-
-
-//    @IdentifiedByJs("it.is('button') && it.hasClass('btn-primary')")
-//    private class PrimaryButton extends Button {}
-//
-//    @IdentifiedByJs("it.is('button') && it.hasClass('btn-success')")
-//    private class SuccessButton extends  Button {}
-//
-//    @IdentifiedByJs("it.is('button') && it.hasClass('btn-info')")
-//    private class InfoButton extends  Button {}
-//
-//    @IdentifiedByJs("it.is('button') && it.hasClass('btn-warning')")
-//    private class WarningButton extends  Button {}
-//
-//    @IdentifiedByJs("it.is('button') && it.hasClass('btn-danger')")
-//    private class DangerButton extends  Button {}
-
     static class CustomButton extends Button {}
+    static class UnidentifiedComponent extends Component {}
 
     @IdentifiedByJs("it.is('not_used')")
     static class BaseCustomComponent extends Component {}
 
-    static class UnidentifiedComponent extends Component {}
-
     @IdentifiedByCss('button')
     static class CustomComponent extends BaseCustomComponent {}
-
-
 }

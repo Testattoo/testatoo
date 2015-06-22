@@ -21,7 +21,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Panel
@@ -39,7 +38,7 @@ class ContainAndDisplayTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/container.html'
     }
 
@@ -82,7 +81,7 @@ class ContainAndDisplayTest {
                 )
             }
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]"
+            assert e.message == "Component Panel:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]" as String
         }
     }
 
@@ -117,7 +116,7 @@ class ContainAndDisplayTest {
                 )
             }
         } catch (AssertionError e) {
-            assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]"
+            assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]" as String
         }
     }
 

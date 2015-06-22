@@ -22,18 +22,16 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.Keyboard.type
-import static org.testatoo.core.input.Mouse.click_on
-import static org.testatoo.core.property.Properties.value
-import static org.testatoo.core.state.States.getAvailable
-import static org.testatoo.core.state.States.getMissing
+import static org.testatoo.core.input.Keyboard.*
+import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,7 +41,7 @@ class KeyboardTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
     }
 
     @AfterClass
