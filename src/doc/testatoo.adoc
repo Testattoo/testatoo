@@ -84,7 +84,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.bundle.html5.components.list.ListView
@@ -100,7 +99,7 @@ class BaseGoogleTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+        evaluator =  new WebDriverEvaluator(new FirefoxDriver())
         open 'http://www.google.com'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
@@ -179,23 +178,23 @@ The Testatoo syntax to express this specification is :
 
 [source, java]
 -------------------------------------------------------------------------------
-maleRadio.should {
+male_radio.should {
     be unchecked
     have label('Male')
 }
 
-femaleRadio.should {
+female_radio.should {
     be unchecked
     have label('Female')
 }
 
-check maleRadio
-maleRadio.should { be checked }
-femaleRadio.should { be unchecked }
+check male_radio
+male_radio.should { be checked }
+female_radio.should { be unchecked }
 
-check femaleRadio
-femaleRadio.should { be checked }
-maleRadio.should { be unchecked }
+check female_radio
+female_radio.should { be checked }
+male_radio.should { be unchecked }
 -------------------------------------------------------------------------------
 
 Pretty close, isn't it? ;)
@@ -211,7 +210,7 @@ YES, for the first time, with Testatoo, you can write UI functional tests FIRST 
 
 [source, java]
 -------------------------------------------------------------------------------
-Testatoo.evaluator =  new WebDriverEvaluator(new FirefoxDriver())
+evaluator =  new WebDriverEvaluator(new FirefoxDriver())
 -------------------------------------------------------------------------------
 
 You can add all the required "DesiredCapabilities" on your WebDriver config
@@ -230,8 +229,7 @@ to make complex DOM evaluations.
 
 === The $ Function
 
-The $ function is the access point of component creation. The $ function is the strict equivalent of the popular jQuery $ function.
-In fact, in Testatoo the $ groovy function is a wrapper on the underlying jQuery function.
+The $ function is the access point of component creation. The $ function accept a css3 selector to target your component.
 
 The signature of the $ function is as follows…
 
@@ -320,6 +318,11 @@ button.should {
   be enabled
   be visible
 }
+
+// Or
+
+assert button.hasState(Enabled)
+assert button.hasState(Visible)
 -------------------------------------------------------------------------------
 
 === Evaluate Property
@@ -332,6 +335,10 @@ Button button = $('#button') as Button
 button.should {
   have text('Ok')
 }
+
+// Or
+
+assert button.valueFor(Text) == 'Ok'
 -------------------------------------------------------------------------------
 
 All properties that implied a *String* support some pattern methods
@@ -359,10 +366,10 @@ WARNING: Finger / Pointer are not supported for the moment
 
 The mouse usages supported are :
 
-*clickOn*, +
-*doubleClickOn*, +
-*rightClickOn*, +
-*hoveringMouseOn*, +
+*click_on*, +
+*double_click_on*, +
+*right_click_on*, +
+*hovering_mouse_on*, +
 *drag ... on ...*
 
 [source, java]
@@ -371,12 +378,11 @@ Button button = $('#button') as Button
 Panel panel_1 = $('#Panel_1) as Panel
 Panel panel_2 = $('#Panel_2) as Panel
 
-clickOn button
-doubleClickOn button
-rightClickOn button
-hoveringMouseOn panel_1
+click_on button
+double_click_on button
+right_click_on button
+hovering_mouse_on panel_1
 drag panel_1 on panel_2
-
 -------------------------------------------------------------------------------
 
 ==== Keyboard
@@ -388,9 +394,8 @@ One Method to rule them all: *the type(...) method*
 -------------------------------------------------------------------------------
 TextField textField = $('#textfield') as TextField
 
-clickOn textField
+click_on textField
 type('testatoo')
-
 -------------------------------------------------------------------------------
 
 If you need the usage of a simple key modifier.
@@ -399,9 +404,8 @@ If you need the usage of a simple key modifier.
 -------------------------------------------------------------------------------
 TextField textField = $('#textfield') as TextField
 
-clickOn textField
+click_on textField
 type(SHIFT + 'testatoo')
-
 -------------------------------------------------------------------------------
 
 Or a complex.
@@ -410,9 +414,8 @@ Or a complex.
 -------------------------------------------------------------------------------
 TextField textField = $('#textfield') as TextField
 
-clickOn textField
+click_on textField
 type(CTRL + ALT + SHIFT + 'x')
-
 -------------------------------------------------------------------------------
 
 === The Components
