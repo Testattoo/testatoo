@@ -15,8 +15,8 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.bundle.html5.components.Component
-import org.testatoo.bundle.html5.components.ComponentException
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

@@ -15,8 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.bundle.html5.components.ComponentException
-
 import java.lang.annotation.Annotation
 
 /**

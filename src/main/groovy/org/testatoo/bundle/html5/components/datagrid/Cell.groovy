@@ -16,7 +16,7 @@
 package org.testatoo.bundle.html5.components.datagrid
 
 import org.testatoo.core.IdentifiedByCss
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.Component
 import org.testatoo.core.property.Value
 
 /**

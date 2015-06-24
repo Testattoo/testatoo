@@ -15,6 +15,8 @@
  */
 package org.testatoo.bundle.html5.components
 
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.state.Available
 import org.testatoo.core.state.Invalid

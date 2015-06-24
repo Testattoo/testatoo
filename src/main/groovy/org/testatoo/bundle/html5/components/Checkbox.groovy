@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.components
 
+import org.testatoo.core.Component
 import org.testatoo.core.IdentifiedByCss
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked

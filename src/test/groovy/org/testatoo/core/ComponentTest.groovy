@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components
+package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -21,16 +21,23 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.IdentifiedByCss
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Paragraph
+import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.Section
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Label
+import org.testatoo.core.property.Size
+import org.testatoo.core.property.Text
+import org.testatoo.core.property.Title
 import org.testatoo.core.state.Checked
-import org.testatoo.core.state.States
+import org.testatoo.core.state.Selected
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -61,7 +68,7 @@ class ComponentTest {
     @Test
     public void component_without_identifier_fail() {
         try {
-            ($('#button') as UnidentifiedComponent).should { be States.enabled }
+            ($('#button') as UnidentifiedComponent).should { be enabled }
             fail()
         } catch (e) {
             assert e instanceof ComponentException
@@ -71,7 +78,7 @@ class ComponentTest {
 
     @Test
     public void top_level_component_identifier_is_used() {
-        ($('#button') as CustomButton).should { be States.enabled }
+        ($('#button') as CustomButton).should { be enabled }
     }
 
     @Test
@@ -82,7 +89,7 @@ class ComponentTest {
     @Test
     public void on_bad_component_definition_an_error_it_thrown() {
         try {
-            ($('#radio') as Button).should { be States.enabled }
+            ($('#radio') as Button).should { be enabled }
             fail()
         } catch (e) {
             assert e instanceof ComponentException
@@ -123,6 +130,24 @@ class ComponentTest {
         assert checked_radio.hasState(Checked)
         assert checked_radio.valueFor(Label) == 'Radio label checked'
 
+    }
+
+    @Test
+    public void can_override_a_state_and_property_directly_on_component_definition() {
+        CustomPanel custom_panel = $('#custom-panel') as CustomPanel
+
+        custom_panel.should { have title('CustomPanel Title') }
+        custom_panel.should { be selected }
+        custom_panel.should { have text('TEXT') }
+    }
+
+    class CustomPanel extends Panel {
+        CustomPanel() {
+            support Title, { return 'CustomPanel Title' }
+            support Selected, { return true }
+            support Size
+            support Text, { return 'TEXT' }
+        }
     }
 
     static class CustomButton extends Button {}

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo
+package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.Before
@@ -22,16 +22,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Components
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.state.States
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -58,8 +56,8 @@ class SelectorsTest {
     public void $_as_a_single_selector() {
         Button button = $('#button') as Button
 
-        button.should { be enabled }
-        button.should { be visible }
+        button.should { be States.enabled }
+        button.should { be States.visible }
     }
 
     @Test
@@ -72,9 +70,9 @@ class SelectorsTest {
 
         textFields.each {
             it.should {
-                be enabled
-                be visible
-                be empty
+                be States.enabled
+                be States.visible
+                be States.empty
             }
         }
 
@@ -84,7 +82,7 @@ class SelectorsTest {
 
         textFields.each {
             it.should {
-                be filled
+                be States.filled
                 have value('TESTATOO!')
             }
         }
@@ -96,7 +94,7 @@ class SelectorsTest {
             Components<Button> buttons = $$('[type="text"]') of Button
             buttons.each {
                 it.should {
-                    be enabled
+                    be States.enabled
                 }
             }
         } catch (ComponentException e) {

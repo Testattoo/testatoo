@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo
+package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.Before
@@ -23,7 +23,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Checkbox
-import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.input.EmailField
@@ -33,13 +32,13 @@ import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.bundle.html5.components.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
+import org.testatoo.core.state.States
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -65,10 +64,10 @@ class DSLTest {
     public void test_chaining_assert() {
         Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should {
-            be enabled
-            be visible
+            be States.enabled
+            be States.visible
 
-            be unchecked
+            be States.unchecked
             have label('Check me out')
         }
     }
@@ -90,9 +89,9 @@ class DSLTest {
         TextField field = $('#firstname') as TextField
         Panel panel = $('#firstname_blur') as Panel
 
-        panel.should { be hidden }
+        panel.should { be States.hidden }
         on field enter 'invalid value'
-        waitUntil { panel.is(visible) }
+        waitUntil { panel.is(States.visible) }
     }
 
     @Test
@@ -100,9 +99,9 @@ class DSLTest {
         TextField field = $('#lastname') as TextField
         Panel panel = $('#lastname_reset') as Panel
 
-        panel.should { be hidden }
+        panel.should { be States.hidden }
         reset field
-        waitUntil { panel.becomes(visible) }
+        waitUntil { panel.becomes(States.visible) }
     }
 
     @Test
@@ -111,7 +110,7 @@ class DSLTest {
         on textField enter 'Some input'
 
         textField.should {
-            be filled
+            be States.filled
             have value('Some input')
         }
 
@@ -120,7 +119,7 @@ class DSLTest {
         reset textField
 
         textField.should {
-            be empty
+            be States.empty
             have value('')
         }
     }
@@ -179,7 +178,7 @@ class DSLTest {
     @Test
     public void test_AND() {
         Checkbox checkBox = $('#checkbox') as Checkbox
-        checkBox.should { be enabled and be(visible) }
+        checkBox.should { be States.enabled and be(States.visible) }
     }
 
     @Test
