@@ -110,7 +110,7 @@ class Testatoo {
     }
 
     static {
-        scan Component.package.name
+        scan 'org.testatoo.bundle.html5'
     }
 
     private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
