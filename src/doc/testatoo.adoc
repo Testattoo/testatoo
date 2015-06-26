@@ -431,7 +431,7 @@ Component component = $('#component') as Component <1>
 component.should {
     be enabled
     be disabled
-    be available    <1>
+    be available    <2>
     be missing
     be hidden
     be visible
