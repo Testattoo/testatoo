@@ -13,20 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.bundle.html5.datagrid
 
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
+import org.testatoo.core.property.ColumnSize
+import org.testatoo.core.property.Size
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItems extends Property {
+@ByCss('table')
+class DataGrid extends Component {
 
-    SelectedItems() {
-        evaluator { it.find("option:selected", Item) }
+    DataGrid() {
+        support Size, { it.eval("it.find('thead tr:last th').length") as int }
+        support ColumnSize, { it.eval("it.find('tbody tr').length") as int }
     }
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
+    List<Column> getColumns() {
+        find("thead tr:last th", Column)
+    }
+
+    List<Row> getRows() {
+        find("tbody tr", Row)
+    }
 }

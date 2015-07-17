@@ -21,6 +21,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.bundle.html5.Button
+import org.testatoo.bundle.html5.Paragraph
+import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.Section
 import org.testatoo.core.ByCss
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component

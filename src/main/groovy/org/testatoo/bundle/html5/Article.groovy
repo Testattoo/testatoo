@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.bundle.html5
 
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
+import org.testatoo.core.property.ParagraphSize
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItems extends Property {
+@ByCss('article')
+class Article extends Component {
 
-    SelectedItems() {
-        evaluator { it.find("option:selected", Item) }
+    Article() {
+        support ParagraphSize
     }
-
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
 }

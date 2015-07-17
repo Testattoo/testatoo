@@ -13,20 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.bundle.html5.input
 
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.ByCss
+import org.testatoo.core.property.Maximum
+import org.testatoo.core.property.Minimum
+import org.testatoo.core.property.Step
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItems extends Property {
+@ByCss('input[type=range]')
+class RangeField extends TextField {
 
-    SelectedItems() {
-        evaluator { it.find("option:selected", Item) }
+    RangeField() {
+        support Minimum, Maximum, Step
     }
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
 }

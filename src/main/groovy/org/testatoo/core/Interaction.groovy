@@ -15,8 +15,8 @@
  */
 package org.testatoo.core
 
-import org.testatoo.bundle.html5.components.input.Input
-import org.testatoo.bundle.html5.components.list.Item
+import org.testatoo.bundle.html5.input.Input
+import org.testatoo.bundle.html5.list.Item
 import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Selected
 import org.testatoo.core.state.Unselected

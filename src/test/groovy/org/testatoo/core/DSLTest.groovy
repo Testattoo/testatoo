@@ -22,15 +22,15 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.Checkbox
 import org.testatoo.core.ComponentException
-import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.Panel
-import org.testatoo.bundle.html5.components.input.EmailField
-import org.testatoo.bundle.html5.components.input.PasswordField
-import org.testatoo.bundle.html5.components.input.TextField
-import org.testatoo.bundle.html5.components.list.Dropdown
-import org.testatoo.bundle.html5.components.list.ListBox
+import org.testatoo.bundle.html5.Form
+import org.testatoo.bundle.html5.Panel
+import org.testatoo.bundle.html5.input.EmailField
+import org.testatoo.bundle.html5.input.PasswordField
+import org.testatoo.bundle.html5.input.TextField
+import org.testatoo.bundle.html5.list.Dropdown
+import org.testatoo.bundle.html5.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 

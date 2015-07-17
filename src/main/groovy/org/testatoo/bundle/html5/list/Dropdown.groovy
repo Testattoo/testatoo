@@ -13,20 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.bundle.html5.list
 
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.ByJs
+import org.testatoo.core.Component
+import org.testatoo.core.property.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItems extends Property {
+@ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
+class Dropdown extends Component {
 
-    SelectedItems() {
-        evaluator { it.find("option:selected", Item) }
+    Dropdown() {
+        support Label, GroupItemsSize, SelectedItems
+        support Size, { it.eval("it.find('option').length") as int }
+
+        support Items, {
+            find("option", Item)
+        }
+        support GroupItems, {
+            find("optgroup", GroupItem)
+        }
     }
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
+    List<Item> getItems() {
+        find("option", Item)
+    }
+
+    List<GroupItem> getGroupItems() {
+        find("optgroup", GroupItem)
+    }
+
 }

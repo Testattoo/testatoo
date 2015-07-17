@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.bundle.html5
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -21,50 +21,41 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Button
+import org.testatoo.bundle.html5.list.ListView
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class WaitTest {
+class ListViewTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/wait.html'
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { Testatoo.evaluator.close() }
 
     @Test
-    public void should_be_able_to_wait_on_condition() {
-        Button button = $('#add-message') as Button
-        Button message = $('#msg') as Button
+    public void should_have_expected_behaviours() {
+        ListView listView = $('#list_view') as ListView
 
-        button.should {
-            be enabled and be(visible)
-        }
+        listView.should { be States.enabled }
+        listView.should { be States.visible }
 
-        message.should { be missing }
+        listView.should { have size(5) }
+        assert listView.items.size == 5
+        listView.should { have 5.items }
 
-        click_on button
-        button.should { be disabled }
-
-        waitUntil 10.seconds, {
-            button.is(enabled)
-        }
-
-        click_on button
-        waitUntil {
-            button.is(enabled) or message.is(visible)
-        }
+        listView.should { have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5') }
+        listView.items[0].should { have value('Item 1') }
     }
 }
-

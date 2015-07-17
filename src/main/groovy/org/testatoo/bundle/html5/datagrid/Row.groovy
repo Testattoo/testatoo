@@ -13,20 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.bundle.html5.datagrid
 
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
+import org.testatoo.core.property.Size
+import org.testatoo.core.property.Title
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItems extends Property {
+@ByCss('tr')
+class Row extends Component {
 
-    SelectedItems() {
-        evaluator { it.find("option:selected", Item) }
+    Row() {
+        support Title, "it.find('th:first').text().trim()"
+        support Size, { it.eval("it.find('td').length") as int }
     }
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
+    List<Cell> getCells() {
+        this.evaluator.getMetaInfo("\$('#${id}').find('td')").collect { it as Cell }
+    }
 }

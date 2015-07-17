@@ -13,20 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.bundle.html5
 
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
+import org.testatoo.core.property.Label
+import org.testatoo.core.state.Checked
+import org.testatoo.core.state.Unchecked
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class SelectedItems extends Property {
+@ByCss('input[type=radio]')
+class Radio extends Component {
 
-    SelectedItems() {
-        evaluator { it.find("option:selected", Item) }
+    Radio() {
+        support Label, Checked, Unchecked
     }
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
 }

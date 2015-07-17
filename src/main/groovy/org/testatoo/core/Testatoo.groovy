@@ -17,9 +17,9 @@ package org.testatoo.core
 
 import com.google.common.reflect.ClassPath
 import groovy.time.TimeDuration
-import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.bundle.html5.components.input.Input
+import org.testatoo.bundle.html5.Form
+import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.input.Input
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked
