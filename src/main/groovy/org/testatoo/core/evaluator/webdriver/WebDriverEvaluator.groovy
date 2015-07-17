@@ -169,11 +169,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (mouseModifierses.containsAll([LEFT, SINGLE])) {
+        if (mouseModifierses.containsAll([MouseModifiers.LEFT, SINGLE])) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (mouseModifierses.containsAll([RIGHT, SINGLE])) {
+        } else if (mouseModifierses.containsAll([MouseModifiers.RIGHT, SINGLE])) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (mouseModifierses.containsAll([LEFT, DOUBLE])) {
+        } else if (mouseModifierses.containsAll([MouseModifiers.LEFT, DOUBLE])) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')
