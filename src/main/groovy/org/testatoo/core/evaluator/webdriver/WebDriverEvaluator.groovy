@@ -22,6 +22,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.Testatoo
+import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 
@@ -156,7 +157,8 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void click(String id, MouseModifiers button = MouseModifiers.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
+    // void click(String id, MouseModifiers button = MouseModifiers.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
+    void click(String id, Collection<MouseModifiers> mouseModifierses, Collection<?> keys)
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []

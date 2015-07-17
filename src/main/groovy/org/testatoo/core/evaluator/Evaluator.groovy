@@ -16,19 +16,18 @@
 package org.testatoo.core.evaluator
 
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.action.MouseModifiers
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 public interface Evaluator extends AutoCloseable {
 
-    static enum MouseClick { SINGLE, DOUBLE }
-
     Object getImplementation()
 
     void open(String url)
 
-    void  runScript(String script)
+    void runScript(String script)
 
     void registerScripts(String... scripts)
 
@@ -64,9 +63,8 @@ public interface Evaluator extends AutoCloseable {
 
     void enter(Collection<?> keys)
 
-    void click(String id, MouseButton button, MouseClick click, Collection<?> keys)
-    void click(String id, MouseButton button, MouseClick click)
-    void click(String id, MouseButton button)
+    void click(String id, Collection<MouseModifiers> mouseModifierses, Collection<?> keys)
+
     void click(String id)
 
     void mouseOver(String id)

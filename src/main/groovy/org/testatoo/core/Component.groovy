@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import org.testatoo.core.action.Action
+import org.testatoo.core.action.MouseClick
 import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.Property
@@ -39,6 +40,7 @@ class Component implements Clickable {
 
     Component() {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
+        support MouseClick
     }
 
     Component(Evaluator evaluator, IdProvider idProvider) {

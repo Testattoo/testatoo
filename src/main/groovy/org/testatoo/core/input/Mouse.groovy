@@ -29,7 +29,7 @@ class Mouse {
         c.click()
     }
 
-    static void double_click_on(Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.LEFT, Evaluator.MouseClick.DOUBLE, []) }
+    static void double_click_on(Component c) { c.doubleClick() }
 
     static void right_click_on(Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.RIGHT, Evaluator.MouseClick.SINGLE, []) }
 

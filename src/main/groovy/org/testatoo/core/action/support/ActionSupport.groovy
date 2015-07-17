@@ -5,6 +5,6 @@ import org.testatoo.core.action.Action
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-interface ActionExecutor {
+interface ActionSupport {
     void execute(Action action)
 }
