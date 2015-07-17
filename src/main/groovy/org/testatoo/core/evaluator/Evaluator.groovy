@@ -22,7 +22,6 @@ import org.testatoo.core.MetaInfo
  */
 public interface Evaluator extends AutoCloseable {
 
-    static enum MouseButton { LEFT, RIGHT }
     static enum MouseClick { SINGLE, DOUBLE }
 
     Object getImplementation()

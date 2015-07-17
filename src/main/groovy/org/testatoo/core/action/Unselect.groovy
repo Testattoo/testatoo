@@ -15,7 +15,14 @@
  */
 package org.testatoo.core.action
 
+import org.testatoo.core.Component
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Unselect implements Action {}
+class Unselect implements Action {
+    @Override
+    void execute(Component c) {
+
+    }
+}

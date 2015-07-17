@@ -15,6 +15,8 @@
  */
 package org.testatoo.core
 
+import org.testatoo.core.action.Action
+import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
@@ -24,13 +26,14 @@ import org.testatoo.core.state.*
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Component {
+class Component implements Clickable {
 
     private static final PropertyEvaluator DEFAULT_PE = {} as PropertyEvaluator
     private static final StateEvaluator DEFAULT_SE = {} as StateEvaluator
 
     private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
     private Map<Class<? extends State>, StateEvaluator> _supportedStates = new IdentityHashMap<>()
+    private Set<Class<? extends Action>> _supportedActions = new HashSet<>()
 
     CachedMetaData meta = new CachedMetaData()
 
@@ -148,6 +151,10 @@ class Component {
         _supportedProperties.put(type, e)
     }
 
+    void support(Class<? extends Action>... types) {
+        types.each { _supportedActions.add(it) }
+    }
+
     void support(Class<? extends State> type, StateEvaluator e) {
         _supportedStates.put(type, e)
     }
@@ -179,6 +186,17 @@ class Component {
             throw new ComponentException("Component ${this} does not support state ${clazz.simpleName}")
         }
         return (se == DEFAULT_SE ? clazz.newInstance().evaluator : se).getState(this)
+    }
+
+    void execute(Action action) {
+        Class<?> c = action.getClass()
+        while (c != Object) {
+            if (_supportedActions.contains(c)) {
+                action.execute(this)
+                return
+            }
+        }
+        throw new ComponentException("Unsupported action '${action.class.simpleName}' on component ${this}")
     }
 
     static class CachedMetaData {

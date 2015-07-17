@@ -23,7 +23,6 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.core.ComponentException
 import org.testatoo.bundle.html5.Form
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.input.EmailField
@@ -34,7 +33,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.Key.ALT
+import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -119,7 +119,7 @@ class ErrorTest {
         }
 
         try {
-            evaluator.click('form', Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.DOUBLE)
+            evaluator.click('form', MouseModifiers.RIGHT, Evaluator.MouseClick.DOUBLE)
             fail()
         } catch (IllegalArgumentException e) {
             assert e.message == 'Invalid click sequence'

@@ -20,6 +20,9 @@ import org.testatoo.core.Component
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface Action {
-    void execute(Component c)
+class Click implements Action {
+    @Override
+    void execute(Component c) {
+
+    }
 }

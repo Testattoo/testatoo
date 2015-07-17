@@ -156,7 +156,7 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void click(String id, Evaluator.MouseButton button = Evaluator.MouseButton.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
+    void click(String id, MouseModifiers button = MouseModifiers.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -167,11 +167,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (button == Evaluator.MouseButton.LEFT && click == Evaluator.MouseClick.SINGLE) {
+        if (button == MouseModifiers.LEFT && click == Evaluator.MouseClick.SINGLE) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (button == Evaluator.MouseButton.RIGHT && click == Evaluator.MouseClick.SINGLE) {
+        } else if (button == MouseModifiers.RIGHT && click == Evaluator.MouseClick.SINGLE) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (button == Evaluator.MouseButton.LEFT && click == Evaluator.MouseClick.DOUBLE) {
+        } else if (button == MouseModifiers.LEFT && click == Evaluator.MouseClick.DOUBLE) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')

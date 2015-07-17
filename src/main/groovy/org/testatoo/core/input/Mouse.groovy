@@ -15,8 +15,9 @@
  */
 package org.testatoo.core.input
 
-import org.testatoo.core.Testatoo
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
+import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.Evaluator
 
 /**
@@ -24,11 +25,13 @@ import org.testatoo.core.evaluator.Evaluator
  */
 class Mouse {
 
-    static void click_on(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, []) }
+    static void click_on(Component c) {
+        c.click()
+    }
 
-    static void double_click_on(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.DOUBLE, []) }
+    static void double_click_on(Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.LEFT, Evaluator.MouseClick.DOUBLE, []) }
 
-    static void right_click_on(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, []) }
+    static void right_click_on(Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.RIGHT, Evaluator.MouseClick.SINGLE, []) }
 
     static void hovering_mouse_on(Component c) { Testatoo.evaluator.mouseOver(c.id) }
 

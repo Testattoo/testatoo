@@ -15,7 +15,14 @@
  */
 package org.testatoo.core.action
 
+import org.testatoo.core.Component
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Select implements Action {}
+class Select implements Action {
+    @Override
+    void execute(Component c) {
+
+    }
+}

@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import groovy.time.TimeDuration
+import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 import org.testatoo.core.property.Properties
@@ -32,8 +33,8 @@ class TestatooExtensions {
     static void click(Key key, Component c) { click([key], c) }
     static void rightClick(Key key, Component c) { rightClick([key], c) }
 
-    static void click(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, keys) }
-    static void rightClick(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, keys) }
+    static void click(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.LEFT, Evaluator.MouseClick.SINGLE, keys) }
+    static void rightClick(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.RIGHT, Evaluator.MouseClick.SINGLE, keys) }
 
     // TODO never used !!!!
     static boolean asBoolean(Block block) {

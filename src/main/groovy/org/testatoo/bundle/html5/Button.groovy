@@ -17,13 +17,14 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.property.Text
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
-class Button extends Component {
+class Button extends Component implements Clickable {
 
     Button() {
         support Text, "it.is('input') ? it.val() : it.text().trim()"
