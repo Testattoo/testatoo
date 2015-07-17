@@ -18,6 +18,7 @@ package org.testatoo.core
 import org.testatoo.core.action.Action
 import org.testatoo.core.action.MouseClick
 import org.testatoo.core.action.support.Clickable
+import org.testatoo.core.action.support.Draggable
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
@@ -27,7 +28,7 @@ import org.testatoo.core.state.*
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Component implements Clickable {
+class Component implements Clickable, Draggable {
 
     private static final PropertyEvaluator DEFAULT_PE = {} as PropertyEvaluator
     private static final StateEvaluator DEFAULT_SE = {} as StateEvaluator
