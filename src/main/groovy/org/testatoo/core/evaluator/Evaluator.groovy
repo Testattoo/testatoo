@@ -63,7 +63,9 @@ public interface Evaluator extends AutoCloseable {
 
     void enter(Collection<?> keys)
 
-    void click(String id, Collection<MouseModifiers> mouseModifierses, Collection<?> keys)
+    void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
+
+    void click(String id, Collection<MouseModifiers> click)
 
     void click(String id)
 

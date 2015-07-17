@@ -28,7 +28,7 @@ import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
@@ -119,7 +119,7 @@ class ErrorTest {
         }
 
         try {
-            evaluator.click('form', MouseModifiers.RIGHT, Evaluator.MouseClick.DOUBLE)
+            evaluator.click('form', [MouseModifiers.RIGHT, MouseModifiers.DOUBLE])
             fail()
         } catch (IllegalArgumentException e) {
             assert e.message == 'Invalid click sequence'

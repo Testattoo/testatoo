@@ -11,7 +11,7 @@ class MouseClick implements Action {
     final Collection<MouseModifiers> mouseModifiers
     final Collection<Key> keyModifiers
 
-    MouseClick(Collection<MouseModifiers> mouseModifiers = [], Collection<Key> keyModifiers = []) {
+    MouseClick(Collection<MouseModifiers> mouseModifiers = [MouseModifiers.LEFT, MouseModifiers.SINGLE], Collection<Key> keyModifiers = []) {
         this.mouseModifiers = mouseModifiers
         this.keyModifiers = keyModifiers
     }

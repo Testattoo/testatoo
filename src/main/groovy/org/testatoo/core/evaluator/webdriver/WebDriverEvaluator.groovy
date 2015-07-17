@@ -26,6 +26,8 @@ import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
 
+import static org.testatoo.core.action.MouseModifiers.DOUBLE
+import static org.testatoo.core.action.MouseModifiers.SINGLE
 import static org.testatoo.core.input.Key.*
 
 /**
@@ -36,7 +38,6 @@ class WebDriverEvaluator implements Evaluator {
     private final WebDriver webDriver
     private final JavascriptExecutor js
     private final List<String> registeredScripts = new ArrayList<>()
-    private final String MODULE_EXTENSION_FILE = 'testatoo-ext.js'
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -71,7 +72,7 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     void runScript(String script) {
-        js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/ , 'testatoo') : script);
+        js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/, 'testatoo') : script);
     }
 
     @Override
@@ -134,8 +135,8 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
             new MetaInfo(
-                    id: it.id,
-                    node: it.node
+                id: it.id,
+                node: it.node
             )
         }
     }
@@ -151,14 +152,13 @@ class WebDriverEvaluator implements Evaluator {
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
-        text.each { it instanceof  Key ? action.sendKeys(KeyConverter.convert(it)) :  action.sendKeys(it)}
+        text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
         action.build().perform();
     }
 
     @Override
-    // void click(String id, MouseModifiers button = MouseModifiers.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
-    void click(String id, Collection<MouseModifiers> mouseModifierses, Collection<?> keys)
+    void click(String id, Collection<MouseModifiers> mouseModifierses = [MouseModifiers.LEFT], Collection<?> keys = []) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -169,11 +169,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (button == MouseModifiers.LEFT && click == Evaluator.MouseClick.SINGLE) {
+        if (mouseModifierses.containsAll([LEFT, SINGLE])) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (button == MouseModifiers.RIGHT && click == Evaluator.MouseClick.SINGLE) {
+        } else if (mouseModifierses.containsAll([RIGHT, SINGLE])) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (button == MouseModifiers.LEFT && click == Evaluator.MouseClick.DOUBLE) {
+        } else if (mouseModifierses.containsAll([LEFT, DOUBLE])) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')
@@ -197,7 +197,9 @@ class WebDriverEvaluator implements Evaluator {
 
     private String execute(String id, String s) {
         String element = ''
-        if (id) { element = "var it = el = \$('#${id}');" }
+        if (id) {
+            element = "var it = el = \$('#${id}');"
+        }
 
         String expr = """
         return (function(\$, jQuery, testatoo) {
@@ -209,17 +211,19 @@ class WebDriverEvaluator implements Evaluator {
             }
         }(window.testatoo, window.testatoo, window.testatoo));"""
 
-        if(Testatoo.debug) { println expr }
+        if (Testatoo.debug) {
+            println expr
+        }
 
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
-                    + getClass().getResource("testatoo.js").text)
+                + getClass().getResource("testatoo.js").text)
 
             List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
             resources.each { js.executeScript(it.text) }
 
-            registeredScripts.collect { js.executeScript(it)  }
+            registeredScripts.collect { js.executeScript(it) }
 
             v = js.executeScript(expr)
         }
