@@ -25,13 +25,11 @@ import org.testatoo.core.evaluator.Evaluator
  */
 class Mouse {
 
-    static void click_on(Component c) {
-        c.click()
-    }
+    static void click_on(Component c) { c.click() }
 
     static void double_click_on(Component c) { c.doubleClick() }
 
-    static void right_click_on(Component c) { Testatoo.evaluator.click(c.id, MouseModifiers.RIGHT, Evaluator.MouseClick.SINGLE, []) }
+    static void right_click_on(Component c) { c.rightClick() }
 
     static void hovering_mouse_on(Component c) { Testatoo.evaluator.mouseOver(c.id) }
 
