@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo
+package org.testatoo.core
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -37,7 +37,7 @@ class ConfigTest {
     public void can_obtain_the_underline_implementation() {
         try {
             WebDriver driver = new FirefoxDriver();
-            evaluator = new WebDriverEvaluator(driver)
+            Testatoo.evaluator = new WebDriverEvaluator(driver)
 
             assert evaluator.implementation instanceof WebDriver
             assert evaluator.implementation == driver
@@ -50,7 +50,7 @@ class ConfigTest {
     public void can_register_a_script() {
         try {
             WebDriver driver = new FirefoxDriver();
-            evaluator = new WebDriverEvaluator(driver)
+            Testatoo.evaluator = new WebDriverEvaluator(driver)
 
             open 'http://localhost:8080/dsl.html'
 
