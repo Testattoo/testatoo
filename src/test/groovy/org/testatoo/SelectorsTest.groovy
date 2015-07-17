@@ -24,7 +24,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.Components
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.ComponentException
+import org.testatoo.core.ComponentException
 import org.testatoo.bundle.html5.components.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 

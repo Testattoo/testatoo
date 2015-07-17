@@ -15,15 +15,15 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.IdentifiedByCss
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Size
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('ul,ol')
+@ByCss('ul,ol')
 class ListView extends Component {
 
     ListView() {

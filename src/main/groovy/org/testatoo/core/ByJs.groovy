@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components
+package org.testatoo.core
 
-public class ComponentException extends RuntimeException {
+import java.lang.annotation.ElementType
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
+import java.lang.annotation.Target
 
-    /**
-     * Constructs a new exception with the specified detail message.
-     * @param message the message that will be displayed in the exception
-     */
-    public ComponentException(String message) {
-        super(message)
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Identifier
+@interface ByJs {
+    String value()
 }

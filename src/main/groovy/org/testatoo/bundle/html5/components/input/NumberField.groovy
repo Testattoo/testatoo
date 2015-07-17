@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.input
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
 import org.testatoo.core.property.Maximum
 import org.testatoo.core.property.Minimum
 import org.testatoo.core.property.Step
@@ -23,7 +23,7 @@ import org.testatoo.core.property.Step
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('input[type=number]')
+@ByCss('input[type=number]')
 class NumberField extends TextField {
 
     NumberField() {

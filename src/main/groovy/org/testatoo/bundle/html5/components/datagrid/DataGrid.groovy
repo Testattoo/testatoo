@@ -15,15 +15,15 @@
  */
 package org.testatoo.bundle.html5.components.datagrid
 
-import org.testatoo.core.IdentifiedByCss
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.ColumnSize
 import org.testatoo.core.property.Size
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('table')
+@ByCss('table')
 class DataGrid extends Component {
 
     DataGrid() {

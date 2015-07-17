@@ -21,6 +21,6 @@ import java.lang.annotation.*
 @Target(ElementType.TYPE)
 @Inherited
 @Identifier
-@interface IdentifiedByCss {
+@interface ByCss {
     String value()
 }

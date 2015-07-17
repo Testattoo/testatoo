@@ -15,10 +15,10 @@
  */
 package org.testatoo.bundle.html5.components.input
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@IdentifiedByCss('textarea,input[type=text]')
+@ByCss('textarea,input[type=text]')
 class TextField extends Input {}

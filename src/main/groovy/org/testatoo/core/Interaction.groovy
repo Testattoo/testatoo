@@ -15,8 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.bundle.html5.components.Component
-import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.bundle.html5.components.input.Input
 import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.state.Disabled

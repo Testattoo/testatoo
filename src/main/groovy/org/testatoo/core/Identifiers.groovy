@@ -15,8 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.bundle.html5.components.ComponentException
-
 import java.lang.annotation.Annotation
 
 /**
@@ -25,8 +23,8 @@ import java.lang.annotation.Annotation
 class Identifiers {
 
     static Map factories = [
-        (IdentifiedByJs): { IdentifiedByJs annotation -> return annotation.value() },
-        (IdentifiedByCss): { IdentifiedByCss annotation -> return "it.is('${annotation.value()}')" },
+        (ByJs): { ByJs annotation -> return annotation.value() },
+        (ByCss): { ByCss annotation -> return "it.is('${annotation.value()}')" },
     ]
 
     static boolean hasIdentifier(Class<?> c) {

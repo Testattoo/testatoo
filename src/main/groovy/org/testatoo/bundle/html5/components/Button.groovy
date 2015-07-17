@@ -15,13 +15,14 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.Text
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@IdentifiedByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
+@ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends Component {
 
     Button() {

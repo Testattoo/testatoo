@@ -15,7 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.bundle.html5.components.ComponentException
 import org.testatoo.core.evaluator.Evaluator
 
 /**

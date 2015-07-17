@@ -23,7 +23,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Checkbox
-import org.testatoo.bundle.html5.components.ComponentException
+import org.testatoo.core.ComponentException
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.input.EmailField

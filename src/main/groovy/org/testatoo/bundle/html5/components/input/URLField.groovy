@@ -15,10 +15,10 @@
  */
 package org.testatoo.bundle.html5.components.input
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('input[type=url]')
+@ByCss('input[type=url]')
 class URLField extends TextField {}

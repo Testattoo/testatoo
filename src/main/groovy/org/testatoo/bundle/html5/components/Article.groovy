@@ -15,13 +15,14 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.ParagraphSize
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('article')
+@ByCss('article')
 class Article extends Component {
 
     Article() {

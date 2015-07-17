@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components
+package org.testatoo.core
 
-import org.testatoo.core.*
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator

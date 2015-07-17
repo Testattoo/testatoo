@@ -21,8 +21,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.IdentifiedByCss
-import org.testatoo.core.IdentifiedByJs
+import org.testatoo.core.ByCss
+import org.testatoo.core.ByJs
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
@@ -128,9 +130,9 @@ class ComponentTest {
     static class CustomButton extends Button {}
     static class UnidentifiedComponent extends Component {}
 
-    @IdentifiedByJs("it.is('not_used')")
+    @ByJs("it.is('not_used')")
     static class BaseCustomComponent extends Component {}
 
-    @IdentifiedByCss('button')
+    @ByCss('button')
     static class CustomComponent extends BaseCustomComponent {}
 }

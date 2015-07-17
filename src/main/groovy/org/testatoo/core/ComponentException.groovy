@@ -15,14 +15,13 @@
  */
 package org.testatoo.core
 
-import java.lang.annotation.ElementType
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
-import java.lang.annotation.Target
+public class ComponentException extends RuntimeException {
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-@Identifier
-@interface IdentifiedByJs {
-    String value()
+    /**
+     * Constructs a new exception with the specified detail message.
+     * @param message the message that will be displayed in the exception
+     */
+    public ComponentException(String message) {
+        super(message)
+    }
 }

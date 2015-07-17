@@ -15,13 +15,14 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.Text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('h1,h2,h3,h4,h5,h6')
+@ByCss('h1,h2,h3,h4,h5,h6')
 class Heading extends Component {
 
     Heading() {

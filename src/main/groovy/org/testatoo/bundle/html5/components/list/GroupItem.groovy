@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.IdentifiedByCss
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.Items
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Size
@@ -25,7 +25,7 @@ import org.testatoo.core.property.Value
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('optgroup')
+@ByCss('optgroup')
 class GroupItem extends Component {
 
     GroupItem() {

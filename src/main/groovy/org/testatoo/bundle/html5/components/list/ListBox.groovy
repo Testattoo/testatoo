@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.IdentifiedByJs
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.ByJs
+import org.testatoo.core.Component
 import org.testatoo.core.property.*
 import org.testatoo.core.state.MultiSelectable
 import org.testatoo.core.state.SingleSelectable
@@ -24,7 +24,7 @@ import org.testatoo.core.state.SingleSelectable
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
+@ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
 class ListBox extends Component {
 
     ListBox() {

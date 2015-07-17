@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.IdentifiedByCss
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Disabled
@@ -27,7 +27,7 @@ import org.testatoo.core.state.Unselected
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('option,li')
+@ByCss('option,li')
 class Item extends Component {
 
     Item() {

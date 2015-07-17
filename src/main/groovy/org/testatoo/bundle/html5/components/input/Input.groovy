@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.input
 
-import org.testatoo.bundle.html5.components.Component
+import org.testatoo.core.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
 import org.testatoo.core.property.Value

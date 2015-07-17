@@ -15,7 +15,9 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.state.Available
 import org.testatoo.core.state.Invalid
 import org.testatoo.core.state.Valid
@@ -23,7 +25,7 @@ import org.testatoo.core.state.Valid
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@IdentifiedByCss('form')
+@ByCss('form')
 class Form extends Component {
 
     Form() {

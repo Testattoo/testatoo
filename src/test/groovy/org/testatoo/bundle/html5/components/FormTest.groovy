@@ -21,7 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
 import org.testatoo.bundle.html5.components.input.EmailField
 import org.testatoo.bundle.html5.components.input.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -103,7 +103,7 @@ class FormTest {
 
     }
 
-    @IdentifiedByCss('div')
+    @ByCss('div')
     class Message extends Panel {
         Message() {
             support Title, "it.text()"

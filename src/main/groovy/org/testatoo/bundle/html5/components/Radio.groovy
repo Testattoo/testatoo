@@ -15,7 +15,8 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.IdentifiedByCss
+import org.testatoo.core.ByCss
+import org.testatoo.core.Component
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Unchecked
@@ -23,7 +24,7 @@ import org.testatoo.core.state.Unchecked
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@IdentifiedByCss('input[type=radio]')
+@ByCss('input[type=radio]')
 class Radio extends Component {
 
     Radio() {
