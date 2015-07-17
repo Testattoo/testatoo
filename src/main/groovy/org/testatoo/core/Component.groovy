@@ -45,11 +45,11 @@ class Component implements Clickable, Draggable {
     }
 
     Component(Evaluator evaluator, IdProvider idProvider) {
+        this()
         meta = new CachedMetaData(
             evaluator: evaluator,
             idProvider: idProvider
         )
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
     }
 
     String eval(String jqueryExpr) { return evaluator.eval(getId(), jqueryExpr) }
