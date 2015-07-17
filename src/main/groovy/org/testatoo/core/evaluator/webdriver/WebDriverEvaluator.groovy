@@ -219,12 +219,7 @@ class WebDriverEvaluator implements Evaluator {
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
                 + getClass().getResource("testatoo.js").text)
-
-            List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
-            resources.each { js.executeScript(it.text) }
-
-            registeredScripts.collect { js.executeScript(it) }
-
+            registeredScripts.each { js.executeScript(it) }
             v = js.executeScript(expr)
         }
         return v == 'null' || v == 'undefined' ? null : v
