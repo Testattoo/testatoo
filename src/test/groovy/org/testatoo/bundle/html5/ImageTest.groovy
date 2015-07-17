@@ -21,13 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Properties
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,20 +35,20 @@ class ImageTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
         Image image = $('#image') as Image
-        image.should { be States.enabled }
-        image.should { be States.visible }
+        image.should { be enabled }
+        image.should { be visible }
 
         image.should { have source('http://localhost:8080/img/Montpellier.jpg') }
-        image.should { have Properties.source.containing('Montpellier') }
+        image.should { have source.containing('Montpellier') }
     }
 }

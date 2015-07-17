@@ -25,12 +25,11 @@ import org.testatoo.bundle.html5.datagrid.Cell
 import org.testatoo.bundle.html5.datagrid.Column
 import org.testatoo.bundle.html5.datagrid.DataGrid
 import org.testatoo.bundle.html5.datagrid.Row
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,20 +39,20 @@ class DataGridTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.debug = true
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        debug = true
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
         DataGrid data_grid = $('#data_grid') as DataGrid
 
-        data_grid.should { be States.enabled }
-        data_grid.should { be States.visible }
+        data_grid.should { be enabled }
+        data_grid.should { be visible }
 
         data_grid.should { have 4.columns }
         assert data_grid.columns.size == 4

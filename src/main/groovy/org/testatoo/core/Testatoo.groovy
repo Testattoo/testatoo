@@ -76,8 +76,8 @@ class Testatoo {
         return new Browser(evaluator)
     }
 
-    static Interaction on(Component c) {
-        return new Interaction(c)
+    static Component on(Component c) {
+        return c
     }
 
     static Form reset(Form form) {

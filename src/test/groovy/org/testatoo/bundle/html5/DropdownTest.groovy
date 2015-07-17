@@ -23,14 +23,12 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.bundle.html5.list.GroupItem
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Properties
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,35 +38,35 @@ class DropdownTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
     public void should_have_expected_behaviours() {
         Dropdown dropdown = $('#elements') as Dropdown
 
-        dropdown.should { be States.enabled }
-        dropdown.should { be States.visible }
+        dropdown.should { be enabled }
+        dropdown.should { be visible }
 
         dropdown.should { have label('Elements list') }
         dropdown.should { have size(5) }
-        dropdown.should { have Properties.items.equalsTo('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
+        dropdown.should { have items.equalsTo('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
         dropdown.should { have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
 
-        dropdown.should { have Properties.items.containing('Polonium', 'Calcium') }
+        dropdown.should { have items.containing('Polonium', 'Calcium') }
 
         dropdown.should { have selectedItems('Helium') }
-        dropdown.items[2].should { be States.unselected }
+        dropdown.items[2].should { be unselected }
 
         click_on dropdown.items[2]
 
         dropdown.should { have selectedItems('Polonium') }
-        dropdown.items[2].should { be States.selected }
+        dropdown.items[2].should { be selected }
 
         assert dropdown.items.size == 5
         dropdown.should { have 5.items }
@@ -82,12 +80,12 @@ class DropdownTest {
         click_on dropdown.items[4]
 
         dropdown.should { have selectedItems('Radium') }
-        dropdown.items[4].should { be States.selected }
+        dropdown.items[4].should { be selected }
 
         dropdown = $('#countries') as Dropdown
-        dropdown.should { be States.disabled }
+        dropdown.should { be disabled }
         dropdown.should { have items('Canada', 'France', 'Spain') }
-        dropdown.items[0].should { be States.disabled }
+        dropdown.items[0].should { be disabled }
 
         dropdown = $('#os') as Dropdown
         dropdown.should { have 8.items }
@@ -95,7 +93,7 @@ class DropdownTest {
 
         dropdown.should { have 3.groupItems }
         dropdown.should { have groupItems('linux', 'win32', 'BSD') }
-        dropdown.should { have Properties.groupItems.containing('linux') }
+        dropdown.should { have groupItems.containing('linux') }
 
         GroupItem group = dropdown.groupItems[0]
         group.should { have label('linux') }

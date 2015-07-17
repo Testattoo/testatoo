@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo
+package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.Before
@@ -23,7 +23,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.core.ComponentException
 import org.testatoo.bundle.html5.Form
 import org.testatoo.bundle.html5.Panel
 import org.testatoo.bundle.html5.input.EmailField

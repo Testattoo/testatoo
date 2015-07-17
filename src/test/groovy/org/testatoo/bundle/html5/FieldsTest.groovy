@@ -21,7 +21,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.input.*
 import org.testatoo.bundle.html5.input.ColorField
 import org.testatoo.bundle.html5.input.DateField
 import org.testatoo.bundle.html5.input.DateTimeField
@@ -36,15 +35,13 @@ import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.bundle.html5.input.TimeField
 import org.testatoo.bundle.html5.input.URLField
 import org.testatoo.bundle.html5.input.WeekField
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Properties
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -54,12 +51,12 @@ class FieldsTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     // TODO add states : read-only and read-write out-of-range
 
@@ -68,104 +65,100 @@ class FieldsTest {
         // Text field
         TextField textField = $('#text_field') as TextField
 
-        textField.should { be States.enabled }
-        textField.should { be States.visible }
-        textField.should { be States.optional }
+        textField.should { be enabled }
+        textField.should { be visible }
+        textField.should { be optional }
 
         textField.should { have label('Text') }
-        textField.should { have Properties.label.containing('xt') }
+        textField.should { have label.containing('xt') }
 
         textField.should { have placeholder('Text') }
-        textField.should { have Properties.placeholder.containing('xt') }
-        textField.should { be States.empty }
+        textField.should { have placeholder.containing('xt') }
+        textField.should { be empty }
 
         click_on textField
         type 'some value'
 
         textField.should { have value('some value') }
-        textField.should { have Properties.value.containing('value') }
-        textField.should { be States.filled }
+        textField.should { have value.containing('value') }
+        textField.should { be filled }
 
         textField.reset()
-        textField.should { be States.empty }
+        textField.should { be empty }
 
         // TextArea is treated as TextField
         textField = $('#text_area_field') as TextField
 
-        textField.should { be States.enabled }
-        textField.should { be States.visible }
+        textField.should { be enabled }
+        textField.should { be visible }
 
         PasswordField passwordField = $('#password_field') as PasswordField
 
-        passwordField.should { be States.enabled }
-        passwordField.should { be States.visible }
+        passwordField.should { be enabled }
+        passwordField.should { be visible }
 
         passwordField.should { have label('Password') }
         passwordField.should { have value('?art') }
 
         EmailField emailField = $('#email_field') as EmailField
-        emailField.should { be States.disabled }
+        emailField.should { be disabled }
 
         PhoneField phoneField = $('#phone_field') as PhoneField
         phoneField.should {
             have pattern('^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$')
-            be States.enabled
-            be States.invalid
+            be enabled
+            be invalid
         }
 
         click_on phoneField
         type 'bad phone number'
-        phoneField.should {
-            be States.invalid
-        }
+        phoneField.should { be invalid }
 
         phoneField.reset()
 
         click_on phoneField
         type '5146666666'
-        phoneField.should {
-            be States.valid
-        }
+        phoneField.should { be valid }
 
         URLField urlField = $('#url_field') as URLField
-        urlField.should { be States.enabled }
+        urlField.should { be enabled }
 
         SearchField searchField = $('#search_field') as SearchField
-        searchField.should { be States.enabled }
+        searchField.should { be enabled }
 
         NumberField numberField = $('#number_field') as NumberField
-        numberField.should { be States.enabled }
+        numberField.should { be enabled }
         numberField.should { have minimun(0) }
         numberField.should { have maximum(64) }
         numberField.should { have step(8) }
 
         RangeField rangeField = $('#range_field') as RangeField
-        rangeField.should { be States.enabled }
+        rangeField.should { be enabled }
         rangeField.should { have minimun(0)}
         rangeField.should { have maximum(50) }
         rangeField.should { have step(5) }
 
         ColorField colorField = $('#color_field') as ColorField
-        colorField.should { be States.enabled }
-        colorField.should { be States.optional }
+        colorField.should { be enabled }
+        colorField.should { be optional }
 
         MonthField monthField = $('#month_field') as MonthField
-        monthField.should { be States.enabled }
-        monthField.should { be States.required }
+        monthField.should { be enabled }
+        monthField.should { be required }
 
         WeekField weekField = $('#week_field') as WeekField
-        weekField.should { be States.enabled }
+        weekField.should { be enabled }
 
         DateField dateField = $('#date_field') as DateField
-        dateField.should { be States.enabled }
+        dateField.should { be enabled }
         dateField.should { have minimun('2011-08-13') }
         dateField.should { have maximum('2012-06-25') }
 
         TimeField timeField = $('#time_field') as TimeField
-        timeField.should { be States.enabled }
+        timeField.should { be enabled }
 
         DateTimeField dateTimeField = $('#datetime_field') as DateTimeField
-        dateTimeField.should { be States.enabled }
+        dateTimeField.should { be enabled }
     }
 
 }

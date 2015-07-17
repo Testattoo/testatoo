@@ -34,6 +34,7 @@ import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,12 +44,12 @@ class FormTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/form.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
@@ -63,7 +64,7 @@ class FormTest {
 
         // Can submit a form
         message.should { have title('The form was submitted 0 time(s)') }
-        message.should { have Properties.title.containing('The form was submitted') }
+        message.should { have title.containing('The form was submitted') }
 
         click_on submit_button
         message.should { have title('The form was submitted 1 time(s)') }
@@ -86,23 +87,22 @@ class FormTest {
         email_field.should { have value('') }
         password_field.should { have value('') }
 
-        form.should { be States.valid }
+        form.should { be valid }
         // Field in error
         click_on email_field
         type 'bad email'
         click_on submit_button
 
-        email_field.should { be States.invalid }
-        form.should { be States.invalid }
+        email_field.should { be invalid }
+        form.should { be invalid }
 
         email_field.reset()
 
         click_on email_field
         type 'y@email.org'
         click_on submit_button
-        email_field.should { be States.valid }
-        form.should { be States.valid }
-
+        email_field.should { be valid }
+        form.should { be valid }
     }
 
     @ByCss('div')

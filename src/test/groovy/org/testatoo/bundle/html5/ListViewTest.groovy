@@ -28,6 +28,7 @@ import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,19 +38,19 @@ class ListViewTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
         ListView listView = $('#list_view') as ListView
 
-        listView.should { be States.enabled }
-        listView.should { be States.visible }
+        listView.should { be enabled }
+        listView.should { be visible }
 
         listView.should { have size(5) }
         assert listView.items.size == 5

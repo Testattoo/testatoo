@@ -23,13 +23,12 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.list.GroupItem
 import org.testatoo.bundle.html5.list.ListBox
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,13 +38,13 @@ class ListBoxTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.debug = true
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        debug = true
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
@@ -58,10 +57,10 @@ class ListBoxTest {
         listBox.should { have selectedItems('New York', 'Munich') }
 
         listBox.should { have 3.visibleItems }
-        listBox.should { be States.multiSelectable }
+        listBox.should { be multiSelectable }
 
-        listBox.items[0].should { be States.enabled }
-        listBox.items[1].should { be States.disabled }
+        listBox.items[0].should { be enabled }
+        listBox.items[1].should { be disabled }
 
         CTRL.click listBox.items[3]
         CTRL.click listBox.items[5]
@@ -72,7 +71,7 @@ class ListBoxTest {
         listBox.should { have selectedItems('Montreal', 'Montpellier') }
 
         listBox = $('#planets') as ListBox
-        listBox.should { be States.singleSelectable }
+        listBox.should { be singleSelectable }
 
         listBox.should { have groupItems('Cat-1', 'Cat-2') }
 

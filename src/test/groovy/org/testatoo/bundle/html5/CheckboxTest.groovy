@@ -21,13 +21,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,32 +36,32 @@ class CheckboxTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        evaluator = new WebDriverEvaluator(new FirefoxDriver())
         open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.evaluator.close() }
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void should_have_expected_behaviours() {
         Checkbox checkbox = $('#checkbox') as Checkbox
-        checkbox.should { be States.enabled }
-        checkbox.should { be States.visible }
+        checkbox.should { be enabled }
+        checkbox.should { be visible }
 
-        checkbox.should { be States.unchecked }
+        checkbox.should { be unchecked }
         checkbox.should { have label('Check me out') }
 
         check checkbox
-        checkbox.should { be States.checked }
+        checkbox.should { be checked }
 
         uncheck checkbox
-        checkbox.should { be States.unchecked }
+        checkbox.should { be unchecked }
 
         click_on checkbox
-        checkbox.should { be States.checked }
+        checkbox.should { be checked }
 
         click_on checkbox
-        checkbox.should { be States.unchecked }
+        checkbox.should { be unchecked }
     }
 }

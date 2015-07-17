@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components
+package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -25,8 +25,6 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Paragraph
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.Section
-import org.testatoo.core.Component
-import org.testatoo.core.ComponentException
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked
