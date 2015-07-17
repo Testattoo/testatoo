@@ -195,6 +195,8 @@ class Component implements Clickable, Draggable {
             if (_supportedActions.contains(c)) {
                 action.execute(this)
                 return
+            } else {
+                c = c.superclass
             }
         }
         throw new ComponentException("Unsupported action '${action.class.simpleName}' on component ${this}")
