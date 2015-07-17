@@ -95,9 +95,7 @@ class SelectorsTest {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button
             buttons.each {
-                it.should {
-                    be enabled
-                }
+                it.should { be enabled }
             }
         } catch (ComponentException e) {
             assert e.message.contains('Expected a Button')

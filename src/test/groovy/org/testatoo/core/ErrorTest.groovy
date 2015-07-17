@@ -101,9 +101,7 @@ class ErrorTest {
     public void exception_is_thrown_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button;
         try {
-            waitUntil 2.seconds, {
-                button.is(available)
-            }
+            waitUntil 2.seconds, { button.is(available) }
             fail()
         } catch (RuntimeException e) {
             assert e.message == "Unable to reach the condition within 2 seconds (Component defined by expression \$('#inexisting_button') not found.)"

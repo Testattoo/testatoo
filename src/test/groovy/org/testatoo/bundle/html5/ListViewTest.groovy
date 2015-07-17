@@ -22,9 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.list.ListView
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*

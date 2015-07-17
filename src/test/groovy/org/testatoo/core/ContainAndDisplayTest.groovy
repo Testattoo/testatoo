@@ -91,11 +91,7 @@ class ContainAndDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        panel.should {
-            display(
-                    visible_button
-            )
-        }
+        panel.should { display(visible_button) }
 
         try {
             panel.should {
@@ -110,11 +106,7 @@ class ContainAndDisplayTest {
 
         EmailField email_field = $('[type=email]') as EmailField
         try {
-            panel.should {
-                display(
-                        email_field
-                )
-            }
+            panel.should { display(email_field) }
         } catch (AssertionError e) {
             assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]" as String
         }

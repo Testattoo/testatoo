@@ -48,23 +48,17 @@ class WaitTest {
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
-        button.should {
-            be enabled and be(visible)
-        }
+        button.should { be enabled and be(visible) }
 
         message.should { be missing }
 
         click_on button
         button.should { be disabled }
 
-        waitUntil 10.seconds, {
-            button.is(enabled)
-        }
+        waitUntil 10.seconds, { button.is(enabled) }
 
         click_on button
-        waitUntil {
-            button.is(enabled) or message.is(visible)
-        }
+        waitUntil { button.is(enabled) or message.is(visible) }
     }
 }
 
