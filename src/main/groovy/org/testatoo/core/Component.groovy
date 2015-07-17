@@ -145,16 +145,14 @@ class Component implements Clickable {
                 support(type as Class<? extends Property>, DEFAULT_PE)
             } else if (State.isAssignableFrom(type)) {
                 support(type as Class<? extends State>, DEFAULT_SE)
+            } else if (Action.isAssignableFrom(type)) {
+                _supportedActions.add(type as Class<? extends Action>)
             }
         }
     }
 
     void support(Class<? extends Property> type, PropertyEvaluator e) {
         _supportedProperties.put(type, e)
-    }
-
-    void support(Class<? extends Action>... types) {
-        types.each { _supportedActions.add(it) }
     }
 
     void support(Class<? extends State> type, StateEvaluator e) {
