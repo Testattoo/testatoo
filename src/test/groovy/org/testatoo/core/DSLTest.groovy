@@ -188,12 +188,9 @@ class DSLTest {
         listBox.should { have 8.items or have(3.visibleItems) }
     }
 
-    // TODO OPTIONAL
-//    @IdentifiedByCss('div')
     class Message extends Panel {
         Message() {
             support Title, "it.text()"
         }
     }
-
 }

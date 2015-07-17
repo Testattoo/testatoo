@@ -25,8 +25,6 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Paragraph
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.Section
-import org.testatoo.core.ByCss
-import org.testatoo.core.ByJs
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -81,11 +79,6 @@ class ComponentTest {
     }
 
     @Test
-    public void low_level_identifier_is_used_if_not_available_on_top() {
-        // TODO
-    }
-
-    @Test
     public void on_bad_component_definition_an_error_it_thrown() {
         try {
             ($('#radio') as Button).should { be States.enabled }
@@ -133,10 +126,4 @@ class ComponentTest {
 
     static class CustomButton extends Button {}
     static class UnidentifiedComponent extends Component {}
-
-    @ByJs("it.is('not_used')")
-    static class BaseCustomComponent extends Component {}
-
-    @ByCss('button')
-    static class CustomComponent extends BaseCustomComponent {}
 }
