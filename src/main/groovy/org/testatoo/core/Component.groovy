@@ -41,7 +41,7 @@ class Component implements Clickable, Draggable {
 
     Component() {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
-        support MouseClick
+        support MouseClick, Draggable
     }
 
     Component(Evaluator evaluator, IdProvider idProvider) {
