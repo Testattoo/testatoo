@@ -41,7 +41,6 @@ class TestatooExtensions {
         c.execute(new MouseClick([MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys))
     }
 
-    // TODO never used !!!!
     static boolean asBoolean(Block block) {
         Blocks.run(block)
         return true

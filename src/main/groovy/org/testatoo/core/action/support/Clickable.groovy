@@ -7,14 +7,14 @@ import static org.testatoo.core.action.MouseModifiers.*
 
 trait Clickable implements ActionSupport {
     void click() {
-        this.execute(new MouseClick(Arrays.asList(LEFT, SINGLE), Collections.<Key> emptyList()))
+        this.execute(new MouseClick([LEFT, SINGLE]))
     }
 
     void rightClick() {
-        this.execute(new MouseClick(Arrays.asList(RIGHT, SINGLE), Collections.<Key> emptyList()))
+        this.execute(new MouseClick([RIGHT, SINGLE]))
     }
 
     void doubleClick() {
-        this.execute(new MouseClick(Arrays.asList(LEFT, DOUBLE), Collections.<Key> emptyList()))
+        this.execute(new MouseClick([LEFT, DOUBLE]))
     }
 }
