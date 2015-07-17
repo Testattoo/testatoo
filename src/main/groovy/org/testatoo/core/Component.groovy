@@ -17,6 +17,7 @@ package org.testatoo.core
 
 import org.testatoo.core.action.Action
 import org.testatoo.core.action.MouseClick
+import org.testatoo.core.action.MouseDrag
 import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.action.support.Draggable
 import org.testatoo.core.evaluator.Evaluator
@@ -41,7 +42,7 @@ class Component implements Clickable, Draggable {
 
     Component() {
         support Enabled, Disabled, Available, Missing, Hidden, Visible
-        support MouseClick, Draggable
+        support MouseClick, MouseDrag
     }
 
     Component(Evaluator evaluator, IdProvider idProvider) {
