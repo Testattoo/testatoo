@@ -53,7 +53,5 @@ class LinkTest {
         link.should { have reference.equalsTo('http://localhost:8080/components.html') }
         link.should { have reference('http://localhost:8080/components.html') }
         link.should { have reference.containing('component') }
-
-        // TODO  add state => visited
     }
 }
