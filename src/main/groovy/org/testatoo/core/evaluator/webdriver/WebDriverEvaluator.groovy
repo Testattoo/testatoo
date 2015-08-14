@@ -16,16 +16,18 @@
 package org.testatoo.core.evaluator.webdriver
 
 import groovy.json.JsonSlurper
-import org.openqa.selenium.*
+import org.openqa.selenium.By
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.action.Action
-import org.testatoo.core.component.Component
+import org.testatoo.core.Testatoo
+import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.Evaluator
 import org.testatoo.core.input.Key
-import org.testatoo.core.property.Property
-import org.testatoo.core.state.State
 
+import static org.testatoo.core.action.MouseModifiers.DOUBLE
+import static org.testatoo.core.action.MouseModifiers.SINGLE
 import static org.testatoo.core.input.Key.*
 
 /**
@@ -36,7 +38,6 @@ class WebDriverEvaluator implements Evaluator {
     private final WebDriver webDriver
     private final JavascriptExecutor js
     private final List<String> registeredScripts = new ArrayList<>()
-    private final String MODULE_EXTENSION_FILE = 'testatoo-ext.js'
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
@@ -51,35 +52,27 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     public <T> T getJson(String jQueryExpr) {
-        getString("JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
+        eval(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
     @Override
-    String getString(String jQueryExpr) { eval(jQueryExpr) }
-
-    @Override
-    String getProperty(Property property, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${property.class.simpleName.toLowerCase()}')")
+    String eval(String id, String jQueryExpr) {
+        execute(id, jQueryExpr)
     }
 
     @Override
-    String getState(State state, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${state.class.simpleName.toLowerCase()}')")
+    boolean getBool(String id, String jQueryExpr) {
+        Boolean.parseBoolean(eval(id, jQueryExpr))
     }
 
     @Override
-    void runAction(Action action, Component c) {
-        eval("testatoo.evaluate('${c.id}', '${c.cartridge}', '${c.type}', '${action.class.simpleName.toLowerCase()}')")
-    }
-
-    @Override
-    void triggerEvent(String event, Component c) {
-        runScript("\$('#${c.id}').trigger('${event}')");
+    void trigger(String id, String event) {
+        runScript("\$('#${id}').trigger('${event}')");
     }
 
     @Override
     void runScript(String script) {
-        js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/ , 'testatoo') : script);
+        js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/, 'testatoo') : script);
     }
 
     @Override
@@ -142,11 +135,8 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
             new MetaInfo(
-                    id: it.id,
-                    type: it.type,
-                    inherits: it.inherits,
-                    node: it.node,
-                    cartridge: it.cartridge
+                id: it.id,
+                node: it.node
             )
         }
     }
@@ -162,13 +152,13 @@ class WebDriverEvaluator implements Evaluator {
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
-        text.each { it instanceof  Key ? action.sendKeys(KeyConverter.convert(it)) :  action.sendKeys(it)}
+        text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
         action.build().perform();
     }
 
     @Override
-    void click(String id, Evaluator.MouseButton button = Evaluator.MouseButton.LEFT, Evaluator.MouseClick click = Evaluator.MouseClick.SINGLE, Collection<?> keys = []) {
+    void click(String id, Collection<MouseModifiers> mouseModifierses = [MouseModifiers.LEFT], Collection<?> keys = []) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -179,11 +169,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (button == Evaluator.MouseButton.LEFT && click == Evaluator.MouseClick.SINGLE) {
+        if (mouseModifierses.containsAll([MouseModifiers.LEFT, SINGLE])) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (button == Evaluator.MouseButton.RIGHT && click == Evaluator.MouseClick.SINGLE) {
+        } else if (mouseModifierses.containsAll([MouseModifiers.RIGHT, SINGLE])) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (button == Evaluator.MouseButton.LEFT && click == Evaluator.MouseClick.DOUBLE) {
+        } else if (mouseModifierses.containsAll([MouseModifiers.LEFT, DOUBLE])) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')
@@ -205,23 +195,31 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void close() throws Exception { webDriver.quit() }
 
-    private String eval(String s) {
-        String expr = """var _evaluate = function(\$, jQuery, testatoo) {
-            if(!jQuery) return '__TESTATOO_MISSING__';
-                else return ${removeTrailingChars(s)};
-            }; return _evaluate(window.testatoo, window.testatoo, window.testatoo);"""
+    private String execute(String id, String s) {
+        String element = ''
+        if (id) {
+            element = "var it = el = \$('#${id}');"
+        }
+
+        String expr = """
+        return (function(\$, jQuery, testatoo) {
+            if(!jQuery) {
+                return '__TESTATOO_MISSING__';
+            } else {
+                $element
+                return ${removeTrailingChars(s)};
+            }
+        }(window.testatoo, window.testatoo, window.testatoo));"""
+
+        if (Testatoo.debug) {
+            println expr
+        }
 
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
-                    + getClass().getResource("testatoo.js").text
-                    + getClass().getResource("html5-cartridge.js").text)
-
-            List<URL> resources = this.class.classLoader.getResources(MODULE_EXTENSION_FILE).toList()
-            resources.each { js.executeScript(it.text) }
-
-            registeredScripts.collect { js.executeScript(it)  }
-
+                + getClass().getResource("testatoo.js").text)
+            registeredScripts.each { js.executeScript(it) }
             v = js.executeScript(expr)
         }
         return v == 'null' || v == 'undefined' ? null : v

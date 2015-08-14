@@ -16,12 +16,15 @@
 package org.testatoo.core
 
 import groovy.time.TimeDuration
-import org.testatoo.core.component.Component
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.bundle.html5.list.Item
+import org.testatoo.core.action.Fill
+import org.testatoo.core.action.MouseClick
+import org.testatoo.core.action.MouseModifiers
+import org.testatoo.core.action.Select
+import org.testatoo.core.action.Unselect
 import org.testatoo.core.input.Key
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
-import org.testatoo.core.state.State
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,13 +32,48 @@ import org.testatoo.core.state.State
 class TestatooExtensions {
 
     public static Collection<?> plus(Key a, Key b) { [a, b] }
-    public  static Collection<?> plus(Key a, String b) { [a, b] }
+
+    public static Collection<?> plus(Key a, String b) { [a, b] }
 
     static void click(Key key, Component c) { click([key], c) }
+
     static void rightClick(Key key, Component c) { rightClick([key], c) }
 
-    static void click(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, keys) }
-    static void rightClick(Collection<Key> keys, Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, keys) }
+    static void click(Collection<Key> keys, Component c) {
+        c.execute(new MouseClick([MouseModifiers.LEFT, MouseModifiers.SINGLE], keys))
+    }
+
+    static void rightClick(Collection<Key> keys, Component c) {
+        c.execute(new MouseClick([MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys))
+    }
+
+    static void select(Component c, String value) {
+        if (value)
+            c = c.items.find { it.value == value } as Item
+        c.execute(new Select())
+    }
+
+    static void select(Component c, Component selected) {
+        selected.execute(new Select())
+    }
+
+    static void unselect(Component c, String value) {
+        if (value)
+            c = c.items.find { it.value == value } as Item
+        c.execute(new Unselect())
+    }
+
+    static void unselect(Component c, Component selected) {
+        selected.execute(new Unselect())
+    }
+
+    static void enter(Component c, String value) {
+        c.execute(new Fill(value))
+    }
+
+    static void with(Component c, String value) {
+        c.execute(new Fill(value))
+    }
 
     static boolean asBoolean(Block block) {
         Blocks.run(block)

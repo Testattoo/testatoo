@@ -15,34 +15,33 @@
  */
 package org.testatoo.core.input
 
+import org.testatoo.core.Component
 import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Component
-import org.testatoo.core.evaluator.Evaluator
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Mouse {
 
-    static void clickOn(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.SINGLE, []) }
+    static void click_on(Component c) { c.click() }
 
-    static void doubleClickOn(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.LEFT, Evaluator.MouseClick.DOUBLE, []) }
+    static void double_click_on(Component c) { c.doubleClick() }
 
-    static void rightClickOn(Component c) { Testatoo.evaluator.click(c.id, Evaluator.MouseButton.RIGHT, Evaluator.MouseClick.SINGLE, []) }
+    static void right_click_on(Component c) { c.rightClick() }
 
-    static void hoveringMouseOn(Component c) { Testatoo.evaluator.mouseOver(c.id) }
+    static void hovering_mouse_on(Component c) { Testatoo.evaluator.mouseOver(c.id) }
 
-    static Dragger drag(Component c) { return new Dragger(c) }
+    static DragBuilder drag(Component c) { return new DragBuilder(c) }
 
-    public static class Dragger {
-        private Component from;
+    public static class DragBuilder {
+        private Component from
 
-        public Dragger(Component from) {
-            this.from = from;
+        public DragBuilder(Component from) {
+            this.from = from
         }
 
-        public void on(Component to) {
-            Testatoo.evaluator.dragAndDrop(from.id, to.id)
+        public void on(Component onto) {
+            from.drag(onto)
         }
     }
 

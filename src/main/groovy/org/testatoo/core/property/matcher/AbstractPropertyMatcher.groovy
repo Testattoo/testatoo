@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.property.matcher
 
-import org.testatoo.core.component.Component
+import org.testatoo.core.Component
 import org.testatoo.core.property.Property
 
 /**
@@ -30,7 +30,7 @@ abstract class AbstractPropertyMatcher implements PropertyMatcher {
     }
 
     @Override
-    final void matches(Component c) { doMatch(c, c.getValue(property)) }
+    final void matches(Component c) { doMatch(c, c.valueFor(property.class)) }
 
     abstract void doMatch(Component c, Object currentValue)
 }

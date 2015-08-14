@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
+import org.testatoo.core.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

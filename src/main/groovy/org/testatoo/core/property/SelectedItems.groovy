@@ -15,8 +15,7 @@
  */
 package org.testatoo.core.property
 
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.list.Item
+import org.testatoo.bundle.html5.list.Item
 import org.testatoo.core.property.matcher.EqualsToListMatcher
 
 /**
@@ -25,7 +24,7 @@ import org.testatoo.core.property.matcher.EqualsToListMatcher
 class SelectedItems extends Property {
 
     SelectedItems() {
-        evaluator { Component c -> c.evaluator.getMetaInfo("\$('#${c.id} option:selected')").collect { (it as Item).value } }
+        evaluator { it.find("option:selected", Item) }
     }
 
     @Delegate

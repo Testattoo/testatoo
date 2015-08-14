@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Hidden extends State {
     Hidden() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
+        check "it.is(':hidden')"
         description e: 'hidden', w: 'visible'
     }
 }

@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 package org.testatoo.core.state
-
-import org.testatoo.core.component.Component
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Unselected extends State {
 
     Unselected() {
-        evaluator { Component c -> Boolean.valueOf(c.evaluator.getState(this, c)) }
+        check "!it.prop('selected')"
         description e: 'unselected', w: 'selected'
     }
 

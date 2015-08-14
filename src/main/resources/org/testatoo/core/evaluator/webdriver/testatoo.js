@@ -21,35 +21,6 @@
     $ = w.testatoo,
     webkit = !!window.webkitRequestAnimationFrame;
 
-  var cartridges = [];
-
-  $.registerCartridge = function(cartridge) {
-    cartridges.push(cartridge);
-  };
-
-  $.getCartridge = function(name) {
-    var selected = {};
-    cartridges.forEach(function(cartridge) {
-      cartridge.name === name ? selected = cartridge : {};
-    });
-    return selected;
-  };
-
-  function getInfo(el) {
-    var info = { cartridge: 'html5', type:  el.prop('tagName') , inherits: ['Component']};
-
-    cartridges.forEach(function(cartridge) {
-      cartridge.components.forEach(function(component) {
-        if (component.match(el)) {
-          info.cartridge = cartridge.name;
-          info.type = component.type;
-          component.inherits ? info.inherits.unshift(component.inherits) : $.noop();
-        }
-      });
-    });
-    return info;
-  }
-
   $.fn.getMetaInfos = function() {
     var metaInfos = [];
     this.each(function() {
@@ -59,43 +30,22 @@
         id = 'gen-' + Math.round(new Date().getTime() * Math.random());
         me.attr('id', id);
       }
-      var info = getInfo(me);
 
       metaInfos.push({
         id: id,
-        node: me.prop('nodeName').toLowerCase(),
-        type: info.type,
-        inherits: info.inherits.join(','),
-        cartridge: info.cartridge
+        node: me.prop('nodeName').toLowerCase()
       });
     });
     return metaInfos;
   };
 
-  $.evaluate = function(id, cartridge, type, method, params) {
-    var evaluation;
-    cartridges.forEach(function(_cartridge) {
-      if (_cartridge.name === cartridge) {
-        _cartridge.components.forEach(function(component) {
-          if (component.type === type) {
-            try {
-              evaluation = component[method]($('#' + id), params);
-            } catch (e) {
-              throw new Error('Unable to find method "' + method + '" on component type "' + type + '"');
-            }
-          }
-        });
-      }
-    });
-    return evaluation;
-  };
-
-  $.support = function(supports, object) {
-    var all_support = {};
-    supports.forEach(function(support) {
-      $.extend(all_support, support);
-    });
-    return  $.extend(all_support, object);
+  $._contains = function(id, ids) {
+      var el = $('#' + id);
+      var not = [];
+      $.each(ids, function(index, _id) {
+        !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
+      });
+      return not;
   };
 
 }(window));

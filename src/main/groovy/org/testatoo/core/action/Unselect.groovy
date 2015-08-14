@@ -15,8 +15,23 @@
  */
 package org.testatoo.core.action
 
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
+import org.testatoo.core.state.Disabled
+import org.testatoo.core.state.Selected
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Unselect implements Action {
+    @Override
+    void execute(Component c) {
+        if (c.hasState(Disabled)) {
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unselected")
+        }
+
+        if (c.is(Selected))
+            c.execute(new MouseClick())
+        c.evaluator.trigger(c.id, 'change')
+    }
 }

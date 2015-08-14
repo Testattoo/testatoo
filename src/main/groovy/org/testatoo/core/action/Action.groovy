@@ -15,9 +15,11 @@
  */
 package org.testatoo.core.action
 
+import org.testatoo.core.Component
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Action {
-
+    void execute(Component c)
 }

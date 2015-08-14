@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.property.matcher
 
-import org.testatoo.core.component.Component
+import org.testatoo.core.Component
 import org.testatoo.core.property.Property
 
 /**

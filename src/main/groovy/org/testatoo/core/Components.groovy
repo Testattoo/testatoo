@@ -15,7 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.evaluator.Evaluator
 
 /**
