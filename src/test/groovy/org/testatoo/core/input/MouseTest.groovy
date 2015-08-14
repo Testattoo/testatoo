@@ -17,7 +17,6 @@ package org.testatoo.core.input
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -150,7 +149,6 @@ class MouseTest {
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
-        // TODO Math why intelliJ warning
         ['data'].click $('#_Ctrl_Shift_mouseleft') as Panel
     }
 

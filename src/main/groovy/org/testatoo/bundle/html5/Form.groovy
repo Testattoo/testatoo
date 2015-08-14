@@ -17,8 +17,10 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.ComponentException
-import org.testatoo.core.state.Available
+import org.testatoo.core.action.Reset
+import org.testatoo.core.action.Submit
+import org.testatoo.core.action.support.Resettable
+import org.testatoo.core.action.support.Submissible
 import org.testatoo.core.state.Invalid
 import org.testatoo.core.state.Valid
 
@@ -26,26 +28,10 @@ import org.testatoo.core.state.Valid
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends Component {
+class Form extends Component implements Submissible, Resettable {
 
     Form() {
-        support Valid, Invalid
-    }
-
-    void submit() {
-        Button submit_button = find('[type=submit]:first')[0] as Button
-        if (submit_button && submit_button.is(new Available()))
-            evaluator.click(submit_button.id)
-        else
-            throw new ComponentException('Cannot submit form without submit button')
-    }
-
-    void reset() {
-        Button reset_button = find('[type=reset]:first')[0] as Button
-        if (reset_button && reset_button.is(new Available()))
-            evaluator.click(reset_button.id)
-        else
-            throw new ComponentException('Cannot reset form without reset button')
+        support Valid, Invalid, Reset, Submit
     }
 
 }

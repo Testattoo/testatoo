@@ -17,6 +17,7 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
+import org.testatoo.core.action.support.Selectable
 import org.testatoo.core.property.*
 
 /**

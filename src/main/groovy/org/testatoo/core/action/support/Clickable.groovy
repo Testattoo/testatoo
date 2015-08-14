@@ -1,7 +1,6 @@
 package org.testatoo.core.action.support
 
 import org.testatoo.core.action.MouseClick
-import org.testatoo.core.input.Key
 
 import static org.testatoo.core.action.MouseModifiers.*
 

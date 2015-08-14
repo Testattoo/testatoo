@@ -52,12 +52,6 @@ class CheckboxTest {
         checkbox.should { be unchecked }
         checkbox.should { have label('Check me out') }
 
-        check checkbox
-        checkbox.should { be checked }
-
-        uncheck checkbox
-        checkbox.should { be unchecked }
-
         click_on checkbox
         checkbox.should { be checked }
 

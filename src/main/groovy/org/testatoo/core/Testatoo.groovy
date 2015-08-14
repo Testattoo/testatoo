@@ -16,15 +16,7 @@
 package org.testatoo.core
 
 import com.google.common.reflect.ClassPath
-import groovy.time.TimeDuration
-import org.testatoo.bundle.html5.Form
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.input.Input
 import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.state.Checked
-import org.testatoo.core.state.Unchecked
-
-import java.util.concurrent.TimeoutException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -52,78 +44,11 @@ class Testatoo {
 
     static void open(String uri) { browser.open(uri) }
 
-    static Component check(Component c) {
-        if (c.hasState(Unchecked))
-            evaluator.click(c.id)
-        else
-            throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
-        return c
-    }
-
-    static Component uncheck(Component c) {
-        if (c instanceof Radio) {
-            throw new ComponentException("Operation not supported for ${c.class.simpleName}")
-        }
-
-        if (c.hasState(Checked))
-            evaluator.click(c.id)
-        else
-            throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
-        return c
-    }
-
     static Browser getBrowser() {
         return new Browser(evaluator)
     }
 
-    static Component on(Component c) {
-        return c
-    }
-
-    static Form reset(Form form) {
-        form.reset()
-        return form
-    }
-
-    static Input reset(Input input) {
-        input.evaluator.click(input.id);
-        input.reset()
-        evaluator.trigger(input.id, 'blur')
-        return input
-    }
-
-    static Form submit(Form form) {
-        form.submit()
-        return form
-    }
-
-    static void waitUntil(TimeDuration duration = 5.seconds, Closure c) {
-        c()
-        try {
-            _waitUntil duration.toMilliseconds(), 500, {
-                Log.testatoo "waitUntil: ${c}"
-                Blocks.run(Blocks.compose(Blocks.pending()))
-            }
-        } catch (TimeoutException e) {
-            throw new RuntimeException("${e.message}")
-        }
-    }
-
     static {
         scan 'org.testatoo.bundle.html5'
-    }
-
-    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
-        Throwable ex = null
-        long t = timeout
-        for (; t > 0; t -= interval) {
-            try {
-                return c.call()
-            } catch (Throwable e) {
-                ex = e
-            }
-            Thread.sleep(interval)
-        }
-        throw new TimeoutException("Unable to reach the condition within ${timeout / 1000} seconds (${ex.message})")
     }
 }

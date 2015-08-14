@@ -17,6 +17,10 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+import org.testatoo.core.action.Select
+import org.testatoo.core.action.Unselect
+import org.testatoo.core.action.support.Selectable
+import org.testatoo.core.action.support.Unselectable
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Disabled
@@ -28,14 +32,14 @@ import org.testatoo.core.state.Unselected
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('option,li')
-class Item extends Component {
+class Item extends Component implements Selectable, Unselectable {
 
     Item() {
         support Label, "it.attr('label')"
         support Value, "it.text().trim()"
         support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
         support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
-        support Selected, Unselected
+        support Selected, Unselected, Select, Unselect
     }
 
     boolean equals(o) {

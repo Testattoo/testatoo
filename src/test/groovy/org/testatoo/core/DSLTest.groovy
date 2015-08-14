@@ -39,6 +39,7 @@ import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -138,10 +139,28 @@ class DSLTest {
         listBox.should { have selectedItems('New York', 'Munich') }
 
         on listBox unselect 'New York'
+        listBox.items[3].should { be unselected }
+
         on listBox unselect 'Munich'
+        listBox.items[5].should { be unselected }
 
         on listBox select 'Montreal'
+        listBox.items[0].should { be selected }
+
         on listBox select 'Montpellier'
+        listBox.items[2].should { be selected }
+
+        on listBox select listBox.items[4]
+        listBox.items[4].should { be selected }
+
+        on listBox unselect listBox.items[4]
+        listBox.items[4].should { be unselected }
+
+        select listBox.items[4]
+        listBox.items[4].should { be selected }
+
+        unselect listBox.items[4]
+        listBox.items[4].should { be unselected }
 
         try {
             on listBox select 'Quebec'
@@ -159,7 +178,11 @@ class DSLTest {
 
         Message message = $('#form .alert') as Message
 
+//        on email_field fill 'my@email.org'
         on email_field enter 'my@email.org'
+//        fill email_field with 'my@email.org'
+
+
         on password_field enter 'password'
 
         email_field.should { have value('my@email.org') }
@@ -173,6 +196,35 @@ class DSLTest {
         submit form
 
         message.should { have title('The form was submitted 1 time(s)') }
+    }
+
+    @Test
+    public void should_be_able_to_check_and_uncheck() {
+        Checkbox checkbox = $('#checkbox') as Checkbox
+        check checkbox
+        checkbox.should { be checked }
+
+        uncheck checkbox
+        checkbox.should { be unchecked }
+
+        try {
+            uncheck checkbox
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Checkbox Checkbox:checkbox is already unchecked and cannot be unchecked'
+        }
+
+        check checkbox
+        checkbox.should { be checked }
+
+        try {
+            check checkbox
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Checkbox Checkbox:checkbox is already checked and cannot be checked'
+        }
+
+        // TODO radio can check but not uncheck
     }
 
     @Test
