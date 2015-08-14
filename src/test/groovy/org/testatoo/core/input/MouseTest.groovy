@@ -17,6 +17,7 @@ package org.testatoo.core.input
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -30,6 +31,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.action.Actions.waitUntil
 import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
@@ -114,6 +116,7 @@ class MouseTest {
     }
 
     @Test
+    @Ignore
     public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
         dropPanel.should { have title('Drop here') }

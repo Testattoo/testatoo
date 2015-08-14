@@ -42,6 +42,7 @@ import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -83,7 +84,7 @@ class FieldsTest {
         textField.should { have value.containing('value') }
         textField.should { be filled }
 
-        textField.reset()
+        clear textField
         textField.should { be empty }
 
         // TextArea is treated as TextField
@@ -114,7 +115,7 @@ class FieldsTest {
         type 'bad phone number'
         phoneField.should { be invalid }
 
-        phoneField.reset()
+        clear phoneField
 
         click_on phoneField
         type '5146666666'

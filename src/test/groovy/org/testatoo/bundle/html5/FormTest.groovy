@@ -24,17 +24,15 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.ByCss
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.input.PasswordField
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Properties
 import org.testatoo.core.property.Title
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -96,7 +94,7 @@ class FormTest {
         email_field.should { be invalid }
         form.should { be invalid }
 
-        email_field.reset()
+        clear email_field
 
         click_on email_field
         type 'y@email.org'

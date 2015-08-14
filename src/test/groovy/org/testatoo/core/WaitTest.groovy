@@ -25,6 +25,7 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.action.Actions.waitUntil
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.state.States.*
 

@@ -32,6 +32,7 @@ import static org.testatoo.core.input.Keyboard.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -129,12 +130,12 @@ class KeyboardTest {
         type(SHIFT + 'testatoo')
         textField.should { have value('TESTATOO') }
 
-        textField.reset()
+        clear textField
         textField.should { have value('') }
         type('~!@#$%^&*()_+')
         textField.should { have value('~!@#$%^&*()_+') }
 
-        textField.reset()
+        clear textField
         textField.should { have value('') }
         type(SHIFT + '`1234567890-=')
         textField.should { have value('~!@#$%^&*()_+') }

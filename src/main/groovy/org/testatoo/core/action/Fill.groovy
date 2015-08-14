@@ -19,7 +19,7 @@ class Fill implements Action {
 
         c.execute(new MouseClick())
         // TODO Mathieu le reset doit etre executer depuis le trai et non l action !!!
-//        c.execute(new Reset())
+        c.execute(new Clear())
 
         c.evaluator.enter([value])
         c.evaluator.trigger(c.id, 'blur')

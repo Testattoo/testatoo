@@ -22,9 +22,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Components
 import org.testatoo.bundle.html5.Button
-import org.testatoo.core.ComponentException
 import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
@@ -32,6 +30,7 @@ import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -134,7 +133,7 @@ class SelectorsTest {
         }
 
         try {
-            assert buttons.addAll(null)
+            assert buttons.addAll()
             fail()
         } catch (UnsupportedOperationException e) {
         }

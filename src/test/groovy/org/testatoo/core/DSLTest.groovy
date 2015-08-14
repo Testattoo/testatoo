@@ -25,6 +25,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Checkbox
 import org.testatoo.bundle.html5.Form
 import org.testatoo.bundle.html5.Panel
+import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.input.PasswordField
 import org.testatoo.bundle.html5.input.TextField
@@ -96,17 +97,17 @@ class DSLTest {
     }
 
     @Test
-    public void given_input_with_value_when_reset_value_we_trigger_a_change_and_blur_event() {
+    public void given_input_with_value_when_clear_value_we_trigger_a_change_and_blur_event() {
         TextField field = $('#lastname') as TextField
         Panel panel = $('#lastname_reset') as Panel
 
         panel.should { be hidden }
-        reset field
+        clear field
         waitUntil { panel.becomes(visible) }
     }
 
     @Test
-    public void should_be_able_to_reset_input() {
+    public void should_be_able_to_clear_input() {
         TextField textField = $('#text_field') as TextField
         on textField enter 'Some input'
 
@@ -117,7 +118,7 @@ class DSLTest {
 
         assert textField.has(value('Some input'))
 
-        reset textField
+        clear textField
 
         textField.should {
             be empty
@@ -178,12 +179,8 @@ class DSLTest {
 
         Message message = $('#form .alert') as Message
 
-//        on email_field fill 'my@email.org'
-        on email_field enter 'my@email.org'
-//        fill email_field with 'my@email.org'
-
-
-        on password_field enter 'password'
+        fill email_field with 'my@email.org'
+        fill password_field with 'password'
 
         email_field.should { have value('my@email.org') }
         password_field.should { have value('password') }
@@ -199,7 +196,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_check_and_uncheck() {
+    public void should_be_able_to_check_and_uncheck_a_checkbox() {
         Checkbox checkbox = $('#checkbox') as Checkbox
         check checkbox
         checkbox.should { be checked }
@@ -223,8 +220,31 @@ class DSLTest {
         } catch (ComponentException e) {
             assert e.message == 'Checkbox Checkbox:checkbox is already checked and cannot be checked'
         }
+    }
 
-        // TODO radio can check but not uncheck
+    @Test
+    public void should_be_able_to_only_check_a_radio() {
+        Radio radio = $('#radio') as Radio
+        radio.should { be unchecked }
+
+        check radio
+        radio.should { be checked }
+
+        // Try to check again fail
+        try {
+            check radio
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Radio Radio:radio is already checked and cannot be checked'
+        }
+
+        // Try to uncheck fail
+        try {
+            uncheck radio
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "Unsupported action 'Uncheck' on component Radio:radio"
+        }
     }
 
     @Test

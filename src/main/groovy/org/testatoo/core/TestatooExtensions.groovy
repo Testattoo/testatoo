@@ -71,6 +71,10 @@ class TestatooExtensions {
         c.execute(new Fill(value))
     }
 
+    static void with(Component c, String value) {
+        c.execute(new Fill(value))
+    }
+
     static boolean asBoolean(Block block) {
         Blocks.run(block)
         return true

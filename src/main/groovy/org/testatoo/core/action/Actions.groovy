@@ -1,6 +1,7 @@
 package org.testatoo.core.action
 
 import groovy.time.TimeDuration
+import org.testatoo.bundle.html5.input.Input
 import org.testatoo.core.Blocks
 import org.testatoo.core.Component
 import org.testatoo.core.Log
@@ -33,6 +34,15 @@ class Actions {
     }
 
     static final Component on(Component c) {
+        return c
+    }
+
+    static final Component fill(Component c) {
+        return c
+    }
+
+    static final Component clear(Component c) {
+        c.execute(new Clear())
         return c
     }
 
@@ -71,21 +81,4 @@ class Actions {
         }
         throw new TimeoutException("Unable to reach the condition within ${timeout / 1000} seconds (${ex.message})")
     }
-
-
-
-    //
-//
-//
-//    static Input reset(Input input) {
-//        input.evaluator.click(input.id);
-//        input.reset()
-//        evaluator.trigger(input.id, 'blur')
-//        return input
-//    }
-//
-//    static Form submit(Form form) {
-//        form.submit()
-//        return form
-//    }
 }

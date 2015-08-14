@@ -16,8 +16,10 @@
 package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.Component
+import org.testatoo.core.action.Clear
 import org.testatoo.core.action.Fill
 import org.testatoo.core.action.Reset
+import org.testatoo.core.action.support.Clearable
 import org.testatoo.core.action.support.Fillable
 import org.testatoo.core.action.support.Resettable
 import org.testatoo.core.property.Label
@@ -30,16 +32,10 @@ import static org.testatoo.core.input.Key.BACK_SPACE
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Input extends Component implements Resettable, Fillable {
+class Input extends Component implements Resettable, Fillable, Clearable {
 
     Input() {
-        support Placeholder, Label, Optional, Required, Empty, Filled, Valid, Invalid, Reset, Fill
+        support Placeholder, Label, Optional, Required, Empty, Filled, Valid, Invalid, Reset, Fill, Clear
         support Value, "it.val()"
-    }
-
-    @Override
-    void reset() {
-        evaluator.runScript("\$('#${id}').val(' ').change()")
-        evaluator.enter([BACK_SPACE])
     }
 }

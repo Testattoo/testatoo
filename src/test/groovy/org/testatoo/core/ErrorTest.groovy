@@ -33,10 +33,10 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.ALT
-import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -184,7 +184,7 @@ class ErrorTest {
             uncheck radio
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Operation not supported for Radio'
+            assert e.message == "Unsupported action 'Uncheck' on component Radio:radio"
         }
     }
 
