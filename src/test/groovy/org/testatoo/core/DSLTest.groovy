@@ -56,6 +56,7 @@ class DSLTest {
 
     @Before
     public void before() {
+        // Can be used in state of visit
         open 'http://localhost:8080/dsl.html'
     }
 

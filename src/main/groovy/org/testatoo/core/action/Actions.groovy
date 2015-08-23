@@ -16,10 +16,10 @@
 package org.testatoo.core.action
 
 import groovy.time.TimeDuration
-import org.testatoo.bundle.html5.input.Input
 import org.testatoo.core.Blocks
 import org.testatoo.core.Component
 import org.testatoo.core.Log
+import org.testatoo.core.Testatoo
 
 import java.util.concurrent.TimeoutException
 
@@ -27,6 +27,10 @@ import java.util.concurrent.TimeoutException
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Actions {
+
+    static void visit(String uri) { Testatoo.browser.open(uri) }
+
+    static void open(String uri) { visit(uri) }
 
     static final Component check(Component c) {
         c.execute(new Check())

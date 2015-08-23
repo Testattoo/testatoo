@@ -21,13 +21,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.States
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -38,7 +37,7 @@ class RadioTest {
     @BeforeClass
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass

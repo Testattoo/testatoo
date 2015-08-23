@@ -43,7 +43,7 @@ class FormTest {
     @BeforeClass
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/form.html'
+        visit 'http://localhost:8080/form.html'
     }
 
     @AfterClass

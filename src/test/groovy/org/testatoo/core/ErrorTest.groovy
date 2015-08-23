@@ -47,7 +47,7 @@ class ErrorTest {
     @BeforeClass
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/error.html'
+        visit 'http://localhost:8080/error.html'
     }
 
     @AfterClass

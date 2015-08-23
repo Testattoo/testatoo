@@ -50,7 +50,7 @@ class KeyboardTest {
 
     @Before
     public void before() {
-        open 'http://localhost:8080/keyboard.html'
+        visit 'http://localhost:8080/keyboard.html'
         // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
         click_on($('#button') as Button)
         Thread.sleep(500);

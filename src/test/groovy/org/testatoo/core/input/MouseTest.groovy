@@ -36,6 +36,7 @@ import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -46,7 +47,7 @@ class MouseTest {
     @BeforeClass
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/mouse.html'
+        visit 'http://localhost:8080/mouse.html'
     }
 
     @AfterClass

@@ -42,7 +42,7 @@ class SelectorsTest {
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan 'org.testatoo'
-        open 'http://localhost:8080/selectors.html'
+        visit 'http://localhost:8080/selectors.html'
     }
 
     @Before

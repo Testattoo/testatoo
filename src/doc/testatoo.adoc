@@ -93,6 +93,7 @@ import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 @RunWith(JUnit4)
 class BaseGoogleTest {
@@ -100,7 +101,7 @@ class BaseGoogleTest {
     @BeforeClass
     public static void setup() {
         evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://www.google.com'
+        visit 'http://www.google.com'
     }
     @AfterClass public static void tearDown() { evaluator.close() }
 
@@ -219,7 +220,7 @@ You can add all the required "DesiredCapabilities" on your WebDriver config
 
 [source, java]
 -------------------------------------------------------------------------------
-open 'http://www.google.com'
+visit 'http://www.google.com' // Or open 'http://www.google.com'
 -------------------------------------------------------------------------------
 
 3 - Testatoo injects the isolated (noConflict mode) jQuery lib in the application under test. Testatoo uses the jQuery functional API

@@ -42,8 +42,6 @@ class Testatoo {
 
     static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
 
-    static void open(String uri) { browser.open(uri) }
-
     static Browser getBrowser() {
         return new Browser(evaluator)
     }

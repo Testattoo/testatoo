@@ -28,6 +28,7 @@ import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.action.Actions.waitUntil
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -38,7 +39,7 @@ class WaitTest {
     @BeforeClass
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        open 'http://localhost:8080/wait.html'
+        visit 'http://localhost:8080/wait.html'
     }
 
     @AfterClass

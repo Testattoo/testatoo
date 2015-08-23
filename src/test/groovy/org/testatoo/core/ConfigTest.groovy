@@ -26,6 +26,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.state.States.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -52,7 +53,7 @@ class ConfigTest {
             WebDriver driver = new FirefoxDriver();
             Testatoo.evaluator = new WebDriverEvaluator(driver)
 
-            open 'http://localhost:8080/dsl.html'
+            visit 'http://localhost:8080/dsl.html'
 
             TextField field = $('#firstname') as TextField
             Panel error = $('#firstname_blur') as Panel
@@ -66,7 +67,7 @@ class ConfigTest {
             evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
             evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
-            open 'http://localhost:8080/dsl.html'
+            visit 'http://localhost:8080/dsl.html'
 
             field = $('#firstname') as TextField
             error = $('#firstname_blur') as Panel

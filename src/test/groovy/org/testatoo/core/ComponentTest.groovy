@@ -33,6 +33,7 @@ import org.testatoo.core.state.States
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -44,7 +45,7 @@ class ComponentTest {
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan 'org.testatoo.component'
-        open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
@@ -52,12 +53,10 @@ class ComponentTest {
 
     @Test
     public void should_identify_component_by_css() {
-
     }
 
     @Test
     public void should_identify_component_by_js() {
-
     }
 
     @Test
