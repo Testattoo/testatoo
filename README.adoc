@@ -1,9 +1,9 @@
 = Testatoo
 
-image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
-The Testatoo development team
+
 :revdate: 11-12-2014
 :build-icon: https://drone.io/github.com/Ovea/testatoo/status.png[https://drone.io/github.com/Ovea/testatoo/latest]
+image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"] The Testatoo development team
 :download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b13/testatoo-2.0.b13.jar
 :noheader:
 
