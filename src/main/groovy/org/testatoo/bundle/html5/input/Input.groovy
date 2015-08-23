@@ -35,7 +35,7 @@ import static org.testatoo.core.input.Key.BACK_SPACE
 class Input extends Component implements Resettable, Fillable, Clearable {
 
     Input() {
-        support Placeholder, Label, Optional, Required, Empty, Filled, Valid, Invalid, Reset, Fill, Clear
+        support Placeholder, Label, Optional, Required, Empty, Filled, Valid, Invalid, Reset, Fill, Clear, ReadOnly
         support Value, "it.val()"
     }
 }

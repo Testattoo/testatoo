@@ -160,6 +160,6 @@ class FieldsTest {
 
         DateTimeField dateTimeField = $('#datetime_field') as DateTimeField
         dateTimeField.should { be enabled }
+        dateTimeField.should { be readonly }
     }
-
 }

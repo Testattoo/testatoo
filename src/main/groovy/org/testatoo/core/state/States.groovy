@@ -39,5 +39,6 @@ class States {
     static final Unselected unselected = new Unselected()
     static final Required required = new Required()
     static final Optional optional = new Optional()
+    static final ReadOnly readonly = new ReadOnly()
 
 }
