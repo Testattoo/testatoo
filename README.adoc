@@ -7,7 +7,7 @@
 :noheader:
 
 image:{build-icon}
-image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"] The Testatoo development team
+image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]The Testatoo development team
 
 [.left.text-left]
 image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.jpg[]
