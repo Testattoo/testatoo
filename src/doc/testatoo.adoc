@@ -148,6 +148,7 @@ As a rule, when you create a test with Testatoo, we recommend to add some defaul
     import static org.testatoo.core.input.Mouse.*
     import static org.testatoo.core.property.Properties.*
     import static org.testatoo.core.state.States.*
+    import static org.testatoo.core.action.Actions.*
 
 -------------------------------------------------------------------------------
 ===============================
@@ -249,7 +250,7 @@ Our experience demonstrated that we never need to use complex selector. If you w
 a semantic and this semantic must be reflected in the code by a role attribute, a sequence in a form of course an ID but in the best case
 with a specific tag (with Angular Directive or Web Components)
 
-Once the component is selected, it must be *TYPED* throw the *"as"* keyword.
+Once the component is selected, it *MUST BE TYPED* throw the *"as"* keyword.
 
 [source, java]
 -------------------------------------------------------------------------------
