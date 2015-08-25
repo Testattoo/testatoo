@@ -31,7 +31,7 @@ class GroupItem extends Component {
     GroupItem() {
         support Label, "it.attr('label')"
         support Value, Size
-        support Items, { it.find("option", Item) }
+        support Items, { find("option", Item) }
     }
 
     List<Item> getItems() {

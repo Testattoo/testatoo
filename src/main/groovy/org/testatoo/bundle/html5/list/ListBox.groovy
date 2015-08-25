@@ -29,8 +29,8 @@ class ListBox extends Component {
 
     ListBox() {
         support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size
-        support Items, { it.find("option", Item) }
-        support GroupItems, { it.find("optgroup", GroupItem) }
+        support Items, { find("option", Item) }
+        support GroupItems, { find("optgroup", GroupItem) }
         support MultiSelectable, SingleSelectable
     }
 

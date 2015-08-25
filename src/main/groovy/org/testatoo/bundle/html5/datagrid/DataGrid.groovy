@@ -27,8 +27,8 @@ import org.testatoo.core.property.Size
 class DataGrid extends Component {
 
     DataGrid() {
-        support Size, { it.eval("it.find('thead tr:last th').length") as int }
-        support ColumnSize, { it.eval("it.find('tbody tr').length") as int }
+        support Size, { eval("it.find('thead tr:last th').length") as int }
+        support ColumnSize, { eval("it.find('tbody tr').length") as int }
     }
 
     List<Column> getColumns() {

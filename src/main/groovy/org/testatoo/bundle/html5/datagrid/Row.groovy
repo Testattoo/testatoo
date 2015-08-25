@@ -28,7 +28,7 @@ class Row extends Component {
 
     Row() {
         support Title, "it.find('th:first').text().trim()"
-        support Size, { it.eval("it.find('td').length") as int }
+        support Size, { eval("it.find('td').length") as int }
     }
 
     List<Cell> getCells() {

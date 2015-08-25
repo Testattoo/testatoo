@@ -168,12 +168,22 @@ Some interesting elements can be shown in this test :
     to easily create and compose your own components set.
 
 <2> Testatoo uses deferred evaluation.
-    As you can see, we instantiate a ListView event if the component is not available in the page.
+    As you can see, we instantiate a Component event if the component is not available in the page.
     You can test if the component is missing
 
 <3> Testatoo DSL is very clean and functional.
     Testatoo is based on a clear and powerful syntax.
     Testatoo code never refers to a technical layer Under no circumstances in this test does the underline DOM technology transpire in our code.
+
+The test is write FIRST so it express the expected behaviour so :
+  - We visit the google web page
+  - we init the view
+  - we express the behaviour
+
+As you ca see the test is very high level and by consequence is very stable.
+
+
+
 
 [NOTE]
 ===============================
