@@ -49,28 +49,44 @@ Get Testatoo and dependencies libraries via Maven...
 
 [source, xml]
 -------------------------------------------------------------------------------
-<dependency>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
     <groupId>org.testatoo</groupId>
-    <artifactId>testatoo</artifactId>
-    <version>{testaoo-version}</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.11</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-java</artifactId>
-    <version>{always-the-latest}</version>
-    <scope>test</scope>
-</dependency>
+    <artifactId>testatoo-sample</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Testatoo :: Sample</name>
+    <inceptionYear>2015</inceptionYear>
+
+    <dependencies>
+        <dependency>
+           <groupId>org.testatoo</groupId>
+               <artifactId>testatoo</artifactId>
+               <version>{testaoo-version}</version>
+               <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>{always-the-latest}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
 -------------------------------------------------------------------------------
 
 Testatoo works with existing popular unit test libraries, like JUnit.
-In our first test (BaseGoogleTest), we test a simple search on Google.
+In TDD/BBD style we write test first. The test in a simple Google search.
 
 The test looks like this :
 
@@ -84,58 +100,80 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.input.TextField
-import org.testatoo.bundle.html5.components.list.ListView
+import org.testatoo.bundle.html5.Button
+import org.testatoo.bundle.html5.input.TextField
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import starter.component.GoogleItem
+import starter.component.GoogleListView
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.property.Properties.*
+import static starter.component.property.Properties.*
 import static org.testatoo.core.state.States.*
 import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.input.Mouse.*
 
+/**
+ * @author David Avenante (d.avenante@gmail.com)
+ */
 @RunWith(JUnit4)
-class BaseGoogleTest {
+class GoogleSearchTest {
+
+    static TextField searchField
+    static Button searchButton
+    static GoogleListView resultList
 
     @BeforeClass
     public static void setup() {
-        evaluator =  new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://www.google.com'
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        visit 'http://www.google.ca'
+        init()
     }
-    @AfterClass public static void tearDown() { evaluator.close() }
+
+    @AfterClass
+    public static void tearDown() { evaluator.close() }
 
     @Test
     public void simple_test() {
-        TextField searchField = $('#gbqfq') as TextField        <1>
-        Button searchButton = $('#gbqfb') as Button
-
-        ListView resultList = $('#rso') as ListView             <2>
-        resultList.should { be missing }
-
+        resultList.should { be missing }        <2>
         searchField.should { be visible }
-        on searchField enter 'Testatoo'                         <3>
-        clickOn searchButton
-        waitUntil { resultList.be visible }
 
-        resultList.items[0].should { have value.containing('Testatoo') }
+        fill searchField with 'groovy'          <3>
+        click_on searchButton
+
+        waitUntil { resultList.is visible }
+
+        GoogleItem item = resultList.items[1];
+        item.should {
+            have title.containing('The Groovy programming language')
+            have url.containing('www.groovy-lang.org')
+            have description.containing('Groovy is a powerful, optionally typed and dynamic language')
+        }
     }
 
+    private static void init() {
+        searchField = $('#lst-ib') as TextField
+        searchButton = $('#sblsbb button') as Button        <1>
+        resultList = $('#rso') as GoogleListView
+    }
 }
 -------------------------------------------------------------------------------
 
 If you run the test, it should process a simple search on google engine.
 Some interesting elements can be shown in this test :
 
-<1> Testatoo works with Strongly typed components. Testatoo manipulates typed components like TextField, Button, ListView.
-                                         The power of Testatoo is in one hand to provide a rich list of components, and on the other one the possibility
-                                         to easily create and compose your own components set.
+<1> Testatoo works with Strongly typed components.
+    Testatoo manipulates typed components like TextField, Button, ListView.
+    The power of Testatoo is in one hand to provide a rich list of components, and on the other one the possibility
+    to easily create and compose your own components set.
 
-<2> Testatoo uses deferred evaluation. As you can see, we instantiate a ListView event if the component is not available in the page.
-                                   You can test if the component is missing
+<2> Testatoo uses deferred evaluation.
+    As you can see, we instantiate a ListView event if the component is not available in the page.
+    You can test if the component is missing
 
-<3> Testatoo DSL is very clean and functional. Testatoo is based on a clear and powerful syntax.
-Testatoo code never refers to a technical layer Under no circumstances in this test does the underline DOM technology transpire in our code.
+<3> Testatoo DSL is very clean and functional.
+    Testatoo is based on a clear and powerful syntax.
+    Testatoo code never refers to a technical layer Under no circumstances in this test does the underline DOM technology transpire in our code.
 
 [NOTE]
 ===============================
@@ -143,13 +181,12 @@ As a rule, when you create a test with Testatoo, we recommend to add some defaul
 
 [source, java]
 -------------------------------------------------------------------------------
-
     import static org.testatoo.core.Testatoo.*
     import static org.testatoo.core.input.Mouse.*
+    import static org.testatoo.core.input.Keyboard.*
     import static org.testatoo.core.property.Properties.*
     import static org.testatoo.core.state.States.*
     import static org.testatoo.core.action.Actions.*
-
 -------------------------------------------------------------------------------
 ===============================
 
