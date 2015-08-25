@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class ParagraphSize extends Property {
 
-    ParagraphSize() {
-        number "it.find('> p').length"
-    }
+    ParagraphSize() { number "it.find('> p').length" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

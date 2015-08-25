@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Step extends Property {
 
-    Step() {
-        number "it.prop('step')"
-    }
+    Step() { number "it.prop('step')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

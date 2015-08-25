@@ -23,9 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Reference extends Property {
 
-    Reference() {
-        string "it.prop('href')"
-    }
+    Reference() { string "it.prop('href')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

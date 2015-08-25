@@ -23,9 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Title extends Property {
 
-    Title() {
-        string "it.attr('title')"
-    }
+    Title() { string "it.attr('title')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

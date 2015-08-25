@@ -23,9 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Source extends Property {
 
-    Source() {
-        string "it.prop('src')"
-    }
+    Source() { string "it.prop('src')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

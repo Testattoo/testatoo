@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Size extends Property {
 
-    Size() {
-        number "it.children().length"
-    }
+    Size() { number "it.children().length" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

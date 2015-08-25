@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class GroupItemsSize extends Property {
 
-    GroupItemsSize() {
-        number "it.find('optgroup').length"
-    }
+    GroupItemsSize() { number "it.find('optgroup').length" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

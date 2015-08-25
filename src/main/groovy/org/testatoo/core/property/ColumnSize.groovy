@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class ColumnSize extends Property {
 
-    ColumnSize() {
-        number "it.find('thead tr:last th').length"
-    }
+    ColumnSize() { number "it.find('thead tr:last th').length" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

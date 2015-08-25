@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Maximum extends Property {
 
-    Maximum() {
-        number "it.prop('max')"
-    }
+    Maximum() { number "it.prop('max')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

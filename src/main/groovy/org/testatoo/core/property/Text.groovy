@@ -23,9 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Text extends Property {
 
-    Text() {
-        string "it.text()"
-    }
+    Text() { string "it.text()" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

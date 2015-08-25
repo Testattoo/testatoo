@@ -23,9 +23,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Placeholder extends Property {
 
-    Placeholder() {
-        string "it.prop('placeholder')"
-    }
+    Placeholder() { string "it.prop('placeholder')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)

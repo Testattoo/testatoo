@@ -22,9 +22,7 @@ import org.testatoo.core.property.matcher.EqualsToMatcher
  */
 class Minimum extends Property {
 
-    Minimum() {
-        number "it.prop('min')"
-    }
+    Minimum() { number "it.prop('min')" }
 
     @Delegate
     private EqualsToMatcher.Matchers eq = EqualsToMatcher.matchers(this)
