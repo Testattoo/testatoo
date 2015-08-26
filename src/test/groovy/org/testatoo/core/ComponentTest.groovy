@@ -27,6 +27,7 @@ import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.Section
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Label
+import org.testatoo.core.property.Text
 import org.testatoo.core.state.Checked
 import org.testatoo.core.state.States
 
@@ -60,7 +61,7 @@ class ComponentTest {
     }
 
     @Test
-    public void component_without_identifier_fail() {
+    public void should_fail_on_component_without_identifier() {
         try {
             ($('#button') as UnidentifiedComponent).should { be States.enabled }
             fail()
@@ -71,12 +72,12 @@ class ComponentTest {
     }
 
     @Test
-    public void top_level_component_identifier_is_used() {
+    public void should_use_top_level_component_identifier() {
         ($('#button') as CustomButton).should { be States.enabled }
     }
 
     @Test
-    public void on_bad_component_definition_an_error_it_thrown() {
+    public void should_throw_an_error_on_bad_component_definition() {
         try {
             ($('#radio') as Button).should { be States.enabled }
             fail()
@@ -87,7 +88,7 @@ class ComponentTest {
     }
 
     @Test
-    public void should_evaluate_component_equality() {
+    public void should_evaluate_component_equality_on_id() {
         Radio radio_1 = $('#radio') as Radio
 
         // The selector select the same component as radio_1
@@ -107,13 +108,13 @@ class ComponentTest {
     }
 
     @Test
-    public void the_hashCode_of_a_component_is_based_on_its_id() {
+    public void should_have_the_hashCode_of_the_component_based_on_its_id() {
         Radio radio_1 = $('#radio') as Radio
         assert radio_1.hashCode() == radio_1.id.hashCode()
     }
 
     @Test
-    public void can_evaluate_state_and_property() {
+    public void should_be_able_to_evaluate_state_and_property() {
         Radio checked_radio = $('[type=radio]:checked') as Radio
 
         assert checked_radio.hasState(Checked)
@@ -121,6 +122,24 @@ class ComponentTest {
 
     }
 
-    static class CustomButton extends Button {}
+    @Test
+    public void should_be_able_to_override_property() {
+        Button button = $('#button') as CustomButton
+        button.should { have text('Override Text') }
+    }
+
+    @Test
+    public void should_be_able_to_override_state() {}
+
+    @Test
+    public void should_be_able_to_override_action() {}
+
+
+    static class CustomButton extends Button {
+        CustomButton() {
+            support Text, { "Override Text" }
+        }
+    }
+
     static class UnidentifiedComponent extends Component {}
 }

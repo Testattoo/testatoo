@@ -59,10 +59,8 @@ class FieldsTest {
     @AfterClass
     public static void tearDown() { evaluator.close() }
 
-    // TODO add states : read-only and read-write out-of-range
-
     @Test
-    public void should_have_expected_behaviours() {
+    public void fields_should_have_expected_behaviours() {
         // Text field
         TextField textField = $('#text_field') as TextField
 

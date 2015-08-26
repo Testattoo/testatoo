@@ -44,7 +44,7 @@ class RadioTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void radio_should_have_expected_behaviours() {
         Radio radio = $('#radio') as Radio;
 
         radio.should { be enabled }

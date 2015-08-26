@@ -48,7 +48,7 @@ class DataGridTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void datagrid_should_have_expected_behaviours() {
         DataGrid data_grid = $('#data_grid') as DataGrid
 
         data_grid.should { be enabled }

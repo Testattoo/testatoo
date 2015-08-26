@@ -35,7 +35,7 @@ import static org.testatoo.core.action.Actions.*
 class ConfigTest {
 
     @Test
-    public void can_obtain_the_underline_implementation() {
+    public void should_be_able_to_obtain_the_underline_implementation() {
         try {
             WebDriver driver = new FirefoxDriver();
             Testatoo.evaluator = new WebDriverEvaluator(driver)
@@ -48,7 +48,7 @@ class ConfigTest {
     }
 
     @Test
-    public void can_register_a_script() {
+    public void should_be_able_to_register_a_script() {
         try {
             WebDriver driver = new FirefoxDriver();
             Testatoo.evaluator = new WebDriverEvaluator(driver)

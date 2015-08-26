@@ -45,7 +45,7 @@ class CheckboxTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void checkbox_should_have_expected_behaviours() {
         Checkbox checkbox = $('#checkbox') as Checkbox
         checkbox.should { be enabled }
         checkbox.should { be visible }

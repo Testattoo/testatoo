@@ -48,7 +48,7 @@ class DropdownTest {
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
-    public void should_have_expected_behaviours() {
+    public void dropdown_should_have_expected_behaviours() {
         Dropdown dropdown = $('#elements') as Dropdown
 
         dropdown.should { be enabled }

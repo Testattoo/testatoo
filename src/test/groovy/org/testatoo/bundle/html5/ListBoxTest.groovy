@@ -47,7 +47,7 @@ class ListBoxTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void listbox_should_have_expected_behaviours() {
         ListBox listBox = $('#cities') as ListBox
 
         listBox.should { have label('Cities list') }

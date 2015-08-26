@@ -45,7 +45,7 @@ class ListViewTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void listview_should_have_expected_behaviours() {
         ListView listView = $('#list_view') as ListView
 
         listView.should { be enabled }

@@ -44,7 +44,7 @@ class LinkTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void link_should_have_expected_behaviours() {
         Link link = $('#link') as Link
         link.should { be enabled }
         link.should { be visible }

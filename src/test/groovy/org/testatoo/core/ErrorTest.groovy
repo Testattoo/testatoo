@@ -54,7 +54,7 @@ class ErrorTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void not_supported_state_support() {
+    public void should_throw_an_error_on_not_supported_state() {
         EmailField email = $('#email') as EmailField
         try {
             email.should { be checked }
@@ -65,7 +65,7 @@ class ErrorTest {
     }
 
     @Test
-    public void not_supported_property_support() {
+    public void should_throw_an_error_on_not_supported_property() {
         EmailField email = $('#email') as EmailField
         try {
             email.should { have reference('reference') }
@@ -76,7 +76,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_submit_form_if_no_submit_button_available() {
+    public void should_not_be_able_to_submit_form_if_no_submit_button_available() {
         Form form = $('#form') as Form
         try {
             submit form
@@ -87,7 +87,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_reset_form_if_no_reset_button_available() {
+    public void should_not_be_able_to_reset_form_if_no_reset_button_available() {
         Form form = $('#form') as Form
         try {
             reset form

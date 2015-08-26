@@ -44,7 +44,7 @@ class ImageTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void image_should_have_expected_behaviours() {
         Image image = $('#image') as Image
         image.should { be enabled }
         image.should { be visible }

@@ -50,7 +50,7 @@ class FormTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void fom_should_have_expected_behaviours() {
         Form form = $('#form') as Form
         EmailField email_field = $('#form [type=email]') as EmailField
         PasswordField password_field = $('#form [type=password]') as PasswordField

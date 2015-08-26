@@ -140,5 +140,4 @@ class KeyboardTest {
         type(SHIFT + '`1234567890-=')
         textField.should { have value('~!@#$%^&*()_+') }
     }
-
 }

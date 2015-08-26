@@ -64,7 +64,7 @@ class DSLTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void test_chaining_assert() {
+    public void should_chain_assert() {
         Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should {
             be enabled

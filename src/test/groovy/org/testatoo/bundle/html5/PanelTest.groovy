@@ -44,7 +44,7 @@ class PanelTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void panel_should_have_expected_behaviours() {
         Panel panel = $('#panel') as Panel
         panel.should { be enabled }
         panel.should { be visible }

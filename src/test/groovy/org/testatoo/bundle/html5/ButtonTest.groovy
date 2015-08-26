@@ -44,7 +44,7 @@ class ButtonTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+    public void button_should_have_expected_behaviours() {
         // input type=button
         Button button = $('#button') as Button
 
