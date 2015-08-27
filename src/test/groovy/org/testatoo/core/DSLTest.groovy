@@ -249,13 +249,13 @@ class DSLTest {
     }
 
     @Test
-    public void test_AND() {
+    public void should_support_AND() {
         Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should { be enabled and be(visible) }
     }
 
     @Test
-    public void test_OR() {
+    public void should_support_OR() {
         ListBox listBox = $('#cities') as ListBox
         listBox.should { have 8.items or have(3.visibleItems) }
     }

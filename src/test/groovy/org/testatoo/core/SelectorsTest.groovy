@@ -54,7 +54,7 @@ class SelectorsTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void $_as_a_single_selector() {
+    public void should_use_$_as_a_single_selector() {
         Button button = $('#button') as Button
 
         button.should { be enabled }
@@ -62,7 +62,7 @@ class SelectorsTest {
     }
 
     @Test
-    public void $$_as_a_multi_selector() {
+    public void should_use_$$_as_a_multi_selector() {
         Components<Button> buttons = $$('.btn') of Button
         assert buttons.size() == 4
 
@@ -90,7 +90,7 @@ class SelectorsTest {
     }
 
     @Test
-    public void bad_list_of_component_type() {
+    public void should_throw_an_error_on_bad_component_type() {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button
             buttons.each {
@@ -103,7 +103,7 @@ class SelectorsTest {
     }
 
     @Test
-    public void Components_implements_Collection_but_not_support_all_method() {
+    public void should_have_Components_class_implements_Collection_but_not_support_all_method() {
         assert Components.interfaces.contains(Collection.class)
 
         Components<Button> buttons = $$('[type="text"]') of Button

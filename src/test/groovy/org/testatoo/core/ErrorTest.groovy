@@ -76,6 +76,11 @@ class ErrorTest {
     }
 
     @Test
+    public void should_throw_an_error_on_not_supported_action() {
+        fail()
+    }
+
+    @Test
     public void should_not_be_able_to_submit_form_if_no_submit_button_available() {
         Form form = $('#form') as Form
         try {
@@ -98,7 +103,7 @@ class ErrorTest {
     }
 
     @Test
-    public void exception_is_thrown_when_wait_until_condition_is_not_reached() {
+    public void should_throw_an_error_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button;
         try {
             waitUntil 2.seconds, { button.is(available) }
@@ -109,7 +114,7 @@ class ErrorTest {
     }
 
     @Test
-    public void exception_is_thrown_on_invalid_click_sequence() {
+    public void should_throw_an_error_on_invalid_click_sequence() {
         Form form = $('#form') as Form
         try {
             [CTRL, 'test', ALT].click form
@@ -127,7 +132,7 @@ class ErrorTest {
     }
 
     @Test
-    public void test_hidden_state_on_visible_component_throw_exception() {
+    public void should_throw_an_error_when_test_hidden_state_on_visible_component() {
         Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { be hidden }
@@ -138,7 +143,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_unSelect_disabled_option() {
+    public void should_throw_an_error_when_trying_to_unselect_a_disabled_option() {
         Dropdown dropDown = $('#elements') as Dropdown
         dropDown.items[0].should { be disabled }
         try {
@@ -150,7 +155,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_check_checked_element() {
+    public void should_throw_an_error_when_trying_to_check_checked_element() {
         Checkbox checkbox = $('#checkbox_1') as Checkbox
         checkbox.should { be checked }
 
@@ -163,7 +168,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_uncheck_unchecked_element() {
+    public void should_throw_an_error_when_trying_to_uncheck_unchecked_element() {
         Checkbox checkbox = $('#checkbox_2') as Checkbox
         checkbox.should { be unchecked }
 
@@ -176,7 +181,7 @@ class ErrorTest {
     }
 
     @Test
-    public void cannot_unchek_a_radio() {
+    public void should_throw_an_error_when_trying_to_unchek_a_radio() {
         Radio radio = $('#radio') as Radio
         radio.should { be checked }
 
@@ -188,63 +193,13 @@ class ErrorTest {
         }
     }
 
-    // TODO test that we cannot select already selected item
     @Test
-    public void equals_to_matcher_on_list_items() {
-        Dropdown dropDown = $('#elements') as Dropdown
-        try {
-            dropDown.should { have items.equalsTo('Val1') }
-            fail()
-        } catch (AssertionError e) {
-            assert e.message == "Expected Items '[Val1]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-        }
-
-        try {
-            dropDown.should { have items.equalsTo(['Val1', 'Val2']) }
-            fail()
-        } catch (AssertionError e) {
-            assert e.message == "Expected Items '[Val1, Val2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-        }
+    public void should_throw_an_error_on_select_already_selected_item() {
+        fail()
     }
 
     @Test
-    public void equals_to_matcher() {
-        Dropdown dropDown = $('#elements') as Dropdown
-        try {
-            dropDown.items[0].should { have value.equalsTo('Val_1') }
-            fail()
-        } catch (AssertionError e) {
-            assert e.message == "Expected Value 'Val_1' but was 'Helium'"
-        }
-
-        try {
-            dropDown.items[0].should { have value.equalsTo('Val_1', 'val_2') }
-            fail()
-        } catch (AssertionError e) {
-            assert e.message == "Expected one of Value '[Val_1, val_2]' but was 'Helium'"
-        }
-    }
-
-    @Test
-    public void containing_matcher() {
-        Dropdown dropDown = $('#elements') as Dropdown
-        try {
-            dropDown.should { have items.containing('Val_1') }
-            fail()
-        } catch (AssertionError e) {
-            assert e.message == "Expected Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-        }
-
-        try {
-            dropDown.should { have items.containing('Val_1', 'Val_2') }
-            fail()
-        } catch (AssertionError e) {
-            assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-        }
-    }
-
-    @Test
-    public void missing_component_error() {
+    public void should_throw_an_error_on_missing_component() {
         Dropdown dropDown = $('#elements') as Dropdown
         try {
             dropDown.should { be missing }
@@ -255,7 +210,7 @@ class ErrorTest {
     }
 
     @Test
-    public void multiple_elements_selector_throw_exception() {
+    public void should_throw_an_error_when_$_selector_match_multiple_elements() {
         try {
             Item item = $('#elements option') as Item;
             item.should { be visible }
