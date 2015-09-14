@@ -17,14 +17,17 @@ package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Button
+import org.testatoo.bundle.html5.Checkbox
 import org.testatoo.bundle.html5.Paragraph
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.Section
+import org.testatoo.core.action.Check
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Label
 import org.testatoo.core.property.Text
@@ -54,11 +57,13 @@ class ComponentTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
+    @Ignore
     public void should_identify_component_by_css() {
         fail()
     }
 
     @Test
+    @Ignore
     public void should_identify_component_by_js() {
         fail()
     }
@@ -120,9 +125,8 @@ class ComponentTest {
     public void should_be_able_to_evaluate_state_and_property() {
         Radio checked_radio = $('[type=radio]:checked') as Radio
 
-        assert checked_radio.hasState(Checked)
-        assert checked_radio.valueFor(Label) == 'Radio label checked'
-
+        assert checked_radio.hasState(Checked) // TODO assert checked_radio.is(Checked)
+        assert checked_radio.valueFor(Label) == 'Radio label checked' // TODO assert checked_radio.have(Label) == 'Radio label checked'
     }
 
     @Test
@@ -138,14 +142,28 @@ class ComponentTest {
     }
 
     @Test
+    @Ignore
     public void should_be_able_to_override_action() {
-        fail()
+        CustomCheckbox checkbox = $('#checkbox') as CustomCheckbox
+
+        assert !checkbox.checked
+        check checkbox
+        assert checkbox.checked
     }
 
     static class CustomButton extends Button {
         CustomButton() {
             support Text, { "Override Text" }
             support Hidden,  { true }
+        }
+    }
+
+    static class CustomCheckbox extends Checkbox {
+        boolean checked;
+
+        @Override
+        void check() {
+            this.checked = true
         }
     }
 

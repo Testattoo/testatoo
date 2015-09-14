@@ -181,7 +181,7 @@ class Component implements Clickable, Draggable {
         return (pe == DEFAULT_PE ? clazz.newInstance().evaluator : pe).getValue(this)
     }
 
-
+    // TODO remove
     boolean hasState(Class<State> clazz) {
         StateEvaluator se = _supportedStates.get(clazz)
         if (se == null) {

@@ -17,6 +17,7 @@ package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -76,6 +77,7 @@ class ErrorTest {
     }
 
     @Test
+    @Ignore
     public void should_throw_an_error_on_not_supported_action() {
         fail()
     }
@@ -194,6 +196,7 @@ class ErrorTest {
     }
 
     @Test
+    @Ignore
     public void should_throw_an_error_on_select_already_selected_item() {
         fail()
     }

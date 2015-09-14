@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.AssertUtils
 import org.testatoo.core.Matcher
 import org.testatoo.core.Component
 
@@ -37,9 +36,14 @@ class State implements Matcher {
     void description(Map<String, String> m) { description = m }
 
     @Override
-    void matches(Component c) { AssertUtils.ensure c, c.hasState(this.class), description }
+    void matches(Component c) { ensure c, c.hasState(this.class), description }
 
     @Override
     String toString() { getClass().simpleName }
+
+    private static void ensure(Component c, boolean test, Map<String, ?> opts) {
+        if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")
+    }
+
 
 }
