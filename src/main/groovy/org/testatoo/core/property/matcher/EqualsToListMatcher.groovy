@@ -16,6 +16,7 @@
 package org.testatoo.core.property.matcher
 
 import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.property.Property
 
 /**
@@ -33,7 +34,7 @@ class EqualsToListMatcher extends AbstractPropertyMatcher {
     @Override
     void doMatch(Component c, Object currentValue) {
         if (!(currentValue == expected)) {
-            throw new AssertionError("Expected ${property.class.simpleName} '${expected}' but was '${currentValue}'")
+            throw new ComponentException("Expected ${property.class.simpleName} '${expected}' but was '${currentValue}'")
         }
     }
 

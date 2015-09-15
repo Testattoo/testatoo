@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.state
 
+import org.testatoo.core.ComponentException
 import org.testatoo.core.Matcher
 import org.testatoo.core.Component
 
@@ -42,7 +43,7 @@ class State implements Matcher {
     String toString() { getClass().simpleName }
 
     private static void ensure(Component c, boolean test, Map<String, ?> opts) {
-        if (!test) throw new AssertionError("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")
+        if (!test) throw new ComponentException("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")
     }
 
 

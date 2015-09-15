@@ -27,11 +27,8 @@ import org.testatoo.bundle.html5.Checkbox
 import org.testatoo.bundle.html5.Paragraph
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.Section
-import org.testatoo.core.action.Check
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Label
 import org.testatoo.core.property.Text
-import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Hidden
 
 import static org.junit.Assert.fail

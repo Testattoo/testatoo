@@ -31,7 +31,6 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.action.Actions.waitUntil
 import static org.testatoo.core.input.Key.*
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.property.Properties.*
@@ -117,7 +116,6 @@ class MouseTest {
     }
 
     @Test
-    @Ignore
     public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
         dropPanel.should { have title('Drop here') }
@@ -125,7 +123,7 @@ class MouseTest {
         Panel dragPanel = $('#draggable') as Panel
 
         drag dragPanel on dropPanel
-        waitUntil { dropPanel.have title('Dropped!') }
+        dropPanel.should { have title('Dropped!') }
     }
 
     @Test

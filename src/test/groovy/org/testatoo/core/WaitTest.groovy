@@ -23,11 +23,8 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.Enabled
-import org.testatoo.core.state.Visible
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.action.Actions.waitUntil
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.state.States.*
 import static org.testatoo.core.action.Actions.*
@@ -49,6 +46,8 @@ class WaitTest {
 
     @Test
     public void should_be_able_to_wait_on_condition() {
+        duration = 10.seconds
+
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
@@ -58,11 +57,10 @@ class WaitTest {
 
         click_on button
         button.should { be disabled }
-
-        waitUntil 10.seconds, { button.is(enabled) }
+        button.should { be enabled }
 
         click_on button
-        waitUntil { button.is(Enabled) or message.is(Visible) }
+        button.should { be enabled }
     }
 }
 

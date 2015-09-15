@@ -141,7 +141,7 @@ class GoogleSearchTest {
         fill searchField with 'groovy'          <3>
         click_on searchButton
 
-        waitUntil { resultList.is visible }
+        resultList.should { be visible }
 
         GoogleItem item = resultList.items[1];
         item.should {

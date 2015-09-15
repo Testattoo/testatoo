@@ -26,6 +26,8 @@ import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
 
+import java.util.concurrent.TimeoutException
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -71,12 +73,6 @@ class Component implements Clickable, Draggable {
         return (se == DEFAULT_SE ? state.class.newInstance().evaluator : se).getState(this)
     }
 
-    // TODO used in one case for wait until that we want to remove
-    Block is(Class<? extends State> c) { block 'is', c.newInstance() }
-
-    // TODO used in one case for wait until that we want to remove
-    Block becomes(State matcher) { block 'becomes', matcher }
-
     Block have(PropertyMatcher matcher) { block 'have', matcher }
 
     Object has(Property property) {
@@ -91,7 +87,7 @@ class Component implements Clickable, Draggable {
         Blocks.block "matching ${this} contains ${components}", {
             List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
-                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
+                throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
             }
         }
     }
@@ -100,7 +96,7 @@ class Component implements Clickable, Draggable {
         Blocks.block "matching ${this} display ${components}", {
             List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
-                throw new AssertionError("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
+                throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
             } else {
                 components.findAll { !it.is(new Visible()) }
             }
@@ -110,7 +106,7 @@ class Component implements Clickable, Draggable {
     void should(Closure c) {
         c.delegate = this
         c(this)
-        Blocks.run(Blocks.compose(Blocks.pending()))
+        waitUntil(c)
     }
 
     protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
@@ -228,4 +224,30 @@ class Component implements Clickable, Draggable {
     }
 
     static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, true)) }
+
+    private static void waitUntil(Closure c) {
+        c()
+        try {
+            _waitUntil Testatoo.duration.toMilliseconds(), 500, {
+                Log.testatoo "waitUntil: ${c}"
+                Blocks.run(Blocks.compose(Blocks.pending()))
+            }
+        } catch (TimeoutException e) {
+            throw new ComponentException("${e.message}")
+        }
+    }
+
+    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
+        Throwable ex = null
+        long t = timeout
+        for (; t > 0; t -= interval) {
+            try {
+                return c.call()
+            } catch (Throwable e) {
+                ex = e
+            }
+            Thread.sleep(interval)
+        }
+        throw new ComponentException("${ex.message}")
+    }
 }

@@ -16,6 +16,7 @@
 package org.testatoo.core.property.matcher
 
 import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.property.Property
 
 /**
@@ -38,9 +39,9 @@ class EqualsToMatcher extends AbstractPropertyMatcher {
         }
         if (!(currentValue in exp)) {
             if (exp.size() == 1) {
-                throw new AssertionError("Expected ${property.class.simpleName} '${exp[0]}' but was '${currentValue}'")
+                throw new ComponentException("Expected ${property.class.simpleName} '${exp[0]}' but was '${currentValue}'")
             } else {
-                throw new AssertionError("Expected one of ${property.class.simpleName} '${exp}' but was '${currentValue}'")
+                throw new ComponentException("Expected one of ${property.class.simpleName} '${exp}' but was '${currentValue}'")
             }
         }
     }

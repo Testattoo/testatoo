@@ -62,22 +62,6 @@ class FieldsTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void refactor() {
-        TextField textField = $('#text_field') as TextField
-
-        textField.should {
-            be enabled
-            be visible
-            be optional
-        }
-
-        println textField.is(visible)
-        // TODO Remove waitUntil
-        waitUntil { textField.is(Visible) }
-    }
-
-
-    @Test
     public void fields_should_have_expected_behaviours() {
         // Text field
         TextField textField = $('#text_field') as TextField
