@@ -31,6 +31,7 @@ import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.bundle.html5.list.Item
 import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.state.Available
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -108,7 +109,7 @@ class ErrorTest {
     public void should_throw_an_error_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button;
         try {
-            waitUntil 2.seconds, { button.is(available) }
+            waitUntil 2.seconds, { button.is(Available) }
             fail()
         } catch (RuntimeException e) {
             assert e.message == "Unable to reach the condition within 2 seconds (Component defined by expression \$('#inexisting_button') not found.)"

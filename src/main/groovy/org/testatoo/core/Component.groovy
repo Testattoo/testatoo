@@ -63,15 +63,29 @@ class Component implements Clickable, Draggable {
 
     Block be(State matcher) { block 'be', matcher }
 
-    Block is(State matcher) { block 'is', matcher }
+    boolean is(State state) {
+        StateEvaluator se = _supportedStates.get(state.class)
+        if (se == null) {
+            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
+        }
+        return (se == DEFAULT_SE ? state.class.newInstance().evaluator : se).getState(this)
+    }
 
+    // TODO used in one case for wait until that we want to remove
     Block is(Class<? extends State> c) { block 'is', c.newInstance() }
 
+    // TODO used in one case for wait until that we want to remove
     Block becomes(State matcher) { block 'becomes', matcher }
 
     Block have(PropertyMatcher matcher) { block 'have', matcher }
 
-    Block has(PropertyMatcher matcher) { block 'has', matcher }
+    Object has(Property property) {
+        PropertyEvaluator pe = _supportedProperties.get(property.class)
+        if (pe == null) {
+            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
+        }
+        return (pe == DEFAULT_PE ? property.class.newInstance().evaluator : pe).getValue(this)
+    }
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
@@ -171,23 +185,6 @@ class Component implements Clickable, Draggable {
 
     void support(Class<?> type, String exp) {
         support(type, { eval(exp) })
-    }
-
-    Object valueFor(Class<Property> clazz) {
-        PropertyEvaluator pe = _supportedProperties.get(clazz)
-        if (pe == null) {
-            throw new ComponentException("Component ${this} does not support property ${clazz.simpleName}")
-        }
-        return (pe == DEFAULT_PE ? clazz.newInstance().evaluator : pe).getValue(this)
-    }
-
-    // TODO remove
-    boolean hasState(Class<State> clazz) {
-        StateEvaluator se = _supportedStates.get(clazz)
-        if (se == null) {
-            throw new ComponentException("Component ${this} does not support state ${clazz.simpleName}")
-        }
-        return (se == DEFAULT_SE ? clazz.newInstance().evaluator : se).getState(this)
     }
 
     void execute(Action action) {

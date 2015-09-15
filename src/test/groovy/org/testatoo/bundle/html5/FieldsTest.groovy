@@ -36,6 +36,8 @@ import org.testatoo.bundle.html5.input.TimeField
 import org.testatoo.bundle.html5.input.URLField
 import org.testatoo.bundle.html5.input.WeekField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.state.Hidden
+import org.testatoo.core.state.Visible
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
@@ -58,6 +60,22 @@ class FieldsTest {
 
     @AfterClass
     public static void tearDown() { evaluator.close() }
+
+    @Test
+    public void refactor() {
+        TextField textField = $('#text_field') as TextField
+
+        textField.should {
+            be enabled
+            be visible
+            be optional
+        }
+
+        println textField.is(visible)
+        // TODO Remove waitUntil
+        waitUntil { textField.is(Visible) }
+    }
+
 
     @Test
     public void fields_should_have_expected_behaviours() {
@@ -133,7 +151,7 @@ class FieldsTest {
 
         RangeField rangeField = $('#range_field') as RangeField
         rangeField.should { be enabled }
-        rangeField.should { have minimun(0)}
+        rangeField.should { have minimun(0) }
         rangeField.should { have maximum(50) }
         rangeField.should { have step(5) }
 
@@ -160,4 +178,5 @@ class FieldsTest {
         dateTimeField.should { be enabled }
         dateTimeField.should { be readonly }
     }
+
 }

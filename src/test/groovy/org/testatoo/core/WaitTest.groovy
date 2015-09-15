@@ -23,6 +23,8 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.state.Enabled
+import org.testatoo.core.state.Visible
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.action.Actions.waitUntil
@@ -60,7 +62,7 @@ class WaitTest {
         waitUntil 10.seconds, { button.is(enabled) }
 
         click_on button
-        waitUntil { button.is(enabled) or message.is(visible) }
+        waitUntil { button.is(Enabled) or message.is(Visible) }
     }
 }
 

@@ -30,5 +30,4 @@ class Value extends Property {
 
     @Delegate
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
-
 }

@@ -117,7 +117,7 @@ class DSLTest {
             have value('Some input')
         }
 
-        assert textField.has(value('Some input'))
+        assert textField.has(value) == 'Some input'
 
         clear textField
 
