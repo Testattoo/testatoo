@@ -115,6 +115,7 @@ class MouseTest {
         button.should { have text('Button Mouse Out!') }
     }
 
+    @Ignore
     @Test
     public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
