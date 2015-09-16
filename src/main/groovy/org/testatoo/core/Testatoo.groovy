@@ -25,7 +25,7 @@ import org.testatoo.core.evaluator.Evaluator
 class Testatoo {
 
     static boolean debug = false
-    static TimeDuration waitUntil = resetWaitUntil()
+    static TimeDuration waitUntil = 2.seconds
 
     static final Collection<Class<Component>> componentTypes = new HashSet<>()
 
