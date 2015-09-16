@@ -682,6 +682,9 @@ column.should {
     have 4.cells
 }
 
+// Get Column by title
+data_grid.column('Column 1 title').should { have 4.cells }
+
 // Or at the Row Level
 Row row = data_grid.rows[0]
 row.should {
