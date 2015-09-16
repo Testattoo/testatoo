@@ -16,6 +16,7 @@
 package org.testatoo.core.property.matcher
 
 import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.property.Property
 
 /**
@@ -34,9 +35,9 @@ class ContainingMatcher extends AbstractPropertyMatcher {
     void doMatch(Component c, Object currentValue) {
         if (!contained.find { String.valueOf(currentValue).contains(it) }) {
             if (contained.size() == 1) {
-                throw new AssertionError("Expected ${property.class.simpleName} containing '${contained[0]}' but was '${currentValue}'")
+                throw new ComponentException("Expected ${property.class.simpleName} containing '${contained[0]}' but was '${currentValue}'")
             } else {
-                throw new AssertionError("Expected one of ${property.class.simpleName} containing '${contained}' but was '${currentValue}'")
+                throw new ComponentException("Expected one of ${property.class.simpleName} containing '${contained}' but was '${currentValue}'")
             }
         }
     }

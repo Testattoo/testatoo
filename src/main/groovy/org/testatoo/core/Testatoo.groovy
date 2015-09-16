@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import com.google.common.reflect.ClassPath
+import groovy.time.TimeDuration
 import org.testatoo.core.evaluator.Evaluator
 
 /**
@@ -24,6 +25,7 @@ import org.testatoo.core.evaluator.Evaluator
 class Testatoo {
 
     static boolean debug = false
+    static TimeDuration waitUntil = 2.seconds
 
     static final Collection<Class<Component>> componentTypes = new HashSet<>()
 
@@ -44,6 +46,10 @@ class Testatoo {
 
     static Browser getBrowser() {
         return new Browser(evaluator)
+    }
+
+    static void resetWaitUntil() {
+        waitUntil = 2.seconds
     }
 
     static {

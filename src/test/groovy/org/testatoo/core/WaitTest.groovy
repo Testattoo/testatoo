@@ -25,7 +25,6 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.action.Actions.waitUntil
 import static org.testatoo.core.input.Mouse.*
 import static org.testatoo.core.state.States.*
 import static org.testatoo.core.action.Actions.*
@@ -38,15 +37,20 @@ class WaitTest {
 
     @BeforeClass
     public static void setup() {
+        waitUntil = 10.seconds
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/wait.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() {
+        resetWaitUntil()
+        evaluator.close() }
 
     @Test
     public void should_be_able_to_wait_on_condition() {
+
+
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
@@ -56,11 +60,10 @@ class WaitTest {
 
         click_on button
         button.should { be disabled }
-
-        waitUntil 10.seconds, { button.is(enabled) }
+        button.should { be enabled }
 
         click_on button
-        waitUntil { button.is(enabled) or message.is(visible) }
+        button.should { be enabled }
     }
 }
 

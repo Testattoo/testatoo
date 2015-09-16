@@ -94,7 +94,7 @@ class DSLTest {
 
         panel.should { be hidden }
         on field enter 'invalid value'
-        waitUntil { panel.is(visible) }
+        panel.should { be visible }
     }
 
     @Test
@@ -104,7 +104,7 @@ class DSLTest {
 
         panel.should { be hidden }
         clear field
-        waitUntil { panel.becomes(visible) }
+        panel.should { be visible }
     }
 
     @Test
@@ -117,7 +117,7 @@ class DSLTest {
             have value('Some input')
         }
 
-        assert textField.has(value('Some input'))
+        assert textField.has(value) == 'Some input'
 
         clear textField
 

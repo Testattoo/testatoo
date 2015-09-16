@@ -81,7 +81,7 @@ class ContainAndDisplayTest {
                         reset_button
                 )
             }
-        } catch (AssertionError e) {
+        } catch (ComponentException e) {
             assert e.message == "Component Panel:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]" as String
         }
     }
@@ -101,14 +101,14 @@ class ContainAndDisplayTest {
                         invisible_button
                 )
             }
-        } catch (AssertionError e) {
+        } catch (ComponentException e) {
             assert e.message == "Component Button with id invisible_button expected visible but was hidden"
         }
 
         EmailField email_field = $('[type=email]') as EmailField
         try {
             panel.should { display(email_field) }
-        } catch (AssertionError e) {
+        } catch (ComponentException e) {
             assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]" as String
         }
     }

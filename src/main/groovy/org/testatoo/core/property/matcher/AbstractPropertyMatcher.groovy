@@ -30,7 +30,7 @@ abstract class AbstractPropertyMatcher implements PropertyMatcher {
     }
 
     @Override
-    final void matches(Component c) { doMatch(c, c.valueFor(property.class)) }
+    final void matches(Component c) { doMatch(c, c.has(property)) }
 
     abstract void doMatch(Component c, Object currentValue)
 }

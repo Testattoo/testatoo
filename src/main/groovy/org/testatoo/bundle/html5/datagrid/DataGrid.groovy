@@ -19,6 +19,7 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.property.ColumnSize
 import org.testatoo.core.property.Size
+import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,5 +38,9 @@ class DataGrid extends Component {
 
     List<Row> getRows() {
         find("tbody tr", Row)
+    }
+
+    Column column(String _title) {
+        columns.find { it.has(title) == _title }
     }
 }

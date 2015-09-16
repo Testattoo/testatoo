@@ -26,6 +26,8 @@ import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
 
+import java.util.concurrent.TimeoutException
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -63,21 +65,29 @@ class Component implements Clickable, Draggable {
 
     Block be(State matcher) { block 'be', matcher }
 
-    Block is(State matcher) { block 'is', matcher }
-
-    Block is(Class<? extends State> c) { block 'is', c.newInstance() }
-
-    Block becomes(State matcher) { block 'becomes', matcher }
+    boolean is(State state) {
+        StateEvaluator se = _supportedStates.get(state.class)
+        if (se == null) {
+            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
+        }
+        return (se == DEFAULT_SE ? state.class.newInstance().evaluator : se).getState(this)
+    }
 
     Block have(PropertyMatcher matcher) { block 'have', matcher }
 
-    Block has(PropertyMatcher matcher) { block 'has', matcher }
+    Object has(Property property) {
+        PropertyEvaluator pe = _supportedProperties.get(property.class)
+        if (pe == null) {
+            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
+        }
+        return (pe == DEFAULT_PE ? property.class.newInstance().evaluator : pe).getValue(this)
+    }
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
             List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
-                throw new AssertionError("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
+                throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
             }
         }
     }
@@ -86,7 +96,7 @@ class Component implements Clickable, Draggable {
         Blocks.block "matching ${this} display ${components}", {
             List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
-                throw new AssertionError("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
+                throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
             } else {
                 components.findAll { !it.is(new Visible()) }
             }
@@ -96,7 +106,7 @@ class Component implements Clickable, Draggable {
     void should(Closure c) {
         c.delegate = this
         c(this)
-        Blocks.run(Blocks.compose(Blocks.pending()))
+        waitUntil(c)
     }
 
     protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
@@ -173,23 +183,6 @@ class Component implements Clickable, Draggable {
         support(type, { eval(exp) })
     }
 
-    Object valueFor(Class<Property> clazz) {
-        PropertyEvaluator pe = _supportedProperties.get(clazz)
-        if (pe == null) {
-            throw new ComponentException("Component ${this} does not support property ${clazz.simpleName}")
-        }
-        return (pe == DEFAULT_PE ? clazz.newInstance().evaluator : pe).getValue(this)
-    }
-
-    // TODO remove
-    boolean hasState(Class<State> clazz) {
-        StateEvaluator se = _supportedStates.get(clazz)
-        if (se == null) {
-            throw new ComponentException("Component ${this} does not support state ${clazz.simpleName}")
-        }
-        return (se == DEFAULT_SE ? clazz.newInstance().evaluator : se).getState(this)
-    }
-
     void execute(Action action) {
         Class<?> c = action.getClass()
         while (c != Object) {
@@ -231,4 +224,30 @@ class Component implements Clickable, Draggable {
     }
 
     static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, true)) }
+
+    private static void waitUntil(Closure c) {
+        c()
+        try {
+            _waitUntil Testatoo.waitUntil.toMilliseconds(), 500, {
+                Log.testatoo "waitUntil: ${c}"
+                Blocks.run(Blocks.compose(Blocks.pending()))
+            }
+        } catch (TimeoutException e) {
+            throw new ComponentException("${e.message}")
+        }
+    }
+
+    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
+        Throwable ex = null
+        long t = timeout
+        for (; t > 0; t -= interval) {
+            try {
+                return c.call()
+            } catch (Throwable e) {
+                ex = e
+            }
+            Thread.sleep(interval)
+        }
+        throw new ComponentException("${ex.message}")
+    }
 }

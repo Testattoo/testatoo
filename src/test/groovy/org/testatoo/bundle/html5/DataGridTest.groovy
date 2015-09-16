@@ -95,4 +95,14 @@ class DataGridTest {
 
         rows[2].cells[1].should { have value('cell 32') }
     }
+
+    @Test
+    public void should_access_to_column_by_title() {
+        DataGrid data_grid = $('#data_grid') as DataGrid
+
+        data_grid.column('').should { have title('') }
+        data_grid.column('Column 1 title').should { have title('Column 1 title') }
+        data_grid.column('Column 2 title').should { have title('Column 2 title') }
+        data_grid.column('Column 3 title').should { have title('Column 3 title') }
+    }
 }

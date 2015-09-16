@@ -141,7 +141,7 @@ class GoogleSearchTest {
         fill searchField with 'groovy'          <3>
         click_on searchButton
 
-        waitUntil { resultList.is visible }
+        resultList.should { be visible }
 
         GoogleItem item = resultList.items[1];
         item.should {
@@ -370,8 +370,8 @@ button.should {
 
 // Or
 
-assert button.hasState(Enabled)
-assert button.hasState(Visible)
+assert button.is(enabled)
+assert button.is(visible)
 -------------------------------------------------------------------------------
 
 === Evaluate Property
@@ -387,7 +387,7 @@ button.should {
 
 // Or
 
-assert button.valueFor(Text) == 'Ok'
+assert button.has(Text) == 'Ok'
 -------------------------------------------------------------------------------
 
 All properties that implied a *String* support some pattern methods
@@ -681,6 +681,9 @@ column.should {
     have title('Column 1 title')
     have 4.cells
 }
+
+// Get Column by title
+data_grid.column('Column 1 title').should { have 4.cells }
 
 // Or at the Row Level
 Row row = data_grid.rows[0]

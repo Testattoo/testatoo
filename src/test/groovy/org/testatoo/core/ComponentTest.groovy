@@ -27,11 +27,8 @@ import org.testatoo.bundle.html5.Checkbox
 import org.testatoo.bundle.html5.Paragraph
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.Section
-import org.testatoo.core.action.Check
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Label
 import org.testatoo.core.property.Text
-import org.testatoo.core.state.Checked
 import org.testatoo.core.state.Hidden
 
 import static org.junit.Assert.fail
@@ -125,8 +122,8 @@ class ComponentTest {
     public void should_be_able_to_evaluate_state_and_property() {
         Radio checked_radio = $('[type=radio]:checked') as Radio
 
-        assert checked_radio.hasState(Checked) // TODO assert checked_radio.is(Checked)
-        assert checked_radio.valueFor(Label) == 'Radio label checked' // TODO assert checked_radio.have(Label) == 'Radio label checked'
+        assert checked_radio.is(checked)
+        assert checked_radio.has(label) == 'Radio label checked'
     }
 
     @Test
@@ -136,6 +133,7 @@ class ComponentTest {
     }
 
     @Test
+    @Ignore
     public void should_be_able_to_override_state() {
         Button button = $('#button') as CustomButton
         button.should { be hidden }
