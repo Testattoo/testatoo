@@ -25,7 +25,7 @@ import org.testatoo.core.evaluator.Evaluator
 class Testatoo {
 
     static boolean debug = false
-    static TimeDuration duration = 5.seconds
+    static TimeDuration waitUntil = resetWaitUntil()
 
     static final Collection<Class<Component>> componentTypes = new HashSet<>()
 
@@ -46,6 +46,10 @@ class Testatoo {
 
     static Browser getBrowser() {
         return new Browser(evaluator)
+    }
+
+    static void resetWaitUntil() {
+        waitUntil = 2.seconds
     }
 
     static {

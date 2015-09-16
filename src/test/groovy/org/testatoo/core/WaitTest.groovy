@@ -37,16 +37,19 @@ class WaitTest {
 
     @BeforeClass
     public static void setup() {
+        waitUntil = 10.seconds
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/wait.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() {
+        resetWaitUntil()
+        evaluator.close() }
 
     @Test
     public void should_be_able_to_wait_on_condition() {
-        duration = 10.seconds
+
 
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
