@@ -40,4 +40,6 @@ class States {
     static final Required required = new Required()
     static final Optional optional = new Optional()
     static final ReadOnly readonly = new ReadOnly()
+    static final InRange inRange = new InRange()
+    static final OutOfRange outOfRange = new OutOfRange()
 }

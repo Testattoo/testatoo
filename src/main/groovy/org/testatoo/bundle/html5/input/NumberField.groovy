@@ -19,6 +19,8 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.property.Maximum
 import org.testatoo.core.property.Minimum
 import org.testatoo.core.property.Step
+import org.testatoo.core.state.InRange
+import org.testatoo.core.state.OutOfRange
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,7 +29,7 @@ import org.testatoo.core.property.Step
 class NumberField extends TextField {
 
     NumberField() {
-        support Minimum, Maximum, Step
+        support Minimum, Maximum, Step, InRange, OutOfRange
     }
 
 }

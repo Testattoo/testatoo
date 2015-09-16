@@ -36,8 +36,6 @@ import org.testatoo.bundle.html5.input.TimeField
 import org.testatoo.bundle.html5.input.URLField
 import org.testatoo.bundle.html5.input.WeekField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.state.Hidden
-import org.testatoo.core.state.Visible
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Keyboard.*
@@ -62,7 +60,7 @@ class FieldsTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    public void fields_should_have_expected_behaviours() {
+    public void text_field_should_have_expected_behaviours() {
         // Text field
         TextField textField = $('#text_field') as TextField
 
@@ -103,7 +101,10 @@ class FieldsTest {
 
         EmailField emailField = $('#email_field') as EmailField
         emailField.should { be disabled }
+    }
 
+    @Test
+    public void phone_field_should_have_expected_behaviours() {
         PhoneField phoneField = $('#phone_field') as PhoneField
         phoneField.should {
             have pattern('^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$')
@@ -120,29 +121,51 @@ class FieldsTest {
         click_on phoneField
         type '5146666666'
         phoneField.should { be valid }
+    }
 
+    @Test
+    public void url_fields_should_have_expected_behaviours() {
         URLField urlField = $('#url_field') as URLField
         urlField.should { be enabled }
+    }
 
+    @Test
+    public void search_fields_should_have_expected_behaviours() {
         SearchField searchField = $('#search_field') as SearchField
         searchField.should { be enabled }
+    }
 
+    @Test
+    public void number_fields_should_have_expected_behaviours() {
         NumberField numberField = $('#number_field') as NumberField
         numberField.should { be enabled }
+        numberField.should { be inRange }
         numberField.should { have minimun(0) }
         numberField.should { have maximum(64) }
         numberField.should { have step(8) }
 
+        fill numberField with '65'
+        numberField.should { be outOfRange }
+    }
+
+    @Test
+    public void range_field_should_have_expected_behaviours() {
         RangeField rangeField = $('#range_field') as RangeField
         rangeField.should { be enabled }
         rangeField.should { have minimun(0) }
         rangeField.should { have maximum(50) }
         rangeField.should { have step(5) }
+    }
 
+    @Test
+    public void color_field_should_have_expected_behaviours() {
         ColorField colorField = $('#color_field') as ColorField
         colorField.should { be enabled }
         colorField.should { be optional }
+    }
 
+    @Test
+    public void date_fields_should_have_expected_behaviours() {
         MonthField monthField = $('#month_field') as MonthField
         monthField.should { be enabled }
         monthField.should { be required }
