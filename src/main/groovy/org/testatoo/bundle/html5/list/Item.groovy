@@ -21,7 +21,6 @@ import org.testatoo.core.action.Select
 import org.testatoo.core.action.Unselect
 import org.testatoo.core.action.support.Selectable
 import org.testatoo.core.action.support.Unselectable
-import org.testatoo.core.property.Label
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.Disabled
 import org.testatoo.core.state.Enabled
@@ -35,8 +34,7 @@ import org.testatoo.core.state.Unselected
 class Item extends Component implements Selectable, Unselectable {
 
     Item() {
-        support Label, "it.attr('label')"
-        support Value, "it.text().trim()"
+        support Value, { eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()") }
         support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
         support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
         support Selected, Unselected
@@ -49,7 +47,7 @@ class Item extends Component implements Selectable, Unselectable {
     }
 
     String getValue() {
-        return eval("it.text().trim()")
+        return eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
     }
 
     @Override

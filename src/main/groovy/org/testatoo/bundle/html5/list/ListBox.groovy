@@ -21,6 +21,9 @@ import org.testatoo.core.property.*
 import org.testatoo.core.state.MultiSelectable
 import org.testatoo.core.state.SingleSelectable
 
+import static org.testatoo.core.property.Properties.getLabel
+import static org.testatoo.core.property.Properties.value
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -40,6 +43,10 @@ class ListBox extends Component {
 
     List<GroupItem> getGroupItems() {
         find("optgroup", GroupItem)
+    }
+
+    Item item(String _value) {
+        items.find { it.has(value) == _value }
     }
 
 }

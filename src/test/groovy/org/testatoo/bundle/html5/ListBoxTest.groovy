@@ -69,6 +69,8 @@ class ListBoxTest {
         CTRL.click listBox.items[2]
 
         listBox.should { have selectedItems('Montreal', 'Montpellier') }
+        CTRL.click listBox.item('Montreal')
+        listBox.should { have selectedItems('Montpellier') }
 
         listBox = $('#planets') as ListBox
         listBox.should { be singleSelectable }

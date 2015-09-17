@@ -56,32 +56,35 @@ class DropdownTest {
 
         dropdown.should { have label('Elements list') }
         dropdown.should { have size(5) }
-        dropdown.should { have items.equalsTo('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
-        dropdown.should { have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium') }
 
-        dropdown.should { have items.containing('Polonium', 'Calcium') }
+        dropdown.should { have items('H', 'B', 'Pol', 'Ca', 'Ra') }
 
-        dropdown.should { have selectedItems('Helium') }
+        dropdown.should { have items.containing('Pol', 'Ca') }
+
+        dropdown.should { have selectedItems('H') }
         dropdown.items[2].should { be unselected }
 
         click_on dropdown.items[2]
 
-        dropdown.should { have selectedItems('Polonium') }
+        dropdown.should { have selectedItems('Pol') }
         dropdown.items[2].should { be selected }
 
         assert dropdown.items.size == 5
         dropdown.should { have 5.items }
 
-        dropdown.items[0].should { have label('H') }
-        dropdown.items[1].should { have label('B') }
-        dropdown.items[2].should { have label('Pol') }
-        dropdown.items[3].should { have label('Ca') }
-        dropdown.items[4].should { have label('Ra') }
+        dropdown.items[0].should { have value('H') }
+        dropdown.items[1].should { have value('B') }
+        dropdown.items[2].should { have value('Pol') }
+        dropdown.items[3].should { have value('Ca') }
+        dropdown.items[4].should { have value('Ra') }
 
         click_on dropdown.items[4]
 
-        dropdown.should { have selectedItems('Radium') }
+        dropdown.should { have selectedItems('Ra') }
         dropdown.items[4].should { be selected }
+
+        click_on dropdown.item('Ca')
+        dropdown.should { have selectedItems('Ca') }
 
         dropdown = $('#countries') as Dropdown
         dropdown.should { be disabled }

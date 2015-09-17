@@ -19,6 +19,8 @@ import org.testatoo.core.ByJs
 import org.testatoo.core.Component
 import org.testatoo.core.property.*
 
+import static org.testatoo.core.property.Properties.*
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -38,6 +40,10 @@ class Dropdown extends Component {
 
     List<GroupItem> getGroupItems() {
         find("optgroup", GroupItem)
+    }
+
+    Item item(String _value) {
+        items.find { it.has(value) == _value }
     }
 
 }
