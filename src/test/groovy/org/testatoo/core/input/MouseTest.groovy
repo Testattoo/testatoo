@@ -70,10 +70,10 @@ class MouseTest {
         radio.should { be checked }
 
         Dropdown dropDown = $('#elements') as Dropdown
-        dropDown.should { have selectedItems('Helium') }
+        dropDown.should { have selectedItems('H') }
 
         click_on dropDown.items[2]
-        dropDown.should { have selectedItems('Polonium') }
+        dropDown.should { have selectedItems('Pol') }
     }
 
     @Test

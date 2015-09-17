@@ -130,10 +130,10 @@ class DSLTest {
     @Test
     public void should_be_able_to_select_element_in_dropdown_an_listbox() {
         Dropdown dropdown = $('#elements') as Dropdown
-        dropdown.should { have selectedItems('Helium') }
+        dropdown.should { have selectedItems('H') }
 
-        on dropdown select 'Polonium'
-        dropdown.should { have selectedItems('Polonium') }
+        on dropdown select 'Pol'
+        dropdown.should { have selectedItems('Pol') }
 
         ListBox listBox = $('#cities') as ListBox
 

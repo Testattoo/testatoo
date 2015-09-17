@@ -149,10 +149,10 @@ class ErrorTest {
         Dropdown dropDown = $('#elements') as Dropdown
         dropDown.items[0].should { be disabled }
         try {
-            on dropDown unselect 'Helium'
+            on dropDown unselect 'H'
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Item Helium is disabled and cannot be unselected'
+            assert e.message == 'Item H is disabled and cannot be unselected'
         }
     }
 

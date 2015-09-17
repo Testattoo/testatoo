@@ -51,14 +51,14 @@ class MatcherTest {
             dropDown.should { have items.equalsTo('Val1') }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "Expected Items '[Val1]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected Items '[Val1]' but was '[H, B, Pol, Ca, Ra]'"
         }
 
         try {
             dropDown.should { have items.equalsTo(['Val1', 'Val2']) }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "Expected Items '[Val1, Val2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected Items '[Val1, Val2]' but was '[H, B, Pol, Ca, Ra]'"
         }
     }
 
@@ -69,14 +69,14 @@ class MatcherTest {
             dropDown.items[0].should { have value.equalsTo('Val_1') }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "Expected Value 'Val_1' but was 'Helium'"
+            assert e.message == "Expected Value 'Val_1' but was 'H'"
         }
 
         try {
             dropDown.items[0].should { have value.equalsTo('Val_1', 'val_2') }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "Expected one of Value '[Val_1, val_2]' but was 'Helium'"
+            assert e.message == "Expected one of Value '[Val_1, val_2]' but was 'H'"
         }
     }
 
@@ -87,14 +87,14 @@ class MatcherTest {
             dropDown.should { have items.containing('Val_1') }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "Expected Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected Items containing 'Val_1' but was '[H, B, Pol, Ca, Ra]'"
         }
 
         try {
             dropDown.should { have items.containing('Val_1', 'Val_2') }
             fail()
         } catch (ComponentException e) {
-            assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
+            assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[H, B, Pol, Ca, Ra]'"
         }
     }
 }
