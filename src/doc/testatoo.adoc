@@ -165,10 +165,8 @@ class GoogleSearchTest {
     }
 }
 -------------------------------------------------------------------------------
-[NOTE]
-===============================
-The complete sample is https://github.com/Ovea/testatoo-sample/tree/master/src/test/groovy/starter/[testatoo-sample]
-
+.Note
+NOTE: The complete sample is https://github.com/Ovea/testatoo-sample/tree/master/src/test/groovy/starter/[testatoo-sample].
 
 If you run the test, it should process a simple search on Google.
 Some interesting elements can be shown in this test :
