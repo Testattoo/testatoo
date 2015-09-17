@@ -31,14 +31,21 @@ Example of a test syntax :
 
 [source, java]
 -------------------------------------------------------------------------------
-    textField.should { have label('myLabel') }
-    textField.should { have placeholder('My placeholder') }
-    textField.should { be empty }
+    textField.should {
+        be visible
+        be empty
+        have label('myLabel')
+    }
 -------------------------------------------------------------------------------
 
 == Why Should I Use Testatoo?
 
 If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
+More seriously the main problems with UI tests come from the fact that there a always to technicals.
+
+More a test is based on technical details more is fragile.
+The main purpose to UI layer it's to be modified often and by consequence it's very difficult to keep test green.
+
 
 == Installation & Usage (I want to ride my bicycle!)
 
@@ -85,9 +92,13 @@ Get Testatoo and dependencies libraries via Maven...
 </project>
 -------------------------------------------------------------------------------
 
-Testatoo works with existing popular unit test libraries, like JUnit.
-In TDD/BBD style we write test first. The test in a simple Google search.
+Testatoo works with existing popular testing libraries, like http://junit.org/[JUnit] / http://testng.org/[TestNG]
+ / http://concordion.org/[Concordion] / https://cucumber.io/[Cucumber] / http://jbehave.org/[JBheave]...
 
+
+In TDD/BBD style we write test first. And Testatoo have been created for this goal.
+
+For example, testing a simple search in Goolge.
 The test looks like this :
 
 [source, java]
@@ -113,9 +124,6 @@ import static org.testatoo.core.state.States.*
 import static org.testatoo.core.action.Actions.*
 import static org.testatoo.core.input.Mouse.*
 
-/**
- * @author David Avenante (d.avenante@gmail.com)
- */
 @RunWith(JUnit4)
 class GoogleSearchTest {
 
@@ -128,6 +136,12 @@ class GoogleSearchTest {
         Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://www.google.ca'
         init()
+    }
+
+    private static void init() {
+        searchField = $('#lst-ib') as TextField
+        searchButton = $('#sblsbb button') as Button        <1>
+        resultList = $('#rso') as GoogleListView
     }
 
     @AfterClass
@@ -150,40 +164,28 @@ class GoogleSearchTest {
             have description.containing('Groovy is a powerful, optionally typed and dynamic language')
         }
     }
-
-    private static void init() {
-        searchField = $('#lst-ib') as TextField
-        searchButton = $('#sblsbb button') as Button        <1>
-        resultList = $('#rso') as GoogleListView
-    }
 }
 -------------------------------------------------------------------------------
+[NOTE]
+===============================
+The complete sample is https://github.com/Ovea/testatoo-sample/tree/master/src/test/groovy/starter/[testatoo-sample]
 
-If you run the test, it should process a simple search on google engine.
+If you run the test, it should process a simple search on Google.
 Some interesting elements can be shown in this test :
 
-<1> Testatoo works with Strongly typed components.
-    Testatoo manipulates typed components like TextField, Button, ListView.
+<1> Testatoo works with strongly typed components like TextField, Button, ListView.
     The power of Testatoo is in one hand to provide a rich list of components, and on the other one the possibility
     to easily create and compose your own components set.
 
 <2> Testatoo uses deferred evaluation.
-    As you can see, we instantiate a Component event if the component is not available in the page.
+    We instantiate a Component event if the component is not available in the page.
     You can test if the component is missing
 
 <3> Testatoo DSL is very clean and functional.
     Testatoo is based on a clear and powerful syntax.
     Testatoo code never refers to a technical layer Under no circumstances in this test does the underline DOM technology transpire in our code.
 
-The test is write FIRST so it express the expected behaviour so :
-  - We visit the google web page
-  - we init the view
-  - we express the behaviour
-
-As you ca see the test is very high level and by consequence is very stable.
-
-
-
+As you ca see the test can be write FIRST, is very high level and by consequence is very stable.
 
 [NOTE]
 ===============================
@@ -580,6 +582,8 @@ dropdown.should {
     have 3.groupItems
     have groupItems('linux', 'win32', 'BSD')
 }
+
+// TODO express that testatoo match Label or text on value
 
 on dropdown select 'Ubuntu'   // Select the 'Ubuntu' in the dropdown or throw an exception if the item is disabled
 -------------------------------------------------------------------------------
