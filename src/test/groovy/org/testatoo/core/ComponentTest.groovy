@@ -54,18 +54,6 @@ class ComponentTest {
     public static void tearDown() { evaluator.close() }
 
     @Test
-    @Ignore
-    public void should_identify_component_by_css() {
-        fail()
-    }
-
-    @Test
-    @Ignore
-    public void should_identify_component_by_js() {
-        fail()
-    }
-
-    @Test
     public void should_fail_on_component_without_identifier() {
         try {
             ($('#button') as UnidentifiedComponent).should { be enabled }

@@ -187,6 +187,7 @@ class Component implements Clickable, Draggable {
         Class<?> c = action.getClass()
         while (c != Object) {
             if (_supportedActions.contains(c)) {
+                // TODO mathieu where is th use of the override
                 action.execute(this)
                 return
             } else {

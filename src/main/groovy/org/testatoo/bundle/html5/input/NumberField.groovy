@@ -29,7 +29,8 @@ import org.testatoo.core.state.OutOfRange
 class NumberField extends TextField {
 
     NumberField() {
-        support Minimum, Maximum, Step, InRange, OutOfRange
+        support Minimum, Maximum, Step
+        support InRange, OutOfRange
     }
 
 }

@@ -29,8 +29,8 @@ import org.testatoo.core.property.Value
 class GroupItem extends Component {
 
     GroupItem() {
-        support Label, "it.attr('label')"
         support Value, Size
+        support Label, "it.attr('label')"
         support Items, { find("option", Item) }
     }
 

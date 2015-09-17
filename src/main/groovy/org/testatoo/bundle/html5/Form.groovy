@@ -31,7 +31,8 @@ import org.testatoo.core.state.Valid
 class Form extends Component implements Submissible, Resettable {
 
     Form() {
-        support Valid, Invalid, Reset, Submit
+        support Valid, Invalid
+        support Reset, Submit
     }
 
 }

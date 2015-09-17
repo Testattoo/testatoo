@@ -39,7 +39,8 @@ class Item extends Component implements Selectable, Unselectable {
         support Value, "it.text().trim()"
         support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
         support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
-        support Selected, Unselected, Select, Unselect
+        support Selected, Unselected
+        support Select, Unselect
     }
 
     boolean equals(o) {

@@ -15,13 +15,8 @@
  */
 package org.testatoo.core.action
 
-import groovy.time.TimeDuration
-import org.testatoo.core.Blocks
 import org.testatoo.core.Component
-import org.testatoo.core.Log
 import org.testatoo.core.Testatoo
-
-import java.util.concurrent.TimeoutException
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

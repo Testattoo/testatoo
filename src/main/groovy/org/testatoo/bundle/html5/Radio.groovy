@@ -30,7 +30,9 @@ import org.testatoo.core.state.Unchecked
 class Radio extends Component implements Checkable {
 
     Radio() {
-        support Label, Checked, Unchecked, Check
+        support Label
+        support Checked, Unchecked
+        support Check
     }
 
 }

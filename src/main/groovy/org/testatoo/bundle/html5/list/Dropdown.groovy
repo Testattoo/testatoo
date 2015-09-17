@@ -28,13 +28,8 @@ class Dropdown extends Component {
     Dropdown() {
         support Label, GroupItemsSize, SelectedItems
         support Size, { eval("it.find('option').length") as int }
-
-        support Items, {
-            find("option", Item)
-        }
-        support GroupItems, {
-            find("optgroup", GroupItem)
-        }
+        support Items, { find("option", Item) }
+        support GroupItems, { find("optgroup", GroupItem) }
     }
 
     List<Item> getItems() {
