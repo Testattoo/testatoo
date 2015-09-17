@@ -41,7 +41,7 @@ Example of a test syntax :
 == Why Should I Use Testatoo?
 
 If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
-More seriously the main problems with UI tests come from the fact that there a always to technicals.
+More seriously the main problems with UI tests come from the fact that there are always to technicals.
 
 More a test is based on technical details more is fragile.
 The main purpose to UI layer it's to be modified often and by consequence it's very difficult to keep test green.
@@ -98,8 +98,7 @@ Testatoo works with existing popular testing libraries, like http://junit.org/[J
 
 In TDD/BBD style we write test first. And Testatoo have been created for this goal.
 
-For example, testing a simple search in Goolge.
-The test looks like this :
+For example, testing a simple search in Google looks like this :
 
 [source, java]
 -------------------------------------------------------------------------------
@@ -169,6 +168,7 @@ class GoogleSearchTest {
 [NOTE]
 ===============================
 The complete sample is https://github.com/Ovea/testatoo-sample/tree/master/src/test/groovy/starter/[testatoo-sample]
+
 
 If you run the test, it should process a simple search on Google.
 Some interesting elements can be shown in this test :
