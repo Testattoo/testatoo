@@ -4,7 +4,7 @@
 :revdate: 11-12-2014
 :build-icon: https://drone.io/github.com/Ovea/testatoo/status.png[link="https://drone.io/github.com/Ovea/testatoo/latest"]
 :gitter-icon: https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
-:download-url: http://search.maven.org/remotecontent?filepath=org/testatoo/testatoo/2.0.b13/testatoo-2.0.b13.jar
+:download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 
 image:{build-icon}
@@ -22,6 +22,13 @@ Samples are available https://github.com/Ovea/testatoo-sample[here]
 == Downloading
 
 Latest Testatoo version is available on {download-url}[Maven Central]
+
+    <dependency>
+      <groupId>org.testatoo</groupId>
+      <artifactId>testatoo</artifactId>
+      <version>2.0.b22</version>
+      <scope>test</scope>
+    </dependency>
 
 == Building
 
