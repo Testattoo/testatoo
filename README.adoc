@@ -15,7 +15,7 @@ image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.jpg[]
 
 == Documentation and Samples
 
-The documentation is available https://github.com/Ovea/testatoo/blob/master/src/doc/testatoo.adoc[here]
+The documentation is available https://github.com/Ovea/testatoo/blob/master/src/doc/index.adoc[here]
 
 Samples are available https://github.com/Ovea/testatoo-sample[here]
 
