@@ -54,5 +54,4 @@ class Item extends Component implements Selectable, Unselectable {
     String toString() {
         return value
     }
-
 }

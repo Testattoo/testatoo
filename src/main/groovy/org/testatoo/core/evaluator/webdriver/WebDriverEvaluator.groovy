@@ -158,7 +158,7 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void click(String id, Collection<MouseModifiers> mouseModifierses = [MouseModifiers.LEFT], Collection<?> keys = []) {
+    void click(String id, Collection<MouseModifiers> mouseModifiers = [MouseModifiers.LEFT], Collection<?> keys = []) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -169,11 +169,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (mouseModifierses.containsAll([MouseModifiers.LEFT, SINGLE])) {
+        if (mouseModifiers.containsAll([MouseModifiers.LEFT, SINGLE])) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (mouseModifierses.containsAll([MouseModifiers.RIGHT, SINGLE])) {
+        } else if (mouseModifiers.containsAll([MouseModifiers.RIGHT, SINGLE])) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (mouseModifierses.containsAll([MouseModifiers.LEFT, DOUBLE])) {
+        } else if (mouseModifiers.containsAll([MouseModifiers.LEFT, DOUBLE])) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')

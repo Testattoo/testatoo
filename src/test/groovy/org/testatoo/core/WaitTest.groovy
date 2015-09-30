@@ -49,12 +49,13 @@ class WaitTest {
 
     @Test
     public void should_be_able_to_wait_on_condition() {
-
-
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
-        button.should { be enabled and be(visible) }
+        button.should {
+            be enabled
+            be visible
+        }
 
         message.should { be missing }
 

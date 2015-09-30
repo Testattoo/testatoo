@@ -60,13 +60,29 @@
 
     <div class="controls">
       <select id="elements">
-        <option label="H" value="1" disabled>Helium</option>
-        <option label="B" value="5">Boron</option>
-        <option label="Pol" value="84">Polonium</option>
-        <option label="Ca" value="20">Calcium</option>
-        <option label="Ra" value="88">Radium</option>
+        <option value="1" disabled>Helium</option>
+        <option value="5">Boron</option>
+        <option value="84">Polonium</option>
+        <option value="20">Calcium</option>
+        <option value="88">Radium</option>
       </select>
     </div>
+
+    <hr/>
+
+    <label class="control-label" for="cities">Cities list</label>
+
+    <div class="controls">
+      <select id="cities" size="3" multiple="multiple" name="cityName" title="cityTitle">
+        <option label="Montreal" value="Montreal">Montreal</option>
+        <option label="Quebec" value="Quebec" disabled>Quebec</option>
+        <option label="Montpellier" value="Montpellier">Montpellier</option>
+        <option label="New York" value="New York" selected="selected">New York</option>
+        <option label="Casablanca" value="Casablanca">Casablanca</option>
+        <option label="Munich" value="Munich" selected="selected">Munich</option>
+      </select>
+    </div>
+
 
     <hr/>
 

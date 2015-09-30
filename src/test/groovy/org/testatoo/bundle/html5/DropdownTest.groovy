@@ -89,7 +89,7 @@ class DropdownTest {
         dropdown = $('#countries') as Dropdown
         dropdown.should { be disabled }
         dropdown.should { have items('Canada', 'France', 'Spain') }
-        dropdown.items[0].should { be disabled }
+        dropdown.item('Canada').should { be disabled }
 
         dropdown = $('#os') as Dropdown
         dropdown.should { have 8.items }
@@ -100,16 +100,19 @@ class DropdownTest {
         dropdown.should { have groupItems.containing('linux') }
 
         GroupItem group = dropdown.groupItems[0]
-        group.should { have label('linux') }
+        group.should { have value('linux') }
         group.should { have items('Ubuntu', 'Fedora', 'Gentoo') }
 
-        group = dropdown.groupItems[1]
-        group.should { have label('win32') }
+        group = dropdown.groupItem('win32')
+        group.should { have value('win32') }
         group.should { have items('XP', 'Vista') }
 
-        group = dropdown.groupItems[2]
-        group.should { have label('BSD') }
+        group = dropdown.groupItem('BSD')
+        group.should { have value('BSD') }
         group.should { have 2.items }
+
+        group.items[0].should { have value('FreeBSD') }
+        group.item('OpenBSD').should { have value('OpenBSD') }
 
         assert group.items.size == 2
 

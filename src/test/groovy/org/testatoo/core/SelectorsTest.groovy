@@ -78,7 +78,7 @@ class SelectorsTest {
         }
 
         textFields.each { it ->
-            on it enter 'TESTATOO!'
+            fill it with 'TESTATOO!'
         }
 
         textFields.each {

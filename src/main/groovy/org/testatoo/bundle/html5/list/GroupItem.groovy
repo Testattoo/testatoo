@@ -18,9 +18,10 @@ package org.testatoo.bundle.html5.list
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.property.Items
-import org.testatoo.core.property.Label
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Value
+
+import org.testatoo.core.property.Properties
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,13 +30,17 @@ import org.testatoo.core.property.Value
 class GroupItem extends Component {
 
     GroupItem() {
-        support Value, Size
-        support Label, "it.attr('label')"
+        support Value, { eval("it.attr('label')") }
+        support Size
         support Items, { find("option", Item) }
     }
 
     List<Item> getItems() {
         find("option", Item)
+    }
+
+    Item item(String _value) {
+        items.find { it.has(Properties.value) == _value }
     }
 
     boolean equals(o) {

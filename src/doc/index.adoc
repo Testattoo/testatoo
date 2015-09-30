@@ -1,0 +1,24 @@
+= Testatoo documentation
+:author: David Avenante, Stephanie Parisot
+:revnumber: 2.0.0
+:toc: left
+:doctype: book
+:icons: font
+:homepage: http://www.testatoo.org
+:desc: This is the Testatoo documentation
+:imagesdir: images
+
+:testato-version: 2.0.b23
+
+image::logo.svg[Testatoo,align="center"]
+
+include::intro.adoc[]
+
+include::installation.adoc[]
+
+include::first_test.adoc[]
+
+include::usage.adoc[]
+
+include::custom_component.adoc[]
+

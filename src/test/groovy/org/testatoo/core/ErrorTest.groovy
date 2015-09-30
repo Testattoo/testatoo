@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import org.junit.AfterClass
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Ignore
 import org.junit.Test
@@ -29,6 +30,7 @@ import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.bundle.html5.list.Item
+import org.testatoo.bundle.html5.list.ListBox
 import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
@@ -51,9 +53,15 @@ class ErrorTest {
         visit 'http://localhost:8080/error.html'
     }
 
+    @Before
+    public void before() {
+        browser.navigate.refresh()
+    }
+
     @AfterClass
     public static void tearDown() { evaluator.close() }
 
+    // =========================== State, Property, Action support ====================
     @Test
     public void should_throw_an_error_on_not_supported_state() {
         EmailField email = $('#email') as EmailField
@@ -62,6 +70,17 @@ class ErrorTest {
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Component EmailField:email does not support state Checked'
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_when_test_hidden_state_on_visible_component() {
+        Dropdown dropDown = $('#elements') as Dropdown
+        try {
+            dropDown.should { be hidden }
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Component Dropdown with id elements expected hidden but was visible'
         }
     }
 
@@ -82,6 +101,7 @@ class ErrorTest {
         fail()
     }
 
+    // =========================== Form dsl action ====================================
     @Test
     public void should_not_be_able_to_submit_form_if_no_submit_button_available() {
         Form form = $('#form') as Form
@@ -104,6 +124,7 @@ class ErrorTest {
         }
     }
 
+    // =============================== Wait until =====================================
     @Test
     public void should_throw_an_error_when_wait_until_condition_is_not_reached() {
         Button button = $('#inexisting_button') as Button
@@ -115,6 +136,7 @@ class ErrorTest {
         }
     }
 
+    // ============================== Event ===========================================
     @Test
     public void should_throw_an_error_on_invalid_click_sequence() {
         Form form = $('#form') as Form
@@ -133,29 +155,99 @@ class ErrorTest {
         }
     }
 
+    // ============================== Dropdown ========================================
     @Test
-    public void should_throw_an_error_when_test_hidden_state_on_visible_component() {
+    public void should_throw_an_error_when_trying_to_select_a_disabled_item_in_a_dropdown() {
         Dropdown dropDown = $('#elements') as Dropdown
+        dropDown.item('Helium').should { be disabled }
         try {
-            dropDown.should { be hidden }
+            on dropDown select 'Helium'
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Component Dropdown with id elements expected hidden but was visible'
+            assert e.message == 'Item Helium is disabled and cannot be selected'
         }
     }
 
     @Test
-    public void should_throw_an_error_when_trying_to_unselect_a_disabled_option() {
+    public void should_throw_an_error_when_trying_to_unselect_a_disabled_item_in_a_dropdown() {
         Dropdown dropDown = $('#elements') as Dropdown
-        dropDown.items[0].should { be disabled }
+        dropDown.item('Helium').should {
+            be disabled
+            be unselected
+        }
         try {
-            on dropDown unselect 'H'
+            on dropDown unselect 'Helium'
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Item H is disabled and cannot be unselected'
+            assert e.message == 'Item Helium is already unselected'
+        }
+
+        dropDown.item('Polonium').should { be enabled }
+        try {
+            on dropDown unselect 'Polonium'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Item Polonium is already unselected'
         }
     }
 
+    @Test
+    public void should_throw_an_error_when_trying_to_unselect_a_unselected_item_in_a_dropdown() {
+        Dropdown dropDown = $('#elements') as Dropdown
+        dropDown.item('Polonium').should {
+            be enabled
+            be unselected
+        }
+        try {
+            on dropDown unselect 'Polonium'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Item Polonium is already unselected'
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_when_trying_to_select_many_items_in_a_dropdown() {
+        Dropdown dropDown = $('#elements') as Dropdown
+        try {
+            on dropDown select 'Polonium', 'Calcium'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Component Dropdown:elements does not support state MultiSelectable'
+        }
+    }
+
+    // ============================== ListBox= ========================================
+    @Test
+    public void should_throw_an_error_on_select_already_selected_item() {
+        ListBox listBox = $('#cities') as ListBox
+
+        listBox.item('New York').is(selected)
+
+        try {
+            on listBox select 'Montpellier', 'New York'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "Item New York is already selected"
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_on_unselected_already_unselected_item() {
+        ListBox listBox = $('#cities') as ListBox
+
+        listBox.item('New York').is(selected)
+        listBox.item('Montpellier').is(unselected)
+
+        try {
+            on listBox unselect 'Montpellier', 'New York'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "Item Montpellier is already unselected"
+        }
+    }
+
+    // ============================ Checkbox / Radio ==================================
     @Test
     public void should_throw_an_error_when_trying_to_check_checked_element() {
         Checkbox checkbox = $('#checkbox_1') as Checkbox
@@ -195,12 +287,7 @@ class ErrorTest {
         }
     }
 
-    @Test
-    @Ignore
-    public void should_throw_an_error_on_select_already_selected_item() {
-        fail()
-    }
-
+    // ============================ Missing / Matcher ==================================
     @Test
     public void should_throw_an_error_on_missing_component() {
         Dropdown dropDown = $('#elements') as Dropdown

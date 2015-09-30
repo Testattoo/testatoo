@@ -60,7 +60,7 @@ class ListBoxTest {
         listBox.should { be multiSelectable }
 
         listBox.items[0].should { be enabled }
-        listBox.items[1].should { be disabled }
+        listBox.item('Quebec').should { be disabled }
 
         CTRL.click listBox.items[3]
         CTRL.click listBox.items[5]
@@ -72,13 +72,16 @@ class ListBoxTest {
         CTRL.click listBox.item('Montreal')
         listBox.should { have selectedItems('Montpellier') }
 
+        on listBox select 'Montreal', 'New York'
+        listBox.should { have selectedItems('Montreal', 'Montpellier', 'New York') }
+
         listBox = $('#planets') as ListBox
         listBox.should { be singleSelectable }
 
         listBox.should { have groupItems('Cat-1', 'Cat-2') }
 
         GroupItem group = listBox.groupItems[0]
-        group.should { have label('Cat-1') }
+        group.should { have value('Cat-1') }
         group.should { have 4.items }
 
         assert group.items.size == 4

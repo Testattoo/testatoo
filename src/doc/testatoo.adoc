@@ -1,99 +1,11 @@
-= Testatoo documentation
-:toc: left
-:doctype: book
-:icons: font
-:homepage: http://www.testatoo.org
-:desc: This is the Testatoo documentation
-:imagesdir: images
-
-== Introduction
-
-Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
-Working for many years to promote the TDD approaches, we often faced difficulties in their implementation for the graphical layer of applications.
-
-The "TEST FIRST" principle excludes all scenario recorder based approaches that only allow you to write a posteriori tests.
-Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
-
-Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
-
-Testatoo provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
-With Testatoo, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
-
-Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
-
-== Technologies
-
-Testatoo is built on top of http://code.google.com/p/selenium/[WebDriver], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[WebDriver] (IE, Google-chrome, Firefox, ...).
-Even though Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity, it's always possible to "fallback" to the WebDriver level to do something directly, should you need to.
-But Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
-
-Example of a test syntax :
-
-[source, java]
--------------------------------------------------------------------------------
-    textField.should {
-        be visible
-        be empty
-        have label('myLabel')
-    }
--------------------------------------------------------------------------------
-
-== Why Should I Use Testatoo?
-
-If you don't use Testatoo for your UI tests it's like you "Knocking On Heaven's Door".
-More seriously the main problems with UI tests come from the fact that there are always to technicals.
-
-More a test is based on technical details more is fragile.
-The main purpose to UI layer it's to be modified often and by consequence it's very difficult to keep test green.
 
 
-== Installation & Usage (I want to ride my bicycle!)
 
-One snippet of code is worth a thousand words.
-So let's go...
 
-Get Testatoo and dependencies libraries via Maven...
 
-[source, xml]
--------------------------------------------------------------------------------
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.testatoo</groupId>
-    <artifactId>testatoo-sample</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Testatoo :: Sample</name>
-    <inceptionYear>2015</inceptionYear>
 
-    <dependencies>
-        <dependency>
-           <groupId>org.testatoo</groupId>
-               <artifactId>testatoo</artifactId>
-               <version>{testaoo-version}</version>
-               <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>{always-the-latest}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</project>
--------------------------------------------------------------------------------
-
-Testatoo works with existing popular testing libraries, like http://junit.org/[JUnit] / http://testng.org/[TestNG]
- / http://concordion.org/[Concordion] / https://cucumber.io/[Cucumber] / http://jbehave.org/[JBheave]...
 
 
 In TDD/BBD style we write test first. And Testatoo have been created for this goal.
@@ -132,14 +44,14 @@ class GoogleSearchTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://www.google.ca'
+        Testatoo.evaluator = new WebDriverEvaluator(new FirefoxDriver()) <1>
+        visit 'http://www.google.ca' // Or open 'http://www.google.com'
         init()
     }
 
     private static void init() {
         searchField = $('#lst-ib') as TextField
-        searchButton = $('#sblsbb button') as Button        <1>
+        searchButton = $('#sblsbb button') as Button        <2>
         resultList = $('#rso') as GoogleListView
     }
 
@@ -148,10 +60,10 @@ class GoogleSearchTest {
 
     @Test
     public void simple_test() {
-        resultList.should { be missing }        <2>
+        resultList.should { be missing }        <3>
         searchField.should { be visible }
 
-        fill searchField with 'groovy'          <3>
+        fill searchField with 'groovy'          <4>
         click_on searchButton
 
         resultList.should { be visible }
@@ -165,28 +77,24 @@ class GoogleSearchTest {
     }
 }
 -------------------------------------------------------------------------------
-.Note
-NOTE: The complete sample is https://github.com/Ovea/testatoo-sample/tree/master/src/test/groovy/starter/[testatoo-sample].
-
 If you run the test, it should process a simple search on Google.
 Some interesting elements can be shown in this test :
 
-<1> Testatoo works with strongly typed components like TextField, Button, ListView.
+
+<2> Testatoo works with strongly typed components like TextField, Button, GoogleListView.
     The power of Testatoo is in one hand to provide a rich list of components, and on the other one the possibility
     to easily create and compose your own components set.
 
-<2> Testatoo uses deferred evaluation.
+<3> Testatoo uses deferred evaluation.
     We instantiate a Component event if the component is not available in the page.
     You can test if the component is missing
 
-<3> Testatoo DSL is very clean and functional.
+<4> Testatoo DSL is very clean and functional.
     Testatoo is based on a clear and powerful syntax.
     Testatoo code never refers to a technical layer Under no circumstances in this test does the underline DOM technology transpire in our code.
 
-As you ca see the test can be write FIRST, is very high level and by consequence is very stable.
-
 [NOTE]
-===============================
+====
 As a rule, when you create a test with Testatoo, we recommend to add some default imports to facilitate the automatic completion in your favorite IDE(A).
 
 [source, java]
@@ -198,167 +106,29 @@ As a rule, when you create a test with Testatoo, we recommend to add some defaul
     import static org.testatoo.core.state.States.*
     import static org.testatoo.core.action.Actions.*
 -------------------------------------------------------------------------------
-===============================
+====
 
-== Back To The Future
 
-Well well well (My Michelle), as explained, Testatoo is a library to write functional tests. Functional tests mean SPECIFICATIONS.
-
-As a SPECIFIER, I want to express my test (intention) BEFORE I code my UI. So, if the intention is to have
-a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
-
--------------------------------------------------------------------------------
-the maleRadio should be unchecked
-and it have label "Male"
-
-the femaleRadio should be unchecked
-and it have label "Female"
-
-check the maleRadio
-the maleRadio should be checked
-the femaleRadio should be unchecked
-
-check the femaleRadio
-the femaleRadio should be checked
-the maleRadio should be unchecked
--------------------------------------------------------------------------------
-
-The Testatoo syntax to express this specification is :
-
-[source, java]
--------------------------------------------------------------------------------
-male_radio.should {
-    be unchecked
-    have label('Male')
-}
-
-female_radio.should {
-    be unchecked
-    have label('Female')
-}
-
-check male_radio
-male_radio.should { be checked }
-female_radio.should { be unchecked }
-
-check female_radio
-female_radio.should { be checked }
-male_radio.should { be unchecked }
--------------------------------------------------------------------------------
-
-Pretty close, isn't it? ;)
 
 Testatoo provides a DSL to write tests in a natural language, easy to manipulate from a specifications point of view.
 As this is a high level language, it allows tests to be written before UI coding.
 
-YES, for the first time, with Testatoo, you can write UI functional tests FIRST (yeah we know, it's pretty cool!)
+**YES**, for the first time, with Testatoo, you can write UI tests FIRST
 
-== How Testatoo Works
+== How to interact with content
 
-1 - The browser is launched through Webdriver
+==== The $ function
 
-[source, java]
--------------------------------------------------------------------------------
-evaluator =  new WebDriverEvaluator(new FirefoxDriver())
--------------------------------------------------------------------------------
+Testatoo injects the isolated (noConflict mode) jQuery lib in the application under test. Testatoo uses the jQuery functional API
+to make complex DOM evaluations. So you can use all the css3 selector power to quering the content of you page.
 
-You can add all the required "DesiredCapabilities" on your WebDriver config
 
-2 - The application under test's URL is opened
+==== The $$ function
 
-[source, java]
--------------------------------------------------------------------------------
-visit 'http://www.google.com' // Or open 'http://www.google.com'
--------------------------------------------------------------------------------
 
-3 - Testatoo injects the isolated (noConflict mode) jQuery lib in the application under test. Testatoo uses the jQuery functional API
-to make complex DOM evaluations.
+==== Evaluate State
 
-== The Testatoo API: How to interact with content
-
-=== The $ Function
-
-The $ function is the access point of component creation. The $ function accept a css3 selector to target your component.
-
-The signature of the $ function is as follows…
-
-[source, java]
--------------------------------------------------------------------------------
-$('css selector');
-
-// Samples
-$('#myId');
-$('.myClass');
-$('ul li:first-child');
-$('[data-role=button]');
--------------------------------------------------------------------------------
-
-Our experience demonstrated that we never need to use complex selector. If you write tests first, the component tested carries
-a semantic and this semantic must be reflected in the code by a role attribute, a sequence in a form of course an ID but in the best case
-with a specific tag (with Angular Directive or Web Components)
-
-Once the component is selected, it *MUST BE TYPED* throw the *"as"* keyword.
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#text_field') as TextField
-Button button = $('#button') as Button
--------------------------------------------------------------------------------
-
-But wait a moment: How can you know if a button is a button!? Indeed, in  HTML, a Button can be represented in many ways.
-
-[source, html]
--------------------------------------------------------------------------------
-<button id="button">My Button</button>
-<input id="button" type="button" value="My Button">
-<input id="button" type="submit" value="My Button">
-
--------------------------------------------------------------------------------
-
-This is the magic of Testatoo. We will see later how this works and how to override this behavior, to easily add new component types.
-
-WARNING: The $ function *NEED* to target an *UNIQUE* component. If you want to work with list of components you need to use the $$ function.
-
-This code fail
-[source, java]
--------------------------------------------------------------------------------
-Item item = $('#mySelect option') as Item;
-item.should { be visible }
--------------------------------------------------------------------------------
-We target through the selector expression a list of items (options) of a select and evaluate the visibility.
-This code fail with the message *"Component defined by jQuery expression $('#mySelect option') is not unique: got x"*
-
-=== The $$ Function
-
-The $$ function allow to make assertion on a list of elements.
-
-[source, java]
--------------------------------------------------------------------------------
-Components<TextField> textFields = $$('[type="text"]') of TextField     // Find all TextField in the page
-assert textFields.size() == 3
-
-textFields.each {           // Iterate on TextFields
-    it.should {
-        be enabled
-        be visible
-        be empty
-    }
-}
-
-on textFields enter 'My Value!' // Enter 'My Value!' on all TextFields
-
-textFields.each {
-    it.should {
-        be filled
-        have text('My Value!')
-    }
-}
-
--------------------------------------------------------------------------------
-
-=== Evaluate State
-
-States evaluations are applied thought the keyword *be*
+States evaluations are applied thought the keywords *be* and *is*
 
 [source, java]
 -------------------------------------------------------------------------------
@@ -369,10 +139,274 @@ button.should {
 }
 
 // Or
-
 assert button.is(enabled)
 assert button.is(visible)
 -------------------------------------------------------------------------------
+
+* *is* is the imediate test of the state.
+* *should* *be* is a defered evaluation a state.
+
+
+
+
+==== Evaluate Property
+
+
+==== Do Actions
+
+===== At the low level
+
+Testatoo allow specifier to interact with the application thought the usage of default input like Keyboard and Mouse.
+
+[WARNING]
+====
+Finger / Pointer are not supported for the moment
+====
+
+====== Mouse
+
+The mouse usages supported are :
+
+*click_on*, +
+*double_click_on*, +
+*right_click_on*, +
+*hovering_mouse_on*, +
+*drag ... on ...*
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+Panel panel_1 = $('#Panel_1) as Panel
+Panel panel_2 = $('#Panel_2) as Panel
+
+click_on button
+double_click_on button
+right_click_on button
+hovering_mouse_on panel_1
+drag panel_1 on panel_2
+-------------------------------------------------------------------------------
+
+====== Keyboard
+
+For the keyboard input we have done a nice work to make this easy.
+One Method to rule them all: *the type(...) method*
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type('testatoo')
+-------------------------------------------------------------------------------
+
+If you need the usage of a simple key modifier.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(SHIFT + 'testatoo') // => TESTATOO
+-------------------------------------------------------------------------------
+
+Or a complex.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(CTRL + ALT + SHIFT + 'x')
+-------------------------------------------------------------------------------
+
+===== At the high level
+
+TODO
+
+==== The HTML5 bundle
+
+Testatoo comes with a bunch of predefined HTML components. These components are not only the standard representation of HTML elements,
+but also a powerful base to build your own components. Each component supports States and Properties. One of the strength of Testatoo
+is the capability to add support for new States and Properties and to override existing States and Properties, on existing or new components.
+
+
+===== Button
+
+image::components/Button.png[Button]
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+button.should {
+    have text('My Button Text')
+}
+
+clickOn button
+-------------------------------------------------------------------------------
+
+===== CheckBox
+
+image::components/CheckBox.png[CheckBox]
+
+[source, java]
+-------------------------------------------------------------------------------
+CheckBox checkbox = $('#checkbox') as CheckBox
+checkbox.should {
+    have label('Check me out ')
+    be unchecked
+}
+
+clickOn checkbox    // Check the checkbox
+//  OR
+check checkbox      // Check the checkbox or throw and exception if the checkbox is already checked
+-------------------------------------------------------------------------------
+
+image::components/CheckBox_checked.png[CheckBox]
+
+[source, java]
+-------------------------------------------------------------------------------
+CheckBox checkbox = $('#checkbox') as CheckBox
+checkbox.should {
+    have label('Check me out ')
+    be checked
+}
+
+clickOn checkbox    // Uncheck the checkbox
+//  OR
+uncheck checkbox    // Uncheck the checkbox or throw and exception if the checkbox is already checked
+-------------------------------------------------------------------------------
+
+===== Radio
+
+image::components/Radio.png[Radio]
+
+[source, java]
+-------------------------------------------------------------------------------
+Radio radio_checked = $('#radio_1') as Radio
+Radio radio_unchecked = $('#radio_2') as Radio
+
+radio_checked.should {
+    have label('Radio label checked')
+    be checked
+}
+
+radio_unchecked.should {
+    have label('Radio label unchecked')
+    be unchecked
+}
+
+clickOn radio_unchecked     // Check the radio
+//  OR
+check radio_unchecked       // Check the radio
+
+check radio_checked         // Throw an exception (the radio is already checked)
+uncheck radio_checked       // Throw an exception (cannot unckeck a Radio)
+-------------------------------------------------------------------------------
+
+===== DropDown
+
+image::components/DropDown.png[DropDown]
+
+[source, java]
+-------------------------------------------------------------------------------
+DropDown dropdown = $('#dropdown') as DropDown
+dropdown.should {
+    have label('OS')
+    have selectedItems('None')
+
+    have 8.items
+    have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
+
+    have 3.groupItems
+    have groupItems('linux', 'win32', 'BSD')
+}
+
+on dropdown select 'Ubuntu'   // Select the 'Ubuntu' in the dropdown or throw an exception if the item is disabled
+-------------------------------------------------------------------------------
+
+===== GroupItem
+[source, java]
+-------------------------------------------------------------------------------
+DropDown dropdown = $('#dropdown') as DropDown
+GroupItem group = dropdown.groupItem('linux') // Or dropdown.groupItems[0]
+
+group.should {
+    have value('linux')
+    have items('Ubuntu', 'Fedora', 'Gentoo')
+}
+-------------------------------------------------------------------------------
+
+===== Item
+[source, java]
+-------------------------------------------------------------------------------
+DropDown dropdown = $('#dropdown') as DropDown
+Item item = dropdown.item('Fedora')  // Or dropdown.items[1]
+item.should {
+    have value('Fedora')
+    be unselected
+}
+-------------------------------------------------------------------------------
+
+==== ListBox
+
+image::components/ListBox_1.png[ListBox]
+
+This image show all the items available in the ListBox
+
+image::components/ListBox_2.png[ListBox]
+
+[source, java]
+-------------------------------------------------------------------------------
+ListBox listBox = $('#cities') as ListBox
+listbox.should {
+    have label('Cities list')
+    have 6.items
+    have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
+    have selectedItems('Montreal')
+
+    have 3.visibleItems     // See the first image
+    be multiSelectable      // We can select more than on item
+}
+
+// Try to select an another item with a control + click
+CTRL.click listBox.item('Montpellier')
+//  OR
+select listBox.item('Montpellier')
+//  OR
+on listBox select 'Montpellier'
+
+listbox.should { have selectedItems('Montreal', 'Montpellier') }
+
+on listBox select 'New York', 'Casablanca'
+
+
+select listBox.items[2]     // Throw an exception if we try to select a disabled element
+
+unselect listBox.items[0]   // Can unselect an item
+listbox.should {
+    have selectedItems('Montpellier')
+}
+-------------------------------------------------------------------------------
+
+
+
+==============================================================================================
+==============================================================================================
+==============================================================================================
+
+
+
+
+
+
+
+
+
+
+=== Evaluate State
+
+States evaluations are applied thought the keyword *be*
+
 
 === Evaluate Property
 
@@ -407,65 +441,7 @@ All properties that implied a *String* support some pattern methods
 
 === The Action
 
-Testatoo allow specifier to interact with the application thought the usage of default input like Keyboard and Mouse.
 
-WARNING: Finger / Pointer are not supported for the moment
-
-==== Mouse
-
-The mouse usages supported are :
-
-*click_on*, +
-*double_click_on*, +
-*right_click_on*, +
-*hovering_mouse_on*, +
-*drag ... on ...*
-
-[source, java]
--------------------------------------------------------------------------------
-Button button = $('#button') as Button
-Panel panel_1 = $('#Panel_1) as Panel
-Panel panel_2 = $('#Panel_2) as Panel
-
-click_on button
-double_click_on button
-right_click_on button
-hovering_mouse_on panel_1
-drag panel_1 on panel_2
--------------------------------------------------------------------------------
-
-==== Keyboard
-
-For the keyboard input we have done a nice work to make this easy.
-One Method to rule them all: *the type(...) method*
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#textfield') as TextField
-
-click_on textField
-type('testatoo')
--------------------------------------------------------------------------------
-
-If you need the usage of a simple key modifier.
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#textfield') as TextField
-
-click_on textField
-type(SHIFT + 'testatoo')
--------------------------------------------------------------------------------
-
-Or a complex.
-
-[source, java]
--------------------------------------------------------------------------------
-TextField textField = $('#textfield') as TextField
-
-click_on textField
-type(CTRL + ALT + SHIFT + 'x')
--------------------------------------------------------------------------------
 
 === The Components
 
@@ -490,165 +466,11 @@ component.should {
 <1> *All other components in Testatoo inherit from it*
 <2> *All components owns this base states*
 
-==== Button
 
-image::components/Button.png[Button]
 
-[source, java]
--------------------------------------------------------------------------------
-Button button = $('#button') as Button
-button.should {
-    have text('My Button Text')
-}
 
-clickOn button
--------------------------------------------------------------------------------
 
-==== CheckBox
 
-image::components/CheckBox.png[CheckBox]
-
-[source, java]
--------------------------------------------------------------------------------
-CheckBox checkbox = $('#checkbox') as CheckBox
-checkbox.should {
-    have label('Check me out ')
-    be unchecked
-}
-
-clickOn checkbox    // Check the checkbox
-//  OR
-check checkbox      // Check the checkbox or throw and exception if the checkbox is already checked
--------------------------------------------------------------------------------
-
-image::components/CheckBox_checked.png[CheckBox]
-
-[source, java]
--------------------------------------------------------------------------------
-CheckBox checkbox = $('#checkbox') as CheckBox
-checkbox.should {
-    have label('Check me out ')
-    be checked
-}
-
-clickOn checkbox    // Uncheck the checkbox
-//  OR
-uncheck checkbox    // Uncheck the checkbox or throw and exception if the checkbox is already checked
--------------------------------------------------------------------------------
-
-==== Radio
-
-image::components/Radio.png[Radio]
-
-[source, java]
--------------------------------------------------------------------------------
-Radio radio_checked = $('#radio_1') as Radio
-Radio radio_unchecked = $('#radio_2') as Radio
-
-radio_checked.should {
-    have label('Radio label checked')
-    be checked
-}
-
-radio_unchecked.should {
-    have label('Radio label unchecked')
-    be unchecked
-}
-
-clickOn radio_unchecked     // Check the radio
-//  OR
-check radio_unchecked       // Check the radio
-
-check radio_checked         // Throw an exception (the radio is already checked)
-uncheck radio_checked       // Throw an exception (cannot unckeck a Radio)
--------------------------------------------------------------------------------
-
-==== DropDown
-
-image::components/DropDown.png[DropDown]
-
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-dropdown.should {
-    have label('OS')
-    have selectedItems('None')
-
-    have 8.items
-    have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
-
-    have 3.groupItems
-    have groupItems('linux', 'win32', 'BSD')
-}
-
-// TODO express that testatoo match Label or text on value
-
-on dropdown select 'Ubuntu'   // Select the 'Ubuntu' in the dropdown or throw an exception if the item is disabled
--------------------------------------------------------------------------------
-
-==== GroupItem
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-GroupItem group = dropdown.groupItems[0]
-
-group.should {
-    have label('linux')
-    have items('Ubuntu', 'Fedora', 'Gentoo')
-}
--------------------------------------------------------------------------------
-
-==== Item
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-Item item = dropdown.item[1]
-item.should {
-    be unselected
-    have label('Ubuntu')
-}
--------------------------------------------------------------------------------
-
-==== ListBox
-
-image::components/ListBox_1.png[ListBox]
-
-This image show all the items available in the ListBox
-
-image::components/ListBox_2.png[ListBox]
-
-[source, java]
--------------------------------------------------------------------------------
-ListBox listBox = $('#cities') as ListBox
-listbox.should {
-    have label('Cities list')
-    have 6.items
-    have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
-    have selectedItems('Montreal')
-
-    have 3.visibleItems     // See the first image
-    be multiSelectable      // We can select more than on item
-}
-
-// Try to select an another item with a control + click
-CTRL.click listBox.items[2]
-//  OR
-select listBox.items[2]
-//  OR
-Item montpellier = listBox.items[2]
-on listBox select montpellier
-
-listbox.should {
-    have selectedItems('Montreal', 'Montpellier')
-}
-
-select listBox.items[2]     // Throw an exception if we try to select a disabled element
-
-unselect listBox.items[0]   // Can unselect an item
-listbox.should {
-    have selectedItems('Montpellier')
-}
--------------------------------------------------------------------------------
 
 ==== ListView
 
@@ -817,37 +639,6 @@ image::components/PasswordField.png[PasswordField]
 [source, java]
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
-
-
-
-[options="header"]
-|=========================================================================================================================================================================
-| Component               |                   Properties                                                      |                    States
-
-|      *TextField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *PasswordField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *DateTimeField*    |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *EmailField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *MonthField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *ColorField*       |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *SearchField*      |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *TimeField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *URLField*         |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *WeekField*        |   Placeholder, Label, Text, Value                                                 |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *DateField*        |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *RangeField*       |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *NumberField*      |   Minimum, Maximum, Step, Placeholder, Label, Text, Value                         |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-|      *PhoneField*       |   Pattern, Placeholder, Label, Text, Value                                        |   Enabled, Disabled, Available, Missing, Hidden, Visible, *Empty*, *Filled*, *Optional*, *Required*
-
-
-
-
-|      *Heading*          |   Text                                                                            |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Image*            |   Source                                                                          |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Link*             |   Text,  Reference                                                                |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|      *Panel*            |   Title                                                                           |   Enabled, Disabled, Available, Missing, Hidden, Visible
-|=========================================================================================================================================================================
-
 
 
 == Under the hood (Welcome to the Jungle)

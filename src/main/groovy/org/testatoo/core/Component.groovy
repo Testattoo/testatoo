@@ -229,7 +229,7 @@ class Component implements Clickable, Draggable {
     private static void waitUntil(Closure c) {
         c()
         try {
-            _waitUntil Testatoo.waitUntil.toMilliseconds(), 500, {
+            _waitUntil Testatoo.waitUntil.toMilliseconds(), 200, {
                 Log.testatoo "waitUntil: ${c}"
                 Blocks.run(Blocks.compose(Blocks.pending()))
             }

@@ -25,6 +25,7 @@ import org.testatoo.core.action.Unselect
 import org.testatoo.core.input.Key
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
+import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -47,28 +48,42 @@ class TestatooExtensions {
         c.execute(new MouseClick([MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys))
     }
 
-    static void select(Component c, String value) {
-        if (value)
-            c = c.items.find { it.value == value } as Item
-        c.execute(new Select())
+    static void select(Component c, String... values) {
+        if (values) {
+            if (values.length > 1) {
+                c.is(multiSelectable)
+            }
+
+            for (value in values) {
+                Item item = c.items.find { it.value == value } as Item
+                if(item.is(selected))
+                    throw new ComponentException("${item.class.simpleName} ${item} is already selected")
+                item.execute(new Select())
+            }
+        } else {
+            c.execute(new Select())
+        }
     }
 
     static void select(Component c, Component selected) {
         selected.execute(new Select())
     }
 
-    static void unselect(Component c, String value) {
-        if (value)
-            c = c.items.find { it.value == value } as Item
-        c.execute(new Unselect())
+    static void unselect(Component c, String... values) {
+        if (values) {
+            for (value in values) {
+                Item item = c.items.find { it.value == value } as Item
+                if(item.is(unselected))
+                    throw new ComponentException("${item.class.simpleName} ${item} is already unselected")
+                item.execute(new Unselect())
+            }
+        } else {
+            c.execute(new Unselect())
+        }
     }
 
     static void unselect(Component c, Component selected) {
         selected.execute(new Unselect())
-    }
-
-    static void enter(Component c, String value) {
-        c.execute(new Fill(value))
     }
 
     static void with(Component c, String value) {

@@ -42,6 +42,10 @@ class Dropdown extends Component {
         find("optgroup", GroupItem)
     }
 
+    GroupItem groupItem(String _value) {
+        groupItems.find { it.has(value) == _value }
+    }
+
     Item item(String _value) {
         items.find { it.has(value) == _value }
     }

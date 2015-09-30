@@ -1,0 +1,168 @@
+== Usage
+
+Testatoo is **Component base**. It's very important to understand that, it's a strongly opignted point of view.
+Testatoo provide for you all the *Html5* component and give you the facility to easly create your own.
+
+=== Component
+
+
+
+=== Component Selection
+
+==== The $ function
+
+The $ function is the access point for fetching component on the page. The $ function accept a css3 selector to target your component.
+
+The signature of the $ function is as follows…
+
+[source, java]
+-------------------------------------------------------------------------------
+$('css selector');
+
+// Samples
+$('#myId');                 <1>
+$('.myClass');              <2>
+$('ul li:first-child');     <3>
+$('[data-role=button]');    <4>
+-------------------------------------------------------------------------------
+
+<1> Match the DOM element on the page with id "myId"
+<2> Match all DOM elements on the page with the css class "myClass"
+<2> Match all DOM elements on the page who is the first culid of an unordered list
+<4> Match all DOM elements on the page that have attribute "data-role" equals to "button"
+
+Our experience demonstrated that we never need to use complex selector. If you write tests first, the component tested carries
+a semantic and this semantic must be reflected in the code by a role attribute, a sequence in a form of course an ID but in the best case with a specific tag (with Angular Directive or Web Components)
+
+[IMPORTANT]
+====
+Once the component is selected, it *MUST BE TYPED* throw the *"as"* keyword.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#text_field') as TextField
+Button button = $('#button') as Button
+-------------------------------------------------------------------------------
+====
+
+In Testatoo you never select an anonymous DOM element. Every DOM element must be the representation of a UI concept.
+But wait a moment: How can you know if a button is a button!? Indeed, in  HTML, a Button can be represented in many ways.
+
+[source, html]
+-------------------------------------------------------------------------------
+<button id="button">My Button</button>
+<input id="button" type="button" value="My Button">
+<input id="button" type="submit" value="My Button">
+
+-------------------------------------------------------------------------------
+
+This is the magic of Testatoo. We will see later how this works and how to override this behavior, to easily add new component types.
+
+[IMPORTANT]
+====
+The $ function *NEED* to target an *UNIQUE* component. If you want to work with list of components you need to use the $$ function.
+
+This code fail
+[source, java]
+-------------------------------------------------------------------------------
+Item item = $('#mySelect option') as Item;
+item.should { be visible }
+-------------------------------------------------------------------------------
+We target through the selector expression a list of items (options) of a select and evaluate the visibility.
+This code fail with the message *"Component defined by jQuery expression $('#mySelect option') is not unique: got x"*
+====
+
+Once an component is selected you can easly navigate through these childen with the find method attached.
+[source, java]
+-------------------------------------------------------------------------------
+Form form = $('form:first') as Form;
+Button save_button = form.find('button:last') as Button
+-------------------------------------------------------------------------------
+
+==== The $$ function
+
+The $$ function allow to make assertion on a list of elements. The $$ function accept a css3 selector to target a list of components.
+
+[source, java]
+-------------------------------------------------------------------------------
+Components<TextField> textFields = $$('[type="text"]') of TextField     // Find all TextField in the page
+
+textFields.each {           // Iterate on TextFields
+    it.should {
+        be enabled
+        be visible
+        be empty
+    }
+}
+
+textFields.each { it ->
+    fill it with 'TESTATOO!' // Enter 'My Value!' on all TextFields
+}
+
+textFields.each {
+    it.should {
+        be filled
+        have text('My Value!')
+    }
+}
+-------------------------------------------------------------------------------
+
+=== Component Evaluation
+
+On each component we can evaluate associated *Properties* and *States*
+Each evalation can be operate in two ways: 
+
+* The direct way with the *is(...)* method for State and the *has(...)* method for Property
+* The deffered way with the *should()* method 
+ 
+
+[source, java]
+-------------------------------------------------------------------------------
+// Direct usage
+
+button.is(enabled)          // State
+button.has(text) == 'Ok'    // Property
+
+// Deffered usage
+button.should {
+    be enabled              // State
+    have text('Ok')         // Property
+}
+
+-------------------------------------------------------------------------------
+
+ 
+ 
+ 
+The deffered way MUST be prefered. This approach include an inner waitUntil. So if a condition in the should is not reached,
+the evaluation is evaluated again all the 200ms until 2 seconds. 
+
+[NOTE]
+====
+You can change the wait until duration in Testatoo.
+
+[source, java]
+-------------------------------------------------------------------------------
+Testatoo.waitUntil = 2.seconds
+-------------------------------------------------------------------------------
+
+====
+
+
+==== Properties
+
+==== States
+
+
+=== Actions
+
+==== Low Level
+
+
+
+
+
+==== High Level
+
+
+

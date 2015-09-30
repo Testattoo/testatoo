@@ -76,24 +76,24 @@ class DSLTest {
     }
 
     @Test
-    public void given_input_with_value_when_enter_value_the_field_is_reset_before() {
+    public void given_input_with_value_when_fill_value_the_field_is_reset_before() {
         TextField textField = $('#text_field') as TextField
 
         click_on textField
         type 'Some input'
 
         textField.should { have value('Some input') }
-        on textField enter 'Other input'
+        fill textField with 'Other input'
         textField.should { have value('Other input') }
     }
 
     @Test
-    public void given_input_with_value_when_enter_value_we_trigger_a_blur_event() {
+    public void given_input_with_value_when_fill_value_we_trigger_a_blur_event() {
         TextField field = $('#firstname') as TextField
         Panel panel = $('#firstname_blur') as Panel
 
         panel.should { be hidden }
-        on field enter 'invalid value'
+        fill field with 'invalid value'
         panel.should { be visible }
     }
 
@@ -110,7 +110,7 @@ class DSLTest {
     @Test
     public void should_be_able_to_clear_input() {
         TextField textField = $('#text_field') as TextField
-        on textField enter 'Some input'
+        fill textField with 'Some input'
 
         textField.should {
             be filled
@@ -140,11 +140,9 @@ class DSLTest {
         listBox.should { have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich') }
         listBox.should { have selectedItems('New York', 'Munich') }
 
-        on listBox unselect 'New York'
-        listBox.items[3].should { be unselected }
-
-        on listBox unselect 'Munich'
-        listBox.items[5].should { be unselected }
+        on listBox unselect 'New York', 'Munich'
+        listBox.item('New York').should { be unselected }
+        listBox.item('Munich').should { be unselected }
 
         on listBox select 'Montreal'
         listBox.items[0].should { be selected }
@@ -246,18 +244,6 @@ class DSLTest {
         } catch (ComponentException e) {
             assert e.message == "Unsupported action 'Uncheck' on component Radio:radio"
         }
-    }
-
-    @Test
-    public void should_support_AND() {
-        Checkbox checkBox = $('#checkbox') as Checkbox
-        checkBox.should { be enabled and be(visible) }
-    }
-
-    @Test
-    public void should_support_OR() {
-        ListBox listBox = $('#cities') as ListBox
-        listBox.should { have 8.items or have(3.visibleItems) }
     }
 
     class Message extends Panel {

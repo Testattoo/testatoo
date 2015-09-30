@@ -121,7 +121,6 @@ class ComponentTest {
     }
 
     @Test
-    @Ignore
     public void should_be_able_to_override_state() {
         Button button = $('#button') as CustomButton
         button.should { be hidden }

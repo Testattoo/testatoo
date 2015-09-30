@@ -1,0 +1,104 @@
+== Introduction
+
+Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
+Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
+
+The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write a posteriori tests.
+Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
+
+Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
+
+Testatoo provides, on one hand, an abstraction of the UI business domain through an expressive API and, on the other hand, a way to express this domain via a DSL (a button semantically stays a button, whatever the technology).
+With Testatoo, you can therefore write tests with a seldom achieved level of expressiveness and make those tests INDEPENDENT of the underlying technology.
+
+Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
+
+
+== Technologies
+
+Testatoo is built on top of http://code.google.com/p/selenium/[WebDriver], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[WebDriver] (IE, Google-chrome, Firefox, ...).
+Even though Testatoo provides, like http://www.gebish.org/testing[geb], an extra layer of convenience and productivity, it's always possible to "fallback" to the WebDriver level to do something directly, should you need to.
+But Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
+
+Example of a test syntax :
+
+[source, groovy]
+-------------------------------------------------------------------------------
+    textField.should {
+        be visible
+        be empty
+        have label('myLabel')
+    }
+-------------------------------------------------------------------------------
+
+== Why Testatoo?
+
+The big issue with UI test it's there always at the end to technical.
+More a test handle technical details more it's fragile. The UI layer is, for the majority, a perpetually moving layer.
+
+The problem with UI layer is you *NEED* a good DSL *AND* good abstraction of the UI components.
+Most of the UI testing API focus on "sugar syntax" (the DSL part) but not on the *HEART* of UI layer, the UI components.
+
+The power of Testatoo appear very raplidly at the usage.
+
+[QUOTE]
+====
+*A good analogy might be the following*
+
+    * *Webriver* is like JDBC (low level)
+    * *Geb* is like an SQL DSL (http://http://www.jooq.org/[JOOK], http://www.querydsl.com/[QueryDSL])
+    * *Testatoo* is like http://hibernate.org/orm/[Hibernate] you work at the Domain Model level.
+====
+
+Testatoo is a library to write functional tests. Functional tests mean **SPECIFICATIONS**.
+
+As a **SPECIFIER**, I want to express my test (intention) *BEFORE* I code my UI. So, if the intention is to have
+a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
+
+-------------------------------------------------------------------------------
+the maleRadio should be unchecked
+and it have label "Male"
+
+the femaleRadio should be unchecked
+and it have label "Female"
+
+check the maleRadio
+the maleRadio should be checked
+the femaleRadio should be unchecked
+
+check the femaleRadio
+the femaleRadio should be checked
+the maleRadio should be unchecked
+-------------------------------------------------------------------------------
+
+The Testatoo syntax to express this specification is:
+
+[source, java]
+-------------------------------------------------------------------------------
+male_radio.should {
+    be unchecked
+    have label('Male')
+}
+
+female_radio.should {
+    be unchecked
+    have label('Female')
+}
+
+check male_radio
+male_radio.should { be checked }
+female_radio.should { be unchecked }
+
+check female_radio
+female_radio.should { be checked }
+male_radio.should { be unchecked }
+-------------------------------------------------------------------------------
+
+Pretty close, isn't it? ;)
+
+
+[NOTE]
+====
+This is a sample to show you the how Testatoo is close to the natural language.
+But with a more advanced knowledge of the power of Testatoo this type of test will be not necessary.
+====
