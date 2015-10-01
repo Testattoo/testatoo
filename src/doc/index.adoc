@@ -2,6 +2,8 @@
 :author: David Avenante, Stephanie Parisot
 :revnumber: 2.0.0
 :toc: left
+:toclevels: 5
+:numbered: true
 :doctype: book
 :icons: font
 :homepage: http://www.testatoo.org
@@ -15,8 +17,6 @@ image::logo.svg[Testatoo,align="center"]
 include::intro.adoc[]
 
 include::installation.adoc[]
-
-include::first_test.adoc[]
 
 include::usage.adoc[]
 

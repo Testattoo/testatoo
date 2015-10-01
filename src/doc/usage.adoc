@@ -96,7 +96,7 @@ textFields.each {           // Iterate on TextFields
 }
 
 textFields.each { it ->
-    fill it with 'TESTATOO!' // Enter 'My Value!' on all TextFields
+    fill it with 'TESTATOO!' // Enter 'TESTATOO' on all TextFields
 }
 
 textFields.each {
@@ -109,8 +109,8 @@ textFields.each {
 
 === Component Evaluation
 
-On each component we can evaluate associated *Properties* and *States*
-Each evalation can be operate in two ways: 
+On each component we can evaluate associated *Properties* and *States*.
+Each evaluation can be operate in two ways: 
 
 * The direct way with the *is(...)* method for State and the *has(...)* method for Property
 * The deffered way with the *should()* method 
@@ -132,8 +132,6 @@ button.should {
 -------------------------------------------------------------------------------
 
  
- 
- 
 The deffered way MUST be prefered. This approach include an inner waitUntil. So if a condition in the should is not reached,
 the evaluation is evaluated again all the 200ms until 2 seconds. 
 
@@ -145,7 +143,6 @@ You can change the wait until duration in Testatoo.
 -------------------------------------------------------------------------------
 Testatoo.waitUntil = 2.seconds
 -------------------------------------------------------------------------------
-
 ====
 
 
@@ -158,11 +155,80 @@ Testatoo.waitUntil = 2.seconds
 
 ==== Low Level
 
+Testatoo allow specifier to interact with the application thought the usage of default input like Keyboard, Mouse or Fingers.
+
+===== Mouse
+
+The mouse usages supported are :
+
+*click_on*, +
+*double_click_on*, +
+*right_click_on*, +
+*hovering_mouse_on*, +
+*drag ... on ...*
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+Panel panel_1 = $('#Panel_1) as Panel
+Panel panel_2 = $('#Panel_2) as Panel
+
+click_on button
+double_click_on button
+right_click_on button
+hovering_mouse_on panel_1
+drag panel_1 on panel_2
+-------------------------------------------------------------------------------
+
+===== Keyboard
+
+For the keyboard input we have done a nice work to make this easy.
+One Method to rule them all: *the type(...) method*
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type('testatoo')
+-------------------------------------------------------------------------------
+
+If you need the usage of a simple key modifier.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(SHIFT + 'testatoo') // => TESTATOO
+-------------------------------------------------------------------------------
+
+Or a complex.
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(CTRL + ALT + SHIFT + 'x')
+-------------------------------------------------------------------------------
 
 
-
+===== Touch
+Testatoo doesn't support touch event for the moment
 
 ==== High Level
+
+Testatoo allow specifier to interact with the UI domain with more semantic language.
+
+Fill / Clear fields
+
+Check / Unchek radio an checkbox
+
+Select / Unselect items
+
+Submit / Reset a form
+
 
 
 
