@@ -32,7 +32,7 @@ class Fill implements Action {
     void execute(Component c) {
         c.evaluator.trigger(c.id, 'blur')
 
-        // TODO Mathieu the reset must be executed from the trait and not the action!!!
+        // TODO Mathieu the reset must be executed from the traits and not the action!!!
         c.execute(new Clear())
         c.evaluator.enter([value])
         c.evaluator.trigger(c.id, 'blur')

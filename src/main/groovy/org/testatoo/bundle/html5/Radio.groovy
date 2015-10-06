@@ -18,6 +18,7 @@ package org.testatoo.bundle.html5
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.action.Check
+import org.testatoo.core.action.MCheckable
 import org.testatoo.core.action.support.Checkable
 import org.testatoo.core.property.Label
 import org.testatoo.core.state.Checked

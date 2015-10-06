@@ -24,9 +24,9 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.property.Properties.label
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -50,6 +50,11 @@ class RadioTest {
         radio.should { be enabled }
         radio.should { be visible }
         radio.should { be checked }
+
+        assert radio.checked
+        assert radio.visible
+
+
 
         radio.should { have label('Radio label checked') }
     }

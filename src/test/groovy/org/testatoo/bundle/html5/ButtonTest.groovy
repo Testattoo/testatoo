@@ -67,5 +67,9 @@ class ButtonTest {
         button.should { have text.containing('My') }
         button.should { have text.containing('Button') }
         button.should { have text.containing('Text') }
+
+
+        assert button.has(text) == 'TOTO'
+        assertThat(button.text, is('TOTO'))
     }
 }

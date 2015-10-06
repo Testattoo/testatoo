@@ -17,6 +17,7 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
+import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.property.*
 import org.testatoo.core.state.MultiSelectable
 import org.testatoo.core.state.SingleSelectable
@@ -28,7 +29,7 @@ import static org.testatoo.core.property.Properties.value
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class ListBox extends Component {
+class ListBox extends Component implements Clickable {
 
     ListBox() {
         support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size

@@ -178,6 +178,8 @@ class DSLTest {
 
         Message message = $('#form .alert') as Message
 
+        email_field.value = 'titi'
+
         fill email_field with 'my@email.org'
         fill password_field with 'password'
 
