@@ -57,7 +57,7 @@ class TestatooExtensions {
 
             for (value in values) {
                 Item item = c.items.find { it.value == value } as Item
-                if(item.is(States.selected))
+                if (item.is(States.selected))
                     throw new ComponentException("${item.class.simpleName} ${item} is already selected")
                 item.execute(new Select())
             }
@@ -74,7 +74,7 @@ class TestatooExtensions {
         if (values) {
             for (value in values) {
                 Item item = c.items.find { it.value == value } as Item
-                if(item.is(States.unselected))
+                if (item.is(States.unselected))
                     throw new ComponentException("${item.class.simpleName} ${item} is already unselected")
                 item.execute(new Unselect())
             }

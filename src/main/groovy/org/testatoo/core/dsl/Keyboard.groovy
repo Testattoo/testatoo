@@ -22,8 +22,10 @@ import org.testatoo.core.Testatoo
  */
 class Keyboard {
 
-    void type(Collection<?> keys)  { Testatoo.evaluator.enter(keys) }
-    void type(Key key)  { type([key]) }
-    void type(String text)  { type([text]) }
+    void type(Collection<?> keys) { Testatoo.evaluator.enter(keys) }
+
+    void type(Key key) { type([key]) }
+
+    void type(String text) { type([text]) }
 
 }

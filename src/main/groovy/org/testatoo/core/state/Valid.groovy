@@ -19,7 +19,7 @@ package org.testatoo.core.state
  */
 class Valid extends State {
     Valid() {
-       check "!it.is(':invalid')"
+        check "!it.is(':invalid')"
         description e: 'valid', w: 'invalid'
     }
 }

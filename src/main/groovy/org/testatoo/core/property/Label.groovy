@@ -41,6 +41,4 @@ class Label extends Property {
     private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
 
 
-
-
 }

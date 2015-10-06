@@ -119,14 +119,14 @@ class Blocks {
     static Block compose(Collection<Block> blocks) {
         Block b = null
         b = [
-                run: {
-                    try {
-                        blocks*.run()
-                    } finally {
-                        BLOCKS.remove(b)
-                    }
-                },
-                toString: { blocks.collect { it as String }.join('\n') }
+            run: {
+                try {
+                    blocks*.run()
+                } finally {
+                    BLOCKS.remove(b)
+                }
+            },
+            toString: { blocks.collect { it as String }.join('\n') }
         ] as Block
         BLOCKS.offer(b)
         return b
