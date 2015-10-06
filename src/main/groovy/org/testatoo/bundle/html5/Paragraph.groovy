@@ -17,10 +17,16 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+import org.testatoo.core.property.Text
 import org.testatoo.core.traits.TextSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('p')
-class Paragraph extends Component implements TextSupport {}
+class Paragraph extends Component implements TextSupport {
+
+    Paragraph() {
+        support Text
+    }
+}
