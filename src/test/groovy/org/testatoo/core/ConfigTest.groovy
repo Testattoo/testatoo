@@ -38,7 +38,7 @@ class ConfigTest {
     public void should_be_able_to_obtain_the_underline_implementation() {
         try {
             WebDriver driver = new FirefoxDriver();
-            Testatoo.evaluator = new WebDriverEvaluator(driver)
+            evaluator = new WebDriverEvaluator(driver)
 
             assert evaluator.implementation instanceof WebDriver
             assert evaluator.implementation == driver
@@ -51,7 +51,7 @@ class ConfigTest {
     public void should_be_able_to_register_a_script() {
         try {
             WebDriver driver = new FirefoxDriver();
-            Testatoo.evaluator = new WebDriverEvaluator(driver)
+            evaluator = new WebDriverEvaluator(driver)
 
             visit 'http://localhost:8080/dsl.html'
 

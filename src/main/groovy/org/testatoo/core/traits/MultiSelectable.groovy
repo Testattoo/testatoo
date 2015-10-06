@@ -20,7 +20,7 @@ import org.testatoo.bundle.html5.list.Item
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait MultiSelectable extends SingleSelectable {
+trait MultiSelectable extends Selectable {
 
     void select(Collection<Item> items) {
 

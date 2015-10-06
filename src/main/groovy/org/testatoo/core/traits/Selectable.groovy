@@ -20,7 +20,7 @@ import org.testatoo.bundle.html5.list.Item
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait SingleSelectable {
+trait Selectable {
 
     void select(Item item) {
 
@@ -29,5 +29,15 @@ trait SingleSelectable {
     Item getSelectedItem() {
 
     }
-
 }
+
+
+// Item isSelected()
+// Selectable  select(Item)
+
+
+
+// MultiSelectable getSelectedItems()
+
+// SingleSelectable getSelectedItem()
+

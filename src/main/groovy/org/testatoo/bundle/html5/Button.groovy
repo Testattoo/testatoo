@@ -25,13 +25,7 @@ import org.testatoo.core.traits.TextSupport
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends Component implements TextSupport {
-
-    Button() {
-        support Text, "it.is('input') ? it.val() : it.text().trim()"
-    }
-
     public String getText() {
         eval("it.is('input') ? it.val() : it.text().trim()")
     }
-
 }

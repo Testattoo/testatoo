@@ -25,7 +25,6 @@ import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Text
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.action.Actions.visit
@@ -59,7 +58,7 @@ class GenericSupportTest {
 
         // display:none
         TextField field = $('#hidden_1') as TextField
-        assert  field.hidden
+        assert field.hidden
     }
 
 }
