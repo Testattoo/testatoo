@@ -13,7 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.internal
+
+import org.testatoo.core.ByCss
+import org.testatoo.core.ByJs
+import org.testatoo.core.ComponentException
+import org.testatoo.core.Identifier
 
 import java.lang.annotation.Annotation
 

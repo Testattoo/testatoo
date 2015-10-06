@@ -36,11 +36,10 @@ import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.dsl.Mouse.click_on
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

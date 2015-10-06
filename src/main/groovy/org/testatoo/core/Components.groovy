@@ -15,39 +15,38 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.internal.MetaInfoProvider
+import org.testatoo.core.internal.jQueryIdProvider
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Components<T extends Component> implements Collection<T> {
+class Components<T extends Component> extends AbstractList<T> implements List<T> {
 
-    private final Evaluator _evaluator
     private final IdProvider _idProvider
     private final Class<T> _type;
     private List<T> _components
 
-    private Components(Class<T> type, Evaluator evaluator, IdProvider idProvider) {
-        this._evaluator = evaluator
+    private Components(Class<T> type, IdProvider idProvider) {
         this._idProvider = idProvider
         this._type = type
     }
 
     private List<T> getComponents() {
         if (_components == null) {
-            _components = _idProvider.getMetaInfos(_evaluator).collect {
-                new Component(_evaluator, new MetaInfoProvider(it)).asType(_type)
+            _components = _idProvider.getMetaInfos().collect {
+                new Component(new MetaInfoProvider(it)).asType(_type)
             } as List<T>
         }
         return _components
     }
 
     def <T extends Component> Components<T> of(Class<T> type) {
-        return new Components(type, _evaluator, _idProvider)
+        return new Components(type, _idProvider)
     }
 
     static Components<? extends Component> $$(String jQuery, long timeout = 2000) {
-        new Components<>(Component, Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, false))
+        new Components<>(Component, new jQueryIdProvider(jQuery, timeout, false))
     }
 
     // DELEGATES
@@ -67,6 +66,9 @@ class Components<T extends Component> implements Collection<T> {
     Object[] toArray() { components.toArray() }
 
     def <T> T[] toArray(T[] a) { components.toArray(a) }
+
+    @Override
+    T get(int index) { components.get(index) }
 
     // UNSUPPORTED
     @Override

@@ -13,10 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
+
+import org.testatoo.core.Testatoo
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public interface Matcher {
-    void matches(Component c)
+class Window {
+
+    final String id
+
+    Window(String id) {
+        this.id = id;
+    }
+
+    void close() {
+        Testatoo.evaluator.closeWindow(this.id)
+    }
+
+    @Override
+    String toString() {
+        this.id
+    }
 }

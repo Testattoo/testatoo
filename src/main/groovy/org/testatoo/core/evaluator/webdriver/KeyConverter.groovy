@@ -16,9 +16,9 @@
 package org.testatoo.core.evaluator.webdriver
 
 import org.openqa.selenium.Keys
-import org.testatoo.core.input.Key
+import org.testatoo.core.dsl.Key
 
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.dsl.Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

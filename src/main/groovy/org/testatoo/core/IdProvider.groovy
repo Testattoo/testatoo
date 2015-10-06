@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 package org.testatoo.core
-
-import org.testatoo.core.evaluator.Evaluator
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 public interface IdProvider {
-    List<MetaInfo> getMetaInfos(Evaluator e) throws ComponentException
+    List<MetaInfo> getMetaInfos() throws ComponentException
 }

@@ -16,7 +16,7 @@
 package org.testatoo.core.action
 
 import org.testatoo.core.Component
-import org.testatoo.core.input.Key
+import org.testatoo.core.dsl.Key
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

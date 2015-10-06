@@ -13,23 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
 
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.Testatoo
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class MetaInfoProvider implements IdProvider {
+class Keyboard {
 
-    final MetaInfo metaInfo
+    void type(Collection<?> keys)  { Testatoo.evaluator.enter(keys) }
+    void type(Key key)  { type([key]) }
+    void type(String text)  { type([text]) }
 
-    MetaInfoProvider(MetaInfo metaInfo) {
-        this.metaInfo = metaInfo
-    }
-
-    @Override
-    List<MetaInfo> getMetaInfos(Evaluator e) throws ComponentException {
-        return [metaInfo]
-    }
 }

@@ -17,6 +17,7 @@ package org.testatoo.core.action
 
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+
 import static org.testatoo.core.state.States.checked
 
 /**

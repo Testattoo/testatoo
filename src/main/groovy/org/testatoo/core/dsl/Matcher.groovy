@@ -13,34 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
 
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Navigation {
-
-    private Evaluator evaluator
-
-    Navigation(Evaluator evaluator) {
-        this.evaluator = evaluator
-    }
-
-    void to(String url) {
-        evaluator.to(url)
-    }
-
-    void back() {
-        evaluator.back()
-    }
-
-    void forward() {
-        evaluator.forward()
-    }
-
-    void refresh() {
-        evaluator.refresh()
-    }
+public interface Matcher {
+    void matches(Component c)
 }

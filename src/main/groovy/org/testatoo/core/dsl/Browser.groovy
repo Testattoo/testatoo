@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
 
-import org.testatoo.core.evaluator.Evaluator
+import static org.testatoo.core.Testatoo.evaluator
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Browser {
 
-    private Evaluator evaluator
-
-    Browser(Evaluator evaluator) {
-        this.evaluator = evaluator
-    }
+    final Navigation navigation = new Navigation()
 
     String getTitle() {
         evaluator.title
@@ -44,14 +40,10 @@ class Browser {
         evaluator.open(url)
     }
 
-    Navigation getNavigate() {
-        new Navigation(evaluator)
-    }
-
     List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
         evaluator.windowIds.each { String id ->
-            windows.add(new Window(evaluator, id))
+            windows.add(new Window(id))
         }
         return windows
     }

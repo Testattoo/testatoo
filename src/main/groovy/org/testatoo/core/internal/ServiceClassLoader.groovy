@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.internal
 /**
  * @author Mathieu Carbou <mathieu.carbou@gmail.com>
  * @param < S >   The type of the service to be loaded by this loader

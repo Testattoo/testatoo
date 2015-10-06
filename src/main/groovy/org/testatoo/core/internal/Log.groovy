@@ -13,22 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.action
-
-import org.testatoo.core.Component
-
-import static org.testatoo.core.dsl.Key.BACK_SPACE
+package org.testatoo.core.internal
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Clear implements Action {
-    @Override
-    void execute(Component c) {
-        c.click()
-        c.evaluator.runScript("\$('#${c.id}').val(' ').change()")
-        c.evaluator.enter([BACK_SPACE])
-        c.evaluator.trigger(c.id, 'blur')
-        c.click()
-    }
+class Log {
+
+    static boolean debug
+
+    static void log(String msg) { if (debug) println "[TESTATOO] [${Thread.currentThread().name}] ${msg}" }
+
 }

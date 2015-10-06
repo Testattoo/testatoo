@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
+
+import org.testatoo.core.internal.Log
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -110,7 +112,7 @@ class Blocks {
     }
 
     static void run(Block b) {
-        Log.testatoo b.toString()
+        Log.log b.toString()
         b.run()
     }
 

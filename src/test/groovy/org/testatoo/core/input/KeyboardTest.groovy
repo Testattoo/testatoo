@@ -27,12 +27,11 @@ import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.action.Actions.clear
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Key.*
+import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.property.Properties.value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

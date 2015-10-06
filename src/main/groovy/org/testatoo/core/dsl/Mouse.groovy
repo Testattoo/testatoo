@@ -13,22 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.action
+package org.testatoo.core.dsl
 
 import org.testatoo.core.Component
-
-import static org.testatoo.core.dsl.Key.BACK_SPACE
+import org.testatoo.core.Testatoo
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Clear implements Action {
-    @Override
-    void execute(Component c) {
-        c.click()
-        c.evaluator.runScript("\$('#${c.id}').val(' ').change()")
-        c.evaluator.enter([BACK_SPACE])
-        c.evaluator.trigger(c.id, 'blur')
-        c.click()
+class Mouse {
+
+    static void click_on(Component c) { c.click() }
+
+    static void double_click_on(Component c) { c.doubleClick() }
+
+    static void right_click_on(Component c) { c.rightClick() }
+
+    static void hovering_mouse_on(Component c) { Testatoo.evaluator.mouseOver(c.id) }
+
+    static DragBuilder drag(Component c) { return new DragBuilder(c) }
+
+    public static class DragBuilder {
+        private Component from
+
+        public DragBuilder(Component from) {
+            this.from = from
+        }
+
+        public void on(Component onto) {
+            from.drag(onto)
+        }
     }
+
 }

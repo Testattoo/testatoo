@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.internal
 
-import groovy.time.TimeDuration
 import org.testatoo.bundle.html5.list.Item
-import org.testatoo.core.action.Fill
-import org.testatoo.core.action.MouseClick
-import org.testatoo.core.action.MouseModifiers
-import org.testatoo.core.action.Select
-import org.testatoo.core.action.Unselect
-import org.testatoo.core.input.Key
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
+import org.testatoo.core.action.*
+import org.testatoo.core.dsl.Block
+import org.testatoo.core.dsl.Blocks
+import org.testatoo.core.dsl.Key
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
-import static org.testatoo.core.state.States.*
+import org.testatoo.core.state.States
+
+import java.time.Duration
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -51,12 +52,12 @@ class TestatooExtensions {
     static void select(Component c, String... values) {
         if (values) {
             if (values.length > 1) {
-                c.is(multiSelectable)
+                c.is(States.multiSelectable)
             }
 
             for (value in values) {
                 Item item = c.items.find { it.value == value } as Item
-                if(item.is(selected))
+                if(item.is(States.selected))
                     throw new ComponentException("${item.class.simpleName} ${item} is already selected")
                 item.execute(new Select())
             }
@@ -73,7 +74,7 @@ class TestatooExtensions {
         if (values) {
             for (value in values) {
                 Item item = c.items.find { it.value == value } as Item
-                if(item.is(unselected))
+                if(item.is(States.unselected))
                     throw new ComponentException("${item.class.simpleName} ${item} is already unselected")
                 item.execute(new Unselect())
             }
@@ -127,5 +128,5 @@ class TestatooExtensions {
         Properties.articleSize.equalsTo(expected)
     }
 
-    public static TimeDuration getSeconds(Number self) { new TimeDuration(0, 0, 0, self.intValue(), 0) }
+    public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 }

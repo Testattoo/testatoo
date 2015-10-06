@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.property.matcher
 
-import org.testatoo.core.Matcher
+import org.testatoo.core.dsl.Matcher
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

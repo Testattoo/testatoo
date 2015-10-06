@@ -21,28 +21,15 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.input.ColorField
-import org.testatoo.bundle.html5.input.DateField
-import org.testatoo.bundle.html5.input.DateTimeField
-import org.testatoo.bundle.html5.input.EmailField
-import org.testatoo.bundle.html5.input.MonthField
-import org.testatoo.bundle.html5.input.NumberField
-import org.testatoo.bundle.html5.input.PasswordField
-import org.testatoo.bundle.html5.input.PhoneField
-import org.testatoo.bundle.html5.input.RangeField
-import org.testatoo.bundle.html5.input.SearchField
-import org.testatoo.bundle.html5.input.TextField
-import org.testatoo.bundle.html5.input.TimeField
-import org.testatoo.bundle.html5.input.URLField
-import org.testatoo.bundle.html5.input.WeekField
+import org.testatoo.bundle.html5.input.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.action.Actions.clear
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Mouse.click_on
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

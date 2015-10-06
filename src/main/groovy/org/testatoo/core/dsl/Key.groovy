@@ -13,15 +13,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class Log {
+public enum Key {
 
-    static boolean testatoo
+    ESCAPE,
 
-    static void testatoo(String msg) { if (testatoo) println "[TESTATOO] [${Thread.currentThread().name}] ${msg}" }
+    F1,
+    F2,
+    F3,
+    F4,
+    F5,
+    F6,
+    F7,
+    F8,
+    F9,
+    F10,
+    F11,
+    F12,
+
+    INSERT,
+    DELETE,
+    PAGE_UP,
+    PAGE_DOWN,
+
+    HOME,
+    END,
+    BACK_SPACE,
+
+    MULTIPLY,
+    DIVIDE,
+    SUBTRACT,
+    ADD,
+    EQUALS,
+
+    TAB,
+    RETURN,
+    SPACE,
+
+    LEFT,
+    UP,
+    RIGHT,
+    DOWN,
+
+    SHIFT,
+    CTRL,
+    ALT
 
 }

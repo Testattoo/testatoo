@@ -15,17 +15,22 @@
  */
 package org.testatoo.core
 
+import org.testatoo.bundle.html5.traits.GenericSupport
 import org.testatoo.core.action.Action
 import org.testatoo.core.action.MouseClick
 import org.testatoo.core.action.MouseDrag
 import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.action.support.Draggable
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.dsl.Block
+import org.testatoo.core.dsl.Blocks
+import org.testatoo.core.dsl.Matcher
+import org.testatoo.core.internal.Identifiers
+import org.testatoo.core.internal.Log
+import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
-import org.testatoo.bundle.html5.traits.GenericSupport
 
 import java.util.concurrent.TimeoutException
 
@@ -48,21 +53,20 @@ class Component implements GenericSupport, Clickable, Draggable {
         support MouseClick, MouseDrag
     }
 
-    Component(Evaluator evaluator, IdProvider idProvider) {
+    Component(IdProvider idProvider) {
         this()
         meta = new CachedMetaData(
-            evaluator: evaluator,
             idProvider: idProvider
         )
     }
 
-    String eval(String jqueryExpr) { return evaluator.eval(getId(), jqueryExpr) }
+//    String eval(String jqueryExpr) { return evaluator.eval(getId(), jqueryExpr) }
 
-    boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
+//    boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
-    Evaluator getEvaluator() { meta.evaluator }
+//    Evaluator getEvaluator() { meta.evaluator }
 
     Block be(State matcher) { block 'be', matcher }
 
@@ -203,18 +207,16 @@ class Component implements GenericSupport, Clickable, Draggable {
         @Delegate
         private MetaInfo metaInfo
 
-        private Evaluator evaluator
-
         IdProvider idProvider
 
         MetaInfo getMetaInfo(Component c) {
             if (!metaInfo) {
-                MetaInfo info = idProvider.getMetaInfos(evaluator)[0]
+                MetaInfo info = idProvider.getMetaInfos()[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(evaluator.getBool(info.id, identifyingExpr))) {
+                    if (!(Testatoo.evaluator.getBool(info.id, identifyingExpr))) {
                         Class<Component> type = Testatoo.componentTypes.find {
-                            evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
+                            Testatoo.evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }
@@ -231,7 +233,7 @@ class Component implements GenericSupport, Clickable, Draggable {
         c()
         try {
             _waitUntil Testatoo.waitUntil.toMilliseconds(), 200, {
-                Log.testatoo "waitUntil: ${c}"
+                Log.log "waitUntil: ${c}"
                 Blocks.run(Blocks.compose(Blocks.pending()))
             }
         } catch (TimeoutException e) {

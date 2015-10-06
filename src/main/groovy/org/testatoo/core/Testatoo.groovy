@@ -16,21 +16,52 @@
 package org.testatoo.core
 
 import com.google.common.reflect.ClassPath
-import groovy.time.TimeDuration
-import org.testatoo.core.evaluator.Evaluator
+import org.testatoo.core.dsl.Browser
+import org.testatoo.core.dsl.Keyboard
+import org.testatoo.core.dsl.Mouse
+import org.testatoo.core.internal.Identifiers
+import org.testatoo.core.internal.Log
+
+import java.time.Duration
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Testatoo {
 
-    static boolean debug = false
-    static TimeDuration waitUntil = 2.seconds
+    /**
+     * Controls your browser
+     */
+    static final Browser browser = new Browser()
 
-    static final Collection<Class<Component>> componentTypes = new HashSet<>()
+    /**
+     * Access the keyboard
+     */
+    static final Keyboard keyboard = new Keyboard()
 
-    static Evaluator evaluator
+    /**
+     * Access the mouse
+     */
+    static final Mouse mouse = new Mouse()
 
+    /**
+     * Change default time to wait for wait for assertions to complete (waitUntil)
+     */
+    static Duration waitUntil = 2.seconds
+
+    /**
+     * Create a component
+     */
+    static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
+
+    /**
+     * Creates a list of components
+     */
+    static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
+
+    /**
+     * Scan for packages containing custom components
+     */
     static void scan(String... packageNames) {
         componentTypes.addAll(packageNames
             .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
@@ -39,20 +70,32 @@ class Testatoo {
             .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
     }
 
-    // DSL
-    static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
-
-    static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
-
-    static Browser getBrowser() {
-        return new Browser(evaluator)
+    static Evaluator getEvaluator() {
+        if (evaluator == null) {
+            throw new IllegalStateException("Missing evaluator")
+        }
+        return evaluator
     }
 
-    static void resetWaitUntil() {
-        waitUntil = 2.seconds
+    /**
+     * Activate debug mode
+     */
+    static void setDebug(boolean debug) {
+        Log.debug = debug
+    }
+
+    /**
+     * Sets the default evaluator to use
+     */
+    static void setEvaluator(Evaluator evaluator) {
+        Testatoo.evaluator = evaluator
     }
 
     static {
         scan 'org.testatoo.bundle.html5'
     }
+
+    static final Collection<Class<Component>> componentTypes = new HashSet<>()
+    private static Evaluator evaluator
+
 }

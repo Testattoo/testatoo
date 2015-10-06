@@ -1,4 +1,4 @@
 moduleName=testatoo
 moduleVersion=1
-extensionClasses=org.testatoo.core.TestatooExtensions
+extensionClasses=org.testatoo.core.internal.TestatooExtensions
 staticExtensionClasses=

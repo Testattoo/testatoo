@@ -21,18 +21,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.ByCss
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.input.PasswordField
+import org.testatoo.core.ByCss
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Keyboard.*
-import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.action.Actions.clear
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Mouse.click_on
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.state.States.getInvalid
+import static org.testatoo.core.state.States.getValid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

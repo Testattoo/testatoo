@@ -24,10 +24,11 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.property.Properties.label
+import static org.testatoo.core.state.States.getChecked
+import static org.testatoo.core.state.States.getUnchecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

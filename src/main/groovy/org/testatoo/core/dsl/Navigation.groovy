@@ -13,29 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.dsl
 
-import org.testatoo.core.evaluator.Evaluator
+import static org.testatoo.core.Testatoo.evaluator
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Window {
+class Navigation {
 
-    private Evaluator evaluator
-    String id
-
-    Window(Evaluator evaluator, String id) {
-        this.evaluator = evaluator
-        this.id = id;
+    void to(String url) {
+        evaluator.to(url)
     }
 
-    void close() {
-        evaluator.closeWindow(this.id)
+    void back() {
+        evaluator.back()
     }
 
-    @Override
-    public String toString() {
-        this.id
+    void forward() {
+        evaluator.forward()
+    }
+
+    void refresh() {
+        evaluator.refresh()
     }
 }

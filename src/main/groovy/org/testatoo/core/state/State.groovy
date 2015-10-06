@@ -15,9 +15,9 @@
  */
 package org.testatoo.core.state
 
-import org.testatoo.core.ComponentException
-import org.testatoo.core.Matcher
 import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
+import org.testatoo.core.dsl.Matcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

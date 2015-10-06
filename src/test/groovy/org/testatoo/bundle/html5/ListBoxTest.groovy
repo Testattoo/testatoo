@@ -26,10 +26,12 @@ import org.testatoo.bundle.html5.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.action.Actions.on
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Key.CTRL
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.state.States.getMultiSelectable
+import static org.testatoo.core.state.States.getSingleSelectable
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

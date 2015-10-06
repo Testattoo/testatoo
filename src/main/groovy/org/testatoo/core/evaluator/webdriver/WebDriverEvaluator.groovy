@@ -20,15 +20,15 @@ import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
+import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.Testatoo
 import org.testatoo.core.action.MouseModifiers
-import org.testatoo.core.evaluator.Evaluator
-import org.testatoo.core.input.Key
+import org.testatoo.core.dsl.Key
+import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.action.MouseModifiers.DOUBLE
 import static org.testatoo.core.action.MouseModifiers.SINGLE
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.dsl.Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -211,9 +211,7 @@ class WebDriverEvaluator implements Evaluator {
             }
         }(window.testatoo, window.testatoo, window.testatoo));"""
 
-        if (Testatoo.debug) {
-            println expr
-        }
+        Log.log(expr)
 
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
