@@ -30,7 +30,9 @@ import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
-import org.testatoo.core.state.*
+import org.testatoo.core.state.State
+import org.testatoo.core.state.StateEvaluator
+import org.testatoo.core.state.Visible
 
 import java.util.concurrent.TimeoutException
 
@@ -49,7 +51,7 @@ class Component implements GenericSupport, Clickable, Draggable {
     CachedMetaData meta = new CachedMetaData()
 
     Component() {
-        support Enabled, Disabled, Available, Missing, Hidden, Visible
+        //TODO DAVID: delete
         support MouseClick, MouseDrag
     }
 
@@ -60,9 +62,9 @@ class Component implements GenericSupport, Clickable, Draggable {
         )
     }
 
-//    String eval(String jqueryExpr) { return evaluator.eval(getId(), jqueryExpr) }
+    //String eval(String jqueryExpr) { return Testatoo.config.evaluator.eval(getId(), jqueryExpr) }
 
-//    boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
+    //boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 

@@ -45,7 +45,7 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    WebDriver getImplementation() { webDriver }
+    public <T> T getImplementation(Class<T> type) { type.cast(webDriver) }
 
     @Override
     void open(String url) { webDriver.get(url) }

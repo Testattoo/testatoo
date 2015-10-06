@@ -20,55 +20,57 @@ import org.testatoo.core.action.MouseModifiers
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public interface Evaluator extends AutoCloseable {
+abstract trait Evaluator implements AutoCloseable {
 
-    Object getImplementation()
+    abstract <T> T getImplementation(Class<T> type)
 
-    void open(String url)
+    abstract void open(String url)
 
-    void runScript(String script)
+    abstract void runScript(String script)
 
-    void registerScripts(String... scripts)
+    abstract void registerScripts(String... scripts)
 
-    String eval(String id, String jQueryExpr)
+    abstract String eval(String id, String jQueryExpr)
 
-    boolean getBool(String id, String jQueryExpr)
+    String eval(Component c, String jQueryExpr) { eval(c.id, jQueryExpr) }
 
-    void trigger(String id, String event)
+    abstract boolean getBool(String id, String jQueryExpr)
 
-    String getTitle()
+    abstract void trigger(String id, String event)
 
-    String getPageSource()
+    abstract String getTitle()
 
-    String getUrl()
+    abstract String getPageSource()
 
-    Set<String> getWindowIds()
+    abstract String getUrl()
 
-    void closeWindow(String id)
+    abstract Set<String> getWindowIds()
 
-    void switchToWindow(String id)
+    abstract void closeWindow(String id)
 
-    void to(String url)
+    abstract void switchToWindow(String id)
 
-    void back()
+    abstract void to(String url)
 
-    void forward()
+    abstract void back()
 
-    void refresh()
+    abstract void forward()
 
-    public <T> T getJson(String jQueryExpr)
+    abstract void refresh()
 
-    List<MetaInfo> getMetaInfo(String jQueryExpr)
+    abstract <T> T getJson(String jQueryExpr)
 
-    void enter(Collection<?> keys)
+    abstract List<MetaInfo> getMetaInfo(String jQueryExpr)
 
-    void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
+    abstract void enter(Collection<?> keys)
 
-    void click(String id, Collection<MouseModifiers> click)
+    abstract void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
 
-    void click(String id)
+    abstract void click(String id, Collection<MouseModifiers> click)
 
-    void mouseOver(String id)
+    abstract void click(String id)
 
-    void dragAndDrop(String originId, String targetId)
+    abstract void mouseOver(String id)
+
+    abstract void dragAndDrop(String originId, String targetId)
 }
