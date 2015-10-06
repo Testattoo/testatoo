@@ -16,22 +16,13 @@
 package org.testatoo.core
 
 import org.testatoo.bundle.html5.traits.GenericSupport
-import org.testatoo.core.action.Action
-import org.testatoo.core.action.MouseClick
-import org.testatoo.core.action.MouseDrag
 import org.testatoo.core.action.support.Clickable
 import org.testatoo.core.action.support.Draggable
 import org.testatoo.core.dsl.Block
 import org.testatoo.core.dsl.Blocks
-import org.testatoo.core.dsl.Matcher
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log
 import org.testatoo.core.internal.jQueryIdProvider
-import org.testatoo.core.property.Property
-import org.testatoo.core.property.PropertyEvaluator
-import org.testatoo.core.property.matcher.PropertyMatcher
-import org.testatoo.core.state.State
-import org.testatoo.core.state.StateEvaluator
 import org.testatoo.core.state.Visible
 
 import java.util.concurrent.TimeoutException
@@ -41,19 +32,7 @@ import java.util.concurrent.TimeoutException
  */
 class Component implements GenericSupport, Clickable, Draggable {
 
-    private static final PropertyEvaluator DEFAULT_PE = {} as PropertyEvaluator
-    private static final StateEvaluator DEFAULT_SE = {} as StateEvaluator
-
-    private Map<Class<? extends Property>, PropertyEvaluator> _supportedProperties = new IdentityHashMap<>()
-    private Map<Class<? extends State>, StateEvaluator> _supportedStates = new IdentityHashMap<>()
-    private Set<Class<? extends Action>> _supportedActions = new HashSet<>()
-
     CachedMetaData meta = new CachedMetaData()
-
-    Component() {
-        //TODO DAVID: delete
-        support MouseClick, MouseDrag
-    }
 
     Component(IdProvider idProvider) {
         this()
@@ -70,29 +49,29 @@ class Component implements GenericSupport, Clickable, Draggable {
 
 //    Evaluator getEvaluator() { meta.evaluator }
 
-    Block be(State matcher) { block 'be', matcher }
+//    Block be(State matcher) { block 'be', matcher }
 
-    boolean is(State state) {
-        StateEvaluator se = _supportedStates.get(state.class)
-        if (se == null) {
-            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
-        }
-        return (se == DEFAULT_SE ? state.class.newInstance().evaluator : se).getState(this)
-    }
+//    boolean is(State state) {
+//        StateEvaluator se = _supportedStates.get(state.class)
+//        if (se == null) {
+//            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
+//        }
+//        return (se == DEFAULT_SE ? state.class.newInstance().evaluator : se).getState(this)
+//    }
 
-    Block have(PropertyMatcher matcher) { block 'have', matcher }
+//    Block have(PropertyMatcher matcher) { block 'have', matcher }
 
-    Object has(Property property) {
-        PropertyEvaluator pe = _supportedProperties.get(property.class)
-        if (pe == null) {
-            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
-        }
-        return (pe == DEFAULT_PE ? property.class.newInstance().evaluator : pe).getValue(this)
-    }
+//    Object has(Property property) {
+//        PropertyEvaluator pe = _supportedProperties.get(property.class)
+//        if (pe == null) {
+//            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
+//        }
+//        return (pe == DEFAULT_PE ? property.class.newInstance().evaluator : pe).getValue(this)
+//    }
 
     Block contain(Component... components) {
         Blocks.block "matching ${this} contains ${components}", {
-            List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+            List ret = Testatoo.config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
                 throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
             }
@@ -101,7 +80,7 @@ class Component implements GenericSupport, Clickable, Draggable {
 
     Block display(Component... components) {
         Blocks.block "matching ${this} display ${components}", {
-            List ret = evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+            List ret = Testatoo.config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
             if (ret) {
                 throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
             } else {
@@ -124,7 +103,7 @@ class Component implements GenericSupport, Clickable, Draggable {
         evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
     }
 
-    private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
+//    private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
 
     @Override
     boolean equals(o) {
@@ -158,51 +137,51 @@ class Component implements GenericSupport, Clickable, Draggable {
         return super.asType(clazz)
     }
 
-    void support(Class<?>... types) {
-        for (Class<?> type : types) {
-            if (Property.isAssignableFrom(type)) {
-                support(type as Class<? extends Property>, DEFAULT_PE)
-            } else if (State.isAssignableFrom(type)) {
-                support(type as Class<? extends State>, DEFAULT_SE)
-            } else if (Action.isAssignableFrom(type)) {
-                _supportedActions.add(type as Class<? extends Action>)
-            }
-        }
-    }
+//    void support(Class<?>... types) {
+//        for (Class<?> type : types) {
+//            if (Property.isAssignableFrom(type)) {
+//                support(type as Class<? extends Property>, DEFAULT_PE)
+//            } else if (State.isAssignableFrom(type)) {
+//                support(type as Class<? extends State>, DEFAULT_SE)
+//            } else if (Action.isAssignableFrom(type)) {
+//                _supportedActions.add(type as Class<? extends Action>)
+//            }
+//        }
+//    }
 
-    void support(Class<? extends Property> type, PropertyEvaluator e) {
-        _supportedProperties.put(type, e)
-    }
+//    void support(Class<? extends Property> type, PropertyEvaluator e) {
+//        _supportedProperties.put(type, e)
+//    }
 
-    void support(Class<? extends State> type, StateEvaluator e) {
-        _supportedStates.put(type, e)
-    }
+//    void support(Class<? extends State> type, StateEvaluator e) {
+//        _supportedStates.put(type, e)
+//    }
 
-    void support(Class<?> type, Closure<?> c) {
-        if (Property.isAssignableFrom(type)) {
-            _supportedProperties.put(type as Class<? extends Property>, c as PropertyEvaluator)
-        } else if (State.isAssignableFrom(type)) {
-            _supportedStates.put(type as Class<? extends State>, c as StateEvaluator)
-        }
-    }
+//    void support(Class<?> type, Closure<?> c) {
+//        if (Property.isAssignableFrom(type)) {
+//            _supportedProperties.put(type as Class<? extends Property>, c as PropertyEvaluator)
+//        } else if (State.isAssignableFrom(type)) {
+//            _supportedStates.put(type as Class<? extends State>, c as StateEvaluator)
+//        }
+//    }
 
-    void support(Class<?> type, String exp) {
-        support(type, { eval(exp) })
-    }
+//    void support(Class<?> type, String exp) {
+//        support(type, { eval(exp) })
+//    }
 
-    void execute(Action action) {
-        Class<?> c = action.getClass()
-        while (c != Object) {
-            if (_supportedActions.contains(c)) {
-                // TODO mathieu where is th use of the override
-                action.execute(this)
-                return
-            } else {
-                c = c.superclass
-            }
-        }
-        throw new ComponentException("Unsupported action '${action.class.simpleName}' on component ${this}")
-    }
+//    void execute(Action action) {
+//        Class<?> c = action.getClass()
+//        while (c != Object) {
+//            if (_supportedActions.contains(c)) {
+//                // TODO mathieu where is th use of the override
+//                action.execute(this)
+//                return
+//            } else {
+//                c = c.superclass
+//            }
+//        }
+//        throw new ComponentException("Unsupported action '${action.class.simpleName}' on component ${this}")
+//    }
 
     static class CachedMetaData {
 
@@ -216,9 +195,9 @@ class Component implements GenericSupport, Clickable, Draggable {
                 MetaInfo info = idProvider.getMetaInfos()[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(Testatoo.evaluator.getBool(info.id, identifyingExpr))) {
-                        Class<Component> type = Testatoo.componentTypes.find {
-                            Testatoo.evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
+                    if (!(Testatoo.config.evaluator.getBool(info.id, identifyingExpr))) {
+                        Class<Component> type = Testatoo.config.componentTypes.find {
+                            Testatoo.config.evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }
@@ -229,12 +208,12 @@ class Component implements GenericSupport, Clickable, Draggable {
         }
     }
 
-    static Component $(String jQuery, long timeout = 2000) { new Component(Testatoo.evaluator, new jQueryIdProvider(jQuery, timeout, true)) }
+    static Component $(String jQuery, long timeout = 2000) { new Component(new jQueryIdProvider(jQuery, timeout, true)) }
 
     private static void waitUntil(Closure c) {
         c()
         try {
-            _waitUntil Testatoo.waitUntil.toMilliseconds(), 200, {
+            _waitUntil Testatoo.config.waitUntil.toMillis(), 200, {
                 Log.log "waitUntil: ${c}"
                 Blocks.run(Blocks.compose(Blocks.pending()))
             }

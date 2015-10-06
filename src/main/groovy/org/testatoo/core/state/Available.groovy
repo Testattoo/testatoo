@@ -24,7 +24,7 @@ class Available extends State {
     Available() {
         evaluator {
             try {
-                it.meta.idProvider.getMetaInfos(it.evaluator)
+                it.meta.idProvider.getMetaInfos()
                 return true
             } catch (ComponentException ignored) {
                 return false

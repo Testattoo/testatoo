@@ -27,13 +27,6 @@ class Config {
             .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
     }
 
-    static Evaluator getEvaluator() {
-        if (evaluator == null) {
-            throw new IllegalStateException("Missing evaluator")
-        }
-        return evaluator
-    }
-
     /**
      * Activate debug mode
      */
@@ -45,10 +38,17 @@ class Config {
      * Sets the default evaluator to use
      */
     static void setEvaluator(Evaluator evaluator) {
-        Config.evaluator = evaluator
+        _evaluator = evaluator
+    }
+
+    static Evaluator getEvaluator() {
+        if (_evaluator == null) {
+            throw new IllegalStateException("Missing evaluator")
+        }
+        return _evaluator
     }
 
     static final Collection<Class<Component>> componentTypes = new HashSet<>()
-    private static Evaluator evaluator
+    private static Evaluator _evaluator
 
 }

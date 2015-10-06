@@ -36,7 +36,7 @@ trait GenericSupport {
 
     boolean isMissing() {
         try {
-            meta.idProvider.getMetaInfos(evaluator)
+            this.meta.idProvider.getMetaInfos(evaluator)
             return false
         } catch (ComponentException ignored) {
             return true
