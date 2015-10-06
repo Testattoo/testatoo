@@ -25,13 +25,14 @@ import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
+import org.testatoo.core.traits.GenericSupport
 
 import java.util.concurrent.TimeoutException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Component implements Clickable, Draggable {
+class Component implements GenericSupport, Clickable, Draggable {
 
     private static final PropertyEvaluator DEFAULT_PE = {} as PropertyEvaluator
     private static final StateEvaluator DEFAULT_SE = {} as StateEvaluator

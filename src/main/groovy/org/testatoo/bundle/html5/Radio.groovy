@@ -17,23 +17,12 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.action.Check
-import org.testatoo.core.action.MCheckable
-import org.testatoo.core.action.support.Checkable
-import org.testatoo.core.property.Label
-import org.testatoo.core.state.Checked
-import org.testatoo.core.state.Unchecked
+import org.testatoo.core.traits.Checkable
+import org.testatoo.core.traits.LabelSuport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('input[type=radio]')
-class Radio extends Component implements Checkable {
-
-    Radio() {
-        support Label
-        support Checked, Unchecked
-        support Check
-    }
-
+class Radio extends Component implements Checkable, LabelSuport {
 }

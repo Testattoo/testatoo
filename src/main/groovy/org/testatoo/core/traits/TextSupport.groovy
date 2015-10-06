@@ -6,7 +6,7 @@ package org.testatoo.core.traits
 trait TextSupport {
 
     String getText() {
-        return ""
+        eval("it.text()")
     }
 
 }

@@ -26,16 +26,17 @@ import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.*
+import org.testatoo.core.traits.LabelSuport
 
 import static org.testatoo.core.input.Key.BACK_SPACE
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Input extends Component implements Resettable, Fillable, Clearable {
+class Input extends Component implements LabelSuport, Resettable, Fillable, Clearable {
 
     Input() {
-        support Placeholder, Label
+        support Placeholder
         support Value, "it.val()"
         support Optional, Required, Empty, Filled, Valid, Invalid
         support Reset, Fill, Clear, ReadOnly

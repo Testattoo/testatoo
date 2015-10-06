@@ -24,9 +24,9 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.property.Properties.text
 import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -42,6 +42,12 @@ class ButtonTest {
 
     @AfterClass
     public static void tearDown() { evaluator.close() }
+
+    @Test
+    public void should_override_text_support() {
+        Button button = $('#button') as Button
+        assert button.text == 'Button'
+    }
 
     @Test
     public void button_should_have_expected_behaviours() {
@@ -69,7 +75,6 @@ class ButtonTest {
         button.should { have text.containing('Text') }
 
 
-        assert button.has(text) == 'TOTO'
-        assertThat(button.text, is('TOTO'))
+
     }
 }

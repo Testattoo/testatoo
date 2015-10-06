@@ -1,20 +1,40 @@
 package org.testatoo.core.traits
 
-import org.testatoo.core.action.MouseClick
-import org.testatoo.core.action.MouseDrag
-import org.testatoo.core.state.Available
-import org.testatoo.core.state.Disabled
-import org.testatoo.core.state.Enabled
-import org.testatoo.core.state.Hidden
-import org.testatoo.core.state.Missing
-import org.testatoo.core.state.Visible
+import org.testatoo.core.ComponentException
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 trait GenericSupport {
 
-//    support Enabled, Disabled, Available, Missing, Hidden, Visible
-//    support MouseClick, MouseDrag
+    boolean isEnabled() {
+        !disabled
+    }
+
+    boolean isDisabled() {
+        Boolean.parseBoolean(eval("it.is(':disabled') || !!it.attr('disabled')"))
+    }
+
+    boolean isAvailable() {
+        !missing
+    }
+
+    boolean isMissing() {
+        try {
+            meta.idProvider.getMetaInfos(evaluator)
+            return false
+        } catch (ComponentException ignored) {
+            return true
+        }
+
+    }
+
+    boolean isHidden() {
+        Boolean.parseBoolean(eval("it.is(':hidden')"))
+    }
+
+    boolean isVisible() {
+        !hidden
+    }
 
 }
