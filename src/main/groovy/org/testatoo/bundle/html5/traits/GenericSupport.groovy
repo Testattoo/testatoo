@@ -13,19 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.bundle.html5.traits
 
-import org.testatoo.core.property.Placeholder
-import org.testatoo.core.property.Value
+import org.testatoo.core.ComponentException
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait InputSupport {
+trait GenericSupport {
 
-    String getPlaceholder() {
-        return  ""
+    boolean isEnabled() {
+        !disabled
     }
 
-//    Value Optional, Required, Empty, Filled, Valid, Invalid
+    boolean isDisabled() {
+        Boolean.parseBoolean(eval("it.is(':disabled') || !!it.attr('disabled')"))
+    }
+
+    boolean isAvailable() {
+        !missing
+    }
+
+    boolean isMissing() {
+        try {
+            meta.idProvider.getMetaInfos(evaluator)
+            return false
+        } catch (ComponentException ignored) {
+            return true
+        }
+
+    }
+
+    boolean isHidden() {
+        Boolean.parseBoolean(eval("it.is(':hidden')"))
+    }
+
+    boolean isVisible() {
+        !hidden
+    }
+
 }

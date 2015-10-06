@@ -17,7 +17,7 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.traits.Checkable
+import org.testatoo.bundle.html5.traits.Checkable
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

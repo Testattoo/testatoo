@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.bundle.html5.traits
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -22,18 +22,19 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.input.EmailField
-import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getEvaluator
+import static org.testatoo.core.Testatoo.setEvaluator
 import static org.testatoo.core.action.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class GenericSupportTest {
+class CheckableTest {
+
     @BeforeClass
     public static void setup() {
         evaluator = new WebDriverEvaluator(new FirefoxDriver())
@@ -46,19 +47,17 @@ class GenericSupportTest {
     @Test
     public void should_have_expected_behaviours() {
         Radio male = $('#male') as Radio;
-        assert male.enabled
-        assert male.visible
+        Radio female = $('#female') as Radio;
 
-        EmailField email = $('#email') as EmailField
-        assert email.disabled
-        assert email.available
+        assert male.checked
+        assert !male.unchecked
 
-        TextField text = $('#non_existing_id') as TextField
-        assert text.missing
+        assert !female.checked
+        assert female.unchecked
 
-        // display:none
-        TextField field = $('#hidden_1') as TextField
-        assert field.hidden
+        female.check()
+        assert male.unchecked
+        assert female.checked
     }
 
 }

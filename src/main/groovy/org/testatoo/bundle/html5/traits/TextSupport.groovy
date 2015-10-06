@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.bundle.html5.traits
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

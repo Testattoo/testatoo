@@ -13,28 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
-
-import org.testatoo.core.ComponentException
-import org.testatoo.core.action.MouseClick
+package org.testatoo.bundle.html5.traits
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Checkable {
+trait LabelSuport {
 
-    void check() {
-        if (unchecked)
-            execute(new MouseClick())
-        else
-            throw new ComponentException("${this.class.simpleName} ${this} is already checked and cannot be checked")
+    String expr =
+            "function() {" +
+            "   var label = \$('label[for=' + it.attr('id') + ']');" +
+            "   if (label.length > 0) return label.text().trim();" +
+            "   var p = it.prev('label');" +
+            "   if (p.length > 0) return p.text();" +
+            "   return it.parent().text().trim();" +
+            "}()"
+
+    String getLabel() {
+        eval(expr).trim()
     }
 
-    boolean isChecked() {
-        Boolean.parseBoolean(eval("it.is(':checked')"))
-    }
-
-    boolean isUnchecked() {
-        !checked
-    }
 }

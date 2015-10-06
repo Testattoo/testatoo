@@ -26,7 +26,7 @@ import org.testatoo.core.property.Label
 import org.testatoo.core.property.Placeholder
 import org.testatoo.core.property.Value
 import org.testatoo.core.state.*
-import org.testatoo.core.traits.LabelSuport
+import org.testatoo.bundle.html5.traits.LabelSuport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

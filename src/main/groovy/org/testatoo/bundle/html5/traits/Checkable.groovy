@@ -13,31 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.bundle.html5.traits
 
-import org.testatoo.bundle.html5.list.Item
+import org.testatoo.core.ComponentException
+import org.testatoo.core.action.MouseClick
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Selectable {
+trait Checkable {
 
-    void select(Item item) {
-
+    void check() {
+        if (unchecked)
+            execute(new MouseClick())
+        else
+            throw new ComponentException("${this.class.simpleName} ${this} is already checked and cannot be checked")
     }
 
-    Item getSelectedItem() {
+    boolean isChecked() {
+        Boolean.parseBoolean(eval("it.is(':checked')"))
+    }
 
+    boolean isUnchecked() {
+        !checked
     }
 }
-
-
-// Item isSelected()
-// Selectable  select(Item)
-
-
-
-// MultiSelectable getSelectedItems()
-
-// SingleSelectable getSelectedItem()
-

@@ -25,7 +25,7 @@ import org.testatoo.core.property.Property
 import org.testatoo.core.property.PropertyEvaluator
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.*
-import org.testatoo.core.traits.GenericSupport
+import org.testatoo.bundle.html5.traits.GenericSupport
 
 import java.util.concurrent.TimeoutException
 

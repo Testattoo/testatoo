@@ -17,8 +17,7 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Text
-import org.testatoo.core.traits.TextSupport
+import org.testatoo.bundle.html5.traits.TextSupport
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

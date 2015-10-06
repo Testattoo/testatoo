@@ -13,24 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.bundle.html5.traits
+
+import org.testatoo.bundle.html5.list.Item
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait LabelSuport {
+trait MultiSelectable extends Selectable {
 
-    String expr =
-            "function() {" +
-            "   var label = \$('label[for=' + it.attr('id') + ']');" +
-            "   if (label.length > 0) return label.text().trim();" +
-            "   var p = it.prev('label');" +
-            "   if (p.length > 0) return p.text();" +
-            "   return it.parent().text().trim();" +
-            "}()"
+    void select(Collection<Item> items) {
 
-    String getLabel() {
-        eval(expr).trim()
+    }
+
+    List<Item> getSelectedItems() {
+        return null;
     }
 
 }

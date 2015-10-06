@@ -13,21 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.bundle.html5.traits
 
 import org.testatoo.bundle.html5.list.Item
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait MultiSelectable extends Selectable {
+trait Selectable {
 
-    void select(Collection<Item> items) {
+    void select(Item item) {
 
     }
 
-    List<Item> getSelectedItems() {
-        return null;
-    }
+    Item getSelectedItem() {
 
+    }
 }
+
+
+// Item isSelected()
+// Selectable  select(Item)
+
+
+
+// MultiSelectable getSelectedItems()
+
+// SingleSelectable getSelectedItem()
+

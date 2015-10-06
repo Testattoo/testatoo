@@ -13,43 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
-
-import org.testatoo.core.ComponentException
-
+package org.testatoo.bundle.html5.traits
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait GenericSupport {
+trait InputSupport {
 
-    boolean isEnabled() {
-        !disabled
+    String getPlaceholder() {
+        return  ""
     }
 
-    boolean isDisabled() {
-        Boolean.parseBoolean(eval("it.is(':disabled') || !!it.attr('disabled')"))
-    }
-
-    boolean isAvailable() {
-        !missing
-    }
-
-    boolean isMissing() {
-        try {
-            meta.idProvider.getMetaInfos(evaluator)
-            return false
-        } catch (ComponentException ignored) {
-            return true
-        }
-
-    }
-
-    boolean isHidden() {
-        Boolean.parseBoolean(eval("it.is(':hidden')"))
-    }
-
-    boolean isVisible() {
-        !hidden
-    }
-
+//    Value Optional, Required, Empty, Filled, Valid, Invalid
 }
