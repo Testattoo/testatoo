@@ -19,16 +19,16 @@ import org.testatoo.core.action.MouseClick
 
 import static org.testatoo.core.action.MouseModifiers.*
 
-trait Clickable implements ActionSupport {
+trait Clickable {
     void click() {
-        this.execute(new MouseClick([LEFT, SINGLE]))
+        new MouseClick([LEFT, SINGLE]).execute(this)
     }
 
     void rightClick() {
-        this.execute(new MouseClick([RIGHT, SINGLE]))
+        new MouseClick([RIGHT, SINGLE]).execute(this);
     }
 
     void doubleClick() {
-        this.execute(new MouseClick([LEFT, DOUBLE]))
+        new MouseClick([LEFT, DOUBLE]).execute(this);
     }
 }

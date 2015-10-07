@@ -20,8 +20,8 @@ import org.testatoo.core.action.Select
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Selectable implements ActionSupport {
+trait Selectable {
     void select() {
-        this.execute(new Select())
+        new Select().execute(this)
     }
 }

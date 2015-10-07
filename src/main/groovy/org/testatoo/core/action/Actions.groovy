@@ -28,22 +28,22 @@ class Actions {
     static void open(String uri) { visit(uri) }
 
     static final Component check(Component c) {
-        c.execute(new Check())
+        new Check().execute(c)
         return c
     }
 
     static final Component uncheck(Component c) {
-        c.execute(new Uncheck())
+        new Uncheck().execute(c)
         return c
     }
 
     static final Component select(Component c) {
-        c.execute(new Select())
+        new Select().execute(c)
         return c
     }
 
     static final Component unselect(Component c) {
-        c.execute(new Unselect())
+        new Unselect().execute(c)
         return c
     }
 
@@ -56,17 +56,17 @@ class Actions {
     }
 
     static final Component clear(Component c) {
-        c.execute(new Clear())
+        new Clear().execute(c)
         return c
     }
 
     static final Component reset(Component c) {
-        c.execute(new Reset())
+        new Reset().execute(c)
         return c
     }
 
     static final Component submit(Component c) {
-        c.execute(new Submit())
+        new Submit().execute(c)
         return c
     }
 }

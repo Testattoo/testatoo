@@ -20,8 +20,8 @@ import org.testatoo.core.action.Submit
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Submissible implements ActionSupport {
+trait Submissible {
     void submit() {
-        this.execute(new Submit())
+        new Submit().execute(this)
     }
 }

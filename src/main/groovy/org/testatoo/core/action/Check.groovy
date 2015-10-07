@@ -27,7 +27,7 @@ class Check implements Action {
     @Override
     void execute(Component c) {
         if (c.is(unchecked))
-            c.execute(new MouseClick())
+            new MouseClick().execute(c)
         else
             throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
     }

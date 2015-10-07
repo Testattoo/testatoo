@@ -18,8 +18,20 @@ package org.testatoo.core.action.support
 import org.testatoo.core.Component
 import org.testatoo.core.action.MouseDrag
 
-trait Draggable implements ActionSupport {
-    void drag(Component onto) {
-        this.execute(new MouseDrag(onto))
+trait Draggable {
+    DragBuilder drag() {
+        return new DragBuilder(this)
+    }
+
+    public static class DragBuilder {
+        private Component from
+
+        public DragBuilder(Component from) {
+            this.from = from
+        }
+
+        public void on(Component onto) {
+            new MouseDrag(onto).execute(this)
+        }
     }
 }

@@ -32,7 +32,7 @@ class Unselect implements Action {
         }
 
         if (c.is(selected))
-            c.execute(new MouseClick())
+            new MouseClick().execute(c)
         c.evaluator.trigger(c.id, 'change')
     }
 }

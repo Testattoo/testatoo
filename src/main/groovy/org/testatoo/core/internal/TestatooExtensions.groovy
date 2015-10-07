@@ -42,11 +42,11 @@ class TestatooExtensions {
     static void rightClick(Key key, Component c) { rightClick([key], c) }
 
     static void click(Collection<Key> keys, Component c) {
-        c.execute(new MouseClick([MouseModifiers.LEFT, MouseModifiers.SINGLE], keys))
+        new MouseClick([MouseModifiers.LEFT, MouseModifiers.SINGLE], keys).execute(c)
     }
 
     static void rightClick(Collection<Key> keys, Component c) {
-        c.execute(new MouseClick([MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys))
+        new MouseClick([MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys).execute(c)
     }
 
     static void select(Component c, String... values) {
@@ -62,7 +62,7 @@ class TestatooExtensions {
                 item.execute(new Select())
             }
         } else {
-            c.execute(new Select())
+            new Select().execute(c)
         }
     }
 
@@ -79,7 +79,7 @@ class TestatooExtensions {
                 item.execute(new Unselect())
             }
         } else {
-            c.execute(new Unselect())
+            new Unselect().execute(c)
         }
     }
 
@@ -88,7 +88,7 @@ class TestatooExtensions {
     }
 
     static void with(Component c, String value) {
-        c.execute(new Fill(value))
+        new Fill(value).execute(c)
     }
 
     static boolean asBoolean(Block block) {

@@ -33,7 +33,7 @@ class Fill implements Action {
         c.evaluator.trigger(c.id, 'blur')
 
         // TODO Mathieu the reset must be executed from the traits and not the action!!!
-        c.execute(new Clear())
+        new Clear().execute(c)
         c.evaluator.enter([value])
         c.evaluator.trigger(c.id, 'blur')
     }

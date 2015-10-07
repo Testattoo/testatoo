@@ -17,6 +17,8 @@ package org.testatoo.bundle.html5.traits
 
 import org.testatoo.core.ComponentException
 
+import static org.testatoo.core.Testatoo.config
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -27,7 +29,7 @@ trait GenericSupport {
     }
 
     boolean isDisabled() {
-        Boolean.parseBoolean(eval("it.is(':disabled') || !!it.attr('disabled')"))
+        Boolean.parseBoolean(config.evaluator.eval(this, "it.is(':disabled') || !!it.attr('disabled')"))
     }
 
     boolean isAvailable() {
@@ -36,7 +38,7 @@ trait GenericSupport {
 
     boolean isMissing() {
         try {
-            this.meta.idProvider.getMetaInfos(evaluator)
+            this.meta.idProvider.getMetaInfos()
             return false
         } catch (ComponentException ignored) {
             return true
@@ -45,7 +47,7 @@ trait GenericSupport {
     }
 
     boolean isHidden() {
-        Boolean.parseBoolean(eval("it.is(':hidden')"))
+        Boolean.parseBoolean(config.evaluator.eval(this, "it.is(':hidden')"))
     }
 
     boolean isVisible() {

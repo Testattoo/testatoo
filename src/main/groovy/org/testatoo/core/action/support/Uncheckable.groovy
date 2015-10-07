@@ -20,8 +20,8 @@ import org.testatoo.core.action.Uncheck
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Uncheckable implements ActionSupport {
+trait Uncheckable {
     void uncheck() {
-        this.execute(new Uncheck())
+        new Uncheck().execute(this)
     }
 }

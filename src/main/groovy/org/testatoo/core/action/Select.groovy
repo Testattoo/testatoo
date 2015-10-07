@@ -32,7 +32,7 @@ class Select implements Action {
         }
 
         if (c.is(unselected))
-            c.execute(new MouseClick())
+            new MouseClick().execute(c)
         c.evaluator.trigger(c.id, 'change')
     }
 }

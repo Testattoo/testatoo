@@ -20,8 +20,8 @@ import org.testatoo.core.action.Clear
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Clearable implements ActionSupport {
+trait Clearable {
     void clear() {
-        this.execute(new Clear())
+        new Clear().execute(this)
     }
 }

@@ -27,7 +27,7 @@ class Uncheck implements Action {
     @Override
     void execute(Component c) {
         if (c.is(checked))
-            c.execute(new MouseClick())
+            new MouseClick().execute(c)
         else
             throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
     }

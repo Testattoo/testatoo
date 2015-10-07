@@ -20,8 +20,8 @@ import org.testatoo.core.action.Reset
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Fillable implements ActionSupport {
+trait Fillable {
     void fill() {
-        this.execute(new Reset())
+        new Reset().execute(this)
     }
 }

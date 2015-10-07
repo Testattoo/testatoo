@@ -20,8 +20,8 @@ import org.testatoo.core.action.Reset
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Resettable implements ActionSupport {
+trait Resettable {
     void reset() {
-        this.execute(new Reset())
+        new Reset().execute(this)
     }
 }

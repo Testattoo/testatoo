@@ -20,8 +20,8 @@ import org.testatoo.core.action.Check
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Checkable implements ActionSupport {
+trait Checkable {
     void check() {
-        this.execute(new Check())
+        new Check().execute(this)
     }
 }

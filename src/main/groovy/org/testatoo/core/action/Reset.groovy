@@ -28,7 +28,7 @@ class Reset implements Action {
     void execute(Component c) {
         Button reset_button = c.find('[type=reset]:first')[0] as Button
         if (reset_button && reset_button.is(new Available()))
-            reset_button.execute(new MouseClick())
+            new MouseClick().execute(reset_button)
         else
             throw new ComponentException('Cannot reset form without reset button')
     }

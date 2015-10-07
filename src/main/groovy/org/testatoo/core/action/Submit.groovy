@@ -28,7 +28,7 @@ class Submit implements Action {
     void execute(Component c) {
         Button submit_button = c.find('[type=submit]:first')[0] as Button
         if (submit_button && submit_button.is(new Available()))
-            submit_button.execute(new MouseClick())
+            new MouseClick().execute(submit_button)
         else
             throw new ComponentException('Cannot submit form without submit button')
     }
