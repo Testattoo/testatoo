@@ -37,7 +37,7 @@ class jQueryIdProvider implements IdProvider {
     @Override
     List<MetaInfo> getMetaInfos() throws ComponentException {
         Log.log "getMetaInfos: ${expression}"
-        List<MetaInfo> metaInfos = Testatoo.evaluator.getMetaInfo(expression)
+        List<MetaInfo> metaInfos = Testatoo.config.evaluator.getMetaInfo(expression)
         if (singleElement) {
             if (metaInfos.size() == 1) return metaInfos
             if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression ${expression} not found.")
