@@ -27,7 +27,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.action.Actions.visit
-import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.dsl.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,11 +37,11 @@ class BrowserTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_be_able_to_have_browser_properties_access() {
@@ -87,7 +87,7 @@ class BrowserTest {
         link.should { be available }
         form.should { be missing }
 
-        click_on link
+        clickOn link
 
         assert browser.windows.size() == 2
         link.should { be available }

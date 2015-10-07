@@ -35,9 +35,10 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.*
-import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*
 
@@ -49,7 +50,7 @@ class DSLTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan DSLTest.package.name
     }
 
@@ -60,7 +61,7 @@ class DSLTest {
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_chain_assert() {
@@ -78,7 +79,7 @@ class DSLTest {
     public void given_input_with_value_when_fill_value_the_field_is_reset_before() {
         TextField textField = $('#text_field') as TextField
 
-        click_on textField
+        clickOn textField
         type 'Some input'
 
         textField.should { have value('Some input') }

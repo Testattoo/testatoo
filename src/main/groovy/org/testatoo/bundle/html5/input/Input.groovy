@@ -15,28 +15,11 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.Component
-import org.testatoo.core.action.Clear
-import org.testatoo.core.action.Fill
-import org.testatoo.core.action.Reset
-import org.testatoo.core.action.support.Clearable
-import org.testatoo.core.action.support.Fillable
-import org.testatoo.core.action.support.Resettable
-import org.testatoo.core.property.Label
-import org.testatoo.core.property.Placeholder
-import org.testatoo.core.property.Value
-import org.testatoo.core.state.*
+import org.testatoo.bundle.html5.traits.InputSupport
 import org.testatoo.bundle.html5.traits.LabelSuport
+import org.testatoo.core.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Input extends Component implements LabelSuport, Resettable, Fillable, Clearable {
-
-    Input() {
-        support Placeholder, Label
-        support Value, "it.val()"
-        support Optional, Required, Empty, Filled, Valid, Invalid
-        support Reset, Fill, Clear, ReadOnly
-    }
-}
+class Input extends Component implements LabelSuport, InputSupport {}

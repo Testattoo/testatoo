@@ -25,7 +25,8 @@ import org.testatoo.bundle.html5.list.GroupItem
 import org.testatoo.bundle.html5.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.on
 import static org.testatoo.core.action.Actions.visit
 import static org.testatoo.core.dsl.Key.CTRL
@@ -41,12 +42,12 @@ class ListBoxTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void listbox_should_have_expected_behaviours() {

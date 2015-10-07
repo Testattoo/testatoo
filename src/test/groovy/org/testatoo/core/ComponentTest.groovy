@@ -22,20 +22,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.bundle.html5.Paragraph
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.Section
+import org.testatoo.bundle.html5.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Text
 import org.testatoo.core.state.Hidden
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.action.Actions.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.action.Actions.check
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.property.Properties.getLabel
+import static org.testatoo.core.property.Properties.text
+import static org.testatoo.core.state.States.getChecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -45,13 +44,13 @@ class ComponentTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         scan 'org.testatoo.component'
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_fail_on_component_without_identifier() {
@@ -97,7 +96,7 @@ class ComponentTest {
         Section section = $('#section') as Section
         Paragraph paragraph = section.find('p:first')[0] as Paragraph
 
-        paragraph.should { have text('Paragraph 1')}
+        paragraph.should { have text('Paragraph 1') }
     }
 
     @Test
@@ -139,7 +138,7 @@ class ComponentTest {
     static class CustomButton extends Button {
         CustomButton() {
             support Text, { "Override Text" }
-            support Hidden,  { true }
+            support Hidden, { true }
         }
     }
 

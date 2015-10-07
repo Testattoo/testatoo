@@ -24,12 +24,13 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.input.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.clear
 import static org.testatoo.core.action.Actions.visit
-import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
+import static org.testatoo.core.state.States.getReadonly
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,12 +40,12 @@ class FieldsTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void text_field_should_have_expected_behaviours() {
@@ -62,7 +63,7 @@ class FieldsTest {
         textField.should { have placeholder.containing('xt') }
         textField.should { be empty }
 
-        click_on textField
+        clickOn textField
         type 'some value'
 
         textField.should { have value('some value') }
@@ -99,13 +100,13 @@ class FieldsTest {
             be invalid
         }
 
-        click_on phoneField
+        clickOn phoneField
         type 'bad phone number'
         phoneField.should { be invalid }
 
         clear phoneField
 
-        click_on phoneField
+        clickOn phoneField
         type '5146666666'
         phoneField.should { be valid }
     }

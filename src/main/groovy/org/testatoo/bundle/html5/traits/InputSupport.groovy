@@ -17,11 +17,39 @@ package org.testatoo.bundle.html5.traits
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait InputSupport {
+trait InputSupport implements ValueSupport {
 
     String getPlaceholder() {
-        return  ""
+        eval("it.prop('placeholder')")
     }
 
-//    Value Optional, Required, Empty, Filled, Valid, Invalid
+    boolean isEmpty() {
+        Boolean.parseBoolean(eval("\$.trim(it.val()).length == 0"))
+    }
+
+    boolean isFilled() {
+        !empty
+    }
+
+    boolean isReadOnly() {
+        Boolean.parseBoolean(eval("it.prop('readonly')"))
+    }
+
+    boolean isRequired() {
+        Boolean.parseBoolean(eval("it.prop('required')"))
+    }
+
+    boolean isOptional() {
+        !required
+    }
+
+    boolean isValid() {
+        !invalid
+    }
+
+    boolean isInvalid() {
+        Boolean.parseBoolean(eval("it.is(':invalid')"))
+    }
+
+//    Value
 }

@@ -24,9 +24,10 @@ import org.testatoo.bundle.html5.Panel
 import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.state.States.getFilled
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -38,12 +39,12 @@ class ConfigTest {
     public void should_be_able_to_obtain_the_underline_implementation() {
         try {
             WebDriver driver = new FirefoxDriver();
-            evaluator = new WebDriverEvaluator(driver)
+            config.evaluator = new WebDriverEvaluator(driver)
 
             assert evaluator.implementation instanceof WebDriver
             assert evaluator.implementation == driver
         } finally {
-            evaluator.close()
+            config.evaluator.close()
         }
     }
 

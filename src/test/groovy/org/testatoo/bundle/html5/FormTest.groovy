@@ -27,10 +27,11 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.clear
 import static org.testatoo.core.action.Actions.visit
-import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.getInvalid
 import static org.testatoo.core.state.States.getValid
@@ -43,12 +44,12 @@ class FormTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/form.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void fom_should_have_expected_behaviours() {
@@ -65,41 +66,41 @@ class FormTest {
         message.should { have title('The form was submitted 0 time(s)') }
         message.should { have title.containing('The form was submitted') }
 
-        click_on submit_button
+        clickOn submit_button
         message.should { have title('The form was submitted 1 time(s)') }
 
-        click_on submit_button
+        clickOn submit_button
         message.should { have title('The form was submitted 2 time(s)') }
 
         // Can reset a form
-        click_on email_field
+        clickOn email_field
         type 'my@email.org'
-        click_on password_field
+        clickOn password_field
         type 'password'
 
         // By clicking on the button
         email_field.should { have value('my@email.org') }
         password_field.should { have value('password') }
 
-        click_on reset_button
+        clickOn reset_button
 
         email_field.should { have value('') }
         password_field.should { have value('') }
 
         form.should { be valid }
         // Field in error
-        click_on email_field
+        clickOn email_field
         type 'bad email'
-        click_on submit_button
+        clickOn submit_button
 
         email_field.should { be invalid }
         form.should { be invalid }
 
         clear email_field
 
-        click_on email_field
+        clickOn email_field
         type 'y@email.org'
-        click_on submit_button
+        clickOn submit_button
         email_field.should { be valid }
         form.should { be valid }
     }

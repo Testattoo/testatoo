@@ -28,9 +28,9 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.action.Actions.fill
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.property.Properties.value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,8 +40,8 @@ class SelectorsTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        scan 'org.testatoo'
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.scan 'org.testatoo'
         visit 'http://localhost:8080/selectors.html'
     }
 
@@ -51,7 +51,7 @@ class SelectorsTest {
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_use_$_as_a_single_selector() {

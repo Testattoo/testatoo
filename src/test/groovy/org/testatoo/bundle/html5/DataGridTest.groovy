@@ -27,10 +27,11 @@ import org.testatoo.bundle.html5.datagrid.DataGrid
 import org.testatoo.bundle.html5.datagrid.Row
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.property.Properties.title
+import static org.testatoo.core.property.Properties.value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,12 +41,12 @@ class DataGridTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void datagrid_should_have_expected_behaviours() {

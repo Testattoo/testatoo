@@ -30,7 +30,6 @@ import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.action.Actions.clear
 import static org.testatoo.core.action.Actions.visit
 import static org.testatoo.core.dsl.Key.*
-import static org.testatoo.core.dsl.Mouse.click_on
 import static org.testatoo.core.property.Properties.value
 
 /**
@@ -41,26 +40,26 @@ class KeyboardTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Before
     public void before() {
         visit 'http://localhost:8080/keyboard.html'
         // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
-        click_on($('#button') as Button)
+        mouse.clickOn($('#button') as Button)
         Thread.sleep(500);
     }
 
     @Test
     public void should_type_letters_on_keyboard() {
         (0..25).each {
-            char letter = (char)(('a' as char) + it)
+            char letter = (char) (('a' as char) + it)
             $("#span_$letter").should { be missing }
-            type "$letter"
+            keyboard.type "$letter"
             $("#span_$letter").should { be available }
         }
     }
@@ -69,7 +68,7 @@ class KeyboardTest {
     public void should_type_number_on_keyboard() {
         (0..9).each {
             $("#span_$it").should { be missing }
-            type "$it"
+            keyboard.type "$it"
             $("#span_$it").should { be available }
         }
     }
@@ -111,7 +110,7 @@ class KeyboardTest {
                 '#span_down'     : DOWN
         ].each { k, v ->
             $(k).should { be missing }
-            type v
+            keyboard.type v
             $(k).should { be available }
         }
     }
@@ -119,24 +118,24 @@ class KeyboardTest {
     @Test
     public void should_use_key_modifier_on_keyboard() {
         $('#span_Ctrl_Alt_Shift_x').should { be missing }
-        type(CTRL + ALT + SHIFT + 'x')
+        keyboard.type(CTRL + ALT + SHIFT + 'x')
         $('#span_Ctrl_Alt_Shift_x').should { be available }
 
         TextField textField = $('#textfield') as TextField
 
         textField.should { have value('') }
-        click_on textField
-        type(SHIFT + 'testatoo')
+        mouse.clickOn textField
+        keyboard.type(SHIFT + 'testatoo')
         textField.should { have value('TESTATOO') }
 
         clear textField
         textField.should { have value('') }
-        type('~!@#$%^&*()_+')
+        keyboard.type('~!@#$%^&*()_+')
         textField.should { have value('~!@#$%^&*()_+') }
 
         clear textField
         textField.should { have value('') }
-        type(SHIFT + '`1234567890-=')
+        keyboard.type(SHIFT + '`1234567890-=')
         textField.should { have value('~!@#$%^&*()_+') }
     }
 }

@@ -15,22 +15,11 @@
  */
 package org.testatoo.bundle.html5.input
 
+import org.testatoo.bundle.html5.traits.RangeSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.property.Maximum
-import org.testatoo.core.property.Minimum
-import org.testatoo.core.property.Step
-import org.testatoo.core.state.InRange
-import org.testatoo.core.state.OutOfRange
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=number]')
-class NumberField extends TextField {
-
-    NumberField() {
-        support Minimum, Maximum, Step
-        support InRange, OutOfRange
-    }
-
-}
+class NumberField extends TextField implements RangeSupport {}

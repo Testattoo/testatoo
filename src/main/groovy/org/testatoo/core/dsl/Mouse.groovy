@@ -23,13 +23,13 @@ import org.testatoo.core.Testatoo
  */
 class Mouse {
 
-    static void click_on(Component c) { c.click() }
+    static void clickOn(Component c) { c.click() }
 
-    static void double_click_on(Component c) { c.doubleClick() }
+    static void doubleClickOn(Component c) { c.doubleClick() }
 
-    static void right_click_on(Component c) { c.rightClick() }
+    static void rightClickOn(Component c) { c.rightClick() }
 
-    static void hovering_mouse_on(Component c) { Testatoo.evaluator.mouseOver(c.id) }
+    static void hoveringMouseOn(Component c) { Testatoo.evaluator.mouseOver(c.id) }
 
     static DragBuilder drag(Component c) { return new DragBuilder(c) }
 

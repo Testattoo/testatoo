@@ -28,8 +28,9 @@ import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.input.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.action.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,12 +40,12 @@ class ContainAndDisplayTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/container.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_be_able_to_test_if_component_contains_other_component() {

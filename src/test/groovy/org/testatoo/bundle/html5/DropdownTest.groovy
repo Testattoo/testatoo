@@ -25,9 +25,10 @@ import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.bundle.html5.list.GroupItem
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.visit
-import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.getSelected
 import static org.testatoo.core.state.States.getUnselected
@@ -40,12 +41,12 @@ class DropdownTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
@@ -65,7 +66,7 @@ class DropdownTest {
         dropdown.should { have selectedItems('H') }
         dropdown.items[2].should { be unselected }
 
-        click_on dropdown.items[2]
+        clickOn dropdown.items[2]
 
         dropdown.should { have selectedItems('Pol') }
         dropdown.items[2].should { be selected }
@@ -79,12 +80,12 @@ class DropdownTest {
         dropdown.items[3].should { have value('Ca') }
         dropdown.items[4].should { have value('Ra') }
 
-        click_on dropdown.items[4]
+        clickOn dropdown.items[4]
 
         dropdown.should { have selectedItems('Ra') }
         dropdown.items[4].should { be selected }
 
-        click_on dropdown.item('Ca')
+        clickOn dropdown.item('Ca')
         dropdown.should { have selectedItems('Ca') }
 
         dropdown = $('#countries') as Dropdown

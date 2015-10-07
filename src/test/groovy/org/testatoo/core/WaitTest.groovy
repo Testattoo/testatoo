@@ -24,9 +24,10 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.visit
-import static org.testatoo.core.dsl.Mouse.click_on
+import static org.testatoo.core.dsl.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -36,15 +37,16 @@ class WaitTest {
 
     @BeforeClass
     public static void setup() {
-        waitUntil = 10.seconds
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.waitUntil = 10.seconds
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/wait.html'
     }
 
     @AfterClass
     public static void tearDown() {
-        waitUntil = 2.seconds
-        evaluator.close() }
+        config.waitUntil = 2.seconds
+        config.evaluator.close()
+    }
 
     @Test
     public void should_be_able_to_wait_on_condition() {
@@ -58,11 +60,11 @@ class WaitTest {
 
         message.should { be missing }
 
-        click_on button
+        clickOn button
         button.should { be disabled }
         button.should { be enabled }
 
-        click_on button
+        clickOn button
         button.should { be enabled }
     }
 }

@@ -30,7 +30,8 @@ import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.action.Actions.visit
 import static org.testatoo.core.dsl.Key.*
 import static org.testatoo.core.dsl.Mouse.*
@@ -46,34 +47,34 @@ class MouseTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/mouse.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_be_able_to_click() {
         Button button = $('#button_1') as Button
         button.should { have text('Button') }
-        click_on button
+        clickOn button
         button.should { have text('Button Clicked!') }
 
         Checkbox checkBox = $('#checkbox') as Checkbox
         checkBox.should { be unchecked }
-        click_on checkBox
+        clickOn checkBox
         checkBox.should { be checked }
 
         Radio radio = $('#radio') as Radio
         radio.should { be unchecked }
-        click_on radio
+        clickOn radio
         radio.should { be checked }
 
         Dropdown dropDown = $('#elements') as Dropdown
         dropDown.should { have selectedItems('H') }
 
-        click_on dropDown.items[2]
+        clickOn dropDown.items[2]
         dropDown.should { have selectedItems('Pol') }
     }
 
@@ -81,7 +82,7 @@ class MouseTest {
     public void should_be_able_to_doubleClick() {
         Button button = $('#button_2') as Button
         button.should { have text('Button') }
-        double_click_on button
+        doubleClickOn button
         button.should { have text('Button Double Clicked!') }
     }
 
@@ -89,7 +90,7 @@ class MouseTest {
     public void should_be_able_to_rightClick() {
         Button button = $('#button_5') as Button
         button.should { have text('Button') }
-        right_click_on button
+        rightClickOn button
         button.should { have text('Button Right Clicked!') }
     }
 
@@ -97,7 +98,7 @@ class MouseTest {
     public void should_be_able_to_mouseOver() {
         Button button = $('#button_3') as Button
         button.should { have text('Button') }
-        hovering_mouse_on button
+        hoveringMouseOn button
         button.should { have text('Button Mouse Over!') }
     }
 
@@ -109,9 +110,9 @@ class MouseTest {
         // To simulate mouse out
 
         // 1 - mouse over the component
-        hovering_mouse_on button
+        hoveringMouseOn button
         // 2 - mouse over an another component
-        hovering_mouse_on $('#button_5') as Button
+        hoveringMouseOn $('#button_5') as Button
         // The mouse out is triggered
         button.should { have text('Button Mouse Out!') }
     }

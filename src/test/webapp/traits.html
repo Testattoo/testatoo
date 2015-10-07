@@ -64,7 +64,17 @@
 
     <div class="controls">
       <label class="control-label">Password</label>
-      <input type="password" id="password">
+      <input type="password" id="password" required>
+    </div>
+
+    <div class="controls">
+      <input type="text" id="read_only_and_filled" value="Filled" readonly disabled="disabled">
+    </div>
+
+    <label class="control-label" for="number_field">Number</label>
+
+    <div class="controls">
+      <input type="number" id="number_field" placeholder="Number" step="8" min="0" max="64">
     </div>
 
     <hr/>

@@ -25,9 +25,11 @@ import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.action.Actions.*
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.property.Properties.getItems
+import static org.testatoo.core.property.Properties.getValue
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,12 +39,12 @@ class MatcherTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/error.html'
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void equals_to_matcher_on_list_items() {

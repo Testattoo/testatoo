@@ -46,7 +46,7 @@ class ErrorTest {
 
     @BeforeClass
     public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/error.html'
     }
 
@@ -56,7 +56,7 @@ class ErrorTest {
     }
 
     @AfterClass
-    public static void tearDown() { evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     // =========================== State, Property, Action support ====================
     @Test
