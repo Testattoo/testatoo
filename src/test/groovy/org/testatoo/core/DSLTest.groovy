@@ -150,6 +150,8 @@ class DSLTest {
         on listBox select 'Montpellier'
         listBox.items[2].should { be selected }
 
+        listBox
+
         on listBox select listBox.items[4]
         listBox.items[4].should { be selected }
 

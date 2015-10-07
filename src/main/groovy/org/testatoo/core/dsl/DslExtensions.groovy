@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.internal
+package org.testatoo.core.dsl
 
 import org.testatoo.bundle.html5.list.Item
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.action.*
-import org.testatoo.core.dsl.Block
-import org.testatoo.core.dsl.Blocks
-import org.testatoo.core.dsl.Key
+import org.testatoo.core.action.Fill
+import org.testatoo.core.action.MouseClick
+import org.testatoo.core.action.MouseModifiers
+import org.testatoo.core.action.Unselect
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
 import org.testatoo.core.state.States
@@ -31,7 +31,7 @@ import java.time.Duration
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class TestatooExtensions {
+class DslExtensions {
 
     public static Collection<?> plus(Key a, Key b) { [a, b] }
 
@@ -49,26 +49,26 @@ class TestatooExtensions {
         new MouseClick([MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys).execute(c)
     }
 
-    static void select(Component c, String... values) {
-        if (values) {
-            if (values.length > 1) {
-                c.is(States.multiSelectable)
-            }
+//    static void select(Component c, String... values) {
+//        if (values) {
+//            if (values.length > 1) {
+//                c.is(States.multiSelectable)
+//            }
+//
+//            for (value in values) {
+//                Item item = c.items.find { it.value == value } as Item
+//                if (item.is(States.selected))
+//                    throw new ComponentException("${item.class.simpleName} ${item} is already selected")
+//                new Select().execute(item)
+//            }
+//        } else {
+//            new Select().execute(c)
+//        }
+//    }
 
-            for (value in values) {
-                Item item = c.items.find { it.value == value } as Item
-                if (item.is(States.selected))
-                    throw new ComponentException("${item.class.simpleName} ${item} is already selected")
-                item.execute(new Select())
-            }
-        } else {
-            new Select().execute(c)
-        }
-    }
-
-    static void select(Component c, Component selected) {
-        selected.execute(new Select())
-    }
+//    static void select(Component c, Component selected) {
+//        new Select().execute(selected)
+//    }
 
     static void unselect(Component c, String... values) {
         if (values) {
