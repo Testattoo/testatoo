@@ -33,7 +33,7 @@ trait GenericSupport {
     }
 
     boolean isDisabled() {
-        Boolean.parseBoolean(config.evaluator.eval(this, "it.is(':disabled') || !!it.attr('disabled')"))
+        Boolean.parseBoolean(config.evaluator.eval(this.id, "it.is(':disabled') || !!it.attr('disabled')"))
     }
 
     boolean isAvailable() {
@@ -51,7 +51,7 @@ trait GenericSupport {
     }
 
     boolean isHidden() {
-        Boolean.parseBoolean(config.evaluator.eval(this, "it.is(':hidden')"))
+        Boolean.parseBoolean(config.evaluator.eval(this.id, "it.is(':hidden')"))
     }
 
     boolean isVisible() {

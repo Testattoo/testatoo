@@ -32,8 +32,6 @@ abstract trait Evaluator implements AutoCloseable {
 
     abstract String eval(String id, String jQueryExpr)
 
-    String eval(Component c, String jQueryExpr) { eval(c.id, jQueryExpr) }
-
     abstract boolean getBool(String id, String jQueryExpr)
 
     abstract void trigger(String id, String event)

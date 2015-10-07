@@ -16,8 +16,9 @@
 package org.testatoo.bundle.html5.traits
 
 import org.testatoo.core.ComponentException
-import static org.testatoo.core.Testatoo.*
 import org.testatoo.core.action.MouseClick
+
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -32,7 +33,7 @@ trait Checkable {
     }
 
     boolean isChecked() {
-        Boolean.parseBoolean(config.evaluator.eval(this, "it.is(':checked')"))
+        Boolean.parseBoolean(config.evaluator.eval(this.id, "it.is(':checked')"))
     }
 
     boolean isUnchecked() {
