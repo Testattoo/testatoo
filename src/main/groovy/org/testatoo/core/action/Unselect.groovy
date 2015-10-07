@@ -17,6 +17,7 @@ package org.testatoo.core.action
 
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+import org.testatoo.core.Testatoo
 
 import static org.testatoo.core.state.States.getDisabled
 import static org.testatoo.core.state.States.getSelected
@@ -33,6 +34,6 @@ class Unselect implements Action {
 
         if (c.is(selected))
             new MouseClick().execute(c)
-        c.evaluator.trigger(c.id, 'change')
+        Testatoo.config.evaluator.trigger(c.id, 'change')
     }
 }

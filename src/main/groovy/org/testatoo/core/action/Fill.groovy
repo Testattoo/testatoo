@@ -16,6 +16,7 @@
 package org.testatoo.core.action
 
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -30,11 +31,9 @@ class Fill implements Action {
 
     @Override
     void execute(Component c) {
-        c.evaluator.trigger(c.id, 'blur')
-
-        // TODO Mathieu the reset must be executed from the traits and not the action!!!
+        Testatoo.config.evaluator.trigger(c.id, 'blur')
         new Clear().execute(c)
-        c.evaluator.enter([value])
-        c.evaluator.trigger(c.id, 'blur')
+        Testatoo.config.evaluator.enter([value])
+        Testatoo.config.evaluator.trigger(c.id, 'blur')
     }
 }

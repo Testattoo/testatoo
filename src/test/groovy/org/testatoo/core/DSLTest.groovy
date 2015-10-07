@@ -37,7 +37,7 @@ import org.testatoo.core.property.Title
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.action.Actions.*
+import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.*

@@ -16,6 +16,7 @@
 package org.testatoo.core.action
 
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -30,6 +31,6 @@ class MouseDrag implements Action {
 
     @Override
     void execute(Component c) {
-        c.evaluator.dragAndDrop(c.id, onto.id)
+        Testatoo.config.evaluator.dragAndDrop(c.id, onto.id)
     }
 }

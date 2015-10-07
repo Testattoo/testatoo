@@ -15,9 +15,13 @@
  */
 package org.testatoo.bundle.html5.traits
 
+import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+import org.testatoo.core.action.MouseClick
+import org.testatoo.core.action.MouseDrag
 
 import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.action.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -54,4 +58,31 @@ trait GenericSupport {
         !hidden
     }
 
+    void click() {
+        new MouseClick([LEFT, SINGLE]).execute(this)
+    }
+
+    void rightClick() {
+        new MouseClick([RIGHT, SINGLE]).execute(this);
+    }
+
+    void doubleClick() {
+        new MouseClick([LEFT, DOUBLE]).execute(this);
+    }
+
+    DragBuilder drag() {
+        return new DragBuilder(this)
+    }
+
+    public static class DragBuilder {
+        private Component from
+
+        public DragBuilder(Component from) {
+            this.from = from
+        }
+
+        public void on(Component onto) {
+            new MouseDrag(onto).execute(this)
+        }
+    }
 }

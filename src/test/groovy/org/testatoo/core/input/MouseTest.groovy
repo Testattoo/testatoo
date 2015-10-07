@@ -32,7 +32,7 @@ import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Key.*
 import static org.testatoo.core.dsl.Mouse.*
 import static org.testatoo.core.property.Properties.*

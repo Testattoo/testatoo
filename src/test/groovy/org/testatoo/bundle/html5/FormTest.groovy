@@ -29,8 +29,8 @@ import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.action.Actions.clear
-import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Actions.clear
+import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.getInvalid

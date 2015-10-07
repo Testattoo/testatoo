@@ -25,7 +25,7 @@ class Missing extends State {
     Missing() {
         evaluator { Component c ->
             try {
-                c.meta.idProvider.getMetaInfos(c.evaluator)
+                c.meta.idProvider.getMetaInfos()
                 return false
             } catch (ComponentException ignored) {
                 return true

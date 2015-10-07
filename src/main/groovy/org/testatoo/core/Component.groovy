@@ -16,8 +16,6 @@
 package org.testatoo.core
 
 import org.testatoo.bundle.html5.traits.GenericSupport
-import org.testatoo.core.action.support.Clickable
-import org.testatoo.core.action.support.Draggable
 import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log
@@ -28,7 +26,7 @@ import java.util.concurrent.TimeoutException
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Component implements GenericSupport, Clickable, Draggable {
+class Component implements GenericSupport {
 
     CachedMetaData meta = new CachedMetaData()
 

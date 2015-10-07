@@ -16,6 +16,7 @@
 package org.testatoo.core.action
 
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
 
 import static org.testatoo.core.dsl.Key.BACK_SPACE
 
@@ -26,9 +27,9 @@ class Clear implements Action {
     @Override
     void execute(Component c) {
         c.click()
-        c.evaluator.runScript("\$('#${c.id}').val(' ').change()")
-        c.evaluator.enter([BACK_SPACE])
-        c.evaluator.trigger(c.id, 'blur')
+        Testatoo.config.evaluator.runScript("\$('#${c.id}').val(' ').change()")
+        Testatoo.config.evaluator.enter([BACK_SPACE])
+        Testatoo.config.evaluator.trigger(c.id, 'blur')
         c.click()
     }
 }

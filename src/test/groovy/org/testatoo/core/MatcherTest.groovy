@@ -27,7 +27,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.property.Properties.getItems
 import static org.testatoo.core.property.Properties.getValue
 

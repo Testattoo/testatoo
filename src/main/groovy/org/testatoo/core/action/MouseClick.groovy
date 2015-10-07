@@ -16,6 +16,7 @@
 package org.testatoo.core.action
 
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
 import org.testatoo.core.dsl.Key
 
 /**
@@ -33,6 +34,6 @@ class MouseClick implements Action {
 
     @Override
     void execute(Component c) {
-        c.evaluator.click(c.id, mouseModifiers, keyModifiers)
+        Testatoo.config.evaluator.click(c.id, mouseModifiers, keyModifiers)
     }
 }

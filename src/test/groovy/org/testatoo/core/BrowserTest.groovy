@@ -26,7 +26,7 @@ import org.testatoo.bundle.html5.Link
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Mouse.clickOn
 
 /**

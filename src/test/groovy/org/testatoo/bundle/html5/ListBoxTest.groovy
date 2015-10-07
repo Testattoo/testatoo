@@ -27,8 +27,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.action.Actions.on
-import static org.testatoo.core.action.Actions.visit
+import static org.testatoo.core.dsl.Actions.on
+import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Key.CTRL
 import static org.testatoo.core.property.Properties.*
 import static org.testatoo.core.state.States.getMultiSelectable

@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.action
+package org.testatoo.core.dsl
 
 import org.testatoo.core.Component
 import org.testatoo.core.Testatoo
+import org.testatoo.core.action.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
