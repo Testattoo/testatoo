@@ -38,17 +38,17 @@ class Config {
      * Sets the default evaluator to use
      */
     static void setEvaluator(Evaluator evaluator) {
-        _evaluator = evaluator
+        Config.evaluator = evaluator
     }
 
     static Evaluator getEvaluator() {
-        if (_evaluator == null) {
+        if (Config.evaluator == null) {
             throw new IllegalStateException("Missing evaluator")
         }
-        return _evaluator
+        return Config.evaluator
     }
 
     static final Collection<Class<Component>> componentTypes = new HashSet<>()
-    private static Evaluator _evaluator
+    private static Evaluator evaluator
 
 }
