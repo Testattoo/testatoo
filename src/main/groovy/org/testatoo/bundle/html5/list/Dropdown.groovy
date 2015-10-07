@@ -19,7 +19,7 @@ import org.testatoo.core.ByJs
 import org.testatoo.core.Component
 import org.testatoo.core.property.*
 
-import static org.testatoo.core.property.Properties.*
+import static org.testatoo.core.property.Properties.getValue
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

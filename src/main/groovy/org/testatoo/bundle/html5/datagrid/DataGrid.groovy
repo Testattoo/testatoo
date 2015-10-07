@@ -19,7 +19,8 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.property.ColumnSize
 import org.testatoo.core.property.Size
-import static org.testatoo.core.property.Properties.*
+
+import static org.testatoo.core.property.Properties.getTitle
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

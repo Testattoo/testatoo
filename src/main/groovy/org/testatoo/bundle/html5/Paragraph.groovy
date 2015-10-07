@@ -15,10 +15,9 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Text
-import org.testatoo.bundle.html5.traits.TextSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

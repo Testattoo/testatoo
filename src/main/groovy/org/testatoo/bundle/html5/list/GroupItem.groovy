@@ -18,10 +18,9 @@ package org.testatoo.bundle.html5.list
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.property.Items
+import org.testatoo.core.property.Properties
 import org.testatoo.core.property.Size
 import org.testatoo.core.property.Value
-
-import org.testatoo.core.property.Properties
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
