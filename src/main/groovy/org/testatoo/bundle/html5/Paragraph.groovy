@@ -24,9 +24,4 @@ import org.testatoo.bundle.html5.traits.TextSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('p')
-class Paragraph extends Component implements TextSupport {
-
-    Paragraph() {
-        support Text
-    }
-}
+class Paragraph extends Component implements TextSupport {}

@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 package org.testatoo.bundle.html5.traits
+
+import static org.testatoo.core.Testatoo.getConfig
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 trait InputSupport implements ValueSupport {
 
     String getPlaceholder() {
-        eval("it.prop('placeholder')")
+        config.evaluator.eval(this.id, "it.prop('placeholder')")
     }
 
     boolean isEmpty() {
-        Boolean.parseBoolean(eval("\$.trim(it.val()).length == 0"))
+        config.evaluator.getBool(this.id, "\$.trim(it.val()).length == 0")
     }
 
     boolean isFilled() {
@@ -32,11 +35,11 @@ trait InputSupport implements ValueSupport {
     }
 
     boolean isReadOnly() {
-        Boolean.parseBoolean(eval("it.prop('readonly')"))
+        config.evaluator.getBool(this.id, "it.prop('readonly')")
     }
 
     boolean isRequired() {
-        Boolean.parseBoolean(eval("it.prop('required')"))
+        config.evaluator.getBool(this.id, "it.prop('required')")
     }
 
     boolean isOptional() {
@@ -48,8 +51,6 @@ trait InputSupport implements ValueSupport {
     }
 
     boolean isInvalid() {
-        Boolean.parseBoolean(eval("it.is(':invalid')"))
+        config.evaluator.getBool(this.id, "it.is(':invalid')")
     }
-
-//    Value
 }

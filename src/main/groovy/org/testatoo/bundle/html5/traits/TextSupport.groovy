@@ -15,13 +15,15 @@
  */
 package org.testatoo.bundle.html5.traits
 
+import static org.testatoo.core.Testatoo.config
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 trait TextSupport {
 
     String getText() {
-        eval("it.text()")
+        config.evaluator.eval(this.id, "it.text()")
     }
 
 }

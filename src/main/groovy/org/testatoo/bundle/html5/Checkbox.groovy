@@ -15,24 +15,13 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.LabelSuport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.action.Check
-import org.testatoo.core.action.Uncheck
-import org.testatoo.core.action.support.Checkable
-import org.testatoo.core.action.support.Uncheckable
-import org.testatoo.core.property.Label
-import org.testatoo.core.state.Checked
-import org.testatoo.core.state.Unchecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=checkbox]')
-class Checkbox extends Component implements Checkable, Uncheckable {
-
-    Checkbox() {
-        support Label, Checked, Unchecked, Check, Uncheck
-    }
-
-}
+class Checkbox extends Component implements Checkable, LabelSuport {}

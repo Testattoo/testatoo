@@ -17,41 +17,32 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.action.Select
-import org.testatoo.core.action.Unselect
-import org.testatoo.core.action.support.Selectable
-import org.testatoo.core.action.support.Unselectable
-import org.testatoo.core.property.Value
-import org.testatoo.core.state.Disabled
-import org.testatoo.core.state.Enabled
-import org.testatoo.core.state.Selected
-import org.testatoo.core.state.Unselected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('option,li')
-class Item extends Component implements Selectable, Unselectable {
+class Item extends Component {
 
-    Item() {
-        support Value, { eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()") }
-        support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
-        support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
-        support Selected, Unselected
-        support Select, Unselect
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) return true
-        return value == o
-    }
-
-    String getValue() {
-        return eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
-    }
-
-    @Override
-    String toString() {
-        return value
-    }
+//    Item() {
+//        support Value, { eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()") }
+//        support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
+//        support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
+//        support Selected, Unselected
+//        support Select, Unselect
+//    }
+//
+//    boolean equals(o) {
+//        if (this.is(o)) return true
+//        return value == o
+//    }
+//
+//    String getValue() {
+//        return eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
+//    }
+//
+//    @Override
+//    String toString() {
+//        return value
+//    }
 }

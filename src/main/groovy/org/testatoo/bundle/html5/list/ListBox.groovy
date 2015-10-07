@@ -17,37 +17,30 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
-import org.testatoo.core.action.support.Clickable
-import org.testatoo.core.property.*
-import org.testatoo.core.state.MultiSelectable
-import org.testatoo.core.state.SingleSelectable
-
-import static org.testatoo.core.property.Properties.getLabel
-import static org.testatoo.core.property.Properties.value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class ListBox extends Component implements Clickable {
+class ListBox extends Component {}
 
-    ListBox() {
-        support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size
-        support Items, { find("option", Item) }
-        support GroupItems, { find("optgroup", GroupItem) }
-        support MultiSelectable, SingleSelectable
-    }
-
-    List<Item> getItems() {
-        find("option", Item)
-    }
-
-    List<GroupItem> getGroupItems() {
-        find("optgroup", GroupItem)
-    }
-
-    Item item(String _value) {
-        items.find { it.has(value) == _value }
-    }
-
-}
+//    ListBox() {
+//        support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size
+//        support Items, { find("option", Item) }
+//        support GroupItems, { find("optgroup", GroupItem) }
+//        support MultiSelectable, SingleSelectable
+//    }
+//
+//    List<Item> getItems() {
+//        find("option", Item)
+//    }
+//
+//    List<GroupItem> getGroupItems() {
+//        find("optgroup", GroupItem)
+//    }
+//
+//    Item item(String _value) {
+//        items.find { it.has(value) == _value }
+//    }
+//
+//}

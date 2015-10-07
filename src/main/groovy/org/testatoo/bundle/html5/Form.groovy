@@ -17,22 +17,16 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.action.Reset
-import org.testatoo.core.action.Submit
-import org.testatoo.core.action.support.Resettable
-import org.testatoo.core.action.support.Submissible
-import org.testatoo.core.state.Invalid
-import org.testatoo.core.state.Valid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends Component implements Submissible, Resettable {
+class Form extends Component  {}
 
-    Form() {
-        support Valid, Invalid
-        support Reset, Submit
-    }
-
-}
+//implements Submissible, Resettable {
+//
+//    Form() {
+//        support Valid, Invalid
+//        support Reset, Submit
+//    }

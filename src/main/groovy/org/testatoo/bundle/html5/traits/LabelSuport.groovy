@@ -15,6 +15,8 @@
  */
 package org.testatoo.bundle.html5.traits
 
+import static org.testatoo.core.Testatoo.config
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -30,7 +32,7 @@ trait LabelSuport {
             "}()"
 
     String getLabel() {
-        eval(expr).trim()
+        config.evaluator.eval(this.id, expr).trim()
     }
 
 }
