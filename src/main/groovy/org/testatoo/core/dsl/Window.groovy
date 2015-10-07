@@ -29,7 +29,7 @@ class Window {
     }
 
     void close() {
-        Testatoo.evaluator.closeWindow(this.id)
+        Testatoo.config.evaluator.closeWindow(this.id)
     }
 
     @Override

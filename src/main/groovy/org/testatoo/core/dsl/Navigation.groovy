@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.dsl
 
-import static org.testatoo.core.Testatoo.evaluator
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -23,18 +23,18 @@ import static org.testatoo.core.Testatoo.evaluator
 class Navigation {
 
     void to(String url) {
-        evaluator.to(url)
+        config.evaluator.to(url)
     }
 
     void back() {
-        evaluator.back()
+        config.evaluator.back()
     }
 
     void forward() {
-        evaluator.forward()
+        config.evaluator.forward()
     }
 
     void refresh() {
-        evaluator.refresh()
+        config.evaluator.refresh()
     }
 }

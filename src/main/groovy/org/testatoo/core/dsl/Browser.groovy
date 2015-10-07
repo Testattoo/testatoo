@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.dsl
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -25,30 +25,30 @@ class Browser {
     final Navigation navigation = new Navigation()
 
     String getTitle() {
-        evaluator.title
+        config.evaluator.title
     }
 
     String getPageSource() {
-        evaluator.pageSource
+        config.evaluator.pageSource
     }
 
     String getUrl() {
-        evaluator.url
+        config.evaluator.url
     }
 
     void open(String url) {
-        evaluator.open(url)
+        config.evaluator.open(url)
     }
 
     List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
-        evaluator.windowIds.each { String id ->
+        config.evaluator.windowIds.each { String id ->
             windows.add(new Window(id))
         }
         return windows
     }
 
     void switchTo(Window window) {
-        evaluator.switchToWindow(window.id)
+        config.evaluator.switchToWindow(window.id)
     }
 }
