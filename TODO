@@ -1,0 +1,45 @@
+
+======== PROPERTIES ==========
+ArticleSize
+ColumnSize
+GroupItems
+GroupItemsSize
+Items
+			Label
+Maximum
+Minimum
+ParagraphSize
+Pattern
+Placeholder
+Reference
+SelectedItems
+Size
+Source
+Step
+Text
+Title
+		Value
+VisibleItemsSize
+
+======== STATES ==========
+		Available
+		Checked
+		Disabled
+		Empty
+		Enabled
+		Filled
+		Hidden
+InRange
+		Invalid
+		Missing
+MultiSelectable
+		Optional
+OutOfRange
+		ReadOnly
+		Required
+Selected
+SingleSelectable
+Unchecked
+Unselected
+		Valid
+		Visible

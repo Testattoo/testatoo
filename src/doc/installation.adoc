@@ -78,3 +78,4 @@ You can configure your WebDriver with the "DesiredCapabilities".
 <2> DONE. Now you can open you page under test. Testatoo is ready.
 
 <3> At the end of the test don't forget to close the browser.
+
