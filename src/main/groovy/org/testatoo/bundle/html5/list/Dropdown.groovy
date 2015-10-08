@@ -15,25 +15,17 @@
  */
 package org.testatoo.bundle.html5.list
 
+import org.testatoo.bundle.html5.traits.SelectTypeSupport
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
-import org.testatoo.core.property.*
-
-import static org.testatoo.core.property.Properties.getValue
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
-class Dropdown extends Component {
-
-    Dropdown() {
-        support Label, GroupItemsSize, SelectedItems
-        support Size, { eval("it.find('option').length") as int }
-        support Items, { find("option", Item) }
-        support GroupItems, { find("optgroup", GroupItem) }
-    }
-
+class Dropdown extends Component implements SelectTypeSupport {
+//  support GroupItemsSize, SelectedItems
+//  support Size, { eval("it.find('option').length") as int }
     List<Item> getItems() {
         find("option", Item)
     }
@@ -42,12 +34,11 @@ class Dropdown extends Component {
         find("optgroup", GroupItem)
     }
 
-    GroupItem groupItem(String _value) {
-        groupItems.find { it.has(value) == _value }
+    GroupItem groupItem(String value) {
+        groupItems.find { it.value == value }
     }
 
-    Item item(String _value) {
-        items.find { it.has(value) == _value }
+    Item item(String value) {
+        items.find { it.value == value }
     }
-
 }

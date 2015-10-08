@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.list
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -22,6 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.list.ListView
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -37,15 +38,15 @@ class ListViewTest {
 
     @BeforeClass
     public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { config.evaluator.close() }
+    public static void tearDown() { Testatoo.config.evaluator.close() }
 
     @Test
-    public void listview_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         ListView listView = $('#list_view') as ListView
 
         listView.should { be enabled }

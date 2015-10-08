@@ -15,17 +15,12 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('h1,h2,h3,h4,h5,h6')
-class Heading extends Component {
-
-    Heading() {
-        support Text
-    }
-}
+class Heading extends Component implements TextSupport {}

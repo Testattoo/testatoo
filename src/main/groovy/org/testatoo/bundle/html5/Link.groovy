@@ -15,19 +15,17 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Reference
-import org.testatoo.core.property.Text
+import org.testatoo.core.Testatoo
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('a')
-class Link extends Component {
-
-    Link() {
-        support Text, Reference
+class Link extends Component implements TextSupport {
+    String getReference() {
+        Testatoo.config.evaluator.eval(this.id, "it.prop('href')")
     }
-
 }

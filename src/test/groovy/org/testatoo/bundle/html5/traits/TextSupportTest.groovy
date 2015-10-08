@@ -24,8 +24,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.Paragraph
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 
 /**
@@ -48,8 +47,5 @@ class TextSupportTest {
         Paragraph paragraph = $('#paragraph') as Paragraph
 
         assert paragraph.text == 'My Expected Text'
-
-        // TODO override in :
-        // Button NOT in Link or Heading,
     }
 }

@@ -21,12 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.property.Properties.text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -44,36 +43,24 @@ class ButtonTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void should_override_text_support() {
-        Button button = $('#button') as Button
-        assert button.text == 'Button'
-    }
-
-    @Test
-    public void button_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         // input type=button
         Button button = $('#button') as Button
 
-        button.should { be enabled }
-        button.should { be visible }
-
-        button.should { have text('Button') }
+        assert Button in TextSupport
+        // But override text
+        assert button.text == 'Button'
 
         // input type=submit
         button = $('#submit') as Button
-        button.should { have text('Submit') }
+        assert button.text == 'Submit'
 
         // input type=reset
         button = $('#reset') as Button
-        button.should { have text('Reset') }
+        assert button.text == 'Reset'
 
         // button element
         button = $('#btn') as Button
-        button.should { have text('My Button Text') }
-        button.should { have text.containing('My') }
-        button.should { have text.containing('Button') }
-        button.should { have text.containing('Text') }
-
-
+        assert button.text == 'My Button Text'
     }
 }

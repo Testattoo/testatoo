@@ -23,10 +23,8 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.property.Properties.source
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -44,12 +42,9 @@ class ImageTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void image_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         Image image = $('#image') as Image
-        image.should { be enabled }
-        image.should { be visible }
 
-        image.should { have source('http://localhost:8080/img/Montpellier.jpg') }
-        image.should { have source.containing('Montpellier') }
+        assert image.source == 'http://localhost:8080/img/Montpellier.jpg'
     }
 }

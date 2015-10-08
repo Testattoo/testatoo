@@ -15,50 +15,20 @@
  */
 package org.testatoo.bundle.html5
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.dsl.Mouse.clickOn
-import static org.testatoo.core.property.Properties.label
-import static org.testatoo.core.state.States.getChecked
-import static org.testatoo.core.state.States.getUnchecked
+import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.LabelSuport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class CheckboxTest {
-
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/components.html'
-    }
-
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
-
     @Test
-    public void checkbox_should_have_expected_behaviours() {
-        Checkbox checkbox = $('#checkbox') as Checkbox
-        checkbox.should { be enabled }
-        checkbox.should { be visible }
-
-        checkbox.should { be unchecked }
-        checkbox.should { have label('Check me out') }
-
-        clickOn checkbox
-        checkbox.should { be checked }
-
-        clickOn checkbox
-        checkbox.should { be unchecked }
+    public void should_have_expected_behaviours() {
+        assert Checkbox in Checkable
+        assert Checkbox in LabelSuport
     }
 }

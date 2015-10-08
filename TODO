@@ -1,45 +1,171 @@
+======== COMPONENTS ==========
+				Article
+				Aside
+                Button
+				Checkbox
+				Footer
+				Form
+				Header
+				Heading
+                Image
+				Link
+				Panel
+                Paragraph
+				Radio
+				Section
+
+DataGrid
+DataGrid.Cell
+DataGrid.Column
+DataGrid.Row
+
+DropDown
+GroupItem
+Item
+ListBox
+ListView
+
+				ColorField
+				DateField
+DateTimeField
+EmailField
+Input
+MonthField
+NumberField
+PasswordField
+PhoneField
+RangeField
+SearchField
+TextField
+TimeField
+URLField
+WeekField
 
 ======== PROPERTIES ==========
-ArticleSize
+			ArticleSize
 ColumnSize
 GroupItems
 GroupItemsSize
 Items
 			Label
-Maximum
-Minimum
-ParagraphSize
+			Maximum
+			Minimum
+            ParagraphSize
 Pattern
-Placeholder
-Reference
+			Placeholder
+			Reference
 SelectedItems
 Size
-Source
-Step
-Text
-Title
-		Value
+            Source
+			Step
+			Text
+			Title
+			Value
 VisibleItemsSize
 
 ======== STATES ==========
-		Available
-		Checked
-		Disabled
-		Empty
-		Enabled
-		Filled
-		Hidden
-InRange
-		Invalid
-		Missing
-MultiSelectable
-		Optional
-OutOfRange
-		ReadOnly
-		Required
-Selected
-SingleSelectable
-Unchecked
-Unselected
-		Valid
-		Visible
+			Available
+			Checked
+			Disabled
+			Empty
+			Enabled
+			Filled
+			Hidden
+			InRange
+			Invalid
+			Missing
+			MultiSelectable
+			Optional
+			OutOfRange
+			ReadOnly
+			Required
+			Selected
+			SingleSelectable
+			Unchecked
+			Unselected
+			Valid
+			Visible
+
+
+// MultiSelectable getSelectedItems()
+// SingleSelectable getSelectedItem()
+
+
+MOVE ALL ACTION IN THE DSL just keep MOUSE on Component == LOW LEVEL
+// TODO David move to DLS
+//    void check() {
+//        if (unchecked)
+//            new MouseClick().execute(this)
+//        else
+//            throw new ComponentException("${this.class.simpleName} ${this} is already checked and cannot be checked")
+//    }
+
+// TODO David move to DLS
+    void select(Item item) {
+    }
+
+    //    Form() {
+    //        support Reset, Submit
+    //    }
+
+
+
+
+
+//        EmailField email_field = $('#form [type=email]') as EmailField
+//        PasswordField password_field = $('#form [type=password]') as PasswordField
+//
+//        Button submit_button = $('#form [type=submit]') as Button
+//        Button reset_button = $('#form [type=reset]') as Button
+//
+//        Message message = $('#form .alert') as Message
+
+        // Can submit a form
+//        message.should { have title('The form was submitted 0 time(s)') }
+//        message.should { have title.containing('The form was submitted') }
+
+//        clickOn submit_button
+//        message.should { have title('The form was submitted 1 time(s)') }
+
+//        clickOn submit_button
+//        message.should { have title('The form was submitted 2 time(s)') }
+
+        // Can reset a form
+//        clickOn email_field
+//        type 'my@email.org'
+//        clickOn password_field
+//        type 'password'
+
+        // By clicking on the button
+//        email_field.should { have value('my@email.org') }
+//        password_field.should { have value('password') }
+
+//        clickOn reset_button
+
+//        email_field.should { have value('') }
+//        password_field.should { have value('') }
+
+//        form.should { be valid }
+        // Field in error
+//        clickOn email_field
+//        type 'bad email'
+//        clickOn submit_button
+
+//        email_field.should { be invalid }
+//        form.should { be invalid }
+
+//        clear email_field
+
+//        clickOn email_field
+//        type 'y@email.org'
+//        clickOn submit_button
+//        email_field.should { be valid }
+//        form.should { be valid }
+
+ @ByCss('div')
+    class Message extends Panel {
+        Message() {
+            support Title, "it.text()"
+        }
+    }
+

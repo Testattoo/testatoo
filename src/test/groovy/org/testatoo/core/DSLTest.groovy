@@ -40,7 +40,6 @@ import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

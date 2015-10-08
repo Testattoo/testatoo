@@ -24,7 +24,6 @@ import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.action.Unselect
 import org.testatoo.core.property.Properties
 import org.testatoo.core.property.matcher.PropertyMatcher
-import org.testatoo.core.state.States
 
 import java.time.Duration
 
@@ -74,7 +73,7 @@ class DslExtensions {
         if (values) {
             for (value in values) {
                 Item item = c.items.find { it.value == value } as Item
-                if (item.is(States.unselected))
+//                if (item.is(States.unselected))
                     throw new ComponentException("${item.class.simpleName} ${item} is already unselected")
                 item.execute(new Unselect())
             }

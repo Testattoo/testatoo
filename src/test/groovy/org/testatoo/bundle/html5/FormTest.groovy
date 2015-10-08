@@ -23,6 +23,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.input.EmailField
 import org.testatoo.bundle.html5.input.PasswordField
+import org.testatoo.bundle.html5.traits.ValiditySupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
@@ -33,8 +34,6 @@ import static org.testatoo.core.dsl.Actions.clear
 import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.getInvalid
-import static org.testatoo.core.state.States.getValid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -52,64 +51,11 @@ class FormTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void fom_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
+        assert Form in ValiditySupport
+
         Form form = $('#form') as Form
-        EmailField email_field = $('#form [type=email]') as EmailField
-        PasswordField password_field = $('#form [type=password]') as PasswordField
 
-        Button submit_button = $('#form [type=submit]') as Button
-        Button reset_button = $('#form [type=reset]') as Button
-
-        Message message = $('#form .alert') as Message
-
-        // Can submit a form
-        message.should { have title('The form was submitted 0 time(s)') }
-        message.should { have title.containing('The form was submitted') }
-
-        clickOn submit_button
-        message.should { have title('The form was submitted 1 time(s)') }
-
-        clickOn submit_button
-        message.should { have title('The form was submitted 2 time(s)') }
-
-        // Can reset a form
-        clickOn email_field
-        type 'my@email.org'
-        clickOn password_field
-        type 'password'
-
-        // By clicking on the button
-        email_field.should { have value('my@email.org') }
-        password_field.should { have value('password') }
-
-        clickOn reset_button
-
-        email_field.should { have value('') }
-        password_field.should { have value('') }
-
-        form.should { be valid }
-        // Field in error
-        clickOn email_field
-        type 'bad email'
-        clickOn submit_button
-
-        email_field.should { be invalid }
-        form.should { be invalid }
-
-        clear email_field
-
-        clickOn email_field
-        type 'y@email.org'
-        clickOn submit_button
-        email_field.should { be valid }
-        form.should { be valid }
+        assert form.visible
     }
-
-    @ByCss('div')
-    class Message extends Panel {
-        Message() {
-            support Title, "it.text()"
-        }
-    }
-
 }

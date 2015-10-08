@@ -77,7 +77,40 @@
       <input type="number" id="number_field" placeholder="Number" step="8" min="0" max="64">
     </div>
 
+    <label class="control-label" for="os">Operating Systems</label>
+    <div class="controls">
+      <select id="os">
+        <option>Ubuntu</option>
+        <option>Fedora</option>
+        <option>Gentoo</option>
+      </select>
+    </div>
+
+
+    <label class="control-label" for="countries">Countries list</label>
+    <div class="controls">
+      <select id="countries" disabled>
+        <option label="Canada">Canada</option>
+        <option label="France">France</option>
+        <option label="Spain">Spain</option>
+      </select>
+    </div>
+
+    <label class="control-label" for="cities">Cities list</label>
+    <div class="controls">
+      <select id="cities" size="3" multiple="multiple" name="cityName" title="cityTitle">
+        <option label="Montreal" value="Montreal">Montreal</option>
+        <option label="Quebec" value="Quebec" disabled>Quebec</option>
+        <option label="Montpellier" value="Montpellier">Montpellier</option>
+        <option label="New York" value="New York" selected="selected">New York</option>
+        <option label="Casablanca" value="Casablanca">Casablanca</option>
+        <option label="Munich" value="Munich" selected="selected">Munich</option>
+      </select>
+    </div>
+
+
     <hr/>
+
 
     <p id="paragraph">My Expected Text</p>
 

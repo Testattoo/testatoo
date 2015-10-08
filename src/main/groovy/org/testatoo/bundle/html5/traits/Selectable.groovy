@@ -15,29 +15,19 @@
  */
 package org.testatoo.bundle.html5.traits
 
-import org.testatoo.bundle.html5.list.Item
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 trait Selectable {
 
-    void select(Item item) {
-
+    boolean isSelected() {
+        config.evaluator.getBool(id, "!!it.prop('selected')")
     }
 
-    Item getSelectedItem() {
-
+    boolean isUnselected() {
+        !selected
     }
 }
-
-
-// Item isSelected()
-// Selectable  select(Item)
-
-
-
-// MultiSelectable getSelectedItems()
-
-// SingleSelectable getSelectedItem()
 

@@ -16,35 +16,33 @@
 package org.testatoo.core.state
 
 import org.testatoo.core.Component
-import org.testatoo.core.ComponentException
 import org.testatoo.core.dsl.Matcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class State implements Matcher {
-
-    StateEvaluator evaluator
-
-    Map<String, String> description
-
-    void evaluator(StateEvaluator p) { evaluator = p }
-
-    void evaluator(Closure<Boolean> c) { evaluator(c as StateEvaluator) }
-
-    void check(String expr) { evaluator({ Component c -> c.check(expr) }) }
-
-    void description(Map<String, String> m) { description = m }
-
+//    StateEvaluator evaluator
+//
+//    Map<String, String> description
+//
+//    void evaluator(StateEvaluator p) { evaluator = p }
+//
+//    void evaluator(Closure<Boolean> c) { evaluator(c as StateEvaluator) }
+//
+//    void check(String expr) { evaluator({ Component c -> c.check(expr) }) }
+//
+//    void description(Map<String, String> m) { description = m }
+//
+//    @Override
+//    void matches(Component c) { ensure c, c.is(this), description }
+//
+//    @Override
+//    String toString() { getClass().simpleName }
+//
+//    private static void ensure(Component c, boolean test, Map<String, ?> opts) {
+//        if (!test) throw new ComponentException("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")
+//    }
     @Override
-    void matches(Component c) { ensure c, c.is(this), description }
-
-    @Override
-    String toString() { getClass().simpleName }
-
-    private static void ensure(Component c, boolean test, Map<String, ?> opts) {
-        if (!test) throw new ComponentException("Component ${c.class.simpleName} with id ${c.id} expected ${opts?.e} but was ${opts?.w}")
-    }
-
-
+    void matches(Component c) {}
 }

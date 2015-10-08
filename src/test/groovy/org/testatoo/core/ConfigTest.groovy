@@ -27,7 +27,6 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.state.States.getFilled
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

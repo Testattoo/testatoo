@@ -16,18 +16,13 @@
 package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.ByCss
-import org.testatoo.core.property.Maximum
-import org.testatoo.core.property.Minimum
-import org.testatoo.core.property.Step
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=range]')
 class RangeField extends TextField {
-
-    RangeField() {
-        support Minimum, Maximum, Step
-    }
-
+//    RangeField() {
+//        support Minimum, Maximum, Step
+//    }
 }

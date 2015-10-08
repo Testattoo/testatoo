@@ -54,7 +54,7 @@ class CheckableTest {
         assert !female.checked
         assert female.unchecked
 
-        female.check()
+        female.click()
         assert male.unchecked
         assert female.checked
     }

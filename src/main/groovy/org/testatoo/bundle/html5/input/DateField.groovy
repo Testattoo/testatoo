@@ -15,21 +15,22 @@
  */
 package org.testatoo.bundle.html5.input
 
+import org.testatoo.bundle.html5.traits.RangeSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.property.Maximum
-import org.testatoo.core.property.Minimum
-import org.testatoo.core.property.Step
+
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=date]')
-class DateField extends TextField {
+class DateField extends TextField implements RangeSupport {
 
-    DateField() {
-        support Minimum, "it.prop('min')"
-        support Maximum, "it.prop('max')"
-        support Step
+    Object getMinimun() {
+        config.evaluator.eval(id, "it.prop('min')")
     }
 
+    Object getMaximum() {
+        config.evaluator.eval(id, "it.prop('max')")
+    }
 }

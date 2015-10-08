@@ -17,16 +17,14 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Source
+import org.testatoo.core.Testatoo
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('img')
 class Image extends Component {
-
-    Image() {
-        support Source
+    String getSource() {
+        Testatoo.config.evaluator.eval(this.id, "it.prop('src')")
     }
-
 }

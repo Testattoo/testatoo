@@ -23,9 +23,7 @@ import org.testatoo.core.property.Pattern
  */
 @ByCss('input[type=tel]')
 class PhoneField extends TextField {
-
-    PhoneField() {
-        support Pattern
-    }
-
+//    PhoneField() {
+//        support Pattern
+//    }
 }

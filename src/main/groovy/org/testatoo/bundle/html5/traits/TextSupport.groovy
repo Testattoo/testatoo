@@ -23,7 +23,6 @@ import static org.testatoo.core.Testatoo.config
 trait TextSupport {
 
     String getText() {
-        config.evaluator.eval(this.id, "it.text()")
+        config.evaluator.eval(id, "it.text()")
     }
-
 }

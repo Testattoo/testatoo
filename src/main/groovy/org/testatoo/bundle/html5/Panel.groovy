@@ -17,15 +17,14 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Title
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('div')
-class Panel extends Component {
+class Panel extends Component  {
 
-    Panel() {
-        support Title, "''"
+    String getTitle() {
+        ''
     }
 }

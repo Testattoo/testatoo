@@ -36,8 +36,6 @@ import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Key.*
 import static org.testatoo.core.dsl.Mouse.*
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.getChecked
-import static org.testatoo.core.state.States.getUnchecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

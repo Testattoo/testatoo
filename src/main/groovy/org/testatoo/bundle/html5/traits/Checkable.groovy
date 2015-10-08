@@ -15,9 +15,6 @@
  */
 package org.testatoo.bundle.html5.traits
 
-import org.testatoo.core.ComponentException
-import org.testatoo.core.action.MouseClick
-
 import static org.testatoo.core.Testatoo.getConfig
 
 /**
@@ -25,15 +22,8 @@ import static org.testatoo.core.Testatoo.getConfig
  */
 trait Checkable {
 
-    void check() {
-        if (unchecked)
-            new MouseClick().execute(this)
-        else
-            throw new ComponentException("${this.class.simpleName} ${this} is already checked and cannot be checked")
-    }
-
     boolean isChecked() {
-        Boolean.parseBoolean(config.evaluator.eval(this.id, "it.is(':checked')"))
+        config.evaluator.getBool(id, "it.is(':checked')")
     }
 
     boolean isUnchecked() {

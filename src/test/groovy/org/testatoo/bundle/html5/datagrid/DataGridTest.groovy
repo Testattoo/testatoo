@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.datagrid
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -25,6 +25,7 @@ import org.testatoo.bundle.html5.datagrid.Cell
 import org.testatoo.bundle.html5.datagrid.Column
 import org.testatoo.bundle.html5.datagrid.DataGrid
 import org.testatoo.bundle.html5.datagrid.Row
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -41,15 +42,15 @@ class DataGridTest {
 
     @BeforeClass
     public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { config.evaluator.close() }
+    public static void tearDown() { Testatoo.config.evaluator.close() }
 
     @Test
-    public void datagrid_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         DataGrid data_grid = $('#data_grid') as DataGrid
 
         data_grid.should { be enabled }

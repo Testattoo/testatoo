@@ -21,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -44,15 +45,10 @@ class LinkTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void link_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         Link link = $('#link') as Link
-        link.should { be enabled }
-        link.should { be visible }
 
-        link.should { have text('Link to component page') }
-
-        link.should { have reference.equalsTo('http://localhost:8080/components.html') }
-        link.should { have reference('http://localhost:8080/components.html') }
-        link.should { have reference.containing('component') }
+        assert Link in TextSupport
+        assert link.reference == 'http://localhost:8080/components.html'
     }
 }

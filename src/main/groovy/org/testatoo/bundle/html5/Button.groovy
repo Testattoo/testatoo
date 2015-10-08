@@ -18,6 +18,7 @@ package org.testatoo.bundle.html5
 import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -25,6 +26,6 @@ import org.testatoo.core.Component
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends Component implements TextSupport {
     public String getText() {
-        eval("it.is('input') ? it.val() : it.text().trim()")
+        Testatoo.config.evaluator.eval(this.id, "it.is('input') ? it.val() : it.text().trim()")
     }
 }

@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.bundle.html5.traits.ValiditySupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 
@@ -22,11 +23,4 @@ import org.testatoo.core.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends Component  {}
-
-//implements Submissible, Resettable {
-//
-//    Form() {
-//        support Valid, Invalid
-//        support Reset, Submit
-//    }
+class Form extends Component implements ValiditySupport {}

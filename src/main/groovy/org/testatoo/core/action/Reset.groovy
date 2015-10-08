@@ -18,7 +18,6 @@ package org.testatoo.core.action
 import org.testatoo.bundle.html5.Button
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.state.Available
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -26,10 +25,10 @@ import org.testatoo.core.state.Available
 class Reset implements Action {
     @Override
     void execute(Component c) {
-        Button reset_button = c.find('[type=reset]:first')[0] as Button
-        if (reset_button && reset_button.is(new Available()))
-            new MouseClick().execute(reset_button)
-        else
-            throw new ComponentException('Cannot reset form without reset button')
+//        Button reset_button = c.find('[type=reset]:first')[0] as Button
+//        if (reset_button && reset_button.is(new Available()))
+//            new MouseClick().execute(reset_button)
+//        else
+//            throw new ComponentException('Cannot reset form without reset button')
     }
 }

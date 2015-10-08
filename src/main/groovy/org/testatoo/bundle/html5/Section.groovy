@@ -17,8 +17,6 @@ package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.ArticleSize
-import org.testatoo.core.property.ParagraphSize
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -26,7 +24,11 @@ import org.testatoo.core.property.ParagraphSize
 @ByCss('section')
 class Section extends Component {
 
-    Section() {
-        support ArticleSize, ParagraphSize
+    List<Paragraph> getParagraphs() {
+        find("> p", Paragraph)
+    }
+
+    List<Article> getArticles() {
+        find("> article", Article)
     }
 }

@@ -35,11 +35,9 @@ class InputSupportTest {
         EmailField email = $('#email') as EmailField
         assert email.empty
         assert email.optional
-        assert email.valid
         assert !email.filled
         assert !email.readOnly
         assert !email.required
-        assert !email.invalid
 
         assert email.value == ''
 
@@ -50,9 +48,6 @@ class InputSupportTest {
 
         PasswordField password = $('#password') as PasswordField
         assert password.required
-        // Invalid cause required
-        assert password.invalid
         assert !password.optional
     }
-
 }

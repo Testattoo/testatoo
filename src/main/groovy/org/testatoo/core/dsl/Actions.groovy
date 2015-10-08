@@ -29,7 +29,7 @@ class Actions {
     static void open(String uri) { visit(uri) }
 
     static final Component check(Component c) {
-        new Check().execute(c)
+//        new Check().execute(c)
         return c
     }
 

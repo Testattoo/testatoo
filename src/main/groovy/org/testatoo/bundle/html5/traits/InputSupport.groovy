@@ -20,14 +20,14 @@ import static org.testatoo.core.Testatoo.getConfig
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait InputSupport implements ValueSupport {
+trait InputSupport implements ValueSupport, ValiditySupport {
 
     String getPlaceholder() {
-        config.evaluator.eval(this.id, "it.prop('placeholder')")
+        config.evaluator.eval(id, "it.prop('placeholder')")
     }
 
     boolean isEmpty() {
-        config.evaluator.getBool(this.id, "\$.trim(it.val()).length == 0")
+        config.evaluator.getBool(id, "\$.trim(it.val()).length == 0")
     }
 
     boolean isFilled() {
@@ -35,22 +35,14 @@ trait InputSupport implements ValueSupport {
     }
 
     boolean isReadOnly() {
-        config.evaluator.getBool(this.id, "it.prop('readonly')")
+        config.evaluator.getBool(id, "it.prop('readonly')")
     }
 
     boolean isRequired() {
-        config.evaluator.getBool(this.id, "it.prop('required')")
+        config.evaluator.getBool(id, "it.prop('required')")
     }
 
     boolean isOptional() {
         !required
-    }
-
-    boolean isValid() {
-        !invalid
-    }
-
-    boolean isInvalid() {
-        config.evaluator.getBool(this.id, "it.is(':invalid')")
     }
 }

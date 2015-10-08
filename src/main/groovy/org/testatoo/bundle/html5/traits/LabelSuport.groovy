@@ -32,7 +32,6 @@ trait LabelSuport {
             "}()"
 
     String getLabel() {
-        config.evaluator.eval(this.id, expr).trim()
+        config.evaluator.eval(id, expr).trim()
     }
-
 }

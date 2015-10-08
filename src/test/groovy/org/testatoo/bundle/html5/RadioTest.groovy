@@ -15,18 +15,11 @@
  */
 package org.testatoo.bundle.html5
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.property.Properties.label
+import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.LabelSuport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -34,23 +27,9 @@ import static org.testatoo.core.property.Properties.label
 @RunWith(JUnit4)
 class RadioTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/components.html'
-    }
-
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
-
     @Test
-    public void radio_should_have_expected_behaviours() {
-        Radio radio = $('#radio') as Radio;
-
-        radio.should { be enabled }
-        radio.should { be visible }
-        radio.should { be checked }
-
-        radio.should { have label('Radio label checked') }
+    public void should_have_expected_behaviours() {
+        assert Radio in LabelSuport
+        assert Radio in Checkable
     }
 }

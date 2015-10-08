@@ -19,9 +19,6 @@ import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Testatoo
 
-import static org.testatoo.core.state.States.getDisabled
-import static org.testatoo.core.state.States.getSelected
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */

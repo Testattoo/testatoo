@@ -36,7 +36,6 @@ import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.dsl.Key.ALT
 import static org.testatoo.core.dsl.Key.CTRL
 import static org.testatoo.core.property.Properties.reference
-import static org.testatoo.core.state.States.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

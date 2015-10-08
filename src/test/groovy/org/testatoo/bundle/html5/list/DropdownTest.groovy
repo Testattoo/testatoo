@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.list
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -23,6 +23,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.list.Dropdown
 import org.testatoo.bundle.html5.list.GroupItem
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -30,8 +31,6 @@ import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.getSelected
-import static org.testatoo.core.state.States.getUnselected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -41,16 +40,16 @@ class DropdownTest {
 
     @BeforeClass
     public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { config.evaluator.close() }
+    public static void tearDown() { Testatoo.config.evaluator.close() }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
-    public void dropdown_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         Dropdown dropdown = $('#elements') as Dropdown
 
         dropdown.should { be enabled }

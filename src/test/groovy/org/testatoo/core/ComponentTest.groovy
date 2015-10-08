@@ -24,17 +24,12 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.*
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Text
-import org.testatoo.core.state.Hidden
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.check
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.property.Properties.getLabel
-import static org.testatoo.core.property.Properties.text
-import static org.testatoo.core.state.States.getChecked
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -145,10 +140,10 @@ class ComponentTest {
     static class CustomCheckbox extends Checkbox {
         boolean checked;
 
-        @Override
-        void check() {
-            this.checked = true
-        }
+//        @Override
+//        void check() {
+//            this.checked = true
+//        }
     }
 
     static class UnidentifiedComponent extends Component {}

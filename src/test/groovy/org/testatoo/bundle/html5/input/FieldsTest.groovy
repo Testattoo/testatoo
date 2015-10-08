@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.input
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -22,6 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.input.*
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -30,7 +31,6 @@ import static org.testatoo.core.dsl.Actions.clear
 import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Mouse.clickOn
 import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.getReadonly
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,7 +40,7 @@ class FieldsTest {
 
     @BeforeClass
     public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        Testatoo.config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
@@ -48,7 +48,7 @@ class FieldsTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void text_field_should_have_expected_behaviours() {
+    public void should_have_expected_behaviours() {
         // Text field
         TextField textField = $('#text_field') as TextField
 
@@ -146,12 +146,6 @@ class FieldsTest {
         rangeField.should { have step(5) }
     }
 
-    @Test
-    public void color_field_should_have_expected_behaviours() {
-        ColorField colorField = $('#color_field') as ColorField
-        colorField.should { be enabled }
-        colorField.should { be optional }
-    }
 
     @Test
     public void date_fields_should_have_expected_behaviours() {

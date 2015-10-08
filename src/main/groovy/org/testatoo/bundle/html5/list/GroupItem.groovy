@@ -17,10 +17,7 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Items
 import org.testatoo.core.property.Properties
-import org.testatoo.core.property.Size
-import org.testatoo.core.property.Value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,11 +25,11 @@ import org.testatoo.core.property.Value
 @ByCss('optgroup')
 class GroupItem extends Component {
 
-    GroupItem() {
-        support Value, { eval("it.attr('label')") }
-        support Size
-        support Items, { find("option", Item) }
-    }
+//    GroupItem() {
+//        support Value, { eval("it.attr('label')") }
+//        support Size
+//        support Items, { find("option", Item) }
+//    }
 
     List<Item> getItems() {
         find("option", Item)

@@ -6,18 +6,18 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.input.NumberField
+import org.testatoo.bundle.html5.list.Dropdown
+import org.testatoo.bundle.html5.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class RangeSupportTest {
+class SelectTypeSupportTest {
 
     @BeforeClass
     public static void setup() {
@@ -30,18 +30,13 @@ class RangeSupportTest {
 
     @Test
     public void should_have_expected_behaviours() {
-        NumberField number = $('#number_field') as NumberField
-        assert number.minimun == 0
-        assert number.maximum == 64
-        assert number.step == 8
+        ListBox cities = $('#cities') as ListBox
 
-        assert number.inRange
-        assert !number.outOfRange
+        assert cities.multiSelectable
+        assert !cities.singleSelectable
 
-        // TODO finish
-//        number.click()
-//        type 125
-//        assert number.outOfRange
-//        assert !number.inRange
+        Dropdown os = $('#os') as Dropdown
+        assert os.singleSelectable
+        assert !os.multiSelectable
     }
 }

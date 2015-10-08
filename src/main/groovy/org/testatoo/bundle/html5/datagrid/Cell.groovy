@@ -17,15 +17,13 @@ package org.testatoo.bundle.html5.datagrid
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('td')
 class Cell extends Component {
-
-    Cell() {
-        support Value, "it.text().trim()"
-    }
+//    Cell() {
+//        support Value, "it.text().trim()"
+//    }
 }
