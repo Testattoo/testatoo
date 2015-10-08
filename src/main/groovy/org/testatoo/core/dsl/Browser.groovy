@@ -22,7 +22,7 @@ import static org.testatoo.core.Testatoo.getConfig
  */
 class Browser {
 
-    final Navigation navigation = new Navigation()
+    final Navigation navigate = new Navigation()
 
     String getTitle() {
         config.evaluator.title

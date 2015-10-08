@@ -27,6 +27,7 @@ import org.testatoo.bundle.html5.Checkbox
 import org.testatoo.bundle.html5.Panel
 import org.testatoo.bundle.html5.Radio
 import org.testatoo.bundle.html5.list.Dropdown
+import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.property.Title
 
@@ -55,19 +56,19 @@ class MouseTest {
     @Test
     public void should_be_able_to_click() {
         Button button = $('#button_1') as Button
-        button.should { have text('Button') }
+        assert  button.text == 'Button'
         clickOn button
-        button.should { have text('Button Clicked!') }
+        assert button.text == 'Button Clicked!'
 
         Checkbox checkBox = $('#checkbox') as Checkbox
-        checkBox.should { be unchecked }
+        assert checkBox.unchecked
         clickOn checkBox
-        checkBox.should { be checked }
+        assert checkBox.checked
 
         Radio radio = $('#radio') as Radio
-        radio.should { be unchecked }
+        assert radio.unchecked
         clickOn radio
-        radio.should { be checked }
+        assert radio.checked
 
         Dropdown dropDown = $('#elements') as Dropdown
         dropDown.should { have selectedItems('H') }
@@ -79,76 +80,75 @@ class MouseTest {
     @Test
     public void should_be_able_to_doubleClick() {
         Button button = $('#button_2') as Button
-        button.should { have text('Button') }
+        button.text == 'Button'
         doubleClickOn button
-        button.should { have text('Button Double Clicked!') }
+        assert button.text == 'Button Double Clicked!'
     }
 
     @Test
     public void should_be_able_to_rightClick() {
         Button button = $('#button_5') as Button
-        button.should { have text('Button') }
+        assert button.text == 'Button'
         rightClickOn button
-        button.should { have text('Button Right Clicked!') }
+        assert button.text == 'Button Right Clicked!'
     }
 
     @Test
     public void should_be_able_to_mouseOver() {
         Button button = $('#button_3') as Button
-        button.should { have text('Button') }
+        assert button.text == 'Button'
         hoveringMouseOn button
-        button.should { have text('Button Mouse Over!') }
+        assert button.text == 'Button Mouse Over!'
     }
 
     @Test
     public void should_be_able_to_mouseOut() {
         Button button = $('#button_4') as Button
-        button.should { have text('Button') }
+        assert button.text == 'Button'
 
         // To simulate mouse out
-
         // 1 - mouse over the component
         hoveringMouseOn button
         // 2 - mouse over an another component
         hoveringMouseOn $('#button_5') as Button
         // The mouse out is triggered
-        button.should { have text('Button Mouse Out!') }
+        assert button.text == 'Button Mouse Out!'
     }
 
     @Ignore
     @Test
     public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
-        dropPanel.should { have title('Drop here') }
+        assert dropPanel.title == 'Drop here'
 
         Panel dragPanel = $('#draggable') as Panel
 
         drag dragPanel on dropPanel
-        dropPanel.should { have title('Dropped!') }
+        assert dropPanel.title == 'Dropped!'
     }
 
     @Test
     public void should_be_able_to_use_mouse_with_key_modifier() {
-        $('#span_Ctrl_mouseleft').should { be missing }
-        $('#span_Shift_mouseleft').should { be missing }
+        assert $('#span_Ctrl_mouseleft').missing
+        assert $('#span_Shift_mouseleft').missing
 
         CTRL.click $('#_Ctrl_mouseleft') as Panel
         SHIFT.click $('#_Shift_mouseleft') as Panel
 
-        $('#span_Ctrl_mouseleft').should { be available }
-        $('#span_Shift_mouseleft').should { be available }
+        assert $('#span_Ctrl_mouseleft').available
+        assert $('#span_Shift_mouseleft').available
 
         // Not testable cause Rightclick Handled by the browser
         CTRL.rightClick $('#_Ctrl_mouseright') as Panel
         [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Panel
 
-        $('#span_Alt_Shift_mouseleft').should { be missing }
+        assert $('#span_Alt_Shift_mouseleft').missing
         (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Panel
-        $('#span_Alt_Shift_mouseleft').should { be available }
+        assert $('#span_Alt_Shift_mouseleft').available
 
-        $('#span_Crtl_Shift_mouseleft').should { be missing }
+        assert $('#span_Crtl_Shift_mouseleft').missing
         [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Panel
-        $('#span_Crtl_Shift_mouseleft').should { be missing }
+        assert $('#span_Crtl_Shift_mouseleft').missing
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
@@ -156,8 +156,8 @@ class MouseTest {
     }
 
     class DropPanel extends Panel {
-        DropPanel() {
-            support Title, "it.find('h1').text()"
+        String getTitle() {
+            Testatoo.config.evaluator.eval(id, "it.find('h1').text()")
         }
     }
 }

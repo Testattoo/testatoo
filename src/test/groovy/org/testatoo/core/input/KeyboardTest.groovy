@@ -27,10 +27,8 @@ import org.testatoo.bundle.html5.input.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.clear
-import static org.testatoo.core.dsl.Actions.visit
+import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.dsl.Key.*
-import static org.testatoo.core.property.Properties.value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -58,18 +56,18 @@ class KeyboardTest {
     public void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
-            $("#span_$letter").should { be missing }
+            assert $("#span_$letter").missing
             keyboard.type "$letter"
-            $("#span_$letter").should { be available }
+            assert $("#span_$letter").available
         }
     }
 
     @Test
     public void should_type_number_on_keyboard() {
         (0..9).each {
-            $("#span_$it").should { be missing }
+            assert $("#span_$it").missing
             keyboard.type "$it"
-            $("#span_$it").should { be available }
+            assert $("#span_$it").available
         }
     }
 
@@ -109,33 +107,33 @@ class KeyboardTest {
                 '#span_right'    : RIGHT,
                 '#span_down'     : DOWN
         ].each { k, v ->
-            $(k).should { be missing }
+            assert $(k).missing
             keyboard.type v
-            $(k).should { be available }
+            assert $(k).available
         }
     }
 
     @Test
     public void should_use_key_modifier_on_keyboard() {
-        $('#span_Ctrl_Alt_Shift_x').should { be missing }
+        assert $('#span_Ctrl_Alt_Shift_x').missing
         keyboard.type(CTRL + ALT + SHIFT + 'x')
-        $('#span_Ctrl_Alt_Shift_x').should { be available }
+        assert $('#span_Ctrl_Alt_Shift_x').available
 
         TextField textField = $('#textfield') as TextField
 
-        textField.should { have value('') }
+        assert textField.value == ''
         mouse.clickOn textField
         keyboard.type(SHIFT + 'testatoo')
-        textField.should { have value('TESTATOO') }
+        assert textField.value == 'TESTATOO'
 
         clear textField
-        textField.should { have value('') }
+        assert textField.value == ''
         keyboard.type('~!@#$%^&*()_+')
-        textField.should { have value('~!@#$%^&*()_+') }
+        assert textField.value == '~!@#$%^&*()_+'
 
         clear textField
-        textField.should { have value('') }
+        assert textField.value == ''
         keyboard.type(SHIFT + '`1234567890-=')
-        textField.should { have value('~!@#$%^&*()_+') }
+        assert textField.value == '~!@#$%^&*()_+'
     }
 }

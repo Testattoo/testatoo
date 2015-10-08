@@ -84,18 +84,18 @@ class BrowserTest {
         Link link = $('#link') as Link
         Form form = $('#form') as Form
 
-        link.should { be available }
-        form.should { be missing }
+        assert link.available
+        assert form.missing
 
         clickOn link
 
         assert browser.windows.size() == 2
-        link.should { be available }
-        form.should { be missing }
+        assert link.available
+        assert form.missing
 
         browser.switchTo(browser.windows[1])
-        link.should { be missing }
-        form.should { be available }
+        assert link.missing
+        assert form.available
 
         browser.windows[1].close()
         assert browser.windows.size() == 1
