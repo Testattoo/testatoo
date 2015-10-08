@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.CheckSupport
 import org.testatoo.bundle.html5.traits.LabelSuport
 
 /**
@@ -28,7 +28,7 @@ import org.testatoo.bundle.html5.traits.LabelSuport
 class CheckboxTest {
     @Test
     public void should_have_expected_behaviours() {
-        assert Checkbox in Checkable
+        assert Checkbox in CheckSupport
         assert Checkbox in LabelSuport
     }
 }

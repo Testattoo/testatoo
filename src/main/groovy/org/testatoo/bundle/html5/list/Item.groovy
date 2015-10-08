@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.list
 
-import org.testatoo.bundle.html5.traits.Selectable
+import org.testatoo.bundle.html5.traits.SelectSupport
 import org.testatoo.bundle.html5.traits.ValueSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
@@ -24,7 +24,7 @@ import org.testatoo.core.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('option,li')
-class Item extends Component implements Selectable, ValueSupport {
+class Item extends Component implements SelectSupport, ValueSupport {
 
 //    Item() {
 //        support Value, { eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()") }

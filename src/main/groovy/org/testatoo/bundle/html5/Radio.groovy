@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.CheckSupport
 import org.testatoo.bundle.html5.traits.LabelSuport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
@@ -24,4 +24,4 @@ import org.testatoo.core.Component
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('input[type=radio]')
-class Radio extends Component implements LabelSuport, Checkable {}
+class Radio extends Component implements LabelSuport, CheckSupport {}

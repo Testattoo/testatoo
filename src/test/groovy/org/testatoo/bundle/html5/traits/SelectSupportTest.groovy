@@ -18,7 +18,7 @@ import static org.testatoo.core.dsl.Actions.visit
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class SelectableTest {
+class SelectSupportTest {
 
     @BeforeClass
     public static void setup() {

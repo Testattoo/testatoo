@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.CheckSupport
 import org.testatoo.bundle.html5.traits.LabelSuport
 
 /**
@@ -30,6 +30,6 @@ class RadioTest {
     @Test
     public void should_have_expected_behaviours() {
         assert Radio in LabelSuport
-        assert Radio in Checkable
+        assert Radio in CheckSupport
     }
 }

@@ -20,7 +20,7 @@ import static org.testatoo.core.Testatoo.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Selectable {
+trait SelectSupport {
 
     boolean isSelected() {
         config.evaluator.getBool(id, "!!it.prop('selected')")

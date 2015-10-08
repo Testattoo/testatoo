@@ -20,7 +20,7 @@ import static org.testatoo.core.Testatoo.getConfig
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Checkable {
+trait CheckSupport {
 
     boolean isChecked() {
         config.evaluator.getBool(id, "it.is(':checked')")
