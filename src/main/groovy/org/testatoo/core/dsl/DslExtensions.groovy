@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.dsl
 
-import org.testatoo.bundle.html5.list.Item
+import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.action.Fill

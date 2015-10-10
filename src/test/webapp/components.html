@@ -43,12 +43,10 @@
     <hr/>
 
     <h1>Link</h1>
-
     <a id="link" href="components.html">Link to component page</a>
     <hr/>
 
     <h1>Button</h1>
-
     <input type="button" id="button" class="btn btn-primary" value="Button"/>
     <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
     <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
@@ -60,8 +58,8 @@
     <label class="checkbox">
       <input type="checkbox" id="checkbox">Check me out
     </label>
-    <hr/>
 
+    <hr/>
 
     <h1>Radio</h1>
     <label class="radio">
@@ -79,25 +77,21 @@
     <div class="row">
       <div class="col-md-6">
         <label class="control-label" for="text_field">Text</label>
-
         <div class="controls">
           <input type="text" id="text_field" placeholder="Text">
         </div>
 
         <label class="control-label" for="password_field">Password</label>
-
         <div class="controls">
           <input type="password" id="password_field" placeholder="Password" value="?art">
         </div>
 
         <label class="control-label" for="email_field">Email</label>
-
         <div class="controls">
           <input type="email" id="email_field" placeholder="Email" disabled>
         </div>
 
         <label class="control-label" for="phone_field">Phone</label>
-
         <div class="controls">
           <input type="tel" id="phone_field" placeholder="Phone"
                  pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
@@ -105,25 +99,21 @@
         </div>
 
         <label class="control-label" for="url_field">URL</label>
-
         <div class="controls">
           <input type="url" id="url_field" placeholder="URL">
         </div>
 
         <label class="control-label" for="search_field">Search</label>
-
         <div class="controls">
           <input type="search" id="search_field" placeholder="Search">
         </div>
 
         <label class="control-label" for="number_field">Number</label>
-
         <div class="controls">
           <input type="number" id="number_field" placeholder="Number" step="8" min="0" max="64">
         </div>
 
         <label class="control-label" for="range_field">Range</label>
-
         <div class="controls">
           <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5">
         </div>
@@ -132,46 +122,38 @@
       <div class="col-md-6">
 
         <label class="control-label" for="color_field">Color</label>
-
         <div class="controls">
           <input type="color" id="color_field" placeholder="Color">
         </div>
 
         <label class="control-label" for="month_field">Month</label>
-
         <div class="controls">
           <input type="month" id="month_field" placeholder="Month" required>
         </div>
 
         <label class="control-label" for="week_field">Week</label>
-
         <div class="controls">
           <input type="week" id="week_field" placeholder="Week">
         </div>
 
         <label class="control-label" for="date_field">Date</label>
-
         <div class="controls">
           <input type="date" id="date_field" placeholder="Date" max="2012-06-25" min="2011-08-13">
         </div>
 
         <label class="control-label" for="time_field">Date</label>
-
         <div class="controls">
           <input type="time" id="time_field" placeholder="Time">
         </div>
 
         <label class="control-label" for="datetime_field">Date</label>
-
         <div class="controls">
           <input type="datetime" id="datetime_field" placeholder="DateTime" readonly>
         </div>
 
         <label class="control-label" for="text_area_field">TextArea</label>
-
         <div class="controls">
           <textarea id="text_area_field" rows="4" cols="50">Text area</textarea>
-
         </div>
       </div>
     </div>
@@ -372,6 +354,30 @@
 
     <hr/>
 
+    <h1>Form</h1>
+    <form id="form">
+      <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
+      <div class="form-group">
+        <label>Email address
+          <input type="email" class="form-control" placeholder="Enter email">
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Password
+          <input type="password" class="form-control" placeholder="Password">
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+
+    <div id="custom_panel">
+      <div style="display: none">TEXT</div>
+      <div></div>
+    </div>
+
+    <hr/>
+
     <h1>Inheritance</h1>
     <div>
       <button id="btn_default" type="button" class="btn btn-default">Default</button>
@@ -382,9 +388,8 @@
       <button id="btn_danger" type="button" class="btn btn-danger">Danger</button>
     </div>
 
-    <div class="col-md-2"></div>
   </div>
-
+  <div class="col-md-2"></div>
 </div>
 
 <script type="text/javascript">
@@ -392,6 +397,11 @@
     e.preventDefault();
     window.open("http://localhost:8080/dsl.html", "window_name", "width=500,height=500");
   });
+
+  $('#form').on('submit', function(e) {
+    e.preventDefault();
+    $(this).find('span').text(+$(this).find('span').text() + 1);
+  })
 </script>
 
 </body>

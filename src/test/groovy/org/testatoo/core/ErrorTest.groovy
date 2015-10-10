@@ -19,14 +19,14 @@ import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.bundle.html5.Form
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.input.EmailField
-import org.testatoo.bundle.html5.list.Dropdown
-import org.testatoo.bundle.html5.list.Item
-import org.testatoo.bundle.html5.list.ListBox
+import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.components.Form
+import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.fields.EmailField
+import org.testatoo.bundle.html5.components.list.Dropdown
+import org.testatoo.bundle.html5.components.list.Item
+import org.testatoo.bundle.html5.components.list.ListBox
 import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 

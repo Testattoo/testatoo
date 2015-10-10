@@ -22,21 +22,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.bundle.html5.Panel
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.list.Dropdown
+import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Title
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
 import static org.testatoo.core.dsl.Key.*
 import static org.testatoo.core.dsl.Mouse.*
-import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

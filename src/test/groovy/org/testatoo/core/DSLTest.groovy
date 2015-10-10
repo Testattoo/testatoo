@@ -22,24 +22,22 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.bundle.html5.Form
-import org.testatoo.bundle.html5.Panel
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.input.EmailField
-import org.testatoo.bundle.html5.input.PasswordField
-import org.testatoo.bundle.html5.input.TextField
-import org.testatoo.bundle.html5.list.Dropdown
-import org.testatoo.bundle.html5.list.ListBox
+import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.components.Form
+import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.fields.EmailField
+import org.testatoo.bundle.html5.components.fields.PasswordField
+import org.testatoo.bundle.html5.components.fields.TextField
+import org.testatoo.bundle.html5.components.list.Dropdown
+import org.testatoo.bundle.html5.components.list.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Title
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.dsl.Mouse.clickOn
-import static org.testatoo.core.property.Properties.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -79,11 +77,11 @@ class DSLTest {
         TextField textField = $('#text_field') as TextField
 
         clickOn textField
-        type 'Some input'
+        type 'Some fields'
 
-        textField.should { have value('Some input') }
-        fill textField with 'Other input'
-        textField.should { have value('Other input') }
+        textField.should { have value('Some fields') }
+        fill textField with 'Other fields'
+        textField.should { have value('Other fields') }
     }
 
     @Test
@@ -109,14 +107,14 @@ class DSLTest {
     @Test
     public void should_be_able_to_clear_input() {
         TextField textField = $('#text_field') as TextField
-        fill textField with 'Some input'
+        fill textField with 'Some fields'
 
         textField.should {
             be filled
-            have value('Some input')
+            have value('Some fields')
         }
 
-        assert textField.has(value) == 'Some input'
+        assert textField.has(value) == 'Some fields'
 
         clear textField
 

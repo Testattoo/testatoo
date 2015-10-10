@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.action
 
-import org.testatoo.bundle.html5.Button
+import org.testatoo.bundle.html5.components.Button
 import org.testatoo.core.Component
-import org.testatoo.core.ComponentException
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

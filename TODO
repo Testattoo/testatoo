@@ -13,11 +13,10 @@
                 Paragraph
 				Radio
 				Section
-
-DataGrid
-DataGrid.Cell
-DataGrid.Column
-DataGrid.Row
+				DataGrid
+				DataGrid.Cell
+				DataGrid.Column
+				DataGrid.Row
 
 DropDown
 GroupItem
@@ -27,19 +26,18 @@ ListView
 
 				ColorField
 				DateField
-DateTimeField
-EmailField
-Input
-MonthField
-NumberField
-PasswordField
-PhoneField
-RangeField
-SearchField
-TextField
-TimeField
-URLField
-WeekField
+				DateTimeField
+				EmailField
+				MonthField
+				NumberField
+				PasswordField
+				PhoneField
+				RangeField
+				SearchField
+				TextField
+				TimeField
+				URLField
+				WeekField
 
 ======== PROPERTIES ==========
 			ArticleSize
@@ -51,7 +49,7 @@ Items
 			Maximum
 			Minimum
             ParagraphSize
-Pattern
+			Pattern
 			Placeholder
 			Reference
 SelectedItems
@@ -89,7 +87,6 @@ VisibleItemsSize
 
 // MultiSelectable getSelectedItems()
 // SingleSelectable getSelectedItem()
-
 
 MOVE ALL ACTION IN THE DSL just keep MOUSE on Component == LOW LEVEL
 // TODO David move to DLS
@@ -168,4 +165,9 @@ MOVE ALL ACTION IN THE DSL just keep MOUSE on Component == LOW LEVEL
             support Title, "it.text()"
         }
     }
+
+    data_grid.should { be enabled }
+            data_grid.should { be visible }
+
+            data_grid.should { have 4.columns }
 

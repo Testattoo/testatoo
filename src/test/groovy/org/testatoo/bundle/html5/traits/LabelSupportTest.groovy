@@ -21,9 +21,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.input.EmailField
-import org.testatoo.bundle.html5.input.PasswordField
+import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.fields.EmailField
+import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$

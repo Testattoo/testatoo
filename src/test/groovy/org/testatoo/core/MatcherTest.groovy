@@ -21,15 +21,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.list.Dropdown
+import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.property.Properties.getItems
-import static org.testatoo.core.property.Properties.getValue
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

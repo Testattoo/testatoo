@@ -22,15 +22,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.input.TextField
+import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.fill
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.property.Properties.value
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
