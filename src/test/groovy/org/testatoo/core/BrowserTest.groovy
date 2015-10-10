@@ -27,7 +27,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.dsl.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

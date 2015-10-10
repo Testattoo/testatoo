@@ -33,8 +33,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.*
-import static org.testatoo.core.dsl.Key.ALT
-import static org.testatoo.core.dsl.Key.CTRL
+import static org.testatoo.core.input.Key.ALT
+import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.property.Properties.reference
 
 /**

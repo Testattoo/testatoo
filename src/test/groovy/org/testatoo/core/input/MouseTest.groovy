@@ -33,8 +33,8 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.dsl.Key.*
-import static org.testatoo.core.dsl.Mouse.*
+import static Key.*
+import static Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

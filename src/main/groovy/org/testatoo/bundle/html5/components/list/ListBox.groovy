@@ -18,6 +18,11 @@ package org.testatoo.bundle.html5.components.list
 import org.testatoo.bundle.html5.traits.SelectTypeSupport
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
+import org.testatoo.core.Testatoo
+
+import javax.xml.soap.Text
+
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -32,18 +37,17 @@ class ListBox extends Component implements SelectTypeSupport {
     Item item(String value) {
         items.find { it.value == value }
     }
+
+    List<Item> getVisibleItems() {
+        int size = config.evaluator.eval(id, "it.prop('size')") as Integer
+        items[0..size-1]
+    }
+
+    List<GroupItem> getGroupItems() {
+        find("optgroup", GroupItem)
+    }
+
+    GroupItem groupItem(String value) {
+        groupItems.find { it.value == value }
+    }
 }
-
-//    ListBox() {
-//        support Label, GroupItemsSize, VisibleItemsSize, SelectedItems, Size
-//        support Items, { find("option", Item) }
-//        support GroupItems, { find("optgroup", GroupItem) }
-//        support MultiSelectable, SingleSelectable
-//    }
-//
-
-//
-//    List<GroupItem> getGroupItems() {
-//        find("optgroup", GroupItem)
-//    }
-

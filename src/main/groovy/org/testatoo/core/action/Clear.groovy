@@ -18,7 +18,7 @@ package org.testatoo.core.action
 import org.testatoo.core.Component
 import org.testatoo.core.Testatoo
 
-import static org.testatoo.core.dsl.Key.BACK_SPACE
+import static org.testatoo.core.input.Key.BACK_SPACE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

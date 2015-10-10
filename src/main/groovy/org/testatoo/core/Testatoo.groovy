@@ -16,8 +16,8 @@
 package org.testatoo.core
 
 import org.testatoo.core.dsl.Browser
-import org.testatoo.core.dsl.Keyboard
-import org.testatoo.core.dsl.Mouse
+import org.testatoo.core.input.Keyboard
+import org.testatoo.core.input.Mouse
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

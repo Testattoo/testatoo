@@ -22,7 +22,7 @@ import org.testatoo.core.action.Fill
 import org.testatoo.core.action.MouseClick
 import org.testatoo.core.action.MouseModifiers
 import org.testatoo.core.action.Unselect
-import org.testatoo.core.property.Properties
+import org.testatoo.core.input.Key
 import org.testatoo.core.property.matcher.PropertyMatcher
 
 import java.time.Duration

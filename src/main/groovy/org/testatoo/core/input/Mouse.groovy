@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.dsl
+package org.testatoo.core.input
 
 import org.testatoo.core.Component
 import org.testatoo.core.Testatoo
@@ -44,5 +44,4 @@ class Mouse {
             from.drag(onto)
         }
     }
-
 }

@@ -21,12 +21,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.dsl.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -36,83 +34,56 @@ class DropdownTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.config.evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
-    public void should_have_expected_behaviours() {
-        Dropdown dropdown = $('#elements') as Dropdown
+    public void dropdown_should_have_expected_behaviours() {
+        Dropdown elements = $('#elements') as Dropdown
 
-        dropdown.should { be enabled }
-        dropdown.should { be visible }
+        assert elements.items.size() == 5
 
-        dropdown.should { have label('Elements list') }
-        dropdown.should { have size(5) }
+        Dropdown os = $('#os') as Dropdown
+        assert os.items.size() == 8
 
-        dropdown.should { have items('H', 'B', 'Pol', 'Ca', 'Ra') }
+        assert os.items[1].value == 'Ubuntu'
+        assert os.item('Ubuntu').value == 'Ubuntu'
 
-        dropdown.should { have items.containing('Pol', 'Ca') }
+        assert os.groupItems.size() == 3
 
-        dropdown.should { have selectedItems('H') }
-        dropdown.items[2].should { be unselected }
+        assert os.groupItems[0].value == 'linux'
+        assert os.groupItem('linux').value == 'linux'
+        assert os.groupItem('win32').value == 'win32'
+        assert os.groupItem('BSD').value == 'BSD'
 
-        clickOn dropdown.items[2]
+        Dropdown countries = $('#countries') as Dropdown
 
-        dropdown.should { have selectedItems('Pol') }
-        dropdown.items[2].should { be selected }
-
-        assert dropdown.items.size == 5
-        dropdown.should { have 5.items }
-
-        dropdown.items[0].should { have value('H') }
-        dropdown.items[1].should { have value('B') }
-        dropdown.items[2].should { have value('Pol') }
-        dropdown.items[3].should { have value('Ca') }
-        dropdown.items[4].should { have value('Ra') }
-
-        clickOn dropdown.items[4]
-
-        dropdown.should { have selectedItems('Ra') }
-        dropdown.items[4].should { be selected }
-
-        clickOn dropdown.item('Ca')
-        dropdown.should { have selectedItems('Ca') }
-
-        dropdown = $('#countries') as Dropdown
-        dropdown.should { be disabled }
-        dropdown.should { have items('Canada', 'France', 'Spain') }
-        dropdown.item('Canada').should { be disabled }
-
-        dropdown = $('#os') as Dropdown
-        dropdown.should { have 8.items }
-        dropdown.should { have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD') }
-
-        dropdown.should { have 3.groupItems }
-        dropdown.should { have groupItems('linux', 'win32', 'BSD') }
-        dropdown.should { have groupItems.containing('linux') }
-
-        GroupItem group = dropdown.groupItems[0]
-        group.should { have value('linux') }
-        group.should { have items('Ubuntu', 'Fedora', 'Gentoo') }
-
-        group = dropdown.groupItem('win32')
-        group.should { have value('win32') }
-        group.should { have items('XP', 'Vista') }
-
-        group = dropdown.groupItem('BSD')
-        group.should { have value('BSD') }
-        group.should { have 2.items }
-
-        group.items[0].should { have value('FreeBSD') }
-        group.item('OpenBSD').should { have value('OpenBSD') }
-
-        assert group.items.size == 2
-
-        group.should { have items('FreeBSD', 'OpenBSD') }
+        assert countries.disabled
+        // Items are disabled too
+        assert countries.items[0].disabled
     }
+
+    @Test
+    public void groupItem_should_have_expected_behaviours() {
+        Dropdown os = $('#os') as Dropdown
+        GroupItem linux = os.groupItem('linux')
+
+        assert linux.value == 'linux'
+        assert linux.items.size() == 3
+        assert linux.item('Gentoo').value == 'Gentoo'
+    }
+
+    @Test
+    public void implement_toString_and_equal() {
+        Dropdown os = $('#os') as Dropdown
+
+        assert os.items[1].toString() == 'Ubuntu'
+        assert os.items[1] == os.items[1]
+    }
+
 }

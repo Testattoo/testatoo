@@ -24,8 +24,7 @@ import org.testatoo.core.Component
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
 class Dropdown extends Component implements SelectTypeSupport {
-//  support GroupItemsSize, SelectedItems
-//  support Size, { eval("it.find('option').length") as int }
+
     List<Item> getItems() {
         find("option", Item)
     }

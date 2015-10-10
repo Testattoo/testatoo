@@ -28,7 +28,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.*
-import static org.testatoo.core.dsl.Key.*
+import static Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.property
+package org.testatoo.core.input
 
-import org.testatoo.core.property.matcher.ContainingMatcher
-import org.testatoo.core.property.matcher.EqualsToListMatcher
+import org.testatoo.core.Testatoo
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class GroupItems extends Property {
+class Keyboard {
 
-    @Delegate
-    private EqualsToListMatcher.Matchers eq = EqualsToListMatcher.matchers(this)
+    void type(Collection<?> keys) { Testatoo.config.evaluator.enter(keys) }
 
-    @Delegate
-    private ContainingMatcher.Matchers contains = ContainingMatcher.matchers(this)
+    void type(Key key) { type([key]) }
 
+    void type(String text) { type([text]) }
 }

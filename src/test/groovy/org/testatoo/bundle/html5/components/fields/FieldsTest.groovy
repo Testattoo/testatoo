@@ -26,8 +26,7 @@ import org.testatoo.bundle.html5.traits.LabelSupport
 import org.testatoo.bundle.html5.traits.RangeSupport
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 
 /**

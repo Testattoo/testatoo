@@ -23,12 +23,12 @@ import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.action.MouseModifiers
-import org.testatoo.core.dsl.Key
+import org.testatoo.core.input.Key
 import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.action.MouseModifiers.DOUBLE
 import static org.testatoo.core.action.MouseModifiers.SINGLE
-import static org.testatoo.core.dsl.Key.*
+import static Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

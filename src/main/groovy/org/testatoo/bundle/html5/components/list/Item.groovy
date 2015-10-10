@@ -20,31 +20,35 @@ import org.testatoo.bundle.html5.traits.ValueSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 
+import static org.testatoo.core.Testatoo.*
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('option,li')
 class Item extends Component implements SelectSupport, ValueSupport {
 
-//    Item() {
-//        support Value, { eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()") }
-//        support Disabled, { check "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled');" }
-//        support Enabled, { check "!el.is(':disabled') || el.attr('disabled') == undefined || !el.closest('select').is(':disabled');" }
-//        support Selected, Unselected
-//        support Select, Unselect
-//    }
-//
-//    boolean equals(o) {
-//        if (this.is(o)) return true
-//        return value == o
-//    }
-//
-//    String getValue() {
-//        return eval("it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
-//    }
-//
-//    @Override
-//    String toString() {
-//        return value
-//    }
+    String getValue() {
+        config.evaluator.eval(id, "it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
+    }
+
+    @Override
+    boolean isEnabled() {
+        !disabled
+    }
+
+    @Override
+    boolean isDisabled() {
+        config.evaluator.getBool(id, "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
+    }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        return value == o.value
+    }
+
+    @Override
+    String toString() {
+        return value
+    }
 }

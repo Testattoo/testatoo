@@ -17,7 +17,7 @@ package org.testatoo.core.internal
 
 import org.testatoo.core.dsl.Block
 import org.testatoo.core.dsl.Blocks
-import org.testatoo.core.dsl.Key
+import org.testatoo.core.input.Key
 
 import java.time.Duration
 

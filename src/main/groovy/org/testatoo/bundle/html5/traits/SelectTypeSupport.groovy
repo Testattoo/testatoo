@@ -1,7 +1,5 @@
 package org.testatoo.bundle.html5.traits
 
-import org.testatoo.core.Testatoo
-
 import static org.testatoo.core.Testatoo.*
 
 /**

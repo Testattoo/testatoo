@@ -21,10 +21,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 
 /**
@@ -35,25 +34,19 @@ class ListViewTest {
 
     @BeforeClass
     public static void setup() {
-        Testatoo.config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         visit 'http://localhost:8080/components.html'
     }
 
     @AfterClass
-    public static void tearDown() { Testatoo.config.evaluator.close() }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void should_have_expected_behaviours() {
+        public void should_have_expected_behaviours() {
         ListView listView = $('#list_view') as ListView
 
-        listView.should { be enabled }
-        listView.should { be visible }
-
-        listView.should { have size(5) }
-        assert listView.items.size == 5
-        listView.should { have 5.items }
-
-        listView.should { have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5') }
-        listView.items[0].should { have value('Item 1') }
+        assert listView.items.size() == 5
+        assert listView.items[0].value == 'Item 1'
+        assert listView.item('Item 4').value == 'Item 4'
     }
 }

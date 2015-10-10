@@ -25,12 +25,11 @@ import org.testatoo.core.property.Items
 @ByCss('ul,ol')
 class ListView extends Component {
 
-    ListView() {
-        support Size
-        support Items, { find('li', Item) }
-    }
-
     List<Item> getItems() {
         find('li', Item)
+    }
+
+    Item item(String value) {
+        items.find { it.value == value }
     }
 }

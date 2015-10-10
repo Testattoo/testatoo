@@ -17,7 +17,8 @@ package org.testatoo.bundle.html5.components.list
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.property.Properties
+
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -25,32 +26,15 @@ import org.testatoo.core.property.Properties
 @ByCss('optgroup')
 class GroupItem extends Component {
 
-//    GroupItem() {
-//        support Value, { eval("it.attr('label')") }
-//        support Size
-//        support Items, { find("option", Item) }
-//    }
-
     List<Item> getItems() {
         find("option", Item)
     }
 
-    Item item(String _value) {
-        items.find { it.has(Properties.value) == _value }
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) return true
-        return value == o
+    Item item(String value) {
+        items.find { it.value == value }
     }
 
     String getValue() {
-        this.eval("it.attr('label')")
+        config.evaluator.eval(id, "it.attr('label')")
     }
-
-    @Override
-    String toString() {
-        return value
-    }
-
 }
