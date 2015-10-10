@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.CheckSupport
 import org.testatoo.bundle.html5.traits.LabelSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
@@ -24,4 +24,4 @@ import org.testatoo.core.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=checkbox]')
-class Checkbox extends Component implements Checkable, LabelSupport {}
+class Checkbox extends Component implements CheckSupport, LabelSupport {}

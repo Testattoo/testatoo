@@ -6,7 +6,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.traits.Checkable
+import org.testatoo.bundle.html5.traits.CheckSupport
 import org.testatoo.bundle.html5.traits.LabelSupport
 import org.testatoo.bundle.html5.traits.TextSupport
 import org.testatoo.bundle.html5.traits.ValiditySupport
@@ -68,7 +68,7 @@ class ComponentsTest {
 
     @Test
     public void checkbox_should_have_expected_behaviours() {
-        assert Checkbox in Checkable
+        assert Checkbox in CheckSupport
         assert Checkbox in LabelSupport
     }
 
@@ -152,7 +152,7 @@ class ComponentsTest {
     @Test
     public void radio_should_have_expected_behaviours() {
         assert Radio in LabelSupport
-        assert Radio in Checkable
+        assert Radio in CheckSupport
     }
 
     @Test
