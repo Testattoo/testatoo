@@ -22,19 +22,19 @@ import static org.testatoo.core.Testatoo.getConfig
  */
 class Navigation {
 
-    void to(String url) {
+    static void to(String url) {
         config.evaluator.to(url)
     }
 
-    void back() {
+    static void back() {
         config.evaluator.back()
     }
 
-    void forward() {
+    static void forward() {
         config.evaluator.forward()
     }
 
-    void refresh() {
+    static void refresh() {
         config.evaluator.refresh()
     }
 }

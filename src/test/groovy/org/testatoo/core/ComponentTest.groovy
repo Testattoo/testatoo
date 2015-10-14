@@ -17,35 +17,30 @@ package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.Checkbox
 import org.testatoo.bundle.html5.components.Paragraph
 import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.bundle.html5.components.Section
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.check
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
 class ComponentTest {
 
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        scan 'org.testatoo.component'
+        config.scan 'org.testatoo.component'
         visit 'http://localhost:8080/components.html'
     }
 
@@ -55,7 +50,7 @@ class ComponentTest {
     @Test
     public void should_fail_on_component_without_identifier() {
         try {
-            ($('#button') as UnidentifiedComponent).should { be enabled }
+            assert ($('#button') as UnidentifiedComponent).enabled
             fail()
         } catch (e) {
             assert e instanceof ComponentException
@@ -65,13 +60,13 @@ class ComponentTest {
 
     @Test
     public void should_use_top_level_component_identifier() {
-        ($('#button') as CustomButton).should { be enabled }
+        assert ($('#button') as CustomButton).enabled
     }
 
     @Test
     public void should_throw_an_error_on_bad_component_definition() {
         try {
-            ($('#radio') as Button).should { be enabled }
+            assert ($('#radio') as Button).enabled
             fail()
         } catch (e) {
             assert e instanceof ComponentException
@@ -96,7 +91,7 @@ class ComponentTest {
         Section section = $('#section') as Section
         Paragraph paragraph = section.find('p:first')[0] as Paragraph
 
-        paragraph.should { have text('Paragraph 1') }
+        assert paragraph.text == 'Paragraph 1'
     }
 
     @Test
@@ -109,46 +104,33 @@ class ComponentTest {
     public void should_be_able_to_evaluate_state_and_property() {
         Radio checked_radio = $('[type=radio]:checked') as Radio
 
-        assert checked_radio.is(checked)
-        assert checked_radio.has(label) == 'Radio label checked'
+        assert checked_radio.checked
+        assert checked_radio.label == 'Radio label checked'
     }
 
     @Test
     public void should_be_able_to_override_property() {
         Button button = $('#button') as CustomButton
-        button.should { have text('Override Text') }
+        assert button.text == 'Override Text'
     }
 
     @Test
     public void should_be_able_to_override_state() {
         Button button = $('#button') as CustomButton
-        button.should { be hidden }
-    }
-
-    @Test
-    @Ignore
-    public void should_be_able_to_override_action() {
-        CustomCheckbox checkbox = $('#checkbox') as CustomCheckbox
-
-        assert !checkbox.checked
-        check checkbox
-        assert checkbox.checked
+        assert button.hidden
     }
 
     static class CustomButton extends Button {
-        CustomButton() {
-            support Text, { "Override Text" }
-            support Hidden, { true }
+
+        @Override
+        String getText() {
+            return "Override Text"
         }
-    }
 
-    static class CustomCheckbox extends Checkbox {
-        boolean checked;
-
-//        @Override
-//        void check() {
-//            this.checked = true
-//        }
+        @Override
+        boolean isHidden() {
+            return true
+        }
     }
 
     static class UnidentifiedComponent extends Component {}

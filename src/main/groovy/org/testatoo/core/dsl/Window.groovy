@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.dsl
 
-import org.testatoo.core.Testatoo
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,7 +29,7 @@ class Window {
     }
 
     void close() {
-        Testatoo.config.evaluator.closeWindow(this.id)
+        config.evaluator.closeWindow(this.id)
     }
 
     @Override

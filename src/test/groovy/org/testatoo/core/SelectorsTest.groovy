@@ -36,7 +36,6 @@ import static org.testatoo.core.dsl.Actions.visit
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
 class SelectorsTest {
 
     @BeforeClass
@@ -58,8 +57,8 @@ class SelectorsTest {
     public void should_use_$_as_a_single_selector() {
         Button button = $('#button') as Button
 
-        button.should { be enabled }
-        button.should { be visible }
+        assert button.enabled
+        assert button.visible
     }
 
     @Test
@@ -71,11 +70,9 @@ class SelectorsTest {
         assert textFields.size() == 3
 
         textFields.each {
-            it.should {
-                be enabled
-                be visible
-                be empty
-            }
+            assert it.enabled
+            assert it.visible
+            assert it.empty
         }
 
         textFields.each { it ->
@@ -83,10 +80,8 @@ class SelectorsTest {
         }
 
         textFields.each {
-            it.should {
-                be filled
-                have value('TESTATOO!')
-            }
+            assert it.filled
+            assert it.value == 'TESTATOO!'
         }
     }
 
@@ -95,7 +90,7 @@ class SelectorsTest {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button
             buttons.each {
-                it.should { be enabled }
+                assert it.enabled
             }
         } catch (ComponentException e) {
             assert e.message.contains('Expected a Button')
@@ -105,7 +100,7 @@ class SelectorsTest {
 
     @Test
     public void should_have_Components_class_implements_Collection_but_not_support_all_method() {
-        assert Components.interfaces.contains(Collection.class)
+        assert Components in Collection.class
 
         Components<Button> buttons = $$('[type="text"]') of Button
 
