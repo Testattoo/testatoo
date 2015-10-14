@@ -17,11 +17,7 @@ package org.testatoo.core.traits
 
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.Testatoo
-import sun.net.TelnetInputStream
-
-import static org.testatoo.core.Testatoo.config
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -34,7 +30,7 @@ trait GenericSupport {
     }
 
     boolean isDisabled() {
-        config.evaluator.getBool(id, "it.is(':disabled') || !!it.attr('disabled')")
+        config.evaluator.check(id, "it.is(':disabled') || !!it.attr('disabled')")
     }
 
     boolean isAvailable() {
@@ -52,7 +48,7 @@ trait GenericSupport {
     }
 
     boolean isHidden() {
-        config.evaluator.getBool(id, "it.is(':hidden')")
+        config.evaluator.check(id, "it.is(':hidden')")
     }
 
     boolean isVisible() {

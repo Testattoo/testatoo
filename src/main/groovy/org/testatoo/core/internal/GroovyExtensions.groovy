@@ -18,7 +18,6 @@ package org.testatoo.core.internal
 import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.dsl.Block
 import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.input.Key
@@ -27,7 +26,7 @@ import org.testatoo.core.traits.InputSupport
 import java.time.Duration
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.clear
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,11 +38,15 @@ class GroovyExtensions {
     static void rightClick(Key key, Component c) { rightClick([key], c) }
 
     static void click(Collection<Key> keys, Component c) {
-        config.evaluator.click(c.id, [MouseModifiers.LEFT, MouseModifiers.SINGLE], keys)
+        config.evaluator.click(c.id, [LEFT, SINGLE], keys)
     }
 
     static void rightClick(Collection<Key> keys, Component c) {
-        config.evaluator.click(c.id, [MouseModifiers.RIGHT, MouseModifiers.SINGLE], keys)
+        config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
+    }
+
+    static void doubleClick(Component c) {
+        config.evaluator.click(c.id, [LEFT, DOUBLE])
     }
 
     public static Collection<?> plus(Key a, Key b) { [a, b] }
@@ -59,7 +62,7 @@ class GroovyExtensions {
         config.evaluator.trigger(input.id, 'blur')
 
         clear(input)
-        config.evaluator.enter([value])
+        config.evaluator.type([value])
         config.evaluator.trigger(input.id, 'blur')
     }
 

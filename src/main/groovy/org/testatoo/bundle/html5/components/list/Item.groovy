@@ -39,7 +39,7 @@ class Item extends Component implements SelectSupport, ValueSupport {
 
     @Override
     boolean isDisabled() {
-        config.evaluator.getBool(id, "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
+        config.evaluator.check(id, "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
     }
 
     boolean equals(o) {

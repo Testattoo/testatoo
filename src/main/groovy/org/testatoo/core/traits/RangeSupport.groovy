@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,6 +39,6 @@ trait RangeSupport implements ValueSupport {
     }
 
     boolean isOutOfRange() {
-        config.evaluator.getBool(id, "it.is(':out-of-range')")
+        config.evaluator.check(id, "it.is(':out-of-range')")
     }
 }

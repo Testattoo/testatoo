@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -23,7 +23,7 @@ import static org.testatoo.core.Testatoo.getConfig
 trait CheckSupport {
 
     boolean isChecked() {
-        config.evaluator.getBool(id, "it.is(':checked')")
+        config.evaluator.check(id, "it.is(':checked')")
     }
 
     boolean isUnchecked() {

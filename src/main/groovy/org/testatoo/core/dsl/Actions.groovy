@@ -19,6 +19,8 @@ import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+import org.testatoo.core.input.Keyboard
+import org.testatoo.core.input.Mouse
 import org.testatoo.core.traits.CheckOnlySupport
 import org.testatoo.core.traits.CheckSupport
 import org.testatoo.core.traits.InputSupport
@@ -34,6 +36,10 @@ class Actions {
     static void visit(String uri) { browser.open(uri) }
 
     static void open(String uri) { visit(uri) }
+
+    static void clickOn(Component c) { Mouse.clickOn(c) }
+
+    static void type(String text) {  Keyboard.type(text) }
 
     static final Component check(CheckSupport c) {
         if (c.unchecked)
@@ -62,7 +68,7 @@ class Actions {
     static final void clear(InputSupport input) {
         input.click()
         config.evaluator.runScript("\$('#${input.id}').val(' ').change()")
-        config.evaluator.enter([BACK_SPACE])
+        config.evaluator.type([BACK_SPACE])
         config.evaluator.trigger(input.id, 'blur')
         input.click()
     }

@@ -30,9 +30,9 @@ abstract trait Evaluator implements AutoCloseable {
 
     abstract void registerScripts(String... scripts)
 
-    abstract String eval(String id, String jQueryExpr)
+    abstract String eval(String id, String jsExpr)
 
-    abstract boolean getBool(String id, String jQueryExpr)
+    abstract boolean check(String id, String jsExpr)
 
     abstract void trigger(String id, String event)
 
@@ -60,7 +60,7 @@ abstract trait Evaluator implements AutoCloseable {
 
     abstract List<MetaInfo> getMetaInfo(String jQueryExpr)
 
-    abstract void enter(Collection<?> keys)
+    abstract void type(Collection<?> keys)
 
     abstract void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
 

@@ -35,5 +35,4 @@ class MetaInfo {
         }
         return super.asType(clazz)
     }
-
 }

@@ -28,7 +28,6 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -28,7 +28,6 @@ import org.testatoo.core.traits.ValiditySupport
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -145,7 +144,7 @@ class ComponentsTest {
         Link link = $('#link') as Link
 
         assert Link in TextSupport
-        assert link.reference == 'http://localhost:8080/components.html'
+        assert link.reference == 'http://localhost:8080/dsl.html'
     }
 
     @Test

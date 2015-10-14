@@ -27,6 +27,6 @@ trait SelectTypeSupport {
     }
 
     boolean isMultiSelectable() {
-        config.evaluator.getBool(id, "it.is('select') && it.prop('multiple')")
+        config.evaluator.check(id, "it.is('select') && it.prop('multiple')")
     }
 }

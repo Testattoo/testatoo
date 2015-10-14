@@ -26,8 +26,6 @@ import org.testatoo.bundle.html5.components.Link
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -82,7 +80,7 @@ class BrowserTest {
         String main_window_id = browser.windows[0].id
 
         Link link = $('#link') as Link
-        Form form = $('#form') as Form
+        Form form = $('#dsl-form') as Form
 
         assert link.available
         assert form.missing

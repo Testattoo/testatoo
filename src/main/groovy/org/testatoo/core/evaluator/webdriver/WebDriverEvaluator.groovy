@@ -56,13 +56,13 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    String eval(String id, String jQueryExpr) {
-        execute(id, jQueryExpr)
+    String eval(String id, String jsExpr) {
+        execute(id, jsExpr)
     }
 
     @Override
-    boolean getBool(String id, String jQueryExpr) {
-        Boolean.parseBoolean(eval(id, jQueryExpr))
+    boolean check(String id, String jsExpr) {
+        Boolean.parseBoolean(eval(id, jsExpr))
     }
 
     @Override
@@ -142,7 +142,7 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void enter(Collection<?> keys) {
+    void type(Collection<?> keys) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []

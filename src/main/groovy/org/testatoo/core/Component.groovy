@@ -99,9 +99,9 @@ class Component implements GenericSupport {
                 MetaInfo info = idProvider.getMetaInfos()[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(Testatoo.config.evaluator.getBool(info.id, identifyingExpr))) {
+                    if (!(Testatoo.config.evaluator.check(info.id, identifyingExpr))) {
                         Class<Component> type = Testatoo.config.componentTypes.find {
-                            Testatoo.config.evaluator.getBool(info.id, Identifiers.getIdentifyingExpression(it))
+                            Testatoo.config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }
@@ -160,55 +160,9 @@ class Component implements GenericSupport {
 //        }
 //    }
 
-//    void support(Class<?>... types) {
-  //        for (Class<?> type : types) {
-  //            if (Property.isAssignableFrom(type)) {
-  //                support(type as Class<? extends Property>, DEFAULT_PE)
-  //            } else if (State.isAssignableFrom(type)) {
-  //                support(type as Class<? extends State>, DEFAULT_SE)
-  //            } else if (Action.isAssignableFrom(type)) {
-  //                _supportedActions.add(type as Class<? extends Action>)
-  //            }
-  //        }
-  //    }
-
-  //    void support(Class<? extends Property> type, PropertyEvaluator e) {
-  //        _supportedProperties.put(type, e)
-  //    }
-
-  //    void support(Class<? extends State> type, StateEvaluator e) {
-  //        _supportedStates.put(type, e)
-  //    }
-
-  //    void support(Class<?> type, Closure<?> c) {
-  //        if (Property.isAssignableFrom(type)) {
-  //            _supportedProperties.put(type as Class<? extends Property>, c as PropertyEvaluator)
-  //        } else if (State.isAssignableFrom(type)) {
-  //            _supportedStates.put(type as Class<? extends State>, c as StateEvaluator)
-  //        }
-  //    }
-
-  //    void support(Class<?> type, String exp) {
-  //        support(type, { eval(exp) })
-  //    }
-
-  //    void execute(Action action) {
-  //        Class<?> c = action.getClass()
-  //        while (c != Object) {
-  //            if (_supportedActions.contains(c)) {
-  //                // TODO mathieu where is th use of the override
-  //                action.execute(this)
-  //                return
-  //            } else {
-  //                c = c.superclass
-  //            }
-  //        }
-  //        throw new ComponentException("Unsupported action '${action.class.simpleName}' on component ${this}")
-  //    }
-
     //String eval(String jqueryExpr) { return Testatoo.config.evaluator.eval(getId(), jqueryExpr) }
 
-    //boolean check(String jqueryExpr) { return evaluator.getBool(getId(), jqueryExpr) }
+    //boolean check(String jqueryExpr) { return evaluator.check(getId(), jqueryExpr) }
 
 //    Evaluator getEvaluator() { meta.evaluator }
 

@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

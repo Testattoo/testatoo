@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,6 +27,6 @@ trait ValiditySupport {
     }
 
     boolean isInvalid() {
-        config.evaluator.getBool(id, "it.is(':invalid')")
+        config.evaluator.check(id, "it.is(':invalid')")
     }
 }

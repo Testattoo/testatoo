@@ -32,13 +32,9 @@ import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.bundle.html5.components.list.ListBox
 import org.testatoo.core.ComponentException
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.input.Keyboard
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.*
-import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -113,7 +109,7 @@ class IntentionTest {
         TextField textField = $('#text_field') as TextField
 
         clickOn textField
-        Keyboard.type 'Some fields'
+        type 'Some fields'
 
         assert textField.value == 'Some fields'
         fill textField with 'Other fields'
@@ -156,10 +152,10 @@ class IntentionTest {
 
     @Test
     public void should_be_able_to_set_form_easily() {
-        Form form = $('#form') as Form
-        EmailField email = $('#form [type=email]') as EmailField
-        PasswordField password = $('#form [type=password]') as PasswordField
-        Message message = $('#form .alert') as Message
+        Form form = $('#dsl-form') as Form
+        EmailField email = $('#dsl-form [type=email]') as EmailField
+        PasswordField password = $('#dsl-form [type=password]') as PasswordField
+        Message message = $('#dsl-form .alert') as Message
 
         assert message.title == 'The form was submitted 0 time(s)'
 

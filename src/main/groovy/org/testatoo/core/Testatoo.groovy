@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.testatoo.core.dsl.Actions
 import org.testatoo.core.dsl.Browser
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
@@ -22,7 +23,7 @@ import org.testatoo.core.input.Mouse
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Testatoo {
+class Testatoo extends Actions {
 
     /**
      * Access Testatoo config

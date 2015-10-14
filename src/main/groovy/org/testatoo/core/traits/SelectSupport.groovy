@@ -23,7 +23,7 @@ import static org.testatoo.core.Testatoo.*
 trait SelectSupport {
 
     boolean isSelected() {
-        config.evaluator.getBool(id, "!!it.prop('selected')")
+        config.evaluator.check(id, "!!it.prop('selected')")
     }
 
     boolean isUnselected() {

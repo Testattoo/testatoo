@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.dsl
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

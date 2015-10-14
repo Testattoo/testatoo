@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,7 +27,7 @@ trait InputSupport implements ValueSupport, ValiditySupport {
     }
 
     boolean isEmpty() {
-        config.evaluator.getBool(id, "\$.trim(it.val()).length == 0")
+        config.evaluator.check(id, "\$.trim(it.val()).length == 0")
     }
 
     boolean isFilled() {
@@ -35,11 +35,11 @@ trait InputSupport implements ValueSupport, ValiditySupport {
     }
 
     boolean isReadOnly() {
-        config.evaluator.getBool(id, "it.prop('readonly')")
+        config.evaluator.check(id, "it.prop('readonly')")
     }
 
     boolean isRequired() {
-        config.evaluator.getBool(id, "it.prop('required')")
+        config.evaluator.check(id, "it.prop('required')")
     }
 
     boolean isOptional() {

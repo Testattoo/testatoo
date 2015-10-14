@@ -22,9 +22,9 @@ import static org.testatoo.core.Testatoo.config
  */
 class Keyboard {
 
-    void type(Collection<?> keys) { config.evaluator.enter(keys) }
+    static void type(Collection<?> keys) { config.evaluator.type(keys) }
 
-    void type(Key key) { type([key]) }
+    static void type(Key key) { type([key]) }
 
-    void type(String text) { type([text]) }
+    static void type(String text) { type([text]) }
 }
