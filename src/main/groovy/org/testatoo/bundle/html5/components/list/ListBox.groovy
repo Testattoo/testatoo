@@ -15,12 +15,9 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.bundle.html5.traits.SelectTypeSupport
+import org.testatoo.core.traits.SelectTypeSupport
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
-
-import javax.xml.soap.Text
 
 import static org.testatoo.core.Testatoo.config
 
@@ -49,5 +46,9 @@ class ListBox extends Component implements SelectTypeSupport {
 
     GroupItem groupItem(String value) {
         groupItems.find { it.value == value }
+    }
+
+    List<Item> getSelectedItems() {
+        items.findAll { it.selected }
     }
 }

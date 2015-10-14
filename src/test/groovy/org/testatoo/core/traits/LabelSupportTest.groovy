@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
+package org.testatoo.core.traits
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -23,7 +23,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.bundle.html5.components.fields.EmailField
-import org.testatoo.bundle.html5.components.fields.TextField
+import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -34,7 +34,8 @@ import static org.testatoo.core.dsl.Actions.visit
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class GenericSupportTest {
+class LabelSupportTest {
+
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
@@ -46,20 +47,16 @@ class GenericSupportTest {
 
     @Test
     public void should_have_expected_behaviours() {
-        Radio male = $('#male') as Radio;
-        assert male.enabled
-        assert male.visible
-
+        // Label with for reference
         EmailField email = $('#email') as EmailField
-        assert email.disabled
-        assert email.available
+        assert email.label == 'Email'
 
-        TextField text = $('#non_existing_id') as TextField
-        assert text.missing
+        // Label as parent
+        Radio male = $('#male') as Radio;
+        assert male.label == 'Male'
 
-        // display:none
-        TextField field = $('#hidden_1') as TextField
-        assert field.hidden
+        // Label as previous sibling
+        PasswordField password = $('#password') as PasswordField
+        assert password.label == 'Password'
     }
-
 }

@@ -35,12 +35,12 @@ import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.input.Key.ALT
 import static org.testatoo.core.input.Key.CTRL
-import static org.testatoo.core.property.Properties.reference
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class ErrorTest {
 
     @BeforeClass

@@ -13,20 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.action
+package org.testatoo.core.traits
 
-import org.testatoo.core.Component
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Reset implements Action {
-    @Override
-    void execute(Component c) {
-//        Button reset_button = c.find('[type=reset]:first')[0] as Button
-//        if (reset_button && reset_button.is(new Available()))
-//            new MouseClick().execute(reset_button)
-//        else
-//            throw new ComponentException('Cannot reset form without reset button')
+trait RangeSupport implements ValueSupport {
+
+    Object getMinimun() {
+        config.evaluator.eval(id, "it.prop('min')") as BigDecimal
+    }
+
+    Object getMaximum() {
+        config.evaluator.eval(id, "it.prop('max')") as BigDecimal
+    }
+
+    Object getStep() {
+        config.evaluator.eval(id, "it.prop('step')") as BigDecimal
+    }
+
+    boolean isInRange() {
+        !outOfRange
+    }
+
+    boolean isOutOfRange() {
+        config.evaluator.getBool(id, "it.is(':out-of-range')")
     }
 }

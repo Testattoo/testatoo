@@ -39,6 +39,7 @@ import static org.testatoo.core.dsl.Actions.visit
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class ComponentTest {
 
     @BeforeClass

@@ -13,61 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.traits
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
-class WaitTest {
+class CheckSupportTest {
 
     @BeforeClass
     public static void setup() {
-        config.waitUntil = 10.seconds
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/wait.html'
+        visit 'http://localhost:8080/traits.html'
     }
 
     @AfterClass
-    public static void tearDown() {
-        config.waitUntil = 2.seconds
-        config.evaluator.close()
-    }
+    public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void should_be_able_to_wait_on_condition() {
-        Button button = $('#add-message') as Button
-        Button message = $('#msg') as Button
+    public void should_have_expected_behaviours() {
+        Radio male = $('#male') as Radio;
+        Radio female = $('#female') as Radio;
 
-        button.should {
-            be enabled
-            be visible
-        }
+        assert male.checked
+        assert !male.unchecked
 
-        message.should { be missing }
+        assert !female.checked
+        assert female.unchecked
 
-        clickOn button
-        button.should { be disabled }
-        button.should { be enabled }
-
-        clickOn button
-        button.should { be enabled }
+        female.click()
+        assert male.unchecked
+        assert female.checked
     }
-}
 
+}

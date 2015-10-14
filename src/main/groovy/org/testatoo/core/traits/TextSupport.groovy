@@ -13,10 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.dsl
+package org.testatoo.core.traits
+
+import static org.testatoo.core.Testatoo.config
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class TestatooMatchers {
+trait TextSupport {
+
+    String getText() {
+        config.evaluator.eval(id, "it.text()")
+    }
 }

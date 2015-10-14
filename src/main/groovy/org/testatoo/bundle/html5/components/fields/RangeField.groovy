@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.fields
 
-import org.testatoo.bundle.html5.traits.RangeSupport
+import org.testatoo.core.traits.RangeSupport
 import org.testatoo.core.ByCss
 
 /**

@@ -13,16 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
+package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait TextSupport {
+trait InputSupport implements ValueSupport, ValiditySupport {
 
-    String getText() {
-        config.evaluator.eval(id, "it.text()")
+    String getPlaceholder() {
+        config.evaluator.eval(id, "it.prop('placeholder')")
+    }
+
+    boolean isEmpty() {
+        config.evaluator.getBool(id, "\$.trim(it.val()).length == 0")
+    }
+
+    boolean isFilled() {
+        !empty
+    }
+
+    boolean isReadOnly() {
+        config.evaluator.getBool(id, "it.prop('readonly')")
+    }
+
+    boolean isRequired() {
+        config.evaluator.getBool(id, "it.prop('required')")
+    }
+
+    boolean isOptional() {
+        !required
     }
 }

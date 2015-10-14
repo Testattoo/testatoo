@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components.fields
 
-import org.testatoo.bundle.html5.traits.InputSupport
-import org.testatoo.bundle.html5.traits.LabelSupport
+import org.testatoo.core.traits.InputSupport
+import org.testatoo.core.traits.LabelSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 

@@ -13,25 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
+package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait LabelSupport {
+trait SelectTypeSupport {
 
-    String expr =
-            "function() {" +
-            "   var label = \$('label[for=' + it.attr('id') + ']');" +
-            "   if (label.length > 0) return label.text().trim();" +
-            "   var p = it.prev('label');" +
-            "   if (p.length > 0) return p.text();" +
-            "   return it.parent().text().trim();" +
-            "}()"
+    boolean isSingleSelectable() {
+        !multiSelectable
+    }
 
-    String getLabel() {
-        config.evaluator.eval(id, expr).trim()
+    boolean isMultiSelectable() {
+        config.evaluator.getBool(id, "it.is('select') && it.prop('multiple')")
     }
 }

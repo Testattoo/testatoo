@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.datagrid
 
-import org.testatoo.bundle.html5.traits.ValueSupport
+import org.testatoo.core.traits.ValueSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.Testatoo

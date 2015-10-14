@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.bundle.html5.traits.ValiditySupport
+import org.testatoo.core.traits.ValiditySupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 

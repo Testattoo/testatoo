@@ -18,8 +18,7 @@
   // See http://api.jquery.com/jQuery.noConflict/ and Stack Overflow
   w.testatoo = w.jQuery.noConflict(true);
   var jQuery = w.testatoo,
-    $ = w.testatoo,
-    webkit = !!window.webkitRequestAnimationFrame;
+    $ = w.testatoo;
 
   $.fn.getMetaInfos = function() {
     var metaInfos = [];

@@ -21,9 +21,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.traits.InputSupport
-import org.testatoo.bundle.html5.traits.LabelSupport
-import org.testatoo.bundle.html5.traits.RangeSupport
+import org.testatoo.core.traits.InputSupport
+import org.testatoo.core.traits.LabelSupport
+import org.testatoo.core.traits.RangeSupport
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*

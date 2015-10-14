@@ -13,35 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.list
+package org.testatoo.core.traits
 
-import org.testatoo.core.traits.SelectTypeSupport
-import org.testatoo.core.ByJs
-import org.testatoo.core.Component
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
-class Dropdown extends Component implements SelectTypeSupport {
+trait CheckSupport {
 
-    List<Item> getItems() {
-        find("option", Item)
+    boolean isChecked() {
+        config.evaluator.getBool(id, "it.is(':checked')")
     }
 
-    List<GroupItem> getGroupItems() {
-        find("optgroup", GroupItem)
-    }
-
-    GroupItem groupItem(String value) {
-        groupItems.find { it.value == value }
-    }
-
-    Item item(String value) {
-        items.find { it.value == value }
-    }
-
-    Item getSelectedItem() {
-        items.find { it.selected }
+    boolean isUnchecked() {
+        !checked
     }
 }

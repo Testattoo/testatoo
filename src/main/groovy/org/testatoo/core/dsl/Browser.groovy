@@ -24,23 +24,23 @@ class Browser {
 
     final Navigation navigate = new Navigation()
 
-    String getTitle() {
+    static String getTitle() {
         config.evaluator.title
     }
 
-    String getPageSource() {
+    static String getPageSource() {
         config.evaluator.pageSource
     }
 
-    String getUrl() {
+    static String getUrl() {
         config.evaluator.url
     }
 
-    void open(String url) {
+    static void open(String url) {
         config.evaluator.open(url)
     }
 
-    List<Window> getWindows() {
+    static List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
         config.evaluator.windowIds.each { String id ->
             windows.add(new Window(id))
@@ -48,7 +48,7 @@ class Browser {
         return windows
     }
 
-    void switchTo(Window window) {
+    static void switchTo(Window window) {
         config.evaluator.switchToWindow(window.id)
     }
 }

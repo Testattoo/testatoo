@@ -13,27 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.action
+package org.testatoo.core.traits
 
-import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Fill implements Action {
+trait SelectSupport {
 
-    String value
-
-    Fill(String value) {
-        this.value = value
+    boolean isSelected() {
+        config.evaluator.getBool(id, "!!it.prop('selected')")
     }
 
-    @Override
-    void execute(Component c) {
-        Testatoo.config.evaluator.trigger(c.id, 'blur')
-        new Clear().execute(c)
-        Testatoo.config.evaluator.enter([value])
-        Testatoo.config.evaluator.trigger(c.id, 'blur')
+    boolean isUnselected() {
+        !selected
     }
 }
+

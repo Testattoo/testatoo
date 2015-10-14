@@ -27,11 +27,9 @@ import org.testatoo.bundle.html5.components.Checkbox
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.bundle.html5.components.list.Dropdown
-import org.testatoo.core.Testatoo
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 import static Key.*
 import static Mouse.*
@@ -69,10 +67,10 @@ class MouseTest {
         assert radio.checked
 
         Dropdown dropDown = $('#elements') as Dropdown
-        dropDown.should { have selectedItems('H') }
+        dropDown.selectedItem.value == 'H'
 
         clickOn dropDown.items[2]
-        dropDown.should { have selectedItems('Pol') }
+        dropDown.selectedItem.value == 'Pol'
     }
 
     @Test
@@ -155,7 +153,7 @@ class MouseTest {
 
     class DropPanel extends Panel {
         String getTitle() {
-            Testatoo.config.evaluator.eval(id, "it.find('h1').text()")
+            config.evaluator.eval(id, "it.find('h1').text()")
         }
     }
 }

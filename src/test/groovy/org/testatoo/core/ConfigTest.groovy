@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -26,12 +27,14 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.dsl.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class ConfigTest {
 
     @Test
@@ -40,8 +43,8 @@ class ConfigTest {
             WebDriver driver = new FirefoxDriver();
             config.evaluator = new WebDriverEvaluator(driver)
 
-            assert evaluator.implementation instanceof WebDriver
-            assert evaluator.implementation == driver
+            assert config.evaluator.getImplementation(WebDriver) instanceof WebDriver
+            assert config.evaluator.getImplementation(WebDriver) == driver
         } finally {
             config.evaluator.close()
         }
@@ -51,31 +54,31 @@ class ConfigTest {
     public void should_be_able_to_register_a_script() {
         try {
             WebDriver driver = new FirefoxDriver();
-            evaluator = new WebDriverEvaluator(driver)
+            config.evaluator = new WebDriverEvaluator(driver)
 
             visit 'http://localhost:8080/dsl.html'
 
             TextField field = $('#firstname') as TextField
             Panel error = $('#firstname_blur') as Panel
 
-            field.should { be empty }
-            error.should { be hidden }
+            field.empty
+            error.hidden
 
             // Register scripts who
             // 1 - show the firstname_blur message
             // 2 - set an email in email field
-            evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
-            evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
+            config.evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
+            config.evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
             visit 'http://localhost:8080/dsl.html'
 
             field = $('#firstname') as TextField
             error = $('#firstname_blur') as Panel
 
-            field.is(filled)
-            error.should { be visible }
+            assert field.filled
+            assert error.visible
         } finally {
-            evaluator.close()
+            config.evaluator.close()
         }
     }
 }

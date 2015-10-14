@@ -15,59 +15,85 @@
  */
 package org.testatoo.core.dsl
 
+import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Form
 import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
-import org.testatoo.core.action.*
+import org.testatoo.core.ComponentException
+import org.testatoo.core.traits.CheckOnlySupport
+import org.testatoo.core.traits.CheckSupport
+import org.testatoo.core.traits.InputSupport
+
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Key.BACK_SPACE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Actions {
 
-    static void visit(String uri) { Testatoo.browser.open(uri) }
+    static void visit(String uri) { browser.open(uri) }
 
     static void open(String uri) { visit(uri) }
 
-    static final Component check(Component c) {
-//        new Check().execute(c)
-        return c
+    static final Component check(CheckSupport c) {
+        if (c.unchecked)
+            c.click()
+        else
+            throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
     }
 
-    static final Component uncheck(Component c) {
-        new Uncheck().execute(c)
-        return c
-    }
-
-    static final Component select(Component c) {
-        new Select().execute(c)
-        return c
-    }
-
-    static final Component unselect(Component c) {
-        new Unselect().execute(c)
-        return c
+    static final Component uncheck(CheckSupport c) {
+        if (c in CheckOnlySupport)
+            throw new ComponentException("Unsupported action 'Uncheck' on component ${c}")
+        if (c.checked)
+            c.click()
+        else
+            throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
     }
 
     static final Component on(Component c) {
         return c
     }
 
-    static final Component fill(Component c) {
+    static final InputSupport fill(InputSupport c) {
         return c
     }
 
-    static final Component clear(Component c) {
-        new Clear().execute(c)
-        return c
+    static final void clear(InputSupport input) {
+        input.click()
+        config.evaluator.runScript("\$('#${input.id}').val(' ').change()")
+        config.evaluator.enter([BACK_SPACE])
+        config.evaluator.trigger(input.id, 'blur')
+        input.click()
     }
 
-    static final Component reset(Component c) {
-        new Reset().execute(c)
-        return c
+    static final void reset(Form form) {
+        Button reset_button = form.find('[type=reset]:first')[0] as Button
+        if (reset_button && reset_button.available)
+            reset_button.click()
+        else
+            throw new ComponentException('Cannot reset form without reset button')
     }
 
-    static final Component submit(Component c) {
-        new Submit().execute(c)
-        return c
+    static final void submit(Component form) {
+        Button submit_button = form.find('[type=submit]:first')[0] as Button
+        if (submit_button && submit_button.available)
+            submit_button.click()
+        else
+            throw new ComponentException('Cannot submit form without submit button')
+    }
+
+    static final Component select(Component c) {
+        if (c.selected) {
+            throw new ComponentException("${c.class.simpleName} ${c} is already selected")
+        }
+        c.click()
+    }
+
+    static final Component unselect(Component c) {
+        if (c.unselected) {
+            throw new ComponentException("${c.class.simpleName} ${c} is already unselected")
+        }
+        c.click()
     }
 }

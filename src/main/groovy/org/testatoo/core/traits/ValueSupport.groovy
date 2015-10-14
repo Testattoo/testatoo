@@ -13,21 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
+package org.testatoo.core.traits
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait SelectSupport {
+trait ValueSupport {
 
-    boolean isSelected() {
-        config.evaluator.getBool(id, "!!it.prop('selected')")
-    }
-
-    boolean isUnselected() {
-        !selected
+    String getValue() {
+        config.evaluator.eval(id, "it.val()")
     }
 }
-

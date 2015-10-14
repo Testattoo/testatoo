@@ -13,36 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
+package org.testatoo.core.traits
+
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.dsl.Actions.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait InputSupport implements ValueSupport, ValiditySupport {
-
-    String getPlaceholder() {
-        config.evaluator.eval(id, "it.prop('placeholder')")
+@RunWith(JUnit4)
+class ValueSupportTest {
+    @BeforeClass
+    public static void setup() {
+        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+        visit 'http://localhost:8080/traits.html'
     }
 
-    boolean isEmpty() {
-        config.evaluator.getBool(id, "\$.trim(it.val()).length == 0")
-    }
+    @AfterClass
+    public static void tearDown() { config.evaluator.close() }
 
-    boolean isFilled() {
-        !empty
-    }
+    @Test
+    public void should_have_expected_behaviours() {
 
-    boolean isReadOnly() {
-        config.evaluator.getBool(id, "it.prop('readonly')")
-    }
-
-    boolean isRequired() {
-        config.evaluator.getBool(id, "it.prop('required')")
-    }
-
-    boolean isOptional() {
-        !required
     }
 }

@@ -13,20 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
-
-import static org.testatoo.core.Testatoo.getConfig
+package org.testatoo.core.traits
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait CheckSupport {
-
-    boolean isChecked() {
-        config.evaluator.getBool(id, "it.is(':checked')")
-    }
-
-    boolean isUnchecked() {
-        !checked
-    }
-}
+trait CheckOnlySupport implements CheckSupport {}

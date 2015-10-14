@@ -15,12 +15,10 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.bundle.html5.traits.TextSupport
+import org.testatoo.core.traits.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.Testatoo
-
-import static org.testatoo.core.Testatoo.config
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

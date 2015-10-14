@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.bundle.html5.traits.CheckSupport
-import org.testatoo.bundle.html5.traits.LabelSupport
+import org.testatoo.core.traits.CheckSupport
+import org.testatoo.core.traits.LabelSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.traits
+package org.testatoo.core.traits
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -22,6 +22,8 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.fields.EmailField
+import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.$
@@ -32,8 +34,7 @@ import static org.testatoo.core.dsl.Actions.visit
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class CheckSupportTest {
-
+class GenericSupportTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
@@ -46,17 +47,19 @@ class CheckSupportTest {
     @Test
     public void should_have_expected_behaviours() {
         Radio male = $('#male') as Radio;
-        Radio female = $('#female') as Radio;
+        assert male.enabled
+        assert male.visible
 
-        assert male.checked
-        assert !male.unchecked
+        EmailField email = $('#email') as EmailField
+        assert email.disabled
+        assert email.available
 
-        assert !female.checked
-        assert female.unchecked
+        TextField text = $('#non_existing_id') as TextField
+        assert text.missing
 
-        female.click()
-        assert male.unchecked
-        assert female.checked
+        // display:none
+        TextField field = $('#hidden_1') as TextField
+        assert field.hidden
     }
 
 }

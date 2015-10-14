@@ -13,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.action
+package org.testatoo.core.traits
 
-import org.testatoo.bundle.html5.components.Button
-import org.testatoo.core.Component
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Submit implements Action {
-    @Override
-    void execute(Component c) {
-        Button submit_button = c.find('[type=submit]:first')[0] as Button
-//        if (submit_button && submit_button.is(new Available()))
-//            new MouseClick().execute(submit_button)
-//        else
-//            throw new ComponentException('Cannot submit form without submit button')
+trait ValiditySupport {
+
+    boolean isValid() {
+        !invalid
+    }
+
+    boolean isInvalid() {
+        config.evaluator.getBool(id, "it.is(':invalid')")
     }
 }

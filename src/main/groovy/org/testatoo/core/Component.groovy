@@ -15,7 +15,7 @@
  */
 package org.testatoo.core
 
-import org.testatoo.bundle.html5.traits.GenericSupport
+import org.testatoo.core.traits.GenericSupport
 import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log

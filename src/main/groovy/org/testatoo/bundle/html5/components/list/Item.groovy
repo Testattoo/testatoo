@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.bundle.html5.traits.SelectSupport
-import org.testatoo.bundle.html5.traits.ValueSupport
+import org.testatoo.core.traits.SelectSupport
+import org.testatoo.core.traits.ValueSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 

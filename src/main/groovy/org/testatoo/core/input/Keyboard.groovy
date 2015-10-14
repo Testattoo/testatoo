@@ -15,14 +15,14 @@
  */
 package org.testatoo.core.input
 
-import org.testatoo.core.Testatoo
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Keyboard {
 
-    void type(Collection<?> keys) { Testatoo.config.evaluator.enter(keys) }
+    void type(Collection<?> keys) { config.evaluator.enter(keys) }
 
     void type(Key key) { type([key]) }
 
