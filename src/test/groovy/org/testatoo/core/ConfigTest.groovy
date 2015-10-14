@@ -25,9 +25,7 @@ import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.visit
 
 /**
