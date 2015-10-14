@@ -24,10 +24,7 @@ import static Key.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 class KeyConverter {
-
-
     static Keys convert(Key key) {
-
         switch (key) {
             case SHIFT:
                 return Keys.SHIFT
