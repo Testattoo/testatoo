@@ -17,11 +17,12 @@ package org.testatoo.core.traits
 
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.action.MouseClick
-import org.testatoo.core.action.MouseDrag
+import org.testatoo.core.Testatoo
+import sun.net.TelnetInputStream
 
 import static org.testatoo.core.Testatoo.config
-import static org.testatoo.core.action.MouseModifiers.*
+import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -59,15 +60,15 @@ trait GenericSupport {
     }
 
     void click() {
-        new MouseClick([LEFT, SINGLE]).execute(this)
+        config.evaluator.click(id, [LEFT, SINGLE])
     }
 
     void rightClick() {
-        new MouseClick([RIGHT, SINGLE]).execute(this);
+        config.evaluator.click(id, [RIGHT, SINGLE])
     }
 
     void doubleClick() {
-        new MouseClick([LEFT, DOUBLE]).execute(this);
+        config.evaluator.click(id, [LEFT, DOUBLE])
     }
 
     DragBuilder drag() {
@@ -82,7 +83,7 @@ trait GenericSupport {
         }
 
         public void on(Component onto) {
-            new MouseDrag(onto).execute(this)
+            config.evaluator.dragAndDrop(this.id, onto.id)
         }
     }
 }

@@ -15,7 +15,7 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.action.MouseModifiers
+import org.testatoo.core.input.MouseModifiers
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

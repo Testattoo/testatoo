@@ -27,7 +27,7 @@ import org.testatoo.bundle.html5.components.fields.EmailField
 import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.bundle.html5.components.list.ListBox
-import org.testatoo.core.action.MouseModifiers
+import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail

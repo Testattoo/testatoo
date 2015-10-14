@@ -18,9 +18,7 @@ package org.testatoo.core.internal
 import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.Testatoo
-import org.testatoo.core.action.MouseClick
-import org.testatoo.core.action.MouseModifiers
+import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.dsl.Block
 import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.input.Key
