@@ -18,6 +18,7 @@ package org.testatoo.core
 import org.junit.AfterClass
 import org.junit.Before
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -33,13 +34,14 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class SelectorsTest {
 
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         config.scan 'org.testatoo'
-        visit 'http://localhost:8080/selectors.html'
+        browser.open 'http://localhost:8080/selectors.html'
     }
 
     @Before

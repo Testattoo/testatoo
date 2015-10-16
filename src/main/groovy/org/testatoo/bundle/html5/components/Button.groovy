@@ -15,17 +15,20 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.traits.TextSupport
+import org.testatoo.core.support.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
+
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends Component implements TextSupport {
+
+    @Override
     public String getText() {
-        Testatoo.config.evaluator.eval(this.id, "it.is('input') ? it.val() : it.text().trim()")
+        config.evaluator.eval(this.id, "it.is('input') ? it.val() : it.text().trim()")
     }
 }

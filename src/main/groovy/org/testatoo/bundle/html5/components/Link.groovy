@@ -15,10 +15,12 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.traits.TextSupport
+import org.testatoo.core.support.TextSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 import org.testatoo.core.Testatoo
+
+import static org.testatoo.bundle.html5.components.helper.TextHelper.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,5 +30,10 @@ class Link extends Component implements TextSupport {
 
     String getReference() {
         Testatoo.config.evaluator.eval(this.id, "it.prop('href')")
+    }
+
+    @Override
+    String getText() {
+        getText(this)
     }
 }

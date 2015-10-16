@@ -25,10 +25,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.visit
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -41,7 +38,7 @@ class WaitTest {
     public static void setup() {
         config.waitUntil = 10.seconds
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/wait.html'
+        browser.open 'http://localhost:8080/wait.html'
     }
 
     @AfterClass

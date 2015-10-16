@@ -15,13 +15,43 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.traits.CheckOnlySupport
-import org.testatoo.core.traits.LabelSupport
+import org.testatoo.core.ComponentException
+import org.testatoo.core.support.CheckSupport
+import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+
+import static org.testatoo.bundle.html5.components.helper.LabelHelper.*
+import static org.testatoo.bundle.html5.components.helper.CheckHelper.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('input[type=radio]')
-class Radio extends Component implements LabelSupport, CheckOnlySupport {}
+class Radio extends Component implements LabelSupport, CheckSupport {
+
+    @Override
+    boolean isChecked() {
+        isChecked(this)
+    }
+
+    @Override
+    boolean isUnchecked() {
+        isUnchecked(this)
+    }
+
+    @Override
+    void check() {
+        check(this)
+    }
+
+    @Override
+    void uncheck() {
+        throw new ComponentException("${this.class.simpleName} ${this} cannot be unchecked (not supported)")
+    }
+
+    @Override
+    String getLabel() {
+        getLabel(this)
+    }
+}

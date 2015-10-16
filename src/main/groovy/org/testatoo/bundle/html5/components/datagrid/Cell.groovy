@@ -15,10 +15,11 @@
  */
 package org.testatoo.bundle.html5.components.datagrid
 
-import org.testatoo.core.traits.ValueSupport
+import org.testatoo.core.support.ValueSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
+
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,6 +28,6 @@ import org.testatoo.core.Testatoo
 class Cell extends Component implements ValueSupport {
 
     String getValue() {
-        Testatoo.config.evaluator.eval(id, "it.text().trim()")
+        config.evaluator.eval(id, "it.text().trim()")
     }
 }

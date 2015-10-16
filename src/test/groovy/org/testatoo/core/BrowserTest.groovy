@@ -26,6 +26,7 @@ import org.testatoo.bundle.html5.components.Link
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.dsl.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,7 +44,7 @@ class BrowserTest {
 
     @Test
     public void should_be_able_to_have_browser_properties_access() {
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
 
         assert browser.title == 'Testatoo Rocks'
         assert browser.pageSource.contains('<title>Testatoo Rocks</title>')
@@ -55,7 +56,7 @@ class BrowserTest {
 
     @Test
     public void should_be_able_to_navigate() {
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
 
         assert browser.url == 'http://localhost:8080/components.html'
 
@@ -74,7 +75,7 @@ class BrowserTest {
 
     @Test
     public void should_manage_windows() {
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
 
         assert browser.windows.size() == 1
         String main_window_id = browser.windows[0].id

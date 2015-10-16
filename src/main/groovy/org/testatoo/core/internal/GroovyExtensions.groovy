@@ -21,7 +21,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.dsl.Block
 import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.input.Key
-import org.testatoo.core.traits.InputSupport
+import org.testatoo.core.support.InputSupport
 
 import java.time.Duration
 
@@ -59,6 +59,7 @@ class GroovyExtensions {
     }
 
     static void with(InputSupport input, String value) {
+        // TODO builder
         config.evaluator.trigger(input.id, 'blur')
 
         clear(input)
@@ -67,31 +68,31 @@ class GroovyExtensions {
     }
 
 
-    static void select(Component selector, String... values) {
-        if (values) {
-            if (values.length > 1 && selector.singleSelectable) {
-                throw new ComponentException("${selector.class.simpleName} ${selector} doesn't support multi selection")
-            }
+//    static void select(Component selector, String... values) {
+//        if (values) {
+//            if (values.length > 1 && selector.singleSelectable) {
+//                throw new ComponentException("${selector.class.simpleName} ${selector} doesn't support multi selection")
+//            }
+//
+//            for (value in values) {
+//                Item item = selector.items.find { it.value == value } as Item
+//                if (item.selected)
+//                    throw new ComponentException("${item.class.simpleName} ${item} is already selected")
+//                if (item.disabled)
+//                    throw new ComponentException("${item.class.simpleName} ${item} is disabled and cannot be selected")
+//                item.click()
+//            }
+//        }
+//    }
 
-            for (value in values) {
-                Item item = selector.items.find { it.value == value } as Item
-                if (item.selected)
-                    throw new ComponentException("${item.class.simpleName} ${item} is already selected")
-                if (item.disabled)
-                    throw new ComponentException("${item.class.simpleName} ${item} is disabled and cannot be selected")
-                item.click()
-            }
-        }
-    }
-
-    static void select(Component selector, Item... items) {
-        for (item in items) {
-            if (item.selected) {
-                throw new ComponentException("TODO")
-            }
-            item.click()
-        }
-    }
+//    static void select(Component selector, Item... items) {
+//        for (item in items) {
+//            if (item.selected) {
+//                throw new ComponentException("TODO")
+//            }
+//            item.click()
+//        }
+//    }
 
     static void unselect(Component c, String... values) {
         if (values) {

@@ -34,7 +34,7 @@ class ListViewTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
     }
 
     @AfterClass

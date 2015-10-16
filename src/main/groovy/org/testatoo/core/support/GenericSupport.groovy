@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.traits
+package org.testatoo.core.support
 
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.MouseModifiers.*
 
@@ -44,7 +45,6 @@ trait GenericSupport {
         } catch (ComponentException ignored) {
             return true
         }
-
     }
 
     boolean isHidden() {

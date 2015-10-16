@@ -26,9 +26,7 @@ import org.testatoo.bundle.html5.components.list.Dropdown
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.visit
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,7 +38,7 @@ class MatcherTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/error.html'
+        browser.open 'http://localhost:8080/error.html'
     }
 
     @AfterClass

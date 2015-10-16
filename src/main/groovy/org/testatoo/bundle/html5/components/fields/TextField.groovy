@@ -15,13 +15,10 @@
  */
 package org.testatoo.bundle.html5.components.fields
 
-import org.testatoo.core.traits.InputSupport
-import org.testatoo.core.traits.LabelSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('textarea,input[type=text]')
-class TextField extends Component implements LabelSupport, InputSupport {}
+class TextField extends Input {}

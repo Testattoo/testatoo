@@ -15,7 +15,6 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.traits.SelectTypeSupport
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
 
@@ -23,7 +22,7 @@ import org.testatoo.core.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
-class Dropdown extends Component implements SelectTypeSupport {
+class Dropdown extends Component {
 
     List<Item> getItems() {
         find("option", Item)
@@ -44,4 +43,13 @@ class Dropdown extends Component implements SelectTypeSupport {
     Item getSelectedItem() {
         items.find { it.selected }
     }
+
+    static void select(Item item) {
+        item.select()
+    }
+
+    void select(String value) {
+        items.find { it.value == value }.select()
+    }
+
 }

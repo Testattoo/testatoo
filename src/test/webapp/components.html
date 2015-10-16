@@ -21,7 +21,7 @@
   <meta charset="utf-8">
   <title>Testatoo Rocks</title>
 
-  <meta name="description" content="HTML5 Rocks">
+  <meta name="description" content="Testatoo Rocks">
   <meta name="author" content="ovea">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,6 +59,11 @@
       <input type="checkbox" id="checkbox">Check me out
     </label>
 
+    <h1>Disabled Checkbox</h1>
+    <label class="checkbox">
+      <input type="checkbox" id="disabled_checkbox" disabled>Disabled
+    </label>
+
     <hr/>
 
     <h1>Radio</h1>
@@ -67,7 +72,7 @@
       Radio label checked
     </label>
     <label class="radio">
-      <input type="radio" id="otherRadio" value="value_2">
+      <input type="radio" id="other_radio" value="value_2">
       Radio label unchecked
     </label>
     <hr/>
@@ -78,7 +83,7 @@
       <div class="col-md-6">
         <label class="control-label" for="text_field">Text</label>
         <div class="controls">
-          <input type="text" id="text_field" placeholder="Text">
+          <input type="text" id="text_field" placeholder="Placeholder">
         </div>
 
         <label class="control-label" for="password_field">Password</label>
@@ -115,7 +120,7 @@
 
         <label class="control-label" for="range_field">Range</label>
         <div class="controls">
-          <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5">
+          <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5" value="10">
         </div>
 
       </div>
@@ -141,14 +146,19 @@
           <input type="date" id="date_field" placeholder="Date" max="2012-06-25" min="2011-08-13">
         </div>
 
-        <label class="control-label" for="time_field">Date</label>
+        <label class="control-label" for="time_field">Time</label>
         <div class="controls">
           <input type="time" id="time_field" placeholder="Time">
         </div>
 
-        <label class="control-label" for="datetime_field">Date</label>
+        <label class="control-label" for="datetime_field">DateTime</label>
         <div class="controls">
-          <input type="datetime" id="datetime_field" placeholder="DateTime" readonly>
+          <input type="datetime" id="datetime_field" placeholder="DateTime">
+        </div>
+
+        <label class="control-label" for="read_only_and_filled">Field ReadOnly and Filled</label>
+        <div class="controls">
+          <input type="text" id="read_only_and_filled" value="Filled" readonly disabled="disabled">
         </div>
 
         <label class="control-label" for="text_area_field">TextArea</label>
@@ -359,12 +369,12 @@
       <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
       <div class="form-group">
         <label>Email address
-          <input type="email" class="form-control" placeholder="Enter email">
+          <input id="email" type="email" class="form-control" placeholder="Enter email">
         </label>
       </div>
       <div class="form-group">
         <label>Password
-          <input type="password" class="form-control" placeholder="Password">
+          <input id="password" type="password" class="form-control" placeholder="Password" required>
         </label>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -372,7 +382,7 @@
     </form>
 
     <div id="custom_panel">
-      <div style="display: none">TEXT</div>
+      <div id="hidden_panel" style="display: none">TEXT</div>
       <div></div>
     </div>
 

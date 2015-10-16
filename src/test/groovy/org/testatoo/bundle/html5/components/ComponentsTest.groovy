@@ -21,12 +21,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.traits.CheckSupport
-import org.testatoo.core.traits.LabelSupport
-import org.testatoo.core.traits.TextSupport
-import org.testatoo.core.traits.ValiditySupport
+import org.testatoo.core.ComponentException
+import org.testatoo.core.support.CheckSupport
+import org.testatoo.core.support.LabelSupport
+import org.testatoo.core.support.TextSupport
+import org.testatoo.core.support.ValiditySupport
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
+import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -38,11 +40,28 @@ class ComponentsTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
     public static void tearDown() { config.evaluator.close() }
+
+    @Test
+    public void component_should_have_expected_behaviours() {
+        Button button = $('#button') as Button
+        assert button.enabled
+        assert button.available
+        assert button.visible
+
+        button = $('#submit') as Button
+        assert button.disabled
+
+        Panel panel = $('#hidden_panel') as Panel
+        assert panel.hidden
+
+        panel = $('#none_existing') as Panel
+        assert panel.missing
+    }
 
     @Test
     public void article_should_have_expected_behaviours() {
@@ -82,8 +101,50 @@ class ComponentsTest {
 
     @Test
     public void checkbox_should_have_expected_behaviours() {
-        assert Checkbox in CheckSupport
-        assert Checkbox in LabelSupport
+        assert CheckBox in CheckSupport
+        assert CheckBox in LabelSupport
+
+        CheckBox checkBox = $('#checkbox') as CheckBox
+        assert checkBox.label == 'Check me out'
+        assert checkBox.unchecked
+        checkBox.check()
+        assert checkBox.checked
+        checkBox.uncheck()
+        assert checkBox.unchecked
+        checkBox.click()
+        assert checkBox.checked
+
+        try {
+            checkBox.check()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'CheckBox CheckBox:checkbox is already checked and cannot be checked'
+        }
+
+        try {
+            checkBox.uncheck()
+            checkBox.uncheck()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'CheckBox CheckBox:checkbox is already unchecked and cannot be unchecked'
+        }
+
+
+        checkBox = $('#disabled_checkbox') as CheckBox
+        try {
+            checkBox.check()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'CheckBox CheckBox:disabled_checkbox is disabled and cannot be checked'
+        }
+
+        try {
+            checkBox.uncheck()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'CheckBox CheckBox:disabled_checkbox is disabled and cannot be unchecked'
+        }
+
     }
 
     @Test
@@ -100,6 +161,9 @@ class ComponentsTest {
         Form form = $('#form') as Form
 
         assert form.visible
+        // Cause password mandatory
+        assert form.invalid
+        assert !form.valid
     }
 
     @Test
@@ -144,6 +208,7 @@ class ComponentsTest {
         Link link = $('#link') as Link
 
         assert Link in TextSupport
+        assert link.text == 'Link to dsl page'
         assert link.reference == 'http://localhost:8080/dsl.html'
     }
 
@@ -167,6 +232,23 @@ class ComponentsTest {
     public void radio_should_have_expected_behaviours() {
         assert Radio in LabelSupport
         assert Radio in CheckSupport
+
+        Radio radio = $('#radio') as Radio
+        assert radio.label == 'Radio label checked'
+        assert radio.checked
+
+        try {
+            radio.uncheck()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Radio Radio:radio cannot be unchecked (not supported)'
+        }
+
+        radio = $('#other_radio') as Radio
+        assert radio.label == 'Radio label unchecked'
+        assert radio.unchecked
+        radio.check()
+        assert radio.checked
     }
 
     @Test

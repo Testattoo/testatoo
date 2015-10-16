@@ -17,11 +17,12 @@ package org.testatoo.core.dsl
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.components.CheckBox
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.Radio
@@ -40,6 +41,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class IntentionTest {
 
     @BeforeClass
@@ -53,7 +55,7 @@ class IntentionTest {
 
     @Test
     public void should_be_able_to_check_and_uncheck_a_checkbox() {
-        Checkbox checkbox = $('#checkbox') as Checkbox
+        CheckBox checkbox = $('#checkbox') as CheckBox
 
         assert checkbox.unchecked
         check checkbox
@@ -65,7 +67,7 @@ class IntentionTest {
             uncheck checkbox
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Checkbox Checkbox:checkbox is already unchecked and cannot be unchecked'
+            assert e.message == 'CheckBox CheckBox:checkbox is already unchecked and cannot be unchecked'
         }
 
         check checkbox
@@ -75,7 +77,7 @@ class IntentionTest {
             check checkbox
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Checkbox Checkbox:checkbox is already checked and cannot be checked'
+            assert e.message == 'CheckBox CheckBox:checkbox is already checked and cannot be checked'
         }
     }
 

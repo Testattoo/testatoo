@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.Checkbox
+import org.testatoo.bundle.html5.components.CheckBox
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.bundle.html5.components.fields.EmailField
@@ -32,7 +32,6 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.*
 import static org.testatoo.core.input.Key.*
 
 /**
@@ -45,7 +44,7 @@ class ErrorTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/error.html'
+        browser.open 'http://localhost:8080/error.html'
     }
 
     @Before
@@ -242,30 +241,30 @@ class ErrorTest {
         }
     }
 
-    // ============================ Checkbox / Radio ==================================
+    // ============================ CheckBox / Radio ==================================
     @Test
     public void should_throw_an_error_when_trying_to_check_checked_element() {
-        Checkbox checkbox = $('#checkbox_1') as Checkbox
+        CheckBox checkbox = $('#checkbox_1') as CheckBox
         checkbox.should { be checked }
 
         try {
             check checkbox
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Checkbox Checkbox:checkbox_1 is already checked and cannot be checked'
+            assert e.message == 'CheckBox CheckBox:checkbox_1 is already checked and cannot be checked'
         }
     }
 
     @Test
     public void should_throw_an_error_when_trying_to_uncheck_unchecked_element() {
-        Checkbox checkbox = $('#checkbox_2') as Checkbox
+        CheckBox checkbox = $('#checkbox_2') as CheckBox
         checkbox.should { be unchecked }
 
         try {
             uncheck checkbox
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Checkbox Checkbox:checkbox_2 is already unchecked and cannot be unchecked'
+            assert e.message == 'CheckBox CheckBox:checkbox_2 is already unchecked and cannot be unchecked'
         }
     }
 

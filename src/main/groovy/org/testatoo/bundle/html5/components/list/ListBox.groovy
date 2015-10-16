@@ -15,17 +15,16 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.traits.SelectTypeSupport
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
 
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class ListBox extends Component implements SelectTypeSupport {
+class ListBox extends Component {
 
     List<Item> getItems() {
         find("option", Item)
@@ -37,7 +36,7 @@ class ListBox extends Component implements SelectTypeSupport {
 
     List<Item> getVisibleItems() {
         int size = config.evaluator.eval(id, "it.prop('size')") as Integer
-        items[0..size-1]
+        items[0..size - 1]
     }
 
     List<GroupItem> getGroupItems() {
@@ -50,5 +49,21 @@ class ListBox extends Component implements SelectTypeSupport {
 
     List<Item> getSelectedItems() {
         items.findAll { it.selected }
+    }
+
+    boolean isMultiSelectable() {
+        config.evaluator.check(id, "it.is('select') && it.prop('multiple')")
+    }
+
+    static void select(Item... items) {
+        for (item in items) {
+            item.select()
+        }
+    }
+
+    void select(String... values) {
+        for (value in values) {
+            items.find { it.value == value }.select()
+        }
     }
 }

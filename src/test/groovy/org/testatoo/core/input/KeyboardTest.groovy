@@ -27,7 +27,6 @@ import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.*
 import static Key.*
 
 /**
@@ -46,7 +45,7 @@ class KeyboardTest {
 
     @Before
     public void before() {
-        visit 'http://localhost:8080/keyboard.html'
+        browser.open 'http://localhost:8080/keyboard.html'
         // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
         mouse.clickOn($('#button') as Button)
         Thread.sleep(500);
@@ -126,12 +125,12 @@ class KeyboardTest {
         keyboard.type(SHIFT + 'testatoo')
         assert textField.value == 'TESTATOO'
 
-        clear textField
+        textField.clear()
         assert textField.value == ''
         keyboard.type('~!@#$%^&*()_+')
         assert textField.value == '~!@#$%^&*()_+'
 
-        clear textField
+        textField.clear()
         assert textField.value == ''
         keyboard.type(SHIFT + '`1234567890-=')
         assert textField.value == '~!@#$%^&*()_+'

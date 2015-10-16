@@ -23,6 +23,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Panel
 import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.Testatoo.*
 
@@ -51,7 +52,7 @@ class ConfigTest {
             WebDriver driver = new FirefoxDriver();
             config.evaluator = new WebDriverEvaluator(driver)
 
-            visit 'http://localhost:8080/dsl.html'
+            browser.open 'http://localhost:8080/dsl.html'
 
             TextField field = $('#firstname') as TextField
             Panel error = $('#firstname_blur') as Panel
@@ -60,12 +61,12 @@ class ConfigTest {
             error.hidden
 
             // Register scripts who
-            // 1 - show the firstname_blur message
+            // 1 - show the first name_blur message
             // 2 - set an email in email field
             config.evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
             config.evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
-            visit 'http://localhost:8080/dsl.html'
+            browser.open 'http://localhost:8080/dsl.html'
 
             field = $('#firstname') as TextField
             error = $('#firstname_blur') as Panel
@@ -75,5 +76,12 @@ class ConfigTest {
         } finally {
             config.evaluator.close()
         }
+    }
+
+    @Test
+    public void should_be_able_to_activate_logging() {
+        assert !Log.debug
+        config.debug = true
+        assert Log.debug
     }
 }

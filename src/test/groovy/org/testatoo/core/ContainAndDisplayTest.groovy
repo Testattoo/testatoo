@@ -29,9 +29,7 @@ import org.testatoo.bundle.html5.components.fields.EmailField
 import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.visit
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -43,7 +41,7 @@ class ContainAndDisplayTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/container.html'
+        browser.open 'http://localhost:8080/container.html'
     }
 
     @AfterClass

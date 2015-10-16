@@ -15,11 +15,48 @@
  */
 package org.testatoo.bundle.html5.components.fields
 
-import org.testatoo.core.traits.RangeSupport
+import org.testatoo.core.support.RangeSupport
 import org.testatoo.core.ByCss
+
+import static org.testatoo.bundle.html5.components.helper.RangeHelper.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=number]')
-class NumberField extends TextField implements RangeSupport {}
+class NumberField extends TextField implements RangeSupport {
+
+    @Override
+    Number getValue() {
+        Object value = super.value
+        if (value)
+            value as BigDecimal
+        else
+            0
+    }
+
+    @Override
+    Number getMinimun() {
+        getMinimun(this) as BigDecimal
+    }
+
+    @Override
+    Number getMaximum() {
+        getMaximum(this) as BigDecimal
+    }
+
+    @Override
+    Number getStep() {
+        getStep(this)
+    }
+
+    @Override
+    boolean isInRange() {
+        isInRange(this)
+    }
+
+    @Override
+    boolean isOutOfRange() {
+        isOutOfRange(this)
+    }
+}

@@ -15,13 +15,10 @@
  */
 package org.testatoo.bundle.html5.components.fields
 
-import org.testatoo.core.traits.InputSupport
-import org.testatoo.core.traits.LabelSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=password]')
-class PasswordField extends Component implements LabelSupport, InputSupport {}
+class PasswordField extends Input {}

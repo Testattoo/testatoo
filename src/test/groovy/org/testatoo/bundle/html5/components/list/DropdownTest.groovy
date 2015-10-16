@@ -21,6 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -34,7 +36,7 @@ class DropdownTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
@@ -60,11 +62,18 @@ class DropdownTest {
         assert os.groupItem('win32').value == 'win32'
         assert os.groupItem('BSD').value == 'BSD'
 
-        Dropdown countries = $('#countries') as Dropdown
+        assert os.selectedItem.value == 'None'
+        os.select('Fedora')
+        assert os.selectedItem.value == 'Fedora'
+        os.select(os.items[3])
+        assert os.selectedItem.value == 'Gentoo'
 
+        Dropdown countries = $('#countries') as Dropdown
         assert countries.disabled
         // Items are disabled too
-        assert countries.items[0].disabled
+        countries.items.forEach {
+            assert it.disabled
+        }
     }
 
     @Test
@@ -84,5 +93,4 @@ class DropdownTest {
         assert os.items[1].toString() == 'Ubuntu'
         assert os.items[1] == os.items[1]
     }
-
 }

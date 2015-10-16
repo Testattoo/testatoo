@@ -26,9 +26,7 @@ import org.testatoo.bundle.html5.components.fields.EmailField
 import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.dsl.Actions.visit
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -38,7 +36,7 @@ class GenericSupportTest {
     @BeforeClass
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/traits.html'
+        browser.open 'http://localhost:8080/supports.html'
     }
 
     @AfterClass
@@ -61,5 +59,4 @@ class GenericSupportTest {
         TextField field = $('#hidden_1') as TextField
         assert field.hidden
     }
-
 }

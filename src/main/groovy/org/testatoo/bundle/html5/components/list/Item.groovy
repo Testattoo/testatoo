@@ -15,8 +15,9 @@
  */
 package org.testatoo.bundle.html5.components.list
 
-import org.testatoo.core.traits.SelectSupport
-import org.testatoo.core.traits.ValueSupport
+import org.testatoo.core.ComponentException
+import org.testatoo.core.support.SelectSupport
+import org.testatoo.core.support.ValueSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
 
@@ -40,6 +41,32 @@ class Item extends Component implements SelectSupport, ValueSupport {
     @Override
     boolean isDisabled() {
         config.evaluator.check(id, "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
+    }
+
+    boolean isSelected() {
+        config.evaluator.check(id, "!!it.prop('selected')")
+    }
+
+    boolean isUnselected() {
+        !selected
+    }
+
+    void select() {
+        if(this.disabled)
+            throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be selected")
+        if (this.unselected)
+            this.click()
+        else
+            throw new ComponentException("${this.class.simpleName} ${this} is already selected and cannot be selected")
+    }
+
+    void unselect() {
+        if(this.disabled)
+            throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be unselected")
+        if (this.selected)
+            this.click()
+        else
+            throw new ComponentException("${this.class.simpleName} ${this} is already unselected and cannot be unselected")
     }
 
     boolean equals(o) {

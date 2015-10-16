@@ -17,8 +17,16 @@ package org.testatoo.bundle.html5.components.fields
 
 import org.testatoo.core.ByCss
 
+import static org.testatoo.core.Testatoo.config
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=color]')
-class ColorField extends TextField {}
+class ColorField extends TextField {
+
+    @Override
+    void setValue(Object value) {
+        config.evaluator.eval(id, "it.val('" + value + "')")
+    }
+}

@@ -15,12 +15,25 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.traits.ValiditySupport
+import org.testatoo.core.support.ValiditySupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+
+import static org.testatoo.bundle.html5.components.helper.ValidityHelper.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends Component implements ValiditySupport {}
+class Form extends Component implements ValiditySupport {
+
+    @Override
+    boolean isValid() {
+        isValid(this)
+    }
+
+    @Override
+    boolean isInvalid() {
+        isInvalid(this)
+    }
+}

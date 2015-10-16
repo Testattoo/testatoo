@@ -40,7 +40,7 @@ class ComponentTest {
     public static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         config.scan 'org.testatoo.component'
-        visit 'http://localhost:8080/components.html'
+        browser.open 'http://localhost:8080/components.html'
     }
 
     @AfterClass
@@ -79,7 +79,7 @@ class ComponentTest {
 
         // The selector select the same component as radio_1
         Radio radio_2 = $('[type=radio]:checked') as Radio
-        Radio radio_3 = $('#otherRadio') as Radio
+        Radio radio_3 = $('#other_radio') as Radio
 
         assert radio_1 == radio_2
         assert radio_1 != radio_3
