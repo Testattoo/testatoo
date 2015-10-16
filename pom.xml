@@ -84,7 +84,7 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.2</version>
+                <version>1.5</version>
                 <configuration>
                     <verbose>true</verbose>
                     <invokeDynamic>false</invokeDynamic>
