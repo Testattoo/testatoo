@@ -26,8 +26,7 @@ import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.input.Key
 import org.testatoo.core.internal.Log
 
-import static MouseModifiers.DOUBLE
-import static MouseModifiers.SINGLE
+import static MouseModifiers.*
 import static Key.*
 
 /**

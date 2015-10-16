@@ -59,7 +59,7 @@ class ComponentsTest {
         Panel panel = $('#hidden_panel') as Panel
         assert panel.hidden
 
-        panel = $('#none_existing') as Panel
+        panel = $('#non_existing_id') as Panel
         assert panel.missing
     }
 
