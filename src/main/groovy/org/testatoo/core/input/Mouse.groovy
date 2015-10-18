@@ -16,7 +16,7 @@
 package org.testatoo.core.input
 
 import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,7 +29,7 @@ class Mouse {
 
     static void rightClickOn(Component c) { c.rightClick() }
 
-    static void hoveringMouseOn(Component c) { Testatoo.config.evaluator.mouseOver(c.id) }
+    static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id) }
 
     static DragBuilder drag(Component c) { return new DragBuilder(c) }
 
@@ -41,7 +41,7 @@ class Mouse {
         }
 
         public void on(Component onto) {
-            from.drag(onto)
+            config.evaluator.dragAndDrop(from.id, onto.id)
         }
     }
 }

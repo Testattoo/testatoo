@@ -36,12 +36,12 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.dsl.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
 class IntentionTest {
 
     @BeforeClass
@@ -95,14 +95,6 @@ class IntentionTest {
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Radio Radio:radio is already checked and cannot be checked'
-        }
-
-        // Try to uncheck fail
-        try {
-            uncheck radio
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == "Unsupported action 'Uncheck' on component Radio:radio"
         }
     }
 
@@ -178,6 +170,7 @@ class IntentionTest {
     }
 
     @Test
+    @Ignore
     public void should_be_able_to_select_element_in_dropdown_an_listbox() {
         Dropdown dropdown = $('#elements') as Dropdown
         assert dropdown.selectedItem.value == 'H'
@@ -193,6 +186,10 @@ class IntentionTest {
         on listBox unselect 'New York', 'Munich'
         assert listBox.item('New York').unselected
         assert listBox.item('Munich').unselected
+
+        on listBox select 'New York', 'Munich'
+        assert listBox.item('New York').selected
+        assert listBox.item('Munich').selected
 
         on listBox select 'Montreal'
         assert listBox.items[0].selected
@@ -219,7 +216,6 @@ class IntentionTest {
             assert e.message == 'Item Quebec is disabled and cannot be selected'
         }
     }
-
 
     class Message extends Panel {
         @Override

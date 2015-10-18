@@ -21,6 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.bundle.html5.components.fields.EmailField
+import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.core.ComponentException
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.LabelSupport
@@ -144,7 +146,6 @@ class ComponentsTest {
         } catch (ComponentException e) {
             assert e.message == 'CheckBox CheckBox:disabled_checkbox is disabled and cannot be unchecked'
         }
-
     }
 
     @Test
@@ -159,11 +160,30 @@ class ComponentsTest {
         assert Form in ValiditySupport
 
         Form form = $('#form') as Form
+        EmailField email = $('#form [type=email]') as EmailField
+        PasswordField password = $('#form [type=password]') as PasswordField
+        Message message = $('#form .alert') as Message
 
         assert form.visible
         // Cause password mandatory
         assert form.invalid
         assert !form.valid
+
+        email.value = 'joe.blow@email.org'
+        password.value = 'password666'
+        assert email.value == 'joe.blow@email.org'
+        assert password.value == 'password666'
+
+        form.reset()
+
+        assert email.value == ''
+        assert password.value == ''
+
+        assert message.title == 'The form was submitted 0 time(s)'
+        // Set the required password field before submitting
+        password.value = 'password666'
+        form.submit()
+        assert message.title == 'The form was submitted 1 time(s)'
     }
 
     @Test
@@ -237,13 +257,6 @@ class ComponentsTest {
         assert radio.label == 'Radio label checked'
         assert radio.checked
 
-        try {
-            radio.uncheck()
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Radio Radio:radio cannot be unchecked (not supported)'
-        }
-
         radio = $('#other_radio') as Radio
         assert radio.label == 'Radio label unchecked'
         assert radio.unchecked
@@ -257,5 +270,12 @@ class ComponentsTest {
 
         assert section.paragraphs.size() == 1
         assert section.articles.size() == 1
+    }
+
+    class Message extends Panel {
+        @Override
+        String getTitle() {
+            config.evaluator.eval(id, "it.text()")
+        }
     }
 }

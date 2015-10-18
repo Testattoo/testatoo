@@ -16,9 +16,11 @@
 package org.testatoo.bundle.html5.components
 
 import org.testatoo.core.support.CheckSupport
+import org.testatoo.core.support.Checkable
 import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
+import org.testatoo.core.support.UnCheckable
 
 import static org.testatoo.bundle.html5.components.helper.CheckHelper.*
 import static org.testatoo.bundle.html5.components.helper.LabelHelper.*
@@ -27,7 +29,7 @@ import static org.testatoo.bundle.html5.components.helper.LabelHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=checkbox]')
-class CheckBox extends Component implements CheckSupport, LabelSupport {
+class CheckBox extends Component implements CheckSupport, LabelSupport, Checkable, UnCheckable {
 
     @Override
     boolean isChecked() {

@@ -17,11 +17,8 @@ package org.testatoo.core.internal
 
 import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.Component
-import org.testatoo.core.ComponentException
-import org.testatoo.core.dsl.Block
-import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.input.Key
-import org.testatoo.core.support.InputSupport
+import org.testatoo.core.support.MultiSelector
 
 import java.time.Duration
 
@@ -32,6 +29,12 @@ import static org.testatoo.core.input.MouseModifiers.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
+
+    public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
+
+    public static Collection<?> plus(Key a, Key b) { [a, b] }
+
+    public static Collection<?> plus(Key a, String b) { [a, b] }
 
     static void click(Key key, Component c) { click([key], c) }
 
@@ -45,74 +48,42 @@ class GroovyExtensions {
         config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
     }
 
-    static void doubleClick(Component c) {
-        config.evaluator.click(c.id, [LEFT, DOUBLE])
-    }
-
-    public static Collection<?> plus(Key a, Key b) { [a, b] }
-
-    public static Collection<?> plus(Key a, String b) { [a, b] }
-
-    static boolean asBoolean(Block block) {
-        Blocks.run(block)
-        return true
-    }
-
-    static void with(InputSupport input, String value) {
-        // TODO builder
-        config.evaluator.trigger(input.id, 'blur')
-
-        clear(input)
-        config.evaluator.type([value])
-        config.evaluator.trigger(input.id, 'blur')
-    }
-
-
-//    static void select(Component selector, String... values) {
-//        if (values) {
-//            if (values.length > 1 && selector.singleSelectable) {
-//                throw new ComponentException("${selector.class.simpleName} ${selector} doesn't support multi selection")
-//            }
+    // TODO Math rework
+//    static void select(MultiSelector selector, String... values) {
+//        selector.select(values)
+//    }
 //
-//            for (value in values) {
-//                Item item = selector.items.find { it.value == value } as Item
-//                if (item.selected)
-//                    throw new ComponentException("${item.class.simpleName} ${item} is already selected")
-//                if (item.disabled)
-//                    throw new ComponentException("${item.class.simpleName} ${item} is disabled and cannot be selected")
-//                item.click()
-//            }
-//        }
+//    static void select(MultiSelector selector, Item... items) {
+//        selector.select(items)
+//    }
+//
+//    static void select(Component selector, String value) {
+//        selector.select(value)
+//    }
+//
+//    static void select(Component selector, Item item) {
+//        selector.select(item)
+//    }
+//
+//    static void unselect(Component selector, String... values) {
+//        selector.unselect(values)
+//    }
+//
+//    static void unselect(Component selector, Item... items) {
+//        selector.unselect(items)
+//    }
+//
+//    static void unselect(Component selector, String value) {
+//        selector.unselect(value)
+//    }
+//
+//    static void unselect(Component selector, Item item) {
+//        selector.unselect(item)
 //    }
 
-//    static void select(Component selector, Item... items) {
-//        for (item in items) {
-//            if (item.selected) {
-//                throw new ComponentException("TODO")
-//            }
-//            item.click()
-//        }
+    // TODO Math used for the should DSL level
+//    static boolean asBoolean(Block block) {
+//        Blocks.run(block)
+//        return true
 //    }
-
-    static void unselect(Component c, String... values) {
-        if (values) {
-            for (value in values) {
-                Item item = c.items.find { it.value == value } as Item
-                if (item.unselected)
-                    throw new ComponentException("${item.class.simpleName} ${item} is already unselected")
-                item.click()
-            }
-        }
-    }
-
-    static void unselect(Component selector, Item... items) {
-        for (item in items) {
-            if (item.unselected) {
-                throw new ComponentException("TODO")
-            }
-            item.click()
-        }
-    }
-
-    public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 }

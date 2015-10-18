@@ -17,6 +17,7 @@ package org.testatoo.bundle.html5.components.list
 
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
+import org.testatoo.core.support.MultiSelector
 
 import static org.testatoo.core.Testatoo.*
 
@@ -24,7 +25,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class ListBox extends Component {
+class ListBox extends Component implements MultiSelector {
 
     List<Item> getItems() {
         find("option", Item)
@@ -55,7 +56,7 @@ class ListBox extends Component {
         config.evaluator.check(id, "it.is('select') && it.prop('multiple')")
     }
 
-    static void select(Item... items) {
+    void select(Item... items) {
         for (item in items) {
             item.select()
         }

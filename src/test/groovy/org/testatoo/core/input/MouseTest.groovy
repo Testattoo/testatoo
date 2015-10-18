@@ -111,7 +111,6 @@ class MouseTest {
     }
 
     @Test
-    @Ignore
     public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
         assert dropPanel.title == 'Drop here'

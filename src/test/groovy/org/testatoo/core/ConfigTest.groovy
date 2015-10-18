@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.junit.AfterClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -32,6 +33,11 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class ConfigTest {
+
+    @AfterClass
+    public static void after() {
+        config.debug = false
+    }
 
     @Test
     public void should_be_able_to_obtain_the_underline_implementation() {

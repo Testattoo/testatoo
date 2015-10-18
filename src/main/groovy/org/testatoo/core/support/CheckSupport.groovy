@@ -22,8 +22,4 @@ interface CheckSupport {
     boolean isChecked()
 
     boolean isUnchecked()
-
-    void check()
-
-    void uncheck()
 }

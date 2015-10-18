@@ -17,12 +17,13 @@ package org.testatoo.bundle.html5.components.list
 
 import org.testatoo.core.ByJs
 import org.testatoo.core.Component
+import org.testatoo.core.support.SingleSelector
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
-class Dropdown extends Component {
+class Dropdown extends Component implements SingleSelector {
 
     List<Item> getItems() {
         find("option", Item)
@@ -44,12 +45,11 @@ class Dropdown extends Component {
         items.find { it.selected }
     }
 
-    static void select(Item item) {
+    void select(Item item) {
         item.select()
     }
 
     void select(String value) {
         items.find { it.value == value }.select()
     }
-
 }

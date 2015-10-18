@@ -16,6 +16,10 @@
 package org.testatoo.core.dsl
 
 import org.testatoo.core.Component
+import org.testatoo.core.input.Keyboard
+import org.testatoo.core.support.*
+
+import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -24,53 +28,37 @@ class Actions {
 
     static void clickOn(Component c) { c.click() }
 
-//    static void visit(String uri) { browser.open(uri) }
-//
+    static void visit(String uri) { browser.open(uri) }
+
+    static final Component check(Checkable c) { c.check() }
+
+    static final Component uncheck(UnCheckable c) { c.uncheck() }
+
+    static void type(String text) { Keyboard.type(text) }
+
+    static final void clear(Clearable c) { c.clear() }
+
+    static final void reset(Resettable c) { c.reset() }
+
+    static final void submit(Submissible c) { c.submit() }
+
+    static final <T extends Component> T on(Component c) { c as T }
+
+    static final FillBuilder fill(InputSupport c) {
+        new FillBuilder(c)
+    }
+
+    public static class FillBuilder {
+        private InputSupport input
+
+        public FillBuilder(InputSupport input) {
+            this.input = input
+        }
+
+        public void with(String value) {
+            input.value = value
+        }
+    }
+
 //    static void open(String uri) { visit(uri) }
-//
-//    static void type(String text) { Keyboard.type(text) }
-//
-//    static final Component check(CheckSupport c) {
-//        c.check()
-//    }
-//
-//    static final Component uncheck(CheckSupport c) {
-//        c.uncheck();
-//    }
-//
-//    static final Component on(Component c) {
-//        return c
-//    }
-//
-//    static final InputSupport fill(InputSupport c) {
-//        return c
-//    }
-//
-//    static final void clear(InputSupport input) {
-//        input.clear()
-//    }
-//
-//    static final void reset(Form form) {
-//        Button reset_button = form.find('[type=reset]:first')[0] as Button
-//        if (reset_button && reset_button.available)
-//            reset_button.click()
-//        else
-//            throw new ComponentException('Cannot reset form without reset button')
-//    }
-//
-//    static final void submit(Form form) {
-//        Button submit_button = form.find('[type=submit]:first')[0] as Button
-//        if (submit_button && submit_button.available)
-//            submit_button.click()
-//        else
-//            throw new ComponentException('Cannot submit form without submit button')
-//    }
-//
-//    static final Component select(SelectSupport c) {
-//        c.select()
-//    }
-//
-//    static final Component unselect(SelectSupport c) {
-//        c.unselect()
-//    }
 }
