@@ -26,12 +26,12 @@ class OutOfRangeMatcher extends TypeSafeDiagnosingMatcher<RangeSupport> {
 
     @Override
     protected boolean matchesSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('in range')
+        mismatchDescription.appendText('is in range')
         item.outOfRange
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component out of range')
+        description.appendText('Component is out of range')
     }
 }

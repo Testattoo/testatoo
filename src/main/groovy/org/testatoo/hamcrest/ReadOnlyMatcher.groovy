@@ -26,12 +26,12 @@ class ReadOnlyMatcher extends TypeSafeDiagnosingMatcher<InputSupport> {
 
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('not readOnly')
+        mismatchDescription.appendText('is not read only')
         item.readOnly
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component readOnly')
+        description.appendText('Component is read only')
     }
 }

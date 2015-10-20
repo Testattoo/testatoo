@@ -26,12 +26,12 @@ class EmptyMatcher extends TypeSafeDiagnosingMatcher<InputSupport> {
 
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('filled')
+        mismatchDescription.appendText('is filled')
         item.empty
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component empty')
+        description.appendText('Component is empty')
     }
 }

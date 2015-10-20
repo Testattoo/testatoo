@@ -26,12 +26,12 @@ class UnSelectedMatcher extends TypeSafeDiagnosingMatcher<SelectSupport> {
 
     @Override
     protected boolean matchesSafely(SelectSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('selected')
+        mismatchDescription.appendText('is selected')
         item.unselected
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component unselected')
+        description.appendText('Component is unselected')
     }
 }

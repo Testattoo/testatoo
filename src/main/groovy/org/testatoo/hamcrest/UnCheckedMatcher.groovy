@@ -26,12 +26,12 @@ class UnCheckedMatcher extends TypeSafeDiagnosingMatcher<CheckSupport> {
 
     @Override
     protected boolean matchesSafely(CheckSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('checked')
+        mismatchDescription.appendText('is checked')
         item.unchecked
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component unchecked')
+        description.appendText('Component is unchecked')
     }
 }

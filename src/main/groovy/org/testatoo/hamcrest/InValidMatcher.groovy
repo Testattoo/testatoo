@@ -26,12 +26,12 @@ class InValidMatcher extends TypeSafeDiagnosingMatcher<ValiditySupport> {
 
     @Override
     protected boolean matchesSafely(ValiditySupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('valid')
+        mismatchDescription.appendText('is valid')
         item.invalid
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component invalid')
+        description.appendText('Component is invalid')
     }
 }

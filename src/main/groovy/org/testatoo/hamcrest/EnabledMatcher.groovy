@@ -26,12 +26,12 @@ class EnabledMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
     @Override
     protected boolean matchesSafely(Component item, Description mismatchDescription) {
-        mismatchDescription.appendText('disabled')
+        mismatchDescription.appendText('is disabled')
         item.enabled
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component enabled')
+        description.appendText('Component is enabled')
     }
 }

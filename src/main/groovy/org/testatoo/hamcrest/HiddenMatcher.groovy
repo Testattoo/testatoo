@@ -26,12 +26,12 @@ class HiddenMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
     @Override
     protected boolean matchesSafely(Component item, Description mismatchDescription) {
-        mismatchDescription.appendText('visible')
+        mismatchDescription.appendText('is visible')
         item.hidden
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component hidden')
+        description.appendText('Component is hidden')
     }
 }

@@ -17,6 +17,7 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Factory
 import org.hamcrest.Matcher
+import org.testatoo.bundle.html5.components.list.ListBox
 import org.testatoo.core.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport
@@ -109,4 +110,7 @@ class Matchers {
 
     @Factory
     public static Matcher<ValueSupport> hasValue(Object value) { new ValueMatcher(value) }
+
+    @Factory
+    public static Matcher<ListBox> multiSelectable() { new MultiSelectableMatcher() }
 }

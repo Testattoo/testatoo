@@ -18,6 +18,7 @@ package org.testatoo.hamcrest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.bundle.html5.components.list.ListBox
 import org.testatoo.core.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport
@@ -33,7 +34,6 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.hamcrest.Matchers.*
-
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -54,7 +54,7 @@ class MatchersTest {
             assertThat(cmp, enabled())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component enabled     but: disabled'
+            assert message(e) == 'Expected: Component is enabled     but: is disabled'
         }
 
         // Disabled
@@ -66,7 +66,7 @@ class MatchersTest {
             assertThat(cmp, disabled())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component disabled     but: enabled'
+            assert message(e) == 'Expected: Component is disabled     but: is enabled'
         }
 
         // Available
@@ -78,7 +78,7 @@ class MatchersTest {
             assertThat(cmp, available())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component available     but: missing'
+            assert message(e) == 'Expected: Component is available     but: is missing'
         }
 
         // Missing
@@ -90,7 +90,7 @@ class MatchersTest {
             assertThat(cmp, missing())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component missing     but: available'
+            assert message(e) == 'Expected: Component is missing     but: is available'
         }
 
         // Visible
@@ -102,7 +102,7 @@ class MatchersTest {
             assertThat(cmp, visible())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component visible     but: hidden'
+            assert message(e) == 'Expected: Component is visible     but: is hidden'
         }
 
         // Hidden
@@ -114,12 +114,12 @@ class MatchersTest {
             assertThat(cmp, hidden())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component hidden     but: visible'
+            assert message(e) == 'Expected: Component is hidden     but: is visible'
         }
     }
 
     @Test
-    public void should_have_matchers_for_label_support() {
+    public void should_have_matcher_for_label_support() {
         LabelSupport cmp = mock(LabelSupport)
         when(cmp.label).thenReturn('MyLabel')
 
@@ -155,7 +155,7 @@ class MatchersTest {
             assertThat(cmp, empty())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component empty     but: filled'
+            assert message(e) == 'Expected: Component is empty     but: is filled'
         }
 
         // Filled
@@ -167,7 +167,7 @@ class MatchersTest {
             assertThat(cmp, filled())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component filled     but: empty'
+            assert message(e) == 'Expected: Component is filled     but: is empty'
         }
 
         // ReadOnly
@@ -179,7 +179,7 @@ class MatchersTest {
             assertThat(cmp, readOnly())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component readOnly     but: not readOnly'
+            assert message(e) == 'Expected: Component is read only     but: is not read only'
         }
 
         // Required
@@ -191,7 +191,7 @@ class MatchersTest {
             assertThat(cmp, required())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component required     but: optional'
+            assert message(e) == 'Expected: Component is required     but: is optional'
         }
 
         // Optional
@@ -203,7 +203,7 @@ class MatchersTest {
             assertThat(cmp, optional())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component optional     but: required'
+            assert message(e) == 'Expected: Component is optional     but: is required'
         }
     }
 
@@ -220,7 +220,7 @@ class MatchersTest {
             assertThat(cmp, checked())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component checked     but: unchecked'
+            assert message(e) == 'Expected: Component is checked     but: is unchecked'
         }
 
         // Unchecked
@@ -232,7 +232,7 @@ class MatchersTest {
             assertThat(cmp, unchecked())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component unchecked     but: checked'
+            assert message(e) == 'Expected: Component is unchecked     but: is checked'
         }
     }
 
@@ -278,7 +278,7 @@ class MatchersTest {
             assertThat(cmp, inRange())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component in range     but: out of range'
+            assert message(e) == 'Expected: Component is in range     but: is out of range'
         }
 
         // OutOfRange
@@ -289,7 +289,7 @@ class MatchersTest {
             assertThat(cmp, outOfRange())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component out of range     but: in range'
+            assert message(e) == 'Expected: Component is out of range     but: is in range'
         }
     }
 
@@ -305,7 +305,7 @@ class MatchersTest {
             assertThat(cmp, valid())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component valid     but: invalid'
+            assert message(e) == 'Expected: Component is valid     but: is invalid'
         }
 
         // Invalid
@@ -316,12 +316,12 @@ class MatchersTest {
             assertThat(cmp, invalid())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component invalid     but: valid'
+            assert message(e) == 'Expected: Component is invalid     but: is valid'
         }
     }
 
     @Test
-    public void should_have_matchers_for_text_support() {
+    public void should_have_matcher_for_text_support() {
         TextSupport cmp = mock(TextSupport)
         when(cmp.text).thenReturn('MyText')
 
@@ -346,7 +346,7 @@ class MatchersTest {
             assertThat(cmp, selected())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component selected     but: unselected'
+            assert message(e) == 'Expected: Component is selected     but: is unselected'
         }
 
         // Unselected
@@ -357,12 +357,12 @@ class MatchersTest {
             assertThat(cmp, unselected())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component unselected     but: selected'
+            assert message(e) == 'Expected: Component is unselected     but: is selected'
         }
     }
 
     @Test
-    public void should_have_matchers_for_value_support() {
+    public void should_have_matcher_for_value_support() {
         ValueSupport cmp = mock(ValueSupport)
         when(cmp.value).thenReturn('MyValue')
 
@@ -372,6 +372,22 @@ class MatchersTest {
             fail()
         } catch (AssertionError e) {
             assert message(e) == 'Expected: "OtherValue"     but: was "MyValue"'
+        }
+    }
+
+    @Test
+    public void should_have_matcher_for_listbox_multiselectable() {
+        ListBox cmp = mock(ListBox)
+
+        // Multi Selectable
+        when(cmp.multiSelectable).thenReturn(true)
+        assertThat(cmp, multiSelectable())
+        try {
+            when(cmp.multiSelectable).thenReturn(false)
+            assertThat(cmp, multiSelectable())
+            fail()
+        } catch (AssertionError e) {
+            assert message(e) == 'Expected: Component is multi selectable     but: is single selectable'
         }
     }
 

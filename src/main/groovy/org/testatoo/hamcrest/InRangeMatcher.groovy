@@ -27,12 +27,12 @@ class InRangeMatcher extends TypeSafeDiagnosingMatcher<RangeSupport> {
 
     @Override
     protected boolean matchesSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('out of range')
+        mismatchDescription.appendText('is out of range')
         item.inRange
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component in range')
+        description.appendText('Component is in range')
     }
 }

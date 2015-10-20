@@ -27,12 +27,12 @@ class RequiredMatcher extends TypeSafeDiagnosingMatcher<InputSupport> {
 
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('optional')
+        mismatchDescription.appendText('is optional')
         item.required
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component required')
+        description.appendText('Component is required')
     }
 }

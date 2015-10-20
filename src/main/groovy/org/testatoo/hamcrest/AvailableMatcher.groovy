@@ -26,12 +26,12 @@ class AvailableMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
     @Override
     protected boolean matchesSafely(Component item, Description mismatchDescription) {
-        mismatchDescription.appendText('missing')
+        mismatchDescription.appendText('is missing')
         item.available
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component available')
+        description.appendText('Component is available')
     }
 }

@@ -26,12 +26,12 @@ class OptionalMatcher extends TypeSafeDiagnosingMatcher<InputSupport> {
 
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('required')
+        mismatchDescription.appendText('is required')
         item.optional
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component optional')
+        description.appendText('Component is optional')
     }
 }
