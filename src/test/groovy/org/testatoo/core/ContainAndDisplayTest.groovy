@@ -35,7 +35,6 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
 class ContainAndDisplayTest {
 
     @BeforeClass
@@ -53,12 +52,7 @@ class ContainAndDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        panel.should {
-            contain(
-                    visible_button,
-                    invisible_button
-            )
-        }
+        panel.contain(visible_button, invisible_button)
 
         Form form = $('#form') as Form
         EmailField email_field = $('[type=email]') as EmailField
@@ -66,22 +60,18 @@ class ContainAndDisplayTest {
         Button submit_button = $('[type=submit]') as Button
         Button reset_button = $('[type=reset]') as Button
 
-        form.should {
-            contain(
-                    email_field,
-                    password_field,
+        form.contain(
+                email_field,
+                password_field,
+                submit_button,
+                reset_button
+        )
+
+        try {
+            panel.contain(
                     submit_button,
                     reset_button
             )
-        }
-
-        try {
-            panel.should {
-                contain(
-                        submit_button,
-                        reset_button
-                )
-            }
         } catch (ComponentException e) {
             assert e.message == "Component Panel:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]" as String
         }
@@ -93,22 +83,20 @@ class ContainAndDisplayTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        panel.should { display(visible_button) }
+        panel.display(visible_button)
 
         try {
-            panel.should {
-                display(
-                        visible_button,
-                        invisible_button
-                )
-            }
+            panel.display(
+                    visible_button,
+                    invisible_button
+            )
         } catch (ComponentException e) {
             assert e.message == "Component Button with id invisible_button expected visible but was hidden"
         }
 
         EmailField email_field = $('[type=email]') as EmailField
         try {
-            panel.should { display(email_field) }
+            panel.display(email_field)
         } catch (ComponentException e) {
             assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]" as String
         }

@@ -16,9 +16,7 @@
 package org.testatoo.core
 
 import org.junit.AfterClass
-import org.junit.Before
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -29,12 +27,12 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.dsl.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
 class SelectorsTest {
 
     @BeforeClass
@@ -42,11 +40,6 @@ class SelectorsTest {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
         config.scan 'org.testatoo'
         browser.open 'http://localhost:8080/selectors.html'
-    }
-
-    @Before
-    public void before() {
-        // Due to script injection in some tests the page must be reloaded at each test
     }
 
     @AfterClass

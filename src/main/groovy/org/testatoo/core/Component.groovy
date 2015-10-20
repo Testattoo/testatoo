@@ -140,26 +140,6 @@ class Component implements GenericSupport {
         throw new ComponentException("${ex.message}")
     }
 
-//    Block contain(Component... components) {
-//        Blocks.block "matching ${this} contains ${components}", {
-//            List ret = Testatoo.config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
-//            if (ret) {
-//                throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
-//            }
-//        }
-//    }
-//
-//    Block display(Component... components) {
-//        Blocks.block "matching ${this} display ${components}", {
-//            List ret = Testatoo.config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
-//            if (ret) {
-//                throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
-//            } else {
-//                components.findAll { !it.is(new Visible()) }
-//            }
-//        }
-//    }
-
     //String eval(String jqueryExpr) { return Testatoo.config.evaluator.eval(getId(), jqueryExpr) }
 
     //boolean check(String jqueryExpr) { return evaluator.check(getId(), jqueryExpr) }

@@ -122,6 +122,7 @@ class ComponentTest {
     static class CustomButton extends Button {
 
         @Override
+        @Override
         String getText() {
             return "Override Text"
         }

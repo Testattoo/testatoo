@@ -55,6 +55,22 @@ trait GenericSupport implements Clickable, Draggable {
         !hidden
     }
 
+    boolean contain(Component... components) {
+        List ret = config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+        if (ret) {
+            throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
+        }
+    }
+
+    boolean display(Component... components) {
+        List ret = config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+        if (ret) {
+            throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
+        } else {
+            components.findAll { !it.visible }
+        }
+    }
+
     @Override
     void click() {
         config.evaluator.click(id, [LEFT, SINGLE])
