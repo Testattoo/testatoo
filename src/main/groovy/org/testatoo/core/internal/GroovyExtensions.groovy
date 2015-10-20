@@ -15,10 +15,8 @@
  */
 package org.testatoo.core.internal
 
-import org.testatoo.bundle.html5.components.list.Item
 import org.testatoo.core.Component
 import org.testatoo.core.input.Key
-import org.testatoo.core.support.MultiSelector
 
 import java.time.Duration
 

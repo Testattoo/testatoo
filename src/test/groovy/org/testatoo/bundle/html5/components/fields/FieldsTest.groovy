@@ -106,7 +106,7 @@ class FieldsTest {
         assert date.step == 0
         assert date.inRange
         assert !date.outOfRange
-        assert date.minimun == '2011-08-13'
+        assert date.minimum == '2011-08-13'
         assert date.maximum == '2012-06-25'
 
         date.value = '2010-06-25'
@@ -150,7 +150,7 @@ class FieldsTest {
         assert number.label == 'Number'
 
         assert number.maximum == 64
-        assert number.minimun == 0
+        assert number.minimum == 0
         assert number.step == 8
         assert number.value == 0
         assert number.inRange
@@ -185,7 +185,7 @@ class FieldsTest {
 
         RangeField range = $('#range_field') as RangeField
         assert range.maximum == 50
-        assert range.minimun == 0
+        assert range.minimum == 0
         assert range.step == 5
         assert range.inRange
         assert !range.outOfRange

@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 package org.testatoo.core.support
+
+import org.testatoo.core.Component
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface TextSupport {
+interface IDragBuilder {
 
-    String getText()
+    void on(Component onto)
 }

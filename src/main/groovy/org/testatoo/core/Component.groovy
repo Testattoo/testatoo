@@ -15,11 +15,11 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.support.GenericSupport
 import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log
 import org.testatoo.core.internal.jQueryIdProvider
+import org.testatoo.core.support.GenericSupport
 
 import java.util.concurrent.TimeoutException
 
@@ -83,7 +83,7 @@ class Component implements GenericSupport {
         Testatoo.config.evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
     }
 
-    protected <T extends Component> List<T> findjs(String expression, Class<T> type = Component) {
+    protected static <T extends Component> List<T> findjs(String expression, Class<T> type = Component) {
         Testatoo.config.evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
     }
 

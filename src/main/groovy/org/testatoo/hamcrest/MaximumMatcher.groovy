@@ -13,50 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.hamcrest
 
+import org.hamcrest.Description
+import org.hamcrest.TypeSafeMatcher
 import org.testatoo.core.support.RangeSupport
-import org.testatoo.core.ByCss
-
-import static org.testatoo.bundle.html5.components.helper.RangeHelper.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=number]')
-class NumberField extends TextField implements RangeSupport {
+class MaximumMatcher extends TypeSafeMatcher<RangeSupport> {
 
-    @Override
-    Number getValue() {
-        Object value = super.value
-        if (value)
-            value as BigDecimal
-        else
-            0
+    private Object maximum
+
+    MaximumMatcher(Object maximum) {
+        this.maximum = maximum
     }
 
     @Override
-    Number getMinimum() {
-        getMinimun(this) as BigDecimal
+    protected boolean matchesSafely(RangeSupport item) {
+        item.maximum == maximum
     }
 
     @Override
-    Number getMaximum() {
-        getMaximum(this) as BigDecimal
+    void describeTo(Description description) {
+        description.appendValue(maximum)
     }
 
     @Override
-    Number getStep() {
-        getStep(this)
-    }
-
-    @Override
-    boolean isInRange() {
-        isInRange(this)
-    }
-
-    @Override
-    boolean isOutOfRange() {
-        isOutOfRange(this)
+    protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('was ').appendValue(item.maximum)
     }
 }

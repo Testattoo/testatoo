@@ -13,11 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.hamcrest
+
+import org.hamcrest.Description
+import org.hamcrest.TypeSafeDiagnosingMatcher
+import org.testatoo.core.support.SelectSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface TextSupport {
+class UnSelectedMatcher extends TypeSafeDiagnosingMatcher<SelectSupport> {
 
-    String getText()
+    @Override
+    protected boolean matchesSafely(SelectSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('selected')
+        item.unselected
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('Component unselected')
+    }
 }

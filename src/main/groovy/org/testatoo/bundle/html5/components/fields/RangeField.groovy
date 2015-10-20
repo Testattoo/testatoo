@@ -38,7 +38,7 @@ class RangeField extends TextField implements RangeSupport {
     }
 
     @Override
-    Number getMinimun() {
+    Number getMinimum() {
         getMinimun(this) as BigDecimal
     }
 

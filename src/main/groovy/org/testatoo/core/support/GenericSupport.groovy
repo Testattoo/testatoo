@@ -24,7 +24,7 @@ import static org.testatoo.core.input.MouseModifiers.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait GenericSupport {
+trait GenericSupport implements Clickable, Draggable {
 
     boolean isEnabled() {
         !disabled
@@ -55,28 +55,27 @@ trait GenericSupport {
         !hidden
     }
 
+    @Override
     void click() {
         config.evaluator.click(id, [LEFT, SINGLE])
     }
 
+    @Override
     void rightClick() {
         config.evaluator.click(id, [RIGHT, SINGLE])
     }
 
+    @Override
     void doubleClick() {
         config.evaluator.click(id, [LEFT, DOUBLE])
     }
 
-    DragBuilder drag() {
-        return new DragBuilder(this)
+    @Override
+    IDragBuilder drag() {
+        new DragBuilder()
     }
 
-    public static class DragBuilder {
-        private Component from
-
-        public DragBuilder(Component from) {
-            this.from = from
-        }
+    public static class DragBuilder implements IDragBuilder {
 
         public void on(Component onto) {
             config.evaluator.dragAndDrop(this.id, onto.id)

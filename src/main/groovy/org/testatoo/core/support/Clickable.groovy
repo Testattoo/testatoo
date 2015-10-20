@@ -17,7 +17,11 @@ package org.testatoo.core.support
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface TextSupport {
+interface Clickable {
 
-    String getText()
+    void click()
+
+    void rightClick()
+
+    void doubleClick()
 }

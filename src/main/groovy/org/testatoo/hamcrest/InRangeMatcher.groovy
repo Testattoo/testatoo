@@ -13,11 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.hamcrest
+
+import org.hamcrest.Description
+import org.hamcrest.TypeSafeDiagnosingMatcher
+import org.testatoo.core.Component
+import org.testatoo.core.support.RangeSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface TextSupport {
+class InRangeMatcher extends TypeSafeDiagnosingMatcher<RangeSupport> {
 
-    String getText()
+    @Override
+    protected boolean matchesSafely(RangeSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('out of range')
+        item.inRange
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('Component in range')
+    }
 }

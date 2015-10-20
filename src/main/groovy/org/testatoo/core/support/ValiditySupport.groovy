@@ -22,5 +22,4 @@ interface ValiditySupport {
     boolean isValid()
 
     boolean isInvalid()
-
 }

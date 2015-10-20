@@ -13,41 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.hamcrest
 
-import org.testatoo.core.support.RangeSupport
-import org.testatoo.core.ByCss
-
-import static org.testatoo.bundle.html5.components.helper.RangeHelper.*
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.IsEqual
+import org.testatoo.core.support.LabelSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=date]')
-class DateField extends TextField implements RangeSupport {
+class LabelMatcher extends TypeSafeMatcher<LabelSupport> {
 
-    @Override
-    Object getMinimum() {
-        getMinimun(this)
+    private String label
+
+    LabelMatcher(String label) {
+        this.label = label
     }
 
     @Override
-    Object getMaximum() {
-        getMaximum(this)
+    protected boolean matchesSafely(LabelSupport item) {
+        item.label == label
     }
 
     @Override
-    Object getStep() {
-        getStep(this)
+    void describeTo(Description description) {
+        description.appendValue(label)
     }
 
     @Override
-    boolean isInRange() {
-        isInRange(this)
-    }
-
-    @Override
-    boolean isOutOfRange() {
-        isOutOfRange(this)
+    protected void describeMismatchSafely(LabelSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('was ').appendValue(item.label)
     }
 }

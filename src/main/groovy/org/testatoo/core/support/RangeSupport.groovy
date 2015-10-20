@@ -19,7 +19,7 @@ package org.testatoo.core.support
  */
 interface RangeSupport {
 
-    Object getMinimun()
+    Object getMinimum()
 
     Object getMaximum()
 

@@ -22,5 +22,4 @@ interface SelectTypeSupport {
     boolean isSingleSelectable()
 
     boolean isMultiSelectable()
-
 }

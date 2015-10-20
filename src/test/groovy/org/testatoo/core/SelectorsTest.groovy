@@ -99,7 +99,7 @@ class SelectorsTest {
 
     @Test
     public void should_have_Components_class_implements_Collection_but_not_support_all_method() {
-        assert Components in Collection.class
+        assert Components in Collection
 
         Components<Button> buttons = $$('[type="text"]') of Button
 

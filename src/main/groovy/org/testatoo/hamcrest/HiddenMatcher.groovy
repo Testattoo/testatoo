@@ -13,11 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.hamcrest
+
+import org.hamcrest.Description
+import org.hamcrest.TypeSafeDiagnosingMatcher
+import org.testatoo.core.Component
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface TextSupport {
+class HiddenMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
-    String getText()
+    @Override
+    protected boolean matchesSafely(Component item, Description mismatchDescription) {
+        mismatchDescription.appendText('visible')
+        item.hidden
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('Component hidden')
+    }
 }
