@@ -103,33 +103,4 @@ class Component implements GenericSupport {
     }
 
     static Component $(String jQuery, long timeout = 2000) { new Component(new jQueryIdProvider(jQuery, timeout, true)) }
-
-    //String eval(String jqueryExpr) { return Testatoo.config.evaluator.eval(getId(), jqueryExpr) }
-
-    //boolean check(String jqueryExpr) { return evaluator.check(getId(), jqueryExpr) }
-
-//    Evaluator getEvaluator() { meta.evaluator }
-
-
-
-//    boolean is(State state) {
-//        StateEvaluator se = _supportedStates.get(state.class)
-//        if (se == null) {
-//            throw new ComponentException("Component ${this} does not support state ${state.class.simpleName}")
-//        }
-//        return (se == DEFAULT_SE ? state.class.newInstance().evaluator : se).getState(this)
-//    }
-
-//    Block have(PropertyMatcher matcher) { block 'have', matcher }
-
-//    Object has(Property property) {
-//        PropertyEvaluator pe = _supportedProperties.get(property.class)
-//        if (pe == null) {
-//            throw new ComponentException("Component ${this} does not support property ${property.class.simpleName}")
-//        }
-//        return (pe == DEFAULT_PE ? property.class.newInstance().evaluator : pe).getValue(this)
-//    }
-
-//    private block(String type, Matcher m) { Blocks.block "matching ${this} ${type} ${m}", { m.matches(this) } }
-
 }

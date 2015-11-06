@@ -81,40 +81,6 @@ class GroovyExtensions {
         throw new ComponentException("${ex.message}")
     }
 
-
-    // TODO Math rework
-//    static void select(MultiSelector selector, String... values) {
-//        selector.select(values)
-//    }
-//
-//    static void select(MultiSelector selector, Item... items) {
-//        selector.select(items)
-//    }
-//
-//    static void select(Component selector, String value) {
-//        selector.select(value)
-//    }
-//
-//    static void select(Component selector, Item item) {
-//        selector.select(item)
-//    }
-//
-//    static void unselect(Component selector, String... values) {
-//        selector.unselect(values)
-//    }
-//
-//    static void unselect(Component selector, Item... items) {
-//        selector.unselect(items)
-//    }
-//
-//    static void unselect(Component selector, String value) {
-//        selector.unselect(value)
-//    }
-//
-//    static void unselect(Component selector, Item item) {
-//        selector.unselect(item)
-//    }
-
     // TODO Math used for the should DSL level
 //    static boolean asBoolean(Block block) {
 //        Blocks.run(block)
