@@ -15,7 +15,7 @@ build:
   steps:
     - script:
             name: Install Java 8 and maven
-              code: |
+              code: |-
                 sudo apt-get update
                 sudo apt-get install python-software-properties curl wget -y
                 sudo add-apt-repository ppa:webupd8team/java -y
