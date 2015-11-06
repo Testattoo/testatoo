@@ -1,5 +1,4 @@
 box: debian
-build:
 script: |-
   # Install Java8
   sudo apt-get update
