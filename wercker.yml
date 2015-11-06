@@ -4,4 +4,4 @@ build:
     - script:
         name: Compile
         code: |
-          mvn compile
+          mvn package
