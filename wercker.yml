@@ -2,18 +2,18 @@ box: debian
 build:
   steps:
     - script:
-      name: Install Java 8
-        code: |
-          # Install Java8
-          sudo apt-get update
-          sudo apt-get install python-software-properties curl wget -y
-          sudo add-apt-repository ppa:webupd8team/java -y
-          sudo apt-get update
-          echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-          echo debconf shared/accepted-oracle-license-v1-1 seen true |  sudo debconf-set-selections
-          sudo apt-get install oracle-java8-installer -qq
+        name: Install Java 8
+          code: |
+            # Install Java8
+            sudo apt-get update
+            sudo apt-get install python-software-properties curl wget -y
+            sudo add-apt-repository ppa:webupd8team/java -y
+            sudo apt-get update
+            echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+            echo debconf shared/accepted-oracle-license-v1-1 seen true |  sudo debconf-set-selections
+            sudo apt-get install oracle-java8-installer -qq
 
-      name: Install Maven
-        code: |
-          # Install Mave
-          sudo apt-get install maven -y -qq
+        name: Install Maven
+          code: |
+            # Install Mave
+            sudo apt-get install maven -y -qq
