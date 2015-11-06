@@ -11,3 +11,10 @@ script: |-
   sudo apt-get install oracle-java8-installer -qq
 
   sudo apt-get install maven -y -qq
+
+build:
+  steps:
+    - script:
+        name: echo
+          code: |
+            echo "hello world!"
