@@ -13,3 +13,7 @@ script: |-
 
 build:
   steps:
+    - script:
+            name: Build
+            code: |
+              mvn compile
