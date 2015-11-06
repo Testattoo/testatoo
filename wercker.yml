@@ -14,6 +14,6 @@ script: |-
 build:
   steps:
     - script:
-          name: Build
+            name: Build
             code: |
               mvn compile
