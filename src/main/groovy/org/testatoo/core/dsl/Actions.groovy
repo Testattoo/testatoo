@@ -15,15 +15,18 @@
  */
 package org.testatoo.core.dsl
 
+import org.hamcrest.Matcher
 import org.testatoo.core.Component
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.support.*
+import org.testatoo.hamcrest.Matchers
 
 import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+// TODO bad naming maybe TestatooDSL
 class Actions {
 
     static void clickOn(Component c) { c.click() }
@@ -60,5 +63,7 @@ class Actions {
         }
     }
 
-//    static void open(String uri) { visit(uri) }
+    static Block be(boolean state) {
+        assert state
+    }
 }

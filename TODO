@@ -1,33 +1,3 @@
-MATCHERS
-
-                        Checked
-                        Unchecked
-                        Enabled
-                        Disabled
-                        Available
-                        Missing
-                        Hidden
-                        Visible
-                        Placeholder
-                        Empty
-                        Value
-                        Filled
-                        ReadOnly
-                        Required
-                        Optional
-                        Label
-                        Minimum
-                        Maximum
-                        Step
-                        InRange
-                        OutOfRange
-                        Selected
-                        Unselected
-                        MultiSelectable
-                        Text
-                        Valid
-                        Invalid
-
 ==============================================================
 
 

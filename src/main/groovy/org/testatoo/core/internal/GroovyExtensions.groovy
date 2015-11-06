@@ -16,9 +16,12 @@
 package org.testatoo.core.internal
 
 import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
+import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.input.Key
 
 import java.time.Duration
+import java.util.concurrent.TimeoutException
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.MouseModifiers.*
@@ -45,6 +48,39 @@ class GroovyExtensions {
     static void rightClick(Collection<Key> keys, Component c) {
         config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
     }
+
+    static void should(Component component, Closure closure) {
+        closure.delegate = component
+        closure(component)
+        waitUntil(closure)
+    }
+
+    private static void waitUntil(Closure c) {
+        c()
+        try {
+            _waitUntil config.waitUntil.toMillis(), 200, {
+                Log.log "waitUntil: ${c}"
+                Blocks.run(Blocks.compose(Blocks.pending()))
+            }
+        } catch (TimeoutException e) {
+            throw new ComponentException("${e.message}")
+        }
+    }
+
+    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
+        Throwable ex = null
+        long t = timeout
+        for (; t > 0; t -= interval) {
+            try {
+                return c.call()
+            } catch (Throwable e) {
+                ex = e
+            }
+            Thread.sleep(interval)
+        }
+        throw new ComponentException("${ex.message}")
+    }
+
 
     // TODO Math rework
 //    static void select(MultiSelector selector, String... values) {
