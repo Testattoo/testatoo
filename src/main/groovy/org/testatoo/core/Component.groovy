@@ -15,13 +15,9 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.internal.Identifiers
-import org.testatoo.core.internal.Log
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.support.GenericSupport
-
-import java.util.concurrent.TimeoutException
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -40,12 +36,6 @@ class Component implements GenericSupport {
     }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
-
-    void should(Closure c) {
-        c.delegate = this
-        c(this)
-        waitUntil(c)
-    }
 
     @Override
     boolean equals(o) {
@@ -114,39 +104,13 @@ class Component implements GenericSupport {
 
     static Component $(String jQuery, long timeout = 2000) { new Component(new jQueryIdProvider(jQuery, timeout, true)) }
 
-    private static void waitUntil(Closure c) {
-        c()
-        try {
-            _waitUntil Testatoo.config.waitUntil.toMillis(), 200, {
-                Log.log "waitUntil: ${c}"
-                Blocks.run(Blocks.compose(Blocks.pending()))
-            }
-        } catch (TimeoutException e) {
-            throw new ComponentException("${e.message}")
-        }
-    }
-
-    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
-        Throwable ex = null
-        long t = timeout
-        for (; t > 0; t -= interval) {
-            try {
-                return c.call()
-            } catch (Throwable e) {
-                ex = e
-            }
-            Thread.sleep(interval)
-        }
-        throw new ComponentException("${ex.message}")
-    }
-
     //String eval(String jqueryExpr) { return Testatoo.config.evaluator.eval(getId(), jqueryExpr) }
 
     //boolean check(String jqueryExpr) { return evaluator.check(getId(), jqueryExpr) }
 
 //    Evaluator getEvaluator() { meta.evaluator }
 
-//    Block be(State matcher) { block 'be', matcher }
+
 
 //    boolean is(State state) {
 //        StateEvaluator se = _supportedStates.get(state.class)
