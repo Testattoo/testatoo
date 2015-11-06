@@ -15,6 +15,6 @@ script: |-
 build:
   steps:
     - script:
-        name: echo
-          code: |
-            echo "hello world!"
+      name: echo
+        code: |
+          echo "hello world!"
