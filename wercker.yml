@@ -2,6 +2,6 @@ box: wdinau/java8@0.0.1
 build:
   steps:
     - script:
-      name: echo
+        name: echo
         code: |
           echo "hello world!"
