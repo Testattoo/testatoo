@@ -14,6 +14,17 @@ script: |-
 build:
   steps:
     - script:
+            name: Install Java 8 and maven
+              code: |
+                sudo apt-get update
+                sudo apt-get install python-software-properties curl wget -y
+                sudo add-apt-repository ppa:webupd8team/java -y
+                sudo apt-get update
+                echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+                echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+                sudo apt-get install oracle-java8-installer -qq
+                sudo apt-get install maven -y -qq
+
             name: Build
-            code: |
-              mvn compile
+              code: |
+                mvn compile
