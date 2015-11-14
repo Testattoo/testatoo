@@ -32,6 +32,7 @@ import static org.testatoo.core.dsl.Actions.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class WaitTest {
 
     @BeforeClass
