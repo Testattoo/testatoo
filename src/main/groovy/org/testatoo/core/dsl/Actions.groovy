@@ -15,13 +15,11 @@
  */
 package org.testatoo.core.dsl
 
-import org.hamcrest.Matcher
 import org.testatoo.core.Component
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.support.*
-import org.testatoo.hamcrest.Matchers
 
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -61,9 +59,5 @@ class Actions {
         public void with(String value) {
             input.value = value
         }
-    }
-
-    static Block be(boolean state) {
-        assert state
     }
 }

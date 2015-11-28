@@ -15,13 +15,14 @@
  */
 package org.testatoo.core.internal
 
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.StringDescription
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
-import org.testatoo.core.dsl.Blocks
 import org.testatoo.core.input.Key
 
 import java.time.Duration
-import java.util.concurrent.TimeoutException
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.MouseModifiers.*
@@ -30,6 +31,9 @@ import static org.testatoo.core.input.MouseModifiers.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
+
+    // Concurrent access on // tests
+    private static final Queue<Matcher> BLOCKS = new LinkedList<>()
 
     public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 
@@ -51,39 +55,35 @@ class GroovyExtensions {
 
     static void should(Component component, Closure closure) {
         closure.delegate = component
-        closure(component)
-        waitUntil(closure)
-    }
-
-    private static void waitUntil(Closure c) {
-        c()
-        try {
-            _waitUntil config.waitUntil.toMillis(), 200, {
-                Log.log "waitUntil: ${c}"
-                Blocks.run(Blocks.compose(Blocks.pending()))
-            }
-        } catch (TimeoutException e) {
-            throw new ComponentException("${e.message}")
+        closure(this)
+        for (Matcher matcher : BLOCKS) {
+            waitUntil(closure, matcher)
         }
+        BLOCKS.clear()
     }
 
-    private static <V> V _waitUntil(final long timeout, long interval, Closure<V> c) throws TimeoutException {
-        Throwable ex = null
-        long t = timeout
-        for (; t > 0; t -= interval) {
-            try {
-                return c.call()
-            } catch (Throwable e) {
-                ex = e
+    static void be(Component component, Class<Matcher> matcher) {
+        BLOCKS.add(matcher.newInstance())
+    }
+
+    private static void waitUntil(Closure c, Matcher what) {
+        boolean success = false;
+        long timeout = config.waitUntil.toMillis()
+        long interval = 200
+
+        Log.log "WaitUntil: " + timeout
+        for (; timeout > 0; timeout -= interval) {
+            if(what.matches(c.delegate)) {
+                success = true
+                break
             }
             Thread.sleep(interval)
         }
-        throw new ComponentException("${ex.message}")
-    }
 
-    // TODO Math used for the should DSL level
-//    static boolean asBoolean(Block block) {
-//        Blocks.run(block)
-//        return true
-//    }
+        if(!success) {
+            Description description = new StringDescription();
+            description.appendDescriptionOf(what)
+            throw new ComponentException("Unable to reach " + description.toString() + " in " + config.waitUntil.toMillis() + " milliseconds");
+        }
+    }
 }

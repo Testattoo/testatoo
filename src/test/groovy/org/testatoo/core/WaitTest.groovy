@@ -15,15 +15,19 @@
  */
 package org.testatoo.core
 
+import org.hamcrest.Matcher
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.hamcrest.DisabledMatcher
+import org.testatoo.hamcrest.EnabledMatcher
+import org.testatoo.hamcrest.MissingMatcher
+import org.testatoo.hamcrest.VisibleMatcher
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.*
@@ -32,7 +36,6 @@ import static org.testatoo.core.dsl.Actions.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Ignore
 class WaitTest {
 
     @BeforeClass
@@ -52,6 +55,12 @@ class WaitTest {
     public void should_be_able_to_wait_on_condition() {
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
+
+        Class<Matcher> enabled = EnabledMatcher.class;
+        Class<Matcher> disabled = DisabledMatcher.class;
+
+        Class<Matcher> visible = VisibleMatcher.class;
+        Class<Matcher> missing = MissingMatcher.class;
 
         button.should {
             be enabled

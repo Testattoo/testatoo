@@ -15,121 +15,122 @@
  */
 package org.testatoo.core.dsl
 
-import org.testatoo.core.internal.Log
+import org.hamcrest.Matcher
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Blocks {
 
-    private static final Queue<Block> BLOCKS = new LinkedList<>()
+    public static final Queue<Matcher> BLOCKS = new LinkedList<>()
 
-    static Block block(String description, Closure c) {
-        Block b = null
-        b = new Block() {
-            @Override
-            void run() {
-                try {
-                    c()
-                } finally {
-                    BLOCKS.remove(b)
-                }
-            }
+//    private static final Queue<Block> BLOCKS = new LinkedList<>()
 
-            @Override
-            String toString() { description }
-        }
-        BLOCKS.offer(b)
-        return b
-    }
-
-    static Collection<Block> pending() {
-        Queue<Block> blks = new LinkedList<>()
-        while (BLOCKS) {
-            blks.offer(BLOCKS.poll())
-        }
-        return blks
-    }
-
-    static Block and(Collection<Block> blocks) {
-        if (blocks.empty) {
-            // TODO Math how to pass here (code coverage)
-            throw new IllegalArgumentException('Empty block')
-        }
-        BLOCKS.removeAll(blocks)
-        Block b = null
-        b = new Block() {
-            @Override
-            void run() {
-                try {
-                    blocks*.run()
-                } finally {
-                    BLOCKS.remove(b)
-                }
-            }
-
-            @Override
-            String toString() { blocks.collect { it as String }.join(' AND') }
-        }
-        BLOCKS.offer(b)
-        return b
-    }
-
-    static Block or(Collection<Block> blocks) {
-        if (blocks.empty) {
-            // TODO Math how to pass here (code coverage)
-            throw new IllegalArgumentException('Empty block')
-        }
-        BLOCKS.removeAll(blocks)
-        Block b = null
-        b = new Block() {
-            @Override
-            void run() {
-                try {
-                    Throwable last = null
-                    Block succeed = blocks.find {
-                        try {
-                            it.run()
-                            return true
-                        } catch (Throwable t) {
-                            last = t
-                            return false
-                        }
-                    }
-                    if (succeed == null) {
-                        throw last
-                    }
-                } finally {
-                    BLOCKS.remove(b)
-                }
-            }
-
-            @Override
-            String toString() { blocks.collect { it as String }.join(' OR ') }
-        }
-        BLOCKS.offer(b)
-        return b
-    }
-
-    static void run(Block b) {
-        Log.log b.toString()
-        b.run()
-    }
-
-    static Block compose(Collection<Block> blocks) {
-        Block b = null
-        b = [
-            run: {
-                try {
-                    blocks*.run()
-                } finally {
-                    BLOCKS.remove(b)
-                }
-            },
-            toString: { blocks.collect { it as String }.join('\n') }
-        ] as Block
-        BLOCKS.offer(b)
-        return b
-
-    }
+//    static Block block(String description, Closure c) {
+//        Block b = null
+//        b = new Block() {
+//            @Override
+//            void run() {
+//                try {
+//                    c()
+//                } finally {
+//                    BLOCKS.remove(b)
+//                }
+//            }
+//
+//            @Override
+//            String toString() { description }
+//        }
+//        BLOCKS.offer(b)
+//        return b
+//    }
+//
+//    static Collection<Block> pending() {
+//        Queue<Block> blocks = new LinkedList<>()
+//        while (BLOCKS) {
+//            blocks.offer(BLOCKS.poll())
+//        }
+//        return blocks
+//    }
+//
+//    static Block and(Collection<Block> blocks) {
+//        if (blocks.empty) {
+//            // TODO Math how to pass here (code coverage)
+//            throw new IllegalArgumentException('Empty block')
+//        }
+//        BLOCKS.removeAll(blocks)
+//        Block b = null
+//        b = new Block() {
+//            @Override
+//            void run() {
+//                try {
+//                    blocks*.run()
+//                } finally {
+//                    BLOCKS.remove(b)
+//                }
+//            }
+//
+//            @Override
+//            String toString() { blocks.collect { it as String }.join(' AND') }
+//        }
+//        BLOCKS.offer(b)
+//        return b
+//    }
+//
+//    static Block or(Collection<Block> blocks) {
+//        if (blocks.empty) {
+//            // TODO Math how to pass here (code coverage)
+//            throw new IllegalArgumentException('Empty block')
+//        }
+//        BLOCKS.removeAll(blocks)
+//        Block b = null
+//        b = new Block() {
+//            @Override
+//            void run() {
+//                try {
+//                    Throwable last = null
+//                    Block succeed = blocks.find {
+//                        try {
+//                            it.run()
+//                            return true
+//                        } catch (Throwable t) {
+//                            last = t
+//                            return false
+//                        }
+//                    }
+//                    if (succeed == null) {
+//                        throw last
+//                    }
+//                } finally {
+//                    BLOCKS.remove(b)
+//                }
+//            }
+//
+//            @Override
+//            String toString() { blocks.collect { it as String }.join(' OR ') }
+//        }
+//        BLOCKS.offer(b)
+//        return b
+//    }
+//
+//    static void run(Block b) {
+//        Log.log b.toString()
+//        b.run()
+//    }
+//
+//    static Block compose(Collection<Block> blocks) {
+//        Block b = null
+//        b = [
+//            run: {
+//                try {
+//                    blocks*.run()
+//                } finally {
+//                    BLOCKS.remove(b)
+//                }
+//            },
+//            toString: { blocks.collect { it as String }.join('\n') }
+//        ] as Block
+//        BLOCKS.offer(b)
+//        return b
+//    }
 }

@@ -19,6 +19,8 @@ import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.support.GenericSupport
 
+import static org.testatoo.core.Testatoo.getConfig
+
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
@@ -70,11 +72,11 @@ class Component implements GenericSupport {
     }
 
     protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
-        Testatoo.config.evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
+        config.evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
     }
 
     protected static <T extends Component> List<T> findjs(String expression, Class<T> type = Component) {
-        Testatoo.config.evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
+        config.evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
     }
 
     static class CachedMetaData {
@@ -89,9 +91,9 @@ class Component implements GenericSupport {
                 MetaInfo info = idProvider.getMetaInfos()[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(Testatoo.config.evaluator.check(info.id, identifyingExpr))) {
-                        Class<Component> type = Testatoo.config.componentTypes.find {
-                            Testatoo.config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
+                    if (!(config.evaluator.check(info.id, identifyingExpr))) {
+                        Class<Component> type = config.componentTypes.find {
+                            config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }
