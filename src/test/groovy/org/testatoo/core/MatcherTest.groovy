@@ -22,7 +22,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.list.Dropdown
+import org.testatoo.bundle.html5.components.list.Select
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
@@ -46,7 +46,7 @@ class MatcherTest {
 
     @Test
     public void equals_to_matcher_on_list_items() {
-        Dropdown dropDown = $('#elements') as Dropdown
+        Select dropDown = $('#elements') as Select
         try {
             dropDown.should { have items.equalsTo('Val1') }
             fail()
@@ -64,7 +64,7 @@ class MatcherTest {
 
     @Test
     public void equals_to_matcher() {
-        Dropdown dropDown = $('#elements') as Dropdown
+        Select dropDown = $('#elements') as Select
         try {
             dropDown.items[0].should { have value.equalsTo('Val_1') }
             fail()
@@ -82,7 +82,7 @@ class MatcherTest {
 
     @Test
     public void containing_matcher() {
-        Dropdown dropDown = $('#elements') as Dropdown
+        Select dropDown = $('#elements') as Select
         try {
             dropDown.should { have items.containing('Val_1') }
             fail()

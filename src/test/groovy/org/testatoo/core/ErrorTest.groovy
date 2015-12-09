@@ -23,7 +23,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.list.Item
+import org.testatoo.bundle.html5.components.list.Li
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.input.MouseModifiers
 
@@ -95,7 +95,7 @@ class ErrorTest {
     @Test
     public void should_throw_an_error_when_$_selector_match_multiple_elements() {
         try {
-            Item item = $('#elements option') as Item;
+            Li item = $('#elements option') as Li;
             item.visible
             fail()
         } catch (ComponentException e) {

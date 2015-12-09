@@ -15,9 +15,7 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.support.TextSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 
 import static org.testatoo.core.Testatoo.config
 
@@ -25,7 +23,7 @@ import static org.testatoo.core.Testatoo.config
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
-class Button extends Component implements TextSupport {
+class Button extends org.testatoo.core.component.Button {
 
     @Override
     public String getText() {

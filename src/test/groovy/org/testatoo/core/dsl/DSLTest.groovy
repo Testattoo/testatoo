@@ -2,6 +2,7 @@ package org.testatoo.core.dsl
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -15,6 +16,7 @@ import static org.testatoo.core.dsl.Actions.visit
  */
 
 @RunWith(JUnit4)
+@Ignore
 class DSLTest {
 
     @BeforeClass
@@ -25,7 +27,4 @@ class DSLTest {
 
     @AfterClass
     public static void tearDown() { config.evaluator.close() }
-
-
-
 }

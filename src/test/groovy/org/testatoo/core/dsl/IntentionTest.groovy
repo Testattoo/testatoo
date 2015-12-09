@@ -24,14 +24,15 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.CheckBox
 import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Div
 import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.bundle.html5.components.fields.EmailField
 import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.bundle.html5.components.fields.TextField
-import org.testatoo.bundle.html5.components.list.Dropdown
-import org.testatoo.bundle.html5.components.list.ListBox
+import org.testatoo.bundle.html5.components.list.Select
+import org.testatoo.bundle.html5.components.list.MultiSelect
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.ListBox
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
@@ -113,7 +114,7 @@ class IntentionTest {
     @Test
     public void given_input_with_value_when_fill_value_we_trigger_a_blur_event() {
         TextField field = $('#firstname') as TextField
-        Panel panel = $('#firstname_blur') as Panel
+        Div panel = $('#firstname_blur') as Div
 
         assert panel.hidden
         fill field with 'invalid value'
@@ -123,7 +124,7 @@ class IntentionTest {
     @Test
     public void given_input_with_value_when_clear_value_we_trigger_a_change_and_blur_event() {
         TextField field = $('#lastname') as TextField
-        Panel panel = $('#lastname_reset') as Panel
+        Div panel = $('#lastname_reset') as Div
 
         assert panel.hidden
         clear field
@@ -171,14 +172,15 @@ class IntentionTest {
 
     @Test
     @Ignore
+    // TODO remove select call ... here work with select on the item
     public void should_be_able_to_select_element_in_dropdown_an_listbox() {
-        Dropdown dropdown = $('#elements') as Dropdown
+        Select dropdown = $('#elements') as Select
         assert dropdown.selectedItem.value == 'H'
-
+        
         on dropdown select 'Pol'
         assert dropdown.selectedItem.value == 'Pol'
 
-        ListBox listBox = $('#cities') as ListBox
+        ListBox listBox = $('#cities') as MultiSelect
 
         listBox.items.containsAll('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
         listBox.selectedItems.containsAll('New York', 'Munich')
@@ -203,21 +205,21 @@ class IntentionTest {
         on listBox unselect listBox.items[4]
         assert listBox.items[4].unselected
 
-        select listBox.items[4]
-        assert listBox.items[4].selected
+//        select listBox.items[4]
+//        assert listBox.items[4].selected
 
-        unselect listBox.items[4]
-        assert listBox.items[4].unselected
-
-        try {
-            on listBox select 'Quebec'
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Item Quebec is disabled and cannot be selected'
-        }
+//        unselect listBox.items[4]
+//        assert listBox.items[4].unselected
+//
+//        try {
+//            on listBox select 'Quebec'
+//            fail()
+//        } catch (ComponentException e) {
+//            assert e.message == 'Item Quebec is disabled and cannot be selected'
+//        }
     }
 
-    class Message extends Panel {
+    class Message extends Div {
         @Override
         String getTitle() {
             config.evaluator.eval(id, "it.text()")

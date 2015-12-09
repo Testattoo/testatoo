@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Div
 import org.testatoo.bundle.html5.components.fields.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.internal.Log
@@ -61,7 +61,7 @@ class ConfigTest {
             browser.open 'http://localhost:8080/dsl.html'
 
             TextField field = $('#firstname') as TextField
-            Panel error = $('#firstname_blur') as Panel
+            Div error = $('#firstname_blur') as Div
 
             field.empty
             error.hidden
@@ -75,7 +75,7 @@ class ConfigTest {
             browser.open 'http://localhost:8080/dsl.html'
 
             field = $('#firstname') as TextField
-            error = $('#firstname_blur') as Panel
+            error = $('#firstname_blur') as Div
 
             assert field.filled
             assert error.visible

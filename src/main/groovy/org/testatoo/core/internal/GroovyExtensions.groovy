@@ -32,9 +32,6 @@ import static org.testatoo.core.input.MouseModifiers.*
  */
 class GroovyExtensions {
 
-    // Concurrent access on // tests
-    private static final Queue<Matcher> BLOCKS = new LinkedList<>()
-
     public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 
     public static Collection<?> plus(Key a, Key b) { [a, b] }
@@ -53,17 +50,50 @@ class GroovyExtensions {
         config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
     }
 
+//    static void select(Component component, String value) {
+//        component.select(value)
+//    }
+//
+//    static void unselect(Component component, String value) {
+//        component.unselect(value)
+//    }
+//
+//    static void select(Component component, String... values) {
+//        component.select(values)
+//    }
+//
+//    static void unselect(Component component, String... values) {
+//        component.unselect(values)
+//    }
+//
+//    static void select(Component component, Item item) {
+//        component.select(item)
+//    }
+//
+//    static void unselect(Component component, Item item) {
+//        component.unselect(item)
+//    }
+//
+//
+//    static void select(Component component, Item... items) {
+//        component.unselect(items)
+//    }
+//
+//    static void unselect(Component component, Item... items) {
+//        component.unselect(items)
+//    }
+
     static void should(Component component, Closure closure) {
         closure.delegate = component
         closure(this)
-        for (Matcher matcher : BLOCKS) {
+        for (Matcher matcher : component.BLOCKS) {
             waitUntil(closure, matcher)
         }
-        BLOCKS.clear()
+        component.BLOCKS.clear()
     }
 
     static void be(Component component, Class<Matcher> matcher) {
-        BLOCKS.add(matcher.newInstance())
+        component.BLOCKS.add(matcher.newInstance())
     }
 
     private static void waitUntil(Closure c, Matcher what) {

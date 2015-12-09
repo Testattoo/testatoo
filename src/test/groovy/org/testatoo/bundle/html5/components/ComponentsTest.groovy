@@ -21,14 +21,21 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
+// TODO remove when generification is done
 import org.testatoo.bundle.html5.components.fields.EmailField
 import org.testatoo.bundle.html5.components.fields.PasswordField
+import org.testatoo.bundle.html5.components.heading.*
+import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Heading
+import org.testatoo.core.component.Image
+import org.testatoo.core.component.Link
+import org.testatoo.core.component.Panel
+import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.support.TextSupport
 import org.testatoo.core.support.ValiditySupport
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -49,7 +56,7 @@ class ComponentsTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    public void component_should_have_expected_behaviours() {
+    public void component_should_have_expected_common_behaviours() {
         Button button = $('#button') as Button
         assert button.enabled
         assert button.available
@@ -58,10 +65,10 @@ class ComponentsTest {
         button = $('#submit') as Button
         assert button.disabled
 
-        Panel panel = $('#hidden_panel') as Panel
+        Div panel = $('#hidden_panel') as Div
         assert panel.hidden
 
-        panel = $('#non_existing_id') as Panel
+        panel = $('#non_existing_id') as Div
         assert panel.missing
     }
 
@@ -81,6 +88,9 @@ class ComponentsTest {
 
     @Test
     public void button_should_have_expected_behaviours() {
+        assert Button in org.testatoo.core.component.Button
+        assert CheckBox in LabelSupport
+
         // fields type=button
         Button button = $('#button') as Button
 
@@ -103,6 +113,7 @@ class ComponentsTest {
 
     @Test
     public void checkbox_should_have_expected_behaviours() {
+        assert CheckBox in org.testatoo.core.component.CheckBox
         assert CheckBox in CheckSupport
         assert CheckBox in LabelSupport
 
@@ -157,6 +168,7 @@ class ComponentsTest {
 
     @Test
     public void form_should_have_expected_behaviours() {
+        assert Form in org.testatoo.core.component.Form
         assert Form in ValiditySupport
 
         Form form = $('#form') as Form
@@ -195,46 +207,56 @@ class ComponentsTest {
 
     @Test
     public void heading_should_have_expected_behaviours() {
+        assert H1 in Heading
+        assert H2 in Heading
+        assert H3 in Heading
+        assert H4 in Heading
+        assert H5 in Heading
+        assert H6 in Heading
         assert Heading in TextSupport
 
-        Heading h1 = $('#h1') as Heading
+        H1 h1 = $('#h1') as H1
         assert h1.text == 'heading 1'
 
-        Heading h2 = $('#h2') as Heading
+        H2 h2 = $('#h2') as H2
         assert h2.text == 'heading 2'
 
-        Heading h3 = $('#h3') as Heading
+        H3 h3 = $('#h3') as H3
         assert h3.text == 'heading 3'
 
-        Heading h4 = $('#h4') as Heading
+        H4 h4 = $('#h4') as H4
         assert h4.text == 'heading 4'
 
-        Heading h5 = $('#h5') as Heading
+        H5 h5 = $('#h5') as H5
         assert h5.text == 'heading 5'
 
-        Heading h6 = $('#h6') as Heading
+        H6 h6 = $('#h6') as H6
         assert h6.text == 'heading 6'
     }
 
     @Test
     public void image_should_have_expected_behaviours() {
-        Image image = $('#image') as Image
+        assert Img in Image
+        Img image = $('#image') as Img
 
         assert image.source == 'http://localhost:8080/img/Montpellier.jpg'
     }
 
     @Test
     public void link_should_have_expected_behaviours() {
-        Link link = $('#link') as Link
+        assert A in Link
+        assert A in TextSupport
 
-        assert Link in TextSupport
+        A link = $('#link') as A
+
         assert link.text == 'Link to dsl page'
         assert link.reference == 'http://localhost:8080/dsl.html'
     }
 
     @Test
     public void panel_should_have_expected_behaviours() {
-        Panel panel = $('#panel') as Panel
+        assert Div in Panel
+        Div panel = $('#panel') as Div
 
         assert panel.title == ''
     }
@@ -250,6 +272,7 @@ class ComponentsTest {
 
     @Test
     public void radio_should_have_expected_behaviours() {
+        assert Radio in org.testatoo.core.component.Radio
         assert Radio in LabelSupport
         assert Radio in CheckSupport
 
@@ -272,6 +295,7 @@ class ComponentsTest {
         assert section.articles.size() == 1
     }
 
+    @ByCss('div')
     class Message extends Panel {
         @Override
         String getTitle() {

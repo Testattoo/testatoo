@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.Link
+import org.testatoo.bundle.html5.components.A
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -80,7 +80,7 @@ class BrowserTest {
         assert browser.windows.size() == 1
         String main_window_id = browser.windows[0].id
 
-        Link link = $('#link') as Link
+        A link = $('#link') as A
         Form form = $('#dsl-form') as Form
 
         assert link.available

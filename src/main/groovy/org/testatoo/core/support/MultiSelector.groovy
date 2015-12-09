@@ -15,11 +15,13 @@
  */
 package org.testatoo.core.support
 
-import org.testatoo.bundle.html5.components.list.Item
+import org.testatoo.core.component.Item
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+
+// TODO use without method just as interface tag
 interface MultiSelector {
 
     void select(Item... items)

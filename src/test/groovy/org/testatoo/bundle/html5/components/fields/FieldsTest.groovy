@@ -46,6 +46,7 @@ class FieldsTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
+    // TODO generify
     public void input_should_have_expected_behaviours() {
         EmailField email = $('#email') as EmailField
         assert email.empty
@@ -83,6 +84,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void color_field_should_have_expected_behaviours() {
         assert ColorField in TextField
 
@@ -97,6 +99,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void date_field_should_have_expected_behaviours() {
         DateField in TextField
         DateField in RangeSupport
@@ -114,6 +117,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void dateTime_field_should_have_expected_behaviours() {
         DateTimeField in TextField
         DateTimeField in RangeSupport
@@ -126,6 +130,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void email_field_should_have_expected_behaviours() {
         assert EmailField in TextField
 
@@ -134,6 +139,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void month_field_should_have_expected_behaviours() {
         assert MonthField in TextField
 
@@ -142,6 +148,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void number_field_should_have_expected_behaviours() {
         assert NumberField in TextField
         assert NumberField in RangeSupport
@@ -162,6 +169,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void password_field_should_have_expected_behaviours() {
         assert PasswordField in LabelSupport
         assert PasswordField in InputSupport
@@ -171,6 +179,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void phone_field_should_have_expected_behaviours() {
         assert PhoneField in TextField
 
@@ -179,6 +188,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void range_field_should_have_expected_behaviours() {
         RangeField in TextField
         RangeField in RangeSupport
@@ -200,6 +210,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void search_field_should_have_expected_behaviours() {
         assert SearchField in TextField
 
@@ -212,6 +223,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void text_field_should_have_expected_behaviours() {
         assert TextField in LabelSupport
         assert TextField in InputSupport
@@ -221,6 +233,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void time_field_should_have_expected_behaviours() {
         assert TimeField in TextField
 
@@ -233,6 +246,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void url_field_should_have_expected_behaviours() {
         assert URLField in TextField
 
@@ -245,6 +259,7 @@ class FieldsTest {
     }
 
     @Test
+    // TODO generify
     public void week_field_should_have_expected_behaviours() {
         assert WeekField in TextField
 

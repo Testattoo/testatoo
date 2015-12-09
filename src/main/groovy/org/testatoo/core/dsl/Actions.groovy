@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.dsl
 
+import org.testatoo.bundle.html5.components.list.Li
 import org.testatoo.core.Component
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.support.*
@@ -43,21 +44,60 @@ class Actions {
 
     static final void submit(Submissible c) { c.submit() }
 
-    static final <T extends Component> T on(Component c) { c as T }
+    static final SingleSelectorAction on(SingleSelector c) { new SingleSelectorAction(c) }
 
-    static final FillBuilder fill(InputSupport c) {
-        new FillBuilder(c)
+    static final MultiSelectorAction on(MultiSelector c) { new MultiSelectorAction(c) }
+
+    static final FillAction fill(InputSupport c) {
+        new FillAction(c)
     }
 
-    public static class FillBuilder {
+    public static class FillAction {
         private InputSupport input
 
-        public FillBuilder(InputSupport input) {
+        public FillAction(InputSupport input) {
             this.input = input
         }
 
         public void with(String value) {
             input.value = value
+        }
+    }
+
+    public static class SingleSelectorAction {
+        private SingleSelector selector
+
+        public SingleSelectorAction(SingleSelector selector) {
+            this.selector = selector
+        }
+
+        public void select(String value) {
+            selector.select(value)
+        }
+
+        public void select(Li item) {
+            selector.select(item)
+        }
+    }
+
+    public static class MultiSelectorAction {
+        private MultiSelector selector
+
+        public MultiSelectorAction(MultiSelector selector) {
+            this.selector = selector
+        }
+
+        public void select(String... value) {
+            selector.select(value)
+        }
+
+        public void select(Li... item) {
+            selector.select(item)
+        }
+
+        public void unselect(String... values) {
+
+
         }
     }
 }

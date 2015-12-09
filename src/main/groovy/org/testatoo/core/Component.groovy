@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.hamcrest.Matcher
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.support.GenericSupport
@@ -25,6 +26,8 @@ import static org.testatoo.core.Testatoo.getConfig
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Component implements GenericSupport {
+
+    final Queue<Matcher> BLOCKS = new LinkedList<>()
 
     CachedMetaData meta = new CachedMetaData()
 

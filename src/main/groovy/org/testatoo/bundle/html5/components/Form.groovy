@@ -15,12 +15,8 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.ComponentException
-import org.testatoo.core.support.Resettable
-import org.testatoo.core.support.Submissible
-import org.testatoo.core.support.ValiditySupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 
 import static org.testatoo.bundle.html5.components.helper.ValidityHelper.*
 
@@ -28,8 +24,9 @@ import static org.testatoo.bundle.html5.components.helper.ValidityHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends Component implements ValiditySupport, Resettable, Submissible {
+class Form extends org.testatoo.core.component.Form {
 
+    @Override
     void reset() {
         Button reset_button = this.find('[type=reset]:first')[0] as Button
         if (reset_button && reset_button.available)
@@ -38,6 +35,7 @@ class Form extends Component implements ValiditySupport, Resettable, Submissible
             throw new ComponentException('Cannot reset form without reset button')
     }
 
+    @Override
     void submit() {
         Button submit_button = this.find('[type=submit]:first')[0] as Button
         if (submit_button && submit_button.available)

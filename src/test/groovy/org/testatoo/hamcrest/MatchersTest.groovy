@@ -18,7 +18,7 @@ package org.testatoo.hamcrest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.bundle.html5.components.list.ListBox
+import org.testatoo.bundle.html5.components.list.MultiSelect
 import org.testatoo.core.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport
@@ -377,7 +377,7 @@ class MatchersTest {
 
     @Test
     public void should_have_matcher_for_listbox_multiselectable() {
-        ListBox cmp = mock(ListBox)
+        MultiSelect cmp = mock(MultiSelect)
 
         // Multi Selectable
         when(cmp.multiSelectable).thenReturn(true)

@@ -15,21 +15,16 @@
  */
 package org.testatoo.bundle.html5.components
 
-import org.testatoo.core.ComponentException
-import org.testatoo.core.support.CheckSupport
-import org.testatoo.core.support.Checkable
-import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 
-import static org.testatoo.bundle.html5.components.helper.LabelHelper.*
 import static org.testatoo.bundle.html5.components.helper.CheckHelper.*
+import static org.testatoo.bundle.html5.components.helper.LabelHelper.getLabel
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('input[type=radio]')
-class Radio extends Component implements LabelSupport, CheckSupport, Checkable {
+class Radio extends org.testatoo.core.component.Radio{
 
     @Override
     boolean isChecked() {

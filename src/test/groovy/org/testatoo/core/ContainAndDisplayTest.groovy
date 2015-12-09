@@ -17,14 +17,13 @@ package org.testatoo.core
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Div
 import org.testatoo.bundle.html5.components.fields.EmailField
 import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -48,7 +47,7 @@ class ContainAndDisplayTest {
 
     @Test
     public void should_be_able_to_test_if_component_contains_other_component() {
-        Panel panel = $('#panel') as Panel
+        Div panel = $('#panel') as Div
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
@@ -73,13 +72,13 @@ class ContainAndDisplayTest {
                     reset_button
             )
         } catch (ComponentException e) {
-            assert e.message == "Component Panel:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]" as String
+            assert e.message == "Component Div:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]" as String
         }
     }
 
     @Test
     public void should_be_able_to_test_if_component_display_other_component() {
-        Panel panel = $('#panel') as Panel
+        Div panel = $('#panel') as Div
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
@@ -98,7 +97,7 @@ class ContainAndDisplayTest {
         try {
             panel.display(email_field)
         } catch (ComponentException e) {
-            assert e.message == "Component Panel:panel does not display expected component(s): [EmailField:$email_field.id]" as String
+            assert e.message == "Component Div:panel does not display expected component(s): [EmailField:$email_field.id]" as String
         }
     }
 

@@ -24,9 +24,9 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.CheckBox
-import org.testatoo.bundle.html5.components.Panel
+import org.testatoo.bundle.html5.components.Div
 import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.bundle.html5.components.list.Dropdown
+import org.testatoo.bundle.html5.components.list.Select
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -65,7 +65,7 @@ class MouseTest {
         clickOn radio
         assert radio.checked
 
-        Dropdown dropDown = $('#elements') as Dropdown
+        Select dropDown = $('#elements') as Select
         dropDown.selectedItem.value == 'H'
 
         clickOn dropDown.items[2]
@@ -116,7 +116,7 @@ class MouseTest {
         DropPanel dropPanel = $('#droppable') as DropPanel
         assert dropPanel.title == 'Drop here'
 
-        Panel dragPanel = $('#draggable') as Panel
+        Div dragPanel = $('#draggable') as Div
 
         drag dragPanel on dropPanel
         assert dropPanel.title == 'Dropped!'
@@ -127,30 +127,30 @@ class MouseTest {
         assert $('#span_Ctrl_mouseleft').missing
         assert $('#span_Shift_mouseleft').missing
 
-        CTRL.click $('#_Ctrl_mouseleft') as Panel
-        SHIFT.click $('#_Shift_mouseleft') as Panel
+        CTRL.click $('#_Ctrl_mouseleft') as Div
+        SHIFT.click $('#_Shift_mouseleft') as Div
 
         assert $('#span_Ctrl_mouseleft').available
         assert $('#span_Shift_mouseleft').available
 
         // Not testable cause Rightclick Handled by the browser
-        CTRL.rightClick $('#_Ctrl_mouseright') as Panel
-        [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Panel
+        CTRL.rightClick $('#_Ctrl_mouseright') as Div
+        [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Div
 
         assert $('#span_Alt_Shift_mouseleft').missing
-        (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Panel
+        (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Div
         assert $('#span_Alt_Shift_mouseleft').available
 
         assert $('#span_Crtl_Shift_mouseleft').missing
-        [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Panel
+        [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Div
         assert $('#span_Crtl_Shift_mouseleft').missing
 
         // For code coverage
-        [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
-        ['data'].click $('#_Ctrl_Shift_mouseleft') as Panel
+        [SPACE].click $('#_Ctrl_Shift_mouseleft') as Div
+        ['data'].click $('#_Ctrl_Shift_mouseleft') as Div
     }
 
-    class DropPanel extends Panel {
+    class DropPanel extends Div {
         String getTitle() {
             config.evaluator.eval(id, "it.find('h1').text()")
         }

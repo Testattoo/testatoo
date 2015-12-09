@@ -17,15 +17,15 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeDiagnosingMatcher
-import org.testatoo.bundle.html5.components.list.ListBox
+import org.testatoo.bundle.html5.components.list.MultiSelect
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class MultiSelectableMatcher extends TypeSafeDiagnosingMatcher<ListBox> {
+class MultiSelectableMatcher extends TypeSafeDiagnosingMatcher<MultiSelect> {
 
     @Override
-    protected boolean matchesSafely(ListBox item, Description mismatchDescription) {
+    protected boolean matchesSafely(MultiSelect item, Description mismatchDescription) {
         mismatchDescription.appendText('is single selectable')
         item.multiSelectable
     }
