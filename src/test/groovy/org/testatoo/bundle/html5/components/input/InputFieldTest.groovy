@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -22,19 +22,34 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.core.ComponentException
-import org.testatoo.core.support.InputSupport
-import org.testatoo.core.support.LabelSupport
-import org.testatoo.core.support.RangeSupport
+import org.testatoo.core.component.field.ColorField
+import org.testatoo.core.component.field.DateField
+import org.testatoo.core.component.field.DateTimeField
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.Field
+import org.testatoo.core.component.field.MonthField
+import org.testatoo.core.component.field.NumberField
+import org.testatoo.core.component.field.PasswordField
+import org.testatoo.core.component.field.PhoneField
+import org.testatoo.core.component.field.RangeField
+import org.testatoo.core.component.field.SearchField
+import org.testatoo.core.component.field.TextField
+import org.testatoo.core.component.field.TimeField
+import org.testatoo.core.component.field.URLField
+import org.testatoo.core.component.field.WeekField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+
 @RunWith(JUnit4)
-class FieldsTest {
+class InputFieldTest {
 
     @BeforeClass
     public static void setup() {
@@ -46,9 +61,8 @@ class FieldsTest {
     public static void tearDown() { config.evaluator.close() }
 
     @Test
-    // TODO generify
     public void input_should_have_expected_behaviours() {
-        EmailField email = $('#email') as EmailField
+        EmailField email = $('#email') as InputTypeEmail
         assert email.empty
         assert email.optional
         assert !email.filled
@@ -58,10 +72,10 @@ class FieldsTest {
         assert !email.invalid
         assert email.value == ''
 
-        TextField text = $('#text_field') as TextField
+        TextField text = $('#text_field') as InputTypeText
         assert text.placeholder == 'Placeholder'
 
-        text = $('#read_only_and_filled') as TextField
+        text = $('#read_only_and_filled') as InputTypeText
         assert text.filled
         assert text.readOnly
         assert text.value == 'Filled'
@@ -70,10 +84,10 @@ class FieldsTest {
             text.value = 'New Value'
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'TextField TextField:read_only_and_filled is disabled and cannot be filled'
+            assert e.message == 'InputTypeText InputTypeText:read_only_and_filled is disabled and cannot be filled'
         }
 
-        PasswordField password = $('#password') as PasswordField
+        PasswordField password = $('#password') as InputTypePassword
         assert password.required
         assert !password.optional
         // Invalid cause required
@@ -84,11 +98,8 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void color_field_should_have_expected_behaviours() {
-        assert ColorField in TextField
-
-        ColorField colorField = $('#color_field') as ColorField
+        ColorField colorField = $('#color_field') as InputTypeColor
         assert colorField.label == 'Color'
 
         // Fail on CI
@@ -98,13 +109,10 @@ class FieldsTest {
         assert colorField.valid
     }
 
-    @Test
-    // TODO generify
-    public void date_field_should_have_expected_behaviours() {
-        DateField in TextField
-        DateField in RangeSupport
 
-        DateField date = $('#date_field') as DateField
+    @Test
+    public void date_field_should_have_expected_behaviours() {
+        DateField date = $('#date_field') as InputTypeDate
         assert date.value == ''
         assert date.step == 0
         assert date.inRange
@@ -117,12 +125,8 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void dateTime_field_should_have_expected_behaviours() {
-        DateTimeField in TextField
-        DateTimeField in RangeSupport
-
-        DateTimeField dateTime = $('#datetime_field') as DateTimeField
+        DateTimeField dateTime = $('#datetime_field') as InputTypeDateTime
 
         assert dateTime.value == ''
         dateTime.value = '2010-06-25'
@@ -130,30 +134,22 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void email_field_should_have_expected_behaviours() {
-        assert EmailField in TextField
-
-        EmailField email = $('#email_field') as EmailField
+        EmailField email = $('#email_field') as InputTypeEmail
         assert email.label == 'Email'
     }
 
     @Test
-    // TODO generify
     public void month_field_should_have_expected_behaviours() {
-        assert MonthField in TextField
+        assert MonthField in Field
 
-        MonthField month = $('#month_field') as MonthField
+        MonthField month = $('#month_field') as InputTypeMonth
         assert month.label == 'Month'
     }
 
     @Test
-    // TODO generify
     public void number_field_should_have_expected_behaviours() {
-        assert NumberField in TextField
-        assert NumberField in RangeSupport
-
-        NumberField number = $('#number_field') as NumberField
+        NumberField number = $('#number_field') as InputTypeNumber
         assert number.label == 'Number'
 
         assert number.maximum == 64
@@ -169,31 +165,20 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void password_field_should_have_expected_behaviours() {
-        assert PasswordField in LabelSupport
-        assert PasswordField in InputSupport
-
-        PasswordField password = $('#password_field') as PasswordField
+        PasswordField password = $('#password_field') as InputTypePassword
         assert password.label == 'Password'
     }
 
     @Test
-    // TODO generify
     public void phone_field_should_have_expected_behaviours() {
-        assert PhoneField in TextField
-
-        PhoneField phone = $('#phone_field') as PhoneField
+        PhoneField phone = $('#phone_field') as InputTypeTel
         assert phone.pattern == '^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,5})|(\\(?\\d{2,6}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$'
     }
 
     @Test
-    // TODO generify
     public void range_field_should_have_expected_behaviours() {
-        RangeField in TextField
-        RangeField in RangeSupport
-
-        RangeField range = $('#range_field') as RangeField
+        RangeField range = $('#range_field') as InputTypeRange
         assert range.maximum == 50
         assert range.minimum == 0
         assert range.step == 5
@@ -210,11 +195,8 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void search_field_should_have_expected_behaviours() {
-        assert SearchField in TextField
-
-        SearchField searchField = $('#search_field') as SearchField
+        SearchField searchField = $('#search_field') as InputTypeSearch
         assert searchField.label == 'Search'
 
         searchField.value == ''
@@ -223,21 +205,14 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void text_field_should_have_expected_behaviours() {
-        assert TextField in LabelSupport
-        assert TextField in InputSupport
-
-        TextField text = $('#text_field') as TextField
+        TextField text = $('#text_field') as InputTypeText
         assert text.label == 'Text'
     }
 
     @Test
-    // TODO generify
     public void time_field_should_have_expected_behaviours() {
-        assert TimeField in TextField
-
-        TimeField time = $('#time_field') as TimeField
+        TimeField time = $('#time_field') as InputTypeTime
         assert time.label == 'Time'
 
         assert time.value == ''
@@ -246,11 +221,8 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void url_field_should_have_expected_behaviours() {
-        assert URLField in TextField
-
-        URLField url = $('#url_field') as URLField
+        URLField url = $('#url_field') as InputTypeURL
         assert url.label == 'URL'
 
         assert url.value == ''
@@ -259,11 +231,8 @@ class FieldsTest {
     }
 
     @Test
-    // TODO generify
     public void week_field_should_have_expected_behaviours() {
-        assert WeekField in TextField
-
-        WeekField week = $('#week_field') as WeekField
+        WeekField week = $('#week_field') as InputTypeWeek
         assert week.label == 'Week'
 
         assert week.value == ''

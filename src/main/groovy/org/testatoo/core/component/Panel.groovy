@@ -23,5 +23,4 @@ import org.testatoo.core.Component
 abstract class Panel extends Component {
 
     abstract String getTitle()
-
 }

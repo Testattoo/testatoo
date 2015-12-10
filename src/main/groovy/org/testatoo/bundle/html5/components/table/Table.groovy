@@ -18,7 +18,6 @@ package org.testatoo.bundle.html5.components.table
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
-import org.testatoo.core.component.datagrid.Row
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

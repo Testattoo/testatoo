@@ -13,12 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
 import org.testatoo.core.ByCss
+import org.testatoo.core.component.field.ColorField
+
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('textarea,input[type=text]')
-class TextField extends Input {}
+@ByCss('input[type=color]')
+class InputTypeColor extends ColorField implements Input {
+
+    void setValue(Object value) {
+        config.evaluator.eval(id, "it.val('" + value + "')")
+    }
+}

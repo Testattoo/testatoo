@@ -23,7 +23,8 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.fields.TextField
+import org.testatoo.bundle.html5.components.input.InputTypeText
+import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -118,7 +119,7 @@ class KeyboardTest {
         keyboard.type(CTRL + ALT + SHIFT + 'x')
         assert $('#span_Ctrl_Alt_Shift_x').available
 
-        TextField textField = $('#textfield') as TextField
+        TextField textField = $('#textfield') as InputTypeText
 
         assert textField.value == ''
         mouse.clickOn textField

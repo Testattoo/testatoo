@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
 import org.testatoo.core.ByCss
+import org.testatoo.core.component.field.MonthField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=email]')
-class EmailField extends TextField {}
+@ByCss('input[type=month]')
+class InputTypeMonth extends MonthField implements Input {}

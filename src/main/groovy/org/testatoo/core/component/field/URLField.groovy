@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
-
-import org.testatoo.core.ByCss
+package org.testatoo.core.component.field
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=password]')
-class PasswordField extends Input {}
+abstract class URLField extends Field {}

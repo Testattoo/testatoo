@@ -22,7 +22,8 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.fields.TextField
+import org.testatoo.bundle.html5.components.input.InputTypeText
+import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
@@ -58,7 +59,7 @@ class SelectorsTest {
         Components<Button> buttons = $$('.btn') of Button
         assert buttons.size() == 4
 
-        Components<TextField> textFields = $$('[type="text"]') of TextField
+        Components<TextField> textFields = $$('[type="text"]') of InputTypeText
         assert textFields.size() == 3
 
         textFields.each {
@@ -86,7 +87,7 @@ class SelectorsTest {
             }
         } catch (ComponentException e) {
             assert e.message.contains('Expected a Button')
-            assert e.message.contains('but was: TextField')
+            assert e.message.contains('but was: InputTypeText')
         }
     }
 

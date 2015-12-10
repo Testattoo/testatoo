@@ -21,16 +21,17 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-// TODO remove when generification is done
-import org.testatoo.bundle.html5.components.fields.EmailField
-import org.testatoo.bundle.html5.components.fields.PasswordField
 import org.testatoo.bundle.html5.components.heading.*
+import org.testatoo.bundle.html5.components.input.InputTypeEmail
+import org.testatoo.bundle.html5.components.input.InputTypePassword
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Image
 import org.testatoo.core.component.Link
 import org.testatoo.core.component.Panel
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.LabelSupport
@@ -172,8 +173,8 @@ class ComponentsTest {
         assert Form in ValiditySupport
 
         Form form = $('#form') as Form
-        EmailField email = $('#form [type=email]') as EmailField
-        PasswordField password = $('#form [type=password]') as PasswordField
+        EmailField email = $('#form [type=email]') as InputTypeEmail
+        PasswordField password = $('#form [type=password]') as InputTypePassword
         Message message = $('#form .alert') as Message
 
         assert form.visible

@@ -26,13 +26,16 @@ import org.testatoo.bundle.html5.components.CheckBox
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Div
 import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.bundle.html5.components.fields.EmailField
-import org.testatoo.bundle.html5.components.fields.PasswordField
-import org.testatoo.bundle.html5.components.fields.TextField
+import org.testatoo.bundle.html5.components.input.InputTypeEmail
+import org.testatoo.bundle.html5.components.input.InputTypePassword
+import org.testatoo.bundle.html5.components.input.InputTypeText
 import org.testatoo.bundle.html5.components.list.Select
 import org.testatoo.bundle.html5.components.list.MultiSelect
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.ListBox
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.PasswordField
+import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
@@ -101,7 +104,7 @@ class IntentionTest {
 
     @Test
     public void given_input_with_value_when_fill_value_the_field_is_reset_before() {
-        TextField textField = $('#text_field') as TextField
+        TextField textField = $('#text_field') as InputTypeText
 
         clickOn textField
         type 'Some fields'
@@ -113,7 +116,7 @@ class IntentionTest {
 
     @Test
     public void given_input_with_value_when_fill_value_we_trigger_a_blur_event() {
-        TextField field = $('#firstname') as TextField
+        TextField field = $('#firstname') as InputTypeText
         Div panel = $('#firstname_blur') as Div
 
         assert panel.hidden
@@ -123,7 +126,7 @@ class IntentionTest {
 
     @Test
     public void given_input_with_value_when_clear_value_we_trigger_a_change_and_blur_event() {
-        TextField field = $('#lastname') as TextField
+        TextField field = $('#lastname') as InputTypeText
         Div panel = $('#lastname_reset') as Div
 
         assert panel.hidden
@@ -133,7 +136,7 @@ class IntentionTest {
 
     @Test
     public void should_be_able_to_clear_input() {
-        TextField textField = $('#text_field') as TextField
+        TextField textField = $('#text_field') as InputTypeText
         fill textField with 'Some fields'
 
         assert textField.filled
@@ -148,8 +151,8 @@ class IntentionTest {
     @Test
     public void should_be_able_to_set_form_easily() {
         Form form = $('#dsl-form') as Form
-        EmailField email = $('#dsl-form [type=email]') as EmailField
-        PasswordField password = $('#dsl-form [type=password]') as PasswordField
+        EmailField email = $('#dsl-form [type=email]') as InputTypeEmail
+        PasswordField password = $('#dsl-form [type=password]') as InputTypePassword
         Message message = $('#dsl-form .alert') as Message
 
         assert message.title == 'The form was submitted 0 time(s)'

@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
-import org.testatoo.core.support.RangeSupport
 import org.testatoo.core.ByCss
+import org.testatoo.core.component.field.NumberField
 
 import static org.testatoo.bundle.html5.components.helper.RangeHelper.*
 import static org.testatoo.core.Testatoo.getConfig
@@ -24,17 +24,15 @@ import static org.testatoo.core.Testatoo.getConfig
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=range]')
-class RangeField extends TextField implements RangeSupport {
+@ByCss('input[type=number]')
+class InputTypeNumber extends NumberField implements Input {
 
-    @Override
     Number getValue() {
-        super.value as BigDecimal
-    }
-
-    @Override
-    void setValue(Object value) {
-        config.evaluator.eval(id, "it.val(" + value + ")")
+        Object value = config.evaluator.eval(id, "it.val()")
+        if (value)
+            value as BigDecimal
+        else
+            0
     }
 
     @Override

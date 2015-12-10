@@ -13,12 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
 import org.testatoo.core.ByCss
+import org.testatoo.core.component.field.DateField
+
+import static org.testatoo.bundle.html5.components.helper.RangeHelper.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=month]')
-class MonthField extends TextField {}
+@ByCss('input[type=date]')
+class InputTypeDate extends DateField implements Input {
+
+    @Override
+    Object getMinimum() {
+        getMinimun(this)
+    }
+
+    @Override
+    Object getMaximum() {
+        getMaximum(this)
+    }
+
+    @Override
+    Object getStep() {
+        getStep(this)
+    }
+
+    @Override
+    boolean isInRange() {
+        isInRange(this)
+    }
+
+    @Override
+    boolean isOutOfRange() {
+        isOutOfRange(this)
+    }
+}

@@ -13,20 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
-
-import org.testatoo.core.ByCss
-
-import static org.testatoo.core.Testatoo.config
+package org.testatoo.core.component.field
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=color]')
-class ColorField extends TextField {
-
-    @Override
-    void setValue(Object value) {
-        config.evaluator.eval(id, "it.val('" + value + "')")
-    }
-}
+abstract class MonthField extends Field {}

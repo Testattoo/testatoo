@@ -13,27 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.table
+package org.testatoo.core.component.field
 
-import org.testatoo.core.ByCss
-import org.testatoo.core.component.datagrid.Column
-
-import static org.testatoo.core.Testatoo.getConfig
+import org.testatoo.core.Component
+import org.testatoo.core.support.InputSupport
+import org.testatoo.core.support.LabelSupport
+import org.testatoo.core.support.ValiditySupport
+import org.testatoo.core.support.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('th')
-class Th extends Column {
-
-    @Override
-    List<Td> getCells() {
-        int index = config.evaluator.eval(id, "it.index() + 1") as int
-        findjs("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')", Td)
-    }
-
-    @Override
-    String getTitle() {
-        config.evaluator.eval(id, "it.text().trim()")
-    }
-}
+abstract class Field extends Component implements LabelSupport, InputSupport, ValueSupport, ValiditySupport {}

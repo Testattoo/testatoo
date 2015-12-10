@@ -24,6 +24,8 @@ import static org.testatoo.core.input.MouseModifiers.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+
+//TODO set as abstract and add html5 default
 trait GenericSupport implements Clickable, Draggable {
 
     boolean isEnabled() {
@@ -92,7 +94,6 @@ trait GenericSupport implements Clickable, Draggable {
     }
 
     public static class DragBuilder implements IDragBuilder {
-
         public void on(Component onto) {
             config.evaluator.dragAndDrop(this.id, onto.id)
         }

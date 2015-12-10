@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
 import org.testatoo.core.ByCss
+import org.testatoo.core.component.field.TextField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=week]')
-class WeekField extends TextField {}
+@ByCss('input[type=text]')
+class InputTypeText extends TextField implements Input {}

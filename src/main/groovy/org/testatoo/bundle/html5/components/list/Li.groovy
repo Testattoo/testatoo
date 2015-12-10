@@ -17,10 +17,7 @@ package org.testatoo.bundle.html5.components.list
 
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
-import org.testatoo.core.support.SelectSupport
-import org.testatoo.core.support.ValueSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 
 import static org.testatoo.core.Testatoo.*
 

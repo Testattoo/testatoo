@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
-
-import org.testatoo.core.ByCss
+package org.testatoo.core.component.field
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=time]')
-class TimeField extends TextField {}
+abstract class ColorField extends Field {}

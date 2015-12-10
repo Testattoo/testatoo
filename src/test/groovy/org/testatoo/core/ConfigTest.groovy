@@ -22,7 +22,8 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Div
-import org.testatoo.bundle.html5.components.fields.TextField
+import org.testatoo.bundle.html5.components.input.InputTypeText
+import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.internal.Log
 
@@ -60,7 +61,7 @@ class ConfigTest {
 
             browser.open 'http://localhost:8080/dsl.html'
 
-            TextField field = $('#firstname') as TextField
+            TextField field = $('#firstname') as InputTypeText
             Div error = $('#firstname_blur') as Div
 
             field.empty
@@ -74,7 +75,7 @@ class ConfigTest {
 
             browser.open 'http://localhost:8080/dsl.html'
 
-            field = $('#firstname') as TextField
+            field = $('#firstname') as InputTypeText
             error = $('#firstname_blur') as Div
 
             assert field.filled

@@ -13,19 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
 import org.testatoo.core.ByCss
-
-import static org.testatoo.core.Testatoo.config
+import org.testatoo.core.component.field.URLField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=tel]')
-class PhoneField extends TextField {
-
-    String getPattern() {
-        config.evaluator.eval(id, "it.prop('pattern')")
-    }
-}
+@ByCss('input[type=url]')
+class InputTypeURL extends URLField implements Input {}

@@ -13,41 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.components.fields
+package org.testatoo.bundle.html5.components.input
 
-import org.testatoo.core.support.RangeSupport
 import org.testatoo.core.ByCss
-
-import static org.testatoo.bundle.html5.components.helper.RangeHelper.*
+import org.testatoo.core.component.field.WeekField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=date]')
-class DateField extends TextField implements RangeSupport {
-
-    @Override
-    Object getMinimum() {
-        getMinimun(this)
-    }
-
-    @Override
-    Object getMaximum() {
-        getMaximum(this)
-    }
-
-    @Override
-    Object getStep() {
-        getStep(this)
-    }
-
-    @Override
-    boolean isInRange() {
-        isInRange(this)
-    }
-
-    @Override
-    boolean isOutOfRange() {
-        isOutOfRange(this)
-    }
-}
+@ByCss('input[type=week]')
+class InputTypeWeek extends WeekField implements Input {}

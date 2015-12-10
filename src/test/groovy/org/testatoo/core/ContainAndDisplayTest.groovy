@@ -24,8 +24,10 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.Form
 import org.testatoo.bundle.html5.components.Div
-import org.testatoo.bundle.html5.components.fields.EmailField
-import org.testatoo.bundle.html5.components.fields.PasswordField
+import org.testatoo.bundle.html5.components.input.InputTypeEmail
+import org.testatoo.bundle.html5.components.input.InputTypePassword
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -54,8 +56,8 @@ class ContainAndDisplayTest {
         panel.contain(visible_button, invisible_button)
 
         Form form = $('#form') as Form
-        EmailField email_field = $('[type=email]') as EmailField
-        PasswordField password_field = $('[type=password]') as PasswordField
+        EmailField email_field = $('[type=email]') as InputTypeEmail
+        PasswordField password_field = $('[type=password]') as InputTypePassword
         Button submit_button = $('[type=submit]') as Button
         Button reset_button = $('[type=reset]') as Button
 
@@ -93,11 +95,11 @@ class ContainAndDisplayTest {
             assert e.message == "Component Button with id invisible_button expected visible but was hidden"
         }
 
-        EmailField email_field = $('[type=email]') as EmailField
+        EmailField email_field = $('[type=email]') as InputTypeEmail
         try {
             panel.display(email_field)
         } catch (ComponentException e) {
-            assert e.message == "Component Div:panel does not display expected component(s): [EmailField:$email_field.id]" as String
+            assert e.message == "Component Div:panel does not display expected component(s): [InputTypeEmail:$email_field.id]" as String
         }
     }
 
