@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -142,7 +142,6 @@ class ComponentsTest {
         } catch (ComponentException e) {
             assert e.message == 'CheckBox CheckBox:checkbox is already unchecked and cannot be unchecked'
         }
-
 
         checkBox = $('#disabled_checkbox') as CheckBox
         try {
@@ -297,7 +296,7 @@ class ComponentsTest {
     }
 
     @ByCss('div')
-    class Message extends Panel {
+    class Message extends Panel implements WebElement {
         @Override
         String getTitle() {
             config.evaluator.eval(id, "it.text()")

@@ -17,17 +17,9 @@ package org.testatoo.bundle.html5.components
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
-import org.testatoo.core.component.Image
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('img')
-class Img extends Image implements WebElement {
-
-    @Override
-    String getSource() {
-        Testatoo.config.evaluator.eval(this.id, "it.prop('src')")
-    }
-}
+@ByCss('span')
+class Span extends Component implements WebElement {}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.heading
 
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Heading
 
@@ -25,7 +26,7 @@ import static org.testatoo.bundle.html5.components.helper.TextHelper.getText
  */
 
 @ByCss('h2')
-class H2 extends Heading {
+class H2 extends Heading implements WebElement {
 
     @Override
     String getText() {

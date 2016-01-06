@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.table
 
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
@@ -23,7 +24,7 @@ import org.testatoo.core.component.datagrid.DataGrid
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('table')
-class Table extends DataGrid {
+class Table extends DataGrid implements WebElement {
 
     @Override
     List<Th> getColumns() {

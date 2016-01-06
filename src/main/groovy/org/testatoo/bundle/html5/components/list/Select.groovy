@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
  */
 package org.testatoo.bundle.html5.components.list
 
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.Dropdown
-import org.testatoo.core.component.Item
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
-class Select extends Dropdown {
+class Select extends Dropdown implements WebElement {
 
     @Override
     List<Option> getItems() {
@@ -48,15 +48,5 @@ class Select extends Dropdown {
     @Override
     Option getSelectedItem() {
         items.find { it.selected }
-    }
-
-    // TODO need to be removed (select on the item => move general select on the DSL)
-    void select(Item item) {
-        item.select()
-    }
-
-    // TODO need to be removed (select on the item => move general select on the DSL)
-    void select(String value) {
-        items.find { it.value == value }.select()
     }
 }

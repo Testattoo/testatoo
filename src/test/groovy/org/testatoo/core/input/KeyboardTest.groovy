@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.components.Span
 import org.testatoo.bundle.html5.components.input.InputTypeText
 import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
@@ -56,18 +57,21 @@ class KeyboardTest {
     public void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
-            assert $("#span_$letter").missing
+            Span current_span = $("#span_$letter") as Span
+
+            assert current_span.missing
             keyboard.type "$letter"
-            assert $("#span_$letter").available
+            assert current_span.available
         }
     }
 
     @Test
     public void should_type_number_on_keyboard() {
         (0..9).each {
-            assert $("#span_$it").missing
+            Span current_span = $("#span_$it") as Span
+            assert  current_span.missing
             keyboard.type "$it"
-            assert $("#span_$it").available
+            assert current_span.available
         }
     }
 
@@ -107,17 +111,19 @@ class KeyboardTest {
                 '#span_right'    : RIGHT,
                 '#span_down'     : DOWN
         ].each { k, v ->
-            assert $(k).missing
+            Span current_span = $(k) as Span
+            assert current_span.missing
             keyboard.type v
-            assert $(k).available
+            assert current_span.available
         }
     }
 
     @Test
     public void should_use_key_modifier_on_keyboard() {
-        assert $('#span_Ctrl_Alt_Shift_x').missing
+        Span span = $('#span_Ctrl_Alt_Shift_x') as Span
+        assert span.missing
         keyboard.type(CTRL + ALT + SHIFT + 'x')
-        assert $('#span_Ctrl_Alt_Shift_x').available
+        assert span.available
 
         TextField textField = $('#textfield') as InputTypeText
 

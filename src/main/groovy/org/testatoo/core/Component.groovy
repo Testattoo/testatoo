@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,16 @@ package org.testatoo.core
 import org.hamcrest.Matcher
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
-import org.testatoo.core.support.GenericSupport
+import org.testatoo.core.support.Clickable
+import org.testatoo.core.support.Draggable
+import org.testatoo.core.support.IDragBuilder
 
 import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-class Component implements GenericSupport {
+class Component implements Clickable, Draggable {
 
     final Queue<Matcher> BLOCKS = new LinkedList<>()
 
@@ -36,11 +38,63 @@ class Component implements GenericSupport {
     Component(IdProvider idProvider) {
         this()
         meta = new CachedMetaData(
-            idProvider: idProvider
+                idProvider: idProvider
         )
     }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
+
+    boolean isEnabled() {
+        throw new UnsupportedOperationException()
+    }
+
+    boolean isDisabled() {
+        throw new IllegalStateException()
+    }
+
+    boolean isAvailable() {
+        throw new IllegalStateException()
+    }
+
+    boolean isMissing() {
+        throw new IllegalStateException()
+    }
+
+    boolean isHidden() {
+        throw new IllegalStateException()
+    }
+
+    boolean isVisible() {
+        throw new IllegalStateException()
+    }
+
+    boolean contain(Component... components) {
+        throw new IllegalStateException()
+    }
+
+    boolean display(Component... components) {
+        throw new IllegalStateException()
+    }
+
+    @Override
+    void click() {
+        throw new UnsupportedOperationException()
+    }
+
+    @Override
+    void rightClick() {
+        throw new UnsupportedOperationException()
+    }
+
+    @Override
+    void doubleClick() {
+        throw new UnsupportedOperationException()
+    }
+
+    @Override
+    IDragBuilder drag() {
+        throw new UnsupportedOperationException()
+    }
 
     @Override
     boolean equals(o) {

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,7 @@
  */
 package org.testatoo.core.support
 
-import org.testatoo.core.component.Item
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
-// TODO use without method just as interface tag
-interface SingleSelector {
-
-    void select(Item item)
-
-    void select(String value)
-}
+interface SingleSelector {}

@@ -13,20 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.bundle.html5.components
 
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+import org.testatoo.core.support.IDragBuilder
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.MouseModifiers.*
+import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.input.MouseModifiers.DOUBLE
+import static org.testatoo.core.input.MouseModifiers.LEFT
+import static org.testatoo.core.input.MouseModifiers.RIGHT
+import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
-//TODO set as abstract and add html5 default
-trait GenericSupport implements Clickable, Draggable {
+trait WebElement {
 
     boolean isEnabled() {
         !disabled
@@ -73,22 +75,18 @@ trait GenericSupport implements Clickable, Draggable {
         }
     }
 
-    @Override
     void click() {
         config.evaluator.click(id, [LEFT, SINGLE])
     }
 
-    @Override
     void rightClick() {
         config.evaluator.click(id, [RIGHT, SINGLE])
     }
 
-    @Override
     void doubleClick() {
         config.evaluator.click(id, [LEFT, DOUBLE])
     }
 
-    @Override
     IDragBuilder drag() {
         new DragBuilder()
     }

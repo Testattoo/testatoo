@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package org.testatoo.core
 import org.junit.AfterClass
 import org.junit.Before
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -101,5 +102,17 @@ class ErrorTest {
         } catch (ComponentException e) {
             e.message == "Component defined by jQuery expression \$('#elements option') is not unique: got 5"
         }
+    }
+
+    @Test
+    @Ignore
+    public void should_throw_and_error_on_select_multi_items_on_single_selector() {
+        throw new RuntimeException()
+    }
+
+    @Test
+    @Ignore
+    public void should_throw_and_error_on_unselect_multi_items_on_single_selector() {
+        throw new RuntimeException()
     }
 }

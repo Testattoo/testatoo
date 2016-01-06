@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.components.list
 
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.ByJs
-import org.testatoo.core.component.Item
 import org.testatoo.core.component.ListBox
 
 import static org.testatoo.core.Testatoo.*
@@ -25,7 +25,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class MultiSelect extends ListBox {
+class MultiSelect extends ListBox implements WebElement {
 
     @Override
     List<Option> getItems() {
@@ -59,17 +59,5 @@ class MultiSelect extends ListBox {
 
     boolean isMultiSelectable() {
         config.evaluator.check(id, "it.is('select') && it.prop('multiple')")
-    }
-
-    void select(Item... items) {
-        for (item in items) {
-            item.select()
-        }
-    }
-
-    void select(String... values) {
-        for (value in values) {
-            items.find { it.value == value }.select()
-        }
     }
 }

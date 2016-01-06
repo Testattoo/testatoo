@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
  */
 package org.testatoo.bundle.html5.components
 
+import org.testatoo.core.Component
 import org.testatoo.core.support.TextSupport
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 
 import static org.testatoo.bundle.html5.components.helper.TextHelper.*
 
@@ -25,7 +25,7 @@ import static org.testatoo.bundle.html5.components.helper.TextHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('p')
-class Paragraph extends Component implements TextSupport {
+class Paragraph extends Component implements TextSupport, WebElement {
 
     @Override
     String getText() {

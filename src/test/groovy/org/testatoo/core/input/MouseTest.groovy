@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.CheckBox
 import org.testatoo.bundle.html5.components.Div
 import org.testatoo.bundle.html5.components.Radio
+import org.testatoo.bundle.html5.components.Span
 import org.testatoo.bundle.html5.components.list.Select
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
@@ -124,26 +125,31 @@ class MouseTest {
 
     @Test
     public void should_be_able_to_use_mouse_with_key_modifier() {
-        assert $('#span_Ctrl_mouseleft').missing
-        assert $('#span_Shift_mouseleft').missing
+        Span span_Ctrl_mouseleft = $('#span_Ctrl_mouseleft') as Span
+        Span span_Shift_mouseleft = $('#span_Shift_mouseleft') as Span
+
+        assert span_Ctrl_mouseleft.missing
+        assert span_Shift_mouseleft.missing
 
         CTRL.click $('#_Ctrl_mouseleft') as Div
         SHIFT.click $('#_Shift_mouseleft') as Div
 
-        assert $('#span_Ctrl_mouseleft').available
-        assert $('#span_Shift_mouseleft').available
+        assert span_Ctrl_mouseleft.available
+        assert span_Shift_mouseleft.available
 
         // Not testable cause Rightclick Handled by the browser
         CTRL.rightClick $('#_Ctrl_mouseright') as Div
         [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Div
 
-        assert $('#span_Alt_Shift_mouseleft').missing
+        Span span_Alt_Shift_mouseleft = $('#span_Alt_Shift_mouseleft') as Span
+        assert span_Alt_Shift_mouseleft.missing
         (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Div
-        assert $('#span_Alt_Shift_mouseleft').available
+        assert span_Alt_Shift_mouseleft.available
 
-        assert $('#span_Crtl_Shift_mouseleft').missing
+        Span span_Crtl_Shift_mouseleft = $('#span_Crtl_Shift_mouseleft') as Span
+        assert span_Crtl_Shift_mouseleft.missing
         [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Div
-        assert $('#span_Crtl_Shift_mouseleft').missing
+        assert span_Crtl_Shift_mouseleft.missing
 
         // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Div

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import static org.testatoo.bundle.html5.components.helper.ValidityHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends org.testatoo.core.component.Form {
+class Form extends org.testatoo.core.component.Form implements WebElement {
 
     @Override
     void reset() {

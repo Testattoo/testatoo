@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,9 @@ import org.hamcrest.Matcher
 import org.hamcrest.StringDescription
 import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.core.support.SingleSelector
 
 import java.time.Duration
 
@@ -50,38 +52,25 @@ class GroovyExtensions {
         config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
     }
 
-//    static void select(Component component, String value) {
-//        component.select(value)
-//    }
-//
-//    static void unselect(Component component, String value) {
-//        component.unselect(value)
-//    }
-//
-//    static void select(Component component, String... values) {
-//        component.select(values)
-//    }
-//
-//    static void unselect(Component component, String... values) {
-//        component.unselect(values)
-//    }
-//
-//    static void select(Component component, Item item) {
-//        component.select(item)
-//    }
-//
-//    static void unselect(Component component, Item item) {
-//        component.unselect(item)
-//    }
-//
-//
-//    static void select(Component component, Item... items) {
-//        component.unselect(items)
-//    }
-//
-//    static void unselect(Component component, Item... items) {
-//        component.unselect(items)
-//    }
+    static void select(Component component, String... values) {
+        for (value in values) {
+            component.items.find { it.value == value }.select()
+        }
+    }
+
+    static void select(Component component, Item... items) {
+        items.each { it.select() }
+    }
+
+    static void unselect(Component component, Item... items) {
+        items.each { it.unselect() }
+    }
+
+    static void unselect(Component component, String... values) {
+        for (value in values) {
+            component.items.find { it.value == value }.unselect()
+        }
+    }
 
     static void should(Component component, Closure closure) {
         closure.delegate = component

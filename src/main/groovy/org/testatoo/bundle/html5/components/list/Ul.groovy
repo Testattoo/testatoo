@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.list
 
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.ListView
 
@@ -22,7 +23,7 @@ import org.testatoo.core.component.ListView
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('ul')
-class Ul extends ListView {
+class Ul extends ListView implements WebElement {
 
     @Override
     List<Li> getItems() {
@@ -33,5 +34,4 @@ class Ul extends ListView {
     Li item(String value) {
         items.find { it.value == value }
     }
-
 }

@@ -1,8 +1,29 @@
-Reintroduce core component Datagrid => Table
+TODO add MatcherType for State and Property
+
+Add test for Span
+Add test on Unsupported Operation on Component
+add test on Unsu... State on Component
+
+
+Reevaluation a chaque fois en option dans le find()
+en fait si le composant a un id genere et son evaluation plante on reutilise le find pour le regenerer
+
+Property matcher
+https://github.com/geb/geb/blob/master/module/geb-core/src/main/groovy/geb/textmatching/TextMatchingSupport.groovy
+
+evaluate should FAIL if there is no have or be
+
+click_on('Link Text') # clicks on either links or buttons
+click_on('Button Value')
+
+choose('A Radio Button')  // choose better then select
+check('A Checkbox')
+uncheck('A Checkbox')
+
+attach_file('Image', '/path/to/image.jpg')
+select('Option', :from => 'Select Box')
 
 ==============================================================
-
-
 
 //        dropdown.should { be enabled }
 //        dropdown.should { be visible }

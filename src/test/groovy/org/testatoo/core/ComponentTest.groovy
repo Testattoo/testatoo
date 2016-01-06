@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import org.testatoo.bundle.html5.components.Button
 import org.testatoo.bundle.html5.components.Paragraph
 import org.testatoo.bundle.html5.components.Radio
 import org.testatoo.bundle.html5.components.Section
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
@@ -122,7 +123,6 @@ class ComponentTest {
     static class CustomButton extends Button {
 
         @Override
-        @Override
         String getText() {
             return "Override Text"
         }
@@ -133,5 +133,5 @@ class ComponentTest {
         }
     }
 
-    static class UnidentifiedComponent extends Component {}
+    static class UnidentifiedComponent extends Component implements WebElement {}
 }

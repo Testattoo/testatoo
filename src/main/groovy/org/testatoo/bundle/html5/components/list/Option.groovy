@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.components.list
 
+import org.testatoo.bundle.html5.components.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
@@ -26,7 +27,7 @@ import static org.testatoo.core.Testatoo.getConfig
  */
 
 @ByCss('option')
-class Option extends Item {
+class Option extends Item implements WebElement {
 
     @Override
     boolean isSelected() {

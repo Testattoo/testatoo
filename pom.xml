@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2014 Ovea (dev@ovea.com)
+    Copyright (C) 2016 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
     <version>2.0.b23-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Testatoo</name>
-    <inceptionYear>2014</inceptionYear>
+    <inceptionYear>2016</inceptionYear>
 
     <description>A functional testing API</description>
     <url>http://www.testatoo.org</url>
@@ -41,7 +41,7 @@
     <properties>
         <jdk.version>1.8</jdk.version>
         <groovy.version>2.4.4</groovy.version>
-        <selenium.version>2.47.1</selenium.version>
+        <selenium.version>2.48.2</selenium.version>
         <jetty.version>9.1.4.v20140401</jetty.version>
         <jetty.daemon>true</jetty.daemon>
     </properties>

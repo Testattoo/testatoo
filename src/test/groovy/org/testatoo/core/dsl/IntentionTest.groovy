@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import org.testatoo.bundle.html5.components.input.InputTypeText
 import org.testatoo.bundle.html5.components.list.Select
 import org.testatoo.bundle.html5.components.list.MultiSelect
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.ListBox
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
@@ -41,6 +42,7 @@ import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.dsl.Actions.*
+import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -174,10 +176,8 @@ class IntentionTest {
     }
 
     @Test
-    @Ignore
-    // TODO remove select call ... here work with select on the item
     public void should_be_able_to_select_element_in_dropdown_an_listbox() {
-        Select dropdown = $('#elements') as Select
+        Dropdown dropdown = $('#elements') as Select
         assert dropdown.selectedItem.value == 'H'
         
         on dropdown select 'Pol'
@@ -208,18 +208,34 @@ class IntentionTest {
         on listBox unselect listBox.items[4]
         assert listBox.items[4].unselected
 
-//        select listBox.items[4]
-//        assert listBox.items[4].selected
+        select listBox.items[4]
+        assert listBox.items[4].selected
 
-//        unselect listBox.items[4]
-//        assert listBox.items[4].unselected
-//
-//        try {
-//            on listBox select 'Quebec'
-//            fail()
-//        } catch (ComponentException e) {
-//            assert e.message == 'Item Quebec is disabled and cannot be selected'
-//        }
+        unselect listBox.items[4]
+        assert listBox.items[4].unselected
+
+        on listBox unselect(listBox.items[0], listBox.items[2])
+        assert listBox.items[0].unselected
+        assert listBox.items[1].unselected
+
+        on listBox select(listBox.items[0], listBox.items[2])
+        assert listBox.items[0].selected
+        assert listBox.items[2].selected
+
+        unselect listBox.items[0], listBox.items[2]
+        assert listBox.items[0].unselected
+        assert listBox.items[2].unselected
+
+        select listBox.items[0], listBox.items[2]
+        assert listBox.items[0].selected
+        assert listBox.items[2].selected
+
+        try {
+            on listBox select 'Quebec'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Option Quebec is disabled and cannot be selected'
+        }
     }
 
     class Message extends Div {

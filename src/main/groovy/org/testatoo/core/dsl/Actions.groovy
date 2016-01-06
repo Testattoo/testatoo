@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package org.testatoo.core.dsl
 
-import org.testatoo.bundle.html5.components.list.Li
 import org.testatoo.core.Component
+import org.testatoo.core.component.Item
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.support.*
 
@@ -28,25 +28,25 @@ import static org.testatoo.core.Testatoo.*
 // TODO bad naming maybe TestatooDSL
 class Actions {
 
-    static void clickOn(Component c) { c.click() }
-
     static void visit(String uri) { browser.open(uri) }
 
-    static final Component check(Checkable c) { c.check() }
+    static Component check(Checkable c) { c.check() }
 
-    static final Component uncheck(UnCheckable c) { c.uncheck() }
+    static Component uncheck(UnCheckable c) { c.uncheck() }
 
     static void type(String text) { Keyboard.type(text) }
 
-    static final void clear(Clearable c) { c.clear() }
+    static void clear(Clearable c) { c.clear() }
 
-    static final void reset(Resettable c) { c.reset() }
+    static void reset(Resettable c) { c.reset() }
 
-    static final void submit(Submissible c) { c.submit() }
+    static void submit(Submissible c) { c.submit() }
 
-    static final SingleSelectorAction on(SingleSelector c) { new SingleSelectorAction(c) }
+    static <T extends Component> T on(Component c) { c as T }
 
-    static final MultiSelectorAction on(MultiSelector c) { new MultiSelectorAction(c) }
+    static void select(Item... items) { items.each { it.select() } }
+
+    static void unselect(Item... items) { items.each { it.unselect() } }
 
     static final FillAction fill(InputSupport c) {
         new FillAction(c)
@@ -61,43 +61,6 @@ class Actions {
 
         public void with(String value) {
             input.value = value
-        }
-    }
-
-    public static class SingleSelectorAction {
-        private SingleSelector selector
-
-        public SingleSelectorAction(SingleSelector selector) {
-            this.selector = selector
-        }
-
-        public void select(String value) {
-            selector.select(value)
-        }
-
-        public void select(Li item) {
-            selector.select(item)
-        }
-    }
-
-    public static class MultiSelectorAction {
-        private MultiSelector selector
-
-        public MultiSelectorAction(MultiSelector selector) {
-            this.selector = selector
-        }
-
-        public void select(String... value) {
-            selector.select(value)
-        }
-
-        public void select(Li... item) {
-            selector.select(item)
-        }
-
-        public void unselect(String... values) {
-
-
         }
     }
 }
