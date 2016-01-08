@@ -17,7 +17,7 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Factory
 import org.hamcrest.Matcher
-import org.testatoo.bundle.html5.components.list.MultiSelect
+import org.testatoo.bundle.html5.component.list.MultiSelect
 import org.testatoo.core.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport

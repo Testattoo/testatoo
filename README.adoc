@@ -62,7 +62,7 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
 
 In your original Terminal
 
-    $ cd mvn install
+    $ mvn clean install
 
 To just build and skip the tests
 

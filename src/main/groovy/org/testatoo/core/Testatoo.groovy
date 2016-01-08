@@ -50,12 +50,11 @@ class Testatoo {
     static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
 
     /**
-     * Creates a list of components
+     * Creates a list of component
      */
     static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
 
     static {
         config.scan 'org.testatoo.bundle.html5'
     }
-
 }

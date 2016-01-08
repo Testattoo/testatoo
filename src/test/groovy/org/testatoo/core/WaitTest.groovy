@@ -22,13 +22,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
+import org.testatoo.bundle.html5.component.Button
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.hamcrest.DisabledMatcher
 import org.testatoo.hamcrest.EnabledMatcher
 import org.testatoo.hamcrest.MissingMatcher
 import org.testatoo.hamcrest.VisibleMatcher
 
+import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.clickOn
 
@@ -75,6 +76,20 @@ class WaitTest {
 
         clickOn button
         button.should { be enabled }
+    }
+
+    @Test
+    public void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {\
+        Button button = $('#add-message') as Button
+
+        Class<Matcher> disabled = DisabledMatcher.class;
+
+        try {
+            button.should { be disabled }
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unable to reach <Button:add-message> is disabled in 10000 milliseconds'
+        }
     }
 }
 

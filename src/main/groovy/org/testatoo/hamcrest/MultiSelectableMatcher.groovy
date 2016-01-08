@@ -17,7 +17,7 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeDiagnosingMatcher
-import org.testatoo.bundle.html5.components.list.MultiSelect
+import org.testatoo.bundle.html5.component.list.MultiSelect
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

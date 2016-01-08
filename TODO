@@ -1,12 +1,7 @@
 TODO add MatcherType for State and Property
 
-Add test for Span
 Add test on Unsupported Operation on Component
 add test on Unsu... State on Component
-
-
-Reevaluation a chaque fois en option dans le find()
-en fait si le composant a un id genere et son evaluation plante on reutilise le find pour le regenerer
 
 Property matcher
 https://github.com/geb/geb/blob/master/module/geb-core/src/main/groovy/geb/textmatching/TextMatchingSupport.groovy

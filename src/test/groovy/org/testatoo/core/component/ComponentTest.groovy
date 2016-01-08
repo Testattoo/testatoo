@@ -19,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.Component
+import org.testatoo.core.ComponentException
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
@@ -52,6 +53,8 @@ import org.testatoo.core.support.TextSupport
 import org.testatoo.core.support.UnCheckable
 import org.testatoo.core.support.ValiditySupport
 import org.testatoo.core.support.ValueSupport
+
+import static org.junit.Assert.fail
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -145,5 +148,94 @@ class ComponentTest {
         URLField in Field
 
         WeekField in Field
+    }
+
+    @Test
+    public void should_have_generic_behaviours_not_implemented() {
+        Component component = new Component()
+
+        try {
+            component.enabled
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.disabled
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.available
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.missing
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.visible
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.hidden
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.contain(null)
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.display(null)
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.click()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.doubleClick()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.rightClick()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
+
+        try {
+            component.drag()
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == 'Unsupported Operation'
+        }
     }
 }

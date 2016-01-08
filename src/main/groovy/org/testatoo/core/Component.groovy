@@ -45,55 +45,55 @@ class Component implements Clickable, Draggable {
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
     boolean isEnabled() {
-        throw new UnsupportedOperationException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean isDisabled() {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean isAvailable() {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean isMissing() {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean isHidden() {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean isVisible() {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean contain(Component... components) {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     boolean display(Component... components) {
-        throw new IllegalStateException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     @Override
     void click() {
-        throw new UnsupportedOperationException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     @Override
     void rightClick() {
-        throw new UnsupportedOperationException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     @Override
     void doubleClick() {
-        throw new UnsupportedOperationException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     @Override
     IDragBuilder drag() {
-        throw new UnsupportedOperationException()
+        throw new ComponentException('Unsupported Operation')
     }
 
     @Override

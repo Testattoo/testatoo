@@ -17,17 +17,16 @@ package org.testatoo.core.input
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.CheckBox
-import org.testatoo.bundle.html5.components.Div
-import org.testatoo.bundle.html5.components.Radio
-import org.testatoo.bundle.html5.components.Span
-import org.testatoo.bundle.html5.components.list.Select
+import org.testatoo.bundle.html5.component.Button
+import org.testatoo.bundle.html5.component.CheckBox
+import org.testatoo.bundle.html5.component.Div
+import org.testatoo.bundle.html5.component.Radio
+import org.testatoo.bundle.html5.component.Span
+import org.testatoo.bundle.html5.component.list.Select
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -56,6 +55,13 @@ class MouseTest {
         clickOn button
         assert button.text == 'Button Clicked!'
 
+        browser.navigate.refresh()
+
+        button = $('#button_1') as Button
+        assert  button.text == 'Button'
+        button.click()
+        assert button.text == 'Button Clicked!'
+
         CheckBox checkBox = $('#checkbox') as CheckBox
         assert checkBox.unchecked
         clickOn checkBox
@@ -76,16 +82,34 @@ class MouseTest {
     @Test
     public void should_be_able_to_doubleClick() {
         Button button = $('#button_2') as Button
-        button.text == 'Button'
+
+        assert button.text == 'Button'
         doubleClickOn button
+        assert button.text == 'Button Double Clicked!'
+
+        browser.navigate.refresh()
+
+        button = $('#button_2') as Button
+
+        assert button.text == 'Button'
+        button.doubleClick()
         assert button.text == 'Button Double Clicked!'
     }
 
     @Test
     public void should_be_able_to_rightClick() {
         Button button = $('#button_5') as Button
+
         assert button.text == 'Button'
         rightClickOn button
+        assert button.text == 'Button Right Clicked!'
+
+        browser.navigate.refresh()
+
+        button = $('#button_5') as Button
+
+        assert button.text == 'Button'
+        button.rightClick()
         assert button.text == 'Button Right Clicked!'
     }
 
@@ -112,14 +136,21 @@ class MouseTest {
     }
 
     @Test
-    @Ignore
     public void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
         assert dropPanel.title == 'Drop here'
 
         Div dragPanel = $('#draggable') as Div
-
         drag dragPanel on dropPanel
+        assert dropPanel.title == 'Dropped!'
+
+        browser.navigate.refresh()
+
+        dropPanel = $('#droppable') as DropPanel
+        assert dropPanel.title == 'Drop here'
+
+        dragPanel = $('#draggable') as Div
+        dragPanel.drag().on(dropPanel)
         assert dropPanel.title == 'Dropped!'
     }
 

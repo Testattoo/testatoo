@@ -21,8 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.A
+import org.testatoo.bundle.html5.component.Form
+import org.testatoo.bundle.html5.component.A
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -99,5 +99,6 @@ class BrowserTest {
         browser.windows[1].close()
         assert browser.windows.size() == 1
         assert browser.windows[0].id == main_window_id
+        assert browser.windows[0].toString() == main_window_id
     }
 }

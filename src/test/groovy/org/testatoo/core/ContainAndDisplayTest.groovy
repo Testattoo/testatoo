@@ -21,11 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.Div
-import org.testatoo.bundle.html5.components.input.InputTypeEmail
-import org.testatoo.bundle.html5.components.input.InputTypePassword
+import org.testatoo.bundle.html5.component.Button
+import org.testatoo.bundle.html5.component.Form
+import org.testatoo.bundle.html5.component.Div
+import org.testatoo.bundle.html5.component.input.InputTypeEmail
+import org.testatoo.bundle.html5.component.input.InputTypePassword
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator

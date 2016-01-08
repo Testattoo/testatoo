@@ -22,9 +22,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Button
-import org.testatoo.bundle.html5.components.Span
-import org.testatoo.bundle.html5.components.input.InputTypeText
+import org.testatoo.bundle.html5.component.Button
+import org.testatoo.bundle.html5.component.Span
+import org.testatoo.bundle.html5.component.input.InputTypeText
 import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 

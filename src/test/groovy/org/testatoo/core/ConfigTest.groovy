@@ -21,8 +21,8 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Div
-import org.testatoo.bundle.html5.components.input.InputTypeText
+import org.testatoo.bundle.html5.component.Div
+import org.testatoo.bundle.html5.component.input.InputTypeText
 import org.testatoo.core.component.field.TextField
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.internal.Log

@@ -24,14 +24,17 @@ import org.testatoo.core.Component
  */
 class VisibleMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
+    private Component component
+
     @Override
-    protected boolean matchesSafely(Component item, Description mismatchDescription) {
+    protected boolean matchesSafely(Component component, Description mismatchDescription) {
+        this.component = component
         mismatchDescription.appendText('is hidden')
-        item.visible
+        component.visible
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is visible')
+        description.appendValue(component).appendText(' is visible')
     }
 }

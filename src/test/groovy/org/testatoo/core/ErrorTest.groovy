@@ -23,8 +23,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.components.Form
-import org.testatoo.bundle.html5.components.list.Li
+import org.testatoo.bundle.html5.component.Form
+import org.testatoo.bundle.html5.component.list.Li
 import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.input.MouseModifiers
 
@@ -103,6 +103,9 @@ class ErrorTest {
             e.message == "Component defined by jQuery expression \$('#elements option') is not unique: got 5"
         }
     }
+
+    // throw error when try to select disabled element
+
 
     @Test
     @Ignore

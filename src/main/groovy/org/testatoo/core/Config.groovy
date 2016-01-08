@@ -32,7 +32,7 @@ class Config {
     Duration waitUntil = 2.seconds
 
     /**
-     * Scan for packages containing custom components
+     * Scan for packages containing custom component
      */
     void scan(String... packageNames) {
         componentTypes.addAll(packageNames

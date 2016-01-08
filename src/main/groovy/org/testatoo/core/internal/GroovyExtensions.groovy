@@ -22,7 +22,6 @@ import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
-import org.testatoo.core.support.SingleSelector
 
 import java.time.Duration
 

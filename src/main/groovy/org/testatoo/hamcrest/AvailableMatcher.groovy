@@ -24,14 +24,17 @@ import org.testatoo.core.Component
  */
 class AvailableMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
+    private Component component
+
     @Override
-    protected boolean matchesSafely(Component item, Description mismatchDescription) {
+    protected boolean matchesSafely(Component component, Description mismatchDescription) {
+        this.component = component
         mismatchDescription.appendText('is missing')
-        item.available
+        component.available
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is available')
+        description.appendValue(component).appendText(' is available')
     }
 }

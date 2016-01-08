@@ -24,14 +24,17 @@ import org.testatoo.core.Component
  */
 class DisabledMatcher extends TypeSafeDiagnosingMatcher<Component> {
 
+    private Component component
+
     @Override
-    protected boolean matchesSafely(Component item, Description mismatchDescription) {
+    protected boolean matchesSafely(Component component, Description mismatchDescription) {
+        this.component = component
         mismatchDescription.appendText('is enabled')
-        item.disabled
+        component.disabled
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is disabled')
+        description.appendValue(component).appendText(' is disabled')
     }
 }

@@ -18,7 +18,7 @@ package org.testatoo.hamcrest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.bundle.html5.components.list.MultiSelect
+import org.testatoo.bundle.html5.component.list.MultiSelect
 import org.testatoo.core.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport
@@ -34,6 +34,7 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.hamcrest.Matchers.*
+import static org.hamcrest.Matchers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -47,14 +48,15 @@ class MatchersTest {
 
         // Enabled
         when(cmp.enabled).thenReturn(true)
-        assertThat(cmp, enabled())
+        // with combination of is from Hamcrest
+        assertThat(cmp, is(enabled()))
 
         when(cmp.enabled).thenReturn(false)
         try {
             assertThat(cmp, enabled())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is enabled     but: is disabled'
+            assert message(e) == 'Expected: <' + cmp + '> is enabled     but: is disabled'
         }
 
         // Disabled
@@ -66,7 +68,7 @@ class MatchersTest {
             assertThat(cmp, disabled())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is disabled     but: is enabled'
+            assert message(e) == 'Expected: <' + cmp + '> is disabled     but: is enabled'
         }
 
         // Available
@@ -78,7 +80,7 @@ class MatchersTest {
             assertThat(cmp, available())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is available     but: is missing'
+            assert message(e) == 'Expected: <' + cmp + '> is available     but: is missing'
         }
 
         // Missing
@@ -90,7 +92,7 @@ class MatchersTest {
             assertThat(cmp, missing())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is missing     but: is available'
+            assert message(e) == 'Expected: <' + cmp + '> is missing     but: is available'
         }
 
         // Visible
@@ -102,7 +104,7 @@ class MatchersTest {
             assertThat(cmp, visible())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is visible     but: is hidden'
+            assert message(e) == 'Expected: <' + cmp + '> is visible     but: is hidden'
         }
 
         // Hidden
@@ -114,7 +116,7 @@ class MatchersTest {
             assertThat(cmp, hidden())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is hidden     but: is visible'
+            assert message(e) == 'Expected: <' + cmp + '> is hidden     but: is visible'
         }
     }
 
@@ -128,6 +130,7 @@ class MatchersTest {
             assertThat(cmp, hasLabel('OtherLabel'))
             fail()
         } catch (AssertionError e) {
+//            assert message(e) == 'Expected: <' + cmp + '> with "OtherLabel"     but: was MyLabel'
             assert message(e) == 'Expected: "OtherLabel"     but: was "MyLabel"'
         }
     }
@@ -346,7 +349,7 @@ class MatchersTest {
             assertThat(cmp, selected())
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is selected     but: is unselected'
+//            assert e.message.endsWith() message(e) == 'Expected: Component is selected     but: is unselected'
         }
 
         // Unselected
