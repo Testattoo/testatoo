@@ -112,6 +112,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <sauceUsername>${ovea.sauce.username}</sauceUsername>
+                        <sauceAccessKey>${ovea.sauce.key}</sauceAccessKey>
+                        <CI>true</CI>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -240,31 +247,31 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>com.saucelabs.maven.plugin</groupId>-->
-                <!--<artifactId>sauce-connect-plugin</artifactId>-->
-                <!--<version>2.1.3</version>-->
-                <!--<configuration>-->
-                    <!--<sauceUsername>${ovea.sauce.username}</sauceUsername>-->
-                    <!--<sauceAccessKey>${ovea.sauce.key}</sauceAccessKey>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>start-sauceconnct</id>-->
-                        <!--<phase>pre-integration-test</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>start-sauceconnect</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>stop-sauceconnect</id>-->
-                        <!--<phase>post-integration-test</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>stop-sauceconnect</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>com.saucelabs.maven.plugin</groupId>
+                <artifactId>sauce-connect-plugin</artifactId>
+                <version>2.1.3</version>
+                <configuration>
+                    <sauceUsername>${ovea.sauce.username}</sauceUsername>
+                    <sauceAccessKey>${ovea.sauce.key}</sauceAccessKey>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-sauceconnct</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>start-sauceconnect</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-sauceconnect</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>stop-sauceconnect</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>

@@ -16,15 +16,15 @@
 package org.testatoo.core
 
 import org.junit.AfterClass
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.component.Div
 import org.testatoo.bundle.html5.component.input.InputTypeText
 import org.testatoo.core.component.field.TextField
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.Testatoo.*
@@ -35,6 +35,9 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(JUnit4)
 class ConfigTest {
 
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
+
     @AfterClass
     public static void after() {
         config.debug = false
@@ -43,11 +46,7 @@ class ConfigTest {
     @Test
     public void should_be_able_to_obtain_the_underline_implementation() {
         try {
-            WebDriver driver = new FirefoxDriver();
-            config.evaluator = new WebDriverEvaluator(driver)
-
             assert config.evaluator.getImplementation(WebDriver) instanceof WebDriver
-            assert config.evaluator.getImplementation(WebDriver) == driver
         } finally {
             config.evaluator.close()
         }
@@ -56,9 +55,6 @@ class ConfigTest {
     @Test
     public void should_be_able_to_register_a_script() {
         try {
-            WebDriver driver = new FirefoxDriver();
-            config.evaluator = new WebDriverEvaluator(driver)
-
             browser.open 'http://localhost:8080/dsl.html'
 
             TextField field = $('#firstname') as InputTypeText
