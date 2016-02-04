@@ -15,39 +15,34 @@
  */
 package org.testatoo.core
 
-import org.junit.AfterClass
-import org.junit.Before
-import org.junit.BeforeClass
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.component.Form
 import org.testatoo.bundle.html5.component.list.Li
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 import org.testatoo.core.input.MouseModifiers
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.*
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.dsl.Actions.reset
+import static org.testatoo.core.dsl.Actions.submit
+import static org.testatoo.core.input.Key.ALT
+import static org.testatoo.core.input.Key.CTRL
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Ignore
 class ErrorTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        browser.open 'http://localhost:8080/error.html'
-    }
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
 
     @Before
     public void before() {
-        browser.navigate.refresh()
+        browser.open 'http://localhost:8080/error.html'
     }
 
     @AfterClass

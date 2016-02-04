@@ -15,17 +15,16 @@
  */
 package org.testatoo.core
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.component.Form
+import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.component.A
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.bundle.html5.component.Form
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getBrowser
 import static org.testatoo.core.input.Mouse.clickOn
 
 /**
@@ -34,13 +33,8 @@ import static org.testatoo.core.input.Mouse.clickOn
 @RunWith(JUnit4)
 class BrowserTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-    }
-
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
 
     @Test
     public void should_be_able_to_have_browser_properties_access() {

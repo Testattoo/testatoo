@@ -15,23 +15,18 @@
  */
 package org.testatoo.core.input
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.component.Button
-import org.testatoo.bundle.html5.component.CheckBox
-import org.testatoo.bundle.html5.component.Div
-import org.testatoo.bundle.html5.component.Radio
-import org.testatoo.bundle.html5.component.Span
+import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.component.*
 import org.testatoo.bundle.html5.component.list.Select
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
-import static Key.*
-import static Mouse.*
+import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,14 +34,13 @@ import static Mouse.*
 @RunWith(JUnit4)
 class MouseTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
+
+    @Before
+    public void before() {
         browser.open 'http://localhost:8080/mouse.html'
     }
-
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void should_be_able_to_click() {

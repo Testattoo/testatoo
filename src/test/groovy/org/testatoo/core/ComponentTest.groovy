@@ -16,17 +16,13 @@
 package org.testatoo.core
 
 import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.component.Button
-import org.testatoo.bundle.html5.component.Paragraph
-import org.testatoo.bundle.html5.component.Radio
-import org.testatoo.bundle.html5.component.Section
-import org.testatoo.bundle.html5.component.WebElement
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.component.*
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -37,9 +33,11 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(JUnit4)
 class ComponentTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
+
+    @Before
+    public void setup() {
         config.scan 'org.testatoo.component'
         browser.open 'http://localhost:8080/components.html'
     }

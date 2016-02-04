@@ -15,28 +15,27 @@
  */
 package org.testatoo.core.dsl
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.component.CheckBox
-import org.testatoo.bundle.html5.component.Form
 import org.testatoo.bundle.html5.component.Div
+import org.testatoo.bundle.html5.component.Form
 import org.testatoo.bundle.html5.component.Radio
 import org.testatoo.bundle.html5.component.input.InputTypeEmail
 import org.testatoo.bundle.html5.component.input.InputTypePassword
 import org.testatoo.bundle.html5.component.input.InputTypeText
-import org.testatoo.bundle.html5.component.list.Select
 import org.testatoo.bundle.html5.component.list.MultiSelect
+import org.testatoo.bundle.html5.component.list.Select
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.ListBox
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.component.field.TextField
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -49,14 +48,13 @@ import static org.testatoo.core.input.Mouse.clickOn
 @RunWith(JUnit4)
 class IntentionTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/dsl.html'
-    }
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
 
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
+    @Before
+    public void before() {
+        browser.open 'http://localhost:8080/dsl.html'
+    }
 
     @Test
     public void should_be_able_to_check_and_uncheck_a_checkbox() {

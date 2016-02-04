@@ -15,16 +15,14 @@
  */
 package org.testatoo.core.dsl
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.Before
 import org.junit.Ignore
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.WebDriverConfig
 
-import static org.testatoo.core.Testatoo.config
-import static org.testatoo.core.dsl.Actions.visit
+import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -34,12 +32,11 @@ import static org.testatoo.core.dsl.Actions.visit
 @Ignore
 class DSLTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/dsl.html'
-    }
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
 
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
+    @Before
+    public void before() {
+        browser.open 'http://localhost:8080/dsl.html'
+    }
 }

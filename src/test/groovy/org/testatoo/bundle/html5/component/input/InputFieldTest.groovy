@@ -15,34 +15,18 @@
  */
 package org.testatoo.bundle.html5.component.input
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.testatoo.WebDriverConfig
 import org.testatoo.core.ComponentException
-import org.testatoo.core.component.field.ColorField
-import org.testatoo.core.component.field.DateField
-import org.testatoo.core.component.field.DateTimeField
-import org.testatoo.core.component.field.EmailField
-import org.testatoo.core.component.field.Field
-import org.testatoo.core.component.field.MonthField
-import org.testatoo.core.component.field.NumberField
-import org.testatoo.core.component.field.PasswordField
-import org.testatoo.core.component.field.PhoneField
-import org.testatoo.core.component.field.RangeField
-import org.testatoo.core.component.field.SearchField
-import org.testatoo.core.component.field.TextField
-import org.testatoo.core.component.field.TimeField
-import org.testatoo.core.component.field.URLField
-import org.testatoo.core.component.field.WeekField
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.core.component.field.*
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -51,14 +35,13 @@ import static org.testatoo.core.Testatoo.getConfig
 @RunWith(JUnit4)
 class InputFieldTest {
 
-    @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+    @Rule
+    public WebDriverConfig driver = new WebDriverConfig()
+
+    @Before
+    public void before() {
         browser.open 'http://localhost:8080/components.html'
     }
-
-    @AfterClass
-    public static void tearDown() { config.evaluator.close() }
 
     @Test
     public void input_should_have_expected_behaviours() {
