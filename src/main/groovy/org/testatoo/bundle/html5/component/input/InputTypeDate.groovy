@@ -19,12 +19,18 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.DateField
 
 import static org.testatoo.bundle.html5.helper.RangeHelper.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=date]')
 class InputTypeDate extends DateField implements Input {
+
+    @Override
+    void setValue(String value) {
+        config.evaluator.runScript("\$('#${id}').val('" + value + "')")
+    }
 
     @Override
     Object getMinimum() {

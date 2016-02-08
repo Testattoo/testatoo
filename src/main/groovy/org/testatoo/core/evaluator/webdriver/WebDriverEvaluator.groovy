@@ -20,14 +20,18 @@ import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
+import org.openqa.selenium.support.ui.Select
+import org.testatoo.core.Component
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.input.MouseModifiers
+import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.internal.Log
 
-import static org.testatoo.core.input.MouseModifiers.*
 import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.MouseModifiers.DOUBLE
+import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -134,8 +138,8 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
         return infos.collect {
             new MetaInfo(
-                id: it.id,
-                node: it.node
+                    id: it.id,
+                    node: it.node
             )
         }
     }
@@ -154,6 +158,16 @@ class WebDriverEvaluator implements Evaluator {
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
         action.build().perform();
+    }
+
+    @Override
+    void press(Key key) {
+        new Actions(webDriver).keyDown(KeyConverter.convert(key)).build().perform()
+    }
+
+    @Override
+    void release(Key key) {
+        new Actions(webDriver).keyUp(KeyConverter.convert(key)).build().perform();
     }
 
     @Override
@@ -192,6 +206,18 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
+    void select(Component selector, Item... items) {
+        Select select = new Select(webDriver.findElement(By.id(selector.id)));
+        items.each { select.selectByIndex(eval(it.id, 'it.index() + 1') as int) }
+    }
+
+    @Override
+    void unselect(Component selector, Item... items) {
+        Select select = new Select(webDriver.findElement(By.id(selector.id)));
+        items.each { select.deselectByIndex(eval(it.id, 'it.index() + 1') as int) }
+    }
+
+    @Override
     void close() throws Exception { webDriver.quit() }
 
     private String execute(String id, String s) {
@@ -215,7 +241,7 @@ class WebDriverEvaluator implements Evaluator {
         String v = js.executeScript(expr)
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.1.3.min.js").text
-                + getClass().getResource("testatoo.js").text)
+                    + getClass().getResource("testatoo.js").text)
             registeredScripts.each { js.executeScript(it) }
             v = js.executeScript(expr)
         }

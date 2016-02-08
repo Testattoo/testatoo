@@ -22,6 +22,8 @@ import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.core.support.MultiSelector
+import org.testatoo.core.support.SingleSelector
 
 import java.time.Duration
 
@@ -51,24 +53,52 @@ class GroovyExtensions {
         config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
     }
 
-    static void select(Component component, String... values) {
+    static void select(MultiSelector selector, String... values) {
+        ArrayList<Item> items = new ArrayList<Item>();
         for (value in values) {
-            component.items.find { it.value == value }.select()
+            items.add((Item) selector.items.find { it.value == value } )
         }
+        _select(selector as Component, (Item[]) items.toArray())
     }
 
-    static void select(Component component, Item... items) {
-        items.each { it.select() }
+    static void select(MultiSelector selector, Item... items) {
+        _select(selector as Component, items)
     }
 
-    static void unselect(Component component, Item... items) {
-        items.each { it.unselect() }
+    static void select(SingleSelector selector, String value) {
+        _select(selector as Component, (Item) selector.items.find { it.value == value })
     }
 
-    static void unselect(Component component, String... values) {
+    static void select(SingleSelector selector, Item item) {
+        _select(selector as Component, item)
+    }
+
+    private static void _select(Component selector, Item... items) {
+        config.evaluator.select(selector as Component, items)
+    }
+
+    static void unselect(MultiSelector selector, String... values) {
+        ArrayList<Item> items = new ArrayList<Item>();
         for (value in values) {
-            component.items.find { it.value == value }.unselect()
+            items.add((Item) selector.items.find { it.value == value } )
         }
+        _unselect(selector as Component, (Item[]) items.toArray())
+    }
+
+    static void unselect(MultiSelector selector, Item... items) {
+        _unselect(selector as Component, items)
+    }
+
+    static void unselect(SingleSelector selector, String value) {
+        _unselect(selector as Component, (Item) selector.items.find { it.value == value })
+    }
+
+    static void unselect(SingleSelector selector, Item item) {
+        _unselect(selector as Component, item)
+    }
+
+    private static void _unselect(Component selector, Item... items) {
+        config.evaluator.unselect(selector as Component, items)
     }
 
     static void should(Component component, Closure closure) {

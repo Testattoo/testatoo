@@ -26,7 +26,8 @@ import static org.testatoo.core.Testatoo.getConfig
 @ByCss('input[type=color]')
 class InputTypeColor extends ColorField implements Input {
 
-    void setValue(Object value) {
-        config.evaluator.eval(id, "it.val('" + value + "')")
+    @Override
+    void setValue(String value) {
+        config.evaluator.runScript("\$('#${id}').val('" + value + "')")
     }
 }

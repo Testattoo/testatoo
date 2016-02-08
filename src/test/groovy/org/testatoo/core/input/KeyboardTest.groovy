@@ -16,7 +16,7 @@
 package org.testatoo.core.input
 
 import org.junit.Before
-import org.junit.Rule
+import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -35,8 +35,8 @@ import static org.testatoo.core.input.Key.*
 @RunWith(JUnit4)
 class KeyboardTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
     @Before
     public void before() {

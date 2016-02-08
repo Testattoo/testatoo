@@ -16,9 +16,9 @@
 package org.testatoo.core
 
 import org.hamcrest.Matcher
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -39,22 +39,24 @@ import static org.testatoo.core.input.Mouse.clickOn
 @RunWith(JUnit4)
 class WaitTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         config.waitUntil = 10.seconds
         browser.open 'http://localhost:8080/wait.html'
     }
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         config.waitUntil = 2.seconds
     }
 
     @Test
     public void should_be_able_to_wait_on_condition() {
+        browser.navigate.refresh()
+
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
 
@@ -80,9 +82,10 @@ class WaitTest {
     }
 
     @Test
-    public void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {\
-        Button button = $('#add-message') as Button
+    public void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
+        browser.navigate.refresh()
 
+        Button button = $('#add-message') as Button
         Class<Matcher> disabled = DisabledMatcher.class;
 
         try {

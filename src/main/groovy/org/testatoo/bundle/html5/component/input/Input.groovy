@@ -52,12 +52,11 @@ trait Input extends WebElement {
         !required
     }
 
-    void setValue(Object value) {
+    void setValue(String value) {
         if (this.disabled) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
         }
         config.evaluator.trigger(this.id, 'blur')
-
         clear()
         config.evaluator.type([String.valueOf(value)])
         config.evaluator.trigger(this.id, 'blur')

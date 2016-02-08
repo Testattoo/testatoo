@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.junit.Before
-import org.junit.Rule
+import org.junit.BeforeClass
+import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -36,11 +36,11 @@ import static org.testatoo.core.Testatoo.getBrowser
 @RunWith(JUnit4)
 class MultiSelectTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         browser.open 'http://localhost:8080/components.html'
     }
 
@@ -85,8 +85,8 @@ class MultiSelectTest {
         assert cities.selectedItems.containsAll(newYork, munich)
 
         cities.select('Montpellier', 'Montreal')
-        assert cities.item('Montreal').selected
         assert cities.item('Montpellier').selected
+        assert cities.item('Montreal').selected
         assert cities.selectedItems.containsAll(newYork, munich, montpellier, montreal)
 
         montreal.unselect()
@@ -94,16 +94,20 @@ class MultiSelectTest {
 
         assert cities.item('Montreal').unselected
         assert cities.item('Montpellier').unselected
+        assert cities.item('New York').selected
+        assert cities.item('Munich').selected
 
         cities.select(montreal, montpellier)
         assert cities.item('Montreal').selected
         assert cities.item('Montpellier').selected
+        assert cities.item('New York').selected
+        assert cities.item('Munich').selected
 
-        montpellier.click()
-        assert montpellier.unselected
-
-        newYork.unselect()
+        montpellier.click() // Now just Montpellier is selected
+        assert montpellier.selected
+        assert montreal.unselected
         assert newYork.unselected
+        assert munich.unselected
 
         try {
             quebec.select()
@@ -127,7 +131,6 @@ class MultiSelectTest {
         }
 
         try {
-            montpellier.select()
             montpellier.select()
             fail()
         } catch (ComponentException e) {

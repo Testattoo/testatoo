@@ -15,9 +15,9 @@
  */
 package org.testatoo.core.dsl
 
-import org.junit.Before
+import org.junit.BeforeClass
+import org.junit.ClassRule
 import org.junit.Ignore
-import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
@@ -27,16 +27,15 @@ import static org.testatoo.core.Testatoo.getBrowser
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
 @RunWith(JUnit4)
 @Ignore
 class DSLTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         browser.open 'http://localhost:8080/dsl.html'
     }
 }

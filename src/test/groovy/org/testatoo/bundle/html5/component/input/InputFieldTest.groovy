@@ -15,8 +15,8 @@
  */
 package org.testatoo.bundle.html5.component.input
 
-import org.junit.Before
-import org.junit.Rule
+import org.junit.BeforeClass
+import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -35,11 +35,11 @@ import static org.testatoo.core.Testatoo.getBrowser
 @RunWith(JUnit4)
 class InputFieldTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         browser.open 'http://localhost:8080/components.html'
     }
 
@@ -86,12 +86,11 @@ class InputFieldTest {
         assert colorField.label == 'Color'
 
         // Fail on CI
-//        assert colorField.value == '#000000'
+        assert colorField.value == '#000000'
         colorField.value = '#ff0000'
         assert colorField.value == '#ff0000'
         assert colorField.valid
     }
-
 
     @Test
     public void date_field_should_have_expected_behaviours() {
@@ -218,7 +217,7 @@ class InputFieldTest {
         assert week.label == 'Week'
 
         assert week.value == ''
-        week.value = '54'
-        assert week.value == '54'
+        week.value = '2016-W32'
+        assert week.value == '2016-W32'
     }
 }

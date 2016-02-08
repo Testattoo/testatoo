@@ -25,10 +25,8 @@ import org.testatoo.core.input.MouseModifiers
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.dsl.Actions.reset
-import static org.testatoo.core.dsl.Actions.submit
-import static org.testatoo.core.input.Key.ALT
-import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.dsl.Actions.*
+import static org.testatoo.core.input.Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -37,11 +35,11 @@ import static org.testatoo.core.input.Key.CTRL
 @Ignore
 class ErrorTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         browser.open 'http://localhost:8080/error.html'
     }
 

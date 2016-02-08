@@ -27,4 +27,9 @@ class Keyboard {
     static void type(Key key) { type([key]) }
 
     static void type(String text) { type([text]) }
+
+    static void press(Key key) { config.evaluator.press(key) }
+
+    static void release(Key key) { config.evaluator.release(key) }
+
 }

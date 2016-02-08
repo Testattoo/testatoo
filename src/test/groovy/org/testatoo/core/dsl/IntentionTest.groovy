@@ -15,8 +15,8 @@
  */
 package org.testatoo.core.dsl
 
-import org.junit.Before
-import org.junit.Rule
+import org.junit.BeforeClass
+import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -48,11 +48,11 @@ import static org.testatoo.core.input.Mouse.clickOn
 @RunWith(JUnit4)
 class IntentionTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         browser.open 'http://localhost:8080/dsl.html'
     }
 

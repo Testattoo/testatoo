@@ -15,7 +15,7 @@
  */
 package org.testatoo.core
 
-import org.junit.Rule
+import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -33,8 +33,8 @@ import static org.testatoo.core.input.Mouse.clickOn
 @RunWith(JUnit4)
 class BrowserTest {
 
-    @Rule
-    public WebDriverConfig driver = new WebDriverConfig()
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
 
     @Test
     public void should_be_able_to_have_browser_properties_access() {
