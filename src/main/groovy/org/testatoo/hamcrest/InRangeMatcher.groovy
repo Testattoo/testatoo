@@ -17,7 +17,6 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeDiagnosingMatcher
-import org.testatoo.core.Component
 import org.testatoo.core.support.RangeSupport
 
 /**

@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.testatoo.core.component.Component
 import org.testatoo.core.dsl.Browser
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse

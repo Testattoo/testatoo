@@ -15,6 +15,7 @@
  */
 package org.testatoo.core.input
 
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
@@ -40,6 +41,11 @@ class MouseTest {
     @BeforeClass
     public static void before() {
         browser.open 'http://localhost:8080/mouse.html'
+    }
+
+    @Before
+    public void setup() {
+        browser.navigate.refresh()
     }
 
     @Test

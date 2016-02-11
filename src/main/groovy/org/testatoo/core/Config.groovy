@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import com.google.common.reflect.ClassPath
+import org.testatoo.core.component.Component
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log
 

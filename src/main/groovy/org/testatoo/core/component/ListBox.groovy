@@ -15,13 +15,12 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Component
-import org.testatoo.core.support.MultiSelector
+import org.testatoo.core.support.MultiSelectable
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListBox extends Component implements MultiSelector {
+abstract class ListBox extends Component implements MultiSelectable {
 
     abstract List<Item> getItems()
 
@@ -34,5 +33,4 @@ abstract class ListBox extends Component implements MultiSelector {
     abstract GroupItem groupItem(String value)
 
     abstract List<Item> getSelectedItems()
-
 }

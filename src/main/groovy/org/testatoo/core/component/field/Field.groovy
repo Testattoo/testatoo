@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.field
 
-import org.testatoo.core.Component
+import org.testatoo.core.component.Component
 import org.testatoo.core.support.InputSupport
 import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.support.ValiditySupport

@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.support
 
-import org.testatoo.core.Component
+import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.helper
 
-import org.testatoo.core.Component
+import org.testatoo.core.component.Component
 import static org.testatoo.core.Testatoo.*
 
 /**

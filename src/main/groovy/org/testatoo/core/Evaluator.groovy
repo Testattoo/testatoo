@@ -15,7 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
 
@@ -77,8 +76,4 @@ abstract trait Evaluator implements AutoCloseable {
     abstract void mouseOver(String id)
 
     abstract void dragAndDrop(String originId, String targetId)
-
-    abstract void select(Component component, Item... items)
-
-    abstract void unselect(Component component, Item... items)
 }

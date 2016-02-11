@@ -16,6 +16,7 @@
 package org.testatoo.core
 
 import groovy.transform.Immutable
+import org.testatoo.core.component.Component
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.core.component
 
 import org.hamcrest.Matcher
+import org.testatoo.core.ComponentException
+import org.testatoo.core.IdProvider
+import org.testatoo.core.MetaInfo
+import org.testatoo.core.Testatoo
 import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 import org.testatoo.core.support.IDragBuilder
-
-import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -37,9 +39,7 @@ class Component implements Clickable, Draggable {
 
     Component(IdProvider idProvider) {
         this()
-        meta = new CachedMetaData(
-                idProvider: idProvider
-        )
+        meta = new CachedMetaData(idProvider: idProvider)
     }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
@@ -129,11 +129,11 @@ class Component implements Clickable, Draggable {
     }
 
     protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
-        config.evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
+        Testatoo.config.evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
     }
 
     protected static <T extends Component> List<T> findjs(String expression, Class<T> type = Component) {
-        config.evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
+        Testatoo.config.evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
     }
 
     static class CachedMetaData {
@@ -148,9 +148,9 @@ class Component implements Clickable, Draggable {
                 MetaInfo info = idProvider.getMetaInfos()[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(config.evaluator.check(info.id, identifyingExpr))) {
-                        Class<Component> type = config.componentTypes.find {
-                            config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
+                    if (!(Testatoo.config.evaluator.check(info.id, identifyingExpr))) {
+                        Class<Component> type = Testatoo.config.componentTypes.find {
+                            Testatoo.config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }

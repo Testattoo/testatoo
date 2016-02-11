@@ -24,7 +24,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.component.ListBox
-import org.testatoo.core.support.MultiSelector
+import org.testatoo.core.support.MultiSelectable
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
@@ -47,7 +47,7 @@ class MultiSelectTest {
     @Test
     public void should_have_expected_behaviours() {
         assert MultiSelect in ListBox
-        assert ListBox in MultiSelector
+        assert ListBox in MultiSelectable
 
         ListBox cities = $('#cities') as MultiSelect
 

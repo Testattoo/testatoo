@@ -13,9 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.core.component
+
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.testatoo.core.support.TextSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface MultiSelector {}
+@RunWith(JUnit4)
+class HeadingTest {
+
+    @Test
+    public void should_have_expected_inheritance() {
+        Heading in Component
+        Heading in TextSupport
+    }
+}

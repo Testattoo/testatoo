@@ -23,6 +23,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.component.*
+import org.testatoo.core.component.Component
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*

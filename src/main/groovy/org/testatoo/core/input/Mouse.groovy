@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.input
 
-import org.testatoo.core.Component
+import org.testatoo.core.component.Component
 import static org.testatoo.core.Testatoo.config
 
 /**

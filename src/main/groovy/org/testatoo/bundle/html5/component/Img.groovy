@@ -27,6 +27,6 @@ class Img extends Image implements WebElement {
 
     @Override
     String getSource() {
-        Testatoo.config.evaluator.eval(this.id, "it.prop('src')")
+        Testatoo.config.evaluator.eval(id, "it.prop('src')")
     }
 }

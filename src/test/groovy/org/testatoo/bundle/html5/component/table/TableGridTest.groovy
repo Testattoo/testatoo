@@ -24,7 +24,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
-import org.testatoo.core.component.datagrid.Row
+import org.testatoo.core.component.datagrid.RowTest
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getBrowser
@@ -69,7 +69,7 @@ class TableGridTest {
 
         columns[2].cells[3].value == 'cell 42'
 
-        List<Row> rows = data_grid.rows
+        List<RowTest> rows = data_grid.rows
 
         assert rows[0].cells.size() == 3
 

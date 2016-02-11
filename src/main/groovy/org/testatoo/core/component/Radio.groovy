@@ -15,7 +15,6 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.Checkable
 import org.testatoo.core.support.LabelSupport

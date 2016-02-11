@@ -17,11 +17,13 @@ package org.testatoo.bundle.html5.component.list
 
 import org.testatoo.bundle.html5.component.WebElement
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 
 import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.input.MouseModifiers.LEFT
+import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -67,40 +69,44 @@ class Option extends Item implements WebElement {
 
     @Override
     void click() {
-        // Find the parent
-        try {
-            Select select = $("select:has(\"#${id}\")") as Select
-            config.evaluator.unselect(select, (Item[]) select.items.toArray())
-        } catch (e) {
+        // TODO to fix FF issue
+        boolean onMultiSelect = config.evaluator.check(id, "it.closest('select').attr('multiple') && it.closest('select').attr('multiple').length > 0")
+        if(onMultiSelect) {
             MultiSelect select = $("select:has(\"#${id}\")") as MultiSelect
-            config.evaluator.unselect(select, (Item[]) select.items.toArray())
+            select.items.findAll { it.selected }.forEach {
+                config.evaluator.press(CTRL)
+                config.evaluator.click(it.id, [LEFT, SINGLE])
+                config.evaluator.release(CTRL)
+            }
         }
-        this.select()
+        if (!selected) {
+            config.evaluator.press(CTRL)
+            config.evaluator.click(id, [LEFT, SINGLE])
+            config.evaluator.release(CTRL)
+        }
     }
 
     @Override
     void select() {
-        if(this.disabled)
+        if (disabled)
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be selected")
-        if (this.unselected) {
-            // Find the parent
-            Component select = $("select:has(\"#${id}\")") as Component
-            config.evaluator.select(select, this)
-        }
-        else
+        if (unselected) {
+            config.evaluator.press(CTRL)
+            config.evaluator.click(id, [LEFT, SINGLE])
+            config.evaluator.release(CTRL)
+        } else
             throw new ComponentException("${this.class.simpleName} ${this} is already selected and cannot be selected")
     }
 
     @Override
     void unselect() {
-        if (this.disabled)
+        if (disabled)
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be unselected")
-        if (this.selected) {
-            // Find the parent
-            Component select = $("select:has(\"#${id}\")") as Component
-            config.evaluator.unselect(select, this)
-        }
-        else
+        if (selected) {
+            config.evaluator.press(CTRL)
+            config.evaluator.click(id, [LEFT, SINGLE])
+            config.evaluator.release(CTRL)
+        } else
             throw new ComponentException("${this.class.simpleName} ${this} is already unselected and cannot be unselected")
     }
 }

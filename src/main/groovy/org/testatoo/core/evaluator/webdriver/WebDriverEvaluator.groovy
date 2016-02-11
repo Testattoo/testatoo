@@ -20,11 +20,8 @@ import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
-import org.openqa.selenium.support.ui.Select
-import org.testatoo.core.Component
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.internal.Log
@@ -203,18 +200,6 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void dragAndDrop(String originId, String targetId) {
         new Actions(webDriver).dragAndDrop(webDriver.findElement(By.id(originId)), webDriver.findElement(By.id(targetId))).build().perform()
-    }
-
-    @Override
-    void select(Component selector, Item... items) {
-        Select select = new Select(webDriver.findElement(By.id(selector.id)));
-        items.each { select.selectByIndex(eval(it.id, 'it.index() + 1') as int) }
-    }
-
-    @Override
-    void unselect(Component selector, Item... items) {
-        Select select = new Select(webDriver.findElement(By.id(selector.id)));
-        items.each { select.deselectByIndex(eval(it.id, 'it.index() + 1') as int) }
     }
 
     @Override

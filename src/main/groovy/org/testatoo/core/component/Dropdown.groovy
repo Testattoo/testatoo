@@ -15,13 +15,12 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.Component
-import org.testatoo.core.support.SingleSelector
+import org.testatoo.core.support.SingleSelectable
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Dropdown extends Component implements SingleSelector {
+abstract class Dropdown extends Component implements SingleSelectable {
 
     abstract List<Item> getItems()
 
