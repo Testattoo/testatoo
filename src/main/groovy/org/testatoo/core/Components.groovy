@@ -16,7 +16,7 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.internal.MetaInfoProvider
+import org.testatoo.core.internal.CachedMetaData
 import org.testatoo.core.internal.jQueryIdProvider
 
 /**
@@ -24,27 +24,26 @@ import org.testatoo.core.internal.jQueryIdProvider
  */
 class Components<T extends Component> extends AbstractList<T> implements List<T> {
 
-    private final IdProvider _idProvider
+    private final MetaDataProvider _meta
     private final Class<T> _type;
     private List<T> _components
 
-    public Components(Class<T> type, IdProvider idProvider) {
-        this._idProvider = idProvider
+    public Components(Class<T> type, MetaDataProvider meta) {
+        this._meta = meta
         this._type = type
     }
 
     private List<T> getComponents() {
         if (_components == null) {
-            _components = _idProvider.getMetaInfos().collect {
-                // TODO
-//                new Component(new MetaInfoProvider(it)).asType(_type)
+            _components = _meta.getMetaInfos().collect {
+                new Component(new CachedMetaData(idProvider: new jQueryIdProvider("#${it.id}", false))).asType(_type)
             } as List<T>
         }
         return _components
     }
 
     def <T extends Component> Components<T> of(Class<T> type) {
-        return new Components(type, _idProvider)
+        return new Components(type, _meta)
     }
 
     // DELEGATES

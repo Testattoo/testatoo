@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.testatoo.bundle.html5.component
 
 import org.junit.ClassRule
@@ -11,7 +26,6 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
-import org.testatoo.core.component.Button
 
 import static org.testatoo.core.Testatoo.*
 
@@ -28,12 +42,12 @@ class HtmlComponentTest {
     public void should_implement_default_states() {
         browser.open 'http://localhost:8080/components.html'
 
-        Button button = $('#button') as org.testatoo.bundle.html5.component.Button
+        Button button = $('#button') as Button
         assert button.available
         assert button.enabled
         assert button.visible
 
-        button = $('#submit') as org.testatoo.bundle.html5.component.Button
+        button = $('#submit') as Button
         assert button.disabled
 
         Panel panel = $('#hidden_panel') as Div
@@ -59,16 +73,16 @@ class HtmlComponentTest {
         browser.open 'http://localhost:8080/container.html'
 
         Div panel = $('#panel') as Div
-        Button visible_button = $('#visible_button') as org.testatoo.bundle.html5.component.Button
-        Button invisible_button = $('#invisible_button') as org.testatoo.bundle.html5.component.Button
+        Button visible_button = $('#visible_button') as Button
+        Button invisible_button = $('#invisible_button') as Button
 
         panel.contain(visible_button, invisible_button)
 
         Form form = $('#form') as Form
         EmailField email_field = $('[type=email]') as InputTypeEmail
         PasswordField password_field = $('[type=password]') as InputTypePassword
-        Button submit_button = $('[type=submit]') as org.testatoo.bundle.html5.component.Button
-        Button reset_button = $('[type=reset]') as org.testatoo.bundle.html5.component.Button
+        Button submit_button = $('[type=submit]') as Button
+        Button reset_button = $('[type=reset]') as Button
 
         form.contain(
                 email_field,
@@ -92,8 +106,8 @@ class HtmlComponentTest {
         browser.open 'http://localhost:8080/container.html'
 
         Div panel = $('#panel') as Div
-        Button visible_button = $('#visible_button') as org.testatoo.bundle.html5.component.Button
-        Button invisible_button = $('#invisible_button') as org.testatoo.bundle.html5.component.Button
+        Button visible_button = $('#visible_button') as Button
+        Button invisible_button = $('#invisible_button') as Button
 
         panel.display(visible_button)
 

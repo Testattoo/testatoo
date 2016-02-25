@@ -18,7 +18,7 @@ package org.testatoo.core.internal
 import org.testatoo.core.ComponentException
 import org.testatoo.core.IdProvider
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.Testatoo
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -26,19 +26,17 @@ import org.testatoo.core.Testatoo
 class jQueryIdProvider implements IdProvider {
 
     final String expression
-    final long timeout
     final boolean singleElement
 
-    jQueryIdProvider(String expression, long timeout, boolean singleElement) {
+    jQueryIdProvider(String expression, boolean singleElement) {
         this.expression = expression.startsWith('$') ? expression : ('$(\'' + expression + '\')')
-        this.timeout = timeout
         this.singleElement = singleElement
     }
 
     @Override
     List<MetaInfo> getMetaInfos() throws ComponentException {
         Log.log "getMetaInfos: ${expression}"
-        List<MetaInfo> metaInfos = Testatoo.config.evaluator.getMetaInfo(expression)
+        List<MetaInfo> metaInfos = config.evaluator.getMetaInfo(expression)
         if (singleElement) {
             if (metaInfos.size() == 1) return metaInfos
             if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression ${expression} not found.")

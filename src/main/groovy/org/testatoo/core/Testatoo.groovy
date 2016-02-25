@@ -50,15 +50,15 @@ class Testatoo {
     /**
      * Create a component
      */
-    static Component $(String jQuery, long timeout = 2000) {
-        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, timeout, true)))
+    static Component $(String jQuery) {
+        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, true)))
     }
 
     /**
      * Creates a list of component
      */
-    static Components<? extends Component> $$(String jQuery, long timeout = 2000) {
-        new Components<>(Component, new jQueryIdProvider(jQuery, timeout, false))
+    static Components<? extends Component> $$(String jQuery) {
+        new Components<>(Component, new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, false)))
     }
 
     static {
