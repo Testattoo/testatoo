@@ -28,7 +28,7 @@ class Components<T extends Component> extends AbstractList<T> implements List<T>
     private final Class<T> _type;
     private List<T> _components
 
-    private Components(Class<T> type, IdProvider idProvider) {
+    public Components(Class<T> type, IdProvider idProvider) {
         this._idProvider = idProvider
         this._type = type
     }
@@ -36,7 +36,8 @@ class Components<T extends Component> extends AbstractList<T> implements List<T>
     private List<T> getComponents() {
         if (_components == null) {
             _components = _idProvider.getMetaInfos().collect {
-                new Component(new MetaInfoProvider(it)).asType(_type)
+                // TODO
+//                new Component(new MetaInfoProvider(it)).asType(_type)
             } as List<T>
         }
         return _components
@@ -44,10 +45,6 @@ class Components<T extends Component> extends AbstractList<T> implements List<T>
 
     def <T extends Component> Components<T> of(Class<T> type) {
         return new Components(type, _idProvider)
-    }
-
-    static Components<? extends Component> $$(String jQuery, long timeout = 2000) {
-        new Components<>(Component, new jQueryIdProvider(jQuery, timeout, false))
     }
 
     // DELEGATES

@@ -22,7 +22,7 @@ import org.testatoo.core.component.Panel
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('div')
-class Div extends Panel implements WebElement {
+class Div extends Panel {
 
     @Override
     String getTitle() {

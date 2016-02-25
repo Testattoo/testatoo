@@ -23,5 +23,4 @@ class Log {
     static boolean debug
 
     static void log(String msg) { if (debug) println "[TESTATOO] [${Thread.currentThread().name}] ${msg}" }
-
 }

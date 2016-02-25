@@ -130,7 +130,6 @@ class MatchersTest {
             assertThat(cmp, hasLabel('OtherLabel'))
             fail()
         } catch (AssertionError e) {
-//            assert message(e) == 'Expected: <' + cmp + '> with "OtherLabel"     but: was MyLabel'
             assert message(e) == 'Expected: "OtherLabel"     but: was "MyLabel"'
         }
     }
@@ -151,11 +150,11 @@ class MatchersTest {
 
         // Empty
         when(cmp.empty).thenReturn(true)
-        assertThat(cmp, empty())
+        assertThat(cmp, Matchers.empty())
 
         when(cmp.empty).thenReturn(false)
         try {
-            assertThat(cmp, empty())
+            assertThat(cmp, Matchers.empty())
             fail()
         } catch (AssertionError e) {
             assert message(e) == 'Expected: Component is empty     but: is filled'
@@ -349,7 +348,7 @@ class MatchersTest {
             assertThat(cmp, selected())
             fail()
         } catch (AssertionError e) {
-//            assert e.message.endsWith() message(e) == 'Expected: Component is selected     but: is unselected'
+            assert message(e) == 'Expected: Component is selected     but: is unselected'
         }
 
         // Unselected
@@ -369,9 +368,9 @@ class MatchersTest {
         ValueSupport cmp = mock(ValueSupport)
         when(cmp.value).thenReturn('MyValue')
 
-        assertThat(cmp, hasValue('MyValue'))
+        assertThat(cmp, Matchers.hasValue('MyValue'))
         try {
-            assertThat(cmp, hasValue('OtherValue'))
+            assertThat(cmp, Matchers.hasValue('OtherValue'))
             fail()
         } catch (AssertionError e) {
             assert message(e) == 'Expected: "OtherValue"     but: was "MyValue"'

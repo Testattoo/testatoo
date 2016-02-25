@@ -50,6 +50,4 @@ class Identifiers {
         }
         return handler.call(annotation)
     }
-
-
 }

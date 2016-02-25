@@ -17,12 +17,11 @@ package org.testatoo
 
 import org.junit.rules.ExternalResource
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.getConfig
 

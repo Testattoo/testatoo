@@ -25,7 +25,7 @@ import static org.testatoo.bundle.html5.helper.TextHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('p')
-class Paragraph extends Component implements TextSupport, WebElement {
+class Paragraph extends Component implements TextSupport {
 
     @Override
     String getText() {

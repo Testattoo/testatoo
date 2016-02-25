@@ -15,12 +15,21 @@
  */
 package org.testatoo.core.component
 
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.ComponentException
+import org.testatoo.core.Evaluator
+import org.testatoo.core.input.DragBuilder
+import org.testatoo.helper.FakeComponent
+import org.testatoo.core.MetaDataProvider
+import org.testatoo.core.MetaInfo
+import org.testatoo.core.support.Clickable
+import org.testatoo.core.support.Draggable
 
-import static org.junit.Assert.fail
+import static org.mockito.Mockito.*
+import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,92 +37,115 @@ import static org.junit.Assert.fail
 @RunWith(JUnit4)
 class ComponentTest {
 
+    MetaDataProvider metaData
+    Evaluator evaluator
+
+    @Before
+    public void before() {
+        metaData = mock(MetaDataProvider)
+        evaluator = mock(Evaluator)
+        config.evaluator = evaluator
+    }
+
     @Test
-    public void should_have_generic_behaviours_not_implemented() {
-        Component component = new Component()
+    public void should_have_expected_inheritance() {
+        Component in Clickable
+        Component in Draggable
+    }
 
-        try {
-            component.enabled
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+    @Test
+    public void should_be_initialized_with_a_meta_data_provider() {
+        Component cmp = new FakeComponent(metaData)
+        assert cmp.meta ==  metaData
+    }
 
-        try {
-            component.disabled
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+    @Test
+    public void should_have_identity_on_id() {
+        FakeComponent cmp_1 = new FakeComponent(metaData)
+        FakeComponent cmp_2 = new FakeComponent(metaData)
+        FakeComponent cmp_3 = new FakeComponent(metaData)
+        Component cmp_4 = new Component(metaData) {}
 
-        try {
-            component.available
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        when(metaData.getMetaInfo(any(Component)))
+                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
+                .thenReturn(new MetaInfo(id: 'cmpId_2')) // Call on id for cmp_2
+                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
+                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
+                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
+                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
 
-        try {
-            component.missing
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        assert !cmp_1.equals(cmp_2) // Same class not same id
+        assert cmp_1.equals(cmp_3)  // Same class and same id
+        assert !cmp_1.equals(cmp_4)  // Different class and same id
 
-        try {
-            component.visible
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        assert cmp_1.hashCode() == cmp_1.id.hashCode()
+    }
 
-        try {
-            component.hidden
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+    @Test
+    public void should_implement_toString_based_on_class_name_and_id() {
+        FakeComponent cmp_1 = new FakeComponent(metaData)
+        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: 'cmpId_1'))
 
-        try {
-            component.contain(null)
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        assert cmp_1.toString() == 'FakeComponent:cmpId_1'
+    }
 
-        try {
-            component.display(null)
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+    @Test
+    public void should_create_new_component_with_same_metadata_on_component_type_conversion() {
+        Component cmp_1 = new FakeComponent(metaData)
+        FakeComponent cmp_2 = cmp_1 as FakeComponent
 
-        try {
-            component.click()
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        // cmp_2 is a copy of cmp_1
+        assert !cmp_2.is(cmp_1)
+        assert cmp_1.meta.is(cmp_2.meta)
+    }
 
-        try {
-            component.doubleClick()
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+    @Test
+    public void should_have_generic_behaviours_delegated_to_evaluator() {
+        String cmp_id = 'cmpId_1'
+        Component component = new FakeComponent(metaData)
+        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
 
-        try {
-            component.rightClick()
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        String default_enabled_check_expression = "it.is(':disabled') || !!it.attr('disabled')"
+        verify(evaluator, times(0)).check(cmp_id, default_enabled_check_expression)
 
-        try {
-            component.drag()
-            fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unsupported Operation'
-        }
+        component.enabled
+        verify(evaluator, times(1)).check(cmp_id, default_enabled_check_expression)
+
+        component.enabled
+        verify(evaluator, times(2)).check(cmp_id, default_enabled_check_expression)
+
+        String default_visibility_check_expression = "it.is(':hidden')"
+        verify(evaluator, times(0)).check(cmp_id, default_visibility_check_expression)
+
+        component.visible
+        verify(evaluator, times(1)).check(cmp_id, default_visibility_check_expression)
+
+        component.hidden
+        verify(evaluator, times(2)).check(cmp_id, default_visibility_check_expression)
+
+        reset(metaData)
+        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
+        verify(metaData, times(0)).getMetaInfo(component)
+
+        component.available
+        verify(metaData, times(1)).getMetaInfo(component)
+
+        component.missing
+        verify(metaData, times(2)).getMetaInfo(component)
+
+        verify(evaluator, times(0)).click(cmp_id, [LEFT, SINGLE])
+        component.click()
+        verify(evaluator, times(1)).click(cmp_id, [LEFT, SINGLE])
+
+        verify(evaluator, times(0)).click(cmp_id, [RIGHT, SINGLE])
+        component.rightClick()
+        verify(evaluator, times(1)).click(cmp_id, [RIGHT, SINGLE])
+
+        verify(evaluator, times(0)).click(cmp_id, [LEFT, DOUBLE])
+        component.doubleClick()
+        verify(evaluator, times(1)).click(cmp_id, [LEFT, DOUBLE])
+
+        DragBuilder dragBuilder = component.drag()
+        assert dragBuilder.dragged == component
     }
 }

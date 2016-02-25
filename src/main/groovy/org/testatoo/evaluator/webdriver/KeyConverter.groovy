@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.evaluator.webdriver
+package org.testatoo.evaluator.webdriver
 
 import org.openqa.selenium.Keys
 import org.testatoo.core.input.Key

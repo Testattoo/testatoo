@@ -25,7 +25,7 @@ import static org.testatoo.bundle.html5.helper.TextHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('span')
-class Span extends Component implements TextSupport, WebElement {
+class Span extends Component implements TextSupport {
 
     @Override
     String getText() {

@@ -16,15 +16,15 @@
 package org.testatoo.core.component
 
 import org.hamcrest.Matcher
+import org.testatoo.core.By
 import org.testatoo.core.ComponentException
-import org.testatoo.core.IdProvider
-import org.testatoo.core.MetaInfo
-import org.testatoo.core.Testatoo
-import org.testatoo.core.internal.Identifiers
-import org.testatoo.core.internal.jQueryIdProvider
+import org.testatoo.core.MetaDataProvider
+import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
-import org.testatoo.core.support.IDragBuilder
+
+import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -33,67 +33,84 @@ class Component implements Clickable, Draggable {
 
     final Queue<Matcher> BLOCKS = new LinkedList<>()
 
-    CachedMetaData meta = new CachedMetaData()
+    MetaDataProvider meta
 
-    Component() {}
+    protected Component() {}
 
-    Component(IdProvider idProvider) {
+    Component(MetaDataProvider meta) {
         this()
-        meta = new CachedMetaData(idProvider: idProvider)
+        this.meta = meta
     }
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
     boolean isEnabled() {
-        throw new ComponentException('Unsupported Operation')
+        !disabled
     }
 
     boolean isDisabled() {
-        throw new ComponentException('Unsupported Operation')
+        config.evaluator.check(id, "it.is(':disabled') || !!it.attr('disabled')")
     }
 
     boolean isAvailable() {
-        throw new ComponentException('Unsupported Operation')
+        !missing
     }
 
     boolean isMissing() {
-        throw new ComponentException('Unsupported Operation')
+        try {
+            meta.getMetaInfo(this)
+            return false
+        } catch (ComponentException ignored) {
+            return true
+        }
     }
 
     boolean isHidden() {
-        throw new ComponentException('Unsupported Operation')
+        config.evaluator.check(id, "it.is(':hidden')")
     }
 
     boolean isVisible() {
-        throw new ComponentException('Unsupported Operation')
+        !hidden
     }
 
     boolean contain(Component... components) {
-        throw new ComponentException('Unsupported Operation')
+        List ret = config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+        if (ret) {
+            throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
+        }
     }
 
     boolean display(Component... components) {
-        throw new ComponentException('Unsupported Operation')
+        List ret = config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+        if (ret) {
+            throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
+        } else {
+            components.findAll { !it.visible }
+        }
+    }
+
+    protected <T extends Component> List<T> find(By by, Class<T> type = Component) {
+        config.evaluator.getMetaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
     }
 
     @Override
     void click() {
-        throw new ComponentException('Unsupported Operation')
+        config.evaluator.click(id, [LEFT, SINGLE])
     }
 
     @Override
     void rightClick() {
-        throw new ComponentException('Unsupported Operation')
+        config.evaluator.click(id, [RIGHT, SINGLE])
     }
 
     @Override
     void doubleClick() {
-        throw new ComponentException('Unsupported Operation')
+        config.evaluator.click(id, [LEFT, DOUBLE])
     }
 
     @Override
-    IDragBuilder drag() {
-        throw new ComponentException('Unsupported Operation')
+    DragBuilder drag() {
+        new DragBuilder(this)
     }
 
     @Override
@@ -101,23 +118,14 @@ class Component implements Clickable, Draggable {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
         Component component = (Component) o
-        if (id != component.id) return false
-        return true
+        id == component.id
     }
 
     @Override
     int hashCode() { id.hashCode() }
 
     @Override
-    String toString() {
-        String str
-        try {
-            str = id
-        } catch (ComponentException ignored) {
-            str = meta.metaInfo
-        }
-        getClass().simpleName + ":${str}"
-    }
+    String toString() { getClass().simpleName + ":${this.id}" }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
@@ -127,39 +135,4 @@ class Component implements Clickable, Draggable {
         }
         return super.asType(clazz)
     }
-
-    protected <T extends Component> List<T> find(String expression, Class<T> type = Component) {
-        Testatoo.config.evaluator.getMetaInfo("\$('#${id}').find('${expression}')").collect { it.asType(type) } as List<T>
-    }
-
-    protected static <T extends Component> List<T> findjs(String expression, Class<T> type = Component) {
-        Testatoo.config.evaluator.getMetaInfo(expression).collect { it.asType(type) } as List<T>
-    }
-
-    static class CachedMetaData {
-
-        @Delegate
-        private MetaInfo metaInfo
-
-        IdProvider idProvider
-
-        MetaInfo getMetaInfo(Component c) {
-            if (!metaInfo) {
-                MetaInfo info = idProvider.getMetaInfos()[0]
-                if (c.class != Component) {
-                    String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
-                    if (!(Testatoo.config.evaluator.check(info.id, identifyingExpr))) {
-                        Class<Component> type = Testatoo.config.componentTypes.find {
-                            Testatoo.config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
-                        }
-                        throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
-                    }
-                }
-                metaInfo = info
-            }
-            return metaInfo
-        }
-    }
-
-    static Component $(String jQuery, long timeout = 2000) { new Component(new jQueryIdProvider(jQuery, timeout, true)) }
 }

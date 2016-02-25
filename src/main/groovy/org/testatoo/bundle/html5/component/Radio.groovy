@@ -24,7 +24,7 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.getLabel
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('input[type=radio]')
-class Radio extends org.testatoo.core.component.Radio implements WebElement {
+class Radio extends org.testatoo.core.component.Radio {
 
     @Override
     boolean isChecked() {

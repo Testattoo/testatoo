@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.testatoo.bundle.html5.component.WebElement
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.ListView
 
@@ -23,11 +23,11 @@ import org.testatoo.core.component.ListView
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('ol')
-class Ol extends ListView implements WebElement {
+class Ol extends ListView {
 
     @Override
     List<Li> getItems() {
-        find('li', Li)
+        find(By.css('li'), Li)
     }
 
     @Override

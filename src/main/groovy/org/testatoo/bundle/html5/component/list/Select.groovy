@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.testatoo.bundle.html5.component.WebElement
+import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.Dropdown
 
@@ -23,16 +23,16 @@ import org.testatoo.core.component.Dropdown
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
-class Select extends Dropdown implements WebElement {
+class Select extends Dropdown {
 
     @Override
     List<Option> getItems() {
-        find("option", Option)
+        find(By.css('option'), Option)
     }
 
     @Override
     List<OptionGroup> getGroupItems() {
-        find("optgroup", OptionGroup)
+        find(By.css('optgroup'), OptionGroup)
     }
 
     @Override

@@ -22,4 +22,4 @@ import org.testatoo.core.component.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('header')
-class Header extends Component implements WebElement {}
+class Header extends Component {}

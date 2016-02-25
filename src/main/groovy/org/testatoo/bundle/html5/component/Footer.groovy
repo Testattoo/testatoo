@@ -22,4 +22,4 @@ import org.testatoo.core.component.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('footer')
-class Footer extends Component implements WebElement {}
+class Footer extends Component {}

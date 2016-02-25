@@ -15,7 +15,6 @@
  */
 package org.testatoo.bundle.html5.component.table
 
-import org.testatoo.bundle.html5.component.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Row
 
@@ -25,7 +24,7 @@ import static org.testatoo.core.Testatoo.getConfig
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('tr')
-class Tr extends Row implements WebElement {
+class Tr extends Row {
 
     @Override
     List<Td> getCells() {

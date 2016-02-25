@@ -15,17 +15,15 @@
  */
 package org.testatoo.core
 
-import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.component.A
-import org.testatoo.bundle.html5.component.Form
+import org.testatoo.core.dsl.Browser
+import org.testatoo.core.dsl.Window
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.mockito.Matchers.any
+import static org.mockito.Mockito.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -33,66 +31,42 @@ import static org.testatoo.core.input.Mouse.clickOn
 @RunWith(JUnit4)
 class BrowserTest {
 
-    @ClassRule
-    public static WebDriverConfig driver = new WebDriverConfig()
-
     @Test
-    public void should_be_able_to_have_browser_properties_access() {
-        browser.open 'http://localhost:8080/components.html'
+    public void should_delegate_to_underline_call() {
+        Evaluator evaluator = mock(Evaluator)
+        config.evaluator = evaluator
 
-        assert browser.title == 'Testatoo Rocks'
-        assert browser.pageSource.contains('<title>Testatoo Rocks</title>')
-        assert browser.url == 'http://localhost:8080/components.html'
+        Browser browser = new Browser()
 
-        browser.open('http://localhost:8080/keyboard.html')
-        assert browser.url == 'http://localhost:8080/keyboard.html'
-    }
+        verify(evaluator, times(0)).title
+        browser.title
+        verify(evaluator, times(1)).title
 
-    @Test
-    public void should_be_able_to_navigate() {
-        browser.open 'http://localhost:8080/components.html'
+        verify(evaluator, times(0)).pageSource
+        browser.pageSource
+        verify(evaluator, times(1)).pageSource
 
-        assert browser.url == 'http://localhost:8080/components.html'
+        verify(evaluator, times(0)).url
+        browser.url
+        verify(evaluator, times(1)).url
 
-        browser.navigate.to('http://localhost:8080/keyboard.html')
-        assert browser.url == 'http://localhost:8080/keyboard.html'
+        verify(evaluator, times(0)).open(any(String))
+        browser.open('http://www.testatoo.org')
+        verify(evaluator, times(1)).open('http://www.testatoo.org')
 
-        browser.navigate.back()
-        assert browser.url == 'http://localhost:8080/components.html'
+        Window window = new Window('winId')
+        verify(evaluator, times(0)).switchToWindow(any(String))
+        browser.switchTo(window)
+        verify(evaluator, times(1)).switchToWindow('winId')
 
-        browser.navigate.forward()
-        assert browser.url == 'http://localhost:8080/keyboard.html'
 
-        browser.navigate.refresh()
-        assert browser.url == 'http://localhost:8080/keyboard.html'
-    }
+        when(evaluator.windowIds).thenReturn([] as Set)
+        assert browser.windows.size() == 0
 
-    @Test
-    public void should_manage_windows() {
-        browser.open 'http://localhost:8080/components.html'
-
-        assert browser.windows.size() == 1
-        String main_window_id = browser.windows[0].id
-
-        A link = $('#link') as A
-        Form form = $('#dsl-form') as Form
-
-        assert link.available
-        assert form.missing
-
-        clickOn link
-
+        Window win_1 = new Window('win_1')
+        Window win_2 = new Window('win_1')
+        when(evaluator.windowIds).thenReturn(['win_1', 'win_2'] as Set)
         assert browser.windows.size() == 2
-        assert link.available
-        assert form.missing
-
-        browser.switchTo(browser.windows[1])
-        assert link.missing
-        assert form.available
-
-        browser.windows[1].close()
-        assert browser.windows.size() == 1
-        assert browser.windows[0].id == main_window_id
-        assert browser.windows[0].toString() == main_window_id
+        assert browser.windows.containsAll(win_1, win_2)
     }
 }

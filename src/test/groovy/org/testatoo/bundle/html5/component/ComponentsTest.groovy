@@ -301,7 +301,7 @@ class ComponentsTest {
     }
 
     @ByCss('div')
-    class Message extends Panel implements WebElement {
+    class Message extends Panel {
         @Override
         String getTitle() {
             config.evaluator.eval(id, "it.text()")

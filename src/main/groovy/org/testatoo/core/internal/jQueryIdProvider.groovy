@@ -24,6 +24,7 @@ import org.testatoo.core.Testatoo
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class jQueryIdProvider implements IdProvider {
+
     final String expression
     final long timeout
     final boolean singleElement
@@ -46,5 +47,4 @@ class jQueryIdProvider implements IdProvider {
             return metaInfos
         }
     }
-
 }

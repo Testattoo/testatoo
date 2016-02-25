@@ -32,16 +32,4 @@ class Mouse {
     static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id) }
 
     static DragBuilder drag(Component c) { return new DragBuilder(c) }
-
-    public static class DragBuilder {
-        private Component from
-
-        public DragBuilder(Component from) {
-            this.from = from
-        }
-
-        public void on(Component onto) {
-            config.evaluator.dragAndDrop(from.id, onto.id)
-        }
-    }
 }

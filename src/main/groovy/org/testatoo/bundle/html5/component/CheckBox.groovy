@@ -24,7 +24,7 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.getLabel
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=checkbox]')
-class CheckBox extends org.testatoo.core.component.CheckBox implements WebElement {
+class CheckBox extends org.testatoo.core.component.CheckBox {
 
     @Override
     boolean isChecked() {

@@ -25,7 +25,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.component.Button
 import org.testatoo.bundle.html5.component.fields.TextField
 import org.testatoo.core.Testatoo
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
+import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 import starter.component.GoogleItem
 import starter.component.GoogleListView
 

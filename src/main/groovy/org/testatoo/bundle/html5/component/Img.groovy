@@ -23,7 +23,7 @@ import org.testatoo.core.component.Image
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('img')
-class Img extends Image implements WebElement {
+class Img extends Image {
 
     @Override
     String getSource() {

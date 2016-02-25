@@ -15,7 +15,6 @@
  */
 package org.testatoo.bundle.html5.component.heading
 
-import org.testatoo.bundle.html5.component.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Heading
 
@@ -26,7 +25,7 @@ import static org.testatoo.bundle.html5.helper.TextHelper.getText
  */
 
 @ByCss('h5')
-class H5 extends Heading implements WebElement {
+class H5 extends Heading {
 
     @Override
     String getText() {

@@ -27,8 +27,7 @@ import org.testatoo.core.component.ListBox
 import org.testatoo.core.support.MultiSelectable
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

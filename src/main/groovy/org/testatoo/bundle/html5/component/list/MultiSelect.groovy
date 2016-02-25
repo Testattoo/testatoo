@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.testatoo.bundle.html5.component.WebElement
+import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.ListBox
 
@@ -25,11 +25,11 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class MultiSelect extends ListBox implements WebElement {
+class MultiSelect extends ListBox {
 
     @Override
     List<Option> getItems() {
-        find("option", Option)
+        find(By.css('option'), Option)
     }
 
     @Override
@@ -45,7 +45,7 @@ class MultiSelect extends ListBox implements WebElement {
 
     @Override
     List<OptionGroup> getGroupItems() {
-        find("optgroup", OptionGroup)
+        find(By.css('optgroup'), OptionGroup)
     }
 
     @Override

@@ -22,4 +22,4 @@ import org.testatoo.core.component.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('aside')
-class Aside extends Component implements WebElement {}
+class Aside extends Component {}

@@ -25,7 +25,7 @@ import static org.testatoo.core.Testatoo.getConfig
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('a')
-class A extends Link implements WebElement {
+class A extends Link {
 
     @Override
     String getReference() {

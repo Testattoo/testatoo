@@ -22,5 +22,6 @@ import java.lang.annotation.*
 @Inherited
 @Identifier
 @interface ByJs {
+
     String value()
 }

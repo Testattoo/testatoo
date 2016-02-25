@@ -48,9 +48,7 @@ class Actions {
 
     static void unselect(Item... items) { items.each { it.unselect() } }
 
-    static final FillAction fill(InputSupport c) {
-        new FillAction(c)
-    }
+    static final FillAction fill(InputSupport c) { new FillAction(c) }
 
     public static class FillAction {
         private InputSupport input

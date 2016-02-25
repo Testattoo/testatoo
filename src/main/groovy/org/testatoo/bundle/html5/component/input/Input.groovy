@@ -15,7 +15,6 @@
  */
 package org.testatoo.bundle.html5.component.input
 
-import org.testatoo.bundle.html5.component.WebElement
 import org.testatoo.core.ComponentException
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.*
@@ -26,7 +25,7 @@ import static org.testatoo.core.input.Key.BACK_SPACE
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-trait Input extends WebElement {
+trait Input {
 
     String getPlaceholder() {
         config.evaluator.eval(id, "it.prop('placeholder')")

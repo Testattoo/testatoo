@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.component
 
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
 
@@ -24,11 +25,11 @@ import static org.testatoo.bundle.html5.helper.ValidityHelper.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends org.testatoo.core.component.Form implements WebElement {
+class Form extends org.testatoo.core.component.Form {
 
     @Override
     void reset() {
-        Button reset_button = this.find('[type=reset]:first')[0] as Button
+        Button reset_button = find(By.css('[type=reset]:first'))[0] as Button
         if (reset_button && reset_button.available)
             reset_button.click()
         else
@@ -37,7 +38,7 @@ class Form extends org.testatoo.core.component.Form implements WebElement {
 
     @Override
     void submit() {
-        Button submit_button = this.find('[type=submit]:first')[0] as Button
+        Button submit_button = this.find(By.css('[type=submit]:first'))[0] as Button
         if (submit_button && submit_button.available)
             submit_button.click()
         else

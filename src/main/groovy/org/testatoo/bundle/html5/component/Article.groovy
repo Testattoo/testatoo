@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.component
 
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Component
 
@@ -22,9 +23,9 @@ import org.testatoo.core.component.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('article')
-class Article extends Component implements WebElement {
+class Article extends Component {
 
     List<Paragraph> getParagraphs() {
-        find("> p", Paragraph)
+        find(By.css('> p'), Paragraph)
     }
 }

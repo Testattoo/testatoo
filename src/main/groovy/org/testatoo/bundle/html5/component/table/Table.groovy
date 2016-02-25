@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.component.table
 
-import org.testatoo.bundle.html5.component.WebElement
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
@@ -24,16 +24,16 @@ import org.testatoo.core.component.datagrid.DataGrid
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('table')
-class Table extends DataGrid implements WebElement {
+class Table extends DataGrid {
 
     @Override
     List<Th> getColumns() {
-        find("thead tr:last th", Th)
+        find(By.css('thead tr:last th'), Th)
     }
 
     @Override
     List<Tr> getRows() {
-        find("tbody tr", Tr)
+        find(By.css('tbody tr'), Tr)
     }
 
     @Override

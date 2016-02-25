@@ -24,16 +24,20 @@ class Window {
 
     final String id
 
-    Window(String id) {
-        this.id = id;
-    }
+    Window(String id) { this.id = id }
 
-    void close() {
-        config.evaluator.closeWindow(this.id)
-    }
+    void close() { config.evaluator.closeWindow(this.id) }
 
     @Override
-    String toString() {
-        this.id
+    String toString() { this.id }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        Window window = (Window) o
+        id != window.id
     }
+
+    int hashCode() { id.hashCode() }
 }

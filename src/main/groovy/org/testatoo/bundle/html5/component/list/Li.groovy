@@ -15,7 +15,6 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.testatoo.bundle.html5.component.WebElement
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.ByCss
@@ -26,7 +25,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('li')
-class Li extends Item implements WebElement {
+class Li extends Item {
 
     String getValue() {
         config.evaluator.eval(id, 'it.text().trim()')

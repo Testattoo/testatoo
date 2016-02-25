@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.testatoo.bundle.html5.component.WebElement
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 
+import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.input.MouseModifiers.LEFT
@@ -30,7 +30,7 @@ import static org.testatoo.core.input.MouseModifiers.SINGLE
  */
 
 @ByCss('option')
-class Option extends Item implements WebElement {
+class Option extends Item {
 
     @Override
     boolean isSelected() {
@@ -59,7 +59,7 @@ class Option extends Item implements WebElement {
 
     boolean equals(o) {
         if (this.is(o)) return true
-        return value == o.value
+        value == o.value
     }
 
     @Override

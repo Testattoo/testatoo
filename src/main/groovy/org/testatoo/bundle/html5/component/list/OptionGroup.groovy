@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.component.list
 
-import org.testatoo.bundle.html5.component.WebElement
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.GroupItem
 
@@ -25,10 +25,10 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('optgroup')
-class OptionGroup extends GroupItem implements WebElement {
+class OptionGroup extends GroupItem {
 
     List<Option> getItems() {
-        find("option", Option)
+        find(By.css('option'), Option)
     }
 
     Option item(String value) {

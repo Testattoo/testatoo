@@ -23,7 +23,7 @@ import static org.testatoo.core.Testatoo.config
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
-class Button extends org.testatoo.core.component.Button implements WebElement {
+class Button extends org.testatoo.core.component.Button {
 
     @Override
     public String getText() {

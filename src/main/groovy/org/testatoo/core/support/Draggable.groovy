@@ -15,10 +15,12 @@
  */
 package org.testatoo.core.support
 
+import org.testatoo.core.input.DragBuilder
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Draggable {
 
-    IDragBuilder drag()
+    DragBuilder drag()
 }

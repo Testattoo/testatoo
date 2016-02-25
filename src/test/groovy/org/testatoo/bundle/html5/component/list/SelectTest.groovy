@@ -24,8 +24,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.GroupItem
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

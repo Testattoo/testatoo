@@ -19,6 +19,8 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.dsl.Browser
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
+import org.testatoo.core.internal.CachedMetaData
+import org.testatoo.core.internal.jQueryIdProvider
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -48,12 +50,16 @@ class Testatoo {
     /**
      * Create a component
      */
-    static Component $(String jQuery, long timeout = 2000) { Component.$(jQuery, timeout) }
+    static Component $(String jQuery, long timeout = 2000) {
+        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, timeout, true)))
+    }
 
     /**
      * Creates a list of component
      */
-    static Components<? extends Component> $$(String jQuery, long timeout = 2000) { Components.$$(jQuery, timeout) }
+    static Components<? extends Component> $$(String jQuery, long timeout = 2000) {
+        new Components<>(Component, new jQueryIdProvider(jQuery, timeout, false))
+    }
 
     static {
         config.scan 'org.testatoo.bundle.html5'
