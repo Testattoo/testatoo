@@ -22,6 +22,7 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.hamcrest.StateMatcher
 
 import java.time.Duration
 
@@ -113,7 +114,7 @@ class GroovyExtensions {
         component.BLOCKS.clear()
     }
 
-    static void be(Component component, Class<Matcher> matcher) {
+    static void be(Component component, Class<StateMatcher> matcher) {
         component.BLOCKS.add(matcher.newInstance())
     }
 

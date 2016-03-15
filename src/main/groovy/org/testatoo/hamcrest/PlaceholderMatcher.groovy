@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeMatcher
 import org.testatoo.core.support.InputSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class PlaceholderMatcher extends TypeSafeMatcher<InputSupport> {
+class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
 
     private String placeholder
 

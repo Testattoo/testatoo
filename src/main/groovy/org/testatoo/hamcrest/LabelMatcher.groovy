@@ -16,15 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.IsEqual
 import org.testatoo.core.support.LabelSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class LabelMatcher extends TypeSafeMatcher<LabelSupport> {
+class LabelMatcher extends PropertyMatcher<LabelSupport> {
 
     private String label
 

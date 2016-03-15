@@ -21,7 +21,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.Evaluator
 import org.testatoo.core.input.DragBuilder
-import org.testatoo.helper.FakeComponent
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.support.Clickable
@@ -43,6 +42,7 @@ class ComponentTest {
     @Before
     public void before() {
         metaData = mock(MetaDataProvider)
+        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
         evaluator = mock(Evaluator)
         config.evaluator = evaluator
     }
@@ -55,15 +55,15 @@ class ComponentTest {
 
     @Test
     public void should_be_initialized_with_a_meta_data_provider() {
-        Component cmp = new FakeComponent(metaData)
+        Component cmp = new Component(metaData)
         assert cmp.meta ==  metaData
     }
 
     @Test
     public void should_have_identity_on_id() {
-        FakeComponent cmp_1 = new FakeComponent(metaData)
-        FakeComponent cmp_2 = new FakeComponent(metaData)
-        FakeComponent cmp_3 = new FakeComponent(metaData)
+        Component cmp_1 = new Component(metaData)
+        Component cmp_2 = new Component(metaData)
+        Component cmp_3 = new Component(metaData)
         Component cmp_4 = new Component(metaData) {}
 
         when(metaData.getMetaInfo(any(Component)))
@@ -83,26 +83,16 @@ class ComponentTest {
 
     @Test
     public void should_implement_toString_based_on_class_name_and_id() {
-        FakeComponent cmp_1 = new FakeComponent(metaData)
+        Component cmp_1 = new Component(metaData)
         when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: 'cmpId_1'))
 
-        assert cmp_1.toString() == 'FakeComponent:cmpId_1'
-    }
-
-    @Test
-    public void should_create_new_component_with_same_metadata_on_component_type_conversion() {
-        Component cmp_1 = new FakeComponent(metaData)
-        FakeComponent cmp_2 = cmp_1 as FakeComponent
-
-        // cmp_2 is a copy of cmp_1
-        assert !cmp_2.is(cmp_1)
-        assert cmp_1.meta.is(cmp_2.meta)
+        assert cmp_1.toString() == 'Component:cmpId_1'
     }
 
     @Test
     public void should_have_generic_behaviours_delegated_to_evaluator() {
         String cmp_id = 'cmpId_1'
-        Component component = new FakeComponent(metaData)
+        Component component = new Component(metaData)
         when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
 
         String default_enabled_check_expression = "it.is(':disabled') || !!it.attr('disabled')"

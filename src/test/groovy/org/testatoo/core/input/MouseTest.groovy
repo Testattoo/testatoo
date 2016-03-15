@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
-import org.testatoo.helper.MouseFakeComponent
+import org.testatoo.core.component.Component
 
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.getConfig
@@ -67,5 +67,29 @@ class MouseTest {
 
         builder.on(component)
         verify(evaluator, times(1)).dragAndDrop(builder.dragged.id, '20')
+    }
+
+    private class MouseFakeComponent extends Component {
+        String id
+
+        MouseFakeComponent(MetaDataProvider metaData) { super(metaData) }
+
+        @Override
+        void click() {}
+
+        @Override
+        void rightClick() {}
+
+        @Override
+        void doubleClick() {}
+
+//    @Override
+//    DragBuilder drag() {
+//        return new DragBuilder() {
+//            @Override
+//            void on(Component onto) {
+//            }
+//        }
+//    }
     }
 }

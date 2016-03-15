@@ -16,11 +16,18 @@
 package org.testatoo.core
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.dsl.Browser
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
 import org.testatoo.core.internal.jQueryIdProvider
+import org.testatoo.hamcrest.AvailableMatcher
+import org.testatoo.hamcrest.CheckedMatcher
+import org.testatoo.hamcrest.DisabledMatcher
+import org.testatoo.hamcrest.EnabledMatcher
+import org.testatoo.hamcrest.HiddenMatcher
+import org.testatoo.hamcrest.MissingMatcher
+import org.testatoo.hamcrest.UnCheckedMatcher
+import org.testatoo.hamcrest.VisibleMatcher
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -30,22 +37,22 @@ class Testatoo {
     /**
      * Access Testatoo config
      */
-    static final Config config = new Config()
+    static Config config = new Config()
 
     /**
      * Controls your browser
      */
-    static final Browser browser = new Browser()
+    static Browser browser = new Browser()
 
     /**
      * Access the keyboard
      */
-    static final Keyboard keyboard = new Keyboard()
+    static Keyboard keyboard = new Keyboard()
 
     /**
      * Access the mouse
      */
-    static final Mouse mouse = new Mouse()
+    static Mouse mouse = new Mouse()
 
     /**
      * Create a component
@@ -64,4 +71,16 @@ class Testatoo {
     static {
         config.scan 'org.testatoo.bundle.html5'
     }
+
+    // States
+    public static Enabled = EnabledMatcher
+    public static Disabled = DisabledMatcher
+    public static Visible = VisibleMatcher
+    public static Hidden = HiddenMatcher
+    public static Available = AvailableMatcher
+    public static Missing = MissingMatcher
+    public static Unchecked = UnCheckedMatcher
+    public static Checked = CheckedMatcher
+
+    // Properties
 }

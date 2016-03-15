@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeDiagnosingMatcher
 import org.testatoo.core.support.CheckSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class UnCheckedMatcher extends TypeSafeDiagnosingMatcher<CheckSupport> {
+class UnCheckedMatcher extends StateMatcher<CheckSupport> {
 
     @Override
     protected boolean matchesSafely(CheckSupport item, Description mismatchDescription) {

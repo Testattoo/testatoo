@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeDiagnosingMatcher
 import org.testatoo.core.support.ValiditySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class InValidMatcher extends TypeSafeDiagnosingMatcher<ValiditySupport> {
+class InValidMatcher extends StateMatcher<ValiditySupport> {
 
     @Override
     protected boolean matchesSafely(ValiditySupport item, Description mismatchDescription) {

@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeDiagnosingMatcher
 import org.testatoo.core.support.RangeSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class InRangeMatcher extends TypeSafeDiagnosingMatcher<RangeSupport> {
+class InRangeMatcher extends StateMatcher<RangeSupport> {
 
     @Override
     protected boolean matchesSafely(RangeSupport item, Description mismatchDescription) {

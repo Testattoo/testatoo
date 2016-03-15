@@ -14,56 +14,6 @@
  * limitations under the License.
  */
 package org.testatoo.evaluator.webdriver
-
-import org.junit.AfterClass
-import org.junit.ClassRule
-import org.junit.Test
-import org.openqa.selenium.WebDriver
-import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.component.A
-import org.testatoo.bundle.html5.component.Div
-import org.testatoo.bundle.html5.component.Form
-import org.testatoo.bundle.html5.component.input.InputTypeText
-import org.testatoo.core.component.field.TextField
-import org.testatoo.core.internal.Log
-
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.input.Mouse.clickOn
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */

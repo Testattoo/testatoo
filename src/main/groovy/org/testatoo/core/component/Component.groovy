@@ -23,6 +23,8 @@ import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 
+import java.lang.reflect.Constructor
+
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.MouseModifiers.*
 

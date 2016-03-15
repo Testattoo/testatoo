@@ -22,7 +22,7 @@ import org.testatoo.core.support.TextSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class TextMatcher extends TypeSafeMatcher<TextSupport> {
+class TextMatcher extends PropertyMatcher<TextSupport> {
 
     private String text
 

@@ -18,8 +18,6 @@ package org.testatoo.core
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.dsl.Browser
-import org.testatoo.core.dsl.Window
 
 import static org.mockito.Matchers.any
 import static org.mockito.Mockito.*

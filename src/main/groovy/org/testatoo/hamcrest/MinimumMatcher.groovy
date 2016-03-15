@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeMatcher
 import org.testatoo.core.support.RangeSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class MinimumMatcher extends TypeSafeMatcher<RangeSupport> {
+class MinimumMatcher extends PropertyMatcher<RangeSupport> {
 
     private Object minimum
 

@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeDiagnosingMatcher
 import org.testatoo.core.support.InputSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class OptionalMatcher extends TypeSafeDiagnosingMatcher<InputSupport> {
+class OptionalMatcher extends StateMatcher<InputSupport> {
 
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {

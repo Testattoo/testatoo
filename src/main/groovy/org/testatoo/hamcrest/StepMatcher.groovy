@@ -22,7 +22,7 @@ import org.testatoo.core.support.RangeSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class StepMatcher extends TypeSafeMatcher<RangeSupport> {
+class StepMatcher extends PropertyMatcher<RangeSupport> {
 
     private Object step
 

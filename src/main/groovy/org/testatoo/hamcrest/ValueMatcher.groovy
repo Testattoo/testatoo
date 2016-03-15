@@ -22,7 +22,7 @@ import org.testatoo.core.support.ValueSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class ValueMatcher extends TypeSafeMatcher<ValueSupport> {
+class ValueMatcher extends PropertyMatcher<ValueSupport> {
 
     private Object value
 

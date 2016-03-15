@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeDiagnosingMatcher
-import org.testatoo.bundle.html5.component.list.MultiSelect
+import org.testatoo.bundle.html5.list.MultiSelect
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class MultiSelectableMatcher extends TypeSafeDiagnosingMatcher<MultiSelect> {
+class MultiSelectableMatcher extends StateMatcher<MultiSelect> {
 
     @Override
     protected boolean matchesSafely(MultiSelect item, Description mismatchDescription) {

@@ -16,13 +16,12 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeDiagnosingMatcher
 import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class AvailableMatcher extends TypeSafeDiagnosingMatcher<Component> {
+class AvailableMatcher extends StateMatcher<Component> {
 
     private Component component
 
