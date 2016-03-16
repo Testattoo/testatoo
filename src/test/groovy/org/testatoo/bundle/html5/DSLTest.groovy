@@ -40,19 +40,19 @@ class DSLTest {
 
         Button button = $('#button') as Button
         button.should {
-            be Available
-            be Enabled
-            be Visible
+            be available
+            be enabled
+            be visible
         }
 
         button = $('#submit') as Button
-        button.should { be Disabled }
+        button.should { be disabled }
 
         Panel panel = $('#hidden_panel') as Div
-        panel.should { be Hidden }
+        panel.should { be hidden }
 
         panel = $("#none_existing_id") as Div
-        panel.should { be Missing }
+        panel.should { be missing }
     }
 
     @Test
@@ -61,14 +61,14 @@ class DSLTest {
 
         CheckBox checkbox = $('#checkbox') as CheckBox
 
-        checkbox.should { be Unchecked }
+        checkbox.should { be unchecked }
         check checkbox
-        checkbox.should { be Checked }
+        checkbox.should { be checked }
 
         Radio radio = $('#other_radio') as Radio
-        radio.should { be Unchecked }
+        radio.should { be unchecked }
         check radio
-        radio.should { be Checked }
+        radio.should { be checked }
     }
 
 

@@ -19,7 +19,7 @@ package org.testatoo.core.support
  */
 interface ValiditySupport {
 
-    boolean isValid()
+    boolean valid()
 
-    boolean isInvalid()
+    boolean invalid()
 }

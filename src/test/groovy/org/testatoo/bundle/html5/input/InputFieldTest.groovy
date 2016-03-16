@@ -45,21 +45,21 @@ class InputFieldTest {
     @Test
     public void input_should_have_expected_behaviours() {
         EmailField email = $('#email') as InputTypeEmail
-        assert email.empty
-        assert email.optional
-        assert !email.filled
-        assert !email.readOnly
-        assert !email.required
-        assert email.valid
-        assert !email.invalid
+        assert email.empty()
+        assert email.optional()
+        assert !email.filled()
+        assert !email.readOnly()
+        assert !email.required()
+        assert email.valid()
+        assert !email.invalid()
         assert email.value == ''
 
         TextField text = $('#text_field') as InputTypeText
         assert text.placeholder == 'Placeholder'
 
         text = $('#read_only_and_filled') as InputTypeText
-        assert text.filled
-        assert text.readOnly
+        assert text.filled()
+        assert text.readOnly()
         assert text.value == 'Filled'
 
         try {
@@ -70,10 +70,10 @@ class InputFieldTest {
         }
 
         PasswordField password = $('#password') as InputTypePassword
-        assert password.required
-        assert !password.optional
+        assert password.required()
+        assert !password.optional()
         // Invalid cause required
-        assert password.invalid
+        assert password.invalid()
 
         password.value = 'My Password'
         assert password.value == 'My Password'
@@ -88,7 +88,7 @@ class InputFieldTest {
         assert colorField.value == '#000000'
         colorField.value = '#ff0000'
         assert colorField.value == '#ff0000'
-        assert colorField.valid
+        assert colorField.valid()
     }
 
     @Test
@@ -96,8 +96,8 @@ class InputFieldTest {
         DateField date = $('#date_field') as InputTypeDate
         assert date.value == ''
         assert date.step == 0
-        assert date.inRange
-        assert !date.outOfRange
+        assert date.inRange()
+        assert !date.outOfRange()
         assert date.minimum == '2011-08-13'
         assert date.maximum == '2012-06-25'
 
@@ -137,11 +137,11 @@ class InputFieldTest {
         assert number.minimum == 0
         assert number.step == 8
         assert number.value == 0
-        assert number.inRange
+        assert number.inRange()
 
         number.value = 150
         assert number.value == 150
-        assert number.outOfRange
+        assert number.outOfRange()
     }
 
     @Test
@@ -162,8 +162,8 @@ class InputFieldTest {
         assert range.maximum == 50
         assert range.minimum == 0
         assert range.step == 5
-        assert range.inRange
-        assert !range.outOfRange
+        assert range.inRange()
+        assert !range.outOfRange()
 
         assert range.value == 10
         range.value = 40

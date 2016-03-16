@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5.list
 
+import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
-import org.testatoo.core.ByCss
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -31,12 +31,12 @@ class Li extends Item {
         config.evaluator.eval(id, 'it.text().trim()')
     }
 
-    boolean isSelected() {
+    boolean selected() {
         throw new ComponentException('Unsupported Operation')
     }
 
-    boolean isUnselected() {
-        !selected
+    boolean unselected() {
+        !selected()
     }
 
     void select() {

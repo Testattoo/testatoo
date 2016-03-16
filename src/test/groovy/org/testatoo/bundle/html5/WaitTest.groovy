@@ -63,18 +63,18 @@ class WaitTest {
         Button message = $('#msg') as Button
 
         button.should {
-            be Enabled
-            be Visible
+            be enabled
+            be visible
         }
 
-        message.should { be Missing }
+        message.should { be missing }
 
         clickOn button
-        button.should { be Disabled }
-        button.should { be Enabled }
+        button.should { be disabled }
+        button.should { be enabled }
 
         clickOn button
-        button.should { be Enabled }
+        button.should { be enabled }
     }
 
     @Test
@@ -84,7 +84,7 @@ class WaitTest {
         Button button = $('#add-message') as Button
 
         try {
-            button.should { be Disabled }
+            button.should { be disabled }
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Unable to reach <Button:add-message> is disabled in 10000 milliseconds'

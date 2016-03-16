@@ -26,7 +26,7 @@ class UnCheckedMatcher extends StateMatcher<CheckSupport> {
     @Override
     protected boolean matchesSafely(CheckSupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is checked')
-        item.unchecked
+        item.unchecked()
     }
 
     @Override

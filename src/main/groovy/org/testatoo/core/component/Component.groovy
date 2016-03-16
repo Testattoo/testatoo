@@ -23,9 +23,7 @@ import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 
-import java.lang.reflect.Constructor
-
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -46,19 +44,19 @@ class Component implements Clickable, Draggable {
 
     String getId() throws ComponentException { meta.getMetaInfo(this).id }
 
-    boolean isEnabled() {
-        !disabled
+    boolean enabled() {
+        !disabled()
     }
 
-    boolean isDisabled() {
+    boolean disabled() {
         config.evaluator.check(id, "it.is(':disabled') || !!it.attr('disabled')")
     }
 
-    boolean isAvailable() {
-        !missing
+    boolean available() {
+        !missing()
     }
 
-    boolean isMissing() {
+    boolean missing() {
         try {
             meta.getMetaInfo(this)
             return false
@@ -67,12 +65,12 @@ class Component implements Clickable, Draggable {
         }
     }
 
-    boolean isHidden() {
+    boolean hidden() {
         config.evaluator.check(id, "it.is(':hidden')")
     }
 
-    boolean isVisible() {
-        !hidden
+    boolean visible() {
+        !hidden()
     }
 
     boolean contain(Component... components) {
@@ -87,7 +85,7 @@ class Component implements Clickable, Draggable {
         if (ret) {
             throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
         } else {
-            components.findAll { !it.visible }
+            components.findAll { !it.visible() }
         }
     }
 

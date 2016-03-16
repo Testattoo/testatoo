@@ -19,7 +19,7 @@ package org.testatoo.core.support
  */
 interface CheckSupport {
 
-    boolean isChecked()
+    boolean checked()
 
-    boolean isUnchecked()
+    boolean unchecked()
 }

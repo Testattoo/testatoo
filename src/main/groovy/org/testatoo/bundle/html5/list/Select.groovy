@@ -47,6 +47,6 @@ class Select extends Dropdown {
 
     @Override
     Option getSelectedItem() {
-        items.find { it.selected }
+        items.find { it.selected() }
     }
 }

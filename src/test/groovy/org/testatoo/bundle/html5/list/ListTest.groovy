@@ -62,14 +62,14 @@ class ListTest {
 
         // Html5 list items can't be selected
         try {
-            ol.items[0].isSelected()
+            ol.items[0].selected()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Unsupported Operation'
         }
 
         try {
-            ol.items[0].isUnselected()
+            ol.items[0].unselected()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Unsupported Operation'

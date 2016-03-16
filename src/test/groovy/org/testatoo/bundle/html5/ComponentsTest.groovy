@@ -21,13 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.component.heading.*
-import org.testatoo.bundle.html5.heading.H1
-import org.testatoo.bundle.html5.heading.H2
-import org.testatoo.bundle.html5.heading.H4
-import org.testatoo.bundle.html5.heading.H5
-import org.testatoo.bundle.html5.heading.H6
-import org.testatoo.bundle.html5.heading.H3
+import org.testatoo.bundle.html5.heading.*
+import org.testatoo.bundle.html5.Aside
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
 import org.testatoo.core.ByCss
@@ -63,18 +58,18 @@ class ComponentsTest {
     @Test
     public void component_should_have_expected_common_behaviours() {
         Button button = $('#button') as Button
-        assert button.enabled
-        assert button.available
-        assert button.visible
+        assert button.enabled()
+        assert button.available()
+        assert button.visible()
 
         button = $('#submit') as Button
-        assert button.disabled
+        assert button.disabled()
 
         Div panel = $('#hidden_panel') as Div
-        assert panel.hidden
+        assert panel.hidden()
 
         panel = $('#non_existing_id') as Div
-        assert panel.missing
+        assert panel.missing()
     }
 
     @Test
@@ -88,7 +83,7 @@ class ComponentsTest {
     public void aside_should_have_expected_behaviours() {
         Aside aside = $('#aside') as Aside
 
-        assert aside.visible
+        assert aside.visible()
     }
 
     @Test
@@ -124,13 +119,13 @@ class ComponentsTest {
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assert checkBox.label == 'Check me out'
-        assert checkBox.unchecked
+        assert checkBox.unchecked()
         checkBox.check()
-        assert checkBox.checked
+        assert checkBox.checked()
         checkBox.uncheck()
-        assert checkBox.unchecked
+        assert checkBox.unchecked()
         checkBox.click()
-        assert checkBox.checked
+        assert checkBox.checked()
 
         try {
             checkBox.check()
@@ -167,7 +162,7 @@ class ComponentsTest {
     public void footer_should_have_expected_behaviours() {
         Footer footer = $('#footer') as Footer
 
-        assert footer.visible
+        assert footer.visible()
     }
 
     @Test
@@ -180,10 +175,10 @@ class ComponentsTest {
         PasswordField password = $('#form [type=password]') as InputTypePassword
         Message message = $('#form .alert') as Message
 
-        assert form.visible
+        assert form.visible()
         // Cause password mandatory
-        assert form.invalid
-        assert !form.valid
+        assert form.invalid()
+        assert !form.valid()
 
         email.value = 'joe.blow@email.org'
         password.value = 'password666'
@@ -206,7 +201,7 @@ class ComponentsTest {
     public void header_should_have_expected_behaviours() {
         Header header = $('#header') as Header
 
-        assert header.visible
+        assert header.visible()
     }
 
     @Test
@@ -282,13 +277,13 @@ class ComponentsTest {
 
         Radio radio = $('#radio') as Radio
         assert radio.label == 'Radio label checked'
-        assert radio.checked
+        assert radio.checked()
 
         radio = $('#other_radio') as Radio
         assert radio.label == 'Radio label unchecked'
-        assert radio.unchecked
+        assert radio.unchecked()
         radio.check()
-        assert radio.checked
+        assert radio.checked()
     }
 
     @Test

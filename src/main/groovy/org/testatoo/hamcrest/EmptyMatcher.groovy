@@ -26,7 +26,7 @@ class EmptyMatcher extends StateMatcher<InputSupport> {
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is filled')
-        item.empty
+        item.empty()
     }
 
     @Override

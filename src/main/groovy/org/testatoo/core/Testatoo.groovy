@@ -73,14 +73,14 @@ class Testatoo {
     }
 
     // States
-    public static Enabled = EnabledMatcher
-    public static Disabled = DisabledMatcher
-    public static Visible = VisibleMatcher
-    public static Hidden = HiddenMatcher
-    public static Available = AvailableMatcher
-    public static Missing = MissingMatcher
-    public static Unchecked = UnCheckedMatcher
-    public static Checked = CheckedMatcher
+    public static enabled = EnabledMatcher
+    public static disabled = DisabledMatcher
+    public static visible = VisibleMatcher
+    public static hidden = HiddenMatcher
+    public static available = AvailableMatcher
+    public static missing = MissingMatcher
+    public static unchecked = UnCheckedMatcher
+    public static checked = CheckedMatcher
 
     // Properties
 }

@@ -68,10 +68,10 @@ class SelectTest {
         assert os.selectedItem.value == 'Gentoo'
 
         Dropdown countries = $('#countries') as Select
-        assert countries.disabled
+        assert countries.disabled()
         // Items are disabled too
         countries.items.forEach {
-            assert it.disabled
+            assert it.disabled()
         }
     }
 

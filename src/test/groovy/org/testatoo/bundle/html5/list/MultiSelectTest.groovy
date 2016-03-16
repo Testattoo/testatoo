@@ -52,7 +52,7 @@ class MultiSelectTest {
 
         assert cities.items.size() == 6
         assert cities.visibleItems.size() == 3
-        assert cities.multiSelectable
+        assert cities.multiSelectable()
 
         Item montreal = cities.item('Montreal')
         Item quebec = cities.item('Quebec')
@@ -61,52 +61,52 @@ class MultiSelectTest {
         Item casablanca = cities.item('Casablanca')
         Item munich = cities.item('Munich')
 
-        assert montreal.unselected
-        assert montpellier.enabled
-        assert cities.item('Montreal').unselected
+        assert montreal.unselected()
+        assert montpellier.enabled()
+        assert cities.item('Montreal').unselected()
 
-        assert quebec.unselected
-        assert quebec.disabled
-        assert cities.item('Quebec').unselected
+        assert quebec.unselected()
+        assert quebec.disabled()
+        assert cities.item('Quebec').unselected()
 
-        assert montpellier.unselected
-        assert cities.item('Montpellier').unselected
+        assert montpellier.unselected()
+        assert cities.item('Montpellier').unselected()
 
-        assert newYork.selected
-        assert cities.item('New York').selected
+        assert newYork.selected()
+        assert cities.item('New York').selected()
 
-        assert casablanca.unselected
-        assert cities.item('Casablanca').unselected
+        assert casablanca.unselected()
+        assert cities.item('Casablanca').unselected()
 
-        assert munich.selected
-        assert cities.item('Munich').selected
+        assert munich.selected()
+        assert cities.item('Munich').selected()
 
         assert cities.selectedItems.containsAll(newYork, munich)
 
         cities.select('Montpellier', 'Montreal')
-        assert cities.item('Montpellier').selected
-        assert cities.item('Montreal').selected
+        assert cities.item('Montpellier').selected()
+        assert cities.item('Montreal').selected()
         assert cities.selectedItems.containsAll(newYork, munich, montpellier, montreal)
 
         montreal.unselect()
         montpellier.unselect()
 
-        assert cities.item('Montreal').unselected
-        assert cities.item('Montpellier').unselected
-        assert cities.item('New York').selected
-        assert cities.item('Munich').selected
+        assert cities.item('Montreal').unselected()
+        assert cities.item('Montpellier').unselected()
+        assert cities.item('New York').selected()
+        assert cities.item('Munich').selected()
 
         cities.select(montreal, montpellier)
-        assert cities.item('Montreal').selected
-        assert cities.item('Montpellier').selected
-        assert cities.item('New York').selected
-        assert cities.item('Munich').selected
+        assert cities.item('Montreal').selected()
+        assert cities.item('Montpellier').selected()
+        assert cities.item('New York').selected()
+        assert cities.item('Munich').selected()
 
         montpellier.click() // Now just Montpellier is selected
-        assert montpellier.selected
-        assert montreal.unselected
-        assert newYork.unselected
-        assert munich.unselected
+        assert montpellier.selected()
+        assert montreal.unselected()
+        assert newYork.unselected()
+        assert munich.unselected()
 
         try {
             quebec.select()
@@ -138,7 +138,7 @@ class MultiSelectTest {
 
         MultiSelect planets = $('#planets') as MultiSelect
         assert planets.visibleItems.size() == 5
-        assert !planets.multiSelectable
+        assert !planets.multiSelectable()
 
         assert planets.groupItems.size() == 2
         assert planets.groupItems[0].value == 'Cat-1'

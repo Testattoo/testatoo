@@ -98,29 +98,29 @@ class ComponentTest {
         String default_enabled_check_expression = "it.is(':disabled') || !!it.attr('disabled')"
         verify(evaluator, times(0)).check(cmp_id, default_enabled_check_expression)
 
-        component.enabled
+        component.enabled()
         verify(evaluator, times(1)).check(cmp_id, default_enabled_check_expression)
 
-        component.enabled
+        component.enabled()
         verify(evaluator, times(2)).check(cmp_id, default_enabled_check_expression)
 
         String default_visibility_check_expression = "it.is(':hidden')"
         verify(evaluator, times(0)).check(cmp_id, default_visibility_check_expression)
 
-        component.visible
+        component.visible()
         verify(evaluator, times(1)).check(cmp_id, default_visibility_check_expression)
 
-        component.hidden
+        component.hidden()
         verify(evaluator, times(2)).check(cmp_id, default_visibility_check_expression)
 
         reset(metaData)
         when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
         verify(metaData, times(0)).getMetaInfo(component)
 
-        component.available
+        component.available()
         verify(metaData, times(1)).getMetaInfo(component)
 
-        component.missing
+        component.missing()
         verify(metaData, times(2)).getMetaInfo(component)
 
         verify(evaluator, times(0)).click(cmp_id, [LEFT, SINGLE])

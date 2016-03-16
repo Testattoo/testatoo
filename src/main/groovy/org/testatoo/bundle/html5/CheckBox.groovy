@@ -27,13 +27,13 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.getLabel
 class CheckBox extends org.testatoo.core.component.CheckBox {
 
     @Override
-    boolean isChecked() {
-        isChecked(this)
+    boolean checked() {
+        checked(this)
     }
 
     @Override
-    boolean isUnchecked() {
-        isUnchecked(this)
+    boolean unchecked() {
+        unchecked(this)
     }
 
     @Override

@@ -48,8 +48,8 @@ class SelectorTest {
     public void should_use_$_as_a_single_selector() {
         Button button = $('#button') as Button
 
-        assert button.enabled
-        assert button.visible
+        assert button.enabled()
+        assert button.visible()
     }
 
     @Test
@@ -61,9 +61,9 @@ class SelectorTest {
         assert textFields.size() == 3
 
         textFields.each {
-            assert it.enabled
-            assert it.visible
-            assert it.empty
+            assert it.enabled()
+            assert it.visible()
+            assert it.empty()
         }
 
         textFields.each { it ->
@@ -71,7 +71,7 @@ class SelectorTest {
         }
 
         textFields.each {
-            assert it.filled
+            assert it.filled()
             assert it.value == 'TESTATOO!'
         }
     }
@@ -81,7 +81,7 @@ class SelectorTest {
         try {
             Components<Button> buttons = $$('[type="text"]') of Button
             buttons.each {
-                assert it.enabled
+                assert it.enabled()
             }
         } catch (ComponentException e) {
             assert e.message.contains('Expected a Button')

@@ -51,12 +51,12 @@ class InputTypeNumber extends NumberField implements Input {
     }
 
     @Override
-    boolean isInRange() {
-        isInRange(this)
+    boolean inRange() {
+        inRange(this)
     }
 
     @Override
-    boolean isOutOfRange() {
-        isOutOfRange(this)
+    boolean outOfRange() {
+        outOfRange(this)
     }
 }

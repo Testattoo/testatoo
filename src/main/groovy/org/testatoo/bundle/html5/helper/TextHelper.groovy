@@ -16,7 +16,8 @@
 package org.testatoo.bundle.html5.helper
 
 import org.testatoo.core.component.Component
-import static org.testatoo.core.Testatoo.*
+
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

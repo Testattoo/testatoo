@@ -33,13 +33,13 @@ import static org.testatoo.core.input.MouseModifiers.SINGLE
 class Option extends Item {
 
     @Override
-    boolean isSelected() {
+    boolean selected() {
         config.evaluator.check(id, "!!it.prop('selected')")
     }
 
     @Override
-    boolean isUnselected() {
-        !selected
+    boolean unselected() {
+        !selected()
     }
 
     @Override
@@ -48,12 +48,12 @@ class Option extends Item {
     }
 
     @Override
-    boolean isEnabled() {
-        !disabled
+    boolean enabled() {
+        !disabled()
     }
 
     @Override
-    boolean isDisabled() {
+    boolean disabled() {
         config.evaluator.check(id, "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
     }
 
@@ -73,13 +73,13 @@ class Option extends Item {
         boolean onMultiSelect = config.evaluator.check(id, "it.closest('select').attr('multiple') && it.closest('select').attr('multiple').length > 0")
         if(onMultiSelect) {
             MultiSelect select = $("select:has(\"#${id}\")") as MultiSelect
-            select.items.findAll { it.selected }.forEach {
+            select.items.findAll { it.selected() }.forEach {
                 config.evaluator.press(CTRL)
                 config.evaluator.click(it.id, [LEFT, SINGLE])
                 config.evaluator.release(CTRL)
             }
         }
-        if (!selected) {
+        if (!selected()) {
             config.evaluator.press(CTRL)
             config.evaluator.click(id, [LEFT, SINGLE])
             config.evaluator.release(CTRL)
@@ -88,9 +88,9 @@ class Option extends Item {
 
     @Override
     void select() {
-        if (disabled)
+        if (disabled())
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be selected")
-        if (unselected) {
+        if (unselected()) {
             config.evaluator.press(CTRL)
             config.evaluator.click(id, [LEFT, SINGLE])
             config.evaluator.release(CTRL)
@@ -100,9 +100,9 @@ class Option extends Item {
 
     @Override
     void unselect() {
-        if (disabled)
+        if (disabled())
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be unselected")
-        if (selected) {
+        if (selected()) {
             config.evaluator.press(CTRL)
             config.evaluator.click(id, [LEFT, SINGLE])
             config.evaluator.release(CTRL)

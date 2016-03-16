@@ -26,7 +26,7 @@ class OptionalMatcher extends StateMatcher<InputSupport> {
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is required')
-        item.optional
+        item.optional()
     }
 
     @Override

@@ -46,7 +46,7 @@ class DSLErrorTest {
     @Test
     public void should_not_check_already_checked_element() {
         CheckBox checkbox = $('#checkbox_1') as CheckBox
-        checkbox.should { be Checked }
+        checkbox.should { be checked }
 
         try {
             check checkbox
@@ -58,7 +58,7 @@ class DSLErrorTest {
     @Test
     public void should_not_uncheck_already_unchecked_element() {
         CheckBox checkbox = $('#checkbox_2') as CheckBox
-        checkbox.should { be Unchecked }
+        checkbox.should { be unchecked }
 
         try {
             uncheck checkbox

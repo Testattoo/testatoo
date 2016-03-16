@@ -24,11 +24,11 @@ import static org.testatoo.core.Testatoo.getConfig
  */
 class ValidityHelper {
 
-    static boolean isValid(Component c) {
-        !isInvalid(c)
+    static boolean valid(Component c) {
+        !invalid(c)
     }
 
-    static boolean isInvalid(Component c) {
+    static boolean invalid(Component c) {
         config.evaluator.check(c.id, "it.is(':invalid')")
     }
 }

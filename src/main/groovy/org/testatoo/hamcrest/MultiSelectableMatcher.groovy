@@ -26,7 +26,7 @@ class MultiSelectableMatcher extends StateMatcher<MultiSelect> {
     @Override
     protected boolean matchesSafely(MultiSelect item, Description mismatchDescription) {
         mismatchDescription.appendText('is single selectable')
-        item.multiSelectable
+        item.multiSelectable()
     }
 
     @Override

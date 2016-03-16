@@ -19,7 +19,7 @@ import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.GroupItem
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -29,7 +29,7 @@ class VisibleMatcher extends StateMatcher<Component> {
     protected boolean matchesSafely(Component component, Description mismatchDescription) {
         this.component = component
         mismatchDescription.appendText('is hidden')
-        component.visible
+        component.visible()
     }
 
     @Override

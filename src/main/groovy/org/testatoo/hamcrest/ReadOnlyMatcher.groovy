@@ -26,7 +26,7 @@ class ReadOnlyMatcher extends StateMatcher<InputSupport> {
     @Override
     protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is not read only')
-        item.readOnly
+        item.readOnly()
     }
 
     @Override

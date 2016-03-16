@@ -15,37 +15,37 @@
  */
 package org.testatoo.bundle.html5.helper
 
-import org.testatoo.core.component.Component
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class CheckHelper {
 
-    static boolean isChecked(Component c) {
+    static boolean checked(Component c) {
         config.evaluator.check(c.id, "it.is(':checked')")
     }
 
-    static boolean isUnchecked(Component c) {
-        !isChecked(c)
+    static boolean unchecked(Component c) {
+        !checked(c)
     }
 
     static void check(Component c) {
-        if(c.disabled)
+        if(c.disabled())
             throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be checked")
-        if (c.unchecked)
+        if (c.unchecked())
             c.click()
         else
             throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
     }
 
     static void uncheck(Component c) {
-        if(c.disabled)
+        if(c.disabled())
             throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unchecked")
-        if (c.checked)
+        if (c.checked())
             c.click()
         else
             throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")

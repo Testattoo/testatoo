@@ -43,18 +43,18 @@ class HtmlComponentTest {
         browser.open 'http://localhost:8080/components.html'
 
         Button button = $('#button') as Button
-        assert button.available
-        assert button.enabled
-        assert button.visible
+        assert button.available()
+        assert button.enabled()
+        assert button.visible()
 
         button = $('#submit') as Button
-        assert button.disabled
+        assert button.disabled()
 
         Panel panel = $('#hidden_panel') as Div
-        assert panel.hidden
+        assert panel.hidden()
 
         panel = $("#none_existing_id") as Div
-        assert panel.missing
+        assert panel.missing()
     }
 
     @Test

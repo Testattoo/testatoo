@@ -26,7 +26,7 @@ class UnSelectedMatcher extends StateMatcher<SelectSupport> {
     @Override
     protected boolean matchesSafely(SelectSupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is selected')
-        item.unselected
+        item.unselected()
     }
 
     @Override

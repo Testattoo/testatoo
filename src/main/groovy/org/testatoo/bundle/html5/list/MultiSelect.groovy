@@ -19,7 +19,7 @@ import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.ListBox
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -54,10 +54,10 @@ class MultiSelect extends ListBox {
     }
 
     List<Option> getSelectedItems() {
-        items.findAll { it.selected }
+        items.findAll { it.selected() }
     }
 
-    boolean isMultiSelectable() {
+    boolean multiSelectable() {
         config.evaluator.check(id, "it.is('select') && it.prop('multiple')")
     }
 }

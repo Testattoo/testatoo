@@ -18,7 +18,8 @@ package org.testatoo.core.internal
 import org.testatoo.core.ComponentException
 import org.testatoo.core.IdProvider
 import org.testatoo.core.MetaInfo
-import static org.testatoo.core.Testatoo.*
+
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)

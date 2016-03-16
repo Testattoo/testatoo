@@ -21,15 +21,15 @@ interface InputSupport extends Clearable {
 
     String getPlaceholder()
 
-    boolean isEmpty()
+    boolean empty()
 
-    boolean isFilled()
+    boolean filled()
 
-    boolean isReadOnly()
+    boolean readOnly()
 
-    boolean isRequired()
+    boolean required()
 
-    boolean isOptional()
+    boolean optional()
 
     void setValue(String value)
 

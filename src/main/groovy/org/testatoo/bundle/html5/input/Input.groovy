@@ -31,28 +31,28 @@ trait Input {
         config.evaluator.eval(id, "it.prop('placeholder')")
     }
 
-    boolean isEmpty() {
+    boolean empty() {
         config.evaluator.check(id, "\$.trim(it.val()).length == 0")
     }
 
-    boolean isFilled() {
-        !empty
+    boolean filled() {
+        !empty()
     }
 
-    boolean isReadOnly() {
+    boolean readOnly() {
         config.evaluator.check(id, "it.prop('readonly')")
     }
 
-    boolean isRequired() {
+    boolean required() {
         config.evaluator.check(id, "it.prop('required')")
     }
 
-    boolean isOptional() {
-        !required
+    boolean optional() {
+        !required()
     }
 
     void setValue(String value) {
-        if (this.disabled) {
+        if (this.disabled()) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
         }
         config.evaluator.trigger(this.id, 'blur')
@@ -77,11 +77,11 @@ trait Input {
         config.evaluator.eval(id, "it.val()")
     }
 
-    boolean isValid() {
-        isValid(this)
+    boolean valid() {
+        valid(this)
     }
 
-    boolean isInvalid() {
-        isInvalid(this)
+    boolean invalid() {
+        invalid(this)
     }
 }

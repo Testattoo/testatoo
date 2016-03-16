@@ -30,7 +30,7 @@ class Form extends org.testatoo.core.component.Form {
     @Override
     void reset() {
         Button reset_button = find(By.css('[type=reset]:first'))[0] as Button
-        if (reset_button && reset_button.available)
+        if (reset_button && reset_button.available())
             reset_button.click()
         else
             throw new ComponentException('Cannot reset form without reset button')
@@ -39,19 +39,19 @@ class Form extends org.testatoo.core.component.Form {
     @Override
     void submit() {
         Button submit_button = this.find(By.css('[type=submit]:first'))[0] as Button
-        if (submit_button && submit_button.available)
+        if (submit_button && submit_button.available())
             submit_button.click()
         else
             throw new ComponentException('Cannot submit form without submit button')
     }
 
     @Override
-    boolean isValid() {
-        isValid(this)
+    boolean valid() {
+        valid(this)
     }
 
     @Override
-    boolean isInvalid() {
-        isInvalid(this)
+    boolean invalid() {
+        invalid(this)
     }
 }

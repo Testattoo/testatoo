@@ -16,7 +16,8 @@
 package org.testatoo.bundle.html5.helper
 
 import org.testatoo.core.component.Component
-import static org.testatoo.core.Testatoo.*
+
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,11 +40,11 @@ class RangeHelper {
             0
     }
 
-    static boolean isInRange(Component c) {
-        !isOutOfRange(c)
+    static boolean inRange(Component c) {
+        !outOfRange(c)
     }
 
-    static boolean isOutOfRange(Component c) {
+    static boolean outOfRange(Component c) {
         config.evaluator.check(c.id, "it.is(':out-of-range')")
     }
 }

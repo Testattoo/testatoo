@@ -26,7 +26,7 @@ class InValidMatcher extends StateMatcher<ValiditySupport> {
     @Override
     protected boolean matchesSafely(ValiditySupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is valid')
-        item.invalid
+        item.invalid()
     }
 
     @Override

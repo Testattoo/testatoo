@@ -19,9 +19,9 @@ package org.testatoo.core.support
  */
 interface SelectSupport {
 
-    boolean isSelected()
+    boolean selected()
 
-    boolean isUnselected()
+    boolean unselected()
 
     void select()
 

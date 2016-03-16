@@ -25,7 +25,7 @@ interface RangeSupport {
 
     Object getStep()
 
-    boolean isInRange()
+    boolean inRange()
 
-    boolean isOutOfRange()
+    boolean outOfRange()
 }

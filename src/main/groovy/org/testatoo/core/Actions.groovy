@@ -20,8 +20,6 @@ import org.testatoo.core.component.Item
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.support.*
 
-import static org.testatoo.core.Testatoo.*
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */

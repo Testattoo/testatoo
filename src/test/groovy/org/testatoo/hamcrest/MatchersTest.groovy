@@ -47,11 +47,11 @@ class MatchersTest {
         Component cmp = mock(Component)
 
         // Enabled
-        when(cmp.enabled).thenReturn(true)
+        when(cmp.enabled()).thenReturn(true)
         // with combination of is from Hamcrest
         assertThat(cmp, is(enabled()))
 
-        when(cmp.enabled).thenReturn(false)
+        when(cmp.enabled()).thenReturn(false)
         try {
             assertThat(cmp, enabled())
             fail()
@@ -60,10 +60,10 @@ class MatchersTest {
         }
 
         // Disabled
-        when(cmp.disabled).thenReturn(true)
+        when(cmp.disabled()).thenReturn(true)
         assertThat(cmp, disabled())
 
-        when(cmp.disabled).thenReturn(false)
+        when(cmp.disabled()).thenReturn(false)
         try {
             assertThat(cmp, disabled())
             fail()
@@ -72,10 +72,10 @@ class MatchersTest {
         }
 
         // Available
-        when(cmp.available).thenReturn(true)
+        when(cmp.available()).thenReturn(true)
         assertThat(cmp, available())
 
-        when(cmp.available).thenReturn(false)
+        when(cmp.available()).thenReturn(false)
         try {
             assertThat(cmp, available())
             fail()
@@ -84,10 +84,10 @@ class MatchersTest {
         }
 
         // Missing
-        when(cmp.missing).thenReturn(true)
+        when(cmp.missing()).thenReturn(true)
         assertThat(cmp, missing())
 
-        when(cmp.missing).thenReturn(false)
+        when(cmp.missing()).thenReturn(false)
         try {
             assertThat(cmp, missing())
             fail()
@@ -96,10 +96,10 @@ class MatchersTest {
         }
 
         // Visible
-        when(cmp.visible).thenReturn(true)
+        when(cmp.visible()).thenReturn(true)
         assertThat(cmp, visible())
 
-        when(cmp.visible).thenReturn(false)
+        when(cmp.visible()).thenReturn(false)
         try {
             assertThat(cmp, visible())
             fail()
@@ -108,10 +108,10 @@ class MatchersTest {
         }
 
         // Hidden
-        when(cmp.hidden).thenReturn(true)
+        when(cmp.hidden()).thenReturn(true)
         assertThat(cmp, hidden())
 
-        when(cmp.hidden).thenReturn(false)
+        when(cmp.hidden()).thenReturn(false)
         try {
             assertThat(cmp, hidden())
             fail()
@@ -149,10 +149,10 @@ class MatchersTest {
         }
 
         // Empty
-        when(cmp.empty).thenReturn(true)
+        when(cmp.empty()).thenReturn(true)
         assertThat(cmp, Matchers.empty())
 
-        when(cmp.empty).thenReturn(false)
+        when(cmp.empty()).thenReturn(false)
         try {
             assertThat(cmp, Matchers.empty())
             fail()
@@ -161,10 +161,10 @@ class MatchersTest {
         }
 
         // Filled
-        when(cmp.filled).thenReturn(true)
+        when(cmp.filled()).thenReturn(true)
         assertThat(cmp, filled())
 
-        when(cmp.filled).thenReturn(false)
+        when(cmp.filled()).thenReturn(false)
         try {
             assertThat(cmp, filled())
             fail()
@@ -173,10 +173,10 @@ class MatchersTest {
         }
 
         // ReadOnly
-        when(cmp.readOnly).thenReturn(true)
+        when(cmp.readOnly()).thenReturn(true)
         assertThat(cmp, readOnly())
 
-        when(cmp.readOnly).thenReturn(false)
+        when(cmp.readOnly()).thenReturn(false)
         try {
             assertThat(cmp, readOnly())
             fail()
@@ -185,10 +185,10 @@ class MatchersTest {
         }
 
         // Required
-        when(cmp.required).thenReturn(true)
+        when(cmp.required()).thenReturn(true)
         assertThat(cmp, required())
 
-        when(cmp.required).thenReturn(false)
+        when(cmp.required()).thenReturn(false)
         try {
             assertThat(cmp, required())
             fail()
@@ -197,10 +197,10 @@ class MatchersTest {
         }
 
         // Optional
-        when(cmp.optional).thenReturn(true)
+        when(cmp.optional()).thenReturn(true)
         assertThat(cmp, optional())
 
-        when(cmp.optional).thenReturn(false)
+        when(cmp.optional()).thenReturn(false)
         try {
             assertThat(cmp, optional())
             fail()
@@ -214,10 +214,10 @@ class MatchersTest {
         CheckSupport cmp = mock(CheckSupport)
 
         // Checked
-        when(cmp.checked).thenReturn(true)
+        when(cmp.checked()).thenReturn(true)
         assertThat(cmp, checked())
 
-        when(cmp.checked).thenReturn(false)
+        when(cmp.checked()).thenReturn(false)
         try {
             assertThat(cmp, checked())
             fail()
@@ -226,10 +226,10 @@ class MatchersTest {
         }
 
         // Unchecked
-        when(cmp.unchecked).thenReturn(true)
+        when(cmp.unchecked()).thenReturn(true)
         assertThat(cmp, unchecked())
 
-        when(cmp.unchecked).thenReturn(false)
+        when(cmp.unchecked()).thenReturn(false)
         try {
             assertThat(cmp, unchecked())
             fail()
@@ -273,10 +273,10 @@ class MatchersTest {
         }
 
         // InRange
-        when(cmp.inRange).thenReturn(true)
+        when(cmp.inRange()).thenReturn(true)
         assertThat(cmp, inRange())
         try {
-            when(cmp.inRange).thenReturn(false)
+            when(cmp.inRange()).thenReturn(false)
             assertThat(cmp, inRange())
             fail()
         } catch (AssertionError e) {
@@ -284,10 +284,10 @@ class MatchersTest {
         }
 
         // OutOfRange
-        when(cmp.outOfRange).thenReturn(true)
+        when(cmp.outOfRange()).thenReturn(true)
         assertThat(cmp, outOfRange())
         try {
-            when(cmp.outOfRange).thenReturn(false)
+            when(cmp.outOfRange()).thenReturn(false)
             assertThat(cmp, outOfRange())
             fail()
         } catch (AssertionError e) {
@@ -300,10 +300,10 @@ class MatchersTest {
         ValiditySupport cmp = mock(ValiditySupport)
 
         // Valid
-        when(cmp.valid).thenReturn(true)
+        when(cmp.valid()).thenReturn(true)
         assertThat(cmp, valid())
         try {
-            when(cmp.valid).thenReturn(false)
+            when(cmp.valid()).thenReturn(false)
             assertThat(cmp, valid())
             fail()
         } catch (AssertionError e) {
@@ -311,10 +311,10 @@ class MatchersTest {
         }
 
         // Invalid
-        when(cmp.invalid).thenReturn(true)
+        when(cmp.invalid()).thenReturn(true)
         assertThat(cmp, invalid())
         try {
-            when(cmp.invalid).thenReturn(false)
+            when(cmp.invalid()).thenReturn(false)
             assertThat(cmp, invalid())
             fail()
         } catch (AssertionError e) {
@@ -341,10 +341,10 @@ class MatchersTest {
         SelectSupport cmp = mock(SelectSupport)
 
         // Selected
-        when(cmp.selected).thenReturn(true)
+        when(cmp.selected()).thenReturn(true)
         assertThat(cmp, selected())
         try {
-            when(cmp.selected).thenReturn(false)
+            when(cmp.selected()).thenReturn(false)
             assertThat(cmp, selected())
             fail()
         } catch (AssertionError e) {
@@ -352,10 +352,10 @@ class MatchersTest {
         }
 
         // Unselected
-        when(cmp.unselected).thenReturn(true)
+        when(cmp.unselected()).thenReturn(true)
         assertThat(cmp, unselected())
         try {
-            when(cmp.unselected).thenReturn(false)
+            when(cmp.unselected()).thenReturn(false)
             assertThat(cmp, unselected())
             fail()
         } catch (AssertionError e) {
@@ -382,10 +382,10 @@ class MatchersTest {
         MultiSelect cmp = mock(MultiSelect)
 
         // Multi Selectable
-        when(cmp.multiSelectable).thenReturn(true)
+        when(cmp.multiSelectable()).thenReturn(true)
         assertThat(cmp, multiSelectable())
         try {
-            when(cmp.multiSelectable).thenReturn(false)
+            when(cmp.multiSelectable()).thenReturn(false)
             assertThat(cmp, multiSelectable())
             fail()
         } catch (AssertionError e) {
