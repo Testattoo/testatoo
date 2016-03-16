@@ -251,3 +251,50 @@ listView.should { have size(5) }
             }
         }
     }
+
+
+=========================================
+Doc
+
+    1. Introduction
+    2. Why Testatoo?
+    3. Technologies
+    4. Installation
+
+    5. Components
+        Component abstraction is provided by Testatoo
+
+                State       properties
+        Radio  enabled
+               disabled
+
+
+
+    6. Usage
+        Test state
+        Evaluate les property
+        Actions
+
+    6. DSL
+        button.should { be available }
+        Action
+
+        Input
+            clickOn(checkbox)
+        Action / Intention
+            check checkbox =>
+
+    7. hamcrest Matcher
+        assertThat(button, is(available))
+    8. Junit Syntax
+        assert button.available
+
+
+    6. Bundles
+        Default Bundle
+
+=========================================
+
+Do two little TodoMVC
+Aurelia => aurelia bootstrap
+Angular1 => angular material
