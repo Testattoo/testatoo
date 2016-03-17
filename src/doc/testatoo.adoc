@@ -1,10 +1,10 @@
 
 
-
-
-
-
-
+[source,java,linenums,options="nowrap"]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/org/testatoo/bundle/html5/ComponentsTest
+----
 
 
 

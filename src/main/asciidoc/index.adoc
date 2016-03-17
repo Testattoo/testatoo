@@ -6,10 +6,10 @@
 :numbered: true
 :doctype: book
 :icons: font
-:homepage: http://www.testatoo.org
+:homepage: https://www.testatoo.org
 :desc: This is the Testatoo documentation
 :imagesdir: images
-:sourcedir: ../test/groovy
+:sourcedir: ../../test/groovy
 
 :testato-version: 2.0.b23
 
@@ -17,16 +17,5 @@ image::logo.svg[Testatoo,align="center"]
 
 include::intro.adoc[]
 
-include::installation.adoc[]
-
-include::usage.adoc[]
-
-include::custom_component.adoc[]
-
-[source,java,linenums]
-[subs="verbatim,attributes"]
-----
-include::{sourcedir}/org/testatoo/bundle/html5/ComponentsTest.groovy[]
-----
 
 

@@ -22,7 +22,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.heading.*
-import org.testatoo.bundle.html5.Aside
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
 import org.testatoo.core.ByCss
@@ -58,6 +57,7 @@ class ComponentsTest {
     @Test
     public void component_should_have_expected_common_behaviours() {
         Button button = $('#button') as Button
+
         assert button.enabled()
         assert button.available()
         assert button.visible()

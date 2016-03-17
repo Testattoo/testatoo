@@ -293,6 +293,33 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>1.5.2</version>
+                <configuration>
+                    <backend>html5</backend>
+                    <attributes>
+                        <source-highlighter>coderay</source-highlighter>
+                        <coderay-linenums-mode>table</coderay-linenums-mode>
+                        <toc>left</toc>
+                        <icon>font</icon>
+                        <linkattrs>true</linkattrs>
+                        <encoding>utf-8</encoding>
+                        <sectnums>true</sectnums>
+                        <linkcss>true</linkcss>
+                    </attributes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>output-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
