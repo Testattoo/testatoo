@@ -1,0 +1,49 @@
+== Installation
+
+=== With Maven
+
+[source, xml, subs="normal"]
+-------------------------------------------------------------------------------
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>{junit-version}</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+   <groupId>org.testatoo</groupId>
+   <artifactId>testatoo</artifactId>
+   <version>{testato-version}</version>
+   <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>{selenium-version}</version>
+    <scope>test</scope>
+    </dependency>
+</dependencies>
+-------------------------------------------------------------------------------
+
+=== With Gradle
+
+// TODO Roch
+
+=== Write a basic JUnit Test
+
+[source,java,linenums]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/doc/junit/JunitStarterTest.groovy[]
+----
+
+<1> The browser is launched through a Webdriver Wraper (WebDriverEvaluator).
+
+<2> Visit the page under test: Testatoo is ready.
+
+<3> Write you first test
+
+<4> At the end of the test don't forget to close the browser.
+
+
+

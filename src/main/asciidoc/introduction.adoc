@@ -13,6 +13,5 @@ With Testatoo, you can therefore write tests with a seldom achieved level of exp
 
 Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
 
-
-
+Testatoo is an opinionated tool. It force the user to see and use the domain layer as a composition and aggregation of UI components (in Testatoo everything is a UI component).
 

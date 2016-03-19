@@ -10,12 +10,17 @@
 :desc: This is the Testatoo documentation
 :imagesdir: images
 :sourcedir: ../../test/groovy
-
+:junit-version: 4.12
+:selenium-version: 2.53.0
 :testato-version: 2.0.b23
 
 image::logo.svg[Testatoo,align="center"]
 
-include::intro.adoc[]
+include::introduction.adoc[]
+
+include::design_and_architecture.adoc[]
+
+include::installation.adoc[]
 
 
 
