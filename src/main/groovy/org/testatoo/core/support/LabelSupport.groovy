@@ -20,6 +20,6 @@ package org.testatoo.core.support
  */
 interface LabelSupport {
 
-    String getLabel()
+    String label()
 
 }

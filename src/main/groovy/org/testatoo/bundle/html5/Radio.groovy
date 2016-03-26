@@ -42,7 +42,7 @@ class Radio extends org.testatoo.core.component.Radio {
     }
 
     @Override
-    String getLabel() {
+    String label() {
         getLabel(this)
     }
 }

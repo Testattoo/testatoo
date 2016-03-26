@@ -61,7 +61,7 @@ trait Input {
         config.evaluator.trigger(this.id, 'blur')
     }
 
-    String getLabel() {
+    String label() {
         getLabel(this)
     }
 

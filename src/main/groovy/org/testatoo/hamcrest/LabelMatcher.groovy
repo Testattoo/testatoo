@@ -31,7 +31,7 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
 
     @Override
     protected boolean matchesSafely(LabelSupport item) {
-        item.label == label
+        item.label() == label
     }
 
     @Override
@@ -41,6 +41,6 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
 
     @Override
     protected void describeMismatchSafely(LabelSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.label)
+        mismatchDescription.appendText('was ').appendValue(item.label())
     }
 }

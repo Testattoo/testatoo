@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.hamcrest.Matcher
 import org.testatoo.core.component.Component
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
@@ -25,6 +26,7 @@ import org.testatoo.hamcrest.CheckedMatcher
 import org.testatoo.hamcrest.DisabledMatcher
 import org.testatoo.hamcrest.EnabledMatcher
 import org.testatoo.hamcrest.HiddenMatcher
+import org.testatoo.hamcrest.LabelMatcher
 import org.testatoo.hamcrest.MissingMatcher
 import org.testatoo.hamcrest.UnCheckedMatcher
 import org.testatoo.hamcrest.VisibleMatcher
@@ -83,4 +85,7 @@ class Testatoo {
     public static checked = CheckedMatcher
 
     // Properties
+    public static Matcher label(String label) {
+        new LabelMatcher(label)
+    }
 }

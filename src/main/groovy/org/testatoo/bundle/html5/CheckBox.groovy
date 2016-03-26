@@ -47,7 +47,7 @@ class CheckBox extends org.testatoo.core.component.CheckBox {
     }
 
     @Override
-    String getLabel() {
+    String label() {
         getLabel(this)
     }
 }

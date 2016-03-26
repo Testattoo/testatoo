@@ -159,11 +159,11 @@
                     </properties>
                     <excludes>
                         <exclude>**/README</exclude>
+                        <exclude>**/*.adoc</exclude>
+                        <exclude>src/test/doc/**</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
-                        <exclude>**/jquery-2.0.3.min.js</exclude>
-                        <exclude>**/js/**</exclude>
-                        <exclude>**/css/**</exclude>
+                        <exclude>src/test/webapp/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>

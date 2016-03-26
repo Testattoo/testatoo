@@ -123,7 +123,7 @@ class MatchersTest {
     @Test
     public void should_have_matcher_for_label_support() {
         LabelSupport cmp = mock(LabelSupport)
-        when(cmp.label).thenReturn('MyLabel')
+        when(cmp.label()).thenReturn('MyLabel')
 
         assertThat(cmp, hasLabel('MyLabel'))
         try {

@@ -82,7 +82,7 @@ class InputFieldTest {
     @Test
     public void color_field_should_have_expected_behaviours() {
         ColorField colorField = $('#color_field') as InputTypeColor
-        assert colorField.label == 'Color'
+        assert colorField.label() == 'Color'
 
         // Fail on CI
         assert colorField.value == '#000000'
@@ -117,7 +117,7 @@ class InputFieldTest {
     @Test
     public void email_field_should_have_expected_behaviours() {
         EmailField email = $('#email_field') as InputTypeEmail
-        assert email.label == 'Email'
+        assert email.label() == 'Email'
     }
 
     @Test
@@ -125,13 +125,13 @@ class InputFieldTest {
         assert MonthField in Field
 
         MonthField month = $('#month_field') as InputTypeMonth
-        assert month.label == 'Month'
+        assert month.label() == 'Month'
     }
 
     @Test
     public void number_field_should_have_expected_behaviours() {
         NumberField number = $('#number_field') as InputTypeNumber
-        assert number.label == 'Number'
+        assert number.label() == 'Number'
 
         assert number.maximum == 64
         assert number.minimum == 0
@@ -147,7 +147,7 @@ class InputFieldTest {
     @Test
     public void password_field_should_have_expected_behaviours() {
         PasswordField password = $('#password_field') as InputTypePassword
-        assert password.label == 'Password'
+        assert password.label() == 'Password'
     }
 
     @Test
@@ -177,7 +177,7 @@ class InputFieldTest {
     @Test
     public void search_field_should_have_expected_behaviours() {
         SearchField searchField = $('#search_field') as InputTypeSearch
-        assert searchField.label == 'Search'
+        assert searchField.label() == 'Search'
 
         searchField.value == ''
         searchField.value = 'my search'
@@ -187,13 +187,13 @@ class InputFieldTest {
     @Test
     public void text_field_should_have_expected_behaviours() {
         TextField text = $('#text_field') as InputTypeText
-        assert text.label == 'Text'
+        assert text.label() == 'Text'
     }
 
     @Test
     public void time_field_should_have_expected_behaviours() {
         TimeField time = $('#time_field') as InputTypeTime
-        assert time.label == 'Time'
+        assert time.label() == 'Time'
 
         assert time.value == ''
         time.value = '14:45'
@@ -203,7 +203,7 @@ class InputFieldTest {
     @Test
     public void url_field_should_have_expected_behaviours() {
         URLField url = $('#url_field') as InputTypeURL
-        assert url.label == 'URL'
+        assert url.label() == 'URL'
 
         assert url.value == ''
         url.value = 'http://mysite.org'
@@ -213,7 +213,7 @@ class InputFieldTest {
     @Test
     public void week_field_should_have_expected_behaviours() {
         WeekField week = $('#week_field') as InputTypeWeek
-        assert week.label == 'Week'
+        assert week.label() == 'Week'
 
         assert week.value == ''
         week.value = '2016-W32'

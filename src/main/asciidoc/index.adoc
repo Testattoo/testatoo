@@ -9,7 +9,7 @@
 :homepage: https://www.testatoo.org
 :desc: This is the Testatoo documentation
 :imagesdir: images
-:sourcedir: ../../test/groovy
+:sourcedir: ../../test
 :junit-version: 4.12
 :selenium-version: 2.53.0
 :testato-version: 2.0.b23

@@ -118,7 +118,7 @@ class ComponentsTest {
         assert CheckBox in LabelSupport
 
         CheckBox checkBox = $('#checkbox') as CheckBox
-        assert checkBox.label == 'Check me out'
+        assert checkBox.label() == 'Check me out'
         assert checkBox.unchecked()
         checkBox.check()
         assert checkBox.checked()
@@ -276,11 +276,11 @@ class ComponentsTest {
         assert Radio in CheckSupport
 
         Radio radio = $('#radio') as Radio
-        assert radio.label == 'Radio label checked'
+        assert radio.label() == 'Radio label checked'
         assert radio.checked()
 
         radio = $('#other_radio') as Radio
-        assert radio.label == 'Radio label unchecked'
+        assert radio.label() == 'Radio label unchecked'
         assert radio.unchecked()
         radio.check()
         assert radio.checked()

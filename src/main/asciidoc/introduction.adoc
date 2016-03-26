@@ -1,5 +1,7 @@
 == Introduction
 
+'''
+
 Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
 Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
 
@@ -14,4 +16,25 @@ With Testatoo, you can therefore write tests with a seldom achieved level of exp
 Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
 
 Testatoo is an opinionated tool. It force the user to see and use the domain layer as a composition and aggregation of UI components (in Testatoo everything is a UI component).
+
+Testatoo is a library to write functional tests. Functional tests mean **SPECIFICATIONS**.
+
+'''
+
+As a **SPECIFIER**, I want to express my test (intention) *BEFORE* I code my UI. So, if the intention is to have
+a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
+
+----
+include::{sourcedir}/resources/doc/spec.txt[]
+----
+
+The Testatoo syntax to express this specification is:
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/groovy/doc/spec/SpecTest.groovy[tags=specMethod]
+----
+
+*Testatoo is close to the natural language.*
 
