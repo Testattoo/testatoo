@@ -4,17 +4,17 @@
 
 [ditaa]
 ....
-                 +---------------+    Use  +----------+
+                 +---------------+   use   +----------+
                  | Testatoo core |<--------| Testatoo |
                  | ( UI domain ) |         |   DSL    |
                  +---------------+         +----------+
                         ^                       ^
-                        | inherit               |  Use
+                        | inherit               |  use
                         |                       |
                    +----------+            /---------\
                    |  Bundle  |            |  Tests  |
                    +----------+            |      {d}|
-                   |   Html5  |            \---------/
+                   |  Html5   |            \---------/
                    +----------+
                         ^
                         | inherit
@@ -24,11 +24,12 @@
     +----------+    +----------+    +----------+
     |  Bundle  |    |  Bundle  |    |  Bundle  |
     +----------+    +----------+    +----------+
-    | Angular  |    | Angular  |    | Other    |
-    | Material |    | Material |    | Custom   |
+    |  Angular |    |  Polymer |    |  Other   |
+    |  Material|    |  Material|    |  Custom  |
     +----------+    +----------+    +----------+
 ....
 
 Testatoo is built on top of http://code.google.com/p/selenium/[Selenium], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[Selenium] (IE, Google-chrome, Firefox, ...).
-Even though Testatoo provides, an extra layer of convenience and productivity, it's always possible to "fallback" to the WebDriver level to do something directly, should you need to.
-But Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
+Even though Testatoo provides an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly, if you need to.
+
+Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.

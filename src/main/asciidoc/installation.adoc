@@ -1,6 +1,10 @@
 == Installation
 
 === With Maven
+'''
+
+These are the dependencies to include if you want to integrate testatoo in your Maven installation file.
+The following installation if for JUnit. For another test runner, adapt the first dependency.
 
 [source, xml, subs="normal"]
 -------------------------------------------------------------------------------
@@ -27,23 +31,8 @@
 
 === With Gradle
 
+TODO
 // TODO Roch
-
-=== Write a basic JUnit Test
-
-[source,java,linenums]
-[subs="verbatim,attributes"]
-----
-include::{sourcedir}/groovy/doc/junit/JunitStarterTest.groovy[]
-----
-
-<1> The browser is launched through a Webdriver Wraper (WebDriverEvaluator).
-
-<2> Visit the page under test: Testatoo is ready.
-
-<3> Write you first test
-
-<4> At the end of the test don't forget to close the browser.
 
 
 

@@ -258,31 +258,36 @@ Doc
     1. Introduction opinionated tool
     2. Design Architecture
     3. Installation
-         - Junit
-         - Cucumber
-    4. language DSL
-         - Finder (css selector)
-            Factory
+         - Maven
+         - Graddle - TODO
+    4. First example in JUnit
+    5. Interaction with the page and elements
+         $  - Finder (css selector)
+         $$  - Finder (css selector)
+         Mouse
+         Keyboard
+    6. language DSL
+         - Finder through Factory
          - behaviour
          - Actions
             - Mouse
             - Keyboard
          - Intention
-    5. Component reference
+    7. Component reference
         state / property / intention
         sample DSL
 
-    6. Create new Component
+    8. Create new Component
 
-    6. Html5 Bundle
+    9. Html5 Bundle
 
-    7. Create a new bundle
+    10. Cucumber tests
 
+    11. Create a new bundle
 
-
-    7. hamcrest Matcher
+    12. hamcrest Matcher
         assertThat(button, is(available))
-    8. Junit Syntax
+    13. Junit Syntax
         assert button.available
 
 =========================================

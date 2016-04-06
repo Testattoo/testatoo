@@ -5,7 +5,7 @@
 Testatoo is a web user interface testing tool. It's the result of numerous real-world observations of developers in the trenches in the area of GUI testing.
 Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
 
-The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write a posteriori tests.
+The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write "at posteriori" tests.
 Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
 
 Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
@@ -15,13 +15,13 @@ With Testatoo, you can therefore write tests with a seldom achieved level of exp
 
 Testatoo can therefore transform the tests in real assets, present throughout the life of the application and always in tune with the latest version of the application.
 
-Testatoo is an opinionated tool. It force the user to see and use the domain layer as a composition and aggregation of UI components (in Testatoo everything is a UI component).
+Testatoo is an opinionated tool. It forces the user to see and use the domain layer as a composition and aggregation of UI components (in Testatoo, everything is a UI component).
 
-Testatoo is a library to write functional tests. Functional tests mean **SPECIFICATIONS**.
+Testatoo is a library to write functional tests. Functional tests means **SPECIFICATIONS**.
 
 '''
 
-As a **SPECIFIER**, I want to express my test (intention) *BEFORE* I code my UI. So, if the intention is to have
+As a **SPECIFIER**, I want to express my test (intention) *BEFORE* UI is coded. So, if the intention is to have
 a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
 ----
@@ -36,5 +36,5 @@ The Testatoo syntax to express this specification is:
 include::{sourcedir}/groovy/doc/spec/SpecTest.groovy[tags=specMethod]
 ----
 
-*Testatoo is close to the natural language.*
+So we can see that *Testatoo is close to the natural language.*
 

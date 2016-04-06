@@ -22,5 +22,18 @@ include::design_and_architecture.adoc[]
 
 include::installation.adoc[]
 
+include::my_first_test.adoc[]
 
+include::write_a_test.adoc[]
 
+include::testatoo_language.adoc[]
+
+include::BDD_style.adoc[]
+
+include::components_reference.adoc[]
+
+include::html5_bundle.adoc[]
+
+include::create_new_component.adoc[]
+
+include::create_new_bundle.adoc[]
