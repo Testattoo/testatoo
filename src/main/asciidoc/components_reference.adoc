@@ -6,14 +6,14 @@ This is the base for all testatoo components.
 
 [cols="3,3", options="header"]
 |===
-|States|Actions
+|States     |Actions
 
-|enabled|click
-|disabled|righClick
-|available|doubleClick
-|missing|drag
-|hidden|
-|visible|
+|enabled    |click
+|disabled   |righClick
+|available  |doubleClick
+|missing    |drag
+|hidden     |
+|visible    |
 
 |===
 [IMPORTANT]
@@ -96,7 +96,7 @@ clickOn checkbox    // Uncheck the checkbox
 uncheck checkbox    // Uncheck the checkbox or throw and exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
-==== Radio
+=== Radio
 
 image::components/Radio.png[Radio]
 
@@ -137,7 +137,7 @@ check radio_checked         // Throw an exception (the radio is already checked)
 uncheck radio_checked       // Throw an exception (cannot unckeck a Radio)
 -------------------------------------------------------------------------------
 
-==== DropDown
+=== DropDown
 
 image::components/DropDown.png[DropDown]
 
@@ -158,7 +158,7 @@ dropdown.should {
 on dropdown select 'Ubuntu'   // Select the 'Ubuntu' in the dropdown or throw an exception if the item is disabled
 -------------------------------------------------------------------------------
 
-==== GroupItem
+=== GroupItem
 [source, java]
 -------------------------------------------------------------------------------
 DropDown dropdown = $('#dropdown') as DropDown
@@ -170,7 +170,7 @@ group.should {
 }
 -------------------------------------------------------------------------------
 
-==== Item
+=== Item
 [source, java]
 -------------------------------------------------------------------------------
 DropDown dropdown = $('#dropdown') as DropDown
@@ -181,7 +181,7 @@ item.should {
 }
 -------------------------------------------------------------------------------
 
-==== ListBox
+=== ListBox
 
 image::components/ListBox_1.png[ListBox]
 

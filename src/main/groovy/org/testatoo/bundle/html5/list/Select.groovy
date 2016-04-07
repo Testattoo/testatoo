@@ -42,7 +42,7 @@ class Select extends Dropdown {
 
     @Override
     Option item(String value) {
-        items.find { it.value == value }
+        items.find { it.value() == value }
     }
 
     @Override

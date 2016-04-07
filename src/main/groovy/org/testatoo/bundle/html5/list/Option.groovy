@@ -43,7 +43,7 @@ class Option extends Item {
     }
 
     @Override
-    Object getValue() {
+    Object value() {
         config.evaluator.eval(id, "it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
     }
 
@@ -59,12 +59,12 @@ class Option extends Item {
 
     boolean equals(o) {
         if (this.is(o)) return true
-        value == o.value
+        value() == o.value
     }
 
     @Override
     String toString() {
-        return value
+        return value()
     }
 
     @Override

@@ -19,5 +19,5 @@ package org.testatoo.core.support
  */
 interface ValueSupport {
 
-    Object getValue()
+    Object value()
 }

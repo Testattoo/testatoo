@@ -82,14 +82,5 @@ class MouseTest {
 
         @Override
         void doubleClick() {}
-
-//    @Override
-//    DragBuilder drag() {
-//        return new DragBuilder() {
-//            @Override
-//            void on(Component onto) {
-//            }
-//        }
-//    }
     }
 }

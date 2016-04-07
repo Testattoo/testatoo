@@ -16,7 +16,6 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeMatcher
 import org.testatoo.core.support.RangeSupport
 
 /**
@@ -32,7 +31,7 @@ class StepMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected boolean matchesSafely(RangeSupport item) {
-        item.step == step
+        item.step() == step
     }
 
     @Override
@@ -42,6 +41,6 @@ class StepMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.step)
+        mismatchDescription.appendText('was ').appendValue(item.step())
     }
 }

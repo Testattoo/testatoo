@@ -26,7 +26,7 @@ import static org.testatoo.core.Testatoo.config
 class Button extends org.testatoo.core.component.Button {
 
     @Override
-    public String getText() {
+    public String text() {
         config.evaluator.eval(this.id, "it.is('input') ? it.val() : it.text().trim()")
     }
 }

@@ -33,7 +33,6 @@ class KeyboardTest {
 
     @Test
     public void should_delegate_to_underline_call() {
-
         Evaluator evaluator = mock(Evaluator)
         config.evaluator = evaluator
 

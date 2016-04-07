@@ -27,7 +27,7 @@ import static org.testatoo.core.Testatoo.getConfig
 @ByCss('li')
 class Li extends Item {
 
-    String getValue() {
+    String value() {
         config.evaluator.eval(id, 'it.text().trim()')
     }
 
@@ -49,11 +49,11 @@ class Li extends Item {
 
     boolean equals(o) {
         if (this.is(o)) return true
-        return value == o.value
+        return value() == o.value
     }
 
     @Override
     String toString() {
-        return value
+        return value()
     }
 }

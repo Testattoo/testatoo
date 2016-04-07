@@ -28,7 +28,7 @@ import static org.testatoo.bundle.html5.helper.TextHelper.getText
 class H6 extends Heading {
 
     @Override
-    String getText() {
+    String text() {
         getText(this);
     }
 }

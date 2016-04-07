@@ -27,7 +27,7 @@ import static org.testatoo.core.input.Key.BACK_SPACE
  */
 trait Input {
 
-    String getPlaceholder() {
+    String placeholder() {
         config.evaluator.eval(id, "it.prop('placeholder')")
     }
 
@@ -73,7 +73,7 @@ trait Input {
         this.click()
     }
 
-    Object getValue() {
+    Object value() {
         config.evaluator.eval(id, "it.val()")
     }
 

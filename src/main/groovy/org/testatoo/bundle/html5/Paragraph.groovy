@@ -28,7 +28,7 @@ import static org.testatoo.bundle.html5.helper.TextHelper.*
 class Paragraph extends Component implements TextSupport {
 
     @Override
-    String getText() {
+    String text() {
         getText(this)
     }
 }

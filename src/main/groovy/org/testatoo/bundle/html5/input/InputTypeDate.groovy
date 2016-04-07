@@ -33,17 +33,17 @@ class InputTypeDate extends DateField implements Input {
     }
 
     @Override
-    Object getMinimum() {
+    Object minimum() {
         getMinimun(this)
     }
 
     @Override
-    Object getMaximum() {
+    Object maximum() {
         getMaximum(this)
     }
 
     @Override
-    Object getStep() {
+    Object step() {
         getStep(this)
     }
 

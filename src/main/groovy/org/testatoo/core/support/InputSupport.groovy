@@ -19,7 +19,7 @@ package org.testatoo.core.support
  */
 interface InputSupport extends Clearable {
 
-    String getPlaceholder()
+    String placeholder()
 
     boolean empty()
 

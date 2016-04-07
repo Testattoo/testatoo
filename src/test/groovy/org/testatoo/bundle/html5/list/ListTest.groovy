@@ -47,8 +47,8 @@ class ListTest {
         ListView ul = $('#unordered_list') as Ul
 
         assert ul.items.size() == 5
-        assert ul.items[0].value == 'Item 1'
-        assert ul.item('Item 4').value == 'Item 4'
+        assert ul.items[0].value() == 'Item 1'
+        assert ul.item('Item 4').value() == 'Item 4'
         assert ul.items[3].equals(ul.items[4])
 
         assert ul.items[3].toString() == 'Item 4'
@@ -57,8 +57,8 @@ class ListTest {
         ListView ol = $('#ordered_list') as Ol
 
         assert ol.items.size() == 5
-        assert ol.items[0].value == 'Item 11'
-        assert ol.item('Item 44').value == 'Item 44'
+        assert ol.items[0].value() == 'Item 11'
+        assert ol.item('Item 44').value() == 'Item 44'
 
         // Html5 list items can't be selected
         try {

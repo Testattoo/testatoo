@@ -89,26 +89,25 @@ class ComponentsTest {
     @Test
     public void button_should_have_expected_behaviours() {
         assert Button in org.testatoo.core.component.Button
-        assert CheckBox in LabelSupport
 
         // fields type=button
         Button button = $('#button') as Button
 
         assert Button in TextSupport
         // But override text
-        assert button.text == 'Button'
+        assert button.text() == 'Button'
 
         // fields type=submit
         button = $('#submit') as Button
-        assert button.text == 'Submit'
+        assert button.text() == 'Submit'
 
         // fields type=reset
         button = $('#reset') as Button
-        assert button.text == 'Reset'
+        assert button.text() == 'Reset'
 
         // button element
         button = $('#btn') as Button
-        assert button.text == 'My Button Text'
+        assert button.text() == 'My Button Text'
     }
 
     @Test
@@ -182,13 +181,13 @@ class ComponentsTest {
 
         email.value = 'joe.blow@email.org'
         password.value = 'password666'
-        assert email.value == 'joe.blow@email.org'
-        assert password.value == 'password666'
+        assert email.value() == 'joe.blow@email.org'
+        assert password.value() == 'password666'
 
         form.reset()
 
-        assert email.value == ''
-        assert password.value == ''
+        assert email.value() == ''
+        assert password.value() == ''
 
         assert message.title == 'The form was submitted 0 time(s)'
         // Set the required password field before submitting
@@ -215,22 +214,22 @@ class ComponentsTest {
         assert Heading in TextSupport
 
         H1 h1 = $('#h1') as H1
-        assert h1.text == 'heading 1'
+        assert h1.text() == 'heading 1'
 
         H2 h2 = $('#h2') as H2
-        assert h2.text == 'heading 2'
+        assert h2.text() == 'heading 2'
 
         H3 h3 = $('#h3') as H3
-        assert h3.text == 'heading 3'
+        assert h3.text() == 'heading 3'
 
         H4 h4 = $('#h4') as H4
-        assert h4.text == 'heading 4'
+        assert h4.text() == 'heading 4'
 
         H5 h5 = $('#h5') as H5
-        assert h5.text == 'heading 5'
+        assert h5.text() == 'heading 5'
 
         H6 h6 = $('#h6') as H6
-        assert h6.text == 'heading 6'
+        assert h6.text() == 'heading 6'
     }
 
     @Test
@@ -248,7 +247,7 @@ class ComponentsTest {
 
         A link = $('#link') as A
 
-        assert link.text == 'Link to dsl page'
+        assert link.text() == 'Link to dsl page'
         assert link.reference == 'http://localhost:8080/dsl.html'
     }
 
@@ -266,7 +265,7 @@ class ComponentsTest {
 
         Paragraph paragraph = $('#p_1') as Paragraph
 
-        assert paragraph.text == 'Paragraph 1'
+        assert paragraph.text() == 'Paragraph 1'
     }
 
     @Test
@@ -298,7 +297,7 @@ class ComponentsTest {
     public void span_should_have_expected_behaviours() {
         Span span = $('#span') as Span
 
-        assert span.text == 'A span'
+        assert span.text() == 'A span'
     }
 
     @ByCss('div')

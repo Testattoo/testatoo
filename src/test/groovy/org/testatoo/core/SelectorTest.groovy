@@ -32,6 +32,8 @@ import static Actions.fill
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+
+// TODO remove
 @RunWith(JUnit4)
 class SelectorTest {
 
@@ -72,7 +74,7 @@ class SelectorTest {
 
         textFields.each {
             assert it.filled()
-            assert it.value == 'TESTATOO!'
+            assert it.value() == 'TESTATOO!'
         }
     }
 

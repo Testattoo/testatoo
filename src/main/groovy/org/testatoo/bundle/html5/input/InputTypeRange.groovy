@@ -27,7 +27,7 @@ import static org.testatoo.core.Testatoo.getConfig
 @ByCss('input[type=range]')
 class InputTypeRange extends RangeField implements Input {
 
-    Number getValue() {
+    Number value() {
         config.evaluator.eval(id, "it.val()") as BigDecimal
     }
 
@@ -36,17 +36,17 @@ class InputTypeRange extends RangeField implements Input {
     }
 
     @Override
-    Number getMinimum() {
+    Number minimum() {
         getMinimun(this) as BigDecimal
     }
 
     @Override
-    Number getMaximum() {
+    Number maximum() {
         getMaximum(this) as BigDecimal
     }
 
     @Override
-    Number getStep() {
+    Number step() {
         getStep(this)
     }
 

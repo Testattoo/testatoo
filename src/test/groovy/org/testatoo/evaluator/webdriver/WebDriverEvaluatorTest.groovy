@@ -483,7 +483,7 @@ class WebDriverEvaluatorTest {
 //    static class CustomButton extends Button {
 //
 //        @Override
-//        String getText() {
+//        String text() {
 //            return "Override Text"
 //        }
 //

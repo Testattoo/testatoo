@@ -33,7 +33,7 @@ class A extends Link {
     }
 
     @Override
-    String getText() {
+    String text() {
         getText(this)
     }
 }

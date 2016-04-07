@@ -139,7 +139,7 @@ class MatchersTest {
         InputSupport cmp = mock(InputSupport)
 
         // Placeholder
-        when(cmp.placeholder).thenReturn('MyPlaceholder')
+        when(cmp.placeholder()).thenReturn('MyPlaceholder')
         assertThat(cmp, hasPlaceholder('MyPlaceholder'))
         try {
             assertThat(cmp, hasPlaceholder('OtherPlaceholder'))
@@ -243,7 +243,7 @@ class MatchersTest {
         RangeSupport cmp = mock(RangeSupport)
 
         // Maximum
-        when(cmp.maximum).thenReturn(10)
+        when(cmp.maximum()).thenReturn(10)
         assertThat(cmp, hasMaximum(10))
         try {
             assertThat(cmp, hasMaximum(50))
@@ -253,7 +253,7 @@ class MatchersTest {
         }
 
         // Minimum
-        when(cmp.minimum).thenReturn(10)
+        when(cmp.minimum()).thenReturn(10)
         assertThat(cmp, hasMinimum(10))
         try {
             assertThat(cmp, hasMinimum(50))
@@ -263,7 +263,7 @@ class MatchersTest {
         }
 
         // Step
-        when(cmp.step).thenReturn(10)
+        when(cmp.step()).thenReturn(10)
         assertThat(cmp, hasStep(10))
         try {
             assertThat(cmp, hasStep(50))
@@ -325,7 +325,7 @@ class MatchersTest {
     @Test
     public void should_have_matcher_for_text_support() {
         TextSupport cmp = mock(TextSupport)
-        when(cmp.text).thenReturn('MyText')
+        when(cmp.text()).thenReturn('MyText')
 
         assertThat(cmp, hasText('MyText'))
         try {
@@ -366,7 +366,7 @@ class MatchersTest {
     @Test
     public void should_have_matcher_for_value_support() {
         ValueSupport cmp = mock(ValueSupport)
-        when(cmp.value).thenReturn('MyValue')
+        when(cmp.value()).thenReturn('MyValue')
 
         assertThat(cmp, Matchers.hasValue('MyValue'))
         try {

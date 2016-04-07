@@ -19,11 +19,11 @@ package org.testatoo.core.support
  */
 interface RangeSupport {
 
-    Object getMinimum()
+    Object minimum()
 
-    Object getMaximum()
+    Object maximum()
 
-    Object getStep()
+    Object step()
 
     boolean inRange()
 

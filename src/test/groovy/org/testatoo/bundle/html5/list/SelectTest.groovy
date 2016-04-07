@@ -51,8 +51,8 @@ class SelectTest {
         Dropdown os = $('#os') as Select
         assert os.items.size() == 8
 
-        assert os.items[1].value == 'Ubuntu'
-        assert os.item('Ubuntu').value == 'Ubuntu'
+        assert os.items[1].value() == 'Ubuntu'
+        assert os.item('Ubuntu').value() == 'Ubuntu'
 
         assert os.groupItems.size() == 3
 
@@ -61,11 +61,11 @@ class SelectTest {
         assert os.groupItem('win32').value == 'win32'
         assert os.groupItem('BSD').value == 'BSD'
 
-        assert os.selectedItem.value == 'None'
+        assert os.selectedItem.value() == 'None'
         os.select('Fedora')
-        assert os.selectedItem.value == 'Fedora'
+        assert os.selectedItem.value() == 'Fedora'
         os.select(os.items[3])
-        assert os.selectedItem.value == 'Gentoo'
+        assert os.selectedItem.value() == 'Gentoo'
 
         Dropdown countries = $('#countries') as Select
         assert countries.disabled()
@@ -84,7 +84,7 @@ class SelectTest {
 
         assert linux.value == 'linux'
         assert linux.items.size() == 3
-        assert linux.item('Gentoo').value == 'Gentoo'
+        assert linux.item('Gentoo').value() == 'Gentoo'
     }
 
     @Test

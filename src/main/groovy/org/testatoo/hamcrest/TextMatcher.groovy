@@ -16,7 +16,6 @@
 package org.testatoo.hamcrest
 
 import org.hamcrest.Description
-import org.hamcrest.TypeSafeMatcher
 import org.testatoo.core.support.TextSupport
 
 /**
@@ -32,7 +31,7 @@ class TextMatcher extends PropertyMatcher<TextSupport> {
 
     @Override
     protected boolean matchesSafely(TextSupport item) {
-        item.text == text
+        item.text() == text
     }
 
     @Override
@@ -42,6 +41,6 @@ class TextMatcher extends PropertyMatcher<TextSupport> {
 
     @Override
     protected void describeMismatchSafely(TextSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.text)
+        mismatchDescription.appendText('was ').appendValue(item.text())
     }
 }

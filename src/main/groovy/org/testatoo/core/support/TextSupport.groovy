@@ -19,5 +19,5 @@ package org.testatoo.core.support
  */
 interface TextSupport {
 
-    String getText()
+    String text()
 }

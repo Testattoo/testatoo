@@ -52,15 +52,15 @@ class InputFieldTest {
         assert !email.required()
         assert email.valid()
         assert !email.invalid()
-        assert email.value == ''
+        assert email.value() == ''
 
         TextField text = $('#text_field') as InputTypeText
-        assert text.placeholder == 'Placeholder'
+        assert text.placeholder() == 'Placeholder'
 
         text = $('#read_only_and_filled') as InputTypeText
         assert text.filled()
         assert text.readOnly()
-        assert text.value == 'Filled'
+        assert text.value() == 'Filled'
 
         try {
             text.value = 'New Value'
@@ -76,7 +76,7 @@ class InputFieldTest {
         assert password.invalid()
 
         password.value = 'My Password'
-        assert password.value == 'My Password'
+        assert password.value() == 'My Password'
     }
 
     @Test
@@ -85,33 +85,33 @@ class InputFieldTest {
         assert colorField.label() == 'Color'
 
         // Fail on CI
-        assert colorField.value == '#000000'
+        assert colorField.value() == '#000000'
         colorField.value = '#ff0000'
-        assert colorField.value == '#ff0000'
+        assert colorField.value() == '#ff0000'
         assert colorField.valid()
     }
 
     @Test
     public void date_field_should_have_expected_behaviours() {
         DateField date = $('#date_field') as InputTypeDate
-        assert date.value == ''
-        assert date.step == 0
+        assert date.value() == ''
+        assert date.step() == 0
         assert date.inRange()
         assert !date.outOfRange()
-        assert date.minimum == '2011-08-13'
-        assert date.maximum == '2012-06-25'
+        assert date.minimum() == '2011-08-13'
+        assert date.maximum() == '2012-06-25'
 
         date.value = '2010-06-25'
-        assert date.value == '2010-06-25'
+        assert date.value() == '2010-06-25'
     }
 
     @Test
     public void dateTime_field_should_have_expected_behaviours() {
         DateTimeField dateTime = $('#datetime_field') as InputTypeDateTime
 
-        assert dateTime.value == ''
+        assert dateTime.value() == ''
         dateTime.value = '2010-06-25'
-        assert dateTime.value == '2010-06-25'
+        assert dateTime.value() == '2010-06-25'
     }
 
     @Test
@@ -133,14 +133,14 @@ class InputFieldTest {
         NumberField number = $('#number_field') as InputTypeNumber
         assert number.label() == 'Number'
 
-        assert number.maximum == 64
-        assert number.minimum == 0
-        assert number.step == 8
-        assert number.value == 0
+        assert number.maximum() == 64
+        assert number.minimum() == 0
+        assert number.step() == 8
+        assert number.value() == 0
         assert number.inRange()
 
         number.value = 150
-        assert number.value == 150
+        assert number.value() == 150
         assert number.outOfRange()
     }
 
@@ -159,19 +159,19 @@ class InputFieldTest {
     @Test
     public void range_field_should_have_expected_behaviours() {
         RangeField range = $('#range_field') as InputTypeRange
-        assert range.maximum == 50
-        assert range.minimum == 0
-        assert range.step == 5
+        assert range.maximum() == 50
+        assert range.minimum() == 0
+        assert range.step() == 5
         assert range.inRange()
         assert !range.outOfRange()
 
-        assert range.value == 10
+        assert range.value() == 10
         range.value = 40
-        assert range.value == 40
+        assert range.value() == 40
 
         // Cause step 5
         range.value = 42
-        assert range.value == 40
+        assert range.value() == 40
     }
 
     @Test
@@ -179,9 +179,9 @@ class InputFieldTest {
         SearchField searchField = $('#search_field') as InputTypeSearch
         assert searchField.label() == 'Search'
 
-        searchField.value == ''
+        searchField.value() == ''
         searchField.value = 'my search'
-        assert searchField.value == 'my search'
+        assert searchField.value() == 'my search'
     }
 
     @Test
@@ -195,9 +195,9 @@ class InputFieldTest {
         TimeField time = $('#time_field') as InputTypeTime
         assert time.label() == 'Time'
 
-        assert time.value == ''
+        assert time.value() == ''
         time.value = '14:45'
-        assert time.value == '14:45'
+        assert time.value() == '14:45'
     }
 
     @Test
@@ -205,9 +205,9 @@ class InputFieldTest {
         URLField url = $('#url_field') as InputTypeURL
         assert url.label() == 'URL'
 
-        assert url.value == ''
+        assert url.value() == ''
         url.value = 'http://mysite.org'
-        assert url.value == 'http://mysite.org'
+        assert url.value() == 'http://mysite.org'
     }
 
     @Test
@@ -215,8 +215,8 @@ class InputFieldTest {
         WeekField week = $('#week_field') as InputTypeWeek
         assert week.label() == 'Week'
 
-        assert week.value == ''
+        assert week.value() == ''
         week.value = '2016-W32'
-        assert week.value == '2016-W32'
+        assert week.value() == '2016-W32'
     }
 }

@@ -31,7 +31,7 @@ class MaximumMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected boolean matchesSafely(RangeSupport item) {
-        item.maximum == maximum
+        item.maximum() == maximum
     }
 
     @Override
@@ -41,6 +41,6 @@ class MaximumMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.maximum)
+        mismatchDescription.appendText('was ').appendValue(item.maximum())
     }
 }

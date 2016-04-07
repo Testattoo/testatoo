@@ -32,6 +32,6 @@ class Ol extends ListView {
 
     @Override
     Li item(String value) {
-        items.find { it.value == value }
+        items.find { it.value() == value }
     }
 }

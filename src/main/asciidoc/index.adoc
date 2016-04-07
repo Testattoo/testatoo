@@ -22,9 +22,7 @@ include::design_and_architecture.adoc[]
 
 include::installation.adoc[]
 
-include::my_first_test.adoc[]
-
-include::write_a_test.adoc[]
+include::content_interaction.adoc[]
 
 include::testatoo_language.adoc[]
 

@@ -60,7 +60,7 @@ class WindowTest {
     @Test
     public void should_call_underline_evaluator_on_close() {
         Evaluator evaluator = mock(Evaluator)
-        Testatoo.config.evaluator = evaluator
+        config.evaluator = evaluator
 
         Window window = new Window('id')
         verify(evaluator, times(0)).closeWindow(window.id)

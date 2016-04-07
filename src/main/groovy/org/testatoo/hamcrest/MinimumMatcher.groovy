@@ -31,7 +31,7 @@ class MinimumMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected boolean matchesSafely(RangeSupport item) {
-        item.minimum == minimum
+        item.minimum() == minimum
     }
 
     @Override
@@ -41,6 +41,6 @@ class MinimumMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.minimum)
+        mismatchDescription.appendText('was ').appendValue(item.minimum())
     }
 }

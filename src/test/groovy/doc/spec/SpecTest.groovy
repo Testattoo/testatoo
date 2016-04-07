@@ -25,7 +25,7 @@ class SpecTest {
 
     @Before
     public void before() {
-        browser.open 'http://localhost:8080/documentation.html'
+        browser.open 'http://localhost:8080/spec.html'
 
         male_radio = $('[name=gender]:first') as org.testatoo.bundle.html5.Radio
         female_radio = $('[value=female]:last') as org.testatoo.bundle.html5.Radio

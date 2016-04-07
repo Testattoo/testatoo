@@ -32,7 +32,7 @@ class OptionGroup extends GroupItem {
     }
 
     Option item(String value) {
-        items.find { it.value == value }
+        items.find { it.value() == value }
     }
 
     String getValue() {

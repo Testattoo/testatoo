@@ -151,7 +151,7 @@ class MultiSelectTest {
         OptionGroup groupItem = planets.groupItem('Cat-1')
 
         assert groupItem.items.size() == 4
-        assert groupItem.items[0].value == 'Mercury'
-        assert groupItem.item('Earth').value == 'Earth'
+        assert groupItem.items[0].value() == 'Mercury'
+        assert groupItem.item('Earth').value() == 'Earth'
     }
 }
