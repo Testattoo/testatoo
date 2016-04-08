@@ -4,21 +4,19 @@
 
 This is the base for all testatoo components.
 
-[cols="3,3", options="header"]
+[cols="2", options="header"]
 |===
-|States     |Actions
+2+|States
 
-|enabled    |click
-|disabled   |righClick
-|available  |doubleClick
-|missing    |drag
-|hidden     |
-|visible    |
+|enabled    |disabled
+|available  |missing
+|hidden     |visible
+|contains     |displays
 
 |===
 [IMPORTANT]
 ====
-*All the Testatoo components inherit theses states and actions.*
+*All the Testatoo components inherit these states.*
 ====
 
 === Button
@@ -30,11 +28,12 @@ like searching for a query at a search engine, or to interact with dialog boxes,
 
 [cols="3*", options="header"]
 |===
-|States|Properties|Actions
+|States|Properties|Intentions
 
-|
+|-
 |text
-|
+|-
+
 |===
 
 [source, java]
@@ -56,7 +55,7 @@ Definition: a *checkbox* is a small box that, when selected by the user, shows t
 
 [cols="3*", options="header"]
 |===
-|States|Properties|Actions
+|States|Properties|Intentions
 
 |checked
 |label
@@ -76,9 +75,9 @@ checkbox.should {
     be unchecked
 }
 
-clickOn checkbox    // Check the checkbox
+clickOn checkbox    // Checks the checkbox
 //  OR
-check checkbox      // Check the checkbox or throw and exception if the checkbox is already checked
+check checkbox      // Checks the checkbox or throws an exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
 image::components/CheckBox_checked.png[CheckBox]
@@ -91,18 +90,26 @@ checkbox.should {
     be checked
 }
 
-clickOn checkbox    // Uncheck the checkbox
+clickOn checkbox    // Unchecks the checkbox
 //  OR
-uncheck checkbox    // Uncheck the checkbox or throw and exception if the checkbox is already checked
+uncheck checkbox    // Unchecks the checkbox or throws an exception if the checkbox is already checked
 -------------------------------------------------------------------------------
 
 === Radio
 
 image::components/Radio.png[Radio]
 
+Definition: A *radio button* allows the user to choose only one of a predefined set of options. Radio buttons are
+arranged in groups of two or more and displayed on screen as, for example, a list of circular holes that can contain
+white space (for unselected) or a dot (for selected). Each radio button is normally accompanied by a label describing
+the choice that the radio button represents.
+The choices are mutually exclusive; when the user selects a radio button, any previously selected radio button in the
+same group becomes deselected (making it so only one can be selected).
+
 [cols="3*", options="header"]
 |===
-|States|Properties|Actions
+
+|States|Properties|Intentions
 
 |checked
 |label
@@ -129,17 +136,46 @@ radio_unchecked.should {
     be unchecked
 }
 
-clickOn radio_unchecked     // Check the radio
+clickOn radio_unchecked     // Checks the radio
 //  OR
-check radio_unchecked       // Check the radio
+check radio_unchecked       // Checks the radio
 
-check radio_checked         // Throw an exception (the radio is already checked)
-uncheck radio_checked       // Throw an exception (cannot unckeck a Radio)
+check radio_checked         // Throws an exception (the radio is already checked)
 -------------------------------------------------------------------------------
 
 === DropDown
 
 image::components/DropDown.png[DropDown]
+
+Definition:  a *dropdown* allows the user to choose one value from a list. When a dropdown is inactive, it displays a
+single value. When activated, it displays (drops down) a list of values, that can be eventually grouped by theme, from which the user may select one.
+When the user selects a new value, the control reverts to its inactive state, displaying the selected value.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|label
+|select
+
+|
+|_number of items_
+|
+
+|
+|items
+|
+
+|
+|_number of groupItems_
+|
+
+|
+|groupItems
+|
+
+|===
 
 [source, java]
 -------------------------------------------------------------------------------
@@ -155,10 +191,27 @@ dropdown.should {
     have groupItems('linux', 'win32', 'BSD')
 }
 
-on dropdown select 'Ubuntu'   // Select the 'Ubuntu' in the dropdown or throw an exception if the item is disabled
+on dropdown select 'Ubuntu'   // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
 -------------------------------------------------------------------------------
 
 === GroupItem
+
+*GroupItem* is used for dropDowns.
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|-
+|value
+|-
+
+|
+|items
+|
+
+|===
 [source, java]
 -------------------------------------------------------------------------------
 DropDown dropdown = $('#dropdown') as DropDown
@@ -171,6 +224,23 @@ group.should {
 -------------------------------------------------------------------------------
 
 === Item
+
+*Item* is used for dropDowns and listBoxes.
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|selected
+|value
+|select
+
+|unselected
+|
+|unselect
+
+|===
 [source, java]
 -------------------------------------------------------------------------------
 DropDown dropdown = $('#dropdown') as DropDown
@@ -189,6 +259,37 @@ This image show all the items available in the ListBox
 
 image::components/ListBox_2.png[ListBox]
 
+Definition: a *listBox* allows the user to select one or more items from a list contained within a static, multiple line
+text box. The user clicks inside the box on an item to select it, sometimes in combination with the ⇧ Shift or Ctrl
+in order to make multiple selections. "Control-clicking" an item that has already been selected, unselects it.
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|multiselectable
+|label
+|select
+
+|
+|_number of items_
+|
+
+|
+|items
+|
+
+|
+|selectedItems
+|
+
+|
+|_number of visible items_
+|
+
+|===
+
 [source, java]
 -------------------------------------------------------------------------------
 ListBox listBox = $('#cities') as ListBox
@@ -198,11 +299,11 @@ listbox.should {
     have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
     have selectedItems('Montreal')
 
-    have 3.visibleItems     // See the first image
-    be multiSelectable      // We can select more than on item
+    have 3.visibleItems     // See the first image at the begin of this section
+    be multiSelectable      // We can select more than one item
 }
 
-// Try to select an another item with a control + click
+// Try to select ananother item with a control + click
 CTRL.click listBox.item('Montpellier')
 //  OR
 select listBox.item('Montpellier')
@@ -214,11 +315,68 @@ listbox.should { have selectedItems('Montreal', 'Montpellier') }
 on listBox select 'New York', 'Casablanca'
 
 
-select listBox.items[2]     // Throw an exception if we try to select a disabled element
+select listBox.items[2]     // Throws an exception if we try to select a disabled element
 
 unselect listBox.items[0]   // Can unselect an item
 listbox.should {
     have selectedItems('Montpellier')
 }
+-------------------------------------------------------------------------------
+=== TextField
+
+image::components/TextField.png[TextField]
+
+Definition: a *textfield* allows the user to input text information to be used by the program.
+It can a single-line text box when only one line of input is required, and a multi-line text box if more than one line
+of input may be required.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|empty
+|text
+|fill
+
+|filled
+|label
+|clear
+
+|readOnly
+|placeholder
+|
+
+|required
+|value
+|
+
+|optional
+|
+|
+
+|valid
+|
+|
+
+|invalid
+|
+|
+|===
+
+
+[source, java]
+-------------------------------------------------------------------------------
+
+TextField textfield = $('#text_field') as TextField
+texfield.should {
+    be empty
+    be required
+}
+on textfield fill ('1234')
+texfield.should {
+    be filled
+    have value('1234')
+}
+
 -------------------------------------------------------------------------------
 

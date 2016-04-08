@@ -66,11 +66,82 @@ assert item.visible()
 ====
 
 ==== The $$ function
+TODO
 
-=== Mouse
+==== The find function
+TODO
+
+=== Events on components
+
+==== Mouse events
+
+[cols="5", options="header"]
+|===
+5+|Supported mouse events
+
+|click_on
+|double_click_on
+|right_click_on
+|hovering_mouse_on
+|drag ... on ...
+
+|===
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+Panel panel_1 = $('#panel_1') as Panel
+Panel panel_2 = $('#panel_2') as Panel
+
+click_on button
+double_click_on button
+right_click_on button
+hovering_mouse_on panel_1
+drag panel_1 on panel_2
+-------------------------------------------------------------------------------
 
 
-=== Keyboard
+==== Keyboard events
+
+For the keyboard events we have done a nice work to make this easy:
+
+[cols="1", options="header"]
+|===
+|Only ONE Method to represent them all
+
+|the *type(...)* method
+
+|===
 
 
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
 
+click_on textField
+type('testatoo')
+-------------------------------------------------------------------------------
+
+If you need the usage of a simple key modifier....
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(SHIFT + 'testatoo') // => TESTATOO
+-------------------------------------------------------------------------------
+
+Or a complex one....
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(CTRL + ALT + SHIFT + 'x')
+-------------------------------------------------------------------------------
+
+
+==== Touch events
+Testatoo does not support touch event for the moment.

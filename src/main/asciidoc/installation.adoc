@@ -1,6 +1,6 @@
-== Installation
+== Quick Start
 
-=== With Maven
+=== Installation with Maven
 '''
 
 These are the dependencies to include if you want to integrate testatoo in your Maven installation file.
@@ -29,7 +29,7 @@ The following installation if for JUnit. For another test runner, adapt the firs
 </dependencies>
 -------------------------------------------------------------------------------
 
-=== With Gradle
+=== Installation with Gradle
 
 TODO
 // TODO Roch
