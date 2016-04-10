@@ -31,6 +31,6 @@ class OutOfRangeMatcher extends StateMatcher<RangeSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is out of range')
+        description.appendText('out of range')
     }
 }

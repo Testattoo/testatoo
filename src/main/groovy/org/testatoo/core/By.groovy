@@ -41,7 +41,7 @@ class By {
     }
 
     public String getExpression(Component component) {
-        templateEngine ? templateEngine.createTemplate(expression).make([id: component.id]) : expression
+        templateEngine ? templateEngine.createTemplate(expression).make([id: component.id()]) : expression
     }
 
 }

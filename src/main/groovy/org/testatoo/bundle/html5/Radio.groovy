@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5
 import org.testatoo.core.ByCss
 
 import static org.testatoo.bundle.html5.helper.CheckHelper.*
-import static org.testatoo.bundle.html5.helper.LabelHelper.getLabel
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -43,6 +43,6 @@ class Radio extends org.testatoo.core.component.Radio {
 
     @Override
     String label() {
-        getLabel(this)
+        label(this)
     }
 }

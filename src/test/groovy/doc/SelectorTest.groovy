@@ -8,9 +8,7 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

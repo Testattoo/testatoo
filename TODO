@@ -94,7 +94,6 @@ listBox.should { have label('Cities list') }
         listBox.should { have selectedItems('New York', 'Munich') }
 
         listBox.should { have 3.visibleItems }
-        listBox.should { be multiSelectable }
 
         listBox.items[0].should { be enabled }
         listBox.item('Quebec').should { be disabled }

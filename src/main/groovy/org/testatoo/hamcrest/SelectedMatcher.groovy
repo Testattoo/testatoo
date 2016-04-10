@@ -31,6 +31,6 @@ class SelectedMatcher extends StateMatcher<SelectSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is selected')
+        description.appendText('selected')
     }
 }

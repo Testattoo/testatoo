@@ -18,8 +18,8 @@ package org.testatoo.bundle.html5
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Link
 
-import static org.testatoo.bundle.html5.helper.TextHelper.getText
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.bundle.html5.helper.TextHelper.text
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,12 +28,12 @@ import static org.testatoo.core.Testatoo.getConfig
 class A extends Link {
 
     @Override
-    String getReference() {
-        config.evaluator.eval(this.id, "it.prop('href')")
+    String reference() {
+        config.evaluator.eval(this.id(), "it.prop('href')")
     }
 
     @Override
     String text() {
-        getText(this)
+        text(this)
     }
 }

@@ -21,7 +21,7 @@ import org.junit.runners.JUnit4
 
 import static org.mockito.Matchers.any
 import static org.mockito.Mockito.*
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

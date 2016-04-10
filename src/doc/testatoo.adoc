@@ -265,7 +265,6 @@ listbox.should {
     have selectedItems('Montreal')
 
     have 3.visibleItems     // See the first image
-    be multiSelectable      // We can select more than on item
 }
 
 // Try to select an another item with a control + click

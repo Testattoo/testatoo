@@ -23,7 +23,7 @@ import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -42,14 +42,14 @@ class Component implements Clickable, Draggable {
         this.meta = meta
     }
 
-    String getId() throws ComponentException { meta.getMetaInfo(this).id }
+    String id() throws ComponentException { meta.metaInfo(this).id }
 
     boolean enabled() {
         !disabled()
     }
 
     boolean disabled() {
-        config.evaluator.check(id, "it.is(':disabled') || !!it.attr('disabled')")
+        config.evaluator.check(id(), "it.is(':disabled') || !!it.attr('disabled')")
     }
 
     boolean available() {
@@ -58,7 +58,7 @@ class Component implements Clickable, Draggable {
 
     boolean missing() {
         try {
-            meta.getMetaInfo(this)
+            meta.metaInfo(this)
             return false
         } catch (ComponentException ignored) {
             return true
@@ -66,7 +66,7 @@ class Component implements Clickable, Draggable {
     }
 
     boolean hidden() {
-        config.evaluator.check(id, "it.is(':hidden')")
+        config.evaluator.check(id(), "it.is(':hidden')")
     }
 
     boolean visible() {
@@ -74,38 +74,38 @@ class Component implements Clickable, Draggable {
     }
 
     boolean contain(Component... components) {
-        List ret = config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+        List ret = config.evaluator.getJson("\$._contains('${id()}', [${components.collect { "'${it.id()}'" }.join(', ')}])")
         if (ret) {
-            throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id in ret }}");
+            throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id() in ret }}");
         }
     }
 
     boolean display(Component... components) {
-        List ret = config.evaluator.getJson("\$._contains('${id}', [${components.collect { "'${it.id}'" }.join(', ')}])")
+        List ret = config.evaluator.getJson("\$._contains('${id()}', [${components.collect { "'${it.id()}'" }.join(', ')}])")
         if (ret) {
-            throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id in ret }}");
+            throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id() in ret }}");
         } else {
             components.findAll { !it.visible() }
         }
     }
 
     protected <T extends Component> List<T> find(By by, Class<T> type = Component) {
-        config.evaluator.getMetaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
+        config.evaluator.metaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
     }
 
     @Override
     void click() {
-        config.evaluator.click(id, [LEFT, SINGLE])
+        config.evaluator.click(id(), [LEFT, SINGLE])
     }
 
     @Override
     void rightClick() {
-        config.evaluator.click(id, [RIGHT, SINGLE])
+        config.evaluator.click(id(), [RIGHT, SINGLE])
     }
 
     @Override
     void doubleClick() {
-        config.evaluator.click(id, [LEFT, DOUBLE])
+        config.evaluator.click(id(), [LEFT, DOUBLE])
     }
 
     @Override
@@ -118,14 +118,14 @@ class Component implements Clickable, Draggable {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
         Component component = (Component) o
-        id == component.id
+        id() == component.id()
     }
 
     @Override
-    int hashCode() { id.hashCode() }
+    int hashCode() { id().hashCode() }
 
     @Override
-    String toString() { getClass().simpleName + ":${this.id}" }
+    String toString() { getClass().simpleName + ":${this.id()}" }
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {

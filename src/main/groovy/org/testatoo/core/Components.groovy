@@ -35,7 +35,7 @@ class Components<T extends Component> extends AbstractList<T> implements List<T>
 
     private List<T> getComponents() {
         if (_components == null) {
-            _components = _meta.getMetaInfos().collect {
+            _components = _meta.metaInfos().collect {
                 new Component(new CachedMetaData(idProvider: new jQueryIdProvider("#${it.id}", false))).asType(_type)
             } as List<T>
         }

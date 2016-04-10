@@ -31,6 +31,6 @@ class ReadOnlyMatcher extends StateMatcher<InputSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is read only')
+        description.appendText('read only')
     }
 }

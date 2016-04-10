@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.list
+package org.testatoo.bundle.html5.components.list
 
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -21,6 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.list.Ol
+import org.testatoo.bundle.html5.list.Ul
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.ListView
 
@@ -44,46 +46,47 @@ class ListTest {
     @Test
     public void should_have_expected_behaviours() {
         assert Ul in ListView
-        ListView ul = $('#unordered_list') as Ul
 
-        assert ul.items.size() == 5
-        assert ul.items[0].value() == 'Item 1'
+        Ul ul = $('#unordered_list') as Ul
+
+        assert ul.items().size() == 5
+        assert ul.items()[0].value() == 'Item 1'
         assert ul.item('Item 4').value() == 'Item 4'
-        assert ul.items[3].equals(ul.items[4])
+        assert ul.items()[3].equals(ul.items()[4])
 
-        assert ul.items[3].toString() == 'Item 4'
+        assert ul.items()[3].toString() == 'Item 4'
 
         assert Ol in ListView
-        ListView ol = $('#ordered_list') as Ol
+        Ol ol = $('#ordered_list') as Ol
 
-        assert ol.items.size() == 5
-        assert ol.items[0].value() == 'Item 11'
+        assert ol.items().size() == 5
+        assert ol.items()[0].value() == 'Item 11'
         assert ol.item('Item 44').value() == 'Item 44'
 
         // Html5 list items can't be selected
         try {
-            ol.items[0].selected()
+            ol.items()[0].selected()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Unsupported Operation'
         }
 
         try {
-            ol.items[0].unselected()
+            ol.items()[0].unselected()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Unsupported Operation'
         }
 
         try {
-            ol.items[0].select()
+            ol.items()[0].select()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Li Item 11 cannot be selected (Unsupported Operation)'
         }
 
         try {
-            ol.items[0].unselect()
+            ol.items()[0].unselect()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Li Item 11 cannot be unselected (Unsupported Operation)'

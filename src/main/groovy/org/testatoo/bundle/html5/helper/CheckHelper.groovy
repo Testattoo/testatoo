@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.helper
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -26,7 +26,7 @@ import static org.testatoo.core.Testatoo.getConfig
 class CheckHelper {
 
     static boolean checked(Component c) {
-        config.evaluator.check(c.id, "it.is(':checked')")
+        config.evaluator.check(c.id(), "it.is(':checked')")
     }
 
     static boolean unchecked(Component c) {

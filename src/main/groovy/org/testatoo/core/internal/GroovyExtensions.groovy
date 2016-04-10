@@ -22,12 +22,13 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.hamcrest.Matchers
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
 
 import java.time.Duration
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -46,16 +47,16 @@ class GroovyExtensions {
     static void rightClick(Key key, Component c) { rightClick([key], c) }
 
     static void click(Collection<Key> keys, Component c) {
-        config.evaluator.click(c.id, [LEFT, SINGLE], keys)
+        config.evaluator.click(c.id(), [LEFT, SINGLE], keys)
     }
 
     static void rightClick(Collection<Key> keys, Component c) {
-        config.evaluator.click(c.id, [RIGHT, SINGLE], keys)
+        config.evaluator.click(c.id(), [RIGHT, SINGLE], keys)
     }
 
     static void select(Component component, String... values) {
         for (value in values) {
-            component.items.find { it.value == value }.select()
+            component.items().find { it.value() == value }.select()
         }
     }
 
@@ -69,7 +70,7 @@ class GroovyExtensions {
 
     static void unselect(Component component, String... values) {
         for (value in values) {
-            component.items.find { it.value == value }.unselect()
+            component.items().find { it.value() == value }.unselect()
         }
     }
 
@@ -116,11 +117,11 @@ class GroovyExtensions {
     }
 
     static void be(Component component, Class<StateMatcher> matcher) {
-        component.BLOCKS.add(matcher.newInstance())
+        component.BLOCKS.add(org.hamcrest.Matchers.is(matcher.newInstance()))
     }
 
     static void have(Component component, PropertyMatcher matcher) {
-        component.BLOCKS.add(matcher)
+        component.BLOCKS.add(Matchers.has((matcher)))
     }
 
     private static void waitUntil(Closure c, Matcher what) {

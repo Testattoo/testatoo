@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.table
+package org.testatoo.bundle.html5.components.table
 
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -21,6 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.table.Table
+import org.testatoo.bundle.html5.table.Tr
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
@@ -46,54 +48,55 @@ class TableGridTest {
     @Test
     public void should_have_expected_behaviours() {
         assert Table in DataGrid
-        DataGrid data_grid = $('#data_grid') as Table
 
-        assert data_grid.columns.size() == 4
-        assert data_grid.rows.size() == 4
+        Table data_grid = $('#data_grid') as Table
 
-        List<Column> columns = data_grid.columns
+        assert data_grid.columns().size() == 4
+        assert data_grid.rows().size() == 4
 
-        assert columns[0].title == ''
-        assert columns[1].title == 'Column 1 title'
-        assert columns[2].title == 'Column 2 title'
-        assert columns[3].title == 'Column 3 title'
+        List<Column> columns = data_grid.columns()
 
-        assert columns[1].cells.size() == 4
+        assert columns[0].title() == ''
+        assert columns[1].title() == 'Column 1 title'
+        assert columns[2].title() == 'Column 2 title'
+        assert columns[3].title() == 'Column 3 title'
 
-        List<Cell> cells = columns[1].cells
+        assert columns[1].cells().size() == 4
 
-        assert cells[0].value == 'cell 11'
-        assert cells[1].value == 'cell 21'
-        assert cells[2].value == 'cell 31'
-        assert cells[3].value == 'cell 41'
+        List<Cell> cells = columns[1].cells()
 
-        columns[2].cells[3].value == 'cell 42'
+        assert cells[0].value() == 'cell 11'
+        assert cells[1].value() == 'cell 21'
+        assert cells[2].value() == 'cell 31'
+        assert cells[3].value() == 'cell 41'
 
-        List<RowTest> rows = data_grid.rows
+        columns[2].cells()[3].value() == 'cell 42'
 
-        assert rows[0].cells.size() == 3
+        List<Tr> rows = data_grid.rows()
 
-        assert rows[0].title == 'row 1'
-        assert rows[1].title == 'row 2'
-        assert rows[2].title == 'row 3'
-        assert rows[3].title == 'row 4'
+        assert rows[0].cells().size() == 3
 
-        cells = rows[1].cells
+        assert rows[0].title() == 'row 1'
+        assert rows[1].title() == 'row 2'
+        assert rows[2].title() == 'row 3'
+        assert rows[3].title() == 'row 4'
 
-        assert cells[0].value == 'cell 21'
-        assert cells[1].value == 'cell 22'
-        assert cells[2].value == 'cell 23'
+        cells = rows[1].cells()
 
-        rows[2].cells[1].value == 'cell 32'
+        assert cells[0].value() == 'cell 21'
+        assert cells[1].value() == 'cell 22'
+        assert cells[2].value() == 'cell 23'
+
+        rows[2].cells()[1].value() == 'cell 32'
     }
 
     @Test
     public void should_access_to_column_by_title() {
         DataGrid data_grid = $('#data_grid') as Table
 
-        data_grid.column('').title == ''
-        data_grid.column('Column 1 title').title == 'Column 1 title'
-        data_grid.column('Column 2 title').title == 'Column 2 title'
-        data_grid.column('Column 3 title').title == 'Column 3 title'
+        data_grid.column('').title() == ''
+        data_grid.column('Column 1 title').title() == 'Column 1 title'
+        data_grid.column('Column 2 title').title() == 'Column 2 title'
+        data_grid.column('Column 3 title').title() == 'Column 3 title'
     }
 }

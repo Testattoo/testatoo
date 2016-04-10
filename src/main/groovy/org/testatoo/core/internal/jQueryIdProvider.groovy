@@ -19,7 +19,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.IdProvider
 import org.testatoo.core.MetaInfo
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -35,9 +35,9 @@ class jQueryIdProvider implements IdProvider {
     }
 
     @Override
-    List<MetaInfo> getMetaInfos() throws ComponentException {
-        Log.log "getMetaInfos: ${expression}"
-        List<MetaInfo> metaInfos = config.evaluator.getMetaInfo(expression)
+    List<MetaInfo> metaInfos() throws ComponentException {
+        Log.log "metaInfos: ${expression}"
+        List<MetaInfo> metaInfos = config.evaluator.metaInfo(expression)
         if (singleElement) {
             if (metaInfos.size() == 1) return metaInfos
             if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression ${expression} not found.")

@@ -29,7 +29,7 @@ class Mouse {
 
     static void rightClickOn(Component c) { c.rightClick() }
 
-    static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id) }
+    static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id()) }
 
     static DragBuilder drag(Component c) { return new DragBuilder(c) }
 }

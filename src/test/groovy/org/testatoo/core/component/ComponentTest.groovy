@@ -42,7 +42,7 @@ class ComponentTest {
     @Before
     public void before() {
         metaData = mock(MetaDataProvider)
-        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
+        when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
         evaluator = mock(Evaluator)
         config.evaluator = evaluator
     }
@@ -66,7 +66,7 @@ class ComponentTest {
         Component cmp_3 = new Component(metaData)
         Component cmp_4 = new Component(metaData) {}
 
-        when(metaData.getMetaInfo(any(Component)))
+        when(metaData.metaInfo(any(Component)))
                 .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
                 .thenReturn(new MetaInfo(id: 'cmpId_2')) // Call on id for cmp_2
                 .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
@@ -78,13 +78,13 @@ class ComponentTest {
         assert cmp_1.equals(cmp_3)  // Same class and same id
         assert !cmp_1.equals(cmp_4)  // Different class and same id
 
-        assert cmp_1.hashCode() == cmp_1.id.hashCode()
+        assert cmp_1.hashCode() == cmp_1.id().hashCode()
     }
 
     @Test
     public void should_implement_toString_based_on_class_name_and_id() {
         Component cmp_1 = new Component(metaData)
-        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: 'cmpId_1'))
+        when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'cmpId_1'))
 
         assert cmp_1.toString() == 'Component:cmpId_1'
     }
@@ -93,7 +93,7 @@ class ComponentTest {
     public void should_have_generic_behaviours_delegated_to_evaluator() {
         String cmp_id = 'cmpId_1'
         Component component = new Component(metaData)
-        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
+        when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
 
         String default_enabled_check_expression = "it.is(':disabled') || !!it.attr('disabled')"
         verify(evaluator, times(0)).check(cmp_id, default_enabled_check_expression)
@@ -114,14 +114,14 @@ class ComponentTest {
         verify(evaluator, times(2)).check(cmp_id, default_visibility_check_expression)
 
         reset(metaData)
-        when(metaData.getMetaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
-        verify(metaData, times(0)).getMetaInfo(component)
+        when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
+        verify(metaData, times(0)).metaInfo(component)
 
         component.available()
-        verify(metaData, times(1)).getMetaInfo(component)
+        verify(metaData, times(1)).metaInfo(component)
 
         component.missing()
-        verify(metaData, times(2)).getMetaInfo(component)
+        verify(metaData, times(2)).metaInfo(component)
 
         verify(evaluator, times(0)).click(cmp_id, [LEFT, SINGLE])
         component.click()

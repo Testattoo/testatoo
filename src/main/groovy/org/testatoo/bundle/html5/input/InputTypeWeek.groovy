@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.input
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.WeekField
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,7 +27,7 @@ import static org.testatoo.core.Testatoo.getConfig
 class InputTypeWeek extends WeekField implements Input {
 
     @Override
-    void setValue(String value) {
-        config.evaluator.runScript("\$('#${id}').val('" + value + "')")
+    void value(String value) {
+        config.evaluator.runScript("\$('#${id()}').val('" + value + "')")
     }
 }

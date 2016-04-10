@@ -20,7 +20,7 @@
   var jQuery = w.testatoo,
     $ = w.testatoo;
 
-  $.fn.getMetaInfos = function() {
+  $.fn.metaInfos = function() {
     var metaInfos = [];
     this.each(function() {
       var me = $(this),

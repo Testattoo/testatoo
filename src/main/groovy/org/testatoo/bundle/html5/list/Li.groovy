@@ -17,9 +17,10 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,7 +29,7 @@ import static org.testatoo.core.Testatoo.getConfig
 class Li extends Item {
 
     String value() {
-        config.evaluator.eval(id, 'it.text().trim()')
+        config.evaluator.eval(id(), 'it.text().trim()')
     }
 
     boolean selected() {
@@ -47,9 +48,9 @@ class Li extends Item {
         throw new ComponentException("${this.class.simpleName} ${this} cannot be unselected (Unsupported Operation)")
     }
 
-    boolean equals(o) {
+    boolean equals(Li o) {
         if (this.is(o)) return true
-        return value() == o.value
+        return value() == o.value()
     }
 
     @Override

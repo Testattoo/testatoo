@@ -34,6 +34,6 @@ class AvailableMatcher extends StateMatcher<Component> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(component).appendText(' is available')
+        description.appendText('available')
     }
 }

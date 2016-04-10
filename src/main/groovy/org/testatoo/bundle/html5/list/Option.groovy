@@ -34,7 +34,7 @@ class Option extends Item {
 
     @Override
     boolean selected() {
-        config.evaluator.check(id, "!!it.prop('selected')")
+        config.evaluator.check(id(), "!!it.prop('selected')")
     }
 
     @Override
@@ -44,7 +44,7 @@ class Option extends Item {
 
     @Override
     Object value() {
-        config.evaluator.eval(id, "it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
+        config.evaluator.eval(id(), "it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
     }
 
     @Override
@@ -54,12 +54,12 @@ class Option extends Item {
 
     @Override
     boolean disabled() {
-        config.evaluator.check(id, "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
+        config.evaluator.check(id(), "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
     }
 
-    boolean equals(o) {
+    boolean equals(Option o) {
         if (this.is(o)) return true
-        value() == o.value
+        value() == o.value()
     }
 
     @Override
@@ -70,18 +70,18 @@ class Option extends Item {
     @Override
     void click() {
         // TODO to fix FF issue
-        boolean onMultiSelect = config.evaluator.check(id, "it.closest('select').attr('multiple') && it.closest('select').attr('multiple').length > 0")
+        boolean onMultiSelect = config.evaluator.check(id(), "it.closest('select').attr('multiple') && it.closest('select').attr('multiple').length > 0")
         if(onMultiSelect) {
-            MultiSelect select = $("select:has(\"#${id}\")") as MultiSelect
-            select.items.findAll { it.selected() }.forEach {
+            MultiSelect select = $("select:has(\"#${id()}\")") as MultiSelect
+            select.items().findAll { it.selected() }.forEach {
                 config.evaluator.press(CTRL)
-                config.evaluator.click(it.id, [LEFT, SINGLE])
+                config.evaluator.click(it.id(), [LEFT, SINGLE])
                 config.evaluator.release(CTRL)
             }
         }
         if (!selected()) {
             config.evaluator.press(CTRL)
-            config.evaluator.click(id, [LEFT, SINGLE])
+            config.evaluator.click(id(), [LEFT, SINGLE])
             config.evaluator.release(CTRL)
         }
     }
@@ -92,7 +92,7 @@ class Option extends Item {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be selected")
         if (unselected()) {
             config.evaluator.press(CTRL)
-            config.evaluator.click(id, [LEFT, SINGLE])
+            config.evaluator.click(id(), [LEFT, SINGLE])
             config.evaluator.release(CTRL)
         } else
             throw new ComponentException("${this.class.simpleName} ${this} is already selected and cannot be selected")
@@ -104,7 +104,7 @@ class Option extends Item {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be unselected")
         if (selected()) {
             config.evaluator.press(CTRL)
-            config.evaluator.click(id, [LEFT, SINGLE])
+            config.evaluator.click(id(), [LEFT, SINGLE])
             config.evaluator.release(CTRL)
         } else
             throw new ComponentException("${this.class.simpleName} ${this} is already unselected and cannot be unselected")

@@ -59,7 +59,7 @@ abstract trait Evaluator implements AutoCloseable {
 
     abstract <T> T getJson(String jQueryExpr)
 
-    abstract List<MetaInfo> getMetaInfo(String jQueryExpr)
+    abstract List<MetaInfo> metaInfo(String jQueryExpr)
 
     abstract void type(Collection<?> keys)
 

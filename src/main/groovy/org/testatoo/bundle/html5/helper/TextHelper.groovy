@@ -17,14 +17,14 @@ package org.testatoo.bundle.html5.helper
 
 import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class TextHelper {
 
-    static String getText(Component c) {
-        config.evaluator.eval(c.id, "it.text()")
+    static String text(Component c) {
+        config.evaluator.eval(c.id(), "it.text()")
     }
 }

@@ -31,6 +31,6 @@ class ValidMatcher extends StateMatcher<ValiditySupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is valid')
+        description.appendText('valid')
     }
 }

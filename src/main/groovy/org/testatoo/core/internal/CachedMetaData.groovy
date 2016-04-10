@@ -33,9 +33,9 @@ class CachedMetaData implements MetaDataProvider {
     IdProvider idProvider
 
     @Override
-    MetaInfo getMetaInfo(Component c) {
+    MetaInfo metaInfo(Component c) {
         if (!metaInfo) {
-                MetaInfo info = idProvider.getMetaInfos()[0]
+                MetaInfo info = idProvider.metaInfos()[0]
                 if (c.class != Component) {
                     String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
                     if (!(config.evaluator.check(info.id, identifyingExpr))) {
@@ -51,7 +51,7 @@ class CachedMetaData implements MetaDataProvider {
     }
 
     @Override
-    List<MetaInfo> getMetaInfos() throws ComponentException {
-        idProvider.getMetaInfos()
+    List<MetaInfo> metaInfos() throws ComponentException {
+        idProvider.metaInfos()
     }
 }

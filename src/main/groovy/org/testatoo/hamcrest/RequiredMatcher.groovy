@@ -31,6 +31,6 @@ class RequiredMatcher extends StateMatcher<InputSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is required')
+        description.appendText('required')
     }
 }

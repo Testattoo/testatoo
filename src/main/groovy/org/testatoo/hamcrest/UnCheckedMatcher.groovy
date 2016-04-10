@@ -31,6 +31,6 @@ class UnCheckedMatcher extends StateMatcher<CheckSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is unchecked')
+        description.appendText('unchecked')
     }
 }

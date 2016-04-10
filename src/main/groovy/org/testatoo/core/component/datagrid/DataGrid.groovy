@@ -22,9 +22,9 @@ import org.testatoo.core.component.Component
  */
 abstract class DataGrid extends Component {
 
-    abstract List<Column> getColumns()
+    abstract List<Column> columns()
 
-    abstract List<Row> getRows()
+    abstract List<Row> rows()
 
     abstract Column column(String title)
 }

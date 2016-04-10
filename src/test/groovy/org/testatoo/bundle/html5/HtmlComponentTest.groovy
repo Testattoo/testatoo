@@ -96,7 +96,7 @@ class HtmlComponentTest {
                     reset_button
             )
         } catch (ComponentException e) {
-            assert e.message == "Component Div:panel does not contain expected component(s): [Button:$submit_button.id, Button:$reset_button.id]" as String
+            assert e.message == "Component Div:panel does not contain expected component(s): [Button:${submit_button.id()}, Button:${reset_button.id()}]" as String
         }
     }
 
@@ -123,7 +123,7 @@ class HtmlComponentTest {
         try {
             panel.display(email_field)
         } catch (ComponentException e) {
-            assert e.message == "Component Div:panel does not display expected component(s): [InputTypeEmail:$email_field.id]" as String
+            assert e.message == "Component Div:panel does not display expected component(s): [InputTypeEmail:${email_field.id()}]" as String
         }
     }
 }

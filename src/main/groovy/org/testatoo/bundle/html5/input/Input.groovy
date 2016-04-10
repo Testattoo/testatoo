@@ -28,11 +28,11 @@ import static org.testatoo.core.input.Key.BACK_SPACE
 trait Input {
 
     String placeholder() {
-        config.evaluator.eval(id, "it.prop('placeholder')")
+        config.evaluator.eval(id(), "it.prop('placeholder')")
     }
 
     boolean empty() {
-        config.evaluator.check(id, "\$.trim(it.val()).length == 0")
+        config.evaluator.check(id(), "\$.trim(it.val()).length == 0")
     }
 
     boolean filled() {
@@ -40,41 +40,41 @@ trait Input {
     }
 
     boolean readOnly() {
-        config.evaluator.check(id, "it.prop('readonly')")
+        config.evaluator.check(id(), "it.prop('readonly')")
     }
 
     boolean required() {
-        config.evaluator.check(id, "it.prop('required')")
+        config.evaluator.check(id(), "it.prop('required')")
     }
 
     boolean optional() {
         !required()
     }
 
-    void setValue(String value) {
+    void value(String value) {
         if (this.disabled()) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
         }
-        config.evaluator.trigger(this.id, 'blur')
+        config.evaluator.trigger(this.id(), 'blur')
         clear()
         config.evaluator.type([String.valueOf(value)])
-        config.evaluator.trigger(this.id, 'blur')
+        config.evaluator.trigger(this.id(), 'blur')
     }
 
     String label() {
-        getLabel(this)
+        label(this)
     }
 
     void clear() {
         this.click()
-        config.evaluator.runScript("\$('#${id}').val(' ').change()")
+        config.evaluator.runScript("\$('#${id()}').val(' ').change()")
         config.evaluator.type([BACK_SPACE])
-        config.evaluator.trigger(id, 'blur')
+        config.evaluator.trigger(id(), 'blur')
         this.click()
     }
 
     Object value() {
-        config.evaluator.eval(id, "it.val()")
+        config.evaluator.eval(id(), "it.val()")
     }
 
     boolean valid() {

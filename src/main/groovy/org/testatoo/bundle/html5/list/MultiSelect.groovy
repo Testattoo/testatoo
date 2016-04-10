@@ -19,7 +19,7 @@ import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.ListBox
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,36 +28,32 @@ import static org.testatoo.core.Testatoo.getConfig
 class MultiSelect extends ListBox {
 
     @Override
-    List<Option> getItems() {
+    List<Option> items() {
         find(By.css('option'), Option)
     }
 
     @Override
     Option item(String value) {
-        items.find { it.value() == value }
+        items().find { it.value() == value }
     }
 
     @Override
-    List<Option> getVisibleItems() {
-        int size = config.evaluator.eval(id, "it.prop('size')") as Integer
-        items[0..size - 1]
+    List<Option> visibleItems() {
+        int size = config.evaluator.eval(id(), "it.prop('size')") as Integer
+        items()[0..size - 1]
     }
 
     @Override
-    List<OptionGroup> getGroupItems() {
+    List<OptionGroup> groupItems() {
         find(By.css('optgroup'), OptionGroup)
     }
 
     @Override
     OptionGroup groupItem(String value) {
-        groupItems.find { it.value == value }
+        groupItems().find { it.value() == value }
     }
 
-    List<Option> getSelectedItems() {
-        items.findAll { it.selected() }
-    }
-
-    boolean multiSelectable() {
-        config.evaluator.check(id, "it.is('select') && it.prop('multiple')")
+    List<Option> selectedItems() {
+        items().findAll { it.selected() }
     }
 }

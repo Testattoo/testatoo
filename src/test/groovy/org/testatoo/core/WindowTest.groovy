@@ -16,13 +16,11 @@
 package org.testatoo.core
 
 import org.junit.Test
-import org.testatoo.core.Evaluator
-import org.testatoo.core.Window
 
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.times
 import static org.mockito.Mockito.verify
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

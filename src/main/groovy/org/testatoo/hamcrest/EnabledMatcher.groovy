@@ -34,6 +34,6 @@ class EnabledMatcher extends StateMatcher<Component> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(component).appendText(' is enabled')
+        description.appendText('enabled')
     }
 }

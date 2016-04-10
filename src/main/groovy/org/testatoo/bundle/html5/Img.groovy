@@ -26,7 +26,7 @@ import org.testatoo.core.component.Image
 class Img extends Image {
 
     @Override
-    String getSource() {
-        Testatoo.config.evaluator.eval(id, "it.prop('src')")
+    String source() {
+        Testatoo.config.evaluator.eval(id(), "it.prop('src')")
     }
 }

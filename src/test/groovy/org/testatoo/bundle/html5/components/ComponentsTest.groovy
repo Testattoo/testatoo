@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.components
 
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -21,21 +21,36 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.heading.*
+import org.testatoo.bundle.html5.A
+import org.testatoo.bundle.html5.Article
+import org.testatoo.bundle.html5.Aside
+import org.testatoo.bundle.html5.Button
+import org.testatoo.bundle.html5.CheckBox
+import org.testatoo.bundle.html5.Div
+import org.testatoo.bundle.html5.Footer
+import org.testatoo.bundle.html5.Form
+import org.testatoo.bundle.html5.Header
+import org.testatoo.bundle.html5.Img
+import org.testatoo.bundle.html5.Paragraph
+import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.Section
+import org.testatoo.bundle.html5.Span
+import org.testatoo.bundle.html5.heading.H1
+import org.testatoo.bundle.html5.heading.H2
+import org.testatoo.bundle.html5.heading.H3
+import org.testatoo.bundle.html5.heading.H4
+import org.testatoo.bundle.html5.heading.H5
+import org.testatoo.bundle.html5.heading.H6
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Component
 import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Image
 import org.testatoo.core.component.Link
 import org.testatoo.core.component.Panel
-import org.testatoo.core.component.field.EmailField
-import org.testatoo.core.component.field.PasswordField
-import org.testatoo.core.support.CheckSupport
-import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.support.TextSupport
-import org.testatoo.core.support.ValiditySupport
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -56,6 +71,8 @@ class ComponentsTest {
 
     @Test
     public void component_should_have_expected_common_behaviours() {
+        assert Button in org.testatoo.core.component.Button
+
         Button button = $('#button') as Button
 
         assert button.enabled()
@@ -74,6 +91,8 @@ class ComponentsTest {
 
     @Test
     public void article_should_have_expected_behaviours() {
+        assert Article in Component
+
         Article article = $('#article') as Article
 
         assert article.paragraphs.size() == 2
@@ -81,6 +100,8 @@ class ComponentsTest {
 
     @Test
     public void aside_should_have_expected_behaviours() {
+        assert Aside in Component
+
         Aside aside = $('#aside') as Aside
 
         assert aside.visible()
@@ -113,8 +134,6 @@ class ComponentsTest {
     @Test
     public void checkbox_should_have_expected_behaviours() {
         assert CheckBox in org.testatoo.core.component.CheckBox
-        assert CheckBox in CheckSupport
-        assert CheckBox in LabelSupport
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assert checkBox.label() == 'Check me out'
@@ -159,6 +178,8 @@ class ComponentsTest {
 
     @Test
     public void footer_should_have_expected_behaviours() {
+        assert Footer in Component
+
         Footer footer = $('#footer') as Footer
 
         assert footer.visible()
@@ -167,11 +188,10 @@ class ComponentsTest {
     @Test
     public void form_should_have_expected_behaviours() {
         assert Form in org.testatoo.core.component.Form
-        assert Form in ValiditySupport
 
         Form form = $('#form') as Form
-        EmailField email = $('#form [type=email]') as InputTypeEmail
-        PasswordField password = $('#form [type=password]') as InputTypePassword
+        InputTypeEmail email = $('#form [type=email]') as InputTypeEmail
+        InputTypePassword password = $('#form [type=password]') as InputTypePassword
         Message message = $('#form .alert') as Message
 
         assert form.visible()
@@ -179,8 +199,8 @@ class ComponentsTest {
         assert form.invalid()
         assert !form.valid()
 
-        email.value = 'joe.blow@email.org'
-        password.value = 'password666'
+        email.value('joe.blow@email.org')
+        password.value('password666')
         assert email.value() == 'joe.blow@email.org'
         assert password.value() == 'password666'
 
@@ -189,15 +209,17 @@ class ComponentsTest {
         assert email.value() == ''
         assert password.value() == ''
 
-        assert message.title == 'The form was submitted 0 time(s)'
+        assert message.title() == 'The form was submitted 0 time(s)'
         // Set the required password field before submitting
-        password.value = 'password666'
+        password.value('password666')
         form.submit()
-        assert message.title == 'The form was submitted 1 time(s)'
+        assert message.title() == 'The form was submitted 1 time(s)'
     }
 
     @Test
     public void header_should_have_expected_behaviours() {
+        assert Header in Component
+
         Header header = $('#header') as Header
 
         assert header.visible()
@@ -211,7 +233,6 @@ class ComponentsTest {
         assert H4 in Heading
         assert H5 in Heading
         assert H6 in Heading
-        assert Heading in TextSupport
 
         H1 h1 = $('#h1') as H1
         assert h1.text() == 'heading 1'
@@ -235,32 +256,34 @@ class ComponentsTest {
     @Test
     public void image_should_have_expected_behaviours() {
         assert Img in Image
+
         Img image = $('#image') as Img
 
-        assert image.source == 'http://localhost:8080/img/Montpellier.jpg'
+        assert image.source() == 'http://localhost:8080/img/Montpellier.jpg'
     }
 
     @Test
     public void link_should_have_expected_behaviours() {
         assert A in Link
-        assert A in TextSupport
 
         A link = $('#link') as A
 
         assert link.text() == 'Link to dsl page'
-        assert link.reference == 'http://localhost:8080/dsl.html'
+        assert link.reference() == 'http://localhost:8080/dsl.html'
     }
 
     @Test
     public void panel_should_have_expected_behaviours() {
         assert Div in Panel
+
         Div panel = $('#panel') as Div
 
-        assert panel.title == ''
+        assert panel.title() == ''
     }
 
     @Test
     public void paragraph_should_have_expected_behaviours() {
+        assert Paragraph in Component
         assert Paragraph in TextSupport
 
         Paragraph paragraph = $('#p_1') as Paragraph
@@ -271,14 +294,12 @@ class ComponentsTest {
     @Test
     public void radio_should_have_expected_behaviours() {
         assert Radio in org.testatoo.core.component.Radio
-        assert Radio in LabelSupport
-        assert Radio in CheckSupport
 
-        Radio radio = $('#radio') as Radio
+        Radio radio = $('#radio_1') as Radio
         assert radio.label() == 'Radio label checked'
         assert radio.checked()
 
-        radio = $('#other_radio') as Radio
+        radio = $('#radio_2') as Radio
         assert radio.label() == 'Radio label unchecked'
         assert radio.unchecked()
         radio.check()
@@ -287,14 +308,18 @@ class ComponentsTest {
 
     @Test
     public void section_should_have_expected_behaviours() {
+        assert Section in Component
+
         Section section = $('#section') as Section
 
-        assert section.paragraphs.size() == 1
-        assert section.articles.size() == 1
+        assert section.paragraphs().size() == 1
+        assert section.articles().size() == 1
     }
 
     @Test
     public void span_should_have_expected_behaviours() {
+        assert Span in Component
+
         Span span = $('#span') as Span
 
         assert span.text() == 'A span'
@@ -303,8 +328,8 @@ class ComponentsTest {
     @ByCss('div')
     class Message extends Panel {
         @Override
-        String getTitle() {
-            config.evaluator.eval(id, "it.text()")
+        String title() {
+            config.evaluator.eval(id(), "it.text()")
         }
     }
 }

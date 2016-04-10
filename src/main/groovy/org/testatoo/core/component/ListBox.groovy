@@ -15,22 +15,20 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.MultiSelectable
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListBox extends Component implements MultiSelectable {
+abstract class ListBox extends Component {
 
-    abstract List<Item> getItems()
+    abstract List<Item> items()
 
     abstract Item item(String value)
 
-    abstract List<Item> getVisibleItems()
+    abstract List<Item> visibleItems()
 
-    abstract List<GroupItem> getGroupItems()
+    abstract List<GroupItem> groupItems()
 
     abstract GroupItem groupItem(String value)
 
-    abstract List<Item> getSelectedItems()
+    abstract List<Item> selectedItems()
 }

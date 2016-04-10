@@ -27,17 +27,17 @@ import org.testatoo.core.component.datagrid.DataGrid
 class Table extends DataGrid {
 
     @Override
-    List<Th> getColumns() {
+    List<Th> columns() {
         find(By.css('thead tr:last th'), Th)
     }
 
     @Override
-    List<Tr> getRows() {
+    List<Tr> rows() {
         find(By.css('tbody tr'), Tr)
     }
 
     @Override
-    Column column(String title) {
-        columns.find { it.title == title }
+    Th column(String title) {
+        columns().find { it.title() == title }
     }
 }

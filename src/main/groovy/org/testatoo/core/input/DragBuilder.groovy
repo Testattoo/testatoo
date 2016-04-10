@@ -17,7 +17,7 @@ package org.testatoo.core.input
 
 import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -31,6 +31,6 @@ class DragBuilder {
     }
 
     public void on(Component onto) {
-        config.evaluator.dragAndDrop(dragged.id, onto.id)
+        config.evaluator.dragAndDrop(dragged.id(), onto.id())
     }
 }

@@ -22,5 +22,5 @@ import org.testatoo.core.support.TextSupport
  */
 abstract class Link extends Component implements TextSupport {
 
-    abstract String getReference()
+    abstract String reference()
 }

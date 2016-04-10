@@ -22,7 +22,7 @@ import org.testatoo.core.component.Component
  */
 interface MetaDataProvider {
 
-    MetaInfo getMetaInfo(Component c)
+    MetaInfo metaInfo(Component c)
 
-    List<MetaInfo> getMetaInfos()
+    List<MetaInfo> metaInfos()
 }

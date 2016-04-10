@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.heading
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Heading
 
-import static org.testatoo.bundle.html5.helper.TextHelper.getText
+import static org.testatoo.bundle.html5.helper.TextHelper.text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,6 +29,6 @@ class H3 extends Heading {
 
     @Override
     String text() {
-        getText(this);
+        text(this);
     }
 }

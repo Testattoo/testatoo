@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5
 import org.testatoo.core.ByCss
 
 import static org.testatoo.bundle.html5.helper.CheckHelper.*
-import static org.testatoo.bundle.html5.helper.LabelHelper.getLabel
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -48,6 +48,6 @@ class CheckBox extends org.testatoo.core.component.CheckBox {
 
     @Override
     String label() {
-        getLabel(this)
+        label(this)
     }
 }

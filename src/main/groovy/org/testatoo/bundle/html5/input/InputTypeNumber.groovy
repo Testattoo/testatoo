@@ -19,7 +19,7 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.NumberField
 
 import static org.testatoo.bundle.html5.helper.RangeHelper.*
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,7 +28,7 @@ import static org.testatoo.core.Testatoo.getConfig
 class InputTypeNumber extends NumberField implements Input {
 
     Number value() {
-        Object value = config.evaluator.eval(id, "it.val()")
+        Object value = config.evaluator.eval(id(), "it.val()")
         if (value)
             value as BigDecimal
         else
@@ -37,17 +37,17 @@ class InputTypeNumber extends NumberField implements Input {
 
     @Override
     Number minimum() {
-        getMinimun(this) as BigDecimal
+        minimun(this) as BigDecimal
     }
 
     @Override
     Number maximum() {
-        getMaximum(this) as BigDecimal
+        maximum(this) as BigDecimal
     }
 
     @Override
     Number step() {
-        getStep(this)
+        step(this)
     }
 
     @Override

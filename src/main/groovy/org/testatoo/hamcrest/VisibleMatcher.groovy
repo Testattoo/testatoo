@@ -34,6 +34,6 @@ class VisibleMatcher extends StateMatcher<Component> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(component).appendText(' is visible')
+        description.appendText('visible')
     }
 }

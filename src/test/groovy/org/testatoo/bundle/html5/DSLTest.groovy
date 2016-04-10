@@ -65,7 +65,7 @@ class DSLTest {
         check checkbox
         checkbox.should { be checked }
 
-        Radio radio = $('#other_radio') as Radio
+        Radio radio = $('#radio_2') as Radio
         radio.should { be unchecked }
         check radio
         radio.should { be checked }

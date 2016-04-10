@@ -17,23 +17,23 @@ package org.testatoo.bundle.html5.helper
 
 import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class RangeHelper {
 
-    static Object getMinimun(Component c) {
-        config.evaluator.eval(c.id, "it.prop('min')")
+    static Object minimun(Component c) {
+        config.evaluator.eval(c.id(), "it.prop('min')")
     }
 
-    static Object getMaximum(Component c) {
-        config.evaluator.eval(c.id, "it.prop('max')")
+    static Object maximum(Component c) {
+        config.evaluator.eval(c.id(), "it.prop('max')")
     }
 
-    static Number getStep(Component c) {
-        Object value = config.evaluator.eval(c.id, "it.prop('step')")
+    static Number step(Component c) {
+        Object value = config.evaluator.eval(c.id(), "it.prop('step')")
         if (value)
             value as BigDecimal
         else
@@ -45,6 +45,6 @@ class RangeHelper {
     }
 
     static boolean outOfRange(Component c) {
-        config.evaluator.check(c.id, "it.is(':out-of-range')")
+        config.evaluator.check(c.id(), "it.is(':out-of-range')")
     }
 }

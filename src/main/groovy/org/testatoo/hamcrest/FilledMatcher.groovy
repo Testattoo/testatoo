@@ -31,6 +31,6 @@ class FilledMatcher extends StateMatcher<InputSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is filled')
+        description.appendText('filled')
     }
 }

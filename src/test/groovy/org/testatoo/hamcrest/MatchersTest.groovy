@@ -18,8 +18,8 @@ package org.testatoo.hamcrest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.bundle.html5.list.MultiSelect
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Dropdown
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport
 import org.testatoo.core.support.LabelSupport
@@ -53,70 +53,70 @@ class MatchersTest {
 
         when(cmp.enabled()).thenReturn(false)
         try {
-            assertThat(cmp, enabled())
+            assertThat(cmp, is(enabled()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <' + cmp + '> is enabled     but: is disabled'
+            assert message(e) == 'Expected: is enabled     but: is disabled'
         }
 
         // Disabled
         when(cmp.disabled()).thenReturn(true)
-        assertThat(cmp, disabled())
+        assertThat(cmp, is(disabled()))
 
         when(cmp.disabled()).thenReturn(false)
         try {
-            assertThat(cmp, disabled())
+            assertThat(cmp, is(disabled()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <' + cmp + '> is disabled     but: is enabled'
+            assert message(e) == 'Expected: is disabled     but: is enabled'
         }
 
         // Available
         when(cmp.available()).thenReturn(true)
-        assertThat(cmp, available())
+        assertThat(cmp, is(available()))
 
         when(cmp.available()).thenReturn(false)
         try {
-            assertThat(cmp, available())
+            assertThat(cmp, is(available()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <' + cmp + '> is available     but: is missing'
+            assert message(e) == 'Expected: is available     but: is missing'
         }
 
         // Missing
         when(cmp.missing()).thenReturn(true)
-        assertThat(cmp, missing())
+        assertThat(cmp, is(missing()))
 
         when(cmp.missing()).thenReturn(false)
         try {
-            assertThat(cmp, missing())
+            assertThat(cmp, is(missing()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <' + cmp + '> is missing     but: is available'
+            assert message(e) == 'Expected: is missing     but: is available'
         }
 
         // Visible
         when(cmp.visible()).thenReturn(true)
-        assertThat(cmp, visible())
+        assertThat(cmp, is(visible()))
 
         when(cmp.visible()).thenReturn(false)
         try {
-            assertThat(cmp, visible())
+            assertThat(cmp, is(visible()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <' + cmp + '> is visible     but: is hidden'
+            assert message(e) == 'Expected: is visible     but: is hidden'
         }
 
         // Hidden
         when(cmp.hidden()).thenReturn(true)
-        assertThat(cmp, hidden())
+        assertThat(cmp, is(hidden()))
 
         when(cmp.hidden()).thenReturn(false)
         try {
-            assertThat(cmp, hidden())
+            assertThat(cmp, is(hidden()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <' + cmp + '> is hidden     but: is visible'
+            assert message(e) == 'Expected: is hidden     but: is visible'
         }
     }
 
@@ -125,12 +125,12 @@ class MatchersTest {
         LabelSupport cmp = mock(LabelSupport)
         when(cmp.label()).thenReturn('MyLabel')
 
-        assertThat(cmp, hasLabel('MyLabel'))
+        assertThat(cmp, has(label('MyLabel')))
         try {
-            assertThat(cmp, hasLabel('OtherLabel'))
+            assertThat(cmp, has(label('OtherLabel')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: "OtherLabel"     but: was "MyLabel"'
+            assert message(e) == 'Expected: has "OtherLabel"     but: was "MyLabel"'
         }
     }
 
@@ -140,72 +140,72 @@ class MatchersTest {
 
         // Placeholder
         when(cmp.placeholder()).thenReturn('MyPlaceholder')
-        assertThat(cmp, hasPlaceholder('MyPlaceholder'))
+        assertThat(cmp, has(placeholder('MyPlaceholder')))
         try {
-            assertThat(cmp, hasPlaceholder('OtherPlaceholder'))
+            assertThat(cmp, has(placeholder('OtherPlaceholder')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: "OtherPlaceholder"     but: was "MyPlaceholder"'
+            assert message(e) == 'Expected: has "OtherPlaceholder"     but: was "MyPlaceholder"'
         }
 
         // Empty
         when(cmp.empty()).thenReturn(true)
-        assertThat(cmp, Matchers.empty())
+        assertThat(cmp, is(Matchers.empty()))
 
         when(cmp.empty()).thenReturn(false)
         try {
-            assertThat(cmp, Matchers.empty())
+            assertThat(cmp, is(Matchers.empty()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is empty     but: is filled'
+            assert message(e) == 'Expected: is empty     but: is filled'
         }
 
         // Filled
         when(cmp.filled()).thenReturn(true)
-        assertThat(cmp, filled())
+        assertThat(cmp, is(filled()))
 
         when(cmp.filled()).thenReturn(false)
         try {
-            assertThat(cmp, filled())
+            assertThat(cmp, is(filled()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is filled     but: is empty'
+            assert message(e) == 'Expected: is filled     but: is empty'
         }
 
         // ReadOnly
         when(cmp.readOnly()).thenReturn(true)
-        assertThat(cmp, readOnly())
+        assertThat(cmp, is(readOnly()))
 
         when(cmp.readOnly()).thenReturn(false)
         try {
-            assertThat(cmp, readOnly())
+            assertThat(cmp, is(readOnly()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is read only     but: is not read only'
+            assert message(e) == 'Expected: is read only     but: is not read only'
         }
 
         // Required
         when(cmp.required()).thenReturn(true)
-        assertThat(cmp, required())
+        assertThat(cmp, is(required()))
 
         when(cmp.required()).thenReturn(false)
         try {
-            assertThat(cmp, required())
+            assertThat(cmp, is(required()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is required     but: is optional'
+            assert message(e) == 'Expected: is required     but: is optional'
         }
 
         // Optional
         when(cmp.optional()).thenReturn(true)
-        assertThat(cmp, optional())
+        assertThat(cmp, is(optional()))
 
         when(cmp.optional()).thenReturn(false)
         try {
-            assertThat(cmp, optional())
+            assertThat(cmp, is(optional()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is optional     but: is required'
+            assert message(e) == 'Expected: is optional     but: is required'
         }
     }
 
@@ -215,26 +215,26 @@ class MatchersTest {
 
         // Checked
         when(cmp.checked()).thenReturn(true)
-        assertThat(cmp, checked())
+        assertThat(cmp, is(checked()))
 
         when(cmp.checked()).thenReturn(false)
         try {
-            assertThat(cmp, checked())
+            assertThat(cmp, is(checked()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is checked     but: is unchecked'
+            assert message(e) == 'Expected: is checked     but: is unchecked'
         }
 
         // Unchecked
         when(cmp.unchecked()).thenReturn(true)
-        assertThat(cmp, unchecked())
+        assertThat(cmp, is(unchecked()))
 
         when(cmp.unchecked()).thenReturn(false)
         try {
-            assertThat(cmp, unchecked())
+            assertThat(cmp, is(unchecked()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is unchecked     but: is checked'
+            assert message(e) == 'Expected: is unchecked     but: is checked'
         }
     }
 
@@ -244,54 +244,54 @@ class MatchersTest {
 
         // Maximum
         when(cmp.maximum()).thenReturn(10)
-        assertThat(cmp, hasMaximum(10))
+        assertThat(cmp, has(maximum(10)))
         try {
-            assertThat(cmp, hasMaximum(50))
+            assertThat(cmp, has(maximum(50)))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <50>     but: was <10>'
+            assert message(e) == 'Expected: has <50>     but: was <10>'
         }
 
         // Minimum
         when(cmp.minimum()).thenReturn(10)
-        assertThat(cmp, hasMinimum(10))
+        assertThat(cmp, has(minimum(10)))
         try {
-            assertThat(cmp, hasMinimum(50))
+            assertThat(cmp, has(minimum(50)))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <50>     but: was <10>'
+            assert message(e) == 'Expected: has <50>     but: was <10>'
         }
 
         // Step
         when(cmp.step()).thenReturn(10)
-        assertThat(cmp, hasStep(10))
+        assertThat(cmp, has(step(10)))
         try {
-            assertThat(cmp, hasStep(50))
+            assertThat(cmp, has(step(50)))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: <50>     but: was <10>'
+            assert message(e) == 'Expected: has <50>     but: was <10>'
         }
 
         // InRange
         when(cmp.inRange()).thenReturn(true)
-        assertThat(cmp, inRange())
+        assertThat(cmp, is(inRange()))
         try {
             when(cmp.inRange()).thenReturn(false)
-            assertThat(cmp, inRange())
+            assertThat(cmp, is(inRange()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is in range     but: is out of range'
+            assert message(e) == 'Expected: is in range     but: is out of range'
         }
 
         // OutOfRange
         when(cmp.outOfRange()).thenReturn(true)
-        assertThat(cmp, outOfRange())
+        assertThat(cmp, is(outOfRange()))
         try {
             when(cmp.outOfRange()).thenReturn(false)
-            assertThat(cmp, outOfRange())
+            assertThat(cmp, is(outOfRange()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is out of range     but: is in range'
+            assert message(e) == 'Expected: is out of range     but: is in range'
         }
     }
 
@@ -301,24 +301,24 @@ class MatchersTest {
 
         // Valid
         when(cmp.valid()).thenReturn(true)
-        assertThat(cmp, valid())
+        assertThat(cmp, is(valid()))
         try {
             when(cmp.valid()).thenReturn(false)
-            assertThat(cmp, valid())
+            assertThat(cmp, is(valid()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is valid     but: is invalid'
+            assert message(e) == 'Expected: is valid     but: is invalid'
         }
 
         // Invalid
         when(cmp.invalid()).thenReturn(true)
-        assertThat(cmp, invalid())
+        assertThat(cmp, is(invalid()))
         try {
             when(cmp.invalid()).thenReturn(false)
-            assertThat(cmp, invalid())
+            assertThat(cmp, is(invalid()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is invalid     but: is valid'
+            assert message(e) == 'Expected: is invalid     but: is valid'
         }
     }
 
@@ -327,12 +327,12 @@ class MatchersTest {
         TextSupport cmp = mock(TextSupport)
         when(cmp.text()).thenReturn('MyText')
 
-        assertThat(cmp, hasText('MyText'))
+        assertThat(cmp, has(text('MyText')))
         try {
-            assertThat(cmp, hasText('OtherText'))
+            assertThat(cmp, has(text('OtherText')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: "OtherText"     but: was "MyText"'
+            assert message(e) == 'Expected: has "OtherText"     but: was "MyText"'
         }
     }
 
@@ -342,24 +342,24 @@ class MatchersTest {
 
         // Selected
         when(cmp.selected()).thenReturn(true)
-        assertThat(cmp, selected())
+        assertThat(cmp, is(selected()))
         try {
             when(cmp.selected()).thenReturn(false)
-            assertThat(cmp, selected())
+            assertThat(cmp, is(selected()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is selected     but: is unselected'
+            assert message(e) == 'Expected: is selected     but: is unselected'
         }
 
         // Unselected
         when(cmp.unselected()).thenReturn(true)
-        assertThat(cmp, unselected())
+        assertThat(cmp, is(unselected()))
         try {
             when(cmp.unselected()).thenReturn(false)
-            assertThat(cmp, unselected())
+            assertThat(cmp, is(unselected()))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is unselected     but: is selected'
+            assert message(e) == 'Expected: is unselected     but: is selected'
         }
     }
 
@@ -368,30 +368,26 @@ class MatchersTest {
         ValueSupport cmp = mock(ValueSupport)
         when(cmp.value()).thenReturn('MyValue')
 
-        assertThat(cmp, Matchers.hasValue('MyValue'))
+        assertThat(cmp, has(value('MyValue')))
         try {
-            assertThat(cmp, Matchers.hasValue('OtherValue'))
+            assertThat(cmp, has(value('OtherValue')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: "OtherValue"     but: was "MyValue"'
+            assert message(e) == 'Expected: has "OtherValue"     but: was "MyValue"'
         }
     }
 
-    @Test
-    public void should_have_matcher_for_listbox_multiselectable() {
-        MultiSelect cmp = mock(MultiSelect)
+//    @Test
+//    public void should_have_matcher_for_selected_items() {
+//        Dropdown cmp = mock(Dropdown)
+//
+//        when(cmp.selectedItem)
+//
+////        when(cmp.selectedItems()).thenReturn([new Item])
+//    }
 
-        // Multi Selectable
-        when(cmp.multiSelectable()).thenReturn(true)
-        assertThat(cmp, multiSelectable())
-        try {
-            when(cmp.multiSelectable()).thenReturn(false)
-            assertThat(cmp, multiSelectable())
-            fail()
-        } catch (AssertionError e) {
-            assert message(e) == 'Expected: Component is multi selectable     but: is single selectable'
-        }
-    }
+
+
 
     private static String message(AssertionError error) {
         error.message.replaceAll('[\n\r]', '')

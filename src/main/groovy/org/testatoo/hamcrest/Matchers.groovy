@@ -17,7 +17,6 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Factory
 import org.hamcrest.Matcher
-import org.testatoo.bundle.html5.list.MultiSelect
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.CheckSupport
 import org.testatoo.core.support.InputSupport
@@ -33,6 +32,10 @@ import org.testatoo.core.support.ValueSupport
  */
 class Matchers {
 
+    @Factory
+    public static <T> Matcher<T> has(Matcher<T> matcher) { new Has(matcher) }
+
+    // States
     @Factory
     public static Matcher<Component> enabled() { new EnabledMatcher() }
 
@@ -50,12 +53,6 @@ class Matchers {
 
     @Factory
     public static Matcher<Component> hidden() { new HiddenMatcher() }
-
-    @Factory
-    public static Matcher<LabelSupport> hasLabel(String label) { new LabelMatcher(label) }
-
-    @Factory
-    public static Matcher<InputSupport> hasPlaceholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
     @Factory
     public static Matcher<InputSupport> empty() { new EmptyMatcher() }
@@ -79,13 +76,10 @@ class Matchers {
     public static Matcher<CheckSupport> unchecked() { new UnCheckedMatcher() }
 
     @Factory
-    public static Matcher<RangeSupport> hasMaximum(Object maximum) { new MaximumMatcher(maximum) }
+    public static Matcher<SelectSupport> selected() { new SelectedMatcher() }
 
     @Factory
-    public static Matcher<RangeSupport> hasMinimum(Object minimum) { new MinimumMatcher(minimum) }
-
-    @Factory
-    public static Matcher<RangeSupport> hasStep(Object minimum) { new StepMatcher(minimum) }
+    public static Matcher<SelectSupport> unselected() { new UnSelectedMatcher() }
 
     @Factory
     public static Matcher<RangeSupport> inRange() { new InRangeMatcher() }
@@ -99,18 +93,25 @@ class Matchers {
     @Factory
     public static Matcher<ValiditySupport> invalid() { new InValidMatcher() }
 
+    // Properties
     @Factory
-    public static Matcher<TextSupport> hasText(String text) { new TextMatcher(text) }
+    public static Matcher<LabelSupport> label(String label) { new LabelMatcher(label) }
 
     @Factory
-    public static Matcher<SelectSupport> selected() { new SelectedMatcher() }
+    public static Matcher<InputSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
     @Factory
-    public static Matcher<SelectSupport> unselected() { new UnSelectedMatcher() }
+    public static Matcher<RangeSupport> maximum(Object maximum) { new MaximumMatcher(maximum) }
 
     @Factory
-    public static Matcher<ValueSupport> hasValue(Object value) { new ValueMatcher(value) }
+    public static Matcher<RangeSupport> minimum(Object minimum) { new MinimumMatcher(minimum) }
 
     @Factory
-    public static Matcher<MultiSelect> multiSelectable() { new MultiSelectableMatcher() }
+    public static Matcher<RangeSupport> step(Object minimum) { new StepMatcher(minimum) }
+
+    @Factory
+    public static Matcher<TextSupport> text(String text) { new TextMatcher(text) }
+
+    @Factory
+    public static Matcher<ValueSupport> value(Object value) { new ValueMatcher(value) }
 }

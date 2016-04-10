@@ -11,9 +11,15 @@ This is the base for all testatoo components.
 |enabled    |disabled
 |available  |missing
 |hidden     |visible
-|contains     |displays
-
+|contains   |displays
 |===
+
+[source,groovy,,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
+----
+
 [IMPORTANT]
 ====
 *All the Testatoo components inherit these states.*
@@ -36,19 +42,16 @@ like searching for a query at a search engine, or to interact with dialog boxes,
 
 |===
 
-[source, java]
--------------------------------------------------------------------------------
-Button button = $('#button') as Button
-button.should {
-    have text('My Button Text')
-}
-
-clickOn button
--------------------------------------------------------------------------------
+[source,groovy,,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=button]
+----
 
 === CheckBox
 
 image::components/CheckBox.png[CheckBox]
+image::components/CheckBox_checked.png[CheckBox]
 
 Definition: a *checkbox* is a small box that, when selected by the user, shows that a particular feature has been enabled
  or a particular option chosen. Check boxes are commonly used when more than one option may need to be selected.
@@ -64,36 +67,14 @@ Definition: a *checkbox* is a small box that, when selected by the user, shows t
 |unchecked
 |
 |uncheck
-
 |===
 
-[source, java]
--------------------------------------------------------------------------------
-CheckBox checkbox = $('#checkbox') as CheckBox
-checkbox.should {
-    have label('Check me out ')
-    be unchecked
-}
 
-clickOn checkbox    // Checks the checkbox
-//  OR
-check checkbox      // Checks the checkbox or throws an exception if the checkbox is already checked
--------------------------------------------------------------------------------
-
-image::components/CheckBox_checked.png[CheckBox]
-
-[source, java]
--------------------------------------------------------------------------------
-CheckBox checkbox = $('#checkbox') as CheckBox
-checkbox.should {
-    have label('Check me out ')
-    be checked
-}
-
-clickOn checkbox    // Unchecks the checkbox
-//  OR
-uncheck checkbox    // Unchecks the checkbox or throws an exception if the checkbox is already checked
--------------------------------------------------------------------------------
+[source,groovy,,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=checkbox]
+----
 
 === Radio
 
@@ -118,30 +99,13 @@ same group becomes deselected (making it so only one can be selected).
 |unchecked
 |
 |
-
 |===
 
-[source, java]
--------------------------------------------------------------------------------
-Radio radio_checked = $('#radio_1') as Radio
-Radio radio_unchecked = $('#radio_2') as Radio
-
-radio_checked.should {
-    have label('Radio label checked')
-    be checked
-}
-
-radio_unchecked.should {
-    have label('Radio label unchecked')
-    be unchecked
-}
-
-clickOn radio_unchecked     // Checks the radio
-//  OR
-check radio_unchecked       // Checks the radio
-
-check radio_checked         // Throws an exception (the radio is already checked)
--------------------------------------------------------------------------------
+[source,groovy,,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=radio]
+----
 
 === DropDown
 
@@ -268,7 +232,6 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 
 |States|Properties|Intentions
 
-|multiselectable
 |label
 |select
 
@@ -300,7 +263,6 @@ listbox.should {
     have selectedItems('Montreal')
 
     have 3.visibleItems     // See the first image at the begin of this section
-    be multiSelectable      // We can select more than one item
 }
 
 // Try to select ananother item with a control + click

@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 package org.testatoo.evaluator.webdriver
+
+import org.junit.Before
+import org.junit.BeforeClass
+import org.junit.ClassRule
+import org.testatoo.WebDriverConfig
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class WebDriverEvaluatorTest {
 
-    //    @ClassRule
+//        @ClassRule
 //    public static WebDriverConfig driver = new WebDriverConfig()
 //
 //    @BeforeClass
@@ -50,7 +56,7 @@ class WebDriverEvaluatorTest {
 //        assert checkBox.unchecked
 //        clickOn checkBox
 //        assert checkBox.checked
-//
+//new HasMathcer
 //        Radio radio = $('#radio') as Radio
 //        assert radio.unchecked
 //        clickOn radio
@@ -95,7 +101,7 @@ class WebDriverEvaluatorTest {
 //        assert button.text == 'Button'
 //        button.rightClick()
 //        assert button.text == 'Button Right Clicked!'
-//    }
+//    }new HasMathcer
 //
 //    @Test
 //    public void should_be_able_to_mouseOver() {
@@ -176,8 +182,8 @@ class WebDriverEvaluatorTest {
 //            config.evaluator.eval(id, "it.find('h1').text()")
 //        }
 //    }
-
-
+////
+////
 //    @ClassRule
 //    public static WebDriverConfig driver = new WebDriverConfig()
 //
@@ -200,7 +206,7 @@ class WebDriverEvaluatorTest {
 //            assert current_span.available
 //        }
 //    }
-//
+
 //    @Test
 //    public void should_type_number_on_keyboard() {
 //        (0..9).each {

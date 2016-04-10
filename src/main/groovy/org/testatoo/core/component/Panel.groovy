@@ -19,5 +19,5 @@ package org.testatoo.core.component
  */
 abstract class Panel extends Component {
 
-    abstract String getTitle()
+    abstract String title()
 }

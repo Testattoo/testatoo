@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.input
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.PhoneField
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,6 +27,6 @@ import static org.testatoo.core.Testatoo.getConfig
 class InputTypeTel extends PhoneField implements Input {
 
     String getPattern() {
-        config.evaluator.eval(id, "it.prop('pattern')")
+        config.evaluator.eval(id(), "it.prop('pattern')")
     }
 }

@@ -22,5 +22,5 @@ import org.testatoo.core.component.Component
  */
 abstract class Cell extends Component {
 
-    abstract String getValue()
+    abstract String value()
 }

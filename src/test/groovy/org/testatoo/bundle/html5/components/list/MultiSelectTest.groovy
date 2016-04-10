@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.list
+package org.testatoo.bundle.html5.components.list
 
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -21,10 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.list.MultiSelect
+import org.testatoo.bundle.html5.list.OptionGroup
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.component.ListBox
-import org.testatoo.core.support.MultiSelectable
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -46,13 +47,11 @@ class MultiSelectTest {
     @Test
     public void should_have_expected_behaviours() {
         assert MultiSelect in ListBox
-        assert ListBox in MultiSelectable
 
         ListBox cities = $('#cities') as MultiSelect
 
-        assert cities.items.size() == 6
-        assert cities.visibleItems.size() == 3
-        assert cities.multiSelectable()
+        assert cities.items().size() == 6
+        assert cities.visibleItems().size() == 3
 
         Item montreal = cities.item('Montreal')
         Item quebec = cities.item('Quebec')
@@ -81,12 +80,12 @@ class MultiSelectTest {
         assert munich.selected()
         assert cities.item('Munich').selected()
 
-        assert cities.selectedItems.containsAll(newYork, munich)
+        assert cities.selectedItems().containsAll(newYork, munich)
 
         cities.select('Montpellier', 'Montreal')
         assert cities.item('Montpellier').selected()
         assert cities.item('Montreal').selected()
-        assert cities.selectedItems.containsAll(newYork, munich, montpellier, montreal)
+        assert cities.selectedItems().containsAll(newYork, munich, montpellier, montreal)
 
         montreal.unselect()
         montpellier.unselect()
@@ -137,12 +136,10 @@ class MultiSelectTest {
         }
 
         MultiSelect planets = $('#planets') as MultiSelect
-        assert planets.visibleItems.size() == 5
-        assert !planets.multiSelectable()
-
-        assert planets.groupItems.size() == 2
-        assert planets.groupItems[0].value == 'Cat-1'
-        assert planets.groupItem('Cat-1').value == 'Cat-1'
+        assert planets.visibleItems().size() == 5
+        assert planets.groupItems().size() == 2
+        assert planets.groupItems()[0].value() == 'Cat-1'
+        assert planets.groupItem('Cat-1').value() == 'Cat-1'
     }
 
     @Test
@@ -150,8 +147,8 @@ class MultiSelectTest {
         ListBox planets = $('#planets') as MultiSelect
         OptionGroup groupItem = planets.groupItem('Cat-1')
 
-        assert groupItem.items.size() == 4
-        assert groupItem.items[0].value() == 'Mercury'
+        assert groupItem.items().size() == 4
+        assert groupItem.items()[0].value() == 'Mercury'
         assert groupItem.item('Earth').value() == 'Earth'
     }
 }

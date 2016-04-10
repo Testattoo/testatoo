@@ -19,5 +19,5 @@ package org.testatoo.core.component
  */
 abstract class Image extends Component {
 
-    abstract String getSource()
+    abstract String source()
 }

@@ -23,14 +23,18 @@ import org.testatoo.core.support.InputSupport
  */
 class EmptyMatcher extends StateMatcher<InputSupport> {
 
+    private InputSupport input
+
     @Override
-    protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
+    protected boolean matchesSafely(InputSupport input, Description mismatchDescription) {
+        this.input = input
         mismatchDescription.appendText('is filled')
-        item.empty()
+        input.empty()
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is empty')
+        description.appendText('empty')
     }
+
 }

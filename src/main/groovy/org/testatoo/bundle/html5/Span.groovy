@@ -29,6 +29,6 @@ class Span extends Component implements TextSupport {
 
     @Override
     String text() {
-        getText(this)
+        text(this)
     }
 }

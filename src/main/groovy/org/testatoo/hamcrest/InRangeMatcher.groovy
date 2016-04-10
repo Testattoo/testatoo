@@ -31,6 +31,6 @@ class InRangeMatcher extends StateMatcher<RangeSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is in range')
+        description.appendText('in range')
     }
 }

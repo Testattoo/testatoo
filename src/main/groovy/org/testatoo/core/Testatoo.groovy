@@ -28,6 +28,8 @@ import org.testatoo.hamcrest.EnabledMatcher
 import org.testatoo.hamcrest.HiddenMatcher
 import org.testatoo.hamcrest.LabelMatcher
 import org.testatoo.hamcrest.MissingMatcher
+import org.testatoo.hamcrest.SelectedItemsMatcher
+import org.testatoo.hamcrest.TextMatcher
 import org.testatoo.hamcrest.UnCheckedMatcher
 import org.testatoo.hamcrest.VisibleMatcher
 
@@ -85,7 +87,8 @@ class Testatoo {
     public static checked = CheckedMatcher
 
     // Properties
-    public static Matcher label(String label) {
-        new LabelMatcher(label)
-    }
+    public static Matcher label(String label) { new LabelMatcher(label) }
+    public static Matcher text(String text) { new TextMatcher(text) }
+    public static Matcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
+
 }

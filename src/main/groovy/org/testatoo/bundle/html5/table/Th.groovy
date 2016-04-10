@@ -19,7 +19,7 @@ import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Column
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,13 +28,13 @@ import static org.testatoo.core.Testatoo.getConfig
 class Th extends Column {
 
     @Override
-    List<Td> getCells() {
-        int index = config.evaluator.eval(id, "it.index() + 1") as int
-        find(By.js("\$('#${id}').closest('table').find('tbody tr').find('td:nth-child(${index})')"), Td)
+    List<Td> cells() {
+        int index = config.evaluator.eval(id(), "it.index() + 1") as int
+        find(By.js("\$('#${id()}').closest('table').find('tbody tr').find('td:nth-child(${index})')"), Td)
     }
 
     @Override
-    String getTitle() {
-        config.evaluator.eval(id, "it.text().trim()")
+    String title() {
+        config.evaluator.eval(id(), "it.text().trim()")
     }
 }

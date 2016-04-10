@@ -17,7 +17,7 @@ package org.testatoo.bundle.html5.helper
 
 import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -33,7 +33,7 @@ class LabelHelper {
                     "   return it.parent().text().trim();" +
                     "}()"
 
-    static String getLabel(Component c) {
-        config.evaluator.eval(c.id, expr).trim()
+    static String label(Component c) {
+        config.evaluator.eval(c.id(), expr).trim()
     }
 }

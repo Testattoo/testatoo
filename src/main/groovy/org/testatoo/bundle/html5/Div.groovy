@@ -25,7 +25,7 @@ import org.testatoo.core.component.Panel
 class Div extends Panel {
 
     @Override
-    String getTitle() {
+    String title() {
         ''
     }
 }

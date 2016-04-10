@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5.list
+package org.testatoo.bundle.html5.components.list
 
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -21,6 +21,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.list.OptionGroup
+import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.GroupItem
 
@@ -43,34 +45,35 @@ class SelectTest {
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
     public void select_should_have_expected_behaviours() {
-        Select in Dropdown
-        Dropdown elements = $('#elements') as Select
+        assert Select in Dropdown
 
-        assert elements.items.size() == 5
+        Select elements = $('#elements') as Select
+
+        assert elements.items().size() == 5
 
         Dropdown os = $('#os') as Select
-        assert os.items.size() == 8
+        assert os.items().size() == 8
 
-        assert os.items[1].value() == 'Ubuntu'
+        assert os.items()[1].value() == 'Ubuntu'
         assert os.item('Ubuntu').value() == 'Ubuntu'
 
-        assert os.groupItems.size() == 3
+        assert os.groupItems().size() == 3
 
-        assert os.groupItems[0].value == 'linux'
-        assert os.groupItem('linux').value == 'linux'
-        assert os.groupItem('win32').value == 'win32'
-        assert os.groupItem('BSD').value == 'BSD'
+        assert os.groupItems()[0].value() == 'linux'
+        assert os.groupItem('linux').value() == 'linux'
+        assert os.groupItem('win32').value() == 'win32'
+        assert os.groupItem('BSD').value() == 'BSD'
 
-        assert os.selectedItem.value() == 'None'
+        assert os.selectedItem().value() == 'None'
         os.select('Fedora')
-        assert os.selectedItem.value() == 'Fedora'
-        os.select(os.items[3])
-        assert os.selectedItem.value() == 'Gentoo'
+        assert os.selectedItem().value() == 'Fedora'
+        os.select(os.items()[3])
+        assert os.selectedItem().value() == 'Gentoo'
 
         Dropdown countries = $('#countries') as Select
         assert countries.disabled()
         // Items are disabled too
-        countries.items.forEach {
+        countries.items().forEach {
             assert it.disabled()
         }
     }
@@ -79,19 +82,19 @@ class SelectTest {
     public void groupItem_should_have_expected_behaviours() {
         assert OptionGroup in GroupItem
 
-        Dropdown os = $('#os') as Select
+        Select os = $('#os') as Select
         GroupItem linux = os.groupItem('linux')
 
-        assert linux.value == 'linux'
-        assert linux.items.size() == 3
+        assert linux.value() == 'linux'
+        assert linux.items().size() == 3
         assert linux.item('Gentoo').value() == 'Gentoo'
     }
 
     @Test
     public void implement_toString_and_equal() {
-        Dropdown os = $('#os') as Select
+        Select os = $('#os') as Select
 
-        assert os.items[1].toString() == 'Ubuntu'
-        assert os.items[1] == os.items[1]
+        assert os.items()[1].toString() == 'Ubuntu'
+        assert os.items()[1] == os.items()[1]
     }
 }

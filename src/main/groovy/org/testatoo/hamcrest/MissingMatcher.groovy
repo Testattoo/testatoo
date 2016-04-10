@@ -34,6 +34,6 @@ class MissingMatcher extends StateMatcher<Component> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(component).appendText(' is missing')
+        description.appendText('missing')
     }
 }

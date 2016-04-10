@@ -131,8 +131,8 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    List<MetaInfo> getMetaInfo(String jQueryExpr) {
-        List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.getMetaInfos();")
+    List<MetaInfo> metaInfo(String jQueryExpr) {
+        List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.metaInfos();")
         return infos.collect {
             new MetaInfo(
                     id: it.id,

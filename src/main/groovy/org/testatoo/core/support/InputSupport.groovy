@@ -31,7 +31,7 @@ interface InputSupport extends Clearable {
 
     boolean optional()
 
-    void setValue(String value)
+    void value(String value)
 
     void clear()
 }

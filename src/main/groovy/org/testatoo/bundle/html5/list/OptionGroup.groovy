@@ -19,7 +19,7 @@ import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.GroupItem
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,15 +27,15 @@ import static org.testatoo.core.Testatoo.getConfig
 @ByCss('optgroup')
 class OptionGroup extends GroupItem {
 
-    List<Option> getItems() {
+    List<Option> items() {
         find(By.css('option'), Option)
     }
 
     Option item(String value) {
-        items.find { it.value() == value }
+        items().find { it.value() == value }
     }
 
-    String getValue() {
-        config.evaluator.eval(id, "it.attr('label')")
+    String value() {
+        config.evaluator.eval(id(), "it.attr('label')")
     }
 }

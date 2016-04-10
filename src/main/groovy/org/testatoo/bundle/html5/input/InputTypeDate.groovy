@@ -19,7 +19,7 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.DateField
 
 import static org.testatoo.bundle.html5.helper.RangeHelper.*
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,23 +28,23 @@ import static org.testatoo.core.Testatoo.getConfig
 class InputTypeDate extends DateField implements Input {
 
     @Override
-    void setValue(String value) {
-        config.evaluator.runScript("\$('#${id}').val('" + value + "')")
+    void value(String value) {
+        config.evaluator.runScript("\$('#${id()}').val('" + value + "')")
     }
 
     @Override
     Object minimum() {
-        getMinimun(this)
+        minimun(this)
     }
 
     @Override
     Object maximum() {
-        getMaximum(this)
+        maximum(this)
     }
 
     @Override
     Object step() {
-        getStep(this)
+        step(this)
     }
 
     @Override

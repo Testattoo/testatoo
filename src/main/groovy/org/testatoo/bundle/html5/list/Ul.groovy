@@ -26,12 +26,12 @@ import org.testatoo.core.component.ListView
 class Ul extends ListView {
 
     @Override
-    List<Li> getItems() {
+    List<Li> items() {
         find(By.css('li'), Li)
     }
 
     @Override
     Li item(String value) {
-        items.find { it.value() == value }
+        items().find { it.value() == value }
     }
 }

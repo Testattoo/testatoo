@@ -31,6 +31,6 @@ class UnSelectedMatcher extends StateMatcher<SelectSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is unselected')
+        description.appendText('unselected')
     }
 }

@@ -19,5 +19,5 @@ package org.testatoo.core
  */
 public interface IdProvider {
 
-    List<MetaInfo> getMetaInfos() throws ComponentException
+    List<MetaInfo> metaInfos() throws ComponentException
 }

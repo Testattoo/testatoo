@@ -22,7 +22,7 @@ import org.testatoo.core.Evaluator
 
 import static org.mockito.Matchers.any
 import static org.mockito.Mockito.*
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.Key.SHIFT;
 
 /**

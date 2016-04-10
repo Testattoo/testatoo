@@ -17,7 +17,7 @@ package org.testatoo.bundle.html5.helper
 
 import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -29,6 +29,6 @@ class ValidityHelper {
     }
 
     static boolean invalid(Component c) {
-        config.evaluator.check(c.id, "it.is(':invalid')")
+        config.evaluator.check(c.id(), "it.is(':invalid')")
     }
 }

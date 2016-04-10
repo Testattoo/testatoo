@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.table
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Row
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,12 +27,12 @@ import static org.testatoo.core.Testatoo.getConfig
 class Tr extends Row {
 
     @Override
-    List<Td> getCells() {
-        config.evaluator.getMetaInfo("\$('#${id}').find('td')").collect { it as Td }
+    List<Td> cells() {
+        config.evaluator.metaInfo("\$('#${id()}').find('td')").collect { it as Td }
     }
 
     @Override
-    String getTitle() {
-        config.evaluator.eval(id, "it.find('th:first').text().trim()")
+    String title() {
+        config.evaluator.eval(id(), "it.find('th:first').text().trim()")
     }
 }

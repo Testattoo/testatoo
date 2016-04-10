@@ -19,7 +19,7 @@ package org.testatoo.core.component
  */
 abstract class ListView extends Component {
 
-    abstract List<Item> getItems()
+    abstract List<Item> items()
 
     abstract Item item(String value)
 }

@@ -87,7 +87,7 @@ class WaitTest {
             button.should { be disabled }
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'Unable to reach <Button:add-message> is disabled in 10000 milliseconds'
+            assert e.message == 'Unable to reach is disabled in 10000 milliseconds'
         }
     }
 }

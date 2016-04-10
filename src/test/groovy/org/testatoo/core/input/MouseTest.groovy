@@ -23,7 +23,7 @@ import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.component.Component
 
 import static org.mockito.Mockito.*
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -38,7 +38,7 @@ class MouseTest {
         config.evaluator = evaluator
 
         MouseFakeComponent component = spy(new MouseFakeComponent(metaData))
-        component.id = '20'
+        when(component.id()).thenReturn('20')
 
         verify(component, times(0)).click()
         verify(component, times(0)).doubleClick()
@@ -60,19 +60,21 @@ class MouseTest {
         verify(component, times(1)).rightClick()
 
         Mouse.hoveringMouseOn(component)
-        verify(evaluator, times(1)).mouseOver(component.id)
+        verify(evaluator, times(1)).mouseOver(component.id())
 
         DragBuilder builder = Mouse.drag(component)
         assert builder.dragged == component
 
         builder.on(component)
-        verify(evaluator, times(1)).dragAndDrop(builder.dragged.id, '20')
+        verify(evaluator, times(1)).dragAndDrop(builder.dragged.id(), '20')
     }
 
     private class MouseFakeComponent extends Component {
-        String id
 
         MouseFakeComponent(MetaDataProvider metaData) { super(metaData) }
+
+        @Override
+        String id() { return '' }
 
         @Override
         void click() {}

@@ -31,7 +31,7 @@ class MetaInfoProvider implements IdProvider {
     }
 
     @Override
-    List<MetaInfo> getMetaInfos() throws ComponentException {
+    List<MetaInfo> metaInfos() throws ComponentException {
         return [metaInfo]
     }
 }

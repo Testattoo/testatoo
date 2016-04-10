@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.table
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.datagrid.Cell
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,7 +27,7 @@ import static org.testatoo.core.Testatoo.getConfig
 class Td extends Cell {
 
     @Override
-    String getValue() {
-        config.evaluator.eval(id, "it.text().trim()")
+    String value() {
+        config.evaluator.eval(id(), "it.text().trim()")
     }
 }

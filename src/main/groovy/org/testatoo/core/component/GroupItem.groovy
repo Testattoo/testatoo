@@ -19,9 +19,9 @@ package org.testatoo.core.component
  */
 abstract class GroupItem extends Component {
 
-    abstract List<Item> getItems()
+    abstract List<Item> items()
 
     abstract Item item(String value)
 
-    abstract String getValue()
+    abstract String value()
 }

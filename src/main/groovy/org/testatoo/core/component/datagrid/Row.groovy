@@ -22,9 +22,9 @@ import org.testatoo.core.component.Component
  */
 abstract class Row extends Component {
 
-    abstract List<Cell> getCells()
+    abstract List<Cell> cells()
 
-    abstract String getTitle()
+    abstract String title()
 }
 
 

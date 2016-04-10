@@ -18,6 +18,7 @@ package org.testatoo.bundle.html5.list
 import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.Dropdown
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -26,27 +27,32 @@ import org.testatoo.core.component.Dropdown
 class Select extends Dropdown {
 
     @Override
-    List<Option> getItems() {
+    List<Option> items() {
         find(By.css('option'), Option)
     }
 
     @Override
-    List<OptionGroup> getGroupItems() {
+    List<OptionGroup> groupItems() {
         find(By.css('optgroup'), OptionGroup)
     }
 
     @Override
     OptionGroup groupItem(String value) {
-        groupItems.find { it.value == value }
+        groupItems().find { it.value() == value }
     }
 
     @Override
     Option item(String value) {
-        items.find { it.value() == value }
+        items().find { it.value() == value }
     }
 
     @Override
-    Option getSelectedItem() {
-        items.find { it.selected() }
+    Option selectedItem() {
+        items().find { it.selected() }
+    }
+
+    @Override
+    String label() {
+       label(this)
     }
 }

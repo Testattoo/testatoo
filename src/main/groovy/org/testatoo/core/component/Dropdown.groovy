@@ -15,20 +15,21 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.support.LabelSupport
 import org.testatoo.core.support.SingleSelectable
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Dropdown extends Component implements SingleSelectable {
+abstract class Dropdown extends Component implements SingleSelectable, LabelSupport {
 
-    abstract List<Item> getItems()
+    abstract List<Item> items()
 
-    abstract List<GroupItem> getGroupItems()
+    abstract List<GroupItem> groupItems()
 
     abstract GroupItem groupItem(String value)
 
     abstract Item item(String value)
 
-    abstract Item getSelectedItem()
+    abstract Item selectedItem()
 }

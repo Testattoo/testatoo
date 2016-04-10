@@ -31,6 +31,6 @@ class OptionalMatcher extends StateMatcher<InputSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('Component is optional')
+        description.appendText('optional')
     }
 }
