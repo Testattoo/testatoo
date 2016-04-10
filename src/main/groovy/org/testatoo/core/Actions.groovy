@@ -55,7 +55,7 @@ class Actions {
         }
 
         public void with(String value) {
-            input.value = value
+            input.value(value)
         }
     }
 }

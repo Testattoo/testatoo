@@ -56,7 +56,7 @@ class WebDriverEvaluatorTest {
 //        assert checkBox.unchecked
 //        clickOn checkBox
 //        assert checkBox.checked
-//new HasMathcer
+//
 //        Radio radio = $('#radio') as Radio
 //        assert radio.unchecked
 //        clickOn radio

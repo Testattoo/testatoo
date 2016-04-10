@@ -73,14 +73,14 @@ class Component implements Clickable, Draggable {
         !hidden()
     }
 
-    boolean contain(Component... components) {
+    boolean contains(Component... components) {
         List ret = config.evaluator.getJson("\$._contains('${id()}', [${components.collect { "'${it.id()}'" }.join(', ')}])")
         if (ret) {
             throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id() in ret }}");
         }
     }
 
-    boolean display(Component... components) {
+    boolean displays(Component... components) {
         List ret = config.evaluator.getJson("\$._contains('${id()}', [${components.collect { "'${it.id()}'" }.join(', ')}])")
         if (ret) {
             throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id() in ret }}");

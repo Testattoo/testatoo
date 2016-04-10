@@ -68,8 +68,9 @@ class Testatoo {
     /**
      * Creates a list of component
      */
-    static Components<? extends Component> $$(String jQuery) {
-        new Components<>(Component, new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, false)))
+    static List $$(String jQuery, Class clazz = Component) {
+        Components components = new Components(clazz, new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, false)))
+        components.list()
     }
 
     static {
@@ -88,7 +89,29 @@ class Testatoo {
 
     // Properties
     public static Matcher label(String label) { new LabelMatcher(label) }
+
     public static Matcher text(String text) { new TextMatcher(text) }
+
     public static Matcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
 
+    public static class Components<T extends Component> {
+
+        private final MetaDataProvider meta
+        private final Class<T> type;
+        private List<T> components
+
+        public Components(Class<T> type, MetaDataProvider meta) {
+            this.meta = meta
+            this.type = type
+        }
+
+        public List<T> list() {
+            if (components == null) {
+                components = meta.metaInfos().collect {
+                    new Component(new CachedMetaData(idProvider: new jQueryIdProvider("#${it.id}", false))).asType(type)
+                } as List<T>
+            }
+            return Collections.unmodifiableList(components)
+        }
+    }
 }

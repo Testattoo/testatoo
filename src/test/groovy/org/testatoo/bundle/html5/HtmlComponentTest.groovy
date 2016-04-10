@@ -75,7 +75,7 @@ class HtmlComponentTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        panel.contain(visible_button, invisible_button)
+        panel.contains(visible_button, invisible_button)
 
         Form form = $('#form') as Form
         EmailField email_field = $('[type=email]') as InputTypeEmail
@@ -83,7 +83,7 @@ class HtmlComponentTest {
         Button submit_button = $('[type=submit]') as Button
         Button reset_button = $('[type=reset]') as Button
 
-        form.contain(
+        form.contains(
                 email_field,
                 password_field,
                 submit_button,
@@ -91,7 +91,7 @@ class HtmlComponentTest {
         )
 
         try {
-            panel.contain(
+            panel.contains(
                     submit_button,
                     reset_button
             )
@@ -108,10 +108,10 @@ class HtmlComponentTest {
         Button visible_button = $('#visible_button') as Button
         Button invisible_button = $('#invisible_button') as Button
 
-        panel.display(visible_button)
+        panel.displays(visible_button)
 
         try {
-            panel.display(
+            panel.displays(
                     visible_button,
                     invisible_button
             )
@@ -121,7 +121,7 @@ class HtmlComponentTest {
 
         EmailField email_field = $('[type=email]') as InputTypeEmail
         try {
-            panel.display(email_field)
+            panel.displays(email_field)
         } catch (ComponentException e) {
             assert e.message == "Component Div:panel does not display expected component(s): [InputTypeEmail:${email_field.id()}]" as String
         }

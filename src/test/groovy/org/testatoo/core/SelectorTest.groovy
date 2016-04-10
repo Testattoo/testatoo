@@ -24,8 +24,6 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.field.TextField
-
-import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
 import static Actions.fill
 
@@ -33,7 +31,6 @@ import static Actions.fill
  * @author David Avenante (d.avenante@gmail.com)
  */
 
-// TODO remove
 @RunWith(JUnit4)
 class SelectorTest {
 
@@ -56,10 +53,10 @@ class SelectorTest {
 
     @Test
     public void should_use_$$_as_a_multi_selector() {
-        Components<Button> buttons = $$('.btn') of Button
+        List<Button> buttons = $$('.btn', Button)
         assert buttons.size() == 4
 
-        Components<TextField> textFields = $$('[type="text"]') of InputTypeText
+        List<InputTypeText> textFields = $$('[type="text"]', InputTypeText)
         assert textFields.size() == 3
 
         textFields.each {
@@ -81,7 +78,7 @@ class SelectorTest {
     @Test
     public void should_throw_an_error_on_bad_component_type() {
         try {
-            Components<Button> buttons = $$('[type="text"]') of Button
+            List<Button> buttons = $$('[type="text"]')
             buttons.each {
                 assert it.enabled()
             }
@@ -89,61 +86,5 @@ class SelectorTest {
             assert e.message.contains('Expected a Button')
             assert e.message.contains('but was: InputTypeText')
         }
-    }
-
-    @Test
-    public void should_have_Components_class_implements_Collection_but_not_support_all_method() {
-        assert Components in Collection
-
-        Components<Button> buttons = $$('[type="text"]') of Button
-
-        assert buttons.size() == 3
-        assert !buttons.isEmpty()
-        assert buttons.iterator() != null
-        assert buttons.toArray().length == 3
-        assert buttons.toArray(Button).length == 3
-
-        try {
-            assert buttons.containsAll(buttons)
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
-        try {
-            assert buttons.add(null)
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
-        try {
-            assert buttons.remove(null)
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
-        try {
-            assert buttons.addAll()
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
-        try {
-            assert buttons.removeAll(buttons)
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
-        try {
-            assert buttons.retainAll(new ArrayList<Object>())
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
-        try {
-            assert buttons.clear()
-            fail()
-        } catch (UnsupportedOperationException e) {
-        }
-
     }
 }
