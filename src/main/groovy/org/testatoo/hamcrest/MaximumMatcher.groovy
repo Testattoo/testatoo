@@ -41,6 +41,6 @@ class MaximumMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.maximum())
+        mismatchDescription.appendText('has ').appendValue(item.maximum())
     }
 }

@@ -41,6 +41,6 @@ class TextMatcher extends PropertyMatcher<TextSupport> {
 
     @Override
     protected void describeMismatchSafely(TextSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.text())
+        mismatchDescription.appendText('has ').appendValue(item.text())
     }
 }

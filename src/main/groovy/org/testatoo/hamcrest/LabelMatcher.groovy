@@ -41,6 +41,6 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
 
     @Override
     protected void describeMismatchSafely(LabelSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.label())
+        mismatchDescription.appendText('has ').appendValue(item.label())
     }
 }

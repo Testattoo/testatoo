@@ -130,7 +130,7 @@ class MatchersTest {
             assertThat(cmp, has(label('OtherLabel')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has "OtherLabel"     but: was "MyLabel"'
+            assert message(e) == 'Expected: has "OtherLabel"     but: has "MyLabel"'
         }
     }
 
@@ -145,7 +145,7 @@ class MatchersTest {
             assertThat(cmp, has(placeholder('OtherPlaceholder')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has "OtherPlaceholder"     but: was "MyPlaceholder"'
+            assert message(e) == 'Expected: has "OtherPlaceholder"     but: has "MyPlaceholder"'
         }
 
         // Empty
@@ -249,7 +249,7 @@ class MatchersTest {
             assertThat(cmp, has(maximum(50)))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has <50>     but: was <10>'
+            assert message(e) == 'Expected: has <50>     but: has <10>'
         }
 
         // Minimum
@@ -259,7 +259,7 @@ class MatchersTest {
             assertThat(cmp, has(minimum(50)))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has <50>     but: was <10>'
+            assert message(e) == 'Expected: has <50>     but: has <10>'
         }
 
         // Step
@@ -269,7 +269,7 @@ class MatchersTest {
             assertThat(cmp, has(step(50)))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has <50>     but: was <10>'
+            assert message(e) == 'Expected: has <50>     but: has <10>'
         }
 
         // InRange
@@ -332,7 +332,7 @@ class MatchersTest {
             assertThat(cmp, has(text('OtherText')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has "OtherText"     but: was "MyText"'
+            assert message(e) == 'Expected: has "OtherText"     but: has "MyText"'
         }
     }
 
@@ -373,7 +373,7 @@ class MatchersTest {
             assertThat(cmp, has(value('OtherValue')))
             fail()
         } catch (AssertionError e) {
-            assert message(e) == 'Expected: has "OtherValue"     but: was "MyValue"'
+            assert message(e) == 'Expected: has "OtherValue"     but: has "MyValue"'
         }
     }
 

@@ -24,15 +24,30 @@ import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.hamcrest.AvailableMatcher
 import org.testatoo.hamcrest.CheckedMatcher
 import org.testatoo.hamcrest.DisabledMatcher
+import org.testatoo.hamcrest.EmptyMatcher
 import org.testatoo.hamcrest.EnabledMatcher
+import org.testatoo.hamcrest.FilledMatcher
 import org.testatoo.hamcrest.HiddenMatcher
+import org.testatoo.hamcrest.InRangeMatcher
+import org.testatoo.hamcrest.InvalidMatcher
 import org.testatoo.hamcrest.LabelMatcher
+import org.testatoo.hamcrest.MaximumMatcher
+import org.testatoo.hamcrest.MinimumMatcher
 import org.testatoo.hamcrest.MissingMatcher
+import org.testatoo.hamcrest.OptionalMatcher
+import org.testatoo.hamcrest.OutOfRangeMatcher
 import org.testatoo.hamcrest.PlaceholderMatcher
 import org.testatoo.hamcrest.PropertyMatcher
+import org.testatoo.hamcrest.ReadOnlyMatcher
+import org.testatoo.hamcrest.RequiredMatcher
 import org.testatoo.hamcrest.SelectedItemsMatcher
+import org.testatoo.hamcrest.SelectedMatcher
+import org.testatoo.hamcrest.StepMatcher
 import org.testatoo.hamcrest.TextMatcher
 import org.testatoo.hamcrest.UnCheckedMatcher
+import org.testatoo.hamcrest.UnSelectedMatcher
+import org.testatoo.hamcrest.ValidMatcher
+import org.testatoo.hamcrest.ValueMatcher
 import org.testatoo.hamcrest.VisibleMatcher
 
 /**
@@ -80,21 +95,35 @@ class Testatoo {
     }
 
     // States
-    public static Class enabled = EnabledMatcher
-    public static Class disabled = DisabledMatcher
-    public static Class visible = VisibleMatcher
-    public static Class hidden = HiddenMatcher
     public static Class available = AvailableMatcher
-    public static Class missing = MissingMatcher
-    public static Class unchecked = UnCheckedMatcher
     public static Class checked = CheckedMatcher
+    public static Class disabled = DisabledMatcher
+    public static Class empty = EmptyMatcher
+    public static Class enabled = EnabledMatcher
+    public static Class filled = FilledMatcher
+    public static Class hidden = HiddenMatcher
+    public static Class inRange = InRangeMatcher
+    public static Class invalid = InvalidMatcher
+    public static Class missing = MissingMatcher
+    public static Class optional = OptionalMatcher
+    public static Class outOfRange = OutOfRangeMatcher
+    public static Class readOnly = ReadOnlyMatcher
+    public static Class required = RequiredMatcher
+    public static Class selected = SelectedMatcher
+    public static Class unchecked = UnCheckedMatcher
+    public static Class unselected = UnSelectedMatcher
+    public static Class valid = ValidMatcher
+    public static Class visible = VisibleMatcher
 
     // Properties
     public static PropertyMatcher label(String label) { new LabelMatcher(label) }
+    public static PropertyMatcher maximum(object) { new MaximumMatcher(object) }
+    public static PropertyMatcher minimum(object) { new MinimumMatcher(object) }
     public static PropertyMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
-    public static PropertyMatcher text(String text) { new TextMatcher(text) }
-
     public static Matcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
+    public static PropertyMatcher step(object) { new StepMatcher(object) }
+    public static PropertyMatcher text(String text) { new TextMatcher(text) }
+    public static PropertyMatcher value(String value) { new ValueMatcher(value) }
 
     public static class Components<T extends Component> {
         private final MetaDataProvider meta

@@ -41,6 +41,6 @@ class StepMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.step())
+        mismatchDescription.appendText('has ').appendValue(item.step())
     }
 }

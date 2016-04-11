@@ -91,7 +91,7 @@ class Matchers {
     public static Matcher<ValiditySupport> valid() { new ValidMatcher() }
 
     @Factory
-    public static Matcher<ValiditySupport> invalid() { new InValidMatcher() }
+    public static Matcher<ValiditySupport> invalid() { new InvalidMatcher() }
 
     // Properties
     @Factory

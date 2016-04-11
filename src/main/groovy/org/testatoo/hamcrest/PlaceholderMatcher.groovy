@@ -41,6 +41,6 @@ class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
 
     @Override
     protected void describeMismatchSafely(InputSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.placeholder())
+        mismatchDescription.appendText('has ').appendValue(item.placeholder())
     }
 }

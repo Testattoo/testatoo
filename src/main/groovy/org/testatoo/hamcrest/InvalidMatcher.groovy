@@ -21,7 +21,7 @@ import org.testatoo.core.support.ValiditySupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class InValidMatcher extends StateMatcher<ValiditySupport> {
+class InvalidMatcher extends StateMatcher<ValiditySupport> {
 
     @Override
     protected boolean matchesSafely(ValiditySupport item, Description mismatchDescription) {

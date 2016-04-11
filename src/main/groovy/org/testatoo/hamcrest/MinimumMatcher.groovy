@@ -41,6 +41,6 @@ class MinimumMatcher extends PropertyMatcher<RangeSupport> {
 
     @Override
     protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('was ').appendValue(item.minimum())
+        mismatchDescription.appendText('has ').appendValue(item.minimum())
     }
 }
