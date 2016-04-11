@@ -18,7 +18,6 @@ package org.testatoo.core.internal
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.StringDescription
-import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
@@ -140,8 +139,13 @@ class GroovyExtensions {
 
         if(!success) {
             Description description = new StringDescription();
-            description.appendDescriptionOf(what)
-            throw new ComponentException("Unable to reach " + description.toString() + " in " + config.waitUntil.toMillis() + " milliseconds");
+            description
+                    .appendText('Unable to reach the condition after ' + config.waitUntil.toMillis() + ' milliseconds')
+                    .appendText('\nExpected: ')
+                    .appendDescriptionOf(what)
+                    .appendText('\n     but: ');
+            what.describeMismatch(c.delegate, description);
+            throw new AssertionError(description.toString())
         }
     }
 }

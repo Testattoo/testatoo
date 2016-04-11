@@ -15,7 +15,8 @@
  */
 package org.testatoo.bundle.html5
 
-import org.hamcrest.Matcher
+import org.hamcrest.Description
+import org.hamcrest.StringDescription
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.ClassRule
@@ -23,17 +24,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.Button
 import org.testatoo.core.ComponentException
-import org.testatoo.core.Testatoo
-import org.testatoo.hamcrest.DisabledMatcher
-import org.testatoo.hamcrest.EnabledMatcher
-import org.testatoo.hamcrest.MissingMatcher
-import org.testatoo.hamcrest.VisibleMatcher
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.clickOn
+import static org.testatoo.core.input.Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -86,9 +81,13 @@ class WaitTest {
         try {
             button.should { be disabled }
             fail()
-        } catch (ComponentException e) {
-            assert e.message == 'Unable to reach is disabled in 10000 milliseconds'
+        } catch (AssertionError e) {
+            Description description = new StringDescription();
+            description.appendText('Unable to reach the condition after 10000 milliseconds')
+                    .appendText('\nExpected: is disabled')
+                    .appendText('\n     but: is enabled');
+
+            assert e.message == description.toString()
         }
     }
 }
-
