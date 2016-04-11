@@ -21,12 +21,11 @@ The following installation if for JUnit. For another test runner, adapt the firs
    <scope>test</scope>
 </dependency>
 <dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-java</artifactId>
-    <version>{selenium-version}</version>
-    <scope>test</scope>
-    </dependency>
-</dependencies>
+  <groupId>org.seleniumhq.selenium</groupId>
+  <artifactId>selenium-firefox-driver</artifactId>
+  <version>${selenium.version}</version>
+  <scope>test</scope>
+</dependency>
 -------------------------------------------------------------------------------
 
 === Installation with Gradle

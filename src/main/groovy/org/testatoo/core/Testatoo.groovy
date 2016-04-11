@@ -28,6 +28,8 @@ import org.testatoo.hamcrest.EnabledMatcher
 import org.testatoo.hamcrest.HiddenMatcher
 import org.testatoo.hamcrest.LabelMatcher
 import org.testatoo.hamcrest.MissingMatcher
+import org.testatoo.hamcrest.PlaceholderMatcher
+import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.SelectedItemsMatcher
 import org.testatoo.hamcrest.TextMatcher
 import org.testatoo.hamcrest.UnCheckedMatcher
@@ -78,24 +80,23 @@ class Testatoo {
     }
 
     // States
-    public static enabled = EnabledMatcher
-    public static disabled = DisabledMatcher
-    public static visible = VisibleMatcher
-    public static hidden = HiddenMatcher
-    public static available = AvailableMatcher
-    public static missing = MissingMatcher
-    public static unchecked = UnCheckedMatcher
-    public static checked = CheckedMatcher
+    public static Class enabled = EnabledMatcher
+    public static Class disabled = DisabledMatcher
+    public static Class visible = VisibleMatcher
+    public static Class hidden = HiddenMatcher
+    public static Class available = AvailableMatcher
+    public static Class missing = MissingMatcher
+    public static Class unchecked = UnCheckedMatcher
+    public static Class checked = CheckedMatcher
 
     // Properties
-    public static Matcher label(String label) { new LabelMatcher(label) }
-
-    public static Matcher text(String text) { new TextMatcher(text) }
+    public static PropertyMatcher label(String label) { new LabelMatcher(label) }
+    public static PropertyMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+    public static PropertyMatcher text(String text) { new TextMatcher(text) }
 
     public static Matcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
 
     public static class Components<T extends Component> {
-
         private final MetaDataProvider meta
         private final Class<T> type;
         private List<T> components
