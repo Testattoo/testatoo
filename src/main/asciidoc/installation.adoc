@@ -36,7 +36,7 @@ TODO
 === A first UI test example with JUnit
 '''
 
-[source,java,linenums]
+[source,groovy,linenums]
 [subs="verbatim,attributes"]
 ----
 include::{sourcedir}/groovy/doc/junit/JunitStarterTest.groovy[]

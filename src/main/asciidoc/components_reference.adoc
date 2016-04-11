@@ -14,7 +14,7 @@ This is the base for all testatoo components.
 |contains   |displays
 |===
 
-[source,groovy,,indent=0]
+[source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
 include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
@@ -42,7 +42,7 @@ like searching for a query at a search engine, or to interact with dialog boxes,
 
 |===
 
-[source,groovy,,indent=0]
+[source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
 include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=button]
@@ -70,7 +70,7 @@ Definition: a *checkbox* is a small box that, when selected by the user, shows t
 |===
 
 
-[source,groovy,,indent=0]
+[source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
 include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=checkbox]
@@ -101,7 +101,7 @@ same group becomes deselected (making it so only one can be selected).
 |
 |===
 
-[source,groovy,,indent=0]
+[source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
 include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=radio]
