@@ -50,8 +50,11 @@ class MultiSelectTest {
 
         ListBox cities = $('#cities') as MultiSelect
 
+        assert cities.label() == 'Cities list'
         assert cities.items().size() == 6
         assert cities.visibleItems().size() == 3
+
+        assert cities
 
         Item montreal = cities.item('Montreal')
         Item quebec = cities.item('Quebec')

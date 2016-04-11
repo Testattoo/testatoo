@@ -49,6 +49,7 @@ class SelectTest {
 
         Select elements = $('#elements') as Select
 
+        assert elements.label() == 'Elements list'
         assert elements.items().size() == 5
 
         Dropdown os = $('#os') as Select
