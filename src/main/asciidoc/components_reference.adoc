@@ -2,7 +2,7 @@
 
 === Component
 
-This is the base for all testatoo components.
+This is the base for all others components.
 
 [cols="2", options="header"]
 |===
@@ -17,7 +17,7 @@ This is the base for all testatoo components.
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
+include::{basepath}/test/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
 ----
 
 [IMPORTANT]
@@ -25,320 +25,20 @@ include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
 *All the Testatoo components inherit these states.*
 ====
 
-=== Button
+include::components/button.adoc[]
 
-image::components/Button.png[Button]
+include::components/checkbox.adoc[]
 
-Definition: a *button* refers to any graphical control element that provides the user a simple way to trigger an event,
-like searching for a query at a search engine, or to interact with dialog boxes, like confirming an action.
+include::components/radio.adoc[]
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
+include::components/dropdown.adoc[]
 
-|-
-|text
-|-
+include::components/groupitem.adoc[]
 
-|===
+include::components/item.adoc[]
 
-[source,groovy,indent=0]
-[subs="verbatim,attributes"]
-----
-include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=button]
-----
+include::components/listbox.adoc[]
 
-=== CheckBox
+include::components/fields.adoc[]
 
-image::components/CheckBox.png[CheckBox]
-image::components/CheckBox_checked.png[CheckBox]
-
-Definition: a *checkbox* is a small box that, when selected by the user, shows that a particular feature has been enabled
- or a particular option chosen. Check boxes are commonly used when more than one option may need to be selected.
-
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|checked
-|label
-|check
-
-|unchecked
-|
-|uncheck
-|===
-
-
-[source,groovy,indent=0]
-[subs="verbatim,attributes"]
-----
-include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=checkbox]
-----
-
-=== Radio
-
-image::components/Radio.png[Radio]
-
-Definition: A *radio button* allows the user to choose only one of a predefined set of options. Radio buttons are
-arranged in groups of two or more and displayed on screen as, for example, a list of circular holes that can contain
-white space (for unselected) or a dot (for selected). Each radio button is normally accompanied by a label describing
-the choice that the radio button represents.
-The choices are mutually exclusive; when the user selects a radio button, any previously selected radio button in the
-same group becomes deselected (making it so only one can be selected).
-
-[cols="3*", options="header"]
-|===
-
-|States|Properties|Intentions
-
-|checked
-|label
-|check
-
-|unchecked
-|
-|
-|===
-
-[source,groovy,indent=0]
-[subs="verbatim,attributes"]
-----
-include::{sourcedir}/groovy/doc/dsl/ComponentsTest.groovy[tags=radio]
-----
-
-=== DropDown
-
-image::components/DropDown.png[DropDown]
-
-Definition:  a *dropdown* allows the user to choose one value from a list. When a dropdown is inactive, it displays a
-single value. When activated, it displays (drops down) a list of values, that can be eventually grouped by theme, from which the user may select one.
-When the user selects a new value, the control reverts to its inactive state, displaying the selected value.
-
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|-
-|label
-|select
-
-|
-|_number of items_
-|
-
-|
-|items
-|
-
-|
-|_number of groupItems_
-|
-
-|
-|groupItems
-|
-
-|===
-
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-dropdown.should {
-    have label('OS')
-    have selectedItems('None')
-
-    have 8.items
-    have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
-
-    have 3.groupItems
-    have groupItems('linux', 'win32', 'BSD')
-}
-
-on dropdown select 'Ubuntu'   // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
--------------------------------------------------------------------------------
-
-=== GroupItem
-
-*GroupItem* is used for dropDowns.
-
-[cols="3*", options="header"]
-|===
-
-|States|Properties|Intentions
-
-|-
-|value
-|-
-
-|
-|items
-|
-
-|===
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-GroupItem group = dropdown.groupItem('linux') // Or dropdown.groupItems[0]
-
-group.should {
-    have value('linux')
-    have items('Ubuntu', 'Fedora', 'Gentoo')
-}
--------------------------------------------------------------------------------
-
-=== Item
-
-*Item* is used for dropDowns and listBoxes.
-
-[cols="3*", options="header"]
-|===
-
-|States|Properties|Intentions
-
-|selected
-|value
-|select
-
-|unselected
-|
-|unselect
-
-|===
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-Item item = dropdown.item('Fedora')  // Or dropdown.items[1]
-item.should {
-    have value('Fedora')
-    be unselected
-}
--------------------------------------------------------------------------------
-
-=== ListBox
-
-image::components/ListBox_1.png[ListBox]
-
-This image show all the items available in the ListBox
-
-image::components/ListBox_2.png[ListBox]
-
-Definition: a *listBox* allows the user to select one or more items from a list contained within a static, multiple line
-text box. The user clicks inside the box on an item to select it, sometimes in combination with the ⇧ Shift or Ctrl
-in order to make multiple selections. "Control-clicking" an item that has already been selected, unselects it.
-
-[cols="3*", options="header"]
-|===
-
-|States|Properties|Intentions
-
-|label
-|select
-
-|
-|_number of items_
-|
-
-|
-|items
-|
-
-|
-|selectedItems
-|
-
-|
-|_number of visible items_
-|
-
-|===
-
-[source, java]
--------------------------------------------------------------------------------
-ListBox listBox = $('#cities') as ListBox
-listbox.should {
-    have label('Cities list')
-    have 6.items
-    have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
-    have selectedItems('Montreal')
-
-    have 3.visibleItems     // See the first image at the begin of this section
-}
-
-// Try to select ananother item with a control + click
-CTRL.click listBox.item('Montpellier')
-//  OR
-select listBox.item('Montpellier')
-//  OR
-on listBox select 'Montpellier'
-
-listbox.should { have selectedItems('Montreal', 'Montpellier') }
-
-on listBox select 'New York', 'Casablanca'
-
-
-select listBox.items[2]     // Throws an exception if we try to select a disabled element
-
-unselect listBox.items[0]   // Can unselect an item
-listbox.should {
-    have selectedItems('Montpellier')
-}
--------------------------------------------------------------------------------
-=== TextField
-
-image::components/TextField.png[TextField]
-
-Definition: a *textfield* allows the user to input text information to be used by the program.
-It can a single-line text box when only one line of input is required, and a multi-line text box if more than one line
-of input may be required.
-
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|empty
-|text
-|fill
-
-|filled
-|label
-|clear
-
-|readOnly
-|placeholder
-|
-
-|required
-|value
-|
-
-|optional
-|
-|
-
-|valid
-|
-|
-
-|invalid
-|
-|
-|===
-
-
-[source, java]
--------------------------------------------------------------------------------
-
-TextField textfield = $('#text_field') as TextField
-texfield.should {
-    be empty
-    be required
-}
-on textfield fill ('1234')
-texfield.should {
-    be filled
-    have value('1234')
-}
-
--------------------------------------------------------------------------------
 

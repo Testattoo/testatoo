@@ -6,7 +6,7 @@ Testatoo is a web user interface testing tool. It's the result of numerous real-
 Working for many years to promote the *TDD/BDD* approaches, we often faced difficulties in their implementation for the graphical layer of applications.
 
 The *"TEST FIRST"* principle excludes all scenario recorder based approaches that only allow you to write "at posteriori" tests.
-Our experience has taught us that this path is a dead end (but we reserve this for another discussion...).
+Our experience has taught us that this path is a dead-end (but we reserve this for another discussion).
 
 Another problem is UI tests are brittle and costly! We do think that this is due to the lack of abstraction in existing UI testing tools.
 
@@ -25,7 +25,7 @@ As a **SPECIFIER**, I want to express my test (intention) *BEFORE* UI is coded. 
 a page with two radio buttons to select the gender (male or female), the test can be expressed like this :
 
 ----
-include::{sourcedir}/resources/doc/spec.txt[]
+include::{basepath}/test/resources/doc/spec.txt[]
 ----
 
 The Testatoo syntax to express this specification is:
@@ -33,7 +33,7 @@ The Testatoo syntax to express this specification is:
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{sourcedir}/groovy/doc/spec/SpecTest.groovy[tags=specMethod]
+include::{basepath}/test/groovy/doc/spec/SpecTest.groovy[tags=specMethod]
 ----
 
 So we can see that *Testatoo is close to the natural language.*

@@ -26,6 +26,32 @@ import org.testatoo.core.support.SelectSupport
 import org.testatoo.core.support.TextSupport
 import org.testatoo.core.support.ValiditySupport
 import org.testatoo.core.support.ValueSupport
+import org.testatoo.hamcrest.matcher.property.LabelMatcher
+import org.testatoo.hamcrest.matcher.property.MaximumMatcher
+import org.testatoo.hamcrest.matcher.property.MinimumMatcher
+import org.testatoo.hamcrest.matcher.property.PlaceholderMatcher
+import org.testatoo.hamcrest.matcher.property.StepMatcher
+import org.testatoo.hamcrest.matcher.property.TextMatcher
+import org.testatoo.hamcrest.matcher.property.ValueMatcher
+import org.testatoo.hamcrest.matcher.state.AvailableMatcher
+import org.testatoo.hamcrest.matcher.state.CheckedMatcher
+import org.testatoo.hamcrest.matcher.state.DisabledMatcher
+import org.testatoo.hamcrest.matcher.state.EmptyMatcher
+import org.testatoo.hamcrest.matcher.state.EnabledMatcher
+import org.testatoo.hamcrest.matcher.state.FilledMatcher
+import org.testatoo.hamcrest.matcher.state.HiddenMatcher
+import org.testatoo.hamcrest.matcher.state.InRangeMatcher
+import org.testatoo.hamcrest.matcher.state.InvalidMatcher
+import org.testatoo.hamcrest.matcher.state.MissingMatcher
+import org.testatoo.hamcrest.matcher.state.OptionalMatcher
+import org.testatoo.hamcrest.matcher.state.OutOfRangeMatcher
+import org.testatoo.hamcrest.matcher.state.ReadOnlyMatcher
+import org.testatoo.hamcrest.matcher.state.RequiredMatcher
+import org.testatoo.hamcrest.matcher.state.SelectedMatcher
+import org.testatoo.hamcrest.matcher.state.UnCheckedMatcher
+import org.testatoo.hamcrest.matcher.state.UnSelectedMatcher
+import org.testatoo.hamcrest.matcher.state.ValidMatcher
+import org.testatoo.hamcrest.matcher.state.VisibleMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

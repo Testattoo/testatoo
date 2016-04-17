@@ -164,6 +164,7 @@
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
                         <exclude>src/test/webapp/**</exclude>
+                        <exclude>src/test/**/doc/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>

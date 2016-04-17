@@ -1,0 +1,28 @@
+=== GroupItem
+
+*GroupItem* is used for dropDowns.
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|-
+|value
+|-
+
+|
+|items
+|
+
+|===
+[source, java]
+-------------------------------------------------------------------------------
+DropDown dropdown = $('#dropdown') as DropDown
+GroupItem group = dropdown.groupItem('linux') // Or dropdown.groupItems[0]
+
+group.should {
+    have value('linux')
+    have items('Ubuntu', 'Fedora', 'Gentoo')
+}
+-------------------------------------------------------------------------------

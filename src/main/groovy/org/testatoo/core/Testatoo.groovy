@@ -17,38 +17,40 @@ package org.testatoo.core
 
 import org.hamcrest.Matcher
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Item
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
 import org.testatoo.core.internal.jQueryIdProvider
-import org.testatoo.hamcrest.AvailableMatcher
-import org.testatoo.hamcrest.CheckedMatcher
-import org.testatoo.hamcrest.DisabledMatcher
-import org.testatoo.hamcrest.EmptyMatcher
-import org.testatoo.hamcrest.EnabledMatcher
-import org.testatoo.hamcrest.FilledMatcher
-import org.testatoo.hamcrest.HiddenMatcher
-import org.testatoo.hamcrest.InRangeMatcher
-import org.testatoo.hamcrest.InvalidMatcher
-import org.testatoo.hamcrest.LabelMatcher
-import org.testatoo.hamcrest.MaximumMatcher
-import org.testatoo.hamcrest.MinimumMatcher
-import org.testatoo.hamcrest.MissingMatcher
-import org.testatoo.hamcrest.OptionalMatcher
-import org.testatoo.hamcrest.OutOfRangeMatcher
-import org.testatoo.hamcrest.PlaceholderMatcher
+import org.testatoo.hamcrest.matcher.property.SelectedItemMatcher
+import org.testatoo.hamcrest.matcher.state.AvailableMatcher
+import org.testatoo.hamcrest.matcher.state.CheckedMatcher
+import org.testatoo.hamcrest.matcher.state.DisabledMatcher
+import org.testatoo.hamcrest.matcher.state.EmptyMatcher
+import org.testatoo.hamcrest.matcher.state.EnabledMatcher
+import org.testatoo.hamcrest.matcher.state.FilledMatcher
+import org.testatoo.hamcrest.matcher.state.HiddenMatcher
+import org.testatoo.hamcrest.matcher.state.InRangeMatcher
+import org.testatoo.hamcrest.matcher.state.InvalidMatcher
+import org.testatoo.hamcrest.matcher.property.LabelMatcher
+import org.testatoo.hamcrest.matcher.property.MaximumMatcher
+import org.testatoo.hamcrest.matcher.property.MinimumMatcher
+import org.testatoo.hamcrest.matcher.state.MissingMatcher
+import org.testatoo.hamcrest.matcher.state.OptionalMatcher
+import org.testatoo.hamcrest.matcher.state.OutOfRangeMatcher
+import org.testatoo.hamcrest.matcher.property.PlaceholderMatcher
 import org.testatoo.hamcrest.PropertyMatcher
-import org.testatoo.hamcrest.ReadOnlyMatcher
-import org.testatoo.hamcrest.RequiredMatcher
+import org.testatoo.hamcrest.matcher.state.ReadOnlyMatcher
+import org.testatoo.hamcrest.matcher.state.RequiredMatcher
 import org.testatoo.hamcrest.SelectedItemsMatcher
-import org.testatoo.hamcrest.SelectedMatcher
-import org.testatoo.hamcrest.StepMatcher
-import org.testatoo.hamcrest.TextMatcher
-import org.testatoo.hamcrest.UnCheckedMatcher
-import org.testatoo.hamcrest.UnSelectedMatcher
-import org.testatoo.hamcrest.ValidMatcher
-import org.testatoo.hamcrest.ValueMatcher
-import org.testatoo.hamcrest.VisibleMatcher
+import org.testatoo.hamcrest.matcher.state.SelectedMatcher
+import org.testatoo.hamcrest.matcher.property.StepMatcher
+import org.testatoo.hamcrest.matcher.property.TextMatcher
+import org.testatoo.hamcrest.matcher.state.UnCheckedMatcher
+import org.testatoo.hamcrest.matcher.state.UnSelectedMatcher
+import org.testatoo.hamcrest.matcher.state.ValidMatcher
+import org.testatoo.hamcrest.matcher.property.ValueMatcher
+import org.testatoo.hamcrest.matcher.state.VisibleMatcher
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
@@ -120,7 +122,15 @@ class Testatoo {
     public static PropertyMatcher maximum(object) { new MaximumMatcher(object) }
     public static PropertyMatcher minimum(object) { new MinimumMatcher(object) }
     public static PropertyMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
-    public static Matcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
+
+    public static Matcher selectedItems(String... items) {  }
+    public static Matcher selectedItems(Item... items) {  }
+
+    public static Matcher selectedItem(String item) { new SelectedItemMatcher(item) }
+    public static Matcher selectedItem(Item item) {  }
+
+
+
     public static PropertyMatcher step(object) { new StepMatcher(object) }
     public static PropertyMatcher text(String text) { new TextMatcher(text) }
     public static PropertyMatcher value(String value) { new ValueMatcher(value) }

@@ -1,0 +1,57 @@
+=== TextField
+
+image::components/TextField.png[TextField]
+
+Definition: a *textfield* allows the user to input text information to be used by the program.
+It can a single-line text box when only one line of input is required, and a multi-line text box if more than one line
+of input may be required.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|empty
+|text
+|fill
+
+|filled
+|label
+|clear
+
+|readOnly
+|placeholder
+|
+
+|required
+|value
+|
+
+|optional
+|
+|
+
+|valid
+|
+|
+
+|invalid
+|
+|
+|===
+
+
+[source, java]
+-------------------------------------------------------------------------------
+
+TextField textfield = $('#text_field') as TextField
+texfield.should {
+    be empty
+    be required
+}
+on textfield fill ('1234')
+texfield.should {
+    be filled
+    have value('1234')
+}
+
+-------------------------------------------------------------------------------

@@ -24,10 +24,11 @@ import org.testatoo.core.input.Key
 import org.testatoo.hamcrest.Matchers
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
+import org.testatoo.hamcrest.matcher.property.ItemSizeMatcher
 
 import java.time.Duration
 
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -72,6 +73,39 @@ class GroovyExtensions {
             component.items().find { it.value() == value }.unselect()
         }
     }
+
+    static PropertyMatcher getItems(Integer number) {
+       new ItemSizeMatcher(number)
+    }
+
+//
+//    public static PropertyMatcher getGroupItems(Integer expected) {
+//        Properties.groupItemsSize.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getColumns(Integer expected) {
+//        Properties.columnSize.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getRows(Integer expected) {
+//        Properties.size.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getCells(Integer expected) {
+//        Properties.size.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getVisibleItems(Integer expected) {
+//        Properties.visibleItemsSize.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getParagraphs(Integer expected) {
+//        Properties.paragraphSize.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getArticles(Integer expected) {
+//        Properties.articleSize.equalsTo(expected)
+//    }
 
 
 //    static void select(Component selector, String... values) {

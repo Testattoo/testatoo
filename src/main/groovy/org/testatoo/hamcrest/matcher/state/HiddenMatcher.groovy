@@ -13,14 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.hamcrest.matcher.state
 
-import org.testatoo.core.support.ItemSupport
+import org.hamcrest.Description
+import org.testatoo.core.component.Component
+import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListView extends Component implements ItemSupport{
+class HiddenMatcher extends StateMatcher<Component> {
 
-    abstract Item item(String value)
+    private Component component
+
+    @Override
+    protected boolean matchesSafely(Component component, Description mismatchDescription) {
+        this.component = component
+        mismatchDescription.appendText('is visible')
+        component.hidden()
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('hidden')
+    }
 }

@@ -9,14 +9,13 @@ The Browser + Navigation
 
 ==== The $ function
 
-The $ function is the access point for fetching component on the page. The $ function accepts a css3 selector to target your component.
+The $ function is the access point for fetching component on the page. The $ function accepts a CSS3 selector to target your component.
 The signature of the $ function is the following…
-
 
 [source,java,indent=0]
 [subs="verbatim,attributes"]
 ----
-include::{sourcedir}/groovy/doc/SelectorTest.groovy[tags=componentSelection]
+include::{basepath}/test/groovy/doc/SelectorTest.groovy[tags=componentSelection]
 ----
 
 <1> Match the DOM element on the page with *id: 'button'*
@@ -48,7 +47,6 @@ But wait a moment: How can you know if a button is a button!? Indeed, in HTML, a
 <button id="button">My Button</button>
 <input id="button" type="button" value="My Button">
 <input id="button" type="submit" value="My Button">
-
 -------------------------------------------------------------------------------
 
 This is the magic of Testatoo. We will see later how it works and how to override this behavior and easily add new component types.

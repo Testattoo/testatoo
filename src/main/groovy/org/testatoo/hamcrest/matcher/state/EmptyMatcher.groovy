@@ -13,14 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.hamcrest.matcher.state
 
-import org.testatoo.core.support.ItemSupport
+import org.hamcrest.Description
+import org.testatoo.core.support.InputSupport
+import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListView extends Component implements ItemSupport{
+class EmptyMatcher extends StateMatcher<InputSupport> {
 
-    abstract Item item(String value)
+    private InputSupport input
+
+    @Override
+    protected boolean matchesSafely(InputSupport input, Description mismatchDescription) {
+        this.input = input
+        mismatchDescription.appendText('is filled')
+        input.empty()
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('empty')
+    }
+
 }

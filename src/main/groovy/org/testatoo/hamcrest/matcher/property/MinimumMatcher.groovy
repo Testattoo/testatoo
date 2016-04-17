@@ -13,34 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.hamcrest
+package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.component.Dropdown
+import org.testatoo.core.support.RangeSupport
+import org.testatoo.hamcrest.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItemsMatcher extends PropertyMatcher<Dropdown> {
+class MinimumMatcher extends PropertyMatcher<RangeSupport> {
 
-    private String[] items
+    private Object minimum
 
-    SelectedItemsMatcher(String... items) {
-        this.items = items
+    MinimumMatcher(Object minimum) {
+        this.minimum = minimum
     }
 
     @Override
-    protected boolean matchesSafely(Dropdown item) {
-        return false
+    protected boolean matchesSafely(RangeSupport item) {
+        item.minimum() == minimum
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendValue('')
+        description.appendValue(minimum)
     }
 
     @Override
-    protected void describeMismatchSafely(Dropdown dropdown, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(dropdown.text())
+    protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('has ').appendValue(item.minimum())
     }
 }

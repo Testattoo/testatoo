@@ -1,18 +1,3 @@
-/**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package doc.dsl
 
 import org.junit.BeforeClass
@@ -100,12 +85,12 @@ class ComponentsTest {
         Radio unchecked_radio = $('#radio_2') as Radio
 
         checked_radio.should {
-            have label('Radio label checked')
+            have label('Radio checked')
             be checked
         }
 
         unchecked_radio.should {
-            have label('Radio label unchecked')
+            have label('Radio unchecked')
             be unchecked
         }
 
@@ -119,12 +104,34 @@ class ComponentsTest {
     @Test
     public void should_have_expected_properties_and_states_supported_by_dropdown() {
         // tag::dropdown[]
-//        Dropdown dropdown = $('#os') as Select
+        Dropdown dropdown = $('#os') as Select
+        dropdown.should {
+            have label('OS')
+            have 8.items
+            have selectedItem('None')
+        }
+        // end::dropdown[]
+
+
+        //
+
+//            have 8.items
+//            have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
+//
+//            have 3.groupItems
+//            have groupItems('linux', 'win32', 'BSD')
+//        }
+
+//        on dropdown select 'Ubuntu'   // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
+
+
+
+//        [source, java]
+//        -------------------------------------------------------------------------------
+//                DropDown dropdown = $('#dropdown') as DropDown
 //        dropdown.should {
 //            have label('OS')
 //            have selectedItems('None')
-//        }
-
 //
 //            have 8.items
 //            have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
@@ -134,7 +141,8 @@ class ComponentsTest {
 //        }
 //
 //        on dropdown select 'Ubuntu'   // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
-        // end::dropdown[]
+//        -------------------------------------------------------------------------------
+
     }
 
 

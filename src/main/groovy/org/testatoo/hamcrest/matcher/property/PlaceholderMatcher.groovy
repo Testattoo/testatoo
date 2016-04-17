@@ -13,34 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.hamcrest
+package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.component.Dropdown
+import org.testatoo.core.support.InputSupport
+import org.testatoo.hamcrest.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SelectedItemsMatcher extends PropertyMatcher<Dropdown> {
+class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
 
-    private String[] items
+    private String placeholder
 
-    SelectedItemsMatcher(String... items) {
-        this.items = items
+    PlaceholderMatcher(String placeholder) {
+        this.placeholder = placeholder
     }
 
     @Override
-    protected boolean matchesSafely(Dropdown item) {
-        return false
+    protected boolean matchesSafely(InputSupport item) {
+        item.placeholder() == placeholder
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendValue('')
+        description.appendValue(placeholder)
     }
 
     @Override
-    protected void describeMismatchSafely(Dropdown dropdown, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(dropdown.text())
+    protected void describeMismatchSafely(InputSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('has ').appendValue(item.placeholder())
     }
 }

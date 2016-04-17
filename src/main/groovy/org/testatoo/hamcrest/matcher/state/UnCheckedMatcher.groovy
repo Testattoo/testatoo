@@ -13,14 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.component
+package org.testatoo.hamcrest.matcher.state
 
-import org.testatoo.core.support.ItemSupport
+import org.hamcrest.Description
+import org.testatoo.core.support.CheckSupport
+import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListView extends Component implements ItemSupport{
+class UnCheckedMatcher extends StateMatcher<CheckSupport> {
 
-    abstract Item item(String value)
+    @Override
+    protected boolean matchesSafely(CheckSupport item, Description mismatchDescription) {
+        mismatchDescription.appendText('is checked')
+        item.unchecked()
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('unchecked')
+    }
 }

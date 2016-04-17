@@ -9,7 +9,7 @@
 :homepage: https://www.testatoo.org
 :desc: This is the Testatoo documentation
 :imagesdir: images
-:sourcedir: ../../test
+:basepath: ../..
 :junit-version: 4.12
 :selenium-version: 2.53.0
 :testato-version: 2.0.b23
@@ -21,6 +21,8 @@ include::introduction.adoc[]
 include::design_and_architecture.adoc[]
 
 include::installation.adoc[]
+
+include::philosophy.adoc[]
 
 include::content_interaction.adoc[]
 

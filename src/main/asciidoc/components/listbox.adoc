@@ -1,0 +1,69 @@
+=== ListBox
+
+image::components/ListBox_1.png[ListBox]
+
+This image show all the items available in the ListBox
+
+image::components/ListBox_2.png[ListBox]
+
+Definition: a *listBox* allows the user to select one or more items from a list contained within a static, multiple line
+text box. The user clicks inside the box on an item to select it, sometimes in combination with the ⇧ Shift or Ctrl
+in order to make multiple selections. "Control-clicking" an item that has already been selected, unselects it.
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|label
+|select
+
+|
+|_number of items_
+|
+
+|
+|items
+|
+
+|
+|selectedItems
+|
+
+|
+|_number of visible items_
+|
+
+|===
+
+[source, java]
+-------------------------------------------------------------------------------
+ListBox listBox = $('#cities') as ListBox
+listbox.should {
+    have label('Cities list')
+    have 6.items
+    have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
+    have selectedItems('Montreal')
+
+    have 3.visibleItems     // See the first image at the begin of this section
+}
+
+// Try to select ananother item with a control + click
+CTRL.click listBox.item('Montpellier')
+//  OR
+select listBox.item('Montpellier')
+//  OR
+on listBox select 'Montpellier'
+
+listbox.should { have selectedItems('Montreal', 'Montpellier') }
+
+on listBox select 'New York', 'Casablanca'
+
+
+select listBox.items[2]     // Throws an exception if we try to select a disabled element
+
+unselect listBox.items[0]   // Can unselect an item
+listbox.should {
+    have selectedItems('Montpellier')
+}
+-------------------------------------------------------------------------------

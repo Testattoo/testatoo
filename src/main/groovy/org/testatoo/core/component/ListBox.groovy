@@ -15,14 +15,12 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.support.ItemSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListBox extends Component {
-
-    abstract List<Item> items()
-
-    abstract Item item(String value)
+abstract class ListBox extends Component implements ItemSupport {
 
     abstract List<Item> visibleItems()
 

@@ -2,7 +2,7 @@
 '''
 ==== Select a component with $ function
 
-The $ function is the access point for fetching component on the page. The $ function accepts a css3 selector to target your component.
+The $ function is the access point for fetching component on the page. The $ function accepts a CSS3 selector to target your component.
 
 The signature of the $ function is the following…
 
@@ -67,7 +67,7 @@ because through the selector expression, we try to target a list of items (optio
 
 ==== Multi selection with $$ function
 
-The "$$" function allows you to make assertion on a list of elements. The $$ function accepts a css3 selector to target a list of components.
+The "$$" function allows you to make assertion on a list of elements. The $$ function accepts a CSS3 selector to target a list of components.
 
 [source, java]
 -------------------------------------------------------------------------------

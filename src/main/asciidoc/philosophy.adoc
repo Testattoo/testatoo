@@ -1,0 +1,33 @@
+== Philosophy
+
+Testatoo is a strongly opinionated tool. There is no anonymous "WebElement". Everything need to be a *COMPONENT*.
+Testatoo is a strongly typed UI component tool.
+
+In the previous sample the line:
+[source, java]
+-----------------------------------------------------
+InputTypeText search = $('#lst-ib') as InputTypeText
+-----------------------------------------------------
+express that we try to find an *HTML5 input of type text with id: 'lst-ib'* => <input type="text"/>
+
+The associated import is :
+[source, java]
+-----------------------------------------------------
+import org.testatoo.bundle.html5.input.InputTypeText
+-----------------------------------------------------
+
+[IMPORTANT]
+====
+Testatoo provide by default the *HTML5* bundle to interact with basic HTML5 components
+====
+
+In fact with the usage you'll never use the component as an InputTypeText but thought it's abstraction.
+In this case an TextField
+
+
+
+
+
+
+
+

@@ -296,11 +296,11 @@ class ComponentsTest {
         assert Radio in org.testatoo.core.component.Radio
 
         Radio radio = $('#radio_1') as Radio
-        assert radio.label() == 'Radio label checked'
+        assert radio.label() == 'Radio checked'
         assert radio.checked()
 
         radio = $('#radio_2') as Radio
-        assert radio.label() == 'Radio label unchecked'
+        assert radio.label() == 'Radio unchecked'
         assert radio.unchecked()
         radio.check()
         assert radio.checked()
