@@ -16,13 +16,13 @@
 package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.support.RangeSupport
+import org.testatoo.core.support.MaximumSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class MaximumMatcher extends PropertyMatcher<RangeSupport> {
+class MaximumMatcher extends PropertyMatcher<MaximumSupport> {
 
     private Object maximum
 
@@ -31,17 +31,17 @@ class MaximumMatcher extends PropertyMatcher<RangeSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(RangeSupport item) {
-        item.maximum() == maximum
+    protected boolean matchesSafely(MaximumSupport component) {
+        component.maximum() == maximum
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(maximum)
+        description.appendText(maximum.toString())
     }
 
     @Override
-    protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.maximum())
+    protected void describeMismatchSafely(MaximumSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ' + component.maximum().toString())
     }
 }

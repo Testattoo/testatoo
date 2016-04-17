@@ -16,13 +16,13 @@
 package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.support.RangeSupport
+import org.testatoo.core.support.MinimumSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class MinimumMatcher extends PropertyMatcher<RangeSupport> {
+class MinimumMatcher extends PropertyMatcher<MinimumSupport> {
 
     private Object minimum
 
@@ -31,17 +31,17 @@ class MinimumMatcher extends PropertyMatcher<RangeSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(RangeSupport item) {
-        item.minimum() == minimum
+    protected boolean matchesSafely(MinimumSupport component) {
+        component.minimum() == minimum
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(minimum)
+        description.appendText(minimum.toString())
     }
 
     @Override
-    protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.minimum())
+    protected void describeMismatchSafely(MinimumSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ' + component.minimum())
     }
 }

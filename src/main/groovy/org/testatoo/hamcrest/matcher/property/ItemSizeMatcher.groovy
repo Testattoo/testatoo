@@ -2,7 +2,6 @@ package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.testatoo.core.support.ItemSupport
-import org.testatoo.core.support.LabelSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**

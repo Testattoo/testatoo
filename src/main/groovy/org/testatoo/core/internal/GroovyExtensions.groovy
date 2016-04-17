@@ -172,7 +172,7 @@ class GroovyExtensions {
         }
 
         if(!success) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description
                     .appendText('Unable to reach the condition after ' + config.waitUntil.toMillis() + ' milliseconds')
                     .appendText('\nExpected: ')

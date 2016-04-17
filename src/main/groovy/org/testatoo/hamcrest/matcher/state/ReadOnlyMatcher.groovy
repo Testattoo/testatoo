@@ -16,18 +16,18 @@
 package org.testatoo.hamcrest.matcher.state
 
 import org.hamcrest.Description
-import org.testatoo.core.support.InputSupport
+import org.testatoo.core.support.ReadOnlySupport
 import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class ReadOnlyMatcher extends StateMatcher<InputSupport> {
+class ReadOnlyMatcher extends StateMatcher<ReadOnlySupport> {
 
     @Override
-    protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
+    protected boolean matchesSafely(ReadOnlySupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is not read only')
-        item.readOnly()
+        component.readOnly()
     }
 
     @Override

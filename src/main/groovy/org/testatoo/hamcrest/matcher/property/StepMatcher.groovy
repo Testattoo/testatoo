@@ -16,13 +16,13 @@
 package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.support.RangeSupport
+import org.testatoo.core.support.StepSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class StepMatcher extends PropertyMatcher<RangeSupport> {
+class StepMatcher extends PropertyMatcher<StepSupport> {
 
     private Object step
 
@@ -31,17 +31,17 @@ class StepMatcher extends PropertyMatcher<RangeSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(RangeSupport item) {
-        item.step() == step
+    protected boolean matchesSafely(StepSupport component) {
+        component.step() == step
     }
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(step)
+        description.appendText(step.toString())
     }
 
     @Override
-    protected void describeMismatchSafely(RangeSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.step())
+    protected void describeMismatchSafely(StepSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ' + component.step().toString())
     }
 }

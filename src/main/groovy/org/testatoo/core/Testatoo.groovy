@@ -42,7 +42,6 @@ import org.testatoo.hamcrest.matcher.property.PlaceholderMatcher
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.matcher.state.ReadOnlyMatcher
 import org.testatoo.hamcrest.matcher.state.RequiredMatcher
-import org.testatoo.hamcrest.SelectedItemsMatcher
 import org.testatoo.hamcrest.matcher.state.SelectedMatcher
 import org.testatoo.hamcrest.matcher.property.StepMatcher
 import org.testatoo.hamcrest.matcher.property.TextMatcher

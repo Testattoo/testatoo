@@ -16,18 +16,18 @@
 package org.testatoo.hamcrest.matcher.state
 
 import org.hamcrest.Description
-import org.testatoo.core.support.InputSupport
+import org.testatoo.core.support.FilledSupport
 import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class FilledMatcher extends StateMatcher<InputSupport> {
+class FilledMatcher extends StateMatcher<FilledSupport> {
 
     @Override
-    protected boolean matchesSafely(InputSupport item, Description mismatchDescription) {
+    protected boolean matchesSafely(FilledSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is empty')
-        item.filled()
+        component.filled()
     }
 
     @Override

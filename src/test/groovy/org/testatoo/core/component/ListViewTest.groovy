@@ -18,6 +18,7 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.core.support.ItemSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,5 +29,6 @@ class ListViewTest {
     @Test
     public void should_have_expected_inheritance() {
         ListView in Component
+        ListView in ItemSupport
     }
 }

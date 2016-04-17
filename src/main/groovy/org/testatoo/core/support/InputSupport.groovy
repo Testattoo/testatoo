@@ -17,19 +17,9 @@ package org.testatoo.core.support
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface InputSupport extends Clearable {
+interface InputSupport extends Clearable, EmptySupport, FilledSupport, ReadOnlySupport, RequiredSupport, OptionalSupport {
 
     String placeholder()
-
-    boolean empty()
-
-    boolean filled()
-
-    boolean readOnly()
-
-    boolean required()
-
-    boolean optional()
 
     void value(String value)
 

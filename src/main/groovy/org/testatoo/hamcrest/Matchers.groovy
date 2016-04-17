@@ -19,10 +19,18 @@ import org.hamcrest.Factory
 import org.hamcrest.Matcher
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.CheckSupport
+import org.testatoo.core.support.EmptySupport
+import org.testatoo.core.support.FilledSupport
 import org.testatoo.core.support.InputSupport
 import org.testatoo.core.support.LabelSupport
+import org.testatoo.core.support.MaximumSupport
+import org.testatoo.core.support.MinimumSupport
+import org.testatoo.core.support.OptionalSupport
 import org.testatoo.core.support.RangeSupport
+import org.testatoo.core.support.ReadOnlySupport
+import org.testatoo.core.support.RequiredSupport
 import org.testatoo.core.support.SelectSupport
+import org.testatoo.core.support.StepSupport
 import org.testatoo.core.support.TextSupport
 import org.testatoo.core.support.ValiditySupport
 import org.testatoo.core.support.ValueSupport
@@ -81,19 +89,19 @@ class Matchers {
     public static Matcher<Component> hidden() { new HiddenMatcher() }
 
     @Factory
-    public static Matcher<InputSupport> empty() { new EmptyMatcher() }
+    public static Matcher<EmptySupport> empty() { new EmptyMatcher() }
 
     @Factory
-    public static Matcher<InputSupport> filled() { new FilledMatcher() }
+    public static Matcher<FilledSupport> filled() { new FilledMatcher() }
 
     @Factory
-    public static Matcher<InputSupport> readOnly() { new ReadOnlyMatcher() }
+    public static Matcher<ReadOnlySupport> readOnly() { new ReadOnlyMatcher() }
 
     @Factory
-    public static Matcher<InputSupport> required() { new RequiredMatcher() }
+    public static Matcher<RequiredSupport> required() { new RequiredMatcher() }
 
     @Factory
-    public static Matcher<InputSupport> optional() { new OptionalMatcher() }
+    public static Matcher<OptionalSupport> optional() { new OptionalMatcher() }
 
     @Factory
     public static Matcher<CheckSupport> checked() { new CheckedMatcher() }
@@ -127,13 +135,13 @@ class Matchers {
     public static Matcher<InputSupport> placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
     @Factory
-    public static Matcher<RangeSupport> maximum(Object maximum) { new MaximumMatcher(maximum) }
+    public static Matcher<MaximumSupport> maximum(Object maximum) { new MaximumMatcher(maximum) }
 
     @Factory
-    public static Matcher<RangeSupport> minimum(Object minimum) { new MinimumMatcher(minimum) }
+    public static Matcher<MinimumSupport> minimum(Object minimum) { new MinimumMatcher(minimum) }
 
     @Factory
-    public static Matcher<RangeSupport> step(Object minimum) { new StepMatcher(minimum) }
+    public static Matcher<StepSupport> step(Object minimum) { new StepMatcher(minimum) }
 
     @Factory
     public static Matcher<TextSupport> text(String text) { new TextMatcher(text) }
