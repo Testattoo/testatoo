@@ -109,14 +109,9 @@ class ComponentsTest {
             have label('OS')
             have 8.items
             have selectedItem('None')
+            have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
         }
         // end::dropdown[]
-
-
-        //
-
-//            have 8.items
-//            have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
 //
 //            have 3.groupItems
 //            have groupItems('linux', 'win32', 'BSD')

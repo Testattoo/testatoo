@@ -21,4 +21,17 @@ import org.testatoo.core.support.ValueSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Item extends Component implements SelectSupport, ValueSupport {}
+abstract class Item extends Component implements SelectSupport, ValueSupport {
+
+    @Override
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if(!o in Item) return false
+        Item item = (Item) o
+        value() == item.value()
+    }
+
+    @Override
+    int hashCode() { value().hashCode() }
+
+}

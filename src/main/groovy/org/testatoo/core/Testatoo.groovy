@@ -22,6 +22,7 @@ import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
 import org.testatoo.core.internal.jQueryIdProvider
+import org.testatoo.hamcrest.matcher.property.ItemMatcher
 import org.testatoo.hamcrest.matcher.property.SelectedItemMatcher
 import org.testatoo.hamcrest.matcher.state.AvailableMatcher
 import org.testatoo.hamcrest.matcher.state.CheckedMatcher
@@ -122,13 +123,14 @@ class Testatoo {
     public static PropertyMatcher minimum(object) { new MinimumMatcher(object) }
     public static PropertyMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
+    public static PropertyMatcher items(String... values) { new ItemMatcher(values) }
+    public static PropertyMatcher items(Item... items) { new ItemMatcher(items) }
+
     public static Matcher selectedItems(String... items) {  }
     public static Matcher selectedItems(Item... items) {  }
 
     public static Matcher selectedItem(String item) { new SelectedItemMatcher(item) }
-    public static Matcher selectedItem(Item item) {  }
-
-
+    public static Matcher selectedItem(Item item) { new SelectedItemMatcher(item) }
 
     public static PropertyMatcher step(object) { new StepMatcher(object) }
     public static PropertyMatcher text(String text) { new TextMatcher(text) }
