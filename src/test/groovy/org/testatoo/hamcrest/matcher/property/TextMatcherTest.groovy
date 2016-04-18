@@ -1,41 +1,38 @@
-package org.testatoo.hamcrest.matcher.state
+package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.OptionalSupport
+import org.testatoo.core.support.TextSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.is
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.hamcrest.Matchers.optional
+import static org.testatoo.hamcrest.Matchers.has
+import static org.testatoo.hamcrest.Matchers.text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class OptionalMatcherTest {
+class TextMatcherTest {
 
     @Test
     public void should_have_expected_matcher() {
-        OptionalSupport cmp = mock(OptionalSupport)
+        TextSupport cmp = mock(TextSupport)
+        when(cmp.text()).thenReturn('MyText')
 
-        when(cmp.optional()).thenReturn(true)
-        assertThat(cmp, is(optional()))
-
-        when(cmp.optional()).thenReturn(false)
+        assertThat(cmp, has(text('MyText')))
         try {
-            assertThat(cmp, is(optional()))
+            assertThat(cmp, has(text('OtherText')))
             fail()
         } catch (AssertionError e) {
-
             Description description = new StringDescription();
-            description.appendText('\nExpected: is optional')
-                    .appendText('\n     but: is required');
+            description.appendText('\nExpected: has "OtherText"')
+                    .appendText('\n     but: has "MyText"');
 
             assert e.message == description.toString()
         }

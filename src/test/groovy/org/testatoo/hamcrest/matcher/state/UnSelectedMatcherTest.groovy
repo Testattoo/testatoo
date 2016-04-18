@@ -5,37 +5,35 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.OptionalSupport
+import org.testatoo.core.support.SelectSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.hamcrest.Matchers.optional
+import static org.testatoo.hamcrest.Matchers.unselected
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class OptionalMatcherTest {
+class UnSelectedMatcherTest {
 
     @Test
     public void should_have_expected_matcher() {
-        OptionalSupport cmp = mock(OptionalSupport)
+        SelectSupport cmp = mock(SelectSupport)
 
-        when(cmp.optional()).thenReturn(true)
-        assertThat(cmp, is(optional()))
-
-        when(cmp.optional()).thenReturn(false)
+        when(cmp.unselected()).thenReturn(true)
+        assertThat(cmp, is(unselected()))
         try {
-            assertThat(cmp, is(optional()))
+            when(cmp.unselected()).thenReturn(false)
+            assertThat(cmp, is(unselected()))
             fail()
         } catch (AssertionError e) {
-
             Description description = new StringDescription();
-            description.appendText('\nExpected: is optional')
-                    .appendText('\n     but: is required');
+            description.appendText('\nExpected: is unselected')
+                    .appendText('\n     but: is selected');
 
             assert e.message == description.toString()
         }
