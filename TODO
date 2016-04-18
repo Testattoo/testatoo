@@ -1,28 +1,19 @@
-TODO add MatcherType for State and Property
-
-Add test on Unsupported Operation on Component
-add test on Unsu... State on Component
-
 Add test on keyboard and mouse who test tah evaluator is called
 
 Property matcher
 https://github.com/geb/geb/blob/master/module/geb-core/src/main/groovy/geb/textmatching/TextMatchingSupport.groovy
 
-evaluate should FAIL if there is no have or be
+choose better then select ?
 
-click_on('Link Text') # clicks on either links or buttons
-click_on('Button Value')
-
-choose('A Radio Button')  // choose better then select
-check('A Checkbox')
-uncheck('A Checkbox')
+click_on   link('Link Text') # clicks on either links or buttons
+click_on   button('Button Value')
+check checbox('A Checkbox')
+uncheck checkbox('A Checkbox')
 
 attach_file('Image', '/path/to/image.jpg')
 select('Option', :from => 'Select Box')
 
 ==============================================================
-
-
 //        dropdown.should { have label('Elements list') }
 //        dropdown.should { have size(5) }
 
@@ -290,7 +281,3 @@ Doc
         assert button.available
 
 =========================================
-
-Do two little TodoMVC
-Aurelia => aurelia bootstrap
-Angular1 => angular material
