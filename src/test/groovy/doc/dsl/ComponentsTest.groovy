@@ -110,34 +110,12 @@ class ComponentsTest {
             have 8.items
             have selectedItem('None')
             have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
+            // have 3.groupItems
+            // have groupItems('linux', 'win32', 'BSD')
         }
+
+        // on dropdown select 'Ubuntu' // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
         // end::dropdown[]
-//
-//            have 3.groupItems
-//            have groupItems('linux', 'win32', 'BSD')
-//        }
-
-//        on dropdown select 'Ubuntu'   // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
-
-
-
-//        [source, java]
-//        -------------------------------------------------------------------------------
-//                DropDown dropdown = $('#dropdown') as DropDown
-//        dropdown.should {
-//            have label('OS')
-//            have selectedItems('None')
-//
-//            have 8.items
-//            have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
-//
-//            have 3.groupItems
-//            have groupItems('linux', 'win32', 'BSD')
-//        }
-//
-//        on dropdown select 'Ubuntu'   // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
-//        -------------------------------------------------------------------------------
-
     }
 
 
