@@ -15,18 +15,25 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
-class GroupItemTest {
+abstract class Group extends Component {
 
-    @Test
-    public void should_have_expected_inheritance() {
-        GroupItem in Component
+    abstract List<Item> items()
+
+    abstract Item item(String value)
+
+    abstract String value()
+
+    @Override
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if(!o in Group) return false
+        Group group = (Group) o
+        value() == group.value()
     }
+
+    @Override
+    int hashCode() { value().hashCode() }
 }

@@ -17,11 +17,13 @@ package org.testatoo.core
 
 import org.hamcrest.Matcher
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
 import org.testatoo.core.internal.jQueryIdProvider
+import org.testatoo.hamcrest.matcher.property.GroupMatcher
 import org.testatoo.hamcrest.matcher.property.ItemMatcher
 import org.testatoo.hamcrest.matcher.property.SelectedItemMatcher
 import org.testatoo.hamcrest.matcher.state.AvailableMatcher
@@ -125,6 +127,9 @@ class Testatoo {
 
     public static PropertyMatcher items(String... values) { new ItemMatcher(values) }
     public static PropertyMatcher items(Item... items) { new ItemMatcher(items) }
+
+    public static PropertyMatcher groups(String... values) { new GroupMatcher(values) }
+    public static PropertyMatcher groups(Group... groups) { new GroupMatcher(groups) }
 
     public static Matcher selectedItems(String... items) {  }
     public static Matcher selectedItems(Item... items) {  }

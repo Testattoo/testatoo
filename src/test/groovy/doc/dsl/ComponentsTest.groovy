@@ -57,7 +57,7 @@ class ComponentsTest {
         // tag::button[]
         Button button = $('#btn') as Button
 
-        button.should { have text('My Button Text')}
+        button.should { have text('My Button Text') }
         // end::button[]
     }
 
@@ -110,15 +110,12 @@ class ComponentsTest {
             have 8.items
             have selectedItem('None')
             have items('None', 'Ubuntu', 'Fedora', 'Gentoo', 'XP', 'Vista', 'FreeBSD', 'OpenBSD')
-            // have 3.groupItems
-            // have groupItems('linux', 'win32', 'BSD')
+            have 3.groups
+            have groups('linux', 'win32', 'BSD')
         }
 
-        // on dropdown select 'Ubuntu' // Selects the 'Ubuntu' in the dropdown or throws an exception if the item is disabled
+        on dropdown select 'Ubuntu'
+        dropdown.should { have selectedItem('Ubuntu') }
         // end::dropdown[]
     }
-
-
-
-
 }

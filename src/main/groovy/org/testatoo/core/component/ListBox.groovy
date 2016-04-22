@@ -24,9 +24,9 @@ abstract class ListBox extends Component implements ItemSupport {
 
     abstract List<Item> visibleItems()
 
-    abstract List<GroupItem> groupItems()
+    abstract List<Group> groupItems()
 
-    abstract GroupItem groupItem(String value)
+    abstract Group groupItem(String value)
 
     abstract List<Item> selectedItems()
 }

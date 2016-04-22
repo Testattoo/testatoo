@@ -18,7 +18,10 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.core.support.GroupSupport
 import org.testatoo.core.support.ItemSupport
+import org.testatoo.core.support.LabelSupport
+import org.testatoo.core.support.SelectedItemSupport
 import org.testatoo.core.support.SingleSelectable
 
 /**
@@ -31,6 +34,9 @@ class DropdownTest {
     public void should_have_expected_inheritance() {
         Dropdown in Component
         Dropdown in ItemSupport
+        Dropdown in GroupSupport
         Dropdown in SingleSelectable
+        Dropdown in LabelSupport
+        Dropdown in SelectedItemSupport
     }
 }

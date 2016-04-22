@@ -33,5 +33,4 @@ abstract class Item extends Component implements SelectSupport, ValueSupport {
 
     @Override
     int hashCode() { value().hashCode() }
-
 }

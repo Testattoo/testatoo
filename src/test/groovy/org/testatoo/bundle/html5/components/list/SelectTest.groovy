@@ -24,7 +24,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.list.OptionGroup
 import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.component.Dropdown
-import org.testatoo.core.component.GroupItem
+import org.testatoo.core.component.Group
 
 import static org.testatoo.core.Testatoo.*
 
@@ -58,12 +58,12 @@ class SelectTest {
         assert os.items()[1].value() == 'Ubuntu'
         assert os.item('Ubuntu').value() == 'Ubuntu'
 
-        assert os.groupItems().size() == 3
+        assert os.groups().size() == 3
 
-        assert os.groupItems()[0].value() == 'linux'
-        assert os.groupItem('linux').value() == 'linux'
-        assert os.groupItem('win32').value() == 'win32'
-        assert os.groupItem('BSD').value() == 'BSD'
+        assert os.groups()[0].value() == 'linux'
+        assert os.group('linux').value() == 'linux'
+        assert os.group('win32').value() == 'win32'
+        assert os.group('BSD').value() == 'BSD'
 
         assert os.selectedItem().value() == 'None'
         os.select('Fedora')
@@ -81,10 +81,10 @@ class SelectTest {
 
     @Test
     public void groupItem_should_have_expected_behaviours() {
-        assert OptionGroup in GroupItem
+        assert OptionGroup in Group
 
         Select os = $('#os') as Select
-        GroupItem linux = os.groupItem('linux')
+        Group linux = os.group('linux')
 
         assert linux.value() == 'linux'
         assert linux.items().size() == 3

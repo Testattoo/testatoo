@@ -14,6 +14,7 @@ class ItemSizeMatcher extends PropertyMatcher<ItemSupport> {
     ItemSizeMatcher(Integer number) {
         this.number = number
     }
+
     @Override
     protected boolean matchesSafely(ItemSupport itemSupport) {
         itemSupport.items().size() == number
