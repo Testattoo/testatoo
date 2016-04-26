@@ -2,28 +2,6 @@
 
 This is the base component for all types of fields.
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
-
-[IMPORTANT]
-====
-*All the Testatoo fields inherit these states, properties and intentions.*
-====
-
 ==== TextField
 
 image::components/TextField.png[TextField]

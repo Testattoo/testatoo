@@ -1,6 +1,6 @@
-=== GroupItem
+=== Group
 
-*GroupItem* is used for dropDowns.
+*Group* is used for groups of items in dropDowns.
 
 [cols="3*", options="header"]
 |===
@@ -19,7 +19,7 @@
 [source, java]
 -------------------------------------------------------------------------------
 DropDown dropdown = $('#dropdown') as DropDown
-GroupItem group = dropdown.groupItem('linux') // Or dropdown.groupItems[0]
+Group group = dropdown.group('linux') // Or dropdown.groups[0]
 
 group.should {
     have value('linux')

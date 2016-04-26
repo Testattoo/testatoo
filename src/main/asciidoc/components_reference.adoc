@@ -22,7 +22,7 @@ include::{basepath}/test/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
 
 [IMPORTANT]
 ====
-*All the Testatoo components inherit these states.*
+*All the Testatoo components inherit these states, and are clickables and draggables.*
 ====
 
 include::components/button.adoc[]
@@ -33,7 +33,7 @@ include::components/radio.adoc[]
 
 include::components/dropdown.adoc[]
 
-include::components/groupitem.adoc[]
+include::components/group.adoc[]
 
 include::components/item.adoc[]
 
@@ -41,4 +41,14 @@ include::components/listbox.adoc[]
 
 include::components/fields.adoc[]
 
+include::components/form.adoc[]
 
+include::components/heading.adoc[]
+
+include::components/image.adoc[]
+
+include::components/link.adoc[]
+
+include::components/listview.adoc[]
+
+include::components/panel.adoc[]
