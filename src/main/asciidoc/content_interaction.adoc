@@ -10,7 +10,7 @@ The Browser + Navigation
 ==== The $ function
 
 The $ function is the access point for fetching component on the page. The $ function accepts a CSS3 selector to target your component.
-The signature of the $ function is the following…
+The signature of the $ function is the following:
 
 [source,java,indent=0]
 [subs="verbatim,attributes"]
@@ -18,14 +18,14 @@ The signature of the $ function is the following…
 include::{basepath}/test/groovy/doc/SelectorTest.groovy[tags=componentSelection]
 ----
 
-<1> Match the DOM element on the page with *id: 'button'*
-<2> Match the DOM element on the *class: 'btn-secondary'*
-<3> Match the DOM element on the page that is *the second button*
-<4> Match the DOM element on the page that have *attribute "data-role" equals to "myRole"*
+<1> Matches the DOM element on the page with *id: 'button'*
+<2> Matches the DOM element on the *class: 'btn-secondary'*
+<3> Matches the DOM element on the page that is *the second button*
+<4> Matches the DOM element on the page that has *attribute "data-role" equals to "myRole"*
 
 Our experience demonstrated that *we never need complex selector.* If you write tests first, we use the semantic
 carried by the tested component. In the code, this is reflected by a custom tag, the sequence in the page, a role
-attribute, or an id. In all this case a css3 selector is more than enough.
+attribute, or an id. In all these cases, a css3 selector is more than enough.
 
 //TODO : examples (custom tag : with Angular Directive or Web Components)
 

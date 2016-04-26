@@ -1,4 +1,30 @@
-=== TextField
+=== Field
+
+This is the base component for all types of fields.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+[IMPORTANT]
+====
+*All the Testatoo fields inherit these states, properties and intentions.*
+====
+
+==== TextField
 
 image::components/TextField.png[TextField]
 
@@ -55,3 +81,314 @@ texfield.should {
 }
 
 -------------------------------------------------------------------------------
+
+==== ColorField
+
+image::components/ColorField.png[ColorField]
+
+Definition: a *colorField* is used for fields that should contain a color.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== DateTimeField
+
+image::components/DateTimeField.png[DateTimeField]
+
+Definition: a *dateTimeField* allows the user to select a date and time (with time zone).
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== DateField
+
+image::components/DateField.png[DateField]
+
+Definition: a *dateField* allows the user to select a date.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|step
+
+|inRange
+|maximum
+|
+
+|outOfRange
+|minimum
+|
+|===
+
+==== TimeField
+
+image::components/TimeField.png[TimeField]
+
+Definition: a *timeField* allows the user to select a time (no time zone).
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== MonthField
+
+image::components/MonthField.png[MonthField]
+
+Definition: a *monthField* allows the user to select a month and year.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== WeekField
+
+image::components/WeekField.png[WeekField]
+
+Definition: a *weekField* allows the user to select a week and year.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== EmailField
+
+image::components/EmailField.png[EmailField]
+
+Definition: a *emailField* is used for fields that should contain an e-mail address.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== PasswordField
+
+image::components/PasswordField.png[PasswordField]
+
+Definition: a *passwordField* is used for fields that should contain a password.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== NumberField
+
+image::components/NumberField.png[NumberField]
+
+Definition: a *numberField* is used for fields that should contain a numeric value.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|step
+
+|inRange
+|maximum
+|
+
+|outOfRange
+|minimum
+|
+|===
+
+==== RangeField
+
+image::components/RangeField.png[RangeField]
+
+Definition: a *rangeField* is used for fields that should contain a value within a range.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|step
+
+|inRange
+|maximum
+|
+
+|outOfRange
+|minimum
+|
+|===
+
+==== PhoneField
+
+image::components/PhoneField.png[PhoneField]
+
+Definition: a *phoneField* is used for fields that should contain a telephone number.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== SearchField
+
+image::components/SearchField.png[SearchField]
+
+Definition: a *searchField* is used for search fields (a search field behaves like a regular text field).
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===
+
+==== URLField
+
+image::components/URLField.png[URLField]
+
+Definition: a *URLField* is used for fields that should contain a URL address.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|valid
+|label
+|clear
+
+|invalid
+|placeholder
+|
+
+|
+|value
+|
+|===

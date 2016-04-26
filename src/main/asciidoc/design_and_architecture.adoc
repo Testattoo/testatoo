@@ -13,20 +13,20 @@
                         |                       |
                    +----------+            /---------\
                    |  Bundle  |            |  Tests  |
-                   +----------+            |      {d}|
+                   +----------+            |         |
                    |  Html5   |            \---------/
                    +----------+
                         ^
                         | inherit
                         |
-          +++++++++++++++++++++++++++++++++++++++++++++++++
-          |             |                 |               |
-    +----------+    +----------+    +----------+     +----------+
-    |  Bundle  |    |  Bundle  |    |  Bundle  |     |  Bundle  |
-    +----------+    +----------+    +----------+     +----------+
-    | Angular  |    | Polymer  |    | Bootstrap|     |  Other   |
-    | Material |    | Material |    |          |     |  Custom  |
-    +----------+    +----------+    +----------+     +----------+
+          +++++++++++++++++++++++++++++++++++++++++++++++
+          |             |               |               |
+    +----------+    +---------+    +---------+     +---------+
+    |  Bundle  |    | Bundle  |    | Bundle  |     |  Bundle |
+    +----------+    +---------+    +---------+     +---------+
+    |  Angular |    | Polymer |    |Bootstrap|     |  Other  |
+    |  Material|    | Material|    |         |     |  Custom |
+    +----------+    +---------+    +---------+     +---------+
 ....
 
 Testatoo is built on top of http://code.google.com/p/selenium/[Selenium], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[Selenium] (IE, Google-chrome, Firefox, ...).
