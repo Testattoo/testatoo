@@ -36,34 +36,9 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 
 |===
 
-[source, java]
--------------------------------------------------------------------------------
-ListBox listBox = $('#cities') as ListBox
-listbox.should {
-    have label('Cities list')
-    have 6.items
-    have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
-    have selectedItems('Montreal')
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=listbox]
+----
 
-    have 3.visibleItems     // See the first image at the begin of this section
-}
-
-// Try to select ananother item with a control + click
-CTRL.click listBox.item('Montpellier')
-//  OR
-select listBox.item('Montpellier')
-//  OR
-on listBox select 'Montpellier'
-
-listbox.should { have selectedItems('Montreal', 'Montpellier') }
-
-on listBox select 'New York', 'Casablanca'
-
-
-select listBox.items[2]     // Throws an exception if we try to select a disabled element
-
-unselect listBox.items[0]   // Can unselect an item
-listbox.should {
-    have selectedItems('Montpellier')
-}
--------------------------------------------------------------------------------

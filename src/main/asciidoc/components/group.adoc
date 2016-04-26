@@ -16,13 +16,9 @@
 |
 
 |===
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-Group group = dropdown.group('linux') // Or dropdown.groups[0]
 
-group.should {
-    have value('linux')
-    have items('Ubuntu', 'Fedora', 'Gentoo')
-}
--------------------------------------------------------------------------------
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=group]
+----

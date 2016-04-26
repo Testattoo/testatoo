@@ -35,9 +35,9 @@ include::components/dropdown.adoc[]
 
 include::components/group.adoc[]
 
-include::components/item.adoc[]
-
 include::components/listbox.adoc[]
+
+include::components/item.adoc[]
 
 include::components/fields.adoc[]
 
@@ -52,3 +52,5 @@ include::components/link.adoc[]
 include::components/listview.adoc[]
 
 include::components/panel.adoc[]
+
+include::components/datagrid.adoc[]

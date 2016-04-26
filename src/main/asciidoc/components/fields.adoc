@@ -43,22 +43,11 @@ of input may be required.
 |
 |===
 
-
-[source, java]
--------------------------------------------------------------------------------
-
-TextField textfield = $('#text_field') as TextField
-texfield.should {
-    be empty
-    be required
-}
-on textfield fill ('1234')
-texfield.should {
-    be filled
-    have value('1234')
-}
-
--------------------------------------------------------------------------------
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=textfield]
+----
 
 ==== ColorField
 

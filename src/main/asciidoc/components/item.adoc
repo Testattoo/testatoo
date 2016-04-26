@@ -16,12 +16,9 @@
 |unselect
 
 |===
-[source, java]
--------------------------------------------------------------------------------
-DropDown dropdown = $('#dropdown') as DropDown
-Item item = dropdown.item('Fedora')  // Or dropdown.items[1]
-item.should {
-    have value('Fedora')
-    be unselected
-}
--------------------------------------------------------------------------------
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=item]
+----
