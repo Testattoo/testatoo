@@ -23,11 +23,11 @@ When the user selects a new value, the control reverts to its inactive state, di
 |
 
 |
-|_number of groupItems_
+|_number of groups_
 |
 
 |
-|groupItems
+|groups
 |
 
 |===
