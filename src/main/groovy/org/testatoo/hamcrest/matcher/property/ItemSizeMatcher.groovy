@@ -16,8 +16,8 @@ class ItemSizeMatcher extends PropertyMatcher<ItemSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(ItemSupport itemSupport) {
-        itemSupport.items().size() == number
+    protected boolean matchesSafely(ItemSupport component) {
+        component.items().size() == number
     }
 
     @Override
@@ -26,7 +26,7 @@ class ItemSizeMatcher extends PropertyMatcher<ItemSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(ItemSupport itemSupport, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + itemSupport.items().size()).appendText(' item(s)')
+    protected void describeMismatchSafely(ItemSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ' + component.items().size()).appendText(' item(s)')
     }
 }

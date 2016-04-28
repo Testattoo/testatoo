@@ -170,7 +170,7 @@ class InputFieldTest {
         assert number.maximum() == 64
         assert number.minimum() == 0
         assert number.step() == 8
-        assert number.value() == 0
+        assert number.value() == 2
         assert number.inRange()
 
         number.value('150')

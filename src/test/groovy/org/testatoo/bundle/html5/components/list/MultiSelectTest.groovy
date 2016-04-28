@@ -63,9 +63,9 @@ class MultiSelectTest {
         Item casablanca = cities.item('Casablanca')
         Item munich = cities.item('Munich')
 
-        assert montreal.unselected()
+        assert montreal.selected()
         assert montpellier.enabled()
-        assert cities.item('Montreal').unselected()
+        assert cities.item('Montreal').selected()
 
         assert quebec.unselected()
         assert quebec.disabled()
@@ -74,14 +74,19 @@ class MultiSelectTest {
         assert montpellier.unselected()
         assert cities.item('Montpellier').unselected()
 
-        assert newYork.selected()
-        assert cities.item('New York').selected()
+        assert newYork.unselected()
+        assert cities.item('New York').unselected()
 
         assert casablanca.unselected()
         assert cities.item('Casablanca').unselected()
 
-        assert munich.selected()
-        assert cities.item('Munich').selected()
+        assert munich.unselected()
+        assert cities.item('Munich').unselected()
+
+        assert cities.selectedItems().containsAll(montreal)
+
+        cities.unselect(montreal)
+        cities.select(newYork, munich)
 
         assert cities.selectedItems().containsAll(newYork, munich)
 
@@ -140,18 +145,18 @@ class MultiSelectTest {
 
         MultiSelect planets = $('#planets') as MultiSelect
         assert planets.visibleItems().size() == 5
-        assert planets.groupItems().size() == 2
-        assert planets.groupItems()[0].value() == 'Cat-1'
-        assert planets.groupItem('Cat-1').value() == 'Cat-1'
+        assert planets.groups().size() == 2
+        assert planets.groups()[0].value() == 'Cat-1'
+        assert planets.group('Cat-1').value() == 'Cat-1'
     }
 
     @Test
     public void groupItem_should_have_expected_behaviours() {
         ListBox planets = $('#planets') as MultiSelect
-        OptionGroup groupItem = planets.groupItem('Cat-1')
+        OptionGroup group = planets.group('Cat-1')
 
-        assert groupItem.items().size() == 4
-        assert groupItem.items()[0].value() == 'Mercury'
-        assert groupItem.item('Earth').value() == 'Earth'
+        assert group.items().size() == 4
+        assert group.items()[0].value() == 'Mercury'
+        assert group.item('Earth').value() == 'Earth'
     }
 }

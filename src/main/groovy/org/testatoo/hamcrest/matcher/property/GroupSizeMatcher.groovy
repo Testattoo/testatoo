@@ -16,8 +16,8 @@ class GroupSizeMatcher extends PropertyMatcher<GroupSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(GroupSupport groupSupport) {
-        groupSupport.groups().size() == number
+    protected boolean matchesSafely(GroupSupport component) {
+        component.groups().size() == number
     }
 
     @Override
@@ -26,8 +26,8 @@ class GroupSizeMatcher extends PropertyMatcher<GroupSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(GroupSupport groupSupport, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + groupSupport.groups().size()).appendText(' group(s)')
+    protected void describeMismatchSafely(GroupSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ' + component.groups().size()).appendText(' group(s)')
     }
 }
 

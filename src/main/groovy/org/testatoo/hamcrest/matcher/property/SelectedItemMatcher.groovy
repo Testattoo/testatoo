@@ -22,11 +22,11 @@ class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(SelectedItemSupport selectedItemSupport) {
+    protected boolean matchesSafely(SelectedItemSupport component) {
         if(value) {
-            return selectedItemSupport.selectedItem().value() == value
+            return component.selectedItem().value() == value
         }
-        selectedItemSupport.selectedItem() == item
+        component.selectedItem() == item
     }
 
     @Override
@@ -35,7 +35,7 @@ class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(SelectedItemSupport selectedItemSupport, Description mismatchDescription) {
-        mismatchDescription.appendText('has selected item ').appendValue(selectedItemSupport.selectedItem().value())
+    protected void describeMismatchSafely(SelectedItemSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has selected item ').appendValue(component.selectedItem().value())
     }
 }

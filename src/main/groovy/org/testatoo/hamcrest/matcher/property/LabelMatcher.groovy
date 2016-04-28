@@ -31,8 +31,8 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(LabelSupport item) {
-        item.label() == label
+    protected boolean matchesSafely(LabelSupport component) {
+        component.label() == label
     }
 
     @Override
@@ -41,7 +41,7 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(LabelSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.label())
+    protected void describeMismatchSafely(LabelSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ').appendValue(component.label())
     }
 }

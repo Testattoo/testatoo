@@ -31,8 +31,8 @@ class TextMatcher extends PropertyMatcher<TextSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(TextSupport item) {
-        item.text() == text
+    protected boolean matchesSafely(TextSupport component) {
+        component.text() == text
     }
 
     @Override
@@ -41,7 +41,7 @@ class TextMatcher extends PropertyMatcher<TextSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(TextSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.text())
+    protected void describeMismatchSafely(TextSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ').appendValue(component.text())
     }
 }

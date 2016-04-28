@@ -26,6 +26,7 @@ import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
 import org.testatoo.hamcrest.matcher.property.GroupSizeMatcher
 import org.testatoo.hamcrest.matcher.property.ItemSizeMatcher
+import org.testatoo.hamcrest.matcher.property.VisibleItemsSizeMatcher
 
 import java.time.Duration
 
@@ -77,6 +78,10 @@ class GroovyExtensions {
 
     static PropertyMatcher getItems(Integer number) {
        new ItemSizeMatcher(number)
+    }
+
+    static PropertyMatcher getVisibleItems(Integer number) {
+        new VisibleItemsSizeMatcher(number)
     }
 
     public static PropertyMatcher getGroups(Integer number) {

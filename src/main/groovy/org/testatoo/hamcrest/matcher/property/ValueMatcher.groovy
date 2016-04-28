@@ -31,8 +31,8 @@ class ValueMatcher extends PropertyMatcher<ValueSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(ValueSupport item) {
-        item.value() == value
+    protected boolean matchesSafely(ValueSupport component) {
+        component.value() == value
     }
 
     @Override
@@ -41,7 +41,7 @@ class ValueMatcher extends PropertyMatcher<ValueSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(ValueSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.value())
+    protected void describeMismatchSafely(ValueSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ').appendValue(component.value())
     }
 }

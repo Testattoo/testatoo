@@ -25,9 +25,9 @@ import org.testatoo.hamcrest.StateMatcher
 class UnCheckedMatcher extends StateMatcher<CheckSupport> {
 
     @Override
-    protected boolean matchesSafely(CheckSupport item, Description mismatchDescription) {
+    protected boolean matchesSafely(CheckSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is checked')
-        item.unchecked()
+        component.unchecked()
     }
 
     @Override

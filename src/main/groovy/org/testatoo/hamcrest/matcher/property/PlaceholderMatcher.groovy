@@ -31,8 +31,8 @@ class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
     }
 
     @Override
-    protected boolean matchesSafely(InputSupport item) {
-        item.placeholder() == placeholder
+    protected boolean matchesSafely(InputSupport component) {
+        component.placeholder() == placeholder
     }
 
     @Override
@@ -41,7 +41,7 @@ class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
     }
 
     @Override
-    protected void describeMismatchSafely(InputSupport item, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(item.placeholder())
+    protected void describeMismatchSafely(InputSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('has ').appendValue(component.placeholder())
     }
 }

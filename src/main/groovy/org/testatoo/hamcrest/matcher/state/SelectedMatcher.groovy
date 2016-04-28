@@ -25,9 +25,9 @@ import org.testatoo.hamcrest.StateMatcher
 class SelectedMatcher extends StateMatcher<SelectSupport> {
 
     @Override
-    protected boolean matchesSafely(SelectSupport item, Description mismatchDescription) {
+    protected boolean matchesSafely(SelectSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is unselected')
-        item.selected()
+        component.selected()
     }
 
     @Override
