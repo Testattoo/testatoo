@@ -22,7 +22,7 @@ include::{basepath}/test/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
 
 [IMPORTANT]
 ====
-*All the Testatoo components inherit these states, and are clickables and draggables.*
+*All Testatoo components inherit these states.*
 ====
 
 include::components/button.adoc[]

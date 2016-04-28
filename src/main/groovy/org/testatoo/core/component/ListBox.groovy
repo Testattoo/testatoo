@@ -15,18 +15,12 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.support.GroupSupport
 import org.testatoo.core.support.ItemSupport
+import org.testatoo.core.support.SelectedItemsSupport
+import org.testatoo.core.support.VisibleItemsSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListBox extends Component implements ItemSupport {
-
-    abstract List<Item> visibleItems()
-
-    abstract List<Group> groupItems()
-
-    abstract Group groupItem(String value)
-
-    abstract List<Item> selectedItems()
-}
+abstract class ListBox extends Component implements ItemSupport, GroupSupport, SelectedItemsSupport, VisibleItemsSupport {}

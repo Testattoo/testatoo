@@ -1,10 +1,11 @@
 === ListBox
 
-image::components/ListBox_1.png[ListBox]
+image:components/ListBox_1.png[ListBox] image:components/ListBox_2.png[ListBox]
 
-This image show all the items available in the ListBox
-
-image::components/ListBox_2.png[ListBox]
+[IMPORTANT]
+====
+*The second image show all the items available in the ListBox.*
+====
 
 Definition: a *listBox* allows the user to select one or more items from a list contained within a static, multiple line
 text box. The user clicks inside the box on an item to select it, sometimes in combination with the ⇧ Shift or Ctrl
@@ -15,6 +16,7 @@ in order to make multiple selections. "Control-clicking" an item that has alread
 
 |States|Properties|Intentions
 
+|
 |label
 |select
 

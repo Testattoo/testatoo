@@ -51,38 +51,4 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
         mismatchDescription.appendText(componentItems.join(', '))
         mismatchDescription.appendText(']')
     }
-
-    private class InternalItem extends Item {
-
-        String value
-
-        InternalItem(String value) {
-            this.value = value
-        }
-
-        @Override
-        boolean selected() {
-            return false
-        }
-
-        @Override
-        boolean unselected() {
-            return false
-        }
-
-        @Override
-        void select() {
-
-        }
-
-        @Override
-        void unselect() {
-
-        }
-
-        @Override
-        Object value() {
-            return value
-        }
-    }
 }

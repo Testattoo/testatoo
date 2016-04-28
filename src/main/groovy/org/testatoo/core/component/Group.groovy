@@ -15,16 +15,13 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.support.ItemSupport
+import org.testatoo.core.support.ValueSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Group extends Component {
-
-    abstract List<Item> items()
-
-    abstract Item item(String value)
-
-    abstract String value()
+abstract class Group extends Component implements ValueSupport, ItemSupport {
 
     @Override
     boolean equals(o) {

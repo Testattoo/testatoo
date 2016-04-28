@@ -2,6 +2,8 @@
 
 *Group* is used for groups of items in dropDowns.
 
+image::components/DropDown.png[DropDown]
+
 [cols="3*", options="header"]
 |===
 

@@ -2,6 +2,8 @@
 
 *Item* is used for dropDowns and listBoxes.
 
+image:components/DropDown.png[DropDown] image:components/ListBox_2.png[ListBox]
+
 [cols="3*", options="header"]
 |===
 

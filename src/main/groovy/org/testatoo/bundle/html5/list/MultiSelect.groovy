@@ -46,13 +46,13 @@ class MultiSelect extends ListBox implements LabelSupport {
     }
 
     @Override
-    List<OptionGroup> groupItems() {
+    List<OptionGroup> groups() {
         find(By.css('optgroup'), OptionGroup)
     }
 
     @Override
-    OptionGroup groupItem(String value) {
-        groupItems().find { it.value() == value }
+    OptionGroup group(String value) {
+        groups().find { it.value() == value }
     }
 
     List<Option> selectedItems() {
