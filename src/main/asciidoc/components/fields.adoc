@@ -2,14 +2,6 @@
 
 This is the base component for all types of fields.
 
-==== TextField
-
-image::components/TextField.png[TextField]
-
-Definition: a *textfield* allows the user to input text information to be used by the program.
-It can a single-line text box when only one line of input is required, and a multi-line text box if more than one line
-of input may be required.
-
 [cols="3*", options="header"]
 |===
 |States|Properties|Intentions
@@ -43,6 +35,20 @@ of input may be required.
 |
 |===
 
+[IMPORTANT]
+====
+*All following types of fields inherit these states, properties and intentions.*
+====
+
+==== TextField
+
+image::components/TextField.png[TextField]
+
+"a *textfield* allows the user to input text information to be used by the program.
+It can a single-line text box when only one line of input is required, and a multi-line text box if more than one line
+of input may be required."
+-- inspired from Wikipedia definition
+
 [source,groovy,indent=0]
 [subs="verbatim,attributes"]
 ----
@@ -53,69 +59,29 @@ include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=textfield]
 
 image::components/ColorField.png[ColorField]
 
-Definition: a *colorField* is used for fields that should contain a color.
-
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
+_Definition_: a *colorField* is used for fields that should contain a color.
 
 ==== DateTimeField
 
 image::components/DateTimeField.png[DateTimeField]
 
-Definition: a *dateTimeField* allows the user to select a date and time (with time zone).
-
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
+_Definition_: a *dateTimeField* allows the user to select a date and time (with time zone).
 
 ==== DateField
 
-image::components/DateField.png[DateField]
+image::components/DateField-1.png[DateField-1]
+image::components/DateField-2.png[DateField-2]
+image::components/DateField-3.png[DateField-3]
 
-Definition: a *dateField* allows the user to select a date.
+_Definition_: a *dateField* allows the user to select a date.
 
 [cols="3*", options="header"]
 |===
 |States|Properties|Intentions
 
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|step
-
 |inRange
 |maximum
-|
+|step
 
 |outOfRange
 |minimum
@@ -124,167 +90,74 @@ Definition: a *dateField* allows the user to select a date.
 
 ==== TimeField
 
-image::components/TimeField.png[TimeField]
+image::components/TimeField-1.png[TimeField-1]
+image::components/TimeField-2.png[TimeField-2]
 
-Definition: a *timeField* allows the user to select a time (no time zone).
+_Definition_: a *timeField* allows the user to select a time (no time zone).
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
 
 ==== MonthField
 
-image::components/MonthField.png[MonthField]
+image::components/MonthField-1.png[MonthField-1]
+image::components/MonthField-2.png[MonthField-2]
 
-Definition: a *monthField* allows the user to select a month and year.
+_Definition_: a *monthField* allows the user to select a month and year.
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
 
 ==== WeekField
 
-image::components/WeekField.png[WeekField]
+image::components/WeekField-1.png[WeekField-1]
+image::components/WeekField-2.png[WeekField-2]
 
-Definition: a *weekField* allows the user to select a week and year.
+_Definition_: a *weekField* allows the user to select a week and year.
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
 
 ==== EmailField
 
 image::components/EmailField.png[EmailField]
 
-Definition: a *emailField* is used for fields that should contain an e-mail address.
-
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
+_Definition_: an *emailField* is used for fields that should contain an e-mail address.
 
 ==== PasswordField
 
 image::components/PasswordField.png[PasswordField]
 
-Definition: a *passwordField* is used for fields that should contain a password.
+_Definition_: a *passwordField* is used for fields that should contain a password.
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
 
 ==== NumberField
 
 image::components/NumberField.png[NumberField]
 
-Definition: a *numberField* is used for fields that should contain a numeric value.
+_Definition_: a *numberField* is used for fields that should contain a numeric value.
 
 [cols="3*", options="header"]
 |===
 |States|Properties|Intentions
 
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|step
-
 |inRange
 |maximum
-|
+|step
 
 |outOfRange
 |minimum
 |
 |===
 
+
 ==== RangeField
 
 image::components/RangeField.png[RangeField]
 
-Definition: a *rangeField* is used for fields that should contain a value within a range.
+_Definition_: a *rangeField* is used for fields that should contain a value within a range.
 
 [cols="3*", options="header"]
 |===
 |States|Properties|Intentions
 
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|step
-
 |inRange
 |maximum
-|
+|step
 
 |outOfRange
 |minimum
@@ -295,67 +168,19 @@ Definition: a *rangeField* is used for fields that should contain a value within
 
 image::components/PhoneField.png[PhoneField]
 
-Definition: a *phoneField* is used for fields that should contain a telephone number.
+_Definition_: a *phoneField* is used for fields that should contain a telephone number.
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
 
 ==== SearchField
 
 image::components/SearchField.png[SearchField]
 
-Definition: a *searchField* is used for search fields (a search field behaves like a regular text field).
+_Definition_: a *searchField* is used for search fields (a search field behaves like a regular text field).
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===
 
 ==== URLField
 
 image::components/URLField.png[URLField]
 
-Definition: a *URLField* is used for fields that should contain a URL address.
+_Definition_: an *URLField* is used for fields that should contain a URL address.
 
-[cols="3*", options="header"]
-|===
-|States|Properties|Intentions
-
-|valid
-|label
-|clear
-
-|invalid
-|placeholder
-|
-
-|
-|value
-|
-|===

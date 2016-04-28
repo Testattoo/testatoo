@@ -2,7 +2,7 @@
 
 image::components/Image.png[Image]
 
-Definition:  an *image* allows the user to insert an image (gif, jpg, png,...) from a source file
+_Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...) from a source file
 
 [cols="3*", options="header"]
 |===

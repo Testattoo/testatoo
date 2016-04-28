@@ -2,7 +2,8 @@
 
 image::components/Panel.png[Panel]
 
-Definition:  an *panel* is a particular arrangement of information grouped together for presentation to the user.
+"a *panel* is a particular arrangement of information grouped together for presentation to the user."
+-- inspired from Wikipedia definition
 
 [cols="3*", options="header"]
 |===

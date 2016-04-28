@@ -2,7 +2,7 @@
 
 image::components/Heading.png[Heading]
 
-Definition:  a *heading* allows the user to put a title for a page or a paragraph.
+_Definition_:  a *heading* allows the user to put a title for a page or a paragraph.
 
 [cols="3*", options="header"]
 |===

@@ -1,6 +1,6 @@
 === Datagrid
 
-A *datagrid* is a component that allows user to present data in a tabular view, with cells organized in rows and columns.
+_Definition_: a *datagrid* is a component that allows user to present data in a tabular view, with cells organized in rows and columns.
 
 image::components/DataGrid.png[DataGrid]
 
@@ -27,7 +27,7 @@ include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=datagrid]
 
 ==== Column
 
-Definition: a *column* is composed of cells and could have a title.
+_Definition_: a *column* is composed of cells and could have a title.
 
 [cols="3*", options="header"]
 |===
@@ -44,7 +44,7 @@ Definition: a *column* is composed of cells and could have a title.
 
 ==== Row
 
-Definition: a *row* is composed of cells and could have a title.
+_Definition_: a *row* is composed of cells and could have a title.
 
 [cols="3*", options="header"]
 |===
@@ -61,7 +61,7 @@ Definition: a *row* is composed of cells and could have a title.
 
 ==== Cell
 
-Definition: a *cell* is the finest element of a datagrid.
+_Definition_: a *cell* is the finest element of a datagrid.
 
 [cols="3*", options="header"]
 |===
