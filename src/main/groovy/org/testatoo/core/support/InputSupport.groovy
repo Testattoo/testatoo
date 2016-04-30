@@ -21,7 +21,7 @@ interface InputSupport extends Clearable, EmptySupport, FilledSupport, ReadOnlyS
 
     String placeholder()
 
-    void value(String value)
+    void value(Object value)
 
     void clear()
 }

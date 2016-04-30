@@ -18,7 +18,10 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.core.support.GroupSupport
 import org.testatoo.core.support.ItemSupport
+import org.testatoo.core.support.SelectedItemsSupport
+import org.testatoo.core.support.VisibleItemsSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -30,5 +33,8 @@ class ListBoxTest {
     public void should_have_expected_inheritance() {
         ListBox in Component
         ListBox in ItemSupport
+        ListBox in GroupSupport
+        ListBox in SelectedItemsSupport
+        ListBox in VisibleItemsSupport
     }
 }

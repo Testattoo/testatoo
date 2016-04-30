@@ -10,9 +10,21 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.CheckBox
 import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.input.InputTypeDate
+import org.testatoo.bundle.html5.input.InputTypeEmail
+import org.testatoo.bundle.html5.input.InputTypeNumber
+import org.testatoo.bundle.html5.input.InputTypePassword
+import org.testatoo.bundle.html5.input.InputTypeRange
+import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.bundle.html5.list.MultiSelect
 import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.component.*
+import org.testatoo.core.component.field.DateField
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.NumberField
+import org.testatoo.core.component.field.PasswordField
+import org.testatoo.core.component.field.RangeField
+import org.testatoo.core.component.field.TextField
 
 import static org.testatoo.core.Actions.*
 import static org.testatoo.core.Testatoo.*
@@ -109,9 +121,9 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_dropdown() {
-        // tag::operating_system[]
-        Dropdown operating_system = $('#os') as Select
-        operating_system.should {
+        // tag::os_list[]
+        Dropdown os_list = $('#os') as Select
+        os_list.should {
             have label('OS')
             have 8.items
             have selectedItem('None')
@@ -120,16 +132,16 @@ class ComponentsTest {
             have groups('linux', 'win32', 'BSD')
         }
 
-        on operating_system select 'Ubuntu'
-        operating_system.should { have selectedItem('Ubuntu') }
-        // end::operating_system[]
+        on os_list select 'Ubuntu'
+        os_list.should { have selectedItem('Ubuntu') }
+        // end::os_list[]
     }
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_group() {
         // tag::group[]
-        Dropdown operating_system = $('#os') as Select
-        Group linux_group = operating_system.group('linux') // Or operating_system.groups[0]
+        Dropdown os_list = $('#os') as Select
+        Group linux_group = os_list.group('linux') // Or os_list.groups[0]
 
         linux_group.should {
             have value('linux')
@@ -159,15 +171,15 @@ class ComponentsTest {
     @Test
     public void should_have_expected_properties_and_states_supported_by_item() {
         // tag::item[]
-        Dropdown operating_system = $('#os') as Select
-        Item gentoo = operating_system.item('Gentoo')  // Or operating_system.items[1]
-        gentoo.should {
+        Dropdown os_list = $('#os') as Select
+        Item os = os_list.item('Gentoo')  // Or os_list.items[1]
+        os.should {
             have value('Gentoo')
             be unselected
         }
 
-        select gentoo
-        gentoo.should { be selected }
+        select os
+        os.should { be selected }
 
         ListBox cities = $('#cities') as MultiSelect
         Item city = cities.item('Montpellier')
@@ -181,34 +193,106 @@ class ComponentsTest {
         // end::item[]
     }
 
-    // =================================================
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_textfield() {
+        // tag::textfield[]
+        TextField textfield = $('#text_field') as InputTypeText
+        textfield.should {
+            be empty
+            be required
+            have placeholder('Placeholder')
+        }
 
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_textfield() {
-//        // tag::textfield[]
-//        TextField textfield = $('#text_field') as TextField
-//        texfield.should {
-//            be empty
-//            be required
-//        }
-//        on textfield fill('1234')
-//        texfield.should {
-//            be filled
-//            have value('1234')
-//        }
-//        // end::textfield[]
-//    }
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_form() {
-//        // tag::form[]
-//        Form form = $('#form') as Form
-//        form.should {
-//            be valid
-//        }
-//        // TODO
-//        // end::form[]
-//    }
+        fill textfield with '1234'
+
+        textfield.should {
+            be filled
+            have value('1234')
+        }
+        // end::textfield[]
+    }
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_datefield() {
+        // tag::datefield[]
+        DateField date = $('#date_field') as InputTypeDate
+        date.should {
+            be inRange
+            have value('')
+            have step(0)
+            have maximum('2012-06-25')
+            have minimum('2011-08-13')
+        }
+
+        fill date with '2011-06-26'
+        date.should { have value('2011-06-26') }
+        // end::datefield[]
+    }
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_numberfield() {
+        // tag::numberfield[]
+        NumberField number = $('#number_field') as InputTypeNumber
+
+        number.should {
+            have minimum(0)
+            have maximum(64)
+            have step(8)
+            have value(2)
+            be inRange
+        }
+
+        fill number with 150
+        number.should { be outOfRange }
+        // end::numberfield[]
+    }
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_rangefield() {
+        // tag::rangefield[]
+        RangeField range = $('#range_field') as InputTypeRange
+        range.should {
+            have minimum(0)
+            have maximum(50)
+            have value(10)
+            have step(5)
+            is inRange
+        }
+
+        fill range with 40
+
+        range.should { have value(40) }
+        // end::rangefield[]
+    }
+
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_form() {
+        // tag::form[]
+        Form form = $('#form') as org.testatoo.bundle.html5.Form
+        EmailField email_field = $('#email') as InputTypeEmail
+        PasswordField password_field = $('#password') as InputTypePassword
+
+        email_field.should { be optional }
+        password_field.should { be required }
+
+        form.should {
+            contains(email_field, password_field)
+            be invalid
+        }
+
+        fill email_field with 'invalid_email'
+        fill password_field with 'a password'
+
+        form.should { be invalid }
+
+        fill email_field with 'valid@email.org'
+
+        form.should { be valid }
+        // end::form[]
+    }
+
+    // =================================================
 //
 //    @Test
 //    public void should_have_expected_properties_and_states_supported_by_heading() {

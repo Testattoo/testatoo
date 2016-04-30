@@ -45,6 +45,7 @@ class RangeHelper {
     }
 
     static boolean outOfRange(Component c) {
-        config.evaluator.check(c.id(), "it.is(':out-of-range')")
+        config.evaluator.check(c.id(), "it[0].validity.rangeUnderflow") ||
+                config.evaluator.check(c.id(), "it[0].validity.rangeOverflow")
     }
 }

@@ -54,7 +54,7 @@ class Actions {
             this.input = input
         }
 
-        public void with(String value) {
+        public void with(Object value) {
             input.value(value)
         }
     }

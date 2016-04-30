@@ -224,7 +224,7 @@ class InputFieldTest {
 
         InputTypeSearch searchField = $('#search_field') as InputTypeSearch
         assert searchField.label() == 'Search'
-InputTypeWeek
+
         searchField.value() == ''
         searchField.value('my search')
         assert searchField.value() == 'my search'

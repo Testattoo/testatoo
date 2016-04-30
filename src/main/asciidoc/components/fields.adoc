@@ -88,6 +88,12 @@ _Definition_: a *dateField* allows the user to select a date.
 |
 |===
 
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=datefield]
+----
+
 ==== TimeField
 
 image::components/TimeField-1.png[TimeField-1]
@@ -144,6 +150,11 @@ _Definition_: a *numberField* is used for fields that should contain a numeric v
 |
 |===
 
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=numberfield]
+----
 
 ==== RangeField
 
@@ -163,6 +174,12 @@ _Definition_: a *rangeField* is used for fields that should contain a value with
 |minimum
 |
 |===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=rangefield]
+----
 
 ==== PhoneField
 

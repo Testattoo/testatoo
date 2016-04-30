@@ -1,4 +1,4 @@
-Add test on keyboard and mouse who test tah evaluator is called
+Add test on keyboard and mouse who test that evaluator is called
 
 Property matcher
 https://github.com/geb/geb/blob/master/module/geb-core/src/main/groovy/geb/textmatching/TextMatchingSupport.groovy
@@ -126,8 +126,6 @@ listBox.should { have label('Cities list') }
         //        listBox = $('#planets') as ListBox
         //        listBox.should { be singleSelectable }
 
-
-
 //
 //        listBox.should { have groupItems('Cat-1', 'Cat-2') }
 //
@@ -140,31 +138,6 @@ listBox.should { have label('Cities list') }
 //        group.should { have items('Mercury', 'Venus', 'Earth', 'Mars') }
 //        group.items[0].should { have value('Mercury') }
 
-listView.should { have size(5) }
-        assert listView.items.size == 5
-        listView.should { have 5.items }
-
-        listView.should { have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5') }
-        listView.items[0].should { have value('Item 1') }
-
-        listView.should { have size(5) }
-                assert listView.items.size == 5
-                listView.should { have 5.items }
-
-                listView.should { have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5') }
-                listView.items[0].should { have value('Item 1') }
-
-                 @Test
-                    public void should_throw_an_error_when_$_selector_match_multiple_elements() {
-                        try {
-                            Li item = $('#elements option') as Li;
-                            item.visible
-                            fail()
-                        } catch (ComponentException e) {
-                            e.message == "Component defined by jQuery expression \$('#elements option') is not unique: got 5"
-                        }
-                    }
-
  @Test
     public void should_throw_and_error_on_select_multi_items_on_single_selector() {
         throw new RuntimeException()
@@ -174,74 +147,6 @@ listView.should { have size(5) }
     public void should_throw_and_error_on_unselect_multi_items_on_single_selector() {
         throw new RuntimeException()
     }
-
-    @Ignore
-    @RunWith(JUnit4)
-    class MatcherTest {
-
-        @ClassRule
-        public WebDriverConfig driver = new WebDriverConfig()
-
-        @BeforeClass
-        public static void before() {
-            browser.open 'http://localhost:8080/error.html'
-        }
-
-        @Test
-        public void equals_to_matcher_on_list_items() {
-            Select dropDown = $('#elements') as Select
-            try {
-                dropDown.should { have items.equalsTo('Val1') }
-                fail()
-            } catch (ComponentException e) {
-                assert e.message == "Expected Items '[Val1]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-            }
-
-            try {
-                dropDown.should { have items.equalsTo(['Val1', 'Val2']) }
-                fail()
-            } catch (ComponentException e) {
-                assert e.message == "Expected Items '[Val1, Val2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-            }
-        }
-
-        @Test
-        public void equals_to_matcher() {
-            Select dropDown = $('#elements') as Select
-            try {
-                dropDown.items[0].should { have value.equalsTo('Val_1') }
-                fail()
-            } catch (ComponentException e) {
-                assert e.message == "Expected Value 'Val_1' but was 'Helium'"
-            }
-
-            try {
-                dropDown.items[0].should { have value.equalsTo('Val_1', 'val_2') }
-                fail()
-            } catch (ComponentException e) {
-                assert e.message == "Expected one of Value '[Val_1, val_2]' but was 'Helium'"
-            }
-        }
-
-        @Test
-        public void containing_matcher() {
-            Select dropDown = $('#elements') as Select
-            try {
-                dropDown.should { have items.containing('Val_1') }
-                fail()
-            } catch (ComponentException e) {
-                assert e.message == "Expected Items containing 'Val_1' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-            }
-
-            try {
-                dropDown.should { have items.containing('Val_1', 'Val_2') }
-                fail()
-            } catch (ComponentException e) {
-                assert e.message == "Expected one of Items containing '[Val_1, Val_2]' but was '[Helium, Boron, Polonium, Calcium, Radium]'"
-            }
-        }
-    }
-
 
 =========================================
 Doc

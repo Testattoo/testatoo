@@ -139,7 +139,7 @@ class Testatoo {
 
     public static PropertyMatcher step(object) { new StepMatcher(object) }
     public static PropertyMatcher text(String text) { new TextMatcher(text) }
-    public static PropertyMatcher value(String value) { new ValueMatcher(value) }
+    public static PropertyMatcher value(Object value) { new ValueMatcher(value) }
 
     public static class Components<T extends Component> {
         private final MetaDataProvider meta

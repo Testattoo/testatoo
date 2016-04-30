@@ -19,7 +19,7 @@ import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
 
-import static org.testatoo.bundle.html5.helper.ValidityHelper.*
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -47,11 +47,11 @@ class Form extends org.testatoo.core.component.Form {
 
     @Override
     boolean valid() {
-        valid(this)
+        !invalid()
     }
 
     @Override
     boolean invalid() {
-        invalid(this)
+        config.evaluator.check(id(), "it.is(':invalid')")
     }
 }
