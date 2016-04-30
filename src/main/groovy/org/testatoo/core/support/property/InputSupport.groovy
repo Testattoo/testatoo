@@ -13,13 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.core.support.property
+
+import org.testatoo.core.support.Clearable
+import org.testatoo.core.support.state.EmptySupport
+import org.testatoo.core.support.state.FilledSupport
+import org.testatoo.core.support.state.OptionalSupport
+import org.testatoo.core.support.state.ReadOnlySupport
+import org.testatoo.core.support.state.RequiredSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface LabelSupport {
+interface InputSupport extends Clearable, EmptySupport, FilledSupport, ReadOnlySupport, RequiredSupport, OptionalSupport {
 
-    String label()
+    String placeholder()
 
+    void value(Object value)
 }

@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.TextSupport
+import org.testatoo.core.support.property.TextSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -15,8 +15,8 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.ItemSupport
-import org.testatoo.core.support.ValueSupport
+import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.property.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

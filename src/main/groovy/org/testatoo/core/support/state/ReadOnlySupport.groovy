@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
-
-import org.testatoo.core.component.Group
+package org.testatoo.core.support.state
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface GroupSupport {
+interface ReadOnlySupport {
 
-    List<Group> groups()
-
-    Group group(String value)
+    boolean readOnly()
 }

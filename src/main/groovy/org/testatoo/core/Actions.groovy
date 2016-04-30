@@ -19,6 +19,7 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.support.*
+import org.testatoo.core.support.property.InputSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

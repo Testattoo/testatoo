@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.list
 import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.ListBox
-import org.testatoo.core.support.LabelSupport
+import org.testatoo.core.support.property.LabelSupport
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
 import static org.testatoo.core.Testatoo.config

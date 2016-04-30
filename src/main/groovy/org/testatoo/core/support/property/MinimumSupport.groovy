@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.core.support.property
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface TextSupport {
+interface MinimumSupport {
 
-    String text()
+    Object minimum()
 }

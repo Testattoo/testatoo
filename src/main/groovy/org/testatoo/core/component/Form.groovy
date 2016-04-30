@@ -17,7 +17,7 @@ package org.testatoo.core.component
 
 import org.testatoo.core.support.Resettable
 import org.testatoo.core.support.Submissible
-import org.testatoo.core.support.ValiditySupport
+import org.testatoo.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

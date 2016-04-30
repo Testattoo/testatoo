@@ -16,7 +16,7 @@
 package org.testatoo.hamcrest.matcher.state
 
 import org.hamcrest.Description
-import org.testatoo.core.support.SelectSupport
+import org.testatoo.core.support.state.SelectSupport
 import org.testatoo.hamcrest.StateMatcher
 
 /**

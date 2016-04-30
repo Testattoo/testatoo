@@ -18,8 +18,10 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.SelectSupport
-import org.testatoo.core.support.ValueSupport
+import org.testatoo.core.support.Selectable
+import org.testatoo.core.support.UnSelectable
+import org.testatoo.core.support.state.SelectSupport
+import org.testatoo.core.support.property.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -30,7 +32,10 @@ class ItemTest {
     @Test
     public void should_have_expected_inheritance() {
         Item in Component
+        Item in Selectable
+        Item in UnSelectable
         Item in SelectSupport
         Item in ValueSupport
+
     }
 }

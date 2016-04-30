@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.core.support.property
 
 import org.testatoo.core.component.Item
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface ItemSupport {
+interface VisibleItemsSupport {
 
-    List<Item> items()
-
-    Item item(String value)
+    List<Item> visibleItems()
 }

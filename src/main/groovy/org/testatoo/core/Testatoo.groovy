@@ -26,6 +26,7 @@ import org.testatoo.hamcrest.matcher.property.SelectedItemsMatcher
 import org.testatoo.hamcrest.matcher.property.GroupMatcher
 import org.testatoo.hamcrest.matcher.property.ItemMatcher
 import org.testatoo.hamcrest.matcher.property.SelectedItemMatcher
+import org.testatoo.hamcrest.matcher.property.SourceMatcher
 import org.testatoo.hamcrest.matcher.state.AvailableMatcher
 import org.testatoo.hamcrest.matcher.state.CheckedMatcher
 import org.testatoo.hamcrest.matcher.state.DisabledMatcher
@@ -140,6 +141,7 @@ class Testatoo {
     public static PropertyMatcher step(object) { new StepMatcher(object) }
     public static PropertyMatcher text(String text) { new TextMatcher(text) }
     public static PropertyMatcher value(Object value) { new ValueMatcher(value) }
+    public static PropertyMatcher source(String source) { new SourceMatcher(source) }
 
     public static class Components<T extends Component> {
         private final MetaDataProvider meta

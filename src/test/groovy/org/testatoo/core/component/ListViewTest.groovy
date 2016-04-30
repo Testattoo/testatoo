@@ -18,7 +18,7 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.ItemSupport
+import org.testatoo.core.support.property.ItemSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

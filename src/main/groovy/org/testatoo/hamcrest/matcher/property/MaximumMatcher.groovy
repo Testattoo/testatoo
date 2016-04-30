@@ -16,7 +16,7 @@
 package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.support.MaximumSupport
+import org.testatoo.core.support.property.MaximumSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**

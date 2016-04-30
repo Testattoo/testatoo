@@ -50,7 +50,7 @@ import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Image
 import org.testatoo.core.component.Link
 import org.testatoo.core.component.Panel
-import org.testatoo.core.support.TextSupport
+import org.testatoo.core.support.property.TextSupport
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*

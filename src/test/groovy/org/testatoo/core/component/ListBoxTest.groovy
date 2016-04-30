@@ -18,10 +18,10 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.GroupSupport
-import org.testatoo.core.support.ItemSupport
-import org.testatoo.core.support.SelectedItemsSupport
-import org.testatoo.core.support.VisibleItemsSupport
+import org.testatoo.core.support.property.GroupSupport
+import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.property.SelectedItemsSupport
+import org.testatoo.core.support.property.VisibleItemsSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

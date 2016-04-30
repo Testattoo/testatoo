@@ -16,7 +16,7 @@
 package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.support.TextSupport
+import org.testatoo.core.support.property.TextSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**

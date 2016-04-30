@@ -15,7 +15,7 @@
  */
 package org.testatoo.core.component.field
 
-import org.testatoo.core.support.RangeSupport
+import org.testatoo.core.support.state.RangeSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

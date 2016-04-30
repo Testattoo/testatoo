@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.core.support.state
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface ValueSupport {
+interface ValiditySupport {
 
-    Object value()
+    boolean valid()
+
+    boolean invalid()
 }

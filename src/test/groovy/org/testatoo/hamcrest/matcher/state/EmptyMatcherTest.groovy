@@ -20,7 +20,7 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.EmptySupport
+import org.testatoo.core.support.state.EmptySupport
 import org.testatoo.hamcrest.Matchers
 
 import static org.hamcrest.MatcherAssert.assertThat

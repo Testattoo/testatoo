@@ -21,7 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Group
-import org.testatoo.core.support.GroupSupport
+import org.testatoo.core.support.property.GroupSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail

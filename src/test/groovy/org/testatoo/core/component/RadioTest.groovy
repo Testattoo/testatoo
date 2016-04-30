@@ -18,9 +18,9 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.CheckSupport
+import org.testatoo.core.support.state.CheckSupport
 import org.testatoo.core.support.Checkable
-import org.testatoo.core.support.LabelSupport
+import org.testatoo.core.support.property.LabelSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

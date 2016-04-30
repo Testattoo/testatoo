@@ -13,15 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
+package org.testatoo.core.support.state
+
+import org.testatoo.core.support.property.StepSupport
+import org.testatoo.core.support.property.MaximumSupport
+import org.testatoo.core.support.property.MinimumSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface InputSupport extends Clearable, EmptySupport, FilledSupport, ReadOnlySupport, RequiredSupport, OptionalSupport {
+interface RangeSupport extends MaximumSupport, MinimumSupport, StepSupport {
 
-    String placeholder()
+    boolean inRange()
 
-    void value(Object value)
-
-    void clear()
+    boolean outOfRange()
 }

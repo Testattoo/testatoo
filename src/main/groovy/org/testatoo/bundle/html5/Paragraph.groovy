@@ -16,7 +16,7 @@
 package org.testatoo.bundle.html5
 
 import org.testatoo.core.component.Component
-import org.testatoo.core.support.TextSupport
+import org.testatoo.core.support.property.TextSupport
 import org.testatoo.core.ByCss
 
 import static org.testatoo.bundle.html5.helper.TextHelper.*

@@ -17,7 +17,7 @@ package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.testatoo.core.component.Item
-import org.testatoo.core.support.SelectedItemSupport
+import org.testatoo.core.support.property.SelectedItemSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**

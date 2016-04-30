@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 package org.testatoo.core.component
+
+import org.testatoo.core.support.property.SourceSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Image extends Component {
+abstract class Image extends Component implements SourceSupport {
 
     abstract String source()
 }

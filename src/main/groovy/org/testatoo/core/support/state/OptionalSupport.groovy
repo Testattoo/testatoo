@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core.support
-
-import org.testatoo.core.component.Item
+package org.testatoo.core.support.state
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface SelectedItemSupport {
+interface OptionalSupport {
 
-    abstract Item selectedItem()
+    boolean optional()
 }

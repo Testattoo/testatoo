@@ -18,7 +18,7 @@ package org.testatoo.hamcrest.matcher.property
 import org.hamcrest.Description
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
-import org.testatoo.core.support.GroupSupport
+import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**

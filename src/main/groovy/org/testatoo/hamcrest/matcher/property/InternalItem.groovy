@@ -28,27 +28,17 @@ class InternalItem extends Item {
     }
 
     @Override
-    boolean selected() {
-        return false
-    }
+    boolean selected() { return false }
 
     @Override
-    boolean unselected() {
-        return false
-    }
+    boolean unselected() { return false }
 
     @Override
-    void select() {
-
-    }
+    void select() {}
 
     @Override
-    void unselect() {
-
-    }
+    void unselect() {}
 
     @Override
-    Object value() {
-        return value
-    }
+    Object value() { return value }
 }

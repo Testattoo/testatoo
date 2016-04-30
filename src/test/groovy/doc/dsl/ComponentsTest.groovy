@@ -10,6 +10,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.CheckBox
 import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.heading.H1
 import org.testatoo.bundle.html5.input.InputTypeDate
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypeNumber
@@ -292,29 +293,26 @@ class ComponentsTest {
         // end::form[]
     }
 
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_heading() {
+        // tag::heading[]
+        Heading heading = $('#h1') as H1
+        heading.should {
+            have text('heading 1')
+        }
+        // end::heading[]
+    }
+
+    public void should_have_expected_properties_and_states_supported_by_image() {
+        // tag::image[]
+        Image image = $('#image') as Image
+        image.should {
+            have source('img/Montpellier.jpg')
+        }
+        // end::image[]
+    }
+
     // =================================================
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_heading() {
-//        // tag::heading[]
-//        Heading heading = $('#heading') as Heading
-//        heading.should {
-//            have text ('page_title')
-//        }
-//
-//        // end::heading[]
-//    }
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_image() {
-//        // tag::image[]
-//        Image image = $('#image') as Image
-//        image.should {
-//            have source ('image_source_file.jpg')
-//        }
-//
-//        // end::image[]
-//    }
 //
 //    @Test
 //    public void should_have_expected_properties_and_states_supported_by_link() {

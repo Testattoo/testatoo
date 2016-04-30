@@ -20,7 +20,7 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.MinimumSupport
+import org.testatoo.core.support.property.MinimumSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail

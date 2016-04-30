@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.GroupSupport
-import org.testatoo.core.support.ItemSupport
-import org.testatoo.core.support.LabelSupport
-import org.testatoo.core.support.SelectedItemSupport
+import org.testatoo.core.support.property.GroupSupport
+import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.property.LabelSupport
+import org.testatoo.core.support.property.SelectedItemSupport
 import org.testatoo.core.support.SingleSelectable
 
 /**

@@ -19,11 +19,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
-import org.testatoo.core.support.InputSupport
-import org.testatoo.core.support.LabelSupport
-import org.testatoo.core.support.RangeSupport
-import org.testatoo.core.support.ValiditySupport
-import org.testatoo.core.support.ValueSupport
+import org.testatoo.core.support.property.InputSupport
+import org.testatoo.core.support.property.LabelSupport
+import org.testatoo.core.support.state.RangeSupport
+import org.testatoo.core.support.state.ValiditySupport
+import org.testatoo.core.support.property.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
