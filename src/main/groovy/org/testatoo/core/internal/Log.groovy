@@ -19,7 +19,6 @@ package org.testatoo.core.internal
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Log {
-
     static boolean debug
 
     static void log(String msg) { if (debug) println "[TESTATOO] [${Thread.currentThread().name}] ${msg}" }

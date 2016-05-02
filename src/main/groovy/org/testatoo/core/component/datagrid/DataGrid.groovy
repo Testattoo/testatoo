@@ -16,15 +16,10 @@
 package org.testatoo.core.component.datagrid
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.ColumnSupport
+import org.testatoo.core.support.property.RowSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class DataGrid extends Component {
-
-    abstract List<Column> columns()
-
-    abstract List<Row> rows()
-
-    abstract Column column(String title)
-}
+abstract class DataGrid extends Component implements ColumnSupport, RowSupport {}

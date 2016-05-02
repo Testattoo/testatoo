@@ -15,11 +15,6 @@
  */
 package org.testatoo.evaluator.webdriver
 
-import org.junit.Before
-import org.junit.BeforeClass
-import org.junit.ClassRule
-import org.testatoo.WebDriverConfig
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */

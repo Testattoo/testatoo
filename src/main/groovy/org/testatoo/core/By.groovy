@@ -22,7 +22,6 @@ import org.testatoo.core.component.Component
  * @author David Avenante (d.avenante@gmail.com)
  */
 class By {
-
     private String expression
     private SimpleTemplateEngine templateEngine
 

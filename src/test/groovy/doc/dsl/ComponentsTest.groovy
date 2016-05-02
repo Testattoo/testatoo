@@ -7,25 +7,17 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.CheckBox
-import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.*
 import org.testatoo.bundle.html5.heading.H1
-import org.testatoo.bundle.html5.input.InputTypeDate
-import org.testatoo.bundle.html5.input.InputTypeEmail
-import org.testatoo.bundle.html5.input.InputTypeNumber
-import org.testatoo.bundle.html5.input.InputTypePassword
-import org.testatoo.bundle.html5.input.InputTypeRange
-import org.testatoo.bundle.html5.input.InputTypeText
+import org.testatoo.bundle.html5.heading.H6
+import org.testatoo.bundle.html5.input.*
 import org.testatoo.bundle.html5.list.MultiSelect
 import org.testatoo.bundle.html5.list.Select
+import org.testatoo.bundle.html5.list.Ul
+import org.testatoo.bundle.html5.table.Table
 import org.testatoo.core.component.*
-import org.testatoo.core.component.field.DateField
-import org.testatoo.core.component.field.EmailField
-import org.testatoo.core.component.field.NumberField
-import org.testatoo.core.component.field.PasswordField
-import org.testatoo.core.component.field.RangeField
-import org.testatoo.core.component.field.TextField
+import org.testatoo.core.component.datagrid.DataGrid
+import org.testatoo.core.component.field.*
 
 import static org.testatoo.core.Actions.*
 import static org.testatoo.core.Testatoo.*
@@ -51,9 +43,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_component() {
-        // tag::component[]
         Component component = $('#button') as Component
-
+        // tag::component[]
         component.should {
             be available
             be enabled
@@ -73,17 +64,16 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_button() {
-        // tag::button[]
         Button button = $('#btn') as Button
-
+        // tag::button[]
         button.should { have text('My Button Text') }
         // end::button[]
     }
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_checkbox() {
-        // tag::checkbox[]
         CheckBox checkbox = $('#checkbox') as CheckBox
+        // tag::checkbox[]
         checkbox.should {
             have label('Check me out')
             be unchecked
@@ -99,10 +89,9 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_radio() {
-        // tag::radio[]
         Radio checked_radio = $('#radio_1') as Radio
         Radio unchecked_radio = $('#radio_2') as Radio
-
+        // tag::radio[]
         checked_radio.should {
             have label('Radio checked')
             be checked
@@ -122,8 +111,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_dropdown() {
-        // tag::os_list[]
         Dropdown os_list = $('#os') as Select
+        // tag::dropdown[]
         os_list.should {
             have label('OS')
             have 8.items
@@ -135,13 +124,13 @@ class ComponentsTest {
 
         on os_list select 'Ubuntu'
         os_list.should { have selectedItem('Ubuntu') }
-        // end::os_list[]
+        // end::dropdown[]
     }
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_group() {
-        // tag::group[]
         Dropdown os_list = $('#os') as Select
+        // tag::group[]
         Group linux_group = os_list.group('linux') // Or os_list.groups[0]
 
         linux_group.should {
@@ -153,8 +142,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_listbox() {
-        // tag::listbox[]
         ListBox cities = $('#cities') as MultiSelect
+        // tag::listbox[]
         cities.should {
             have label('Cities list')
             have 6.items
@@ -171,8 +160,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_item() {
-        // tag::item[]
         Dropdown os_list = $('#os') as Select
+        // tag::item[]
         Item os = os_list.item('Gentoo')  // Or os_list.items[1]
         os.should {
             have value('Gentoo')
@@ -196,8 +185,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_textfield() {
-        // tag::textfield[]
         TextField textfield = $('#text_field') as InputTypeText
+        // tag::textfield[]
         textfield.should {
             be empty
             be required
@@ -215,8 +204,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_datefield() {
-        // tag::datefield[]
         DateField date = $('#date_field') as InputTypeDate
+        // tag::datefield[]
         date.should {
             be inRange
             have value('')
@@ -225,16 +214,15 @@ class ComponentsTest {
             have minimum('2011-08-13')
         }
 
-        fill date with '2011-06-26'
+        set date to '2011-06-26'
         date.should { have value('2011-06-26') }
         // end::datefield[]
     }
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_numberfield() {
-        // tag::numberfield[]
         NumberField number = $('#number_field') as InputTypeNumber
-
+        // tag::numberfield[]
         number.should {
             have minimum(0)
             have maximum(64)
@@ -250,8 +238,8 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_rangefield() {
-        // tag::rangefield[]
         RangeField range = $('#range_field') as InputTypeRange
+        // tag::rangefield[]
         range.should {
             have minimum(0)
             have maximum(50)
@@ -260,20 +248,18 @@ class ComponentsTest {
             is inRange
         }
 
-        fill range with 40
+        set range to 40
 
         range.should { have value(40) }
         // end::rangefield[]
     }
 
-
     @Test
     public void should_have_expected_properties_and_states_supported_by_form() {
-        // tag::form[]
         Form form = $('#form') as org.testatoo.bundle.html5.Form
         EmailField email_field = $('#email') as InputTypeEmail
         PasswordField password_field = $('#password') as InputTypePassword
-
+        // tag::form[]
         email_field.should { be optional }
         password_field.should { be required }
 
@@ -295,67 +281,66 @@ class ComponentsTest {
 
     @Test
     public void should_have_expected_properties_and_states_supported_by_heading() {
+        Heading first_heading = $('#h1') as H1
+        Heading last_heading = $('#h6') as H6
         // tag::heading[]
-        Heading heading = $('#h1') as H1
-        heading.should {
-            have text('heading 1')
-        }
+        first_heading.should { have text('heading 1') }
+        last_heading.should { have text('heading 6') }
         // end::heading[]
     }
 
+    @Test
     public void should_have_expected_properties_and_states_supported_by_image() {
+        Image image = $('#image') as Img
         // tag::image[]
-        Image image = $('#image') as Image
-        image.should {
-            have source('img/Montpellier.jpg')
-        }
+        image.should { have reference('http://localhost:8080/img/Montpellier.jpg') }
         // end::image[]
     }
 
-    // =================================================
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_link() {
-//        // tag::link[]
-//        Link link = $('#link') as Link
-//        link.should {
-//            have text ('this is a link towards another page')
-//            // TODO
-//            have reference()
-//        }
-//
-//        // end::link[]
-//    }
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_listview() {
-//        // tag::listview[]
-//        ListView listview = $('#listview') as ListView
-//        listview.should {
-//            have items('item1', 'ítem2', 'item3')
-//        }
-//        // end::listview[]
-//    }
-//
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_panel() {
-//        // tag::panel[]
-//        Panel panel = $('#panel') as Panel
-//        panel.should {
-//            have title('panel_title')
-//        }
-//        // end::panel[]
-//    }
-//
-//    @Test
-//    public void should_have_expected_properties_and_states_supported_by_datagrid() {
-//        // tag::datagrid[]
-//        DataGrid datagrid = $('#datagrid') as DataGrid
-//        datagrid.should {
-//            have rows('TODO')
-//            have columns('TODO')
-//        }
-//        // end::datagrid[]
-//    }
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_link() {
+        Link link = $('#link') as A
+        // tag::link[]
+        link.should {
+            have text('Link to dsl page')
+            have reference('http://localhost:8080/dsl.html')
+        }
+        // end::link[]
+    }
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_listview() {
+        ListView listview = $('#unordered_list') as Ul
+        // tag::listview[]
+        listview.should {
+            have 5.items
+            have items('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 4')
+        }
+        // end::listview[]
+    }
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_panel() {
+        Panel panel = $('#panel') as Div
+        try {
+            // tag::panel[]
+            panel.should { have title('My panel title') }
+            // end::panel[]
+        } catch (AssertionError e) {
+            assert true // The title is not available in Html (Div)
+        }
+    }
+
+    @Test
+    public void should_have_expected_properties_and_states_supported_by_datagrid() {
+        DataGrid datagrid = $('#data_grid') as Table
+        // tag::datagrid[]
+        datagrid.should {
+            have 4.columns
+            have 4.rows
+        }
+
+
+        // end::datagrid[]
+    }
 }

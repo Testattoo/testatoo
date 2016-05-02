@@ -21,7 +21,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Keyboard {
-
     static void type(Collection<?> keys) { config.evaluator.type(keys) }
 
     static void type(String text) { type([text]) }

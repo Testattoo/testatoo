@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class TextMatcher extends PropertyMatcher<TextSupport> {
-
     private String text
 
     TextMatcher(String text) {

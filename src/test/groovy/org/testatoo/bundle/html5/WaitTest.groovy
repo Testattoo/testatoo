@@ -24,18 +24,16 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.core.ComponentException
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.input.Mouse.clickOn
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class WaitTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

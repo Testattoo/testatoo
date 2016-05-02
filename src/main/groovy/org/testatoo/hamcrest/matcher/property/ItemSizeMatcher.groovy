@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class ItemSizeMatcher extends PropertyMatcher<ItemSupport> {
-
     private Integer number
 
     ItemSizeMatcher(Integer number) {

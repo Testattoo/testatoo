@@ -15,12 +15,10 @@
  */
 package org.testatoo.core.component
 
+import org.testatoo.core.support.property.ReferenceSupport
 import org.testatoo.core.support.property.TextSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Link extends Component implements TextSupport {
-
-    abstract String reference()
-}
+abstract class Link extends Component implements TextSupport, ReferenceSupport {}

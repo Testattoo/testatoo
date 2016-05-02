@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.has
  */
 @RunWith(JUnit4)
 class ItemSizeMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         ItemSupport cmp = mock(ItemSupport)

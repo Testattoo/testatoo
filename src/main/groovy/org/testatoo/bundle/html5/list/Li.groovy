@@ -17,7 +17,6 @@ package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
-import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 
 import static org.testatoo.core.Testatoo.config
@@ -27,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('li')
 class Li extends Item {
-
     String value() {
         config.evaluator.eval(id(), 'it.text().trim()')
     }

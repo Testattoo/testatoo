@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class UnSelectedMatcher extends StateMatcher<SelectSupport> {
-
     @Override
     protected boolean matchesSafely(SelectSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is selected')

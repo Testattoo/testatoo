@@ -22,7 +22,6 @@ import org.testatoo.core.support.property.ValueSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 abstract class Group extends Component implements ValueSupport, ItemSupport {
-
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

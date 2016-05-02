@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.selected
  */
 @RunWith(JUnit4)
 class SelectedMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         SelectSupport cmp = mock(SelectSupport)

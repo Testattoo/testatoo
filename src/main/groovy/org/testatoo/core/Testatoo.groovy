@@ -22,44 +22,13 @@ import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
 import org.testatoo.core.internal.jQueryIdProvider
-import org.testatoo.hamcrest.matcher.property.SelectedItemsMatcher
-import org.testatoo.hamcrest.matcher.property.GroupMatcher
-import org.testatoo.hamcrest.matcher.property.ItemMatcher
-import org.testatoo.hamcrest.matcher.property.SelectedItemMatcher
-import org.testatoo.hamcrest.matcher.property.SourceMatcher
-import org.testatoo.hamcrest.matcher.state.AvailableMatcher
-import org.testatoo.hamcrest.matcher.state.CheckedMatcher
-import org.testatoo.hamcrest.matcher.state.DisabledMatcher
-import org.testatoo.hamcrest.matcher.state.EmptyMatcher
-import org.testatoo.hamcrest.matcher.state.EnabledMatcher
-import org.testatoo.hamcrest.matcher.state.FilledMatcher
-import org.testatoo.hamcrest.matcher.state.HiddenMatcher
-import org.testatoo.hamcrest.matcher.state.InRangeMatcher
-import org.testatoo.hamcrest.matcher.state.InvalidMatcher
-import org.testatoo.hamcrest.matcher.property.LabelMatcher
-import org.testatoo.hamcrest.matcher.property.MaximumMatcher
-import org.testatoo.hamcrest.matcher.property.MinimumMatcher
-import org.testatoo.hamcrest.matcher.state.MissingMatcher
-import org.testatoo.hamcrest.matcher.state.OptionalMatcher
-import org.testatoo.hamcrest.matcher.state.OutOfRangeMatcher
-import org.testatoo.hamcrest.matcher.property.PlaceholderMatcher
-import org.testatoo.hamcrest.PropertyMatcher
-import org.testatoo.hamcrest.matcher.state.ReadOnlyMatcher
-import org.testatoo.hamcrest.matcher.state.RequiredMatcher
-import org.testatoo.hamcrest.matcher.state.SelectedMatcher
-import org.testatoo.hamcrest.matcher.property.StepMatcher
-import org.testatoo.hamcrest.matcher.property.TextMatcher
-import org.testatoo.hamcrest.matcher.state.UnCheckedMatcher
-import org.testatoo.hamcrest.matcher.state.UnSelectedMatcher
-import org.testatoo.hamcrest.matcher.state.ValidMatcher
-import org.testatoo.hamcrest.matcher.property.ValueMatcher
-import org.testatoo.hamcrest.matcher.state.VisibleMatcher
+import org.testatoo.hamcrest.matcher.property.*
+import org.testatoo.hamcrest.matcher.state.*
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Testatoo {
-
     /**
      * Access Testatoo config
      */
@@ -121,27 +90,28 @@ class Testatoo {
     public static Class visible = VisibleMatcher
 
     // Properties
-    public static PropertyMatcher label(String label) { new LabelMatcher(label) }
-    public static PropertyMatcher maximum(object) { new MaximumMatcher(object) }
-    public static PropertyMatcher minimum(object) { new MinimumMatcher(object) }
-    public static PropertyMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+    public static LabelMatcher label(String label) { new LabelMatcher(label) }
+    public static MaximumMatcher maximum(object) { new MaximumMatcher(object) }
+    public static MinimumMatcher minimum(object) { new MinimumMatcher(object) }
+    public static PlaceholderMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
 
-    public static PropertyMatcher items(String... values) { new ItemMatcher(values) }
-    public static PropertyMatcher items(Item... items) { new ItemMatcher(items) }
+    public static ItemMatcher items(String... values) { new ItemMatcher(values) }
+    public static ItemMatcher items(Item... items) { new ItemMatcher(items) }
 
-    public static PropertyMatcher groups(String... values) { new GroupMatcher(values) }
-    public static PropertyMatcher groups(Group... groups) { new GroupMatcher(groups) }
+    public static GroupMatcher groups(String... values) { new GroupMatcher(values) }
+    public static GroupMatcher groups(Group... groups) { new GroupMatcher(groups) }
 
-    public static PropertyMatcher selectedItem(String item) { new SelectedItemMatcher(item) }
-    public static PropertyMatcher selectedItem(Item item) { new SelectedItemMatcher(item) }
+    public static SelectedItemMatcher selectedItem(String item) { new SelectedItemMatcher(item) }
+    public static SelectedItemMatcher selectedItem(Item item) { new SelectedItemMatcher(item) }
 
-    public static PropertyMatcher selectedItems(String... items) { new SelectedItemsMatcher(items)  }
-    public static PropertyMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
+    public static SelectedItemsMatcher selectedItems(String... items) { new SelectedItemsMatcher(items)  }
+    public static SelectedItemsMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
 
-    public static PropertyMatcher step(object) { new StepMatcher(object) }
-    public static PropertyMatcher text(String text) { new TextMatcher(text) }
-    public static PropertyMatcher value(Object value) { new ValueMatcher(value) }
-    public static PropertyMatcher source(String source) { new SourceMatcher(source) }
+    public static StepMatcher step(object) { new StepMatcher(object) }
+    public static TextMatcher text(String text) { new TextMatcher(text) }
+    public static ValueMatcher value(Object value) { new ValueMatcher(value) }
+    public static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
+    public static TitleMatcher title(String title) { new TitleMatcher(title) }
 
     public static class Components<T extends Component> {
         private final MetaDataProvider meta

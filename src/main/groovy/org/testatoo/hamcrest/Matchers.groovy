@@ -18,54 +18,18 @@ package org.testatoo.hamcrest
 import org.hamcrest.Factory
 import org.hamcrest.Matcher
 import org.testatoo.core.component.Component
-import org.testatoo.core.support.state.CheckSupport
-import org.testatoo.core.support.state.EmptySupport
-import org.testatoo.core.support.state.FilledSupport
-import org.testatoo.core.support.property.InputSupport
-import org.testatoo.core.support.property.LabelSupport
-import org.testatoo.core.support.property.MaximumSupport
-import org.testatoo.core.support.property.MinimumSupport
-import org.testatoo.core.support.state.OptionalSupport
-import org.testatoo.core.support.state.RangeSupport
-import org.testatoo.core.support.state.ReadOnlySupport
-import org.testatoo.core.support.state.RequiredSupport
-import org.testatoo.core.support.state.SelectSupport
-import org.testatoo.core.support.property.StepSupport
-import org.testatoo.core.support.property.TextSupport
-import org.testatoo.core.support.state.ValiditySupport
-import org.testatoo.core.support.property.ValueSupport
-import org.testatoo.hamcrest.matcher.property.LabelMatcher
-import org.testatoo.hamcrest.matcher.property.MaximumMatcher
-import org.testatoo.hamcrest.matcher.property.MinimumMatcher
-import org.testatoo.hamcrest.matcher.property.PlaceholderMatcher
-import org.testatoo.hamcrest.matcher.property.StepMatcher
-import org.testatoo.hamcrest.matcher.property.TextMatcher
-import org.testatoo.hamcrest.matcher.property.ValueMatcher
-import org.testatoo.hamcrest.matcher.state.AvailableMatcher
-import org.testatoo.hamcrest.matcher.state.CheckedMatcher
-import org.testatoo.hamcrest.matcher.state.DisabledMatcher
-import org.testatoo.hamcrest.matcher.state.EmptyMatcher
-import org.testatoo.hamcrest.matcher.state.EnabledMatcher
-import org.testatoo.hamcrest.matcher.state.FilledMatcher
-import org.testatoo.hamcrest.matcher.state.HiddenMatcher
-import org.testatoo.hamcrest.matcher.state.InRangeMatcher
-import org.testatoo.hamcrest.matcher.state.InvalidMatcher
-import org.testatoo.hamcrest.matcher.state.MissingMatcher
-import org.testatoo.hamcrest.matcher.state.OptionalMatcher
-import org.testatoo.hamcrest.matcher.state.OutOfRangeMatcher
-import org.testatoo.hamcrest.matcher.state.ReadOnlyMatcher
-import org.testatoo.hamcrest.matcher.state.RequiredMatcher
-import org.testatoo.hamcrest.matcher.state.SelectedMatcher
-import org.testatoo.hamcrest.matcher.state.UnCheckedMatcher
-import org.testatoo.hamcrest.matcher.state.UnSelectedMatcher
-import org.testatoo.hamcrest.matcher.state.ValidMatcher
-import org.testatoo.hamcrest.matcher.state.VisibleMatcher
+import org.testatoo.core.component.Group
+import org.testatoo.core.component.Item
+import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.support.property.*
+import org.testatoo.core.support.state.*
+import org.testatoo.hamcrest.matcher.property.*
+import org.testatoo.hamcrest.matcher.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Matchers {
-
     @Factory
     public static <T> Matcher<T> has(Matcher<T> matcher) { new Has(matcher) }
 
@@ -148,4 +112,41 @@ class Matchers {
 
     @Factory
     public static Matcher<ValueSupport> value(Object value) { new ValueMatcher(value) }
+
+    @Factory
+    public static Matcher<ReferenceSupport> reference(String source) { new ReferenceMatcher(source) }
+
+    @Factory
+    public static Matcher<TitleSupport> title(String title) { new TitleMatcher(title) }
+
+    @Factory
+    public static Matcher<ItemSupport> items(String... items) { new ItemMatcher(items) }
+
+    @Factory
+    public static Matcher<ItemSupport> items(Item... items) { new ItemMatcher(items) }
+
+    @Factory
+    public static Matcher<SelectedItemSupport> selectedItem(String value) { new SelectedItemMatcher(value) }
+
+    @Factory
+    public static Matcher<SelectedItemSupport> selectedItem(Item value) { new SelectedItemMatcher(value) }
+
+    @Factory
+    public static Matcher<SelectedItemsSupport> selectedItems(String... values) { new SelectedItemsMatcher(values)  }
+
+    @Factory
+    public static Matcher<SelectedItemsSupport> selectedItems(Item... values) { new SelectedItemsMatcher(values)  }
+
+    @Factory
+    public static Matcher<GroupSupport> groups(String... values) { new GroupMatcher(values) }
+
+    @Factory
+    public static Matcher<GroupSupport> groups(Group... values) { new GroupMatcher(values) }
+
+    @Factory
+    public static Matcher<ColumnSupport> columns(String... values) { new ColumnMatcher(values) }
+
+    @Factory
+    public static Matcher<ColumnSupport> columns(Column... values) { new ColumnMatcher(values) }
+
 }

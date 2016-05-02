@@ -15,12 +15,9 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.property.SourceSupport
+import org.testatoo.core.support.property.ReferenceSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Image extends Component implements SourceSupport {
-
-    abstract String source()
-}
+abstract class Image extends Component implements ReferenceSupport {}

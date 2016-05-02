@@ -26,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('th')
 class Th extends Column {
-
     @Override
     List<Td> cells() {
         int index = config.evaluator.eval(id(), "it.index() + 1") as int

@@ -23,7 +23,6 @@ import org.hamcrest.Matcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Has<T> extends BaseMatcher<T> {
-
     private final Matcher<T> matcher;
 
     public Has(Matcher<T> matcher) {

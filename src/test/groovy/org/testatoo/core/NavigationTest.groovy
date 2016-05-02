@@ -16,16 +16,14 @@
 package org.testatoo.core
 
 import org.junit.Test
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
-import static org.mockito.Mockito.verify
+
+import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class NavigationTest {
-
     @Test
     public void should_delegate_to_underline_call() {
         Evaluator evaluator = mock(Evaluator)

@@ -19,14 +19,13 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.TextSupport
 
-import static org.testatoo.bundle.html5.helper.TextHelper.*
+import static org.testatoo.bundle.html5.helper.TextHelper.text
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('span')
 class Span extends Component implements TextSupport {
-
     @Override
     String text() {
         text(this)

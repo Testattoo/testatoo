@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.step
  */
 @RunWith(JUnit4)
 class StepMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         StepSupport cmp = mock(StepSupport)

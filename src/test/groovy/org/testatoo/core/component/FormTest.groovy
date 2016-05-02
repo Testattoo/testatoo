@@ -27,7 +27,6 @@ import org.testatoo.core.support.state.ValiditySupport
  */
 @RunWith(JUnit4)
 class FormTest {
-
     @Test
     public void should_have_expected_inheritance() {
         Form in Component

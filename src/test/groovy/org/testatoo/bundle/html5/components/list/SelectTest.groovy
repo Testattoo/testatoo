@@ -26,14 +26,14 @@ import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class SelectTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

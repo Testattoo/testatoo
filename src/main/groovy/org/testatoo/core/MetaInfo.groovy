@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.$
  */
 @Immutable
 class MetaInfo {
-
     String node
     String id
 

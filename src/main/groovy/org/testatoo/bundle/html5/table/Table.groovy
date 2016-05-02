@@ -17,7 +17,6 @@ package org.testatoo.bundle.html5.table
 
 import org.testatoo.core.By
 import org.testatoo.core.ByCss
-import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 
 /**
@@ -25,7 +24,6 @@ import org.testatoo.core.component.datagrid.DataGrid
  */
 @ByCss('table')
 class Table extends DataGrid {
-
     @Override
     List<Th> columns() {
         find(By.css('thead tr:last th'), Th)
@@ -34,6 +32,11 @@ class Table extends DataGrid {
     @Override
     List<Tr> rows() {
         find(By.css('tbody tr'), Tr)
+    }
+
+    @Override
+    Tr row(String title) {
+        rows().find { it.title() == title }
     }
 
     @Override

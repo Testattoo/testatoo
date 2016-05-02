@@ -26,7 +26,6 @@ import org.testatoo.bundle.html5.table.Tr
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
-import org.testatoo.core.component.datagrid.RowTest
 
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getBrowser
@@ -36,7 +35,6 @@ import static org.testatoo.core.Testatoo.getBrowser
  */
 @RunWith(JUnit4)
 class TableGridTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class FilledMatcher extends StateMatcher<FilledSupport> {
-
     @Override
     protected boolean matchesSafely(FilledSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is empty')

@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.label
  */
 @RunWith(JUnit4)
 class LabelMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         LabelSupport cmp = mock(LabelSupport)

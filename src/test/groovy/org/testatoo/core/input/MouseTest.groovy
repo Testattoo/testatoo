@@ -30,7 +30,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @RunWith(JUnit4)
 class MouseTest {
-
     @Test
     public void should_delegate_to_underline_call() {
         MetaDataProvider metaData = mock(MetaDataProvider)

@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.has
  */
 @RunWith(JUnit4)
 class GroupSizeMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         GroupSupport cmp = mock(GroupSupport)

@@ -16,7 +16,6 @@
 package org.testatoo.core
 
 public class ComponentException extends RuntimeException {
-
     /**
      * Constructs a new exception with the specified detail message.
      * @param message the message that will be displayed in the exception

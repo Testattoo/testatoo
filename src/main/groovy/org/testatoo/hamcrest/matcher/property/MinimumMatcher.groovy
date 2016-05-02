@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class MinimumMatcher extends PropertyMatcher<MinimumSupport> {
-
     private Object minimum
 
     MinimumMatcher(Object minimum) {

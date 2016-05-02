@@ -24,7 +24,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
-
     private String value
     private Item item
 

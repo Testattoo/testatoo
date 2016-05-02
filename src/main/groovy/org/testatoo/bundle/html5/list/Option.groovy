@@ -31,7 +31,6 @@ import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 @ByCss('option')
 class Option extends Item {
-
     @Override
     boolean selected() {
         config.evaluator.check(id(), "!!it.prop('selected')")

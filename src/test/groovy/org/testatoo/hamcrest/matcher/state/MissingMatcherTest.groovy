@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.missing
  */
 @RunWith(JUnit4)
 class MissingMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         Component cmp = mock(Component)

@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class EmptyMatcher extends StateMatcher<EmptySupport> {
-
     private EmptySupport component
 
     @Override

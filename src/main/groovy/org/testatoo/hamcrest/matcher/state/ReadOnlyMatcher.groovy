@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class ReadOnlyMatcher extends StateMatcher<ReadOnlySupport> {
-
     @Override
     protected boolean matchesSafely(ReadOnlySupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is not read only')

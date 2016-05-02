@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 package org.testatoo.core.component
+
+import org.testatoo.core.support.property.TitleSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Panel extends Component {
-
-    abstract String title()
-}
+abstract class Panel extends Component implements TitleSupport {}

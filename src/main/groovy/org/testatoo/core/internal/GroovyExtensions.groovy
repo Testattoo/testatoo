@@ -24,20 +24,17 @@ import org.testatoo.core.input.Key
 import org.testatoo.hamcrest.Matchers
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
-import org.testatoo.hamcrest.matcher.property.GroupSizeMatcher
-import org.testatoo.hamcrest.matcher.property.ItemSizeMatcher
-import org.testatoo.hamcrest.matcher.property.VisibleItemsSizeMatcher
+import org.testatoo.hamcrest.matcher.property.*
 
 import java.time.Duration
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
-
     public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 
     public static Collection<?> plus(Key a, Key b) { [a, b] }
@@ -87,21 +84,17 @@ class GroovyExtensions {
     public static PropertyMatcher getGroups(Integer number) {
         new GroupSizeMatcher(number)
     }
-//
-//    public static PropertyMatcher getColumns(Integer expected) {
-//        Properties.columnSize.equalsTo(expected)
-//    }
-//
-//    public static PropertyMatcher getRows(Integer expected) {
-//        Properties.size.equalsTo(expected)
-//    }
-//
+
+    public static PropertyMatcher getColumns(Integer number) {
+        new ColumnSizeMatcher(number)
+    }
+
+    public static PropertyMatcher getRows(Integer number) {
+        new RowSizeMatcher(number)
+    }
+
 //    public static PropertyMatcher getCells(Integer expected) {
 //        Properties.size.equalsTo(expected)
-//    }
-//
-//    public static PropertyMatcher getVisibleItems(Integer expected) {
-//        Properties.visibleItemsSize.equalsTo(expected)
 //    }
 //
 //    public static PropertyMatcher getParagraphs(Integer expected) {
@@ -110,39 +103,6 @@ class GroovyExtensions {
 //
 //    public static PropertyMatcher getArticles(Integer expected) {
 //        Properties.articleSize.equalsTo(expected)
-//    }
-
-
-//    static void select(Component selector, String... values) {
-//        ArrayList<Item> items = new ArrayList<Item>();
-//        for (value in values) {
-//            items.add((Item) selector.items.find { it.value == value } )
-//        }
-//        _select(selector, (Item[]) items.toArray())
-//    }
-//
-//    static void select(Component selector, Item... items) {
-//        _select(selector as Component, items)
-//    }
-//
-//    private static void _select(Component selector, Item... items) {
-//        config.evaluator.select(selector, items)
-//    }
-//
-//    static void unselect(Component selector, String... values) {
-//        ArrayList<Item> items = new ArrayList<Item>();
-//        for (value in values) {
-//            items.add((Item) selector.items.find { it.value == value } )
-//        }
-//        _unselect(selector, (Item[]) items.toArray())
-//    }
-//
-//    static void unselect(Component selector, Item... items) {
-//        _unselect(selector, items)
-//    }
-//
-//    private static void _unselect(Component selector, Item... items) {
-//        config.evaluator.unselect(selector as Component, items)
 //    }
 
     static void should(Component component, Closure closure) {

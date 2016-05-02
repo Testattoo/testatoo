@@ -23,7 +23,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class TextHelper {
-
     static String text(Component c) {
         config.evaluator.eval(c.id(), "it.text()")
     }

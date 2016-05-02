@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
-
     private String placeholder
 
     PlaceholderMatcher(String placeholder) {

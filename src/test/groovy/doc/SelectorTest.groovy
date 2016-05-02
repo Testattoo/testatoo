@@ -30,7 +30,6 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class SelectorTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

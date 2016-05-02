@@ -25,7 +25,6 @@ import org.testatoo.core.component.Component
  */
 @RunWith(JUnit4)
 class CellTest {
-
     @Test
     public void should_have_expected_inheritance() {
         Cell in Component

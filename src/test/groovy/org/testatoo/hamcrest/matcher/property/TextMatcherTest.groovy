@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.text
  */
 @RunWith(JUnit4)
 class TextMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         TextSupport cmp = mock(TextSupport)

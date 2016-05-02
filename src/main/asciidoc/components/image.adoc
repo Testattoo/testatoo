@@ -9,7 +9,7 @@ _Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...)
 |States|Properties|Intentions
 
 |-
-|source
+|reference
 |-
 
 |===

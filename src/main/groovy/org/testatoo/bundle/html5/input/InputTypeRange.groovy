@@ -26,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('input[type=range]')
 class InputTypeRange extends RangeField implements Input {
-
     Number value() {
         config.evaluator.eval(id(), "it.val()") as BigDecimal
     }

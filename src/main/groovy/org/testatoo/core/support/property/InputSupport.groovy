@@ -16,17 +16,12 @@
 package org.testatoo.core.support.property
 
 import org.testatoo.core.support.Clearable
-import org.testatoo.core.support.state.EmptySupport
-import org.testatoo.core.support.state.FilledSupport
-import org.testatoo.core.support.state.OptionalSupport
-import org.testatoo.core.support.state.ReadOnlySupport
-import org.testatoo.core.support.state.RequiredSupport
+import org.testatoo.core.support.state.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface InputSupport extends Clearable, EmptySupport, FilledSupport, ReadOnlySupport, RequiredSupport, OptionalSupport {
-
     String placeholder()
 
     void value(Object value)

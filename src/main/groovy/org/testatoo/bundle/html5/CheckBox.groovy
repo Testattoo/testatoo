@@ -25,7 +25,6 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.label
  */
 @ByCss('input[type=checkbox]')
 class CheckBox extends org.testatoo.core.component.CheckBox {
-
     @Override
     boolean checked() {
         checked(this)

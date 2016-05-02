@@ -18,12 +18,7 @@ package org.testatoo.core
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.Actions
-import org.testatoo.core.support.Checkable
-import org.testatoo.core.support.Clearable
-import org.testatoo.core.support.Resettable
-import org.testatoo.core.support.Submissible
-import org.testatoo.core.support.UnCheckable
+import org.testatoo.core.support.*
 
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Actions.*
@@ -33,7 +28,6 @@ import static org.testatoo.core.Actions.*
  */
 @RunWith(JUnit4)
 class ActionTest {
-
 //    @Test
 //    public void should_have_visit_as_placeholder_on_browser_open() {
 //        Browser browser = spy(new Browser())

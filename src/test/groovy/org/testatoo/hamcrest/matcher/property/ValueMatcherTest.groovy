@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.value
  */
 @RunWith(JUnit4)
 class ValueMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         ValueSupport cmp = mock(ValueSupport)

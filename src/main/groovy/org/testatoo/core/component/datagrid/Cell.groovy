@@ -16,11 +16,9 @@
 package org.testatoo.core.component.datagrid
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Cell extends Component {
-
-    abstract String value()
-}
+abstract class Cell extends Component implements ValueSupport {}

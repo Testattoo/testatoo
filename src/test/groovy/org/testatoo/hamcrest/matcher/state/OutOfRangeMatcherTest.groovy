@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.outOfRange
  */
 @RunWith(JUnit4)
 class OutOfRangeMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         RangeSupport cmp = mock(RangeSupport)

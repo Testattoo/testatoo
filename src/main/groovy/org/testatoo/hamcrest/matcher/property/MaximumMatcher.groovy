@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class MaximumMatcher extends PropertyMatcher<MaximumSupport> {
-
     private Object maximum
 
     MaximumMatcher(Object maximum) {

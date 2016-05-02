@@ -27,14 +27,14 @@ import org.testatoo.core.component.Panel
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
 
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class HtmlComponentTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

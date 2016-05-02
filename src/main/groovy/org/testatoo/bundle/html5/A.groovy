@@ -26,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('a')
 class A extends Link {
-
     @Override
     String reference() {
         config.evaluator.eval(this.id(), "it.prop('href')")

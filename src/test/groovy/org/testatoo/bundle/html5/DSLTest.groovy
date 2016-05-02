@@ -22,15 +22,15 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.core.component.Panel
 
+import static org.testatoo.core.Actions.check
+import static org.testatoo.core.Actions.visit
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class DSLTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.inRange
  */
 @RunWith(JUnit4)
 class InRangeMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         RangeSupport cmp = mock(RangeSupport)

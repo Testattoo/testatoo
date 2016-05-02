@@ -23,9 +23,9 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
-import org.testatoo.core.component.field.TextField
-import static org.testatoo.core.Testatoo.*
+
 import static Actions.fill
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -33,7 +33,6 @@ import static Actions.fill
 
 @RunWith(JUnit4)
 class SelectorTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

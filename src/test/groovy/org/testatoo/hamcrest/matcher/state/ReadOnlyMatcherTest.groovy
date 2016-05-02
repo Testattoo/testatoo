@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.readOnly
  */
 @RunWith(JUnit4)
 class ReadOnlyMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         ReadOnlySupport cmp = mock(ReadOnlySupport)

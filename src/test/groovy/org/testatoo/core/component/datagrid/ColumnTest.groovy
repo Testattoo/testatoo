@@ -25,7 +25,6 @@ import org.testatoo.core.component.Component
  */
 @RunWith(JUnit4)
 class ColumnTest {
-
     @Test
     public void should_have_expected_inheritance() {
         Column in Component

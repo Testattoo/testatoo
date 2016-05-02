@@ -26,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('form')
 class Form extends org.testatoo.core.component.Form {
-
     @Override
     void reset() {
         Button reset_button = find(By.css('[type=reset]:first'))[0] as Button

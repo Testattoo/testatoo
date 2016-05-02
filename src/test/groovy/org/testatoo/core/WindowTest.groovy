@@ -17,16 +17,13 @@ package org.testatoo.core
 
 import org.junit.Test
 
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.times
-import static org.mockito.Mockito.verify
+import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class WindowTest {
-
     @Test
     public void should_create_a_window() {
         Window window = new Window('id')

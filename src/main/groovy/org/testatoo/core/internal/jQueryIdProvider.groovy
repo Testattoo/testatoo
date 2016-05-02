@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.config
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class jQueryIdProvider implements IdProvider {
-
     final String expression
     final boolean singleElement
 

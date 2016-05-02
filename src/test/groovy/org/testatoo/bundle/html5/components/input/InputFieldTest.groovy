@@ -21,26 +21,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.input.Input
-import org.testatoo.bundle.html5.input.InputTypeColor
-import org.testatoo.bundle.html5.input.InputTypeDate
-import org.testatoo.bundle.html5.input.InputTypeDateTime
-import org.testatoo.bundle.html5.input.InputTypeEmail
-import org.testatoo.bundle.html5.input.InputTypeMonth
-import org.testatoo.bundle.html5.input.InputTypeNumber
-import org.testatoo.bundle.html5.input.InputTypePassword
-import org.testatoo.bundle.html5.input.InputTypeRange
-import org.testatoo.bundle.html5.input.InputTypeSearch
-import org.testatoo.bundle.html5.input.InputTypeTel
-import org.testatoo.bundle.html5.input.InputTypeText
-import org.testatoo.bundle.html5.input.InputTypeTime
-import org.testatoo.bundle.html5.input.InputTypeURL
-import org.testatoo.bundle.html5.input.InputTypeWeek
+import org.testatoo.bundle.html5.input.*
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -48,7 +35,6 @@ import static org.testatoo.core.Testatoo.*
 
 @RunWith(JUnit4)
 class InputFieldTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

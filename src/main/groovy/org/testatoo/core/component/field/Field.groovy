@@ -18,8 +18,8 @@ package org.testatoo.core.component.field
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.InputSupport
 import org.testatoo.core.support.property.LabelSupport
-import org.testatoo.core.support.state.ValiditySupport
 import org.testatoo.core.support.property.ValueSupport
+import org.testatoo.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

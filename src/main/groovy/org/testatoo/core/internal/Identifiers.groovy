@@ -26,7 +26,6 @@ import java.lang.annotation.Annotation
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Identifiers {
-
     static Map factories = [
         (ByJs): { ByJs annotation -> return annotation.value() },
         (ByCss): { ByCss annotation -> return "it.is('${annotation.value()}')" },

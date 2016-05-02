@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.required
  */
 @RunWith(JUnit4)
 class RequiredMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         RequiredSupport cmp = mock(RequiredSupport)

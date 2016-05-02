@@ -19,7 +19,6 @@ package org.testatoo.core
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Navigation {
-
     static void to(String url) {
         Testatoo.config.evaluator.to(url)
     }

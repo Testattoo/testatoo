@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.placeholder
  */
 @RunWith(JUnit4)
 class PlaceholderMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         InputSupport cmp = mock(InputSupport)

@@ -1,21 +1,15 @@
 package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
-import org.testatoo.core.support.property.SourceSupport
+import org.testatoo.core.support.property.RowSupport
 import org.testatoo.hamcrest.PropertyMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class SourceMatcher extends PropertyMatcher<SourceSupport> {
-    String value
-
-    SourceMatcher(String value) {
-        this.value = value
-    }
-
+class RowSizeMatcher extends PropertyMatcher<RowSupport> {
     @Override
-    protected boolean matchesSafely(SourceSupport item) {
+    protected boolean matchesSafely(RowSupport item) {
         return false
     }
 

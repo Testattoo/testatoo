@@ -27,15 +27,14 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.core.Testatoo.selectedItem
-import static org.testatoo.hamcrest.Matchers.*
+import static org.testatoo.hamcrest.Matchers.has
+import static org.testatoo.hamcrest.Matchers.selectedItem
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class SelectedItemMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         SelectedItemSupport cmp = mock(SelectedItemSupport)

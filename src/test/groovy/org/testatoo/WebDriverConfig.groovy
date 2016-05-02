@@ -29,7 +29,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class WebDriverConfig extends ExternalResource {
-
     @Override
     protected void before() throws Throwable {
         if(Boolean.valueOf(System.getProperty("CI"))) {

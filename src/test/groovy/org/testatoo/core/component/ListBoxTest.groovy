@@ -28,7 +28,6 @@ import org.testatoo.core.support.property.VisibleItemsSupport
  */
 @RunWith(JUnit4)
 class ListBoxTest {
-
     @Test
     public void should_have_expected_inheritance() {
         ListBox in Component

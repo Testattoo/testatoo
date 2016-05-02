@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('td')
 class Td extends Cell {
-
     @Override
     String value() {
         config.evaluator.eval(id(), "it.text().trim()")

@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class ValueMatcher extends PropertyMatcher<ValueSupport> {
-
     private Object value
 
     ValueMatcher(Object value) {

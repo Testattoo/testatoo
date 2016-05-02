@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class HiddenMatcher extends StateMatcher<Component> {
-
     private Component component
 
     @Override

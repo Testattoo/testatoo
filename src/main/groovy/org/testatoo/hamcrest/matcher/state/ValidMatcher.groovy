@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class ValidMatcher extends StateMatcher<ValiditySupport> {
-
     @Override
     protected boolean matchesSafely(ValiditySupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is invalid')

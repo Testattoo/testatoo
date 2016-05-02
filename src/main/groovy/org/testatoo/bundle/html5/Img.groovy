@@ -24,9 +24,8 @@ import org.testatoo.core.component.Image
  */
 @ByCss('img')
 class Img extends Image {
-
     @Override
-    String source() {
+    String reference() {
         Testatoo.config.evaluator.eval(id(), "it.prop('src')")
     }
 }

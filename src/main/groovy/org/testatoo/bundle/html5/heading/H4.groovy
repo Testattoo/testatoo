@@ -26,7 +26,6 @@ import static org.testatoo.bundle.html5.helper.TextHelper.text
 
 @ByCss('h4')
 class H4 extends Heading {
-
     @Override
     String text() {
         text(this);

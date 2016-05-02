@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('input[type=tel]')
 class InputTypeTel extends PhoneField implements Input {
-
     String getPattern() {
         config.evaluator.eval(id(), "it.prop('pattern')")
     }

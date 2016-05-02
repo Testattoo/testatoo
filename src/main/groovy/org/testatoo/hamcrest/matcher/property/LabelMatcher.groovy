@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class LabelMatcher extends PropertyMatcher<LabelSupport> {
-
     private String label
 
     LabelMatcher(String label) {

@@ -23,7 +23,6 @@ import org.testatoo.core.MetaInfo
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class MetaInfoProvider implements IdProvider {
-
     final MetaInfo metaInfo
 
     MetaInfoProvider(MetaInfo metaInfo) {

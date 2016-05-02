@@ -17,15 +17,14 @@ package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.testatoo.core.component.Group
-import org.testatoo.core.component.Item
 import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.hamcrest.PropertyMatcher
+import org.testatoo.hamcrest.matcher.property.dummy.DummyGroup
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroupMatcher extends PropertyMatcher<GroupSupport> {
-
     private List<String> values = new ArrayList<>()
     private List<Group> groups = new ArrayList<>()
 
@@ -41,7 +40,7 @@ class GroupMatcher extends PropertyMatcher<GroupSupport> {
     protected boolean matchesSafely(GroupSupport component) {
         if (values) {
             groups.clear()
-            values.each { groups.add(new InternalGroup(it)) }
+            values.each { groups.add(new DummyGroup(it)) }
         }
         values.clear()
         groups.each { values.add(String.valueOf(it.value())) }
@@ -66,29 +65,5 @@ class GroupMatcher extends PropertyMatcher<GroupSupport> {
         mismatchDescription.appendText('has group(s) [')
         mismatchDescription.appendText(componentGroups.join(', '))
         mismatchDescription.appendText(']')
-    }
-
-    private class InternalGroup extends Group {
-
-        String value
-
-        InternalGroup(String value) {
-            this.value = value
-        }
-
-        @Override
-        List<Item> items() {
-            return null
-        }
-
-        @Override
-        Item item(String value) {
-            return null
-        }
-
-        @Override
-        String value() {
-            return value
-        }
     }
 }

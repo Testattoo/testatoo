@@ -26,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('optgroup')
 class OptionGroup extends Group {
-
     List<Option> items() {
         find(By.css('option'), Option)
     }

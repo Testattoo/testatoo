@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class OptionalMatcher extends StateMatcher<OptionalSupport> {
-
     @Override
     protected boolean matchesSafely(OptionalSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is required')

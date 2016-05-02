@@ -18,7 +18,6 @@ package org.testatoo.core
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Window {
-
     final String id
 
     Window(String id) { this.id = id }

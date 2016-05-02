@@ -27,14 +27,14 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.ListView
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.Testatoo.$
+import static org.testatoo.core.Testatoo.getBrowser
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class ListTest {
-
     @ClassRule
     public static WebDriverConfig driver =  new WebDriverConfig()
 
@@ -53,7 +53,6 @@ class ListTest {
         assert ul.items()[0].value() == 'Item 1'
         assert ul.item('Item 4').value() == 'Item 4'
         assert ul.items()[3].equals(ul.items()[4])
-
         assert ul.items()[3].toString() == 'Item 4'
 
         assert Ol in ListView

@@ -30,7 +30,6 @@ import static org.testatoo.core.input.MouseModifiers.*
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Component implements Clickable, Draggable {
-
     final Queue<Matcher> BLOCKS = new LinkedList<>()
 
     MetaDataProvider meta

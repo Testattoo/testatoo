@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('tr')
 class Tr extends Row {
-
     @Override
     List<Td> cells() {
         config.evaluator.metaInfo("\$('#${id()}').find('td')").collect { it as Td }

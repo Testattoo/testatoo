@@ -34,7 +34,6 @@ import static org.testatoo.core.input.MouseModifiers.SINGLE
  * @author David Avenante (d.avenante@gmail.com)
  */
 class WebDriverEvaluator implements Evaluator {
-
     private final WebDriver webDriver
     private final JavascriptExecutor js
     private final List<String> registeredScripts = new ArrayList<>()

@@ -23,15 +23,14 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.core.component.Radio
 
+import static org.testatoo.core.Actions.check
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.Actions.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class SpecTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 

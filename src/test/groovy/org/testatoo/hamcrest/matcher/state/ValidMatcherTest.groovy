@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.valid
  */
 @RunWith(JUnit4)
 class ValidMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         ValiditySupport cmp = mock(ValiditySupport)

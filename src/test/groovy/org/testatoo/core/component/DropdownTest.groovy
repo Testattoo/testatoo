@@ -18,18 +18,17 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.core.support.SingleSelectable
 import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.core.support.property.ItemSupport
 import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.property.SelectedItemSupport
-import org.testatoo.core.support.SingleSelectable
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class DropdownTest {
-
     @Test
     public void should_have_expected_inheritance() {
         Dropdown in Component

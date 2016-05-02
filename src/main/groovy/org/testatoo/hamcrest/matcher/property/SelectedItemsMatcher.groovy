@@ -19,12 +19,12 @@ import org.hamcrest.Description
 import org.testatoo.core.component.Item
 import org.testatoo.core.support.property.SelectedItemsSupport
 import org.testatoo.hamcrest.PropertyMatcher
+import org.testatoo.hamcrest.matcher.property.dummy.DummyItem
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class SelectedItemsMatcher extends PropertyMatcher<SelectedItemsSupport> {
-
     private List<String> values = new ArrayList<>()
     private List<Item> items = new ArrayList<>()
 
@@ -40,7 +40,7 @@ class SelectedItemsMatcher extends PropertyMatcher<SelectedItemsSupport> {
     protected boolean matchesSafely(SelectedItemsSupport component) {
         if (values) {
             items.clear()
-            values.each { items.add(new InternalItem(it)) }
+            values.each { items.add(new DummyItem(it)) }
         }
         values.clear()
         items.each { values.add(String.valueOf(it.value())) }

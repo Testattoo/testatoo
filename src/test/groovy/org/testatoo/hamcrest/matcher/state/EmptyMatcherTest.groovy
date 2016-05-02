@@ -34,7 +34,6 @@ import static org.mockito.Mockito.when
  */
 @RunWith(JUnit4)
 class EmptyMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         EmptySupport cmp = mock(EmptySupport)

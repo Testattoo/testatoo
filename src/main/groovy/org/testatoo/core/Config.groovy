@@ -26,7 +26,6 @@ import java.time.Duration
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Config {
-
     /**
      * Change default time to wait for wait for assertions to complete (waitUntil)
      */

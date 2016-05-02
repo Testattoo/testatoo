@@ -25,7 +25,6 @@ import org.testatoo.core.support.property.InputSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Actions {
-
     static void visit(String uri) { Testatoo.browser.open(uri) }
 
     static Component check(Checkable c) { c.check() }
@@ -48,6 +47,9 @@ class Actions {
 
     static final FillAction fill(InputSupport c) { new FillAction(c) }
 
+    static final FillAction set(InputSupport c) { new FillAction(c) }
+
+
     public static class FillAction {
         private InputSupport input
 
@@ -58,5 +60,10 @@ class Actions {
         public void with(Object value) {
             input.value(value)
         }
+
+        public void to(Object value) {
+            input.value(value)
+        }
+
     }
 }

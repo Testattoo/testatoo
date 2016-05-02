@@ -23,7 +23,6 @@ import org.testatoo.core.component.Panel
  */
 @ByCss('div')
 class Div extends Panel {
-
     @Override
     String title() {
         ''

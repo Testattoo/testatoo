@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 package org.testatoo.core.support.property
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface TextSupport {
-
     String text()
 }

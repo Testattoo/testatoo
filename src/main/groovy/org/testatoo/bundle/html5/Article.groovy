@@ -24,7 +24,6 @@ import org.testatoo.core.component.Component
  */
 @ByCss('article')
 class Article extends Component {
-
     List<Paragraph> getParagraphs() {
         find(By.css('> p'), Paragraph)
     }

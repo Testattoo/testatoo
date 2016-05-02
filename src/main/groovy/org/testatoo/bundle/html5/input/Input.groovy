@@ -17,8 +17,9 @@ package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.ComponentException
 
-import static org.testatoo.bundle.html5.helper.LabelHelper.*
-import static org.testatoo.bundle.html5.helper.ValidityHelper.*
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
+import static org.testatoo.bundle.html5.helper.ValidityHelper.invalid
+import static org.testatoo.bundle.html5.helper.ValidityHelper.valid
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.Key.BACK_SPACE
 
@@ -26,7 +27,6 @@ import static org.testatoo.core.input.Key.BACK_SPACE
  * @author David Avenante (d.avenante@gmail.com)
  */
 trait Input {
-
     String placeholder() {
         config.evaluator.eval(id(), "it.prop('placeholder')")
     }

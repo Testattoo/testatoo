@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class UnCheckedMatcher extends StateMatcher<CheckSupport> {
-
     @Override
     protected boolean matchesSafely(CheckSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is checked')

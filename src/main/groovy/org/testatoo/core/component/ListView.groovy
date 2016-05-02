@@ -21,6 +21,5 @@ import org.testatoo.core.support.property.ItemSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 abstract class ListView extends Component implements ItemSupport {
-
     abstract Item item(String value)
 }

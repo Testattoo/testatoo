@@ -27,7 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.core.Testatoo.groups
+import static org.testatoo.hamcrest.Matchers.groups
 import static org.testatoo.hamcrest.Matchers.has
 
 /**
@@ -35,7 +35,6 @@ import static org.testatoo.hamcrest.Matchers.has
  */
 @RunWith(JUnit4)
 class GroupMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         GroupSupport cmp = mock(GroupSupport)

@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.optional
  */
 @RunWith(JUnit4)
 class OptionalMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         OptionalSupport cmp = mock(OptionalSupport)

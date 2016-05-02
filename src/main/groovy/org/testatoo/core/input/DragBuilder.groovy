@@ -23,7 +23,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class DragBuilder {
-
     Component dragged
 
     public DragBuilder(Component dragged) {

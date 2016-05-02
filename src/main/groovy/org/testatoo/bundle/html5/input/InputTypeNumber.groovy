@@ -26,7 +26,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('input[type=number]')
 class InputTypeNumber extends NumberField implements Input {
-
     Number value() {
         Object value = config.evaluator.eval(id(), "it.val()")
         if (value)

@@ -21,35 +21,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.A
-import org.testatoo.bundle.html5.Article
-import org.testatoo.bundle.html5.Aside
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.CheckBox
-import org.testatoo.bundle.html5.Div
-import org.testatoo.bundle.html5.Footer
-import org.testatoo.bundle.html5.Form
-import org.testatoo.bundle.html5.Header
-import org.testatoo.bundle.html5.Img
-import org.testatoo.bundle.html5.Paragraph
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.Section
-import org.testatoo.bundle.html5.Span
-import org.testatoo.bundle.html5.heading.H1
-import org.testatoo.bundle.html5.heading.H2
-import org.testatoo.bundle.html5.heading.H3
-import org.testatoo.bundle.html5.heading.H4
-import org.testatoo.bundle.html5.heading.H5
-import org.testatoo.bundle.html5.heading.H6
+import org.testatoo.bundle.html5.*
+import org.testatoo.bundle.html5.heading.*
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
 import org.testatoo.core.ByCss
 import org.testatoo.core.ComponentException
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.Heading
-import org.testatoo.core.component.Image
-import org.testatoo.core.component.Link
-import org.testatoo.core.component.Panel
+import org.testatoo.core.component.*
 import org.testatoo.core.support.property.TextSupport
 
 import static org.junit.Assert.fail
@@ -60,7 +38,6 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class ComponentsTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
@@ -71,7 +48,7 @@ class ComponentsTest {
 
     @Test
     public void component_should_have_expected_common_behaviours() {
-        assert Button in org.testatoo.core.component.Button
+        assert Button in Button
 
         Button button = $('#button') as Button
 
@@ -109,7 +86,7 @@ class ComponentsTest {
 
     @Test
     public void button_should_have_expected_behaviours() {
-        assert Button in org.testatoo.core.component.Button
+        assert Button in Button
 
         // fields type=button
         Button button = $('#button') as Button
@@ -133,7 +110,7 @@ class ComponentsTest {
 
     @Test
     public void checkbox_should_have_expected_behaviours() {
-        assert CheckBox in org.testatoo.core.component.CheckBox
+        assert CheckBox in CheckBox
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assert checkBox.label() == 'Check me out'
@@ -187,7 +164,7 @@ class ComponentsTest {
 
     @Test
     public void form_should_have_expected_behaviours() {
-        assert Form in org.testatoo.core.component.Form
+        assert Form in Form
 
         Form form = $('#form') as Form
         InputTypeEmail email = $('#form [type=email]') as InputTypeEmail
@@ -259,7 +236,7 @@ class ComponentsTest {
 
         Img image = $('#image') as Img
 
-        assert image.source() == 'http://localhost:8080/img/Montpellier.jpg'
+        assert image.reference() == 'http://localhost:8080/img/Montpellier.jpg'
     }
 
     @Test
@@ -293,7 +270,7 @@ class ComponentsTest {
 
     @Test
     public void radio_should_have_expected_behaviours() {
-        assert Radio in org.testatoo.core.component.Radio
+        assert Radio in Radio
 
         Radio radio = $('#radio_1') as Radio
         assert radio.label() == 'Radio checked'

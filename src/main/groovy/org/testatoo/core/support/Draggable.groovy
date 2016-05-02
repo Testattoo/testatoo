@@ -21,6 +21,5 @@ import org.testatoo.core.input.DragBuilder
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Draggable {
-
     DragBuilder drag()
 }

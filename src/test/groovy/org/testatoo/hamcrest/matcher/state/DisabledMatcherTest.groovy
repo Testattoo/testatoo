@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.disabled
  */
 @RunWith(JUnit4)
 class DisabledMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         Component cmp = mock(Component)

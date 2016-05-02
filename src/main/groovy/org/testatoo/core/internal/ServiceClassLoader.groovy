@@ -19,7 +19,6 @@ package org.testatoo.core.internal
  * @param < S >    The type of the service to be loaded by this loader
  */
 public final class ServiceClassLoader<S> implements Iterable<Class<S>> {
-
     private static final String PREFIX = "META-INF/services/";
     private final Class<S> service;
     private LinkedHashMap<String, Class<S>> providers = new LinkedHashMap<String, Class<S>>();

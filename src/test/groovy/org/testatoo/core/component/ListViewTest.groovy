@@ -25,7 +25,6 @@ import org.testatoo.core.support.property.ItemSupport
  */
 @RunWith(JUnit4)
 class ListViewTest {
-
     @Test
     public void should_have_expected_inheritance() {
         ListView in Component

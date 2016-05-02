@@ -24,7 +24,6 @@ import static org.testatoo.core.Testatoo.config
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends org.testatoo.core.component.Button {
-
     @Override
     public String text() {
         config.evaluator.eval(this.id(), "it.is('input') ? it.val() : it.text().trim()")

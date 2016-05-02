@@ -15,15 +15,14 @@
  */
 package org.testatoo.core.support.state
 
-import org.testatoo.core.support.property.StepSupport
 import org.testatoo.core.support.property.MaximumSupport
 import org.testatoo.core.support.property.MinimumSupport
+import org.testatoo.core.support.property.StepSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface RangeSupport extends MaximumSupport, MinimumSupport, StepSupport {
-
     boolean inRange()
 
     boolean outOfRange()

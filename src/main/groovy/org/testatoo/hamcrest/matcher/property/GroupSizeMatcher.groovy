@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.PropertyMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroupSizeMatcher extends PropertyMatcher<GroupSupport> {
-
     private Integer number
 
     GroupSizeMatcher(Integer number) {

@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.state.CheckSupport
 import org.testatoo.core.support.Checkable
-import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.UnCheckable
+import org.testatoo.core.support.property.LabelSupport
+import org.testatoo.core.support.state.CheckSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

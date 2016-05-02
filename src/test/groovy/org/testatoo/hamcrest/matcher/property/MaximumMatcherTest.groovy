@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.maximum
  */
 @RunWith(JUnit4)
 class MaximumMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         MaximumSupport cmp = mock(MaximumSupport)

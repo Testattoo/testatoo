@@ -25,7 +25,6 @@ import org.testatoo.core.support.property.TextSupport
  */
 @RunWith(JUnit4)
 class HeadingTest {
-
     @Test
     public void should_have_expected_inheritance() {
         Heading in Component

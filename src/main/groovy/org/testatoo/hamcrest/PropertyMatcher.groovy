@@ -17,7 +17,6 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.TypeSafeMatcher
 
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */

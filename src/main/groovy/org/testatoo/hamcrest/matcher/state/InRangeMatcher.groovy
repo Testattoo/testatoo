@@ -23,7 +23,6 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class InRangeMatcher extends StateMatcher<RangeSupport> {
-
     @Override
     protected boolean matchesSafely(RangeSupport item, Description mismatchDescription) {
         mismatchDescription.appendText('is out of range')

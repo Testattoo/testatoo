@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.minimum
  */
 @RunWith(JUnit4)
 class MinimumMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         MinimumSupport cmp = mock(MinimumSupport)

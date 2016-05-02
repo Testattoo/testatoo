@@ -24,7 +24,6 @@ import org.testatoo.core.component.ListView
  */
 @ByCss('ul')
 class Ul extends ListView {
-
     @Override
     List<Li> items() {
         find(By.css('li'), Li)

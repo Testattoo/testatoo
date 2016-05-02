@@ -24,7 +24,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class CheckHelper {
-
     static boolean checked(Component c) {
         config.evaluator.check(c.id(), "it.is(':checked')")
     }

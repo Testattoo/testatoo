@@ -23,7 +23,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class ValidityHelper {
-
     static boolean valid(Component c) {
         config.evaluator.check(c.id(), "it[0].validity.valid")
     }

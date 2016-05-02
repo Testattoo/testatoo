@@ -20,12 +20,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.Evaluator
-import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
+import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 
+import static org.mockito.Matchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
@@ -35,7 +36,6 @@ import static org.testatoo.core.input.MouseModifiers.*
  */
 @RunWith(JUnit4)
 class ComponentTest {
-
     MetaDataProvider metaData
     Evaluator evaluator
 

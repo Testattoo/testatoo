@@ -23,7 +23,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class LabelHelper {
-
     private static final String expr =
             "function() {" +
                     "   var label = \$('label[for=' + it.attr('id') + ']');" +

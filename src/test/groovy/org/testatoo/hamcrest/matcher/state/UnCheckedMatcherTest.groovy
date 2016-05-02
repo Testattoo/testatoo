@@ -34,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.unchecked
  */
 @RunWith(JUnit4)
 class UnCheckedMatcherTest {
-
     @Test
     public void should_have_expected_matcher() {
         CheckSupport cmp = mock(CheckSupport)

@@ -18,6 +18,7 @@ package org.testatoo.bundle.html5.list
 import org.testatoo.core.By
 import org.testatoo.core.ByJs
 import org.testatoo.core.component.Dropdown
+
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
 
 /**
@@ -25,7 +26,6 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.label
  */
 @ByJs("it.is('select') && !it.attr('multiple') && !it.prop('size') > 0")
 class Select extends Dropdown {
-
     @Override
     List<Option> items() {
         find(By.css('option'), Option)

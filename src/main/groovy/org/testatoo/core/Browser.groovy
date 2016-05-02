@@ -19,7 +19,6 @@ package org.testatoo.core
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Browser {
-
     final Navigation navigate = new Navigation()
 
     static String getTitle() {
