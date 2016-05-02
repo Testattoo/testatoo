@@ -329,7 +329,7 @@ class ComponentsTest {
             panel.should { have title('My panel title') }
             // end::panel[]
         } catch (AssertionError e) {
-            assert true // The title is not available in Html (Div)
+            assert e.message != null // The title is not available in Html (Div)
         }
     }
 

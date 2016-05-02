@@ -74,10 +74,10 @@ class TableGridTest {
 
         assert rows[0].cells().size() == 3
 
-        assert rows[0].title() == 'row 1'
-        assert rows[1].title() == 'row 2'
-        assert rows[2].title() == 'row 3'
-        assert rows[3].title() == 'row 4'
+        assert rows[0].title() == 'Row 1'
+        assert rows[1].title() == 'Row 2'
+        assert rows[2].title() == 'Row 3'
+        assert rows[3].title() == 'Row 4'
 
         cells = rows[1].cells()
 
