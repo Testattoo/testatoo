@@ -127,6 +127,11 @@ class ComponentsTest {
         on os_list select 'Ubuntu'
         os_list.should { have selectedItem('Ubuntu') }
         // end::dropdown[]
+
+        Item gentoo = os_list.item('Gentoo')
+        on os_list select gentoo
+        os_list.should { have selectedItem(gentoo) }
+
     }
 
     @Test
