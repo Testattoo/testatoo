@@ -49,7 +49,6 @@ class Actions {
 
     static final FillAction set(InputSupport c) { new FillAction(c) }
 
-
     public static class FillAction {
         private InputSupport input
 
