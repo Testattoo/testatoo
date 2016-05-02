@@ -16,13 +16,23 @@
 package org.testatoo.core.component.datagrid
 
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.CellSupport
 import org.testatoo.core.support.property.TitleSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Row extends Component implements TitleSupport {
-    abstract List<Cell> cells()
+abstract class Row extends Component implements TitleSupport, CellSupport {
+    @Override
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if(!o in Row) return false
+        Row row = (Row) o
+        title() == row.title()
+    }
+
+    @Override
+    int hashCode() { title().hashCode() }
 }
 
 

@@ -93,9 +93,9 @@ class GroovyExtensions {
         new RowSizeMatcher(number)
     }
 
-//    public static PropertyMatcher getCells(Integer expected) {
-//        Properties.size.equalsTo(expected)
-//    }
+    public static PropertyMatcher getCells(Integer number) {
+        new CellSizeMatcher(number)
+    }
 //
 //    public static PropertyMatcher getParagraphs(Integer expected) {
 //        Properties.paragraphSize.equalsTo(expected)

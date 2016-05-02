@@ -20,7 +20,9 @@ import org.hamcrest.Matcher
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
+import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.support.property.*
 import org.testatoo.core.support.state.*
 import org.testatoo.hamcrest.matcher.property.*
@@ -148,5 +150,17 @@ class Matchers {
 
     @Factory
     public static Matcher<ColumnSupport> columns(Column... values) { new ColumnMatcher(values) }
+
+    @Factory
+    public static Matcher<RowSupport> rows(String... values) { new RowMatcher(values) }
+
+    @Factory
+    public static Matcher<RowSupport> rows(Row... values) { new RowMatcher(values) }
+
+    @Factory
+    public static Matcher<CellSupport> cells(String... values) { new CellMatcher(values) }
+
+    @Factory
+    public static Matcher<CellSupport> cells(Cell... values) { new CellMatcher(values) }
 
 }

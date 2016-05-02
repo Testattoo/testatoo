@@ -42,6 +42,12 @@ _Definition_: a *column* is composed of cells and could have a title.
 |-
 |===
 
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=column]
+----
+
 ==== Row
 
 _Definition_: a *row* is composed of cells and could have a title.
@@ -59,6 +65,12 @@ _Definition_: a *row* is composed of cells and could have a title.
 |-
 |===
 
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=row]
+----
+
 ==== Cell
 
 _Definition_: a *cell* is the finest element of a datagrid.
@@ -72,4 +84,10 @@ _Definition_: a *cell* is the finest element of a datagrid.
 |-
 
 |===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=cell]
+----
 

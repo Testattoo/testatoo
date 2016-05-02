@@ -18,6 +18,9 @@ package org.testatoo.core
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
+import org.testatoo.core.component.datagrid.Cell
+import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
@@ -97,6 +100,15 @@ class Testatoo {
 
     public static ItemMatcher items(String... values) { new ItemMatcher(values) }
     public static ItemMatcher items(Item... items) { new ItemMatcher(items) }
+
+    public static ColumnMatcher columns(String... values) { new ColumnMatcher(values) }
+    public static ColumnMatcher columns(Column... columns) { new ColumnMatcher(columns) }
+
+    public static RowMatcher rows(String... values) { new RowMatcher(values) }
+    public static RowMatcher rows(Row... rows) { new RowMatcher(rows) }
+
+    public static CellMatcher cells(String... values) { new CellMatcher(values) }
+    public static CellMatcher cells(Cell... cells) { new CellMatcher(cells) }
 
     public static GroupMatcher groups(String... values) { new GroupMatcher(values) }
     public static GroupMatcher groups(Group... groups) { new GroupMatcher(groups) }

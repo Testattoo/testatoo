@@ -44,11 +44,11 @@ class ColumnMatcher extends PropertyMatcher<ColumnSupport> {
 
     @Override
     protected void describeMismatchSafely(ColumnSupport component, Description mismatchDescription) {
-        List<String> componentGroups = new ArrayList<>()
-        component.columns().each { componentGroups.add(String.valueOf(it.title())) }
+        List<String> componentColumns = new ArrayList<>()
+        component.columns().each { componentColumns.add(String.valueOf(it.title())) }
 
         mismatchDescription.appendText('has column(s) [')
-        mismatchDescription.appendText(componentGroups.join(', '))
+        mismatchDescription.appendText(componentColumns.join(', '))
         mismatchDescription.appendText(']')
     }
 }

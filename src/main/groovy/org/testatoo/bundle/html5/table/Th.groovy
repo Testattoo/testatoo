@@ -33,6 +33,11 @@ class Th extends Column {
     }
 
     @Override
+    Td cell(Object value) {
+        cells().find { it.value() == value }
+    }
+
+    @Override
     String title() {
         config.evaluator.eval(id(), "it.text().trim()")
     }

@@ -1,15 +1,15 @@
 package org.testatoo.hamcrest.matcher.property.dummy
 
 import org.testatoo.core.component.datagrid.Cell
-import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.component.datagrid.Row
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class DummyColumn extends Column {
+class DummyRow extends Row {
     String title
 
-    DummyColumn(String title) {
+    DummyRow(String title) {
         this.title = title
     }
 

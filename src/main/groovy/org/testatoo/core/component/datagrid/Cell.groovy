@@ -21,4 +21,15 @@ import org.testatoo.core.support.property.ValueSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Cell extends Component implements ValueSupport {}
+abstract class Cell extends Component implements ValueSupport {
+    @Override
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if(!o in Cell) return false
+        Cell cell = (Cell) o
+        value() == cell.value()
+    }
+
+    @Override
+    int hashCode() { value().hashCode() }
+}

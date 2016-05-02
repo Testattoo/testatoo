@@ -16,7 +16,9 @@ import org.testatoo.bundle.html5.list.Select
 import org.testatoo.bundle.html5.list.Ul
 import org.testatoo.bundle.html5.table.Table
 import org.testatoo.core.component.*
+import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
+import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.component.field.*
 
 import static org.testatoo.core.Actions.*
@@ -337,10 +339,37 @@ class ComponentsTest {
         // tag::datagrid[]
         datagrid.should {
             have 4.columns
+            have columns('', 'Column 1 title', 'Column 2 title', 'Column 3 title')
+
             have 4.rows
+            have rows('Row 1', 'Row 2', 'Row 3', 'Row 4')
         }
-
-
         // end::datagrid[]
+
+        // tag::column[]
+        Column column = datagrid.column('Column 2 title') // Or datagrid.columns[2]
+        column.should {
+            have title('Column 2 title')
+
+            have 4.cells
+            have cells('cell 12', 'cell 22', 'cell 32', 'cell 42')
+        }
+        // end::column[]
+
+        // tag::row[]
+        Row row = datagrid.row('Row 3') // Or datagrid.row[2]
+        row.should {
+            have title('Row 3')
+
+            have 3.cells
+            have cells('cell 31', 'cell 32', 'cell 33')
+        }
+        // end::row[]
+
+        // tag::cell[]
+        datagrid.rows()[2].cells()[1].should {
+            have value('cell 32')
+        }
+        // end::cell[]
     }
 }
