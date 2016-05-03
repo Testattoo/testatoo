@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 package org.testatoo.core
-
-import org.testatoo.core.evaluator.Evaluator
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 public interface IdProvider {
-    List<MetaInfo> getMetaInfos(Evaluator e) throws ComponentException
+    List<MetaInfo> metaInfos() throws ComponentException
 }

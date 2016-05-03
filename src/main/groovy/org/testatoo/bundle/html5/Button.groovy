@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,16 @@
 package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
-import org.testatoo.core.property.Text
+
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
-class Button extends Component {
-
-    Button() {
-        support Text, "it.is('input') ? it.val() : it.text().trim()"
+class Button extends org.testatoo.core.component.Button {
+    @Override
+    public String text() {
+        config.evaluator.eval(this.id(), "it.is('input') ? it.val() : it.text().trim()")
     }
-
 }

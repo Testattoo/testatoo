@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,16 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
-import org.testatoo.core.property.ParagraphSize
+import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('article')
 class Article extends Component {
-
-    Article() {
-        support ParagraphSize
+    List<Paragraph> getParagraphs() {
+        find(By.css('> p'), Paragraph)
     }
 }

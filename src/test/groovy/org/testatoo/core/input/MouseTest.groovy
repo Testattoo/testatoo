@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,149 +15,73 @@
  */
 package org.testatoo.core.input
 
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.Checkbox
-import org.testatoo.bundle.html5.Panel
-import org.testatoo.bundle.html5.Radio
-import org.testatoo.bundle.html5.list.Dropdown
-import org.testatoo.core.evaluator.webdriver.WebDriverEvaluator
-import org.testatoo.core.property.Title
+import org.testatoo.core.Evaluator
+import org.testatoo.core.MetaDataProvider
+import org.testatoo.core.component.Component
 
-import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.property.Properties.*
-import static org.testatoo.core.state.States.*
-import static org.testatoo.core.action.Actions.*
+import static org.mockito.Mockito.*
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class MouseTest {
-
-    @BeforeClass
-    public static void setup() {
-        evaluator = new WebDriverEvaluator(new FirefoxDriver())
-        visit 'http://localhost:8080/mouse.html'
-    }
-
-    @AfterClass
-    public static void tearDown() { evaluator.close() }
-
     @Test
-    public void should_be_able_to_click() {
-        Button button = $('#button_1') as Button
-        button.should { have text('Button') }
-        click_on button
-        button.should { have text('Button Clicked!') }
+    public void should_delegate_to_underline_call() {
+        MetaDataProvider metaData = mock(MetaDataProvider)
+        Evaluator evaluator = mock(Evaluator)
+        config.evaluator = evaluator
 
-        Checkbox checkBox = $('#checkbox') as Checkbox
-        checkBox.should { be unchecked }
-        click_on checkBox
-        checkBox.should { be checked }
+        MouseFakeComponent component = spy(new MouseFakeComponent(metaData))
+        when(component.id()).thenReturn('20')
 
-        Radio radio = $('#radio') as Radio
-        radio.should { be unchecked }
-        click_on radio
-        radio.should { be checked }
+        verify(component, times(0)).click()
+        verify(component, times(0)).doubleClick()
+        verify(component, times(0)).rightClick()
 
-        Dropdown dropDown = $('#elements') as Dropdown
-        dropDown.should { have selectedItems('H') }
+        Mouse.clickOn(component)
+        verify(component, times(1)).click()
+        verify(component, times(0)).doubleClick()
+        verify(component, times(0)).rightClick()
 
-        click_on dropDown.items[2]
-        dropDown.should { have selectedItems('Pol') }
+        Mouse.doubleClickOn(component)
+        verify(component, times(1)).click()
+        verify(component, times(1)).doubleClick()
+        verify(component, times(0)).rightClick()
+
+        Mouse.rightClickOn(component)
+        verify(component, times(1)).click()
+        verify(component, times(1)).doubleClick()
+        verify(component, times(1)).rightClick()
+
+        Mouse.hoveringMouseOn(component)
+        verify(evaluator, times(1)).mouseOver(component.id())
+
+        DragBuilder builder = Mouse.drag(component)
+        assert builder.dragged == component
+
+        builder.on(component)
+        verify(evaluator, times(1)).dragAndDrop(builder.dragged.id(), '20')
     }
 
-    @Test
-    public void should_be_able_to_doubleClick() {
-        Button button = $('#button_2') as Button
-        button.should { have text('Button') }
-        double_click_on button
-        button.should { have text('Button Double Clicked!') }
-    }
+    private class MouseFakeComponent extends Component {
 
-    @Test
-    public void should_be_able_to_rightClick() {
-        Button button = $('#button_5') as Button
-        button.should { have text('Button') }
-        right_click_on button
-        button.should { have text('Button Right Clicked!') }
-    }
+        MouseFakeComponent(MetaDataProvider metaData) { super(metaData) }
 
-    @Test
-    public void should_be_able_to_mouseOver() {
-        Button button = $('#button_3') as Button
-        button.should { have text('Button') }
-        hovering_mouse_on button
-        button.should { have text('Button Mouse Over!') }
-    }
+        @Override
+        String id() { return '' }
 
-    @Test
-    public void should_be_able_to_mouseOut() {
-        Button button = $('#button_4') as Button
-        button.should { have text('Button') }
+        @Override
+        void click() {}
 
-        // To simulate mouse out
+        @Override
+        void rightClick() {}
 
-        // 1 - mouse over the component
-        hovering_mouse_on button
-        // 2 - mouse over an another component
-        hovering_mouse_on $('#button_5') as Button
-        // The mouse out is triggered
-        button.should { have text('Button Mouse Out!') }
-    }
-
-    @Ignore
-    @Test
-    public void should_be_able_to_dragAndDrop() {
-        DropPanel dropPanel = $('#droppable') as DropPanel
-        dropPanel.should { have title('Drop here') }
-
-        Panel dragPanel = $('#draggable') as Panel
-
-        drag dragPanel on dropPanel
-        dropPanel.should { have title('Dropped!') }
-    }
-
-    @Test
-    public void should_be_able_to_use_mouse_with_key_modifier() {
-        $('#span_Ctrl_mouseleft').should { be missing }
-        $('#span_Shift_mouseleft').should { be missing }
-
-        CTRL.click $('#_Ctrl_mouseleft') as Panel
-        SHIFT.click $('#_Shift_mouseleft') as Panel
-
-        $('#span_Ctrl_mouseleft').should { be available }
-        $('#span_Shift_mouseleft').should { be available }
-
-        // Not testable cause Rightclick Handled by the browser
-        CTRL.rightClick $('#_Ctrl_mouseright') as Panel
-        [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Panel
-
-        $('#span_Alt_Shift_mouseleft').should { be missing }
-        (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Panel
-        $('#span_Alt_Shift_mouseleft').should { be available }
-
-        $('#span_Crtl_Shift_mouseleft').should { be missing }
-        [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Panel
-        $('#span_Crtl_Shift_mouseleft').should { be missing }
-
-        // For code coverage
-        [SPACE].click $('#_Ctrl_Shift_mouseleft') as Panel
-        ['data'].click $('#_Ctrl_Shift_mouseleft') as Panel
-    }
-
-    class DropPanel extends Panel {
-        DropPanel() {
-            support Title, "it.find('h1').text()"
-        }
+        @Override
+        void doubleClick() {}
     }
 }

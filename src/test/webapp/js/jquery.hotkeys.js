@@ -43,7 +43,7 @@
             handleObj.data = { keys: handleObj.data };
         }
 
-        // Only care when a possible input has been specified
+        // Only care when a possible fields has been specified
         if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
             return;
         }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,42 @@
  */
 package org.testatoo.bundle.html5
 
+import org.testatoo.core.By
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
-import org.testatoo.core.action.Reset
-import org.testatoo.core.action.Submit
-import org.testatoo.core.action.support.Resettable
-import org.testatoo.core.action.support.Submissible
-import org.testatoo.core.state.Invalid
-import org.testatoo.core.state.Valid
+import org.testatoo.core.ComponentException
+
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('form')
-class Form extends Component implements Submissible, Resettable {
-
-    Form() {
-        support Valid, Invalid
-        support Reset, Submit
+class Form extends org.testatoo.core.component.Form {
+    @Override
+    void reset() {
+        Button reset_button = find(By.css('[type=reset]:first'))[0] as Button
+        if (reset_button && reset_button.available())
+            reset_button.click()
+        else
+            throw new ComponentException('Cannot reset form without reset button')
     }
 
+    @Override
+    void submit() {
+        Button submit_button = this.find(By.css('[type=submit]:first'))[0] as Button
+        if (submit_button && submit_button.available())
+            submit_button.click()
+        else
+            throw new ComponentException('Cannot submit form without submit button')
+    }
+
+    @Override
+    boolean valid() {
+        !invalid()
+    }
+
+    @Override
+    boolean invalid() {
+        config.evaluator.check(id(), "it.is(':invalid')")
+    }
 }

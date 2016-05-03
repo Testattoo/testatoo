@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,48 +15,37 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.evaluator.Evaluator
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Browser {
+    final Navigation navigate = new Navigation()
 
-    private Evaluator evaluator
-
-    Browser(Evaluator evaluator) {
-        this.evaluator = evaluator
+    static String getTitle() {
+        Testatoo.config.evaluator.title
     }
 
-    String getTitle() {
-        evaluator.title
+    static String getPageSource() {
+        Testatoo.config.evaluator.pageSource
     }
 
-    String getPageSource() {
-        evaluator.pageSource
+    static String getUrl() {
+        Testatoo.config.evaluator.url
     }
 
-    String getUrl() {
-        evaluator.url
+    static void open(String url) {
+        Testatoo.config.evaluator.open(url)
     }
 
-    void open(String url) {
-        evaluator.open(url)
-    }
-
-    Navigation getNavigate() {
-        new Navigation(evaluator)
-    }
-
-    List<Window> getWindows() {
+    static List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
-        evaluator.windowIds.each { String id ->
-            windows.add(new Window(evaluator, id))
+        Testatoo.config.evaluator.windowIds.each { String id ->
+            windows.add(new Window(id))
         }
         return windows
     }
 
-    void switchTo(Window window) {
-        evaluator.switchToWindow(window.id)
+    static void switchTo(Window window) {
+        Testatoo.config.evaluator.switchToWindow(window.id)
     }
 }

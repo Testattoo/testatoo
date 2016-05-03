@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,29 +15,73 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.Component
-import org.testatoo.core.action.Clear
-import org.testatoo.core.action.Fill
-import org.testatoo.core.action.Reset
-import org.testatoo.core.action.support.Clearable
-import org.testatoo.core.action.support.Fillable
-import org.testatoo.core.action.support.Resettable
-import org.testatoo.core.property.Label
-import org.testatoo.core.property.Placeholder
-import org.testatoo.core.property.Value
-import org.testatoo.core.state.*
+import org.testatoo.core.ComponentException
 
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
+import static org.testatoo.bundle.html5.helper.ValidityHelper.invalid
+import static org.testatoo.bundle.html5.helper.ValidityHelper.valid
+import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.Key.BACK_SPACE
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-class Input extends Component implements Resettable, Fillable, Clearable {
+trait Input {
+    String placeholder() {
+        config.evaluator.eval(id(), "it.prop('placeholder')")
+    }
 
-    Input() {
-        support Placeholder, Label
-        support Value, "it.val()"
-        support Optional, Required, Empty, Filled, Valid, Invalid
-        support Reset, Fill, Clear, ReadOnly
+    boolean empty() {
+        config.evaluator.check(id(), "\$.trim(it.val()).length == 0")
+    }
+
+    boolean filled() {
+        !empty()
+    }
+
+    boolean readOnly() {
+        config.evaluator.check(id(), "it.prop('readonly')")
+    }
+
+    boolean required() {
+        config.evaluator.check(id(), "it.prop('required')")
+    }
+
+    boolean optional() {
+        !required()
+    }
+
+    void value(Object value) {
+        if (this.disabled()) {
+            throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
+        }
+        config.evaluator.trigger(this.id(), 'blur')
+        clear()
+        config.evaluator.type([String.valueOf(value)])
+        config.evaluator.trigger(this.id(), 'blur')
+    }
+
+    String label() {
+        label(this)
+    }
+
+    void clear() {
+        this.click()
+        config.evaluator.runScript("\$('#${id()}').val(' ').change()")
+        config.evaluator.type([BACK_SPACE])
+        config.evaluator.trigger(id(), 'blur')
+        this.click()
+    }
+
+    Object value() {
+        config.evaluator.eval(id(), "it.val()")
+    }
+
+    boolean valid() {
+        valid(this)
+    }
+
+    boolean invalid() {
+        invalid(this)
     }
 }

@@ -1,0 +1,42 @@
+=== DropDown
+
+image::components/DropDown.png[DropDown]
+
+"a *dropdown* allows the user to choose one value from a list. When a dropdown is inactive, it displays a
+single value. When activated, it displays (drops down) a list of values, that can be eventually grouped by theme, from which the user may select one.
+When the user selects a new value, the control reverts to its inactive state, displaying the selected value."
+-- inspired from Wikipedia definition
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|label
+|select
+
+|
+|_number of items_
+|
+
+|
+|items
+|
+
+|
+|_number of groups_
+|
+
+|
+|groups
+|
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=dropdown]
+----
+
+

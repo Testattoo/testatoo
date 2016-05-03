@@ -1,7 +1,5 @@
-box: wdinau/java8@0.0.1
+box: maven:latest
 build:
   steps:
-    - script:
-        name: Compile
-        code: |
-          mvn package
+    - testatoo/maven:
+        goals: test

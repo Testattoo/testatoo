@@ -1,0 +1,23 @@
+=== Image
+
+image::components/Image.png[Image]
+
+_Definition_:  an *image* allows the user to insert an image (gif, jpg, png,...) from a source file
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|reference
+|-
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=image]
+----
+
+

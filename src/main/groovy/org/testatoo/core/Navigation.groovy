@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,32 +15,23 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.evaluator.Evaluator
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Navigation {
-
-    private Evaluator evaluator
-
-    Navigation(Evaluator evaluator) {
-        this.evaluator = evaluator
+    static void to(String url) {
+        Testatoo.config.evaluator.to(url)
     }
 
-    void to(String url) {
-        evaluator.to(url)
+    static void back() {
+        Testatoo.config.evaluator.back()
     }
 
-    void back() {
-        evaluator.back()
+    static void forward() {
+        Testatoo.config.evaluator.forward()
     }
 
-    void forward() {
-        evaluator.forward()
-    }
-
-    void refresh() {
-        evaluator.refresh()
+    static void refresh() {
+        Testatoo.config.evaluator.refresh()
     }
 }

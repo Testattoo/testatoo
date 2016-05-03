@@ -1,0 +1,93 @@
+=== Datagrid
+
+_Definition_: a *datagrid* is a component that allows user to present data in a tabular view, with cells organized in rows and columns.
+
+image::components/DataGrid.png[DataGrid]
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|rows
+|-
+
+|-
+|columns
+|-
+|===
+
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=datagrid]
+----
+
+
+==== Column
+
+_Definition_: a *column* is composed of cells and could have a title.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|cells
+|-
+
+|-
+|title
+|-
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=column]
+----
+
+==== Row
+
+_Definition_: a *row* is composed of cells and could have a title.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|cells
+|-
+
+|-
+|title
+|-
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=row]
+----
+
+==== Cell
+
+_Definition_: a *cell* is the finest element of a datagrid.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|value
+|-
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=cell]
+----
+

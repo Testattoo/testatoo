@@ -1,0 +1,56 @@
+== Components reference
+
+=== Component
+
+This is the base for all others components.
+
+[cols="2", options="header"]
+|===
+2+|States
+
+|enabled    |disabled
+|available  |missing
+|hidden     |visible
+|contains   |displays
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/test/groovy/doc/dsl/ComponentsTest.groovy[tags=component]
+----
+
+[IMPORTANT]
+====
+*All Testatoo components inherit these states.*
+====
+
+include::components/button.adoc[]
+
+include::components/checkbox.adoc[]
+
+include::components/radio.adoc[]
+
+include::components/dropdown.adoc[]
+
+include::components/group.adoc[]
+
+include::components/listbox.adoc[]
+
+include::components/item.adoc[]
+
+include::components/fields.adoc[]
+
+include::components/form.adoc[]
+
+include::components/heading.adoc[]
+
+include::components/image.adoc[]
+
+include::components/link.adoc[]
+
+include::components/listview.adoc[]
+
+include::components/panel.adoc[]
+
+include::components/datagrid.adoc[]

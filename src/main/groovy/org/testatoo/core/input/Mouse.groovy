@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,34 +15,21 @@
  */
 package org.testatoo.core.input
 
-import org.testatoo.core.Component
-import org.testatoo.core.Testatoo
+import org.testatoo.core.component.Component
+
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Mouse {
+    static void clickOn(Component c) { c.click() }
 
-    static void click_on(Component c) { c.click() }
+    static void doubleClickOn(Component c) { c.doubleClick() }
 
-    static void double_click_on(Component c) { c.doubleClick() }
+    static void rightClickOn(Component c) { c.rightClick() }
 
-    static void right_click_on(Component c) { c.rightClick() }
-
-    static void hovering_mouse_on(Component c) { Testatoo.evaluator.mouseOver(c.id) }
+    static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id()) }
 
     static DragBuilder drag(Component c) { return new DragBuilder(c) }
-
-    public static class DragBuilder {
-        private Component from
-
-        public DragBuilder(Component from) {
-            this.from = from
-        }
-
-        public void on(Component onto) {
-            from.drag(onto)
-        }
-    }
-
 }

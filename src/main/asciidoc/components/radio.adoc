@@ -1,0 +1,31 @@
+=== Radio
+
+image::components/Radio.png[Radio]
+
+"a *radio button* allows the user to choose only one of a predefined set of options. Radio buttons are
+arranged in groups of two or more and displayed on screen as, for example, a list of circular holes that can contain
+white space (for unselected) or a dot (for selected). Each radio button is normally accompanied by a label describing
+the choice that the radio button represents.
+The choices are mutually exclusive; when the user selects a radio button, any previously selected radio button in the
+same group becomes deselected (making it so only one can be selected)."
+-- inspired from Wikipedia definition
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|checked
+|label
+|check
+
+|unchecked
+|
+|
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=radio]
+----

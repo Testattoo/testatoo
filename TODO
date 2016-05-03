@@ -1,0 +1,51 @@
+MetaInfoProvider !!!
+
+PatternSupport
+
+Add test on keyboard and mouse who test that evaluator is called
+
+Property matcher
+https://github.com/geb/geb/blob/master/module/geb-core/src/main/groovy/geb/textmatching/TextMatchingSupport.groovy
+
+click_on  link('Link Text') # clicks on either links or buttons
+click_on  button('Button Value')
+check checbox('A Checkbox')
+uncheck checkbox('A Checkbox')
+
+Doc
+    1. Introduction opinionated tool
+    2. Design Architecture
+    3. Installation
+         - Maven
+         - Graddle - TODO
+    4. First example in JUnit
+    5. Interaction with the page and elements
+         $  - Finder (css selector)
+         $$  - Finder (css selector)
+         Mouse
+         Keyboard
+    6. language DSL
+         - Finder through Factory
+         - behaviour
+         - Actions
+            - Mouse
+            - Keyboard
+         - Intention
+    7. Component reference
+        state / property / intention
+        sample DSL
+
+    8. Create new Component
+
+    9. Html5 Bundle
+
+    10. Cucumber tests
+
+    11. Create a new bundle
+
+    12. hamcrest Matcher
+        assertThat(button, is(available))
+    13. Junit Syntax
+        assert button.available
+
+=========================================

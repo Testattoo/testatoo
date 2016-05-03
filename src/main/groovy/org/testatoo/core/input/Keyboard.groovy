@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,13 @@
  */
 package org.testatoo.core.input
 
-import org.testatoo.core.Testatoo
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Keyboard {
+    static void type(Collection<?> keys) { config.evaluator.type(keys) }
 
-    static void type(Collection<?> keys)  { Testatoo.evaluator.enter(keys) }
-    static void type(Key key)  { type([key]) }
-    static void type(String text)  { type([text]) }
-
+    static void type(String text) { type([text]) }
 }

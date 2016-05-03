@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2014 Ovea (dev@ovea.com)
+    Copyright (C) 2016 Ovea (dev@ovea.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@
   <meta charset="utf-8">
   <title>Testatoo Rocks</title>
 
-  <meta name="description" content="HTML5 Rocks">
+  <meta name="description" content="Testatoo Rocks">
   <meta name="author" content="ovea">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="js/jquery-2.2.2.min.js"></script>
 </head>
 <body>
 
@@ -43,12 +43,10 @@
     <hr/>
 
     <h1>Link</h1>
-
-    <a id="link" href="components.html">Link to component page</a>
+    <a id="link" href="dsl.html">Link to dsl page</a>
     <hr/>
 
     <h1>Button</h1>
-
     <input type="button" id="button" class="btn btn-primary" value="Button"/>
     <input type="submit" id="submit" class="btn btn-primary" disabled="disabled" value="Submit"/>
     <input type="reset" id="reset" class="btn btn-primary" value="Reset"/>
@@ -60,17 +58,22 @@
     <label class="checkbox">
       <input type="checkbox" id="checkbox">Check me out
     </label>
-    <hr/>
 
+    <h1>Disabled Checkbox</h1>
+    <label class="checkbox">
+      <input type="checkbox" id="disabled_checkbox" disabled>Disabled
+    </label>
+
+    <hr/>
 
     <h1>Radio</h1>
     <label class="radio">
-      <input type="radio" id="radio" value="value_1" checked>
-      Radio label checked
+      <input type="radio" id="radio_1" name="radio" value="value_1" checked>
+      Radio checked
     </label>
     <label class="radio">
-      <input type="radio" id="otherRadio" value="value_2">
-      Radio label unchecked
+      <input type="radio" id="radio_2" name="radio" value="value_2">
+      Radio unchecked
     </label>
     <hr/>
 
@@ -79,99 +82,88 @@
     <div class="row">
       <div class="col-md-6">
         <label class="control-label" for="text_field">Text</label>
-
         <div class="controls">
-          <input type="text" id="text_field" placeholder="Text">
+          <input type="text" id="text_field" placeholder="Placeholder" required>
         </div>
 
         <label class="control-label" for="password_field">Password</label>
-
         <div class="controls">
           <input type="password" id="password_field" placeholder="Password" value="?art">
         </div>
 
         <label class="control-label" for="email_field">Email</label>
-
         <div class="controls">
-          <input type="email" id="email_field" placeholder="Email" disabled>
+          <input type="email" id="email_field" placeholder="john.doe@email.org" disabled>
         </div>
 
         <label class="control-label" for="phone_field">Phone</label>
-
         <div class="controls">
-          <input type="tel" id="phone_field" placeholder="Phone"
+          <input type="tel" id="phone_field" placeholder="+1 514 123 4567"
                  pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
                  required>
         </div>
 
         <label class="control-label" for="url_field">URL</label>
-
         <div class="controls">
-          <input type="url" id="url_field" placeholder="URL">
+          <input type="url" id="url_field" placeholder="www.mysite.org">
         </div>
 
         <label class="control-label" for="search_field">Search</label>
-
         <div class="controls">
           <input type="search" id="search_field" placeholder="Search">
         </div>
 
         <label class="control-label" for="number_field">Number</label>
-
         <div class="controls">
-          <input type="number" id="number_field" placeholder="Number" step="8" min="0" max="64">
+          <input type="number" id="number_field" step="8" min="0" max="64" value="2">
         </div>
 
         <label class="control-label" for="range_field">Range</label>
-
         <div class="controls">
-          <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5">
+          <input type="range" id="range_field" placeholder="Range" max="50" min="0" step="5" value="10">
         </div>
 
       </div>
       <div class="col-md-6">
 
         <label class="control-label" for="color_field">Color</label>
-
         <div class="controls">
           <input type="color" id="color_field" placeholder="Color">
         </div>
 
         <label class="control-label" for="month_field">Month</label>
-
         <div class="controls">
           <input type="month" id="month_field" placeholder="Month" required>
         </div>
 
         <label class="control-label" for="week_field">Week</label>
-
         <div class="controls">
           <input type="week" id="week_field" placeholder="Week">
         </div>
 
         <label class="control-label" for="date_field">Date</label>
-
         <div class="controls">
           <input type="date" id="date_field" placeholder="Date" max="2012-06-25" min="2011-08-13">
         </div>
 
-        <label class="control-label" for="time_field">Date</label>
-
+        <label class="control-label" for="time_field">Time</label>
         <div class="controls">
           <input type="time" id="time_field" placeholder="Time">
         </div>
 
-        <label class="control-label" for="datetime_field">Date</label>
-
+        <label class="control-label" for="datetime_field">DateTime</label>
         <div class="controls">
-          <input type="datetime" id="datetime_field" placeholder="DateTime" readonly>
+          <input type="datetime" id="datetime_field" placeholder="DateTime">
+        </div>
+
+        <label class="control-label" for="read_only_and_filled">Field ReadOnly and Filled</label>
+        <div class="controls">
+          <input type="text" id="read_only_and_filled" value="Filled" readonly disabled="disabled">
         </div>
 
         <label class="control-label" for="text_area_field">TextArea</label>
-
         <div class="controls">
           <textarea id="text_area_field" rows="4" cols="50">Text area</textarea>
-
         </div>
       </div>
     </div>
@@ -194,7 +186,6 @@
     <br/>
 
     <label class="control-label" for="countries">Countries list</label>
-
     <div class="controls">
       <select id="countries" disabled>
         <option label="Canada">Canada</option>
@@ -211,13 +202,13 @@
       <select id="os">
         <option selected value="none">None</option>
         <optgroup id="linux" label="linux">
-          <option label="Ubuntu" value="UbuntuValue" id="kubuntuOption"></option>
+          <option value="UbuntuValue" id="kubuntuOption">Ubuntu</option>
           <option value="RedHatValue">Fedora</option>
-          <option label="Gentoo" value="GentooValue"></option>
+          <option value="GentooValue">Gentoo</option>
         </optgroup>
         <optgroup label="win32">
           <option value="XPValue">XP</option>
-          <option label="Vista" value="VistaValue">Vista</option>
+          <option value="VistaValue">Vista</option>
         </optgroup>
         <optgroup label="BSD">
           <option value="FreeBSDValue">FreeBSD</option>
@@ -230,22 +221,20 @@
     <h1>ListBox</h1>
 
     <label class="control-label" for="cities">Cities list</label>
-
     <div class="controls">
       <select id="cities" size="3" multiple="multiple" name="cityName" title="cityTitle">
-        <option label="Montreal" value="Montreal">Montreal</option>
+        <option label="Montreal" value="Montreal" selected="selected">Montreal</option>
         <option label="Quebec" value="Quebec" disabled>Quebec</option>
         <option label="Montpellier" value="Montpellier">Montpellier</option>
-        <option label="New York" value="New York" selected="selected">New York</option>
+        <option label="New York" value="New York">New York</option>
         <option label="Casablanca" value="Casablanca">Casablanca</option>
-        <option label="Munich" value="Munich" selected="selected">Munich</option>
+        <option label="Munich" value="Munich">Munich</option>
       </select>
     </div>
 
     <br/>
 
     <label class="control-label" for="planets">planets list</label>
-
     <div class="controls">
       <select id="planets" size="5">
         <optgroup label="Cat-1">
@@ -265,14 +254,22 @@
 
     <br/>
 
-    <ul id="list_view">
+    <ul id="unordered_list">
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
       <li>Item 4</li>
-      <li>Item 5</li>
+      <li>Item 4</li>
     </ul>
 
+
+    <ol id="ordered_list">
+      <li>Item 11</li>
+      <li>Item 22</li>
+      <li>Item 33</li>
+      <li>Item 44</li>
+      <li>Item 55</li>
+    </ol>
 
     <hr/>
     <h1>Image</h1>
@@ -287,14 +284,14 @@
 
     <hr/>
 
-    <h1 id="heading_1">heading 1</h1>
+    <h1 id="h1">heading 1</h1>
 
-    <h2 id="heading_2">heading 2</h2>
+    <h2 id="h2">heading 2</h2>
 
-    <h3 id="heading_3">heading 3</h3>
-    <h4 id="heading_4">heading 4</h4>
-    <h5 id="heading_5">heading 5</h5>
-    <h6 id="heading_6">heading 6</h6>
+    <h3 id="h3">heading 3</h3>
+    <h4 id="h4">heading 4</h4>
+    <h5 id="h5">heading 5</h5>
+    <h6 id="h6">heading 6</h6>
 
     <hr/>
 
@@ -312,25 +309,25 @@
 
       <tbody>
       <tr>
-        <th>row 1</th>
+        <th>Row 1</th>
         <td>cell 11</td>
         <td>cell 12</td>
         <td>cell 13</td>
       </tr>
       <tr>
-        <th>row 2</th>
+        <th>Row 2</th>
         <td>cell 21</td>
         <td>cell 22</td>
         <td>cell 23</td>
       </tr>
       <tr>
-        <th>row 3</th>
+        <th>Row 3</th>
         <td>cell 31</td>
         <td>cell 32</td>
         <td>cell 33</td>
       </tr>
       <tr>
-        <th>row 4</th>
+        <th>Row 4</th>
         <td>cell 41</td>
         <td>cell 42</td>
         <td>cell 43</td>
@@ -376,6 +373,30 @@
 
     <hr/>
 
+    <h1>Form</h1>
+    <form id="form">
+      <div class="alert alert-success">The form was submitted <span>0</span> time(s)</div>
+      <div class="form-group">
+        <label>Email address
+          <input id="email" type="email" class="form-control" placeholder="Enter email">
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Password
+          <input id="password" type="password" class="form-control" placeholder="Password" required>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+
+    <div id="custom_panel">
+      <div id="hidden_panel" style="display: none">TEXT</div>
+      <div></div>
+    </div>
+
+    <hr/>
+
     <h1>Inheritance</h1>
     <div>
       <button id="btn_default" type="button" class="btn btn-default">Default</button>
@@ -386,9 +407,12 @@
       <button id="btn_danger" type="button" class="btn btn-danger">Danger</button>
     </div>
 
-    <div class="col-md-2"></div>
-  </div>
+    <hr/>
 
+    <span id="span">A span</span>
+
+  </div>
+  <div class="col-md-2"></div>
 </div>
 
 <script type="text/javascript">
@@ -396,6 +420,11 @@
     e.preventDefault();
     window.open("http://localhost:8080/dsl.html", "window_name", "width=500,height=500");
   });
+
+  $('#form').on('submit', function(e) {
+    e.preventDefault();
+    $(this).find('span').text(+$(this).find('span').text() + 1);
+  })
 </script>
 
 </body>

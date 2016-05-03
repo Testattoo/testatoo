@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,23 +16,32 @@
 package org.testatoo.bundle.html5
 
 import org.testatoo.core.ByCss
-import org.testatoo.core.Component
-import org.testatoo.core.action.Check
-import org.testatoo.core.action.support.Checkable
-import org.testatoo.core.property.Label
-import org.testatoo.core.state.Checked
-import org.testatoo.core.state.Unchecked
+
+import static org.testatoo.bundle.html5.helper.CheckHelper.*
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @ByCss('input[type=radio]')
-class Radio extends Component implements Checkable {
-
-    Radio() {
-        support Label
-        support Checked, Unchecked
-        support Check
+class Radio extends org.testatoo.core.component.Radio {
+    @Override
+    boolean checked() {
+        checked(this)
     }
 
+    @Override
+    boolean unchecked() {
+        unchecked(this)
+    }
+
+    @Override
+    void check() {
+        check(this)
+    }
+
+    @Override
+    String label() {
+        label(this)
+    }
 }

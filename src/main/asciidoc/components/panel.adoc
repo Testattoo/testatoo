@@ -1,0 +1,24 @@
+=== Panel
+
+image::components/Panel.png[Panel]
+
+"a *panel* is a particular arrangement of information grouped together for presentation to the user."
+-- inspired from Wikipedia definition
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|title
+|-
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=panel]
+----
+
+

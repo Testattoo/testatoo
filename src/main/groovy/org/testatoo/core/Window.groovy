@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,26 @@
  * limitations under the License.
  */
 package org.testatoo.core
-
-import org.testatoo.core.evaluator.Evaluator
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Window {
+    final String id
 
-    private Evaluator evaluator
-    String id
+    Window(String id) { this.id = id }
 
-    Window(Evaluator evaluator, String id) {
-        this.evaluator = evaluator
-        this.id = id;
-    }
-
-    void close() {
-        evaluator.closeWindow(this.id)
-    }
+    void close() { Testatoo.config.evaluator.closeWindow(this.id) }
 
     @Override
-    public String toString() {
-        this.id
+    String toString() { this.id }
+
+    boolean equals(o) {
+        if (this.is(o)) return true
+        if (getClass() != o.class) return false
+
+        Window window = (Window) o
+        id == window.id
     }
+
+    int hashCode() { id.hashCode() }
 }

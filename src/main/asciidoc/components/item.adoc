@@ -1,0 +1,26 @@
+=== Item
+
+*Item* is used for dropDowns and listBoxes.
+
+image:components/DropDown.png[DropDown] image:components/ListBox_2.png[ListBox]
+
+[cols="3*", options="header"]
+|===
+
+|States|Properties|Intentions
+
+|selected
+|value
+|select
+
+|unselected
+|
+|unselect
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=item]
+----

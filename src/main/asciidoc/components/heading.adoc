@@ -1,0 +1,23 @@
+=== Heading
+
+image::components/Heading.png[Heading]
+
+_Definition_:  a *heading* allows the user to put a title for a page or a paragraph.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|text
+|-
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=heading]
+----
+
+

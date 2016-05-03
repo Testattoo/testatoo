@@ -1,0 +1,28 @@
+=== Link
+
+image::components/Link-1.png[Link-1]
+image::components/Link-2.png[Link-2]
+
+_Definition_:  a *link* allows the user to navigate from page to page.
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|-
+|text
+|-
+
+|-
+|reference
+|-
+
+|===
+
+[source,groovy,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/../test/groovy/doc/dsl/ComponentsTest.groovy[tags=link]
+----
+
+

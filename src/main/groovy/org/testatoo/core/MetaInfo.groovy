@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014 Ovea (dev@ovea.com)
+ * Copyright (C) 2016 Ovea (dev@ovea.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,15 @@
 package org.testatoo.core
 
 import groovy.transform.Immutable
+import org.testatoo.core.component.Component
+
+import static org.testatoo.core.Testatoo.$
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 @Immutable
 class MetaInfo {
-
     String node
     String id
 
@@ -31,9 +33,8 @@ class MetaInfo {
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
-            return Component.$("#${id}").asType(clazz)
+            return $("#${id}").asType(clazz)
         }
         return super.asType(clazz)
     }
-
 }

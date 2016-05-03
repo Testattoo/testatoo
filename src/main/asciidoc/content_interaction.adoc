@@ -1,0 +1,145 @@
+== Content interaction
+'''
+
+=== The Browser
+
+The Browser + Navigation
+
+=== Component selection
+
+==== The $ function
+
+The $ function is the access point for fetching component on the page. The $ function accepts a CSS3 selector to target your component.
+The signature of the $ function is the following:
+
+[source,java,indent=0]
+[subs="verbatim,attributes"]
+----
+include::{basepath}/test/groovy/doc/SelectorTest.groovy[tags=componentSelection]
+----
+
+<1> Matches the DOM element on the page with *id: 'button'*
+<2> Matches the DOM element on the *class: 'btn-secondary'*
+<3> Matches the DOM element on the page that is *the second button*
+<4> Matches the DOM element on the page that has *attribute "data-role" equals to "myRole"*
+
+Our experience demonstrated that *we never need complex selector.* If you write tests first, we use the semantic
+carried by the tested component. In the code, this is reflected by a custom tag, the sequence in the page, a role
+attribute, or an id. In all these cases, a css3 selector is more than enough.
+
+//TODO : examples (custom tag : with Angular Directive or Web Components)
+
+[IMPORTANT]
+====
+Once the component is selected, it *MUST BE TYPED* through the *"as"* keyword.
+
+[source, groovy]
+-------------------------------------------------------------------------------
+TextField textField = $('#text_field') as InputTypeText
+-------------------------------------------------------------------------------
+====
+
+In Testatoo you never select an anonymous DOM element. Every DOM element must be the representation of a UI concept.
+But wait a moment: How can you know if a button is a button!? Indeed, in HTML, a Button can be represented in many ways:
+
+[source, html]
+-------------------------------------------------------------------------------
+<button id="button">My Button</button>
+<input id="button" type="button" value="My Button">
+<input id="button" type="submit" value="My Button">
+-------------------------------------------------------------------------------
+
+This is the magic of Testatoo. We will see later how it works and how to override this behavior and easily add new component types.
+
+[IMPORTANT]
+====
+The $ function *NEEDS* to target a *UNIQUE* component. If you want to work with a list of components you need to use the $$ function.
+
+The following code fails because through the selector expression, we try to target a list of items (options) of a select to evaluate their visibility.
+[source, groovy]
+-------------------------------------------------------------------------------
+Item item = $('select option') as Item;
+assert item.visible()
+-------------------------------------------------------------------------------
+====
+
+==== The $$ function
+TODO
+
+==== The find function
+TODO
+
+=== Events on components
+
+==== Mouse events
+
+[cols="5", options="header"]
+|===
+5+|Supported mouse events
+
+|click_on
+|double_click_on
+|right_click_on
+|hovering_mouse_on
+|drag ... on ...
+
+|===
+
+[source, java]
+-------------------------------------------------------------------------------
+Button button = $('#button') as Button
+Panel panel_1 = $('#panel_1') as Panel
+Panel panel_2 = $('#panel_2') as Panel
+
+click_on button
+double_click_on button
+right_click_on button
+hovering_mouse_on panel_1
+drag panel_1 on panel_2
+-------------------------------------------------------------------------------
+
+
+==== Keyboard events
+
+For the keyboard events we have done a nice work to make this easy:
+
+[cols="1", options="header"]
+|===
+|Only ONE Method to represent them all
+
+|the *type(...)* method
+
+|===
+
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type('testatoo')
+-------------------------------------------------------------------------------
+
+If you need the usage of a simple key modifier....
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(SHIFT + 'testatoo') // => TESTATOO
+-------------------------------------------------------------------------------
+
+Or a complex one....
+
+[source, java]
+-------------------------------------------------------------------------------
+TextField textField = $('#textfield') as TextField
+
+click_on textField
+type(CTRL + ALT + SHIFT + 'x')
+-------------------------------------------------------------------------------
+
+
+==== Touch events
+Testatoo does not support touch event for the moment.
