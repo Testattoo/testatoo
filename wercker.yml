@@ -1,5 +1,0 @@
-box: maven:latest
-build:
-  steps:
-    - testatoo/maven:
-        goals: test
