@@ -52,9 +52,8 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
         List<String> expectedItems = new ArrayList<>()
         items.each { expectedItems.add(String.valueOf(it.value())) }
 
-        description.appendText('item(s) [')
-        description.appendText(expectedItems.join(', '))
-        description.appendText(']')
+        description.appendText('item(s) ')
+        description.appendValueList('[', ', ', ']', expectedItems)
     }
 
     @Override
@@ -62,8 +61,7 @@ class ItemMatcher extends PropertyMatcher<ItemSupport> {
         List<String> componentItems = new ArrayList<>()
         component.items().each { componentItems.add(String.valueOf(it.value())) }
 
-        mismatchDescription.appendText('has item(s) [')
-        mismatchDescription.appendText(componentItems.join(', '))
-        mismatchDescription.appendText(']')
+        mismatchDescription.appendText('has item(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentItems)
     }
 }

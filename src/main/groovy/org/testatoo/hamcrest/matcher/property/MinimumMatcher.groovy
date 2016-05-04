@@ -36,11 +36,11 @@ class MinimumMatcher extends PropertyMatcher<MinimumSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText(minimum.toString())
+        description.appendText('minimum ' + minimum.toString())
     }
 
     @Override
     protected void describeMismatchSafely(MinimumSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + component.minimum())
+        mismatchDescription.appendText('has minimum ' + component.minimum())
     }
 }

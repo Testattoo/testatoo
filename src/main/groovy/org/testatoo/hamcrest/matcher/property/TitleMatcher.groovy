@@ -21,11 +21,11 @@ class TitleMatcher extends PropertyMatcher<TitleSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(title)
+        description.appendText('title ').appendValue(title)
     }
 
     @Override
     protected void describeMismatchSafely(TitleSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(component.title())
+        mismatchDescription.appendText('has title ').appendValue(component.title())
     }
 }

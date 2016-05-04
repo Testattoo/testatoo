@@ -36,11 +36,11 @@ class ValueMatcher extends PropertyMatcher<ValueSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(value)
+        description.appendText('value ')appendValue(value)
     }
 
     @Override
     protected void describeMismatchSafely(ValueSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(component.value())
+        mismatchDescription.appendText('has value ').appendValue(component.value())
     }
 }

@@ -36,11 +36,11 @@ class StepMatcher extends PropertyMatcher<StepSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText(step.toString())
+        description.appendText('step ').appendText(step.toString())
     }
 
     @Override
     protected void describeMismatchSafely(StepSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + component.step().toString())
+        mismatchDescription.appendText('has step ' + component.step().toString())
     }
 }

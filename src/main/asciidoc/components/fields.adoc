@@ -44,6 +44,16 @@ This is the base component for all types of fields.
 
 image::components/TextField.png[TextField]
 
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|length
+|
+
+|===
+
 "a *textfield* allows the user to input text information to be used by the program.
 It can a single-line text box when only one line of input is required, and a multi-line text box if more than one line
 of input may be required."
@@ -122,9 +132,31 @@ _Definition_: a *weekField* allows the user to select a week and year.
 
 image::components/EmailField.png[EmailField]
 
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|length
+|
+
+|===
+
+
 _Definition_: an *emailField* is used for fields that should contain an e-mail address.
 
 ==== PasswordField
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|length
+|
+
+|===
+
 
 image::components/PasswordField.png[PasswordField]
 
@@ -191,6 +223,17 @@ _Definition_: a *phoneField* is used for fields that should contain a telephone 
 ==== SearchField
 
 image::components/SearchField.png[SearchField]
+
+[cols="3*", options="header"]
+|===
+|States|Properties|Intentions
+
+|
+|length
+|
+
+|===
+
 
 _Definition_: a *searchField* is used for search fields (a search field behaves like a regular text field).
 

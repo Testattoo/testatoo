@@ -52,9 +52,8 @@ class GroupMatcher extends PropertyMatcher<GroupSupport> {
         List<String> expectedGroups = new ArrayList<>()
         groups.each { expectedGroups.add(String.valueOf(it.value())) }
 
-        description.appendText('group(s) [')
-        description.appendText(expectedGroups.join(', '))
-        description.appendText(']')
+        description.appendText('group(s) ')
+        description.appendValueList('[', ', ', ']', expectedGroups)
     }
 
     @Override
@@ -62,8 +61,7 @@ class GroupMatcher extends PropertyMatcher<GroupSupport> {
         List<String> componentGroups = new ArrayList<>()
         component.groups().each { componentGroups.add(String.valueOf(it.value())) }
 
-        mismatchDescription.appendText('has group(s) [')
-        mismatchDescription.appendText(componentGroups.join(', '))
-        mismatchDescription.appendText(']')
+        mismatchDescription.appendText('has group(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentGroups)
     }
 }

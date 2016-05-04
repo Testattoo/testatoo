@@ -21,11 +21,11 @@ class ReferenceMatcher extends PropertyMatcher<ReferenceSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText(reference)
+        description.appendText('reference ').appendValue(reference)
     }
 
     @Override
     protected void describeMismatchSafely(ReferenceSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + component.reference())
+        mismatchDescription.appendText('has reference ').appendValue(component.reference())
     }
 }

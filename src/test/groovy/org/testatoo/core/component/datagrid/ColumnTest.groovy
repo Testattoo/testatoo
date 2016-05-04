@@ -27,6 +27,6 @@ import org.testatoo.core.component.Component
 class ColumnTest {
     @Test
     public void should_have_expected_inheritance() {
-        Column in Component
+        assert Column in Component
     }
 }

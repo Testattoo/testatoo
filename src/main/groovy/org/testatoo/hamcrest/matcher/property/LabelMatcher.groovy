@@ -36,11 +36,11 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(label)
+        description.appendText('label ')appendValue(label)
     }
 
     @Override
     protected void describeMismatchSafely(LabelSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(component.label())
+        mismatchDescription.appendText('has label ').appendValue(component.label())
     }
 }

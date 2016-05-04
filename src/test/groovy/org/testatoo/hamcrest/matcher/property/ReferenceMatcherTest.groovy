@@ -31,8 +31,8 @@ class ReferenceMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has other-reference')
-                    .appendText('\n     but: has my-reference');
+            description.appendText('\nExpected: has reference "other-reference"')
+                    .appendText('\n     but: has reference "my-reference"');
 
             assert e.message == description.toString()
         }

@@ -15,7 +15,9 @@
  */
 package org.testatoo.core.component.field
 
+import org.testatoo.core.support.property.LengthSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class URLField extends Field {}
+abstract class URLField extends Field implements LengthSupport {}

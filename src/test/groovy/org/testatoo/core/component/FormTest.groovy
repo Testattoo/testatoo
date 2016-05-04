@@ -29,9 +29,9 @@ import org.testatoo.core.support.state.ValiditySupport
 class FormTest {
     @Test
     public void should_have_expected_inheritance() {
-        Form in Component
-        Form in ValiditySupport
-        Form in Resettable
-        Form in Submissible
+        assert Form in Component
+        assert Form in ValiditySupport
+        assert Form in Resettable
+        assert Form in Submissible
     }
 }

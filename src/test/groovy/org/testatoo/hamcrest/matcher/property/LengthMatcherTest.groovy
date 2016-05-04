@@ -5,33 +5,36 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.property.TitleSupport
+import org.testatoo.core.support.property.LengthSupport
+import org.testatoo.core.support.property.MaximumSupport
 
+import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.hamcrest.Matchers.has
-import static org.testatoo.hamcrest.Matchers.title
+import static org.testatoo.hamcrest.Matchers.has
+import static org.testatoo.hamcrest.Matchers.length
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class TitleMatcherTest {
+class LengthMatcherTest {
     @Test
     public void should_have_expected_matcher() {
-        TitleSupport cmp = mock(TitleSupport)
-        when(cmp.title()).thenReturn('MyTitle')
+        LengthSupport cmp = mock(LengthSupport)
 
-        assertThat(cmp, has(title('MyTitle')))
+        when(cmp.length()).thenReturn(10)
+        assertThat(cmp, has(length(10)))
         try {
-            assertThat(cmp, has(title('OtherTitle')))
+            assertThat(cmp, has(length(50)))
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has title "OtherTitle"')
-                    .appendText('\n     but: has title "MyTitle"');
+            description.appendText('\nExpected: has length 50')
+                    .appendText('\n     but: has length 10');
 
             assert e.message == description.toString()
         }

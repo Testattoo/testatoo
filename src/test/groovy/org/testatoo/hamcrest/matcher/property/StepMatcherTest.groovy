@@ -46,8 +46,8 @@ class StepMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has 50')
-                    .appendText('\n     but: has 10');
+            description.appendText('\nExpected: has step 50')
+                    .appendText('\n     but: has step 10');
 
             assert e.message == description.toString()
         }

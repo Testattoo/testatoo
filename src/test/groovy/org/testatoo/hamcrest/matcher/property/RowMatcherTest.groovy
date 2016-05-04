@@ -41,8 +41,8 @@ class RowMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has row(s) [row_1, row_3]')
-                    .appendText('\n     but: has row(s) [row_1, row_2]');
+            description.appendText('\nExpected: has row(s) ["row_1", "row_3"]')
+                    .appendText('\n     but: has row(s) ["row_1", "row_2"]');
 
             assert e.message == description.toString()
         }
@@ -52,8 +52,8 @@ class RowMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has row(s) [row_1, row_3]')
-                    .appendText('\n     but: has row(s) [row_1, row_2]');
+            description.appendText('\nExpected: has row(s) ["row_1", "row_3"]')
+                    .appendText('\n     but: has row(s) ["row_1", "row_2"]');
 
             assert e.message == description.toString()
         }
