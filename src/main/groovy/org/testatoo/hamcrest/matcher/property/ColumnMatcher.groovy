@@ -37,9 +37,8 @@ class ColumnMatcher extends PropertyMatcher<ColumnSupport> {
         List<String> expectedColumns = new ArrayList<>()
         columns.each { expectedColumns.add(String.valueOf(it.title())) }
 
-        description.appendText('column(s) [')
-        description.appendText(expectedColumns.join(', '))
-        description.appendText(']')
+        description.appendText('column(s) ')
+        description.appendValueList('[', ', ', ']', expectedColumns)
     }
 
     @Override
@@ -47,8 +46,7 @@ class ColumnMatcher extends PropertyMatcher<ColumnSupport> {
         List<String> componentColumns = new ArrayList<>()
         component.columns().each { componentColumns.add(String.valueOf(it.title())) }
 
-        mismatchDescription.appendText('has column(s) [')
-        mismatchDescription.appendText(componentColumns.join(', '))
-        mismatchDescription.appendText(']')
+        mismatchDescription.appendText('has column(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentColumns)
     }
 }

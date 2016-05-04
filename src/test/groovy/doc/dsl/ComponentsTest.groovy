@@ -198,6 +198,7 @@ class ComponentsTest {
             be empty
             be required
             have placeholder('Placeholder')
+            have length(20)
         }
 
         fill textfield with '1234'

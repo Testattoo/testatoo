@@ -30,10 +30,10 @@ import org.testatoo.core.support.property.VisibleItemsSupport
 class ListBoxTest {
     @Test
     public void should_have_expected_inheritance() {
-        ListBox in Component
-        ListBox in ItemSupport
-        ListBox in GroupSupport
-        ListBox in SelectedItemsSupport
-        ListBox in VisibleItemsSupport
+        assert ListBox in Component
+        assert ListBox in ItemSupport
+        assert ListBox in GroupSupport
+        assert ListBox in SelectedItemsSupport
+        assert ListBox in VisibleItemsSupport
     }
 }

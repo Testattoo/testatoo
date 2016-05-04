@@ -29,9 +29,9 @@ import org.testatoo.core.support.state.CheckSupport
 class RadioTest {
     @Test
     public void should_have_expected_inheritance() {
-        Radio in Component
-        Radio in LabelSupport
-        Radio in CheckSupport
-        Radio in Checkable
+        assert Radio in Component
+        assert Radio in LabelSupport
+        assert Radio in CheckSupport
+        assert Radio in Checkable
     }
 }

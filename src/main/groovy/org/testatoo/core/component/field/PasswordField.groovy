@@ -15,7 +15,9 @@
  */
 package org.testatoo.core.component.field
 
+import org.testatoo.core.support.property.LengthSupport
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class PasswordField extends Field {}
+abstract class PasswordField extends Field implements LengthSupport {}

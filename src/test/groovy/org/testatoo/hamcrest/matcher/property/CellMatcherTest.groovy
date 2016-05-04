@@ -40,9 +40,9 @@ class CellMatcherTest {
             assertThat(cmp, has(cells('cell_1', 'cell_3')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
-            description.appendText('\nExpected: has cell(s) [cell_1, cell_3]')
-                    .appendText('\n     but: has cell(s) [cell_1, cell_2]');
+            Description description = new StringDescription()
+            description.appendText('\nExpected: has cell(s) ["cell_1", "cell_3"]')
+                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]');
 
             assert e.message == description.toString()
         }
@@ -52,8 +52,8 @@ class CellMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has cell(s) [cell_1, cell_3]')
-                    .appendText('\n     but: has cell(s) [cell_1, cell_2]');
+            description.appendText('\nExpected: has cell(s) ["cell_1", "cell_3"]')
+                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]');
 
             assert e.message == description.toString()
         }

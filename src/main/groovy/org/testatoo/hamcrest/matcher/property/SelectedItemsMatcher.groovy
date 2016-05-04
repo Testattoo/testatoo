@@ -52,9 +52,8 @@ class SelectedItemsMatcher extends PropertyMatcher<SelectedItemsSupport> {
         List<String> expectedItems = new ArrayList<>()
         items.each { expectedItems.add(String.valueOf(it.value())) }
 
-        description.appendText('selected item(s) [')
-        description.appendText(expectedItems.join(', '))
-        description.appendText(']')
+        description.appendText('selected item(s) ')
+        description.appendValueList('[', ', ', ']', expectedItems)
     }
 
     @Override
@@ -62,8 +61,7 @@ class SelectedItemsMatcher extends PropertyMatcher<SelectedItemsSupport> {
         List<String> componentItems = new ArrayList<>()
         component.selectedItems().each { componentItems.add(String.valueOf(it.value())) }
 
-        mismatchDescription.appendText('has selected item(s) [')
-        mismatchDescription.appendText(componentItems.join(', '))
-        mismatchDescription.appendText(']')
+        mismatchDescription.appendText('has selected item(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentItems)
     }
 }

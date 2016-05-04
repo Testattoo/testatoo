@@ -17,7 +17,14 @@ package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.component.field.TextField
 
+import static org.testatoo.core.Testatoo.getConfig
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class TextArea extends TextField implements Input {}
+class TextArea extends TextField implements Input {
+    @Override
+    Number length() {
+        config.evaluator.eval(id(), "it.prop('maxlength')") as BigDecimal
+    }
+}

@@ -27,7 +27,7 @@ import org.testatoo.core.support.property.TextSupport
 class HeadingTest {
     @Test
     public void should_have_expected_inheritance() {
-        Heading in Component
-        Heading in TextSupport
+        assert Heading in Component
+        assert Heading in TextSupport
     }
 }

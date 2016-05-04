@@ -107,6 +107,9 @@ class Matchers {
     public static Matcher<MinimumSupport> minimum(Object minimum) { new MinimumMatcher(minimum) }
 
     @Factory
+    public static Matcher<LengthSupport> length(Object length) { new LengthMatcher(length) }
+
+    @Factory
     public static Matcher<StepSupport> step(Object minimum) { new StepMatcher(minimum) }
 
     @Factory

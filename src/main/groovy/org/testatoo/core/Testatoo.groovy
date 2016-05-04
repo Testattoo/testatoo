@@ -97,6 +97,7 @@ class Testatoo {
     public static MaximumMatcher maximum(object) { new MaximumMatcher(object) }
     public static MinimumMatcher minimum(object) { new MinimumMatcher(object) }
     public static PlaceholderMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+    public static LengthMatcher length(object) { new LengthMatcher(object) }
 
     public static ItemMatcher items(String... values) { new ItemMatcher(values) }
     public static ItemMatcher items(Item... items) { new ItemMatcher(items) }

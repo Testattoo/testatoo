@@ -17,9 +17,17 @@ package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.SearchField
+import org.testatoo.core.support.property.LengthSupport
+
+import static org.testatoo.core.Testatoo.getConfig
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=search]')
-class InputTypeSearch extends SearchField implements Input {}
+class InputTypeSearch extends SearchField implements Input, LengthSupport{
+    @Override
+    Number length() {
+        config.evaluator.eval(id(), "it.prop('maxlength')") as BigDecimal
+    }
+}

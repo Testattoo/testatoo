@@ -56,8 +56,8 @@ class GroupMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has group(s) [group_1, group_3]')
-                    .appendText('\n     but: has group(s) [group_1, group_2]');
+            description.appendText('\nExpected: has group(s) ["group_1", "group_3"]')
+                    .appendText('\n     but: has group(s) ["group_1", "group_2"]');
 
             assert e.message == description.toString()
         }
@@ -67,8 +67,8 @@ class GroupMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has group(s) [group_1, group_3]')
-                    .appendText('\n     but: has group(s) [group_1, group_2]');
+            description.appendText('\nExpected: has group(s) ["group_1", "group_3"]')
+                    .appendText('\n     but: has group(s) ["group_1", "group_2"]');
 
             assert e.message == description.toString()
         }

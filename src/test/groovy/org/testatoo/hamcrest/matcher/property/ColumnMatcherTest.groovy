@@ -41,8 +41,8 @@ class ColumnMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has column(s) [column_1, column_3]')
-                    .appendText('\n     but: has column(s) [column_1, column_2]');
+            description.appendText('\nExpected: has column(s) ["column_1", "column_3"]')
+                    .appendText('\n     but: has column(s) ["column_1", "column_2"]');
 
             assert e.message == description.toString()
         }
@@ -52,8 +52,8 @@ class ColumnMatcherTest {
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: has column(s) [column_1, column_3]')
-                    .appendText('\n     but: has column(s) [column_1, column_2]');
+            description.appendText('\nExpected: has column(s) ["column_1", "column_3"]')
+                    .appendText('\n     but: has column(s) ["column_1", "column_2"]');
 
             assert e.message == description.toString()
         }

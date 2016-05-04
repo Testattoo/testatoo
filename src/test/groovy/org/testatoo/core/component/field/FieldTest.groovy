@@ -21,6 +21,7 @@ import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.InputSupport
 import org.testatoo.core.support.property.LabelSupport
+import org.testatoo.core.support.property.LengthSupport
 import org.testatoo.core.support.property.ValueSupport
 import org.testatoo.core.support.state.RangeSupport
 import org.testatoo.core.support.state.ValiditySupport
@@ -32,41 +33,45 @@ import org.testatoo.core.support.state.ValiditySupport
 class FieldTest {
     @Test
     public void should_have_expected_inheritance() {
-        Field in Component
-        Field in LabelSupport
-        Field in InputSupport
-        Field in ValueSupport
-        Field in ValiditySupport
+        assert Field in Component
+        assert Field in LabelSupport
+        assert Field in InputSupport
+        assert Field in ValueSupport
+        assert Field in ValiditySupport
 
-        ColorField in Field
+        assert ColorField in Field
 
-        DateField in Field
-        DateField in RangeSupport
+        assert DateField in Field
+        assert DateField in RangeSupport
 
-        DateTimeField in Field
+        assert DateTimeField in Field
 
-        EmailField in Field
+        assert EmailField in Field
 
-        MonthField in Field
+        assert MonthField in Field
 
-        NumberField in Field
-        NumberField in RangeSupport
+        assert NumberField in Field
+        assert NumberField in RangeSupport
 
-        PasswordField in Field
+        assert PasswordField in Field
+        assert PasswordField in LengthSupport
 
-        TextField in Field
+        assert TextField in Field
+        assert TextField in LengthSupport
 
-        PhoneField in Field
+        assert PhoneField in Field
 
-        RangeField in Field
-        RangeField in RangeSupport
+        assert RangeField in Field
+        assert RangeField in RangeSupport
 
-        SearchField in Field
+        assert SearchField in Field
+        assert SearchField in LengthSupport
 
-        TimeField in Field
+        assert TimeField in Field
 
-        URLField in Field
+        assert URLField in Field
+        assert URLField in LengthSupport
 
-        WeekField in Field
+        assert WeekField in Field
     }
 }

@@ -36,11 +36,11 @@ class MaximumMatcher extends PropertyMatcher<MaximumSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText(maximum.toString())
+        description.appendText('maximum ' + maximum.toString())
     }
 
     @Override
     protected void describeMismatchSafely(MaximumSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ' + component.maximum().toString())
+        mismatchDescription.appendText('has maximum ' + component.maximum().toString())
     }
 }

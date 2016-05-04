@@ -37,9 +37,8 @@ class RowMatcher extends PropertyMatcher<RowSupport> {
         List<String> expectedRows = new ArrayList<>()
         rows.each { expectedRows.add(String.valueOf(it.title())) }
 
-        description.appendText('row(s) [')
-        description.appendText(expectedRows.join(', '))
-        description.appendText(']')
+        description.appendText('row(s) ')
+        description.appendValueList('[', ', ', ']', expectedRows)
     }
 
     @Override
@@ -47,8 +46,7 @@ class RowMatcher extends PropertyMatcher<RowSupport> {
         List<String> componentRows = new ArrayList<>()
         component.rows().each { componentRows.add(String.valueOf(it.title())) }
 
-        mismatchDescription.appendText('has row(s) [')
-        mismatchDescription.appendText(componentRows.join(', '))
-        mismatchDescription.appendText(']')
+        mismatchDescription.appendText('has row(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentRows)
     }
 }

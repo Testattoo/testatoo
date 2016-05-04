@@ -36,11 +36,11 @@ class PlaceholderMatcher extends PropertyMatcher<InputSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendValue(placeholder)
+        description.appendText('placeholder ').appendValue(placeholder)
     }
 
     @Override
     protected void describeMismatchSafely(InputSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('has ').appendValue(component.placeholder())
+        mismatchDescription.appendText('has placeholder ').appendValue(component.placeholder())
     }
 }

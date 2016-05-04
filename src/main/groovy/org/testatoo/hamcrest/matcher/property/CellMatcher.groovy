@@ -36,10 +36,8 @@ class CellMatcher extends PropertyMatcher<CellSupport> {
     void describeTo(Description description) {
         List<String> expectedCells = new ArrayList<>()
         cells.each { expectedCells.add(String.valueOf(it.value())) }
-
-        description.appendText('cell(s) [')
-        description.appendText(expectedCells.join(', '))
-        description.appendText(']')
+        description.appendText('cell(s) ')
+        description.appendValueList('[', ', ', ']', expectedCells)
     }
 
     @Override
@@ -47,8 +45,7 @@ class CellMatcher extends PropertyMatcher<CellSupport> {
         List<String> componentCells = new ArrayList<>()
         component.cells().each { componentCells.add(String.valueOf(it.value())) }
 
-        mismatchDescription.appendText('has cell(s) [')
-        mismatchDescription.appendText(componentCells.join(', '))
-        mismatchDescription.appendText(']')
+        mismatchDescription.appendText('has cell(s) ')
+        mismatchDescription.appendValueList('[', ', ', ']', componentCells)
     }
 }
