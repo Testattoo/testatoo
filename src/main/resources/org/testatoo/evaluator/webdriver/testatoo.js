@@ -13,38 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function(w) {
+(function ($) {
+    $.fn.testatoo = function(options) {
 
-  // See http://api.jquery.com/jQuery.noConflict/ and Stack Overflow
-  w.testatoo = w.jQuery.noConflict(true);
-  var jQuery = w.testatoo,
-    $ = w.testatoo;
+        switch (options.method) {
+            case 'metaInfos':
+                var metaInfos = [];
+                this.each(function () {
+                    var me = $(this),
+                        id = $(this).attr('id');
+                    if (!id) {
+                        id = 'gen-' + Math.round(new Date().getTime() * Math.random());
+                        me.attr('id', id);
+                    }
 
-  $.fn.metaInfos = function() {
-    var metaInfos = [];
-    this.each(function() {
-      var me = $(this),
-        id = $(this).attr('id');
-      if (!id) {
-        id = 'gen-' + Math.round(new Date().getTime() * Math.random());
-        me.attr('id', id);
-      }
-
-      metaInfos.push({
-        id: id,
-        node: me.prop('nodeName').toLowerCase()
-      });
-    });
-    return metaInfos;
-  };
-
-  $._contains = function(id, ids) {
-      var el = $('#' + id);
-      var not = [];
-      $.each(ids, function(index, _id) {
-        !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
-      });
-      return not;
-  };
-
-}(window));
+                    metaInfos.push({
+                        id: id,
+                        node: me.prop('nodeName').toLowerCase()
+                    });
+                });
+                return metaInfos;
+            case 'contain':
+                var el = $('#' + options.id);
+                var not = [];
+                $.each(options.ids, function (index, _id) {
+                    !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
+                });
+                return not;
+        }
+    };
+}(window.jQuery));
