@@ -66,17 +66,17 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     void trigger(String id, String event) {
-        runScript("\$('#${id}').trigger('${event}')");
+        runScript("\$('#${id}').trigger('${event}')")
     }
 
     @Override
     void runScript(String script) {
-        js.executeScript(script.startsWith('$') ? script.replaceFirst(/^\$/, 'testatoo') : script);
+        js.executeScript(script)
     }
 
     @Override
     void registerScripts(String... scripts) {
-        registeredScripts.addAll(scripts);
+        registeredScripts.addAll(scripts)
     }
 
     @Override
@@ -131,7 +131,7 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     List<MetaInfo> metaInfo(String jQueryExpr) {
-        List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.metaInfos();")
+        List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.testatoo({method:'metaInfos'});")
         return infos.collect {
             new MetaInfo(
                     id: it.id,
@@ -211,24 +211,34 @@ class WebDriverEvaluator implements Evaluator {
         }
 
         String expr = """
-        return (function(\$, jQuery, testatoo) {
+        return (function(jQuery) {
             if(!jQuery) {
+                return '__JQUERY_MISSING__';
+            }
+            else if (!jQuery().testatoo) {
                 return '__TESTATOO_MISSING__';
-            } else {
+            }
+            else {
                 $element
                 return ${removeTrailingChars(s)};
             }
-        }(window.testatoo, window.testatoo, window.testatoo));"""
+        }(window.jQuery));"""
 
         Log.log(expr)
 
         String v = js.executeScript(expr)
-        if (v == '__TESTATOO_MISSING__') {
+        if (v == '__JQUERY_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.2.2.min.js").text
                     + getClass().getResource("testatoo.js").text)
             registeredScripts.each { js.executeScript(it) }
             v = js.executeScript(expr)
         }
+        if (v == '__TESTATOO_MISSING__') {
+            js.executeScript(getClass().getResource("testatoo.js").text)
+            registeredScripts.each { js.executeScript(it) }
+            v = js.executeScript(expr)
+        }
+
         return v == 'null' || v == 'undefined' ? null : v
     }
 
