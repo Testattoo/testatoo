@@ -15,10 +15,12 @@
  */
 package org.testatoo.core.internal
 
+import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
 import org.testatoo.core.ByCss
 import org.testatoo.core.ByJs
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Identifier
+import org.testatoo.core.component.Component
 
 import java.lang.annotation.Annotation
 
@@ -26,16 +28,20 @@ import java.lang.annotation.Annotation
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Identifiers {
+
+    private static scanner = new FastClasspathScanner('org.testatoo.bundle')
+    private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
+
     static Map factories = [
         (ByJs): { ByJs annotation -> return annotation.value() },
         (ByCss): { ByCss annotation -> return "it.is('${annotation.value()}')" },
     ]
 
-    static boolean hasIdentifier(Class<?> c) {
+    static boolean hasIdentifier(Class<? extends Component> c) {
         return c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
     }
 
-    static String getIdentifyingExpression(Class<?> c) {
+    static String getIdentifyingExpression(Class<? extends Component> c) {
         Annotation annotation = c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
         if (!annotation) {
             annotation = c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
@@ -48,5 +54,21 @@ class Identifiers {
             throw new ComponentException("Missing handler for annotation type " + annotation.annotationType().name)
         }
         return handler.call(annotation)
+    }
+
+    static Map<Class, String> findSelectorsFor(Class clazz) {
+        Map<Class, String> selectors = new HashMap<>()
+
+        if(!cachedComponents.get(clazz)) {
+            List<Class> matchingClasses = new ArrayList<>();
+            scanner.matchSubclassesOf(clazz, { c -> matchingClasses.add(c) }).scan()
+            cachedComponents.put(clazz, matchingClasses)
+        }
+
+        cachedComponents.get(clazz).each {
+            Annotation annotation = it.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+            selectors.put(it, annotation.value())
+        }
+        selectors
     }
 }

@@ -18,7 +18,6 @@ package org.testatoo.bundle.html5
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Link
 
-import static org.testatoo.bundle.html5.helper.TextHelper.text
 import static org.testatoo.core.Testatoo.config
 
 /**
@@ -33,6 +32,6 @@ class A extends Link {
 
     @Override
     String text() {
-        text(this)
+        config.evaluator.eval(id(), "it.text()")
     }
 }

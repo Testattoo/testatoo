@@ -50,9 +50,4 @@ class InputTypeDate extends DateField implements Input {
     boolean inRange() {
         inRange(this)
     }
-
-    @Override
-    boolean outOfRange() {
-        outOfRange(this)
-    }
 }

@@ -29,7 +29,7 @@ class MissingMatcher extends StateMatcher<Component> {
     protected boolean matchesSafely(Component component, Description mismatchDescription) {
         this.component = component
         mismatchDescription.appendText('is available')
-        component.missing()
+        !component.available()
     }
 
     @Override

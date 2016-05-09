@@ -53,9 +53,4 @@ class InputTypeRange extends RangeField implements Input {
     boolean inRange() {
         inRange(this)
     }
-
-    @Override
-    boolean outOfRange() {
-        outOfRange(this)
-    }
 }

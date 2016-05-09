@@ -68,7 +68,7 @@ class MultiSelectTest {
         assert cities.item('Montreal').selected()
 
         assert quebec.unselected()
-        assert quebec.disabled()
+        assert !quebec.enabled()
         assert cities.item('Quebec').unselected()
 
         assert montpellier.unselected()

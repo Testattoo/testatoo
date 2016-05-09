@@ -38,10 +38,10 @@ class InvalidMatcherTest {
     public void should_have_expected_matcher() {
         ValiditySupport cmp = mock(ValiditySupport)
 
-        when(cmp.invalid()).thenReturn(true)
+        when(cmp.valid()).thenReturn(false)
         assertThat(cmp, is(invalid()))
         try {
-            when(cmp.invalid()).thenReturn(false)
+            when(cmp.valid()).thenReturn(true)
             assertThat(cmp, is(invalid()))
             fail()
         } catch (AssertionError e) {

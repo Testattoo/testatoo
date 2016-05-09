@@ -40,11 +40,7 @@ class RangeHelper {
     }
 
     static boolean inRange(Component c) {
-        !outOfRange(c)
-    }
-
-    static boolean outOfRange(Component c) {
-        config.evaluator.check(c.id(), "it[0].validity.rangeUnderflow") ||
-                config.evaluator.check(c.id(), "it[0].validity.rangeOverflow")
+        !(config.evaluator.check(c.id(), "it[0].validity.rangeUnderflow") ||
+                config.evaluator.check(c.id(), "it[0].validity.rangeOverflow"))
     }
 }

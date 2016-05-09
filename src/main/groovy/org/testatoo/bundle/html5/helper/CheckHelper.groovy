@@ -28,21 +28,17 @@ class CheckHelper {
         config.evaluator.check(c.id(), "it.is(':checked')")
     }
 
-    static boolean unchecked(Component c) {
-        !checked(c)
-    }
-
     static void check(Component c) {
-        if(c.disabled())
+        if(!c.enabled())
             throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be checked")
-        if (c.unchecked())
+        if (!c.checked())
             c.click()
         else
             throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
     }
 
     static void uncheck(Component c) {
-        if(c.disabled())
+        if(!c.enabled())
             throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unchecked")
         if (c.checked())
             c.click()

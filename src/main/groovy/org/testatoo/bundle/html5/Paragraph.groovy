@@ -19,7 +19,7 @@ import org.testatoo.core.ByCss
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.TextSupport
 
-import static org.testatoo.bundle.html5.helper.TextHelper.text
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,6 +28,6 @@ import static org.testatoo.bundle.html5.helper.TextHelper.text
 class Paragraph extends Component implements TextSupport {
     @Override
     String text() {
-        text(this)
+        config.evaluator.eval(id(), "it.text()")
     }
 }

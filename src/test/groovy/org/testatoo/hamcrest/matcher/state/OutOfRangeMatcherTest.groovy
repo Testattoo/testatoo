@@ -38,10 +38,10 @@ class OutOfRangeMatcherTest {
     public void should_have_expected_matcher() {
         RangeSupport cmp = mock(RangeSupport)
 
-        when(cmp.outOfRange()).thenReturn(true)
+        when(cmp.inRange()).thenReturn(false)
         assertThat(cmp, is(outOfRange()))
         try {
-            when(cmp.outOfRange()).thenReturn(false)
+            when(cmp.inRange()).thenReturn(true)
             assertThat(cmp, is(outOfRange()))
             fail()
         } catch (AssertionError e) {

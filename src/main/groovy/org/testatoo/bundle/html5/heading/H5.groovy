@@ -18,7 +18,7 @@ package org.testatoo.bundle.html5.heading
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.Heading
 
-import static org.testatoo.bundle.html5.helper.TextHelper.text
+import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,6 +28,6 @@ import static org.testatoo.bundle.html5.helper.TextHelper.text
 class H5 extends Heading {
     @Override
     String text() {
-        text(this);
+        config.evaluator.eval(id(), "it.text()")
     }
 }

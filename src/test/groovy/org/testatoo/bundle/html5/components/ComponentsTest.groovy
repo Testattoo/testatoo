@@ -57,13 +57,13 @@ class ComponentsTest {
         assert button.visible()
 
         button = $('#submit') as Button
-        assert button.disabled()
+        assert !button.enabled()
 
         Div panel = $('#hidden_panel') as Div
-        assert panel.hidden()
+        assert !panel.visible()
 
         panel = $('#non_existing_id') as Div
-        assert panel.missing()
+        assert !panel.available()
     }
 
     @Test
@@ -114,11 +114,11 @@ class ComponentsTest {
 
         CheckBox checkBox = $('#checkbox') as CheckBox
         assert checkBox.label() == 'Check me out'
-        assert checkBox.unchecked()
+        assert !checkBox.checked()
         checkBox.check()
         assert checkBox.checked()
         checkBox.uncheck()
-        assert checkBox.unchecked()
+        assert !checkBox.checked()
         checkBox.click()
         assert checkBox.checked()
 
@@ -173,7 +173,6 @@ class ComponentsTest {
 
         assert form.visible()
         // Cause password mandatory
-        assert form.invalid()
         assert !form.valid()
 
         email.value('joe.blow@email.org')
@@ -278,7 +277,7 @@ class ComponentsTest {
 
         radio = $('#radio_2') as Radio
         assert radio.label() == 'Radio unchecked'
-        assert radio.unchecked()
+        assert !radio.checked()
         radio.check()
         assert radio.checked()
     }

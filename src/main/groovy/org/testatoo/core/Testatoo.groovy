@@ -15,15 +15,18 @@
  */
 package org.testatoo.core
 
+import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
+import org.testatoo.core.component.Radio
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
+import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.hamcrest.matcher.property.*
 import org.testatoo.hamcrest.matcher.state.*
@@ -94,36 +97,51 @@ class Testatoo {
 
     // Properties
     public static LabelMatcher label(String label) { new LabelMatcher(label) }
+
     public static MaximumMatcher maximum(object) { new MaximumMatcher(object) }
+
     public static MinimumMatcher minimum(object) { new MinimumMatcher(object) }
+
     public static PlaceholderMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+
     public static LengthMatcher length(object) { new LengthMatcher(object) }
 
     public static ItemMatcher items(String... values) { new ItemMatcher(values) }
+
     public static ItemMatcher items(Item... items) { new ItemMatcher(items) }
 
     public static ColumnMatcher columns(String... values) { new ColumnMatcher(values) }
+
     public static ColumnMatcher columns(Column... columns) { new ColumnMatcher(columns) }
 
     public static RowMatcher rows(String... values) { new RowMatcher(values) }
+
     public static RowMatcher rows(Row... rows) { new RowMatcher(rows) }
 
     public static CellMatcher cells(String... values) { new CellMatcher(values) }
+
     public static CellMatcher cells(Cell... cells) { new CellMatcher(cells) }
 
     public static GroupMatcher groups(String... values) { new GroupMatcher(values) }
+
     public static GroupMatcher groups(Group... groups) { new GroupMatcher(groups) }
 
     public static SelectedItemMatcher selectedItem(String item) { new SelectedItemMatcher(item) }
+
     public static SelectedItemMatcher selectedItem(Item item) { new SelectedItemMatcher(item) }
 
-    public static SelectedItemsMatcher selectedItems(String... items) { new SelectedItemsMatcher(items)  }
+    public static SelectedItemsMatcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
+
     public static SelectedItemsMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
 
     public static StepMatcher step(object) { new StepMatcher(object) }
+
     public static TextMatcher text(String text) { new TextMatcher(text) }
+
     public static ValueMatcher value(Object value) { new ValueMatcher(value) }
+
     public static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
+
     public static TitleMatcher title(String title) { new TitleMatcher(title) }
 
     public static class Components<T extends Component> {
@@ -144,5 +162,23 @@ class Testatoo {
             }
             return Collections.unmodifiableList(components)
         }
+    }
+
+    public static Button button(String text) {
+        List<Button> buttons = new ArrayList<>()
+        Identifiers.findSelectorsFor(Button).each {
+            buttons.addAll($$(it.value, it.key))
+        }
+
+        buttons.findAll { it.text() == text }[0]
+    }
+
+    public static Radio radio(String label) {
+        List<Radio> radios = new ArrayList<>()
+        Identifiers.findSelectorsFor(Radio).each {
+            radios.addAll($$(it.value, it.key))
+        }
+
+        radios.findAll { it.label() == label }[0]
     }
 }

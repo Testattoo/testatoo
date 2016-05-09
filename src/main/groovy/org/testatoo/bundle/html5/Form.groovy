@@ -46,11 +46,6 @@ class Form extends org.testatoo.core.component.Form {
 
     @Override
     boolean valid() {
-        !invalid()
-    }
-
-    @Override
-    boolean invalid() {
-        config.evaluator.check(id(), "it.is(':invalid')")
+        !config.evaluator.check(id(), "it.is(':invalid')")
     }
 }

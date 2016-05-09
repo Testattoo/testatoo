@@ -50,19 +50,16 @@ class InputFieldTest {
 
         InputTypeEmail email = $('#email') as InputTypeEmail
         assert email.empty()
-        assert email.optional()
-        assert !email.filled()
-        assert !email.readOnly()
         assert !email.required()
+        assert !email.readOnly()
         assert email.valid()
-        assert !email.invalid()
         assert email.value() == ''
 
         TextField text = $('#text_field') as InputTypeText
         assert text.placeholder() == 'Placeholder'
 
         text = $('#read_only_and_filled') as InputTypeText
-        assert text.filled()
+        assert !text.empty()
         assert text.readOnly()
         assert text.value() == 'Filled'
 
@@ -75,9 +72,8 @@ class InputFieldTest {
 
         PasswordField password = $('#password') as InputTypePassword
         assert password.required()
-        assert !password.optional()
         // Invalid cause required
-        assert password.invalid()
+        assert !password.valid()
 
         password.value('My Password')
         assert password.value() == 'My Password'
@@ -107,7 +103,6 @@ class InputFieldTest {
         assert date.value() == ''
         assert date.step() == 0
         assert date.inRange()
-        assert !date.outOfRange()
         assert date.minimum() == '2011-08-13'
         assert date.maximum() == '2012-06-25'
 
@@ -161,7 +156,7 @@ class InputFieldTest {
 
         number.value('150')
         assert number.value() == 150
-        assert number.outOfRange()
+        assert !number.inRange()
     }
 
     @Test
@@ -171,6 +166,7 @@ class InputFieldTest {
 
         InputTypePassword password = $('#password_field') as InputTypePassword
         assert password.label() == 'Password'
+        assert password.length() == 20
     }
 
     @Test
@@ -192,7 +188,6 @@ class InputFieldTest {
         assert range.minimum() == 0
         assert range.step() == 5
         assert range.inRange()
-        assert !range.outOfRange()
 
         assert range.value() == 10
         range.value(40)
@@ -210,6 +205,7 @@ class InputFieldTest {
 
         InputTypeSearch searchField = $('#search_field') as InputTypeSearch
         assert searchField.label() == 'Search'
+        assert searchField.length() == 200
 
         searchField.value() == ''
         searchField.value('my search')
@@ -223,6 +219,17 @@ class InputFieldTest {
 
         TextField text = $('#text_field') as InputTypeText
         assert text.label() == 'Text'
+        assert text.length() == 20
+    }
+
+    @Test
+    public void area_field_should_have_expected_behaviours() {
+        TextArea in TextField
+        TextArea in Input
+
+        TextArea text = $('#text_area_field') as TextArea
+        assert text.label() == 'TextArea'
+        assert text.length() == 140
     }
 
     @Test
@@ -249,6 +256,7 @@ class InputFieldTest {
         assert url.value() == ''
         url.value('http://mysite.org')
         assert url.value() == 'http://mysite.org'
+        assert url.length()  == 150
     }
 
     @Test
