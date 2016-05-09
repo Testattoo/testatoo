@@ -69,7 +69,7 @@ class SelectorTest {
         }
 
         textFields.each {
-            assert it.filled()
+            assert !it.empty()
             assert it.value() == 'TESTATOO!'
         }
     }
@@ -86,4 +86,23 @@ class SelectorTest {
             assert e.message.contains('but was: InputTypeText')
         }
     }
+
+    @Test
+    public void should_find_button_by_text() {
+        button 'Submit' should {
+            be visible
+            be disabled
+            have text('Submit')
+        }
+    }
+
+    @Test
+    public void should_find_radio_by_label_or_placeholder() {
+        radio 'My Radio' should {
+            be visible
+            be enabled
+            be checked
+        }
+    }
+
 }

@@ -31,11 +31,6 @@ class CheckBox extends org.testatoo.core.component.CheckBox {
     }
 
     @Override
-    boolean unchecked() {
-        unchecked(this)
-    }
-
-    @Override
     void check() {
         check(this)
     }

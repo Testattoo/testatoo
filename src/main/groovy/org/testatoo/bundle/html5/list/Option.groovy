@@ -48,12 +48,7 @@ class Option extends Item {
 
     @Override
     boolean enabled() {
-        !disabled()
-    }
-
-    @Override
-    boolean disabled() {
-        config.evaluator.check(id(), "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
+        !config.evaluator.check(id(), "el.is(':disabled') || el.attr('disabled') != undefined || el.closest('select').is(':disabled')")
     }
 
     boolean equals(Option o) {
@@ -87,7 +82,7 @@ class Option extends Item {
 
     @Override
     void select() {
-        if (disabled())
+        if (!enabled())
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be selected")
         if (unselected()) {
             config.evaluator.press(CTRL)
@@ -99,7 +94,7 @@ class Option extends Item {
 
     @Override
     void unselect() {
-        if (disabled())
+        if (!enabled())
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be unselected")
         if (selected()) {
             config.evaluator.press(CTRL)

@@ -38,10 +38,10 @@ class UnCheckedMatcherTest {
     public void should_have_expected_matcher() {
         CheckSupport cmp = mock(CheckSupport)
 
-        when(cmp.unchecked()).thenReturn(true)
+        when(cmp.checked()).thenReturn(false)
         assertThat(cmp, is(unchecked()))
 
-        when(cmp.unchecked()).thenReturn(false)
+        when(cmp.checked()).thenReturn(true)
         try {
             assertThat(cmp, is(unchecked()))
             fail()

@@ -24,6 +24,4 @@ import org.testatoo.core.support.property.StepSupport
  */
 interface RangeSupport extends MaximumSupport, MinimumSupport, StepSupport {
     boolean inRange()
-
-    boolean outOfRange()
 }

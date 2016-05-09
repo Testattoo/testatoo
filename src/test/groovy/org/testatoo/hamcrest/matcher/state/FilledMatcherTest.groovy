@@ -20,7 +20,7 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.state.FilledSupport
+import org.testatoo.core.support.state.EmptySupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
@@ -36,12 +36,12 @@ import static org.testatoo.hamcrest.Matchers.filled
 class FilledMatcherTest {
     @Test
     public void should_have_expected_matcher() {
-        FilledSupport cmp = mock(FilledSupport)
+        EmptySupport cmp = mock(EmptySupport)
 
-        when(cmp.filled()).thenReturn(true)
+        when(cmp.empty()).thenReturn(false)
         assertThat(cmp, is(filled()))
 
-        when(cmp.filled()).thenReturn(false)
+        when(cmp.empty()).thenReturn(true)
         try {
             assertThat(cmp, is(filled()))
             fail()

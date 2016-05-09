@@ -53,9 +53,4 @@ class InputTypeNumber extends NumberField implements Input {
     boolean inRange() {
         inRange(this)
     }
-
-    @Override
-    boolean outOfRange() {
-        outOfRange(this)
-    }
 }

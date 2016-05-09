@@ -26,7 +26,7 @@ class OutOfRangeMatcher extends StateMatcher<RangeSupport> {
     @Override
     protected boolean matchesSafely(RangeSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is in range')
-        component.outOfRange()
+        !component.inRange()
     }
 
     @Override

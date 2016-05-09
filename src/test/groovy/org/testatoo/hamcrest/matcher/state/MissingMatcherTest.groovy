@@ -38,10 +38,10 @@ class MissingMatcherTest {
     public void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
-        when(cmp.missing()).thenReturn(true)
+        when(cmp.available()).thenReturn(false)
         assertThat(cmp, is(missing()))
 
-        when(cmp.missing()).thenReturn(false)
+        when(cmp.available()).thenReturn(true)
         try {
             assertThat(cmp, is(missing()))
             fail()

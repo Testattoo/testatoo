@@ -38,10 +38,10 @@ class HiddenMatcherTest {
     public void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
-        when(cmp.hidden()).thenReturn(true)
+        when(cmp.visible()).thenReturn(false)
         assertThat(cmp, is(hidden()))
 
-        when(cmp.hidden()).thenReturn(false)
+        when(cmp.visible()).thenReturn(true)
         try {
             assertThat(cmp, is(hidden()))
             fail()

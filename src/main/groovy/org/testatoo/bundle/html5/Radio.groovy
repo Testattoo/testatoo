@@ -31,11 +31,6 @@ class Radio extends org.testatoo.core.component.Radio {
     }
 
     @Override
-    boolean unchecked() {
-        unchecked(this)
-    }
-
-    @Override
     void check() {
         check(this)
     }

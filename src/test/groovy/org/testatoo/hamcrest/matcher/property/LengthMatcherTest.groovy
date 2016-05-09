@@ -21,14 +21,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.support.property.LengthSupport
-import org.testatoo.core.support.property.MaximumSupport
-
-import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.hamcrest.Matchers.has
 import static org.testatoo.hamcrest.Matchers.has
 import static org.testatoo.hamcrest.Matchers.length
 

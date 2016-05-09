@@ -21,7 +21,7 @@ import org.testatoo.core.support.state.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface InputSupport extends Clearable, EmptySupport, FilledSupport, ReadOnlySupport, RequiredSupport, OptionalSupport {
+interface InputSupport extends Clearable, EmptySupport, ReadOnlySupport, RequiredSupport {
     String placeholder()
 
     void value(Object value)

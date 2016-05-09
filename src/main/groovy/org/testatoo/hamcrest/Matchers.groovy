@@ -58,7 +58,7 @@ class Matchers {
     public static Matcher<EmptySupport> empty() { new EmptyMatcher() }
 
     @Factory
-    public static Matcher<FilledSupport> filled() { new FilledMatcher() }
+    public static Matcher<EmptySupport> filled() { new FilledMatcher() }
 
     @Factory
     public static Matcher<ReadOnlySupport> readOnly() { new ReadOnlyMatcher() }
@@ -67,7 +67,7 @@ class Matchers {
     public static Matcher<RequiredSupport> required() { new RequiredMatcher() }
 
     @Factory
-    public static Matcher<OptionalSupport> optional() { new OptionalMatcher() }
+    public static Matcher<RequiredSupport> optional() { new OptionalMatcher() }
 
     @Factory
     public static Matcher<CheckSupport> checked() { new CheckedMatcher() }

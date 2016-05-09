@@ -38,10 +38,10 @@ class DisabledMatcherTest {
     public void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
-        when(cmp.disabled()).thenReturn(true)
+        when(cmp.enabled()).thenReturn(false)
         assertThat(cmp, is(disabled()))
 
-        when(cmp.disabled()).thenReturn(false)
+        when(cmp.enabled()).thenReturn(true)
         try {
             assertThat(cmp, is(disabled()))
             fail()

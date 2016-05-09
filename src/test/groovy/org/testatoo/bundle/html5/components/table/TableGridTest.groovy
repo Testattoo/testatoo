@@ -69,9 +69,9 @@ class TableGridTest {
         assert cells[3].value() == 'cell 41'
 
         columns[2].cells()[3].value() == 'cell 42'
+        columns[2].cell('cell 42').value() == 'cell 42'
 
         List<Tr> rows = data_grid.rows()
-
         assert rows[0].cells().size() == 3
 
         assert rows[0].title() == 'Row 1'
@@ -86,6 +86,7 @@ class TableGridTest {
         assert cells[2].value() == 'cell 23'
 
         rows[2].cells()[1].value() == 'cell 32'
+        rows[2].cell('cell 32').value() == 'cell 32'
     }
 
     @Test

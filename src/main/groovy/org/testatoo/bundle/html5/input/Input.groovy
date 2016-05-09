@@ -18,8 +18,6 @@ package org.testatoo.bundle.html5.input
 import org.testatoo.core.ComponentException
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
-import static org.testatoo.bundle.html5.helper.ValidityHelper.invalid
-import static org.testatoo.bundle.html5.helper.ValidityHelper.valid
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.Key.BACK_SPACE
 
@@ -35,10 +33,6 @@ trait Input {
         config.evaluator.check(id(), "\$.trim(it.val()).length == 0")
     }
 
-    boolean filled() {
-        !empty()
-    }
-
     boolean readOnly() {
         config.evaluator.check(id(), "it.prop('readonly')")
     }
@@ -47,12 +41,8 @@ trait Input {
         config.evaluator.check(id(), "it.prop('required')")
     }
 
-    boolean optional() {
-        !required()
-    }
-
     void value(Object value) {
-        if (this.disabled()) {
+        if (!this.enabled()) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
         }
         config.evaluator.trigger(this.id(), 'blur')
@@ -78,10 +68,14 @@ trait Input {
     }
 
     boolean valid() {
-        valid(this)
+        config.evaluator.check(id(), "it[0].validity.valid")
     }
 
-    boolean invalid() {
-        invalid(this)
+    Number length() {
+        BigDecimal length = config.evaluator.eval(id(), "it.prop('maxlength')") as BigDecimal
+        if (length.signum() == -1) {
+            throw new ComponentException("Not length defined for component ${this.class.simpleName} ${this}")
+        }
+        length
     }
 }

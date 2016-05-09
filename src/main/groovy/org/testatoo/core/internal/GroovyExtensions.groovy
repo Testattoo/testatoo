@@ -108,18 +108,18 @@ class GroovyExtensions {
     static void should(Component component, Closure closure) {
         closure.delegate = component
         closure(this)
-        for (Matcher matcher : component.BLOCKS) {
+        for (Matcher matcher : component.blocks) {
             waitUntil(closure, matcher)
         }
-        component.BLOCKS.clear()
+        component.clearBlocks()
     }
 
     static void be(Component component, Class<StateMatcher> matcher) {
-        component.BLOCKS.add(org.hamcrest.Matchers.is(matcher.newInstance()))
+        component.addBlock(org.hamcrest.Matchers.is(matcher.newInstance()))
     }
 
     static void have(Component component, PropertyMatcher matcher) {
-        component.BLOCKS.add(Matchers.has((matcher)))
+        component.addBlock(Matchers.has((matcher)))
     }
 
     private static void waitUntil(Closure c, Matcher what) {

@@ -18,15 +18,8 @@ package org.testatoo.bundle.html5.input
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.PasswordField
 
-import static org.testatoo.core.Testatoo.getConfig
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=password]')
-class InputTypePassword extends PasswordField implements Input {
-    @Override
-    Number length() {
-        config.evaluator.eval(id(), "it.prop('maxlength')") as BigDecimal
-    }
-}
+class InputTypePassword extends PasswordField implements Input {}

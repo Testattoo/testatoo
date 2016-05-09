@@ -16,17 +16,18 @@
 package org.testatoo.hamcrest.matcher.state
 
 import org.hamcrest.Description
-import org.testatoo.core.support.state.OptionalSupport
+
+import org.testatoo.core.support.state.RequiredSupport
 import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class OptionalMatcher extends StateMatcher<OptionalSupport> {
+class OptionalMatcher extends StateMatcher<RequiredSupport> {
     @Override
-    protected boolean matchesSafely(OptionalSupport component, Description mismatchDescription) {
+    protected boolean matchesSafely(RequiredSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is required')
-        component.optional()
+        !component.required()
     }
 
     @Override

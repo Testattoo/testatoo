@@ -48,13 +48,13 @@ class HtmlComponentTest {
         assert button.visible()
 
         button = $('#submit') as Button
-        assert button.disabled()
+        assert !button.enabled()
 
         Panel panel = $('#hidden_panel') as Div
-        assert panel.hidden()
+        assert !panel.visible()
 
         panel = $("#none_existing_id") as Div
-        assert panel.missing()
+        assert !panel.available()
     }
 
     @Test

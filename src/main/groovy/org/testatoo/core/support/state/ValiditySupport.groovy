@@ -20,6 +20,4 @@ package org.testatoo.core.support.state
  */
 interface ValiditySupport {
     boolean valid()
-
-    boolean invalid()
 }

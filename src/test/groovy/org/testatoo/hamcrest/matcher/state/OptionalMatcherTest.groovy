@@ -20,7 +20,7 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.state.OptionalSupport
+import org.testatoo.core.support.state.RequiredSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
@@ -36,12 +36,12 @@ import static org.testatoo.hamcrest.Matchers.optional
 class OptionalMatcherTest {
     @Test
     public void should_have_expected_matcher() {
-        OptionalSupport cmp = mock(OptionalSupport)
+        RequiredSupport cmp = mock(RequiredSupport)
 
-        when(cmp.optional()).thenReturn(true)
+        when(cmp.required()).thenReturn(false)
         assertThat(cmp, is(optional()))
 
-        when(cmp.optional()).thenReturn(false)
+        when(cmp.required()).thenReturn(true)
         try {
             assertThat(cmp, is(optional()))
             fail()

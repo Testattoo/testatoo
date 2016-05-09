@@ -110,18 +110,12 @@ class ComponentTest {
         component.visible()
         verify(evaluator, times(1)).check(cmp_id, default_visibility_check_expression)
 
-        component.hidden()
-        verify(evaluator, times(2)).check(cmp_id, default_visibility_check_expression)
-
         reset(metaData)
         when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))
         verify(metaData, times(0)).metaInfo(component)
 
         component.available()
         verify(metaData, times(1)).metaInfo(component)
-
-        component.missing()
-        verify(metaData, times(2)).metaInfo(component)
 
         verify(evaluator, times(0)).click(cmp_id, [LEFT, SINGLE])
         component.click()

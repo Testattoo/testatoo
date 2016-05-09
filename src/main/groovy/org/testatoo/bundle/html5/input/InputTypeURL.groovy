@@ -18,15 +18,8 @@ package org.testatoo.bundle.html5.input
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.field.URLField
 
-import static org.testatoo.core.Testatoo.getConfig
-
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @ByCss('input[type=url]')
-class InputTypeURL extends URLField implements Input {
-    @Override
-    Number length() {
-        config.evaluator.eval(id(), "it.prop('maxlength')") as BigDecimal
-    }
-}
+class InputTypeURL extends URLField implements Input {}

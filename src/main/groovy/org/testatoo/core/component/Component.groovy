@@ -30,7 +30,7 @@ import static org.testatoo.core.input.MouseModifiers.*
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Component implements Clickable, Draggable {
-    final Queue<Matcher> BLOCKS = new LinkedList<>()
+    private final Queue<Matcher> BLOCKS = new LinkedList<>()
 
     MetaDataProvider meta
 
@@ -44,32 +44,20 @@ class Component implements Clickable, Draggable {
     String id() throws ComponentException { meta.metaInfo(this).id }
 
     boolean enabled() {
-        !disabled()
-    }
-
-    boolean disabled() {
-        config.evaluator.check(id(), "it.is(':disabled') || !!it.attr('disabled')")
+        !config.evaluator.check(id(), "it.is(':disabled') || !!it.attr('disabled')")
     }
 
     boolean available() {
-        !missing()
-    }
-
-    boolean missing() {
         try {
             meta.metaInfo(this)
-            return false
-        } catch (ComponentException ignored) {
             return true
+        } catch (ComponentException ignored) {
+            return false
         }
     }
 
-    boolean hidden() {
-        config.evaluator.check(id(), "it.is(':hidden')")
-    }
-
     boolean visible() {
-        !hidden()
+        !config.evaluator.check(id(), "it.is(':hidden')")
     }
 
     boolean contains(Component... components) {
@@ -90,6 +78,18 @@ class Component implements Clickable, Draggable {
 
     protected <T extends Component> List<T> find(By by, Class<T> type = Component) {
         config.evaluator.metaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
+    }
+
+    public void clearBlocks() {
+        BLOCKS.clear()
+    }
+
+    public boolean addBlock(Matcher matcher) {
+        BLOCKS.add(matcher)
+    }
+
+    public LinkedList<Matcher> getBlocks() {
+        Collections.unmodifiableCollection(BLOCKS)
     }
 
     @Override
