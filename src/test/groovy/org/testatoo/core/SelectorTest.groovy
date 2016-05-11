@@ -24,7 +24,6 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
 
-import static Actions.fill
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -97,11 +96,53 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_radio_by_label_or_placeholder() {
+    public void should_find_radio_by_label() {
         radio 'My Radio' should {
             be visible
             be enabled
             be checked
+            have label('My Radio')
+        }
+    }
+
+    @Test
+    public void should_find_fields_by_label_or_placeholder() {
+//        assert ColorField in Field
+//
+//        assert DateField in Field
+//        assert DateField in RangeSupport
+//
+//        assert DateTimeField in Field
+//
+//        assert EmailField in Field
+//
+//        assert MonthField in Field
+//
+//        assert NumberField in Field
+//        assert NumberField in RangeSupport
+//
+//        assert TextField in Field
+//        assert TextField in LengthSupport
+//
+//        assert PhoneField in Field
+//
+//        assert RangeField in Field
+//        assert RangeField in RangeSupport
+//
+//        assert SearchField in Field
+//        assert SearchField in LengthSupport
+//
+//        assert TimeField in Field
+//
+//        assert URLField in Field
+//        assert URLField in LengthSupport
+//
+//        assert WeekField in Field
+//
+        passwordField 'Password' should {
+            be visible
+            be required
+            have placeholder('Password')
         }
     }
 

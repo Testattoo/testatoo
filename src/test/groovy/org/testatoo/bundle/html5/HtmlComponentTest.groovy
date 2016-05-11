@@ -27,8 +27,7 @@ import org.testatoo.core.component.Panel
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

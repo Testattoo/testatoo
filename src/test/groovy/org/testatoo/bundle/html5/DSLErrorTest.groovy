@@ -25,7 +25,6 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.input.MouseModifiers
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Actions.*
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.ALT
 import static org.testatoo.core.input.Key.CTRL

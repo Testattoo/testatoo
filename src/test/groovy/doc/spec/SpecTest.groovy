@@ -23,7 +23,6 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.core.component.Radio
 
-import static org.testatoo.core.Actions.check
 import static org.testatoo.core.Testatoo.*
 
 /**
