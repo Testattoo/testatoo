@@ -70,7 +70,9 @@
       <input type="checkbox">Check me
     </label>
 
-    <input id="password" type="password" class="form-control" placeholder="Password" required>
+    <label class="control-label">Password:
+      <input type="password" placeholder="Password" required class="form-control">
+    </label>
 
     <label class="control-label">Text
       <input type="text" placeholder="Placeholder" maxlength="20" required class="form-control">
@@ -81,7 +83,7 @@
     </label>
 
     <label>Email:
-      <input id="email" type="email" class="form-control">
+      <input id="email" type="email" placeholder="my@email.org" class="form-control">
     </label>
 
     <label>URL
@@ -97,7 +99,31 @@
     </label>
 
     <label>Date
-      <input type="date" placeholder="Date" max="2012-06-25" min="2011-08-13" class="form-control">
+      <input type="date" placeholder="yyyy/mm/dd" max="2012-06-25" min="2011-08-13" class="form-control">
+    </label>
+
+    <label>Color
+      <input type="color" class="form-control">
+    </label>
+
+    <label>DateTime:
+      <input type="datetime" placeholder="DateTime" class="form-control">
+    </label>
+
+    <label>Month:
+      <input type="month" placeholder="Month" required class="form-control">
+    </label>
+
+    <label>Phone
+      <input type="tel" placeholder="+1 514 123 4567" required class="form-control">
+    </label>
+
+    <label>Time:
+      <input type="time" placeholder="Time" class="form-control">
+    </label>
+
+    <label>Week:
+      <input type="week" placeholder="Week" class="form-control">
     </label>
 
   </div>

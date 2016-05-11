@@ -1,14 +1,20 @@
 package org.testatoo.core.component
 
+import org.testatoo.core.component.field.ColorField
 import org.testatoo.core.component.field.DateField
+import org.testatoo.core.component.field.DateTimeField
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.Field
+import org.testatoo.core.component.field.MonthField
 import org.testatoo.core.component.field.NumberField
 import org.testatoo.core.component.field.PasswordField
+import org.testatoo.core.component.field.PhoneField
 import org.testatoo.core.component.field.RangeField
 import org.testatoo.core.component.field.SearchField
 import org.testatoo.core.component.field.TextField
+import org.testatoo.core.component.field.TimeField
 import org.testatoo.core.component.field.URLField
+import org.testatoo.core.component.field.WeekField
 import org.testatoo.core.internal.Identifiers
 
 import static org.testatoo.core.Testatoo.$$
@@ -44,6 +50,13 @@ public class ComponentFactory {
     public static NumberField numberField(String value) { field(value, NumberField) }
     public static RangeField rangeField(String value) { field(value, RangeField) }
     public static DateField dateField(String value) { field(value, DateField) }
+    public static ColorField colorField(String value) { field(value, ColorField) }
+    public static DateTimeField dateTimeField(String value) { field(value, DateTimeField) }
+    public static MonthField monthField(String value) { field(value, MonthField) }
+    public static PhoneField phoneField(String value) { field(value, PhoneField) }
+    public static TimeField timeField(String value) { field(value, TimeField) }
+    public static WeekField weekField(String value) { field(value, WeekField) }
+
 
     private static  <T extends Field> T field(String value, Class<T> clazz) {
         List<T> fields = new ArrayList<>()

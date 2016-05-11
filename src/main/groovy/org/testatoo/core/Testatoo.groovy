@@ -15,19 +15,15 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
-import org.testatoo.core.component.Radio
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.Row
-import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
-import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.support.Checkable
 import org.testatoo.core.support.Clearable

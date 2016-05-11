@@ -54,7 +54,7 @@ class SelectorTest {
         assert buttons.size() == 4
 
         List<InputTypeText> textFields = $$('[type="text"]', InputTypeText)
-        assert textFields.size() == 3
+        assert textFields.size() == 4
 
         textFields.each {
             assert it.enabled()
@@ -87,82 +87,61 @@ class SelectorTest {
 
     @Test
     public void should_find_button_by_text() {
-        button 'Submit' should {
-            be visible
-            be disabled
-            have text('Submit')
-        }
+        button 'Button' should { have text('Button') }
+        button 'Submit' should { have text('Submit') }
+        button 'Reset' should { have text('Reset') }
+        button 'My Button Text' should { have text('My Button Text') }
     }
 
     @Test
     public void should_find_radio_by_label() {
-        radio 'My Radio' should {
-            be visible
-            be enabled
-            be checked
-            have label('My Radio')
-        }
+        radio 'My Radio' should { have label('My Radio') }
     }
 
     @Test
     public void should_find_checkbox_by_label() {
-        checkbox 'Check me' should {
-            be visible
-            be enabled
-            be unchecked
-            have label('Check me')
-        }
+        checkbox 'Check me' should { have label('Check me') }
     }
 
     @Test
     public void should_find_fields_by_label_or_placeholder() {
-        textField 'Text' should {
-            be visible
-            have label('Text')
-        }
+        textField 'Text' should { have label('Text') }
+        textField 'Placeholder' should { have placeholder('Placeholder') }
 
-        passwordField 'Password' should {
-            be visible
-            be required
-            have placeholder('Password')
-        }
+        passwordField 'Password:' should { have label('Password:') }
+        passwordField 'Password' should { have placeholder('Password') }
 
-        searchField 'Search...' should {
-            be visible
-            have placeholder('Search...')
-        }
+        searchField 'Search' should { have label('Search') }
+        searchField 'Search...' should { have placeholder('Search...') }
 
-        emailField 'Email:' should {
-            be visible
-            have label('Email:')
-        }
+        emailField 'Email:' should { have label('Email:') }
+        emailField 'my@email.org' should { have placeholder('my@email.org') }
 
-        urlField 'URL' should {
-            be visible
-            have label('URL')
-            have placeholder('www.mysite.org')
-        }
+        urlField 'URL' should { have label('URL') }
+        urlField 'www.mysite.org' should { have placeholder('www.mysite.org') }
 
-        numberField 'Number' should {
-            be visible
-            have label('Number')
-        }
+        numberField 'Number' should { have label('Number') }
 
-        rangeField 'Range' should {
-            be visible
-            have label('Range')
-        }
+        rangeField 'Range' should { have label('Range') }
 
-        dateField 'Date' should {
-            be visible
-            have placeholder('Date')
-        }
+        colorField 'Color' should { have label('Color') }
 
-//        assert ColorField in Field
-//        assert DateTimeField in Field
-//        assert MonthField in Field
-//        assert PhoneField in Field
-//        assert TimeField in Field
-//        assert WeekField in Field
+        dateField 'Date' should { have label('Date') }
+        dateField 'yyyy/mm/dd' should { have placeholder('yyyy/mm/dd') }
+
+        dateTimeField 'DateTime:' should { have label('DateTime:')}
+        dateTimeField 'DateTime' should { have placeholder('DateTime')}
+
+        monthField 'Month:' should { have label('Month:') }
+        monthField 'Month' should { have placeholder('Month') }
+
+        phoneField 'Phone' should { have label('Phone') }
+        phoneField '+1 514 123 4567' should { have placeholder('+1 514 123 4567')}
+
+        timeField 'Time:' should { have label('Time:') }
+        timeField 'Time' should { have placeholder('Time') }
+
+        weekField 'Week:' should { have label('Week:') }
+        weekField 'Week' should { have placeholder('Week') }
     }
 }
