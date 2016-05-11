@@ -26,6 +26,6 @@ import org.junit.runners.JUnit4
 class PanelTest {
     @Test
     public void should_have_expected_inheritance() {
-        Panel in Component
+        assert Panel in Component
     }
 }

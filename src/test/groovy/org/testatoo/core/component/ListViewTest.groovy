@@ -19,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.property.LabelSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,7 +28,8 @@ import org.testatoo.core.support.property.ItemSupport
 class ListViewTest {
     @Test
     public void should_have_expected_inheritance() {
-        ListView in Component
-        ListView in ItemSupport
+        assert ListView in Component
+        assert ListView in ItemSupport
+        assert ListView in LabelSupport
     }
 }

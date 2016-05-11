@@ -33,7 +33,7 @@ import static org.testatoo.core.input.Key.CTRL
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class DSLErrorTest {
+class ErrorsTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
@@ -51,18 +51,6 @@ class DSLErrorTest {
             check checkbox
         } catch (ComponentException e) {
             assert e.message == 'CheckBox CheckBox:checkbox_1 is already checked and cannot be checked'
-        }
-    }
-
-    @Test
-    public void should_not_uncheck_already_unchecked_element() {
-        CheckBox checkbox = $('#checkbox_2') as CheckBox
-        checkbox.should { be unchecked }
-
-        try {
-            uncheck checkbox
-        } catch (ComponentException e) {
-            assert e.message == 'CheckBox CheckBox:checkbox_2 is already unchecked and cannot be unchecked'
         }
     }
 

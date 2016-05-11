@@ -19,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,6 +28,7 @@ import org.testatoo.core.component.Component
 class CellTest {
     @Test
     public void should_have_expected_inheritance() {
-        Cell in Component
+        assert Cell in Component
+        assert Cell in ValueSupport
     }
 }

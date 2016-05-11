@@ -17,10 +17,11 @@ package org.testatoo.core.component
 
 import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.property.SelectedItemsSupport
 import org.testatoo.core.support.property.VisibleItemsSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListBox extends Component implements ItemSupport, GroupSupport, SelectedItemsSupport, VisibleItemsSupport {}
+abstract class ListBox extends Component implements ItemSupport, GroupSupport, SelectedItemsSupport, VisibleItemsSupport, LabelSupport {}

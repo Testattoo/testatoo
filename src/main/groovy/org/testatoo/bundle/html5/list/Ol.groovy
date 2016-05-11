@@ -19,6 +19,8 @@ import org.testatoo.core.By
 import org.testatoo.core.ByCss
 import org.testatoo.core.component.ListView
 
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -32,5 +34,10 @@ class Ol extends ListView {
     @Override
     Li item(String value) {
         items().find { it.value() == value }
+    }
+
+    @Override
+    String label() {
+        label(this)
     }
 }

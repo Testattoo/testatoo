@@ -49,14 +49,14 @@ class ComponentTest {
 
     @Test
     public void should_have_expected_inheritance() {
-        Component in Clickable
-        Component in Draggable
+        assert Component in Clickable
+        assert Component in Draggable
     }
 
     @Test
     public void should_be_initialized_with_a_meta_data_provider() {
         Component cmp = new Component(metaData)
-        assert cmp.meta ==  metaData
+        assert cmp.meta == metaData
     }
 
     @Test

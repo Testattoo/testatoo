@@ -25,11 +25,11 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
 
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.component.ComponentFactory.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
 @RunWith(JUnit4)
 class SelectorTest {
     @ClassRule
@@ -37,7 +37,6 @@ class SelectorTest {
 
     @BeforeClass
     public static void before() {
-        config.scan 'org.testatoo'
         browser.open 'http://localhost:8080/selectors.html'
     }
 
@@ -106,44 +105,64 @@ class SelectorTest {
     }
 
     @Test
+    public void should_find_checkbox_by_label() {
+        checkbox 'Check me' should {
+            be visible
+            be enabled
+            be unchecked
+            have label('Check me')
+        }
+    }
+
+    @Test
     public void should_find_fields_by_label_or_placeholder() {
-//        assert ColorField in Field
-//
-//        assert DateField in Field
-//        assert DateField in RangeSupport
-//
-//        assert DateTimeField in Field
-//
-//        assert EmailField in Field
-//
-//        assert MonthField in Field
-//
-//        assert NumberField in Field
-//        assert NumberField in RangeSupport
-//
-//        assert TextField in Field
-//        assert TextField in LengthSupport
-//
-//        assert PhoneField in Field
-//
-//        assert RangeField in Field
-//        assert RangeField in RangeSupport
-//
-//        assert SearchField in Field
-//        assert SearchField in LengthSupport
-//
-//        assert TimeField in Field
-//
-//        assert URLField in Field
-//        assert URLField in LengthSupport
-//
-//        assert WeekField in Field
-//
+        textField 'Text' should {
+            be visible
+            have label('Text')
+        }
+
         passwordField 'Password' should {
             be visible
             be required
             have placeholder('Password')
         }
-    }
 
+        searchField 'Search...' should {
+            be visible
+            have placeholder('Search...')
+        }
+
+        emailField 'Email:' should {
+            be visible
+            have label('Email:')
+        }
+
+        urlField 'URL' should {
+            be visible
+            have label('URL')
+            have placeholder('www.mysite.org')
+        }
+
+        numberField 'Number' should {
+            be visible
+            have label('Number')
+        }
+
+        rangeField 'Range' should {
+            be visible
+            have label('Range')
+        }
+
+        dateField 'Date' should {
+            be visible
+            have placeholder('Date')
+        }
+
+//        assert ColorField in Field
+//        assert DateTimeField in Field
+//        assert MonthField in Field
+//        assert PhoneField in Field
+//        assert TimeField in Field
+//        assert WeekField in Field
+    }
 }

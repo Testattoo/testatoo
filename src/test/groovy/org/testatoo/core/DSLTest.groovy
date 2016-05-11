@@ -27,6 +27,7 @@ import org.testatoo.core.component.Item
 import org.testatoo.core.component.Radio
 import org.testatoo.core.support.property.InputSupport
 
+import static org.junit.Assert.fail
 import static org.mockito.Matchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.*

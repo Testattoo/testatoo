@@ -30,11 +30,11 @@ import org.testatoo.core.support.state.SelectSupport
 class ItemTest {
     @Test
     public void should_have_expected_inheritance() {
-        Item in Component
-        Item in Selectable
-        Item in UnSelectable
-        Item in SelectSupport
-        Item in ValueSupport
+        assert Item in Component
+        assert Item in Selectable
+        assert Item in UnSelectable
+        assert Item in SelectSupport
+        assert Item in ValueSupport
 
     }
 }

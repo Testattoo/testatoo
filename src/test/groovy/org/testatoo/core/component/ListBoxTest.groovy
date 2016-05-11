@@ -20,6 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.property.SelectedItemsSupport
 import org.testatoo.core.support.property.VisibleItemsSupport
 
@@ -35,5 +36,6 @@ class ListBoxTest {
         assert ListBox in GroupSupport
         assert ListBox in SelectedItemsSupport
         assert ListBox in VisibleItemsSupport
+        assert ListBox in LabelSupport
     }
 }

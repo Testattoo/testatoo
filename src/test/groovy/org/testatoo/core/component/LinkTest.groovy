@@ -27,7 +27,7 @@ import org.testatoo.core.support.property.TextSupport
 class LinkTest {
     @Test
     public void should_have_expected_inheritance() {
-        Link in Component
-        Link in TextSupport
+        assert Link in Component
+        assert Link in TextSupport
     }
 }

@@ -162,7 +162,6 @@ class Testatoo {
         public void to(Object value) {
             input.value(value)
         }
-
     }
 
     public static class Components<T extends Component> {
@@ -184,36 +183,4 @@ class Testatoo {
             return Collections.unmodifiableList(components)
         }
     }
-
-    public static Button button(String text) {
-        List<Button> buttons = new ArrayList<>()
-        Identifiers.findSelectorsFor(Button).each {
-            buttons.addAll($$(it.value, it.key))
-        }
-
-        buttons.findAll { it.text() == text }[0]
-    }
-
-    public static Radio radio(String label) {
-        List<Radio> radios = new ArrayList<>()
-        Identifiers.findSelectorsFor(Radio).each {
-            radios.addAll($$(it.value, it.key))
-        }
-
-        radios.findAll { it.label() == label }[0]
-    }
-
-    public static PasswordField passwordField(String label_or_placeholder) {
-        List<PasswordField> passwordFields = new ArrayList<>()
-        Identifiers.findSelectorsFor(PasswordField).each {
-            passwordFields.addAll($$(it.value, it.key))
-        }
-
-        List<PasswordField> result = passwordFields.findAll { it.label() == label_or_placeholder }
-        if (result.empty) {
-            return passwordFields.findAll { it.placeholder() == label_or_placeholder }[0]
-        }
-        result[0]
-    }
-
 }

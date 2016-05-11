@@ -27,7 +27,7 @@ import org.testatoo.core.support.property.TextSupport
 class ButtonTest {
     @Test
     public void should_have_expected_inheritance() {
-        Button in Component
-        Button in TextSupport
+        assert Button in Component
+        assert Button in TextSupport
     }
 }
