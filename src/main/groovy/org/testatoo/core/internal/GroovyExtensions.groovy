@@ -129,9 +129,14 @@ class GroovyExtensions {
 
         Log.log "WaitUntil: " + timeout
         for (; timeout > 0; timeout -= interval) {
-            if(what.matches(c.delegate)) {
-                success = true
-                break
+            try {
+                if (what.matches(c.delegate)) {
+                    success = true
+                    break
+                }
+            } catch (e) {
+                Log.log('Matcher evaluation fail with this exception : ' + e.message)
+                Log.log('Retrying...')
             }
             Thread.sleep(interval)
         }
