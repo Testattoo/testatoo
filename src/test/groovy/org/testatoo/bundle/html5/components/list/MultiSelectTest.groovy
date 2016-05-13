@@ -22,14 +22,12 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.list.MultiSelect
-import org.testatoo.bundle.html5.list.OptionGroup
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 import org.testatoo.core.component.ListBox
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -150,13 +148,5 @@ class MultiSelectTest {
         assert planets.group('Cat-1').value() == 'Cat-1'
     }
 
-    @Test
-    public void groupItem_should_have_expected_behaviours() {
-        ListBox planets = $('#planets') as MultiSelect
-        OptionGroup group = planets.group('Cat-1')
 
-        assert group.items().size() == 4
-        assert group.items()[0].value() == 'Mercury'
-        assert group.item('Earth').value() == 'Earth'
-    }
 }

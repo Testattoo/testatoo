@@ -16,9 +16,8 @@
 package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.By
-import org.testatoo.core.ByJs
+import org.testatoo.core.ByCss
 import org.testatoo.core.component.ListBox
-import org.testatoo.core.support.property.LabelSupport
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
 import static org.testatoo.core.Testatoo.config
@@ -26,8 +25,8 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByJs("importt.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
-class MultiSelect extends ListBox implements LabelSupport {
+@ByCss("select[multiple]")
+class MultiSelect extends ListBox {
     @Override
     List<Option> items() {
         find(By.css('option'), Option)

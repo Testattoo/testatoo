@@ -24,21 +24,15 @@ import static org.testatoo.core.Testatoo.$$
  */
 public class ComponentFactory {
 
-    public static Button button(String text) {
-        collectAll(Button).find { it.text() == text }
-    }
-
-    public static Radio radio(String label) {
-        collectAll(Radio).find { it.label() == label }
-    }
-
-    public static CheckBox checkbox(String label) {
-        collectAll(CheckBox).find { it.label() == label }
-    }
-
-    public static Dropdown dropdown(String label) {
-        collectAll(Dropdown).find { it.label() == label }
-    }
+    public static Button button(String text) { collectAll(Button).find { it.text() == text } }
+    public static Radio radio(String label) { collectAll(Radio).find { it.label() == label } }
+    public static CheckBox checkbox(String label) { collectAll(CheckBox).find { it.label() == label } }
+    public static Dropdown dropdown(String label) { collectAll(Dropdown).find { it.label() == label } }
+    public static ListBox listBox(String label) { collectAll(ListBox).find { it.label() == label } }
+    public static Group group(String value) { collectAll(Group).find { it.value() == value } }
+    public static Item item(String value) { collectAll(Item).find { it.value() == value } }
+    public static Heading heading(String text) { collectAll(Heading).find { it.text() == text } }
+    public static Panel panel(String title) { collectAll(Panel).find { it.title() == title } }
 
     public static PasswordField passwordField(String value) { field(value, PasswordField) }
     public static TextField textField(String value) { field(value, TextField) }
@@ -54,7 +48,6 @@ public class ComponentFactory {
     public static PhoneField phoneField(String value) { field(value, PhoneField) }
     public static TimeField timeField(String value) { field(value, TimeField) }
     public static WeekField weekField(String value) { field(value, WeekField) }
-
 
     private static <T extends Field> T field(String value, Class<T> clazz) {
         collectAll(clazz).find { it.label() == value || it.placeholder() == value }

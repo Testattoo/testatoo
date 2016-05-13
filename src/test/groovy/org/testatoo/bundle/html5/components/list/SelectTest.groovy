@@ -26,8 +26,7 @@ import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -98,4 +97,6 @@ class SelectTest {
         assert os.items()[1].toString() == 'Ubuntu'
         assert os.items()[1] == os.items()[1]
     }
+
+
 }

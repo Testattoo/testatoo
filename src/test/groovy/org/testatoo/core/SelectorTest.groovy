@@ -145,44 +145,53 @@ class SelectorTest {
         weekField 'Week' should { have placeholder('Week') }
     }
 
-
-
     @Test
     public void should_find_link_by_text() {
-
     }
 
     @Test
     public void should_find_dropdown_by_label() {
         dropdown 'Elements' should {
-//            have label('Elements')
-//            have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium')
+            have label('Elements')
+            have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium')
         }
     }
 
     @Test
     public void should_find_listbox_by_label() {
-
+        listBox 'Cities' should {
+            have label('Cities')
+            have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
+        }
     }
 
     @Test
     public void should_find_item_by_value() {
-
+        item 'Montreal' should {
+            have value('Montreal')
+        }
     }
 
     @Test
     public void should_find_group_by_value() {
-
+        group 'Cat-2' should {
+            have value('Cat-2')
+            have items('Jupiter', 'Saturn', 'Uranus', 'Neptune')
+        }
     }
 
     @Test
     public void should_find_heading_by_text() {
-
+        heading 'My heading' should {
+            have text('My heading')
+        }
     }
 
     @Test
     public void should_find_panel_by_title() {
-
+        panel 'My Panel title' should {
+            have title('My Panel title')
+        }
     }
 
 }

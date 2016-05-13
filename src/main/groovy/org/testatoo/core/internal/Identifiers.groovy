@@ -66,7 +66,8 @@ class Identifiers {
         }
 
         cachedComponents.get(clazz).each {
-            selectors.put(it,  getIdentifyingExpression(it))
+            Annotation annotation = it.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+            selectors.put(it, annotation.value())
         }
         selectors
     }

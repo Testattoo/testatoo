@@ -126,18 +126,56 @@
       <input type="week" placeholder="Week" class="form-control">
     </label>
 
-    <label>Elements
-      <select class="form-control">
-        <option label="H" value="1">Helium</option>
-        <option label="B" value="5">Boron</option>
-        <option label="Pol" value="84">Polonium</option>
-        <option label="Ca" value="20">Calcium</option>
-        <option label="Ra" value="88">Radium</option>
-      </select>
-    </label>
+    <hr/>
+
+    <label>Elements</label>
+    <select class="form-control">
+      <option label="H" value="1">Helium</option>
+      <option label="B" value="5">Boron</option>
+      <option label="Pol" value="84">Polonium</option>
+      <option label="Ca" value="20">Calcium</option>
+      <option label="Ra" value="88">Radium</option>
+    </select>
+
+
+    <label>Cities</label>
+    <select size="3" multiple="multiple" name="cityName">
+      <option label="Montreal" value="Montreal" selected="selected">Montreal</option>
+      <option label="Quebec" value="Quebec" disabled>Quebec</option>
+      <option label="Montpellier" value="Montpellier">Montpellier</option>
+      <option label="New York" value="New York">New York</option>
+      <option label="Casablanca" value="Casablanca">Casablanca</option>
+      <option label="Munich" value="Munich">Munich</option>
+    </select>
+
+    <label>Planets</label>
+    <select id="planets" size="5" multiple>
+      <optgroup label="Cat-1">
+        <option value="1">Mercury</option>
+        <option value="2">Venus</option>
+        <option value="3">Earth</option>
+        <option value="4">Mars</option>
+      </optgroup>
+      <optgroup label="Cat-2">
+        <option value="5">Jupiter</option>
+        <option value="6">Saturn</option>
+        <option value="7">Uranus</option>
+        <option value="8">Neptune</option>
+      </optgroup>
+    </select>
+
+    <hr/>
+
+    <h2 id="h2">My heading</h2>
+
+    <div data-type="custom-panel">
+      <span>My Panel title</span>
+      <section>Content</section>
+    </div>
 
   </div>
   <div class="col-md-2"></div>
+
 </div>
 
 </body>
