@@ -26,7 +26,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByJs("it.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
+@ByJs("importt.is('select') && (!!it.attr('multiple') || it.prop('size') > 0)")
 class MultiSelect extends ListBox implements LabelSupport {
     @Override
     List<Option> items() {

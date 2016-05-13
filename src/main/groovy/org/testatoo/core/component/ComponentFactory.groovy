@@ -25,21 +25,19 @@ import static org.testatoo.core.Testatoo.$$
 public class ComponentFactory {
 
     public static Button button(String text) {
-        Identifiers.findSelectorsFor(Button).collectMany {
-            $$(it.value, it.key)
-        }.find { it.text() == text }
+        collectAll(Button).find { it.text() == text }
     }
 
     public static Radio radio(String label) {
-        Identifiers.findSelectorsFor(Radio).collectMany {
-            $$(it.value, it.key)
-        }.find { it.label() == label }
+        collectAll(Radio).find { it.label() == label }
     }
 
     public static CheckBox checkbox(String label) {
-        Identifiers.findSelectorsFor(CheckBox).collectMany {
-            $$(it.value, it.key)
-        }.find { it.label() == label }
+        collectAll(CheckBox).find { it.label() == label }
+    }
+
+    public static Dropdown dropdown(String label) {
+        collectAll(Dropdown).find { it.label() == label }
     }
 
     public static PasswordField passwordField(String value) { field(value, PasswordField) }
@@ -58,12 +56,13 @@ public class ComponentFactory {
     public static WeekField weekField(String value) { field(value, WeekField) }
 
 
-    private static  <T extends Field> T field(String value, Class<T> clazz) {
-        List<T> fields = new ArrayList<>()
-        Identifiers.findSelectorsFor(clazz).each {
-            fields.addAll($$(it.value, it.key))
-        }
+    private static <T extends Field> T field(String value, Class<T> clazz) {
+        collectAll(clazz).find { it.label() == value || it.placeholder() == value }
+    }
 
-        fields.find { it.label() == value || it.placeholder() == value }
+    private static <T extends Component> List<T> collectAll(Class<T> clazz) {
+        Identifiers.findSelectorsFor(clazz).collectMany {
+            $$(it.value, it.key)
+        }
     }
 }

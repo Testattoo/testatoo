@@ -144,4 +144,45 @@ class SelectorTest {
         weekField 'Week:' should { have label('Week:') }
         weekField 'Week' should { have placeholder('Week') }
     }
+
+
+
+    @Test
+    public void should_find_link_by_text() {
+
+    }
+
+    @Test
+    public void should_find_dropdown_by_label() {
+        dropdown 'Elements' should {
+//            have label('Elements')
+//            have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium')
+        }
+    }
+
+    @Test
+    public void should_find_listbox_by_label() {
+
+    }
+
+    @Test
+    public void should_find_item_by_value() {
+
+    }
+
+    @Test
+    public void should_find_group_by_value() {
+
+    }
+
+    @Test
+    public void should_find_heading_by_text() {
+
+    }
+
+    @Test
+    public void should_find_panel_by_title() {
+
+    }
+
 }
