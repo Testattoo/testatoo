@@ -45,7 +45,7 @@ class Config {
     /**
      * Activate debug mode
      */
-    static void debug(boolean debug) {
+    static void setDebug(boolean debug) {
         Log.debug = debug
     }
 
