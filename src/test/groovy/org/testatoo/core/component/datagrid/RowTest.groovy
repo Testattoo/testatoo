@@ -19,15 +19,18 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.CellSupport
+import org.testatoo.core.support.property.TitleSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
 class RowTest {
-
     @Test
     public void should_have_expected_inheritance() {
-        RowTest in Component
+        assert Row in Component
+        assert Row in TitleSupport
+        assert Row in CellSupport
     }
 }

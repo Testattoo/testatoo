@@ -43,7 +43,7 @@ class Option extends Item {
 
     @Override
     Object value() {
-        config.evaluator.eval(id(), "it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : it.text().trim()")
+        config.evaluator.eval(id(), "it.text().trim().length > 0 ? it.text().trim() : (it.attr('label') && it.attr('label').length > 0 ? it.attr('label') : '')")
     }
 
     @Override

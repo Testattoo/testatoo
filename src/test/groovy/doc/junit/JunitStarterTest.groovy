@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
-import static org.testatoo.core.Actions.visit
 import static org.testatoo.core.Testatoo.*
 
 @RunWith(JUnit4)

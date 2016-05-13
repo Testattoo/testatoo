@@ -15,6 +15,8 @@
  */
 package org.testatoo.core
 
+import static org.testatoo.core.Testatoo.config
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -22,30 +24,30 @@ class Browser {
     final Navigation navigate = new Navigation()
 
     static String getTitle() {
-        Testatoo.config.evaluator.title
+        config.evaluator.title
     }
 
     static String getPageSource() {
-        Testatoo.config.evaluator.pageSource
+        config.evaluator.pageSource
     }
 
     static String getUrl() {
-        Testatoo.config.evaluator.url
+        config.evaluator.url
     }
 
     static void open(String url) {
-        Testatoo.config.evaluator.open(url)
+        config.evaluator.open(url)
     }
 
     static List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
-        Testatoo.config.evaluator.windowIds.each { String id ->
+        config.evaluator.windowIds.each { String id ->
             windows.add(new Window(id))
         }
         return windows
     }
 
     static void switchTo(Window window) {
-        Testatoo.config.evaluator.switchToWindow(window.id)
+        config.evaluator.switchToWindow(window.id)
     }
 }

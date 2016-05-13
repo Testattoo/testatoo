@@ -18,7 +18,7 @@ package org.testatoo.core
 import org.junit.Test
 
 import static org.mockito.Mockito.*
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

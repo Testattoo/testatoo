@@ -31,11 +31,11 @@ import org.testatoo.core.support.property.SelectedItemSupport
 class DropdownTest {
     @Test
     public void should_have_expected_inheritance() {
-        Dropdown in Component
-        Dropdown in ItemSupport
-        Dropdown in GroupSupport
-        Dropdown in SingleSelectable
-        Dropdown in LabelSupport
-        Dropdown in SelectedItemSupport
+        assert Dropdown in Component
+        assert Dropdown in ItemSupport
+        assert Dropdown in GroupSupport
+        assert Dropdown in SingleSelectable
+        assert Dropdown in LabelSupport
+        assert Dropdown in SelectedItemSupport
     }
 }

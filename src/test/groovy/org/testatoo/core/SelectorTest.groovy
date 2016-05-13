@@ -24,13 +24,12 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
 
-import static Actions.fill
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.component.ComponentFactory.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
 @RunWith(JUnit4)
 class SelectorTest {
     @ClassRule
@@ -38,7 +37,6 @@ class SelectorTest {
 
     @BeforeClass
     public static void before() {
-        config.scan 'org.testatoo'
         browser.open 'http://localhost:8080/selectors.html'
     }
 
@@ -56,7 +54,7 @@ class SelectorTest {
         assert buttons.size() == 4
 
         List<InputTypeText> textFields = $$('[type="text"]', InputTypeText)
-        assert textFields.size() == 3
+        assert textFields.size() == 4
 
         textFields.each {
             assert it.enabled()
@@ -89,19 +87,110 @@ class SelectorTest {
 
     @Test
     public void should_find_button_by_text() {
-        button 'Submit' should {
-            be visible
-            be disabled
-            have text('Submit')
+        button 'Button' should { have text('Button') }
+        button 'Submit' should { have text('Submit') }
+        button 'Reset' should { have text('Reset') }
+        button 'My Button Text' should { have text('My Button Text') }
+    }
+
+    @Test
+    public void should_find_radio_by_label() {
+        radio 'My Radio' should { have label('My Radio') }
+    }
+
+    @Test
+    public void should_find_checkbox_by_label() {
+        checkbox 'Check me' should { have label('Check me') }
+    }
+
+    @Test
+    public void should_find_fields_by_label_or_placeholder() {
+        textField 'Text' should { have label('Text') }
+        textField 'Placeholder' should { have placeholder('Placeholder') }
+
+        passwordField 'Password:' should { have label('Password:') }
+        passwordField 'Password' should { have placeholder('Password') }
+
+        searchField 'Search' should { have label('Search') }
+        searchField 'Search...' should { have placeholder('Search...') }
+
+        emailField 'Email:' should { have label('Email:') }
+        emailField 'my@email.org' should { have placeholder('my@email.org') }
+
+        urlField 'URL' should { have label('URL') }
+        urlField 'www.mysite.org' should { have placeholder('www.mysite.org') }
+
+        numberField 'Number' should { have label('Number') }
+
+        rangeField 'Range' should { have label('Range') }
+
+        colorField 'Color' should { have label('Color') }
+
+        dateField 'Date' should { have label('Date') }
+        dateField 'yyyy/mm/dd' should { have placeholder('yyyy/mm/dd') }
+
+        dateTimeField 'DateTime:' should { have label('DateTime:')}
+        dateTimeField 'DateTime' should { have placeholder('DateTime')}
+
+        monthField 'Month:' should { have label('Month:') }
+        monthField 'Month' should { have placeholder('Month') }
+
+        phoneField 'Phone' should { have label('Phone') }
+        phoneField '+1 514 123 4567' should { have placeholder('+1 514 123 4567')}
+
+        timeField 'Time:' should { have label('Time:') }
+        timeField 'Time' should { have placeholder('Time') }
+
+        weekField 'Week:' should { have label('Week:') }
+        weekField 'Week' should { have placeholder('Week') }
+    }
+
+    @Test
+    public void should_find_link_by_text() {
+    }
+
+    @Test
+    public void should_find_dropdown_by_label() {
+        dropdown 'Elements' should {
+            have label('Elements')
+            have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium')
         }
     }
 
     @Test
-    public void should_find_radio_by_label_or_placeholder() {
-        radio 'My Radio' should {
-            be visible
-            be enabled
-            be checked
+    public void should_find_listbox_by_label() {
+        listBox 'Cities' should {
+            have label('Cities')
+            have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
+        }
+    }
+
+    @Test
+    public void should_find_item_by_value() {
+        item 'Montreal' should {
+            have value('Montreal')
+        }
+    }
+
+    @Test
+    public void should_find_group_by_value() {
+        group 'Cat-2' should {
+            have value('Cat-2')
+            have items('Jupiter', 'Saturn', 'Uranus', 'Neptune')
+        }
+    }
+
+    @Test
+    public void should_find_heading_by_text() {
+        heading 'My heading' should {
+            have text('My heading')
+        }
+    }
+
+    @Test
+    public void should_find_panel_by_title() {
+        panel 'My Panel title' should {
+            have title('My Panel title')
         }
     }
 

@@ -27,8 +27,7 @@ import org.testatoo.core.component.Panel
 import org.testatoo.core.component.field.EmailField
 import org.testatoo.core.component.field.PasswordField
 
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -59,12 +58,12 @@ class HtmlComponentTest {
 
     @Test
     public void should_find_child_elements_by_css() {
-        // TODO Roch
+        // TODO David
     }
 
     @Test
     public void should_find_child_elements_by_js() {
-        // TODO Roch
+        // TODO David
     }
 
     @Test

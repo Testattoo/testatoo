@@ -19,6 +19,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.ColumnSupport
+import org.testatoo.core.support.property.RowSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -27,6 +29,8 @@ import org.testatoo.core.component.Component
 class DataGridTest {
     @Test
     public void should_have_expected_inheritance() {
-        DataGrid in Component
+        assert DataGrid in Component
+        assert DataGrid in ColumnSupport
+        assert DataGrid in RowSupport
     }
 }

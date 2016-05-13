@@ -30,10 +30,10 @@ import org.testatoo.core.support.state.CheckSupport
 class CheckBoxTest {
     @Test
     public void should_have_expected_inheritance() {
-        CheckBox in Component
-        CheckBox in CheckSupport
-        CheckBox in LabelSupport
-        CheckBox in Checkable
-        CheckBox in UnCheckable
+        assert CheckBox in Component
+        assert CheckBox in CheckSupport
+        assert CheckBox in LabelSupport
+        assert CheckBox in Checkable
+        assert CheckBox in UnCheckable
     }
 }

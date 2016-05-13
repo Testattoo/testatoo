@@ -35,7 +35,6 @@ class SelectorTest {
 
     @BeforeClass
     public static void before() {
-        config.scan 'org.testatoo'
         browser.open 'http://localhost:8080/selectors.html'
     }
 

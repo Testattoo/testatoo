@@ -15,19 +15,22 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.component.Button
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
-import org.testatoo.core.component.Radio
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
-import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.jQueryIdProvider
+import org.testatoo.core.support.Checkable
+import org.testatoo.core.support.Clearable
+import org.testatoo.core.support.Resettable
+import org.testatoo.core.support.Submissible
+import org.testatoo.core.support.UnCheckable
+import org.testatoo.core.support.property.InputSupport
 import org.testatoo.hamcrest.matcher.property.*
 import org.testatoo.hamcrest.matcher.state.*
 
@@ -74,7 +77,9 @@ class Testatoo {
         config.scan 'org.testatoo.bundle.html5'
     }
 
-    // States
+    /**
+     * States
+     */
     public static Class available = AvailableMatcher
     public static Class checked = CheckedMatcher
     public static Class disabled = DisabledMatcher
@@ -95,54 +100,65 @@ class Testatoo {
     public static Class valid = ValidMatcher
     public static Class visible = VisibleMatcher
 
-    // Properties
+    /**
+     * Properties
+     */
     public static LabelMatcher label(String label) { new LabelMatcher(label) }
-
     public static MaximumMatcher maximum(object) { new MaximumMatcher(object) }
-
     public static MinimumMatcher minimum(object) { new MinimumMatcher(object) }
-
     public static PlaceholderMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
-
     public static LengthMatcher length(object) { new LengthMatcher(object) }
-
     public static ItemMatcher items(String... values) { new ItemMatcher(values) }
-
     public static ItemMatcher items(Item... items) { new ItemMatcher(items) }
-
     public static ColumnMatcher columns(String... values) { new ColumnMatcher(values) }
-
     public static ColumnMatcher columns(Column... columns) { new ColumnMatcher(columns) }
-
     public static RowMatcher rows(String... values) { new RowMatcher(values) }
-
     public static RowMatcher rows(Row... rows) { new RowMatcher(rows) }
-
     public static CellMatcher cells(String... values) { new CellMatcher(values) }
-
     public static CellMatcher cells(Cell... cells) { new CellMatcher(cells) }
-
     public static GroupMatcher groups(String... values) { new GroupMatcher(values) }
-
     public static GroupMatcher groups(Group... groups) { new GroupMatcher(groups) }
-
     public static SelectedItemMatcher selectedItem(String item) { new SelectedItemMatcher(item) }
-
     public static SelectedItemMatcher selectedItem(Item item) { new SelectedItemMatcher(item) }
-
     public static SelectedItemsMatcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
-
     public static SelectedItemsMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
-
     public static StepMatcher step(object) { new StepMatcher(object) }
-
     public static TextMatcher text(String text) { new TextMatcher(text) }
-
     public static ValueMatcher value(Object value) { new ValueMatcher(value) }
-
     public static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
-
     public static TitleMatcher title(String title) { new TitleMatcher(title) }
+
+    /**
+     * Actions
+     */
+    static void visit(String uri) { browser.open(uri) }
+    static void check(Checkable c) { c.check() }
+    static void uncheck(UnCheckable c) { c.uncheck() }
+    static void type(String text) { Keyboard.type(text) }
+    static void clear(Clearable c) { c.clear() }
+    static void reset(Resettable c) { c.reset() }
+    static void submit(Submissible c) { c.submit() }
+    static <T extends Component> T on(Component c) { c as T }
+    static void select(Item... items) { items.each { it.select() } }
+    static void unselect(Item... items) { items.each { it.unselect() } }
+    static final FillAction fill(InputSupport c) { new FillAction(c) }
+    static final FillAction set(InputSupport c) { new FillAction(c) }
+
+    public static class FillAction {
+        private InputSupport input
+
+        public FillAction(InputSupport input) {
+            this.input = input
+        }
+
+        public void with(Object value) {
+            input.value(value)
+        }
+
+        public void to(Object value) {
+            input.value(value)
+        }
+    }
 
     public static class Components<T extends Component> {
         private final MetaDataProvider meta
@@ -162,23 +178,5 @@ class Testatoo {
             }
             return Collections.unmodifiableList(components)
         }
-    }
-
-    public static Button button(String text) {
-        List<Button> buttons = new ArrayList<>()
-        Identifiers.findSelectorsFor(Button).each {
-            buttons.addAll($$(it.value, it.key))
-        }
-
-        buttons.findAll { it.text() == text }[0]
-    }
-
-    public static Radio radio(String label) {
-        List<Radio> radios = new ArrayList<>()
-        Identifiers.findSelectorsFor(Radio).each {
-            radios.addAll($$(it.value, it.key))
-        }
-
-        radios.findAll { it.label() == label }[0]
     }
 }

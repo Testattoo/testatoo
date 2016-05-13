@@ -27,7 +27,7 @@ import org.testatoo.core.support.property.ItemSupport
 class ListViewTest {
     @Test
     public void should_have_expected_inheritance() {
-        ListView in Component
-        ListView in ItemSupport
+        assert ListView in Component
+        assert ListView in ItemSupport
     }
 }

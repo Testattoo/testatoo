@@ -19,6 +19,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.CellSupport
+import org.testatoo.core.support.property.TitleSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -28,5 +30,7 @@ class ColumnTest {
     @Test
     public void should_have_expected_inheritance() {
         assert Column in Component
+        assert Column in TitleSupport
+        assert Column in CellSupport
     }
 }
