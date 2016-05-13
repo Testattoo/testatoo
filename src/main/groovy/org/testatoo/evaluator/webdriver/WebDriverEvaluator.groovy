@@ -224,19 +224,24 @@ class WebDriverEvaluator implements Evaluator {
             }
         }(window.jQuery));"""
 
+        Log.log('====== Expression ======')
         Log.log(expr)
 
         String v = js.executeScript(expr)
+
+        Log.log('======== RESULT ========')
+        Log.log(v)
+
         if (v == '__JQUERY_MISSING__') {
             js.executeScript(getClass().getResource("jquery-2.2.2.min.js").text
                     + getClass().getResource("testatoo.js").text)
             registeredScripts.each { js.executeScript(it) }
-            v = js.executeScript(expr)
+            return execute(id, s)
         }
         if (v == '__TESTATOO_MISSING__') {
             js.executeScript(getClass().getResource("testatoo.js").text)
             registeredScripts.each { js.executeScript(it) }
-            v = js.executeScript(expr)
+            return execute(id, s)
         }
 
         return v == 'null' || v == 'undefined' ? null : v
