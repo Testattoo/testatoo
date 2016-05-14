@@ -17,7 +17,6 @@ package org.testatoo.core.internal
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
 import org.testatoo.core.ByCss
-import org.testatoo.core.ByJs
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Identifier
 import org.testatoo.core.component.Component
@@ -33,8 +32,7 @@ class Identifiers {
     private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
 
     static Map factories = [
-        (ByJs): { ByJs annotation -> return annotation.value() },
-        (ByCss): { ByCss annotation -> return "it.is('${annotation.value()}')" },
+        (ByCss): { ByCss annotation -> return "it.is('${annotation.value()}')" }
     ]
 
     static boolean hasIdentifier(Class<? extends Component> c) {

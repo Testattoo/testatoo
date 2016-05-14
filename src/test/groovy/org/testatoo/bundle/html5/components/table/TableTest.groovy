@@ -34,7 +34,7 @@ import static org.testatoo.core.Testatoo.getBrowser
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class TableGridTest {
+class TableTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
@@ -97,5 +97,15 @@ class TableGridTest {
         data_grid.column('Column 1 title').title() == 'Column 1 title'
         data_grid.column('Column 2 title').title() == 'Column 2 title'
         data_grid.column('Column 3 title').title() == 'Column 3 title'
+    }
+
+    @Test
+    public void should_access_to_row_by_title() {
+        DataGrid data_grid = $('#data_grid') as Table
+
+        data_grid.row('Row 1').title() == 'Row 1'
+        data_grid.row('Row 2').title() == 'Row 2'
+        data_grid.row('Row 3').title() == 'Row 3'
+        data_grid.row('Row 4').title() == 'Row 4'
     }
 }

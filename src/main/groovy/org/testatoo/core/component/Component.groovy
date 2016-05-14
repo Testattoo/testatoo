@@ -60,22 +60,6 @@ class Component implements Clickable, Draggable {
         !config.evaluator.check(id(), "it.is(':hidden')")
     }
 
-    boolean contains(Component... components) {
-        List ret = config.evaluator.getJson("\$().testatoo({method: 'contains', id:'${id()}', ids: [${components.collect { "'${it.id()}'" }.join(', ')}]});")
-        if (ret) {
-            throw new ComponentException("Component ${this} does not contain expected component(s): ${components.findAll { it.id() in ret }}");
-        }
-    }
-
-    boolean displays(Component... components) {
-        List ret = config.evaluator.getJson("\$().testatoo({method: 'contains', id:'${id()}', ids: [${components.collect { "'${it.id()}'" }.join(', ')}]});")
-        if (ret) {
-            throw new ComponentException("Component ${this} does not display expected component(s): ${components.findAll { it.id() in ret }}");
-        } else {
-            components.findAll { !it.visible() }
-        }
-    }
-
     protected <T extends Component> List<T> find(By by, Class<T> type = Component) {
         config.evaluator.metaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
     }

@@ -271,7 +271,7 @@ class ComponentsTest {
         password_field.should { be required }
 
         form.should {
-            contains(email_field, password_field)
+            contain(email_field, password_field, $('#range_field') as InputTypeRange)
             be invalid
         }
 

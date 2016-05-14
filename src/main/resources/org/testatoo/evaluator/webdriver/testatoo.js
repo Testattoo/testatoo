@@ -33,7 +33,7 @@
                     });
                 });
                 return metaInfos;
-            case 'contain':
+            case 'contains':
                 var el = $('#' + options.id);
                 var not = [];
                 $.each(options.ids, function (index, _id) {

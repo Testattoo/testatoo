@@ -37,7 +37,6 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class DSLTest {
-
     private static MetaDataProvider meta
 
     @BeforeClass

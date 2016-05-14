@@ -17,6 +17,7 @@ package org.testatoo.hamcrest
 
 import org.hamcrest.Factory
 import org.hamcrest.Matcher
+import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
@@ -92,6 +93,9 @@ class Matchers {
 
     @Factory
     public static Matcher<ValiditySupport> invalid() { new InvalidMatcher() }
+
+    @Factory
+    public static Matcher<Component> contain(Component... components) { new ContainMatcher(Testatoo.config.evaluator, components)  }
 
     // Properties
     @Factory
