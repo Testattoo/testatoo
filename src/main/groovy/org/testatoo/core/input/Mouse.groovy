@@ -24,12 +24,8 @@ import static org.testatoo.core.Testatoo.config
  */
 class Mouse {
     static void clickOn(Component c) { c.click() }
-
     static void doubleClickOn(Component c) { c.doubleClick() }
-
     static void rightClickOn(Component c) { c.rightClick() }
-
     static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id()) }
-
     static DragBuilder drag(Component c) { return new DragBuilder(c) }
 }

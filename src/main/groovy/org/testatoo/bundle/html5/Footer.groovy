@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('footer')
+@CssIdentifier('footer')
 class Footer extends Component {}

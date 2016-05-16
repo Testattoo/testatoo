@@ -38,7 +38,7 @@ class SelectTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     // http://en.wikipedia.org/wiki/Drop-down_list

@@ -16,13 +16,13 @@
 package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.ListView
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('ul')
+@CssIdentifier('ul')
 class Ul extends ListView {
     @Override
     List<Li> items() {

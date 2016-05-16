@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.MonthField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=month]')
+@CssIdentifier('input[type=month]')
 class InputTypeMonth extends MonthField implements Input {}

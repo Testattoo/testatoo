@@ -34,7 +34,7 @@ class HtmlComponentTest {
 
     @Test
     public void should_implement_default_states() {
-        browser.open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
 
         Button button = $('#button') as Button
         assert button.available()

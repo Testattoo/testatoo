@@ -1,4 +1,38 @@
+Identifiers
+GroovyExtensions
+
 MetaInfoProvider !!!
+
+//
+//    public static PropertyMatcher getParagraphs(Integer expected) {
+//        Properties.paragraphSize.equalsTo(expected)
+//    }
+//
+//    public static PropertyMatcher getArticles(Integer expected) {
+//        Properties.articleSize.equalsTo(expected)
+//    }
+
+
+  //    @ClassRule
+//    public static WebDriverConfig driver = new WebDriverConfig()
+//
+//    @BeforeClass
+//    public static void setup() {
+//        config.scan 'org.testatoo.component'
+//        browser.open 'http://localhost:8080/components.html'
+//    }
+//
+//    @AfterClass
+//    public static void tearDown() { config.evaluator.close() }
+//
+//    @Test
+//    public void should_be_able_to_find_nested_component() {
+//        Section section = $('#section') as Section
+//        Paragraph paragraph = section.find('p:first')[0] as Paragraph
+//
+//        assert paragraph.text == 'Paragraph 1'
+//    }
+//
 
 PatternSupport
 

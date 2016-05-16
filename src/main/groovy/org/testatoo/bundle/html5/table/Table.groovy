@@ -16,13 +16,13 @@
 package org.testatoo.bundle.html5.table
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.datagrid.DataGrid
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('table')
+@CssIdentifier('table')
 class Table extends DataGrid {
     @Override
     List<Th> columns() {

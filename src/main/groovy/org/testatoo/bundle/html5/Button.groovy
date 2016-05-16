@@ -15,14 +15,14 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 
 import static org.testatoo.core.Testatoo.config
 
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@ByCss('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
+@CssIdentifier('button,input[type=submit],input[type=button],input[type=reset],input[type=image]')
 class Button extends org.testatoo.core.component.Button {
     @Override
     public String text() {

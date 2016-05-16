@@ -24,6 +24,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.core.Browser
 
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.*
@@ -40,7 +41,7 @@ class WaitTest {
     @BeforeClass
     public static void before() {
         config.waitUntil = 10.seconds
-        browser.open 'http://localhost:8080/wait.html'
+        visit 'http://localhost:8080/wait.html'
     }
 
     @AfterClass
@@ -50,7 +51,7 @@ class WaitTest {
 
     @Test
     public void should_be_able_to_wait_on_condition() {
-        browser.navigate.refresh()
+        Browser.navigate.refresh()
 
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
@@ -72,7 +73,7 @@ class WaitTest {
 
     @Test
     public void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
-        browser.navigate.refresh()
+        Browser.navigate.refresh()
 
         Button button = $('#add-message') as Button
 

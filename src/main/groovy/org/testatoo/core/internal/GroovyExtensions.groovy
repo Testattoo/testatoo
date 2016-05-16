@@ -30,7 +30,6 @@ import org.testatoo.hamcrest.matcher.state.ContainMatcher
 import java.time.Duration
 
 import static org.testatoo.core.Testatoo.config
-import static org.testatoo.core.Testatoo.getConfig
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -70,7 +69,9 @@ class GroovyExtensions {
     }
 
     static void unselect(Component component, String... values) {
-        values.each { component.items().find { it.value() == value }.unselect() }
+        values.each { value -> component.items().find {
+            item -> item.value() == value }.unselect()
+        }
     }
 
     static PropertyMatcher getItems(Integer number) {
@@ -96,14 +97,6 @@ class GroovyExtensions {
     public static PropertyMatcher getCells(Integer number) {
         new CellSizeMatcher(number)
     }
-//
-//    public static PropertyMatcher getParagraphs(Integer expected) {
-//        Properties.paragraphSize.equalsTo(expected)
-//    }
-//
-//    public static PropertyMatcher getArticles(Integer expected) {
-//        Properties.articleSize.equalsTo(expected)
-//    }
 
     static void should(Component component, Closure closure) {
         closure.delegate = component

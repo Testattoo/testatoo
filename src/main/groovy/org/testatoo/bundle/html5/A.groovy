@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Link
 
 import static org.testatoo.core.Testatoo.config
@@ -23,7 +23,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('a')
+@CssIdentifier('a')
 class A extends Link {
     @Override
     String reference() {

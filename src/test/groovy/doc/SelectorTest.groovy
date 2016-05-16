@@ -35,7 +35,7 @@ class SelectorTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/selectors.html'
+        visit 'http://localhost:8080/selectors.html'
     }
 
     @Test

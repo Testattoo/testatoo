@@ -30,17 +30,17 @@ class CachedMetaData implements MetaDataProvider {
     @Delegate
     private MetaInfo metaInfo
 
-    IdProvider idProvider
+    private IdProvider idProvider
 
     @Override
     MetaInfo metaInfo(Component c) {
         if (!metaInfo) {
                 MetaInfo info = idProvider.metaInfos()[0]
                 if (c.class != Component) {
-                    String identifyingExpr = Identifiers.getIdentifyingExpression(c.class)
+                    String identifyingExpr = Identifiers.identifyingExpression(c.class)
                     if (!(config.evaluator.check(info.id, identifyingExpr))) {
                         Class<Component> type = config.componentTypes.find {
-                            config.evaluator.check(info.id, Identifiers.getIdentifyingExpression(it))
+                            config.evaluator.check(info.id, Identifiers.identifyingExpression(it))
                         }
                         throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                     }

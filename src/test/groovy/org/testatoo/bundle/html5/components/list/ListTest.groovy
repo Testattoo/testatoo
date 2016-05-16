@@ -27,8 +27,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.ListView
 
 import static org.junit.Assert.fail
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,7 +39,7 @@ class ListTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     @Test

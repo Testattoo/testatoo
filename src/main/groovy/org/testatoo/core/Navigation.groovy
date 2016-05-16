@@ -19,19 +19,8 @@ package org.testatoo.core
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Navigation {
-    static void to(String url) {
-        Testatoo.config.evaluator.to(url)
-    }
-
-    static void back() {
-        Testatoo.config.evaluator.back()
-    }
-
-    static void forward() {
-        Testatoo.config.evaluator.forward()
-    }
-
-    static void refresh() {
-        Testatoo.config.evaluator.refresh()
-    }
+    static void to(String url) { Testatoo.config.evaluator.to(url) }
+    static void back() { Testatoo.config.evaluator.back() }
+    static void forward() { Testatoo.config.evaluator.forward() }
+    static void refresh() { Testatoo.config.evaluator.refresh() }
 }

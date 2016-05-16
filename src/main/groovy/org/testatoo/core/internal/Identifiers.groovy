@@ -16,7 +16,7 @@
 package org.testatoo.core.internal
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Identifier
 import org.testatoo.core.component.Component
@@ -32,14 +32,14 @@ class Identifiers {
     private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
 
     static Map factories = [
-        (ByCss): { ByCss annotation -> return "it.is('${annotation.value()}')" }
+        (CssIdentifier): { CssIdentifier annotation -> return "it.is('${annotation.value()}')" }
     ]
 
     static boolean hasIdentifier(Class<? extends Component> c) {
         return c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
     }
 
-    static String getIdentifyingExpression(Class<? extends Component> c) {
+    static String identifyingExpression(Class<? extends Component> c) {
         Annotation annotation = c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
         if (!annotation) {
             annotation = c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }

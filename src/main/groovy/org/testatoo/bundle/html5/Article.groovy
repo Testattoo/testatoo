@@ -16,13 +16,13 @@
 package org.testatoo.bundle.html5
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Component
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('article')
+@CssIdentifier('article')
 class Article extends Component {
     List<Paragraph> getParagraphs() {
         find(By.css('> p'), Paragraph)
