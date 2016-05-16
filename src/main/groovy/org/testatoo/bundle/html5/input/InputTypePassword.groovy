@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.PasswordField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=password]')
+@CssIdentifier('input[type=password]')
 class InputTypePassword extends PasswordField implements Input {}

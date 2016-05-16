@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.WeekField
 
 import static org.testatoo.core.Testatoo.config
@@ -23,7 +23,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=week]')
+@CssIdentifier('input[type=week]')
 class InputTypeWeek extends WeekField implements Input {
     @Override
     void value(Object value) {

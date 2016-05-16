@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 
 import static org.testatoo.bundle.html5.helper.CheckHelper.*
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
@@ -23,7 +23,7 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.label
 /**
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@ByCss('input[type=radio]')
+@CssIdentifier('input[type=radio]')
 class Radio extends org.testatoo.core.component.Radio {
     @Override
     boolean checked() {

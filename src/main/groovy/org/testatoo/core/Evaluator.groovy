@@ -21,7 +21,7 @@ import org.testatoo.core.input.MouseModifiers
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract trait Evaluator implements AutoCloseable {
+interface Evaluator extends AutoCloseable {
     abstract <T> T getImplementation(Class<T> type)
 
     abstract void open(String url)

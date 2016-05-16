@@ -25,10 +25,11 @@ import org.testatoo.hamcrest.Matchers
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
 import org.testatoo.hamcrest.matcher.property.*
+import org.testatoo.hamcrest.matcher.state.ContainMatcher
 
 import java.time.Duration
 
-import static org.testatoo.core.Testatoo.getConfig
+import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -68,8 +69,8 @@ class GroovyExtensions {
     }
 
     static void unselect(Component component, String... values) {
-        for (value in values) {
-            component.items().find { it.value() == value }.unselect()
+        values.each { value -> component.items().find {
+            item -> item.value() == value }.unselect()
         }
     }
 
@@ -96,14 +97,6 @@ class GroovyExtensions {
     public static PropertyMatcher getCells(Integer number) {
         new CellSizeMatcher(number)
     }
-//
-//    public static PropertyMatcher getParagraphs(Integer expected) {
-//        Properties.paragraphSize.equalsTo(expected)
-//    }
-//
-//    public static PropertyMatcher getArticles(Integer expected) {
-//        Properties.articleSize.equalsTo(expected)
-//    }
 
     static void should(Component component, Closure closure) {
         closure.delegate = component
@@ -116,6 +109,10 @@ class GroovyExtensions {
 
     static void be(Component component, Class<StateMatcher> matcher) {
         component.addBlock(org.hamcrest.Matchers.is(matcher.newInstance()))
+    }
+
+    static void contain(Component component, Component... components) {
+        component.addBlock(new ContainMatcher(config.evaluator, components))
     }
 
     static void have(Component component, PropertyMatcher matcher) {

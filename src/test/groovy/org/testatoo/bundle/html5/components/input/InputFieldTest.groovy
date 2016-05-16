@@ -28,6 +28,8 @@ import org.testatoo.core.component.field.*
 import static org.junit.Assert.fail
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.getBrowser
+import static org.testatoo.core.Testatoo.visible
+import static org.testatoo.core.Testatoo.visit
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,7 +42,7 @@ class InputFieldTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     @Test

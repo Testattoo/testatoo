@@ -15,14 +15,14 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.Testatoo
 import org.testatoo.core.component.Image
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('img')
+@CssIdentifier('img')
 class Img extends Image {
     @Override
     String reference() {

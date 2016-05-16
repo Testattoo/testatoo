@@ -16,7 +16,7 @@
 package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Group
 
 import static org.testatoo.core.Testatoo.config
@@ -24,7 +24,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('optgroup')
+@CssIdentifier('optgroup')
 class OptionGroup extends Group {
     List<Option> items() {
         find(By.css('option'), Option)

@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.TextField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('textarea')
+@CssIdentifier('textarea')
 class TextArea extends TextField implements Input {}

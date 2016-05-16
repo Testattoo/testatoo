@@ -15,34 +15,76 @@
  */
 package org.testatoo.core
 
+import org.junit.ClassRule
 import org.junit.Test
+import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.A
+import org.testatoo.bundle.html5.Form
 
-import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Mouse.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class NavigationTest {
+    @ClassRule
+    public static WebDriverConfig driver = new WebDriverConfig()
+
     @Test
-    public void should_delegate_to_underline_call() {
-        Evaluator evaluator = mock(Evaluator)
-        config.evaluator = evaluator
+    public void should_be_able_to_have_browser_properties_access() {
+        Browser.open 'http://localhost:8080/components.html'
 
-        verify(evaluator, times(0)).to('some_url')
-        Navigation.to('some_url')
-        verify(evaluator, times(1)).to('some_url')
+        assert Browser.title == 'Testatoo Rocks'
+        assert Browser.pageSource.contains('<title>Testatoo Rocks</title>')
+        assert Browser.url == 'http://localhost:8080/components.html'
 
-        verify(evaluator, times(0)).back()
-        Navigation.back()
-        verify(evaluator, times(1)).back()
+        Browser.open('http://localhost:8080/keyboard.html')
+        assert Browser.url == 'http://localhost:8080/keyboard.html'
+    }
 
-        verify(evaluator, times(0)).forward()
-        Navigation.forward()
-        verify(evaluator, times(1)).forward()
+    @Test
+    public void should_be_able_to_navigate() {
+        Browser.open 'http://localhost:8080/components.html'
 
-        verify(evaluator, times(0)).refresh()
-        Navigation.refresh()
-        verify(evaluator, times(1)).refresh()
+        assert Browser.url == 'http://localhost:8080/components.html'
+
+        Browser.navigate.to('http://localhost:8080/keyboard.html')
+        assert Browser.url == 'http://localhost:8080/keyboard.html'
+
+        Browser.navigate.back()
+        assert Browser.url == 'http://localhost:8080/components.html'
+
+        Browser.navigate.forward()
+        assert Browser.url == 'http://localhost:8080/keyboard.html'
+
+        Browser.navigate.refresh()
+        assert Browser.url == 'http://localhost:8080/keyboard.html'
+    }
+
+    @Test
+    public void should_manage_windows() {
+        Browser.open 'http://localhost:8080/components.html'
+
+        assert Browser.windows.size() == 1
+        String main_window_id = Browser.windows[0].id
+
+        A link = $('#link') as A
+        Form form = $('#dsl-form') as Form
+
+        assert Browser.windows.size() == 1
+        assert link.available()
+        assert !form.available()
+
+        clickOn link
+
+        assert Browser.windows.size() == 2
+        Browser.switchTo(Browser.windows[1])
+        assert form.available()
+
+        Browser.windows[1].close()
+        assert Browser.windows.size() == 1
+        assert Browser.windows[0].id == main_window_id
+        assert Browser.windows[0].toString() == main_window_id
     }
 }

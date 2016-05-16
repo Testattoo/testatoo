@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.heading
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Heading
 
 import static org.testatoo.core.Testatoo.config
@@ -24,7 +24,7 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 
-@ByCss('h3')
+@CssIdentifier('h3')
 class H3 extends Heading {
     @Override
     String text() {

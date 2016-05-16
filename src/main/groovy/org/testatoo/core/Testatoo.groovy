@@ -21,6 +21,8 @@ import org.testatoo.core.component.Item
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.Row
+import org.testatoo.core.input.DragBuilder
+import org.testatoo.core.input.Key
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
@@ -42,21 +44,6 @@ class Testatoo {
      * Access Testatoo config
      */
     static Config config = new Config()
-
-    /**
-     * Controls your browser
-     */
-    static Browser browser = new Browser()
-
-    /**
-     * Access the keyboard
-     */
-    static Keyboard keyboard = new Keyboard()
-
-    /**
-     * Access the mouse
-     */
-    static Mouse mouse = new Mouse()
 
     /**
      * Create a component
@@ -131,10 +118,9 @@ class Testatoo {
     /**
      * Actions
      */
-    static void visit(String uri) { browser.open(uri) }
+    static void visit(String uri) { Browser.open(uri) }
     static void check(Checkable c) { c.check() }
     static void uncheck(UnCheckable c) { c.uncheck() }
-    static void type(String text) { Keyboard.type(text) }
     static void clear(Clearable c) { c.clear() }
     static void reset(Resettable c) { c.reset() }
     static void submit(Submissible c) { c.submit() }
@@ -179,4 +165,16 @@ class Testatoo {
             return Collections.unmodifiableList(components)
         }
     }
+
+    // Delegate to Mouse
+    static void clickOn(Component c) { Mouse.clickOn(c) }
+    static void doubleClickOn(Component c) { Mouse.doubleClickOn(c) }
+    static void rightClickOn(Component c) { Mouse.rightClickOn(c) }
+    static void hoveringMouseOn(Component c) { Mouse.hoveringMouseOn(c) }
+    static DragBuilder drag(Component c) { Mouse.drag(c) }
+
+    // Delegate to Keyboard
+    static void type(Collection<?> keys) { Keyboard.type(keys) }
+    static void type(Key key)  { type([key]) }
+    static void type(String text) { type([text]) }
 }

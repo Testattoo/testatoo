@@ -23,13 +23,9 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class HiddenMatcher extends StateMatcher<Component> {
-    private Component component
-
     @Override
     protected boolean matchesSafely(Component component, Description mismatchDescription) {
-        this.component = component
         mismatchDescription.appendText('is visible')
-
         !component.visible()
     }
 

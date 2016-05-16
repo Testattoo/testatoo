@@ -21,23 +21,12 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Browser {
-    final Navigation navigate = new Navigation()
+    static final Navigation navigate = new Navigation()
 
-    static String getTitle() {
-        config.evaluator.title
-    }
-
-    static String getPageSource() {
-        config.evaluator.pageSource
-    }
-
-    static String getUrl() {
-        config.evaluator.url
-    }
-
-    static void open(String url) {
-        config.evaluator.open(url)
-    }
+    static String getTitle() { config.evaluator.title }
+    static String getPageSource() { config.evaluator.pageSource }
+    static String getUrl() { config.evaluator.url }
+    static void open(String url) { config.evaluator.open(url) }
 
     static List<Window> getWindows() {
         List<Window> windows = new ArrayList<>()
@@ -47,7 +36,5 @@ class Browser {
         return windows
     }
 
-    static void switchTo(Window window) {
-        config.evaluator.switchToWindow(window.id)
-    }
+    static void switchTo(Window window) { config.evaluator.switchToWindow(window.id) }
 }

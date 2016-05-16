@@ -15,13 +15,13 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Panel
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('div')
+@CssIdentifier('div')
 class Div extends Panel {
     @Override
     String title() {

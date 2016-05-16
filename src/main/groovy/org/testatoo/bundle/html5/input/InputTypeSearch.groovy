@@ -15,12 +15,12 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.SearchField
 import org.testatoo.core.support.property.LengthSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=search]')
+@CssIdentifier('input[type=search]')
 class InputTypeSearch extends SearchField implements Input, LengthSupport {}

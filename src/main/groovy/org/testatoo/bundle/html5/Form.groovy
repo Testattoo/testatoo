@@ -16,7 +16,7 @@
 package org.testatoo.bundle.html5
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 
 import static org.testatoo.core.Testatoo.config
@@ -24,7 +24,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('form')
+@CssIdentifier('form')
 class Form extends org.testatoo.core.component.Form {
     @Override
     void reset() {

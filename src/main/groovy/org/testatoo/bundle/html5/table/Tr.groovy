@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.table
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.datagrid.Row
 
 import static org.testatoo.core.Testatoo.config
@@ -23,7 +23,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('tr')
+@CssIdentifier('tr')
 class Tr extends Row {
     @Override
     List<Td> cells() {

@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 
 import static org.testatoo.bundle.html5.helper.CheckHelper.*
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
@@ -23,7 +23,7 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.label
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=checkbox]')
+@CssIdentifier('input[type=checkbox]')
 class CheckBox extends org.testatoo.core.component.CheckBox {
     @Override
     boolean checked() {

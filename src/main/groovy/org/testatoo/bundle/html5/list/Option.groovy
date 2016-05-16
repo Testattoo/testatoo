@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.list
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Item
 
@@ -29,7 +29,7 @@ import static org.testatoo.core.input.MouseModifiers.SINGLE
  * @author David Avenante (d.avenante@gmail.com)
  */
 
-@ByCss('option')
+@CssIdentifier('option')
 class Option extends Item {
     @Override
     boolean selected() {

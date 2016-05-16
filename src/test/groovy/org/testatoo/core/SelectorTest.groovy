@@ -23,6 +23,7 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
+import org.testatoo.core.component.Component
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.component.ComponentFactory.*
@@ -37,7 +38,7 @@ class SelectorTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/selectors.html'
+        visit 'http://localhost:8080/selectors.html'
     }
 
     @Test
@@ -46,6 +47,43 @@ class SelectorTest {
 
         assert button.enabled()
         assert button.visible()
+    }
+
+    @Test
+    public void should_throw_an_error_if_single_selector_find_many_components() {
+        try {
+            Button button = $('[type="text"]') as Button
+            button.should { be enabled }
+        } catch (ComponentException e) {
+            assert e.message == "Component defined by expression \$('[type=\"text\"]') is not unique: got 4"
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_if_single_selector_return_not_expected_component_type() {
+        try {
+            Button button = $('[type="text"]:first') as Button
+            button.should { be enabled }
+        } catch (ComponentException e) {
+            assert e.message.contains('Expected a Button')
+            assert e.message.contains('but was: InputTypeText')
+        }
+    }
+
+    @Test
+    public void should_have_at_least_an_Identifier_available_on_Component() {
+        // 1 - A component without identifier cannot be used
+        try {
+            InvalidComponent cmp = $('#button') as InvalidComponent
+            cmp.should { be visible }
+        } catch (ComponentException e) {
+            assert e.message == 'Missing @Identifier annotation on type org.testatoo.core.SelectorTest$InvalidComponent'
+        }
+
+        // 2 - If component don't have Identifier on it the Identifier on the superclass is used
+        BigButton cmp = $('#button') as BigButton
+        cmp.should { be visible }
+        assert  cmp.big
     }
 
     @Test
@@ -69,19 +107,6 @@ class SelectorTest {
         textFields.each {
             assert !it.empty()
             assert it.value() == 'TESTATOO!'
-        }
-    }
-
-    @Test
-    public void should_throw_an_error_on_bad_component_type() {
-        try {
-            List<Button> buttons = $$('[type="text"]')
-            buttons.each {
-                assert it.enabled()
-            }
-        } catch (ComponentException e) {
-            assert e.message.contains('Expected a Button')
-            assert e.message.contains('but was: InputTypeText')
         }
     }
 
@@ -129,14 +154,14 @@ class SelectorTest {
         dateField 'Date' should { have label('Date') }
         dateField 'yyyy/mm/dd' should { have placeholder('yyyy/mm/dd') }
 
-        dateTimeField 'DateTime:' should { have label('DateTime:')}
-        dateTimeField 'DateTime' should { have placeholder('DateTime')}
+        dateTimeField 'DateTime:' should { have label('DateTime:') }
+        dateTimeField 'DateTime' should { have placeholder('DateTime') }
 
         monthField 'Month:' should { have label('Month:') }
         monthField 'Month' should { have placeholder('Month') }
 
         phoneField 'Phone' should { have label('Phone') }
-        phoneField '+1 514 123 4567' should { have placeholder('+1 514 123 4567')}
+        phoneField '+1 514 123 4567' should { have placeholder('+1 514 123 4567') }
 
         timeField 'Time:' should { have label('Time:') }
         timeField 'Time' should { have placeholder('Time') }
@@ -194,4 +219,9 @@ class SelectorTest {
         }
     }
 
+    private class InvalidComponent extends Component {}
+
+    private class BigButton extends Button {
+        public boolean isBig() { true }
+    }
 }

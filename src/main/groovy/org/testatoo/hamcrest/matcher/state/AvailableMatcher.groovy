@@ -23,11 +23,8 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class AvailableMatcher extends StateMatcher<Component> {
-    private Component component
-
     @Override
     protected boolean matchesSafely(Component component, Description mismatchDescription) {
-        this.component = component
         mismatchDescription.appendText('is missing')
         component.available()
     }

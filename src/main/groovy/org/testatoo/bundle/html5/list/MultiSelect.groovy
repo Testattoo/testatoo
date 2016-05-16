@@ -16,7 +16,7 @@
 package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.ListBox
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
@@ -25,7 +25,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss("select[multiple]")
+@CssIdentifier("select[multiple]")
 class MultiSelect extends ListBox {
     @Override
     List<Option> items() {

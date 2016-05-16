@@ -15,11 +15,11 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.DateTimeField
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=datetime]')
+@CssIdentifier('input[type=datetime]')
 class InputTypeDateTime extends DateTimeField implements Input {}

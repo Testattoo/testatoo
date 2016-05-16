@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.RangeField
 
 import static org.testatoo.bundle.html5.helper.RangeHelper.*
@@ -24,7 +24,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=range]')
+@CssIdentifier('input[type=range]')
 class InputTypeRange extends RangeField implements Input {
     Number value() {
         config.evaluator.eval(id(), "it.val()") as BigDecimal

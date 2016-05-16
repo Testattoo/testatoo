@@ -39,7 +39,7 @@ class MultiSelectTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     @Test
@@ -146,7 +146,17 @@ class MultiSelectTest {
         assert planets.groups().size() == 2
         assert planets.groups()[0].value() == 'Cat-1'
         assert planets.group('Cat-1').value() == 'Cat-1'
+
+        Item venus = planets.item('Venus')
+        Item saturn = planets.item('Saturn')
+
+        assert planets.selectedItems().size() == 0
+        planets.select('Venus', 'Saturn')
+
+        assert planets.selectedItems().size() == 2
+        assert planets.selectedItems().containsAll(venus, saturn)
+
+        planets.unselect('Venus', 'Saturn')
+        assert planets.selectedItems().size() == 0
     }
-
-
 }

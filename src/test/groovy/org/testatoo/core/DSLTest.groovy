@@ -19,6 +19,7 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.core.component.Button
 import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Form
@@ -26,8 +27,8 @@ import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Item
 import org.testatoo.core.component.Radio
 import org.testatoo.core.support.property.InputSupport
+import org.testatoo.hamcrest.matcher.state.ContainMatcher
 
-import static org.junit.Assert.fail
 import static org.mockito.Matchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.*
@@ -37,7 +38,6 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class DSLTest {
-
     private static MetaDataProvider meta
 
     @BeforeClass
@@ -70,6 +70,18 @@ class DSLTest {
             be disabled
             be hidden
         }
+    }
+
+    @Test
+    public void should_verify_contained_components_on_component() {
+        Component cmp = spy(new Component(meta))
+        doReturn(new LinkedList<>()).when(cmp).blocks
+
+        assert cmp.blocks.empty
+
+        cmp.should { contain(mock(Button)) }
+
+        verify(cmp, times(1)).addBlock(isA(ContainMatcher))
     }
 
     @Test
@@ -169,5 +181,27 @@ class DSLTest {
 
         assert on(radio).is(radio)
         assert on(heading).is(heading)
+    }
+
+    @Test
+    public void should_have_shortcut_for_mouse() {
+
+//        @Test
+//        public void should_be_able_to_rightClick() {
+//            Button button = $('#button_5') as Button
+//
+//            assert button.text == 'Button'
+//            rightClickOn button
+//            assert button.text == 'Button Right Clicked!'
+//
+//            browser.navigate.refresh()
+//
+//            button = $('#button_5') as Button
+//
+//            assert button.text == 'Button'
+//            button.rightClick()
+//            assert button.text == 'Button Right Clicked!'
+//        }
+
     }
 }

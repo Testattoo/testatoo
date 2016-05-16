@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.DateField
 
 import static org.testatoo.bundle.html5.helper.RangeHelper.*
@@ -24,7 +24,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=date]')
+@CssIdentifier('input[type=date]')
 class InputTypeDate extends DateField implements Input {
     @Override
     void value(Object value) {

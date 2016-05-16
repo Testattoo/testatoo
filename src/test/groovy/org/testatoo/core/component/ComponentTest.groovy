@@ -19,6 +19,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.core.ComponentException
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo

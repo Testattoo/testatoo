@@ -25,7 +25,7 @@ import org.testatoo.bundle.html5.*
 import org.testatoo.bundle.html5.heading.*
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.*
 import org.testatoo.core.support.property.TextSupport
@@ -43,7 +43,7 @@ class ComponentsTest {
 
     @BeforeClass
     public static void before() {
-        browser.open 'http://localhost:8080/components.html'
+        visit 'http://localhost:8080/components.html'
     }
 
     @Test
@@ -301,7 +301,7 @@ class ComponentsTest {
         assert span.text() == 'A span'
     }
 
-    @ByCss('div')
+    @CssIdentifier('div')
     class Message extends Panel {
         @Override
         String title() {

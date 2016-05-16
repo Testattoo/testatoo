@@ -23,11 +23,8 @@ import org.testatoo.hamcrest.StateMatcher
  * @author David Avenante (d.avenante@gmail.com)
  */
 class EmptyMatcher extends StateMatcher<EmptySupport> {
-    private EmptySupport component
-
     @Override
     protected boolean matchesSafely(EmptySupport component, Description mismatchDescription) {
-        this.component = component
         mismatchDescription.appendText('is filled')
         component.empty()
     }

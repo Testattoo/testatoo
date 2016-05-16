@@ -15,7 +15,7 @@
  */
 package org.testatoo.bundle.html5.input
 
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.NumberField
 
 import static org.testatoo.bundle.html5.helper.RangeHelper.*
@@ -24,7 +24,7 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss('input[type=number]')
+@CssIdentifier('input[type=number]')
 class InputTypeNumber extends NumberField implements Input {
     Number value() {
         Object value = config.evaluator.eval(id(), "it.val()")

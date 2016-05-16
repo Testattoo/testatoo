@@ -16,7 +16,7 @@
 package org.testatoo.bundle.html5.list
 
 import org.testatoo.core.By
-import org.testatoo.core.ByCss
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Dropdown
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
@@ -24,7 +24,7 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.label
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@ByCss("select:not([multiple])")
+@CssIdentifier("select:not([multiple])")
 class Select extends Dropdown {
     @Override
     List<Option> items() {
