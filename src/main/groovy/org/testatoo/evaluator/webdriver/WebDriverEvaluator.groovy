@@ -212,12 +212,8 @@ class WebDriverEvaluator implements Evaluator {
 
         String expr = """
         return (function(jQuery) {
-            if(!jQuery) {
-                return '__JQUERY_MISSING__';
-            }
-            else if (!jQuery().testatoo) {
-                return '__TESTATOO_MISSING__';
-            }
+            if(!jQuery) { return '__JQUERY_MISSING__'; }
+            if (!jQuery().testatoo) { return '__TESTATOO_MISSING__'; }
             else {
                 $element
                 return ${removeTrailingChars(s)};
