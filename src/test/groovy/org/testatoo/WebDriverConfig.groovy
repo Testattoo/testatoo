@@ -17,6 +17,7 @@ package org.testatoo
 
 import org.junit.rules.ExternalResource
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.remote.DesiredCapabilities
@@ -42,12 +43,12 @@ class WebDriverConfig extends ExternalResource {
             WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
             config.evaluator = new WebDriverEvaluator(driver)
         } else {
-//            System.setProperty("webdriver.chrome.driver", "/home/david/Applications/chromedriver");
-//            config.evaluator = new WebDriverEvaluator(new ChromeDriver())
+            System.setProperty("webdriver.chrome.driver", "/home/david/Applications/chromedriver");
+            config.evaluator = new WebDriverEvaluator(new ChromeDriver())
 
-            FirefoxProfile profile = new FirefoxProfile();
-            profile.setEnableNativeEvents(true);
-            config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
+//            FirefoxProfile profile = new FirefoxProfile();
+//            profile.setEnableNativeEvents(true);
+//            config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
         }
     }
 

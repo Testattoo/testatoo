@@ -70,7 +70,7 @@ class ListTest {
         }
 
         try {
-            ol.items()[0].unselected()
+            !ol.items()[0].selected()
             fail()
         } catch (ComponentException e) {
             assert e.message == 'Unsupported Operation'

@@ -65,21 +65,21 @@ class MultiSelectTest {
         assert montpellier.enabled()
         assert cities.item('Montreal').selected()
 
-        assert quebec.unselected()
+        assert !quebec.selected()
         assert !quebec.enabled()
-        assert cities.item('Quebec').unselected()
+        assert !cities.item('Quebec').selected()
 
-        assert montpellier.unselected()
-        assert cities.item('Montpellier').unselected()
+        assert !montpellier.selected()
+        assert !cities.item('Montpellier').selected()
 
-        assert newYork.unselected()
-        assert cities.item('New York').unselected()
+        assert !newYork.selected()
+        assert !cities.item('New York').selected()
 
-        assert casablanca.unselected()
-        assert cities.item('Casablanca').unselected()
+        assert !casablanca.selected()
+        assert !cities.item('Casablanca').selected()
 
-        assert munich.unselected()
-        assert cities.item('Munich').unselected()
+        assert !munich.selected()
+        assert !cities.item('Munich').selected()
 
         assert cities.selectedItems().containsAll(montreal)
 
@@ -96,8 +96,8 @@ class MultiSelectTest {
         montreal.unselect()
         montpellier.unselect()
 
-        assert cities.item('Montreal').unselected()
-        assert cities.item('Montpellier').unselected()
+        assert !cities.item('Montreal').selected()
+        assert !cities.item('Montpellier').selected()
         assert cities.item('New York').selected()
         assert cities.item('Munich').selected()
 
@@ -109,9 +109,9 @@ class MultiSelectTest {
 
         montpellier.click() // Now just Montpellier is selected
         assert montpellier.selected()
-        assert montreal.unselected()
-        assert newYork.unselected()
-        assert munich.unselected()
+        assert !montreal.selected()
+        assert !newYork.selected()
+        assert !munich.selected()
 
         try {
             quebec.select()

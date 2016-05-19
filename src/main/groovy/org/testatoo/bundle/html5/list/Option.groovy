@@ -22,8 +22,7 @@ import org.testatoo.core.component.Item
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.Key.CTRL
-import static org.testatoo.core.input.MouseModifiers.LEFT
-import static org.testatoo.core.input.MouseModifiers.SINGLE
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -34,11 +33,6 @@ class Option extends Item {
     @Override
     boolean selected() {
         config.evaluator.check(id(), "!!it.prop('selected')")
-    }
-
-    @Override
-    boolean unselected() {
-        !selected()
     }
 
     @Override
@@ -63,20 +57,19 @@ class Option extends Item {
 
     @Override
     void click() {
-        // TODO to fix FF issue
-        boolean onMultiSelect = config.evaluator.check(id(), "it.closest('select').attr('multiple') && it.closest('select').attr('multiple').length > 0")
-        if(onMultiSelect) {
+        // TODO: To fix FF issue so un-select all others before click
+        if(onMultiSelect()) {
             MultiSelect select = $("select:has(\"#${id()}\")") as MultiSelect
             select.items().findAll { it.selected() }.forEach {
-                config.evaluator.press(CTRL)
-                config.evaluator.click(it.id(), [LEFT, SINGLE])
-                config.evaluator.release(CTRL)
+                config.evaluator.click(it.id(), [LEFT, SINGLE], [CTRL])
             }
         }
         if (!selected()) {
-            config.evaluator.press(CTRL)
-            config.evaluator.click(id(), [LEFT, SINGLE])
-            config.evaluator.release(CTRL)
+            if(onMultiSelect()) {
+                config.evaluator.click(id(), [LEFT, SINGLE], [CTRL])
+            } else {
+                config.evaluator.click(id(), [LEFT, SINGLE], [])
+            }
         }
     }
 
@@ -84,10 +77,13 @@ class Option extends Item {
     void select() {
         if (!enabled())
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be selected")
-        if (unselected()) {
-            config.evaluator.press(CTRL)
-            config.evaluator.click(id(), [LEFT, SINGLE])
-            config.evaluator.release(CTRL)
+        if (!selected()) {
+            if(onMultiSelect()) {
+                config.evaluator.click(id(), [LEFT, SINGLE], [CTRL])
+            } else {
+                config.evaluator.click(id(), [LEFT, SINGLE], [])
+            }
+
         } else
             throw new ComponentException("${this.class.simpleName} ${this} is already selected and cannot be selected")
     }
@@ -97,10 +93,12 @@ class Option extends Item {
         if (!enabled())
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be unselected")
         if (selected()) {
-            config.evaluator.press(CTRL)
-            config.evaluator.click(id(), [LEFT, SINGLE])
-            config.evaluator.release(CTRL)
+            config.evaluator.click(id(), [LEFT, SINGLE], [CTRL])
         } else
             throw new ComponentException("${this.class.simpleName} ${this} is already unselected and cannot be unselected")
+    }
+
+    private boolean onMultiSelect() {
+        config.evaluator.check(id(), "it.closest('select').attr('multiple') && it.closest('select').attr('multiple').length > 0")
     }
 }

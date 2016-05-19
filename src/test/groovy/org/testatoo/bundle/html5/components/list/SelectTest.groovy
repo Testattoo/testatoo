@@ -65,6 +65,7 @@ class SelectTest {
         assert os.group('BSD').value() == 'BSD'
 
         assert os.selectedItem().value() == 'None'
+
         os.select('Fedora')
         assert os.selectedItem().value() == 'Fedora'
         os.select(os.items()[3])
@@ -97,6 +98,4 @@ class SelectTest {
         assert os.items()[1].toString() == 'Ubuntu'
         assert os.items()[1] == os.items()[1]
     }
-
-
 }

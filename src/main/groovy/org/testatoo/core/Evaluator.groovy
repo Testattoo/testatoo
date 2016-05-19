@@ -15,7 +15,6 @@
  */
 package org.testatoo.core
 
-import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
 
 /**
@@ -61,10 +60,6 @@ interface Evaluator extends AutoCloseable {
     abstract List<MetaInfo> metaInfo(String jQueryExpr)
 
     abstract void type(Collection<?> keys)
-
-    abstract void press(Key key)
-
-    abstract void release(Key key)
 
     abstract void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
 

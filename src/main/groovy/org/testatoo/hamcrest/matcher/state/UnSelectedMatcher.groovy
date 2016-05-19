@@ -26,7 +26,7 @@ class UnSelectedMatcher extends StateMatcher<SelectSupport> {
     @Override
     protected boolean matchesSafely(SelectSupport component, Description mismatchDescription) {
         mismatchDescription.appendText('is selected')
-        component.unselected()
+        !component.selected()
     }
 
     @Override

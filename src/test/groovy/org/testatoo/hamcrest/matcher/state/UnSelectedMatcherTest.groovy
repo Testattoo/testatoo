@@ -38,10 +38,10 @@ class UnSelectedMatcherTest {
     public void should_have_expected_matcher() {
         SelectSupport cmp = mock(SelectSupport)
 
-        when(cmp.unselected()).thenReturn(true)
+        when(cmp.selected()).thenReturn(false)
         assertThat(cmp, is(unselected()))
         try {
-            when(cmp.unselected()).thenReturn(false)
+            when(cmp.selected()).thenReturn(true)
             assertThat(cmp, is(unselected()))
             fail()
         } catch (AssertionError e) {

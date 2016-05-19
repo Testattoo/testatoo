@@ -37,25 +37,27 @@
   </div>
 </nav>
 
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
 
-    <button type="button" id="add-message" class="btn btn-primary">Add message</button>
-    <div id="messages"></div>
+      <button type="button" id="add-message" class="btn btn-primary">Add message</button>
+      <div id="messages"></div>
 
+    </div>
+    <div class="col-md-2"></div>
   </div>
-  <div class="col-md-2"></div>
 </div>
 
 <script>
-  (function($) {
-    $(function() {
-      $('#add-message').on('click', function() {
+  (function ($) {
+    $(function () {
+      $('#add-message').on('click', function () {
         $('#messages').empty();
-        setTimeout(function() {
+        setTimeout(function () {
           $('#messages').empty().append('<button type="button" id="msg" class="btn btn-large btn-primary">MESSAGE !</button>');
-          setTimeout(function() {
+          setTimeout(function () {
             $('#add-message').prop('disabled', false);
           }, 5000);
         }, 2000);
