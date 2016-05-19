@@ -20,6 +20,4 @@ package org.testatoo.core.support.state
  */
 interface SelectSupport {
     boolean selected()
-
-    boolean unselected()
 }

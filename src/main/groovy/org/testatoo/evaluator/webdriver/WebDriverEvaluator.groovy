@@ -24,11 +24,10 @@ import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
+import static org.testatoo.core.input.MouseModifiers.*
 import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.MouseModifiers.DOUBLE
-import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -157,17 +156,12 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void press(Key key) {
-        new Actions(webDriver).keyDown(KeyConverter.convert(key)).build().perform()
-    }
+    void click(String id, Collection<MouseModifiers> mouseModifiers = [LEFT], Collection<?> keys = []) {
+        if (mouseModifiers == [LEFT, SINGLE] && keys.empty) {
+            webDriver.findElement(By.id(id)).click()
+            return
+        }
 
-    @Override
-    void release(Key key) {
-        new Actions(webDriver).keyUp(KeyConverter.convert(key)).build().perform();
-    }
-
-    @Override
-    void click(String id, Collection<MouseModifiers> mouseModifiers = [MouseModifiers.LEFT], Collection<?> keys = []) {
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -178,11 +172,11 @@ class WebDriverEvaluator implements Evaluator {
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
-        if (mouseModifiers.containsAll([MouseModifiers.LEFT, SINGLE])) {
+        if (mouseModifiers == [LEFT, SINGLE]) {
             action.click(webDriver.findElement(By.id(id)))
-        } else if (mouseModifiers.containsAll([MouseModifiers.RIGHT, SINGLE])) {
+        } else if (mouseModifiers == [RIGHT, SINGLE]) {
             action.contextClick(webDriver.findElement(By.id(id)))
-        } else if (mouseModifiers.containsAll([MouseModifiers.LEFT, DOUBLE])) {
+        } else if (mouseModifiers == [LEFT, DOUBLE]) {
             action.doubleClick(webDriver.findElement(By.id(id)))
         } else {
             throw new IllegalArgumentException('Invalid click sequence')

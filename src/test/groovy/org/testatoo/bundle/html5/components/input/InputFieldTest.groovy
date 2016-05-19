@@ -243,8 +243,9 @@ class InputFieldTest {
         assert time.label() == 'Time'
 
         assert time.value() == ''
-        time.value('14:45')
-        assert time.value() == '14:45'
+        time.value('14:45PM')
+        // 14:45PM on FF but 14:45 on Chrome (Field vs Widget)
+        assert (time.value() as String).startsWith('14:45')
     }
 
     @Test

@@ -62,104 +62,105 @@
   </div>
 </nav>
 
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
 
-    <input type="button" id="button_1" class="btn btn-primary" value="Button"/>
-    <input type="button" id="button_2" class="btn btn-primary" value="Button"/>
-    <input type="button" id="button_3" class="btn btn-primary" value="Button"/>
-    <input type="button" id="button_4" class="btn btn-primary" value="Button"/>
-    <input type="button" id="button_5" class="btn btn-primary" value="Button"/>
+      <input type="button" id="button_1" class="btn btn-primary" value="Button"/>
+      <input type="button" id="button_2" class="btn btn-primary" value="Button"/>
+      <input type="button" id="button_3" class="btn btn-primary" value="Button"/>
+      <input type="button" id="button_4" class="btn btn-primary" value="Button"/>
+      <input type="button" id="button_5" class="btn btn-primary" value="Button"/>
 
-    <label class="checkbox">
-      <input type="checkbox" id="checkbox">Check me out
-    </label>
+      <label class="checkbox">
+        <input type="checkbox" id="checkbox">Check me out
+      </label>
 
-    <label class="radio">
-      <input type="radio" id="radio">Check me out
-    </label>
+      <label class="radio">
+        <input type="radio" id="radio">Check me out
+      </label>
 
-    <div class="controls">
-      <select id="elements">
-        <option label="H" value="1">Helium</option>
-        <option label="B" value="5">Boron</option>
-        <option label="Pol" value="84">Polonium</option>
-        <option label="Ca" value="20">Calcium</option>
-        <option label="Ra" value="88">Radium</option>
-      </select>
-    </div>
-
-    <div id="droppable" class="jumbotron">
-      <div class="container">
-        <h1>Drop here</h1>
+      <div class="controls">
+        <select id="elements">
+          <option label="H" value="1">Helium</option>
+          <option label="B" value="5">Boron</option>
+          <option label="Pol" value="84">Polonium</option>
+          <option label="Ca" value="20">Calcium</option>
+          <option label="Ra" value="88">Radium</option>
+        </select>
       </div>
-    </div>
 
-    <div id="draggable" class="panel panel-default">
-      <div class="panel-body">
-        Drag me to my target ;)
+      <div id="droppable" class="jumbotron">
+        <div class="container">
+          <h1>Drop here</h1>
+        </div>
       </div>
+
+      <div id="draggable" class="panel panel-default">
+        <div class="panel-body">
+          Drag me to my target ;)
+        </div>
+      </div>
+
+      <hr/>
+
+      <h2>Special Modifiers + Mouse</h2>
+
+      <div style="clear: both;"></div>
+      <div id="_Ctrl_mouseleft" class="eventNotifier">Ctrl+mouseleft</div>
+      <div style="clear: both;"></div>
+
+      <div id="_Shift_mouseleft" class="eventNotifier">Shift+mouseleft</div>
+      <div style="clear:both;"></div>
+
+      <div id="_Ctrl_mouseright" class="eventNotifier">Ctrl+mouseright</div>
+      <div style="clear: both;"></div>
+
+      <div id="_Shift_mouseright" class="eventNotifier">Shift+mouseright</div>
+      <div style="clear:both;"></div>
+
+      <div id="_Alt_Shift_mouseleft" class="eventNotifier">Alt+Shift+mouseleft</div>
+      <div style="clear: both;"></div>
+
+      <div id="_Ctrl_Shift_mouseleft" class="eventNotifier">Ctrl+Shift+mouseleft</div>
+      <div style="clear: both;"></div>
     </div>
-
-    <hr/>
-
-    <h2>Special Modifiers + Mouse</h2>
-
-    <div style="clear: both;"></div>
-    <div id="_Ctrl_mouseleft" class="eventNotifier">Ctrl+mouseleft</div>
-    <div style="clear: both;"></div>
-
-    <div id="_Shift_mouseleft" class="eventNotifier">Shift+mouseleft</div>
-    <div style="clear:both;"></div>
-
-    <div id="_Ctrl_mouseright" class="eventNotifier">Ctrl+mouseright</div>
-    <div style="clear: both;"></div>
-
-    <div id="_Shift_mouseright" class="eventNotifier">Shift+mouseright</div>
-    <div style="clear:both;"></div>
-
-    <div id="_Alt_Shift_mouseleft" class="eventNotifier">Alt+Shift+mouseleft</div>
-    <div style="clear: both;"></div>
-
-    <div id="_Ctrl_Shift_mouseleft" class="eventNotifier">Ctrl+Shift+mouseleft</div>
-    <div style="clear: both;"></div>
+    <div class="col-md-2"></div>
   </div>
-  <div class="col-md-2"></div>
-
 </div>
 <script>
 
-  $.fn.dirtyCheck = function() {
+  $.fn.dirtyCheck = function () {
     this.addClass('dirty');
     this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
   };
 
-  (function($) {
+  (function ($) {
 
     // ==================== MOUSE ===================
 
-    $('#button_1').on('click', function(e) {
+    $('#button_1').on('click', function (e) {
       e.preventDefault();
       $(this).attr('value', 'Button Clicked!');
     });
 
-    $('#button_2').on('dblclick', function(e) {
+    $('#button_2').on('dblclick', function (e) {
       e.preventDefault();
       $(this).attr('value', 'Button Double Clicked!');
     });
 
-    $('#button_3').on('mouseover', function(e) {
+    $('#button_3').on('mouseover', function (e) {
       e.preventDefault();
       $(this).attr('value', 'Button Mouse Over!');
     });
 
-    $('#button_4').on('mouseout', function(e) {
+    $('#button_4').on('mouseout', function (e) {
       e.preventDefault();
       $(this).attr('value', 'Button Mouse Out!');
     });
 
-    $('#button_5').on('contextmenu', function(e) {
+    $('#button_5').on('contextmenu', function (e) {
       e.preventDefault();
       $(this).attr('value', 'Button Right Clicked!');
     });
@@ -167,13 +168,13 @@
     $('#draggable').draggable();
 
     $('#droppable').droppable({
-      drop: function() {
+      drop: function () {
         $(this).find("h1").html("Dropped!");
       }
     });
 
     //   ============= SPECIAL MODIFIERS AND MOUSE ===============
-    $(document).on('click', function(e) {
+    $(document).on('click', function (e) {
       if (e.button == 2) {
         if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
         if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
