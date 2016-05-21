@@ -194,7 +194,7 @@ class DSLTest {
 //            rightClickOn button
 //            assert button.text == 'Button Right Clicked!'
 //
-//            browser.navigate.refresh()
+//            browser.refresh()
 //
 //            button = $('#button_5') as Button
 //

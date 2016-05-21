@@ -62,6 +62,9 @@ class Matchers {
     public static Matcher<EmptySupport> filled() { new FilledMatcher() }
 
     @Factory
+    public static Matcher<FocusSupport> focused() { new FocusedMatcher() }
+
+    @Factory
     public static Matcher<ReadOnlySupport> readOnly() { new ReadOnlyMatcher() }
 
     @Factory
@@ -121,6 +124,9 @@ class Matchers {
 
     @Factory
     public static Matcher<ValueSupport> value(Object value) { new ValueMatcher(value) }
+
+    @Factory
+    public static Matcher<FocusSupport> focus() { new FocusMatcher() }
 
     @Factory
     public static Matcher<ReferenceSupport> reference(String source) { new ReferenceMatcher(source) }

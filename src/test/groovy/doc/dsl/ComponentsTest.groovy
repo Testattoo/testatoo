@@ -15,6 +15,7 @@ import org.testatoo.bundle.html5.list.MultiSelect
 import org.testatoo.bundle.html5.list.Select
 import org.testatoo.bundle.html5.list.Ul
 import org.testatoo.bundle.html5.table.Table
+import org.testatoo.core.Browser
 import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
@@ -28,7 +29,6 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class ComponentsTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
@@ -39,7 +39,7 @@ class ComponentsTest {
 
     @Before
     public void setUp() {
-        browser.navigate.refresh()
+        Browser.refresh()
     }
 
     @Test
@@ -161,6 +161,12 @@ class ComponentsTest {
 
         on cities select 'Montpellier', 'New York'
         cities.should { have selectedItems('Montreal', 'Montpellier', 'New York') }
+
+        // Or
+        Item montreal = cities.item('Montreal')
+        Item montpellier = cities.item('Montpellier')
+        Item ny = cities.item('New York')
+        cities.should { have selectedItems(montreal, montpellier, ny) }
         // end::listbox[]
     }
 
@@ -267,11 +273,16 @@ class ComponentsTest {
         EmailField email_field = $('#email') as InputTypeEmail
         PasswordField password_field = $('#password') as InputTypePassword
         // tag::form[]
-        email_field.should { be optional }
+        email_field.should {
+            have focus
+            be focused // Or
+            be optional
+
+        }
         password_field.should { be required }
 
         form.should {
-            contain(email_field, password_field, $('#range_field') as InputTypeRange)
+            contain(email_field, password_field)
             be invalid
         }
 

@@ -23,6 +23,7 @@ import org.testatoo.core.support.property.InputSupport
 import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.property.LengthSupport
 import org.testatoo.core.support.property.ValueSupport
+import org.testatoo.core.support.state.FocusSupport
 import org.testatoo.core.support.state.RangeSupport
 import org.testatoo.core.support.state.ValiditySupport
 
@@ -38,6 +39,7 @@ class FieldTest {
         assert Field in InputSupport
         assert Field in ValueSupport
         assert Field in ValiditySupport
+        assert Field in FocusSupport
 
         assert ColorField in Field
 

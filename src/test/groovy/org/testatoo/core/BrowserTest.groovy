@@ -27,7 +27,7 @@ import static org.testatoo.core.input.Mouse.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class NavigationTest {
+class BrowserTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
@@ -49,16 +49,16 @@ class NavigationTest {
 
         assert Browser.url == 'http://localhost:8080/components.html'
 
-        Browser.navigate.to('http://localhost:8080/keyboard.html')
+        Browser.navigateTo('http://localhost:8080/keyboard.html')
         assert Browser.url == 'http://localhost:8080/keyboard.html'
 
-        Browser.navigate.back()
+        Browser.back()
         assert Browser.url == 'http://localhost:8080/components.html'
 
-        Browser.navigate.forward()
+        Browser.forward()
         assert Browser.url == 'http://localhost:8080/keyboard.html'
 
-        Browser.navigate.refresh()
+        Browser.refresh()
         assert Browser.url == 'http://localhost:8080/keyboard.html'
     }
 

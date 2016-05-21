@@ -41,6 +41,10 @@ trait Input {
         config.evaluator.check(id(), "it.prop('required')")
     }
 
+    boolean focused() {
+        config.evaluator.check(id(), "it.is(':focus')")
+    }
+
     void value(Object value) {
         if (!this.enabled()) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")

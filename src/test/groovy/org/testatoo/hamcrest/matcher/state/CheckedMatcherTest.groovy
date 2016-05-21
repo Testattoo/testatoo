@@ -20,8 +20,6 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.Evaluator
-import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.support.state.CheckSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
