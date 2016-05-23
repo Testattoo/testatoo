@@ -1,0 +1,5 @@
+.git
+.idea
+Dockerfile
+target
+*.iml
