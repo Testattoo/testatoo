@@ -13,14 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.core
+package org.testatoo.hamcrest.matcher.state
+
+import org.hamcrest.Description
+import org.testatoo.core.support.state.FocusSupport
+import org.testatoo.hamcrest.StateMatcher
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class Navigation {
-    static void to(String url) { Testatoo.config.evaluator.to(url) }
-    static void back() { Testatoo.config.evaluator.back() }
-    static void forward() { Testatoo.config.evaluator.forward() }
-    static void refresh() { Testatoo.config.evaluator.refresh() }
+class FocusedMatcher extends StateMatcher<FocusSupport> {
+    @Override
+    protected boolean matchesSafely(FocusSupport component, Description mismatchDescription) {
+        mismatchDescription.appendText('is not focused')
+        component.focused()
+    }
+
+    @Override
+    void describeTo(Description description) {
+        description.appendText('focused')
+    }
 }

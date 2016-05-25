@@ -20,35 +20,35 @@ import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.state.CheckSupport
+import org.testatoo.core.support.state.FocusSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.hamcrest.Matchers.checked
+import static org.testatoo.hamcrest.Matchers.focused
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class CheckedMatcherTest {
+class FocusedMatcherTest {
     @Test
     public void should_have_expected_matcher() {
-        CheckSupport cmp = mock(CheckSupport)
+        FocusSupport cmp = mock(FocusSupport)
 
-        when(cmp.checked()).thenReturn(true)
-        assertThat(cmp, is(checked()))
+        when(cmp.focused()).thenReturn(true)
+        assertThat(cmp, is(focused()))
 
-        when(cmp.checked()).thenReturn(false)
+        when(cmp.focused()).thenReturn(false)
         try {
-            assertThat(cmp, is(checked()))
+            assertThat(cmp, is(focused()))
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: is checked')
-                    .appendText('\n     but: is unchecked');
+            description.appendText('\nExpected: is focused')
+                    .appendText('\n     but: is not focused');
 
             assert e.message == description.toString()
         }

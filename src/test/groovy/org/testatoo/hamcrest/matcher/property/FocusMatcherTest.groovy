@@ -13,42 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.hamcrest.matcher.state
+package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.state.CheckSupport
+import org.testatoo.core.support.state.FocusSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.is
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
-import static org.testatoo.hamcrest.Matchers.checked
+import static org.testatoo.hamcrest.Matchers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-class CheckedMatcherTest {
+class FocusMatcherTest {
     @Test
     public void should_have_expected_matcher() {
-        CheckSupport cmp = mock(CheckSupport)
+        FocusSupport cmp = mock(FocusSupport)
 
-        when(cmp.checked()).thenReturn(true)
-        assertThat(cmp, is(checked()))
-
-        when(cmp.checked()).thenReturn(false)
+        when(cmp.focused()).thenReturn(true)
+        assertThat(cmp, has(focus()))
         try {
-            assertThat(cmp, is(checked()))
+            when(cmp.focused()).thenReturn(false)
+            assertThat(cmp, has(focus()))
             fail()
         } catch (AssertionError e) {
             Description description = new StringDescription();
-            description.appendText('\nExpected: is checked')
-                    .appendText('\n     but: is unchecked');
+            description.appendText('\nExpected: has focus')
+                    .appendText('\n     but: has no focus');
 
             assert e.message == description.toString()
         }

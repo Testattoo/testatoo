@@ -21,7 +21,10 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Browser {
-    static final Navigation navigate = new Navigation()
+    static void navigateTo(String url) { config.evaluator.to(url) }
+    static void back() { config.evaluator.back() }
+    static void forward() { config.evaluator.forward() }
+    static void refresh() { config.evaluator.refresh() }
 
     static String getTitle() { config.evaluator.title }
     static String getPageSource() { config.evaluator.pageSource }

@@ -19,9 +19,10 @@ import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.InputSupport
 import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.property.ValueSupport
+import org.testatoo.core.support.state.FocusSupport
 import org.testatoo.core.support.state.ValiditySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Field extends Component implements LabelSupport, InputSupport, ValueSupport, ValiditySupport {}
+abstract class Field extends Component implements LabelSupport, InputSupport, ValueSupport, ValiditySupport, FocusSupport {}

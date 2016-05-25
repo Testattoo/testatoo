@@ -13,24 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.hamcrest.matcher.state
-
-import org.hamcrest.Description
-import org.testatoo.core.support.state.RequiredSupport
-import org.testatoo.hamcrest.StateMatcher
+package org.testatoo.core.support.state
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class OptionalMatcher extends StateMatcher<RequiredSupport> {
-    @Override
-    protected boolean matchesSafely(RequiredSupport component, Description mismatchDescription) {
-        mismatchDescription.appendText('is required')
-        !component.required()
-    }
-
-    @Override
-    void describeTo(Description description) {
-        description.appendText('optional')
-    }
+interface FocusSupport {
+    boolean focused()
 }

@@ -22,6 +22,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.input.*
+import org.testatoo.core.Browser
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
 
@@ -47,6 +48,8 @@ class InputFieldTest {
 
     @Test
     public void input_should_have_expected_behaviours() {
+        Browser.refresh()
+
         InputTypeEmail in EmailField
         InputTypeEmail in Input
 
@@ -56,9 +59,11 @@ class InputFieldTest {
         assert !email.readOnly()
         assert email.valid()
         assert email.value() == ''
+        assert email.focused()
 
         TextField text = $('#text_field') as InputTypeText
         assert text.placeholder() == 'Placeholder'
+        assert !text.focused()
 
         text = $('#read_only_and_filled') as InputTypeText
         assert !text.empty()

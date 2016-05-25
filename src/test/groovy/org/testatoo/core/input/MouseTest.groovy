@@ -48,7 +48,7 @@ class MouseTest {
 
     @Before
     public void setup() {
-        Browser.navigate.refresh()
+        Browser.refresh()
     }
 
     @Test
@@ -58,7 +58,7 @@ class MouseTest {
         clickOn button
         assert button.text() == 'Button Clicked!'
 
-        Browser.navigate.refresh()
+        Browser.refresh()
 
         button = $('#button_1') as Button
         assert button.text() == 'Button'
@@ -90,7 +90,7 @@ class MouseTest {
         doubleClickOn button
         assert button.text() == 'Button Double Clicked!'
 
-        Browser.navigate.refresh()
+        Browser.refresh()
 
         button = $('#button_2') as Button
 
@@ -107,7 +107,7 @@ class MouseTest {
         rightClickOn button
         assert button.text() == 'Button Right Clicked!'
 
-        Browser.navigate.refresh()
+        Browser.refresh()
 
         button = $('#button_5') as Button
 
@@ -147,7 +147,7 @@ class MouseTest {
         drag dragPanel on dropPanel
         assert dropPanel.title() == 'Dropped!'
 
-        Browser.navigate.refresh()
+        Browser.refresh()
 
         dropPanel = $('#droppable') as DropPanel
         assert dropPanel.title() == 'Drop here'

@@ -51,7 +51,7 @@ class WaitTest {
 
     @Test
     public void should_be_able_to_wait_on_condition() {
-        Browser.navigate.refresh()
+        Browser.refresh()
 
         Button button = $('#add-message') as Button
         Button message = $('#msg') as Button
@@ -73,7 +73,7 @@ class WaitTest {
 
     @Test
     public void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
-        Browser.navigate.refresh()
+        Browser.refresh()
 
         Button button = $('#add-message') as Button
 

@@ -1,6 +1,3 @@
-Identifiers
-GroovyExtensions
-
 MetaInfoProvider !!!
 
 //
@@ -37,8 +34,6 @@ MetaInfoProvider !!!
 PatternSupport
 
 HtmlComponentTest !! remove ?
-
-Add test on keyboard and mouse who test that evaluator is called
 
 Property matcher
 https://github.com/geb/geb/blob/master/module/geb-core/src/main/groovy/geb/textmatching/TextMatchingSupport.groovy

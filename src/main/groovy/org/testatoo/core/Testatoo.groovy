@@ -86,6 +86,7 @@ class Testatoo {
     public static Class unselected = UnSelectedMatcher
     public static Class valid = ValidMatcher
     public static Class visible = VisibleMatcher
+    public static Class focused = FocusedMatcher
 
     /**
      * Properties
@@ -114,6 +115,7 @@ class Testatoo {
     public static ValueMatcher value(Object value) { new ValueMatcher(value) }
     public static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
     public static TitleMatcher title(String title) { new TitleMatcher(title) }
+    public static FocusMatcher getFocus() { new FocusMatcher() }
 
     /**
      * Actions
