@@ -15,12 +15,35 @@
  */
 package org.testatoo.core
 
+import com.sun.prism.CompositeMode
+import org.testatoo.core.component.Button
+import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.ComponentFactory
+import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
+import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Item
+import org.testatoo.core.component.ListBox
+import org.testatoo.core.component.Panel
+import org.testatoo.core.component.Radio
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.Row
+import org.testatoo.core.component.field.ColorField
+import org.testatoo.core.component.field.DateField
+import org.testatoo.core.component.field.DateTimeField
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.MonthField
+import org.testatoo.core.component.field.NumberField
+import org.testatoo.core.component.field.PasswordField
+import org.testatoo.core.component.field.PhoneField
+import org.testatoo.core.component.field.RangeField
+import org.testatoo.core.component.field.SearchField
+import org.testatoo.core.component.field.TextField
+import org.testatoo.core.component.field.TimeField
+import org.testatoo.core.component.field.URLField
+import org.testatoo.core.component.field.WeekField
 import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.Keyboard
@@ -179,4 +202,30 @@ class Testatoo {
     static void type(Collection<?> keys) { Keyboard.type(keys) }
     static void type(Key key)  { type([key]) }
     static void type(String text) { type([text]) }
+
+    // Generic Component Factory
+    public static Button button(String text) { ComponentFactory.button(text) }
+    public static Radio radio(String label) { ComponentFactory.radio(label) }
+    public static CheckBox checkbox(String label) { ComponentFactory.checkbox(label)  }
+    public static Dropdown dropdown(String label) { ComponentFactory.dropdown(label) }
+    public static ListBox listBox(String label) { ComponentFactory.listBox(label) }
+    public static Group group(String value) { ComponentFactory.group(value) }
+    public static Item item(String value) { ComponentFactory.item(value) }
+    public static Heading heading(String text) { ComponentFactory.heading(text) }
+    public static Panel panel(String title) { ComponentFactory.panel(title) }
+
+    public static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
+    public static TextField textField(String value) { ComponentFactory.textField(value) }
+    public static SearchField searchField(String value) { ComponentFactory.searchField(value) }
+    public static EmailField emailField(String value) { ComponentFactory.emailField(value) }
+    public static URLField urlField(String value) { ComponentFactory.urlField(value) }
+    public static NumberField numberField(String value) { ComponentFactory.numberField(value) }
+    public static RangeField rangeField(String value) { ComponentFactory.rangeField(value) }
+    public static DateField dateField(String value) { ComponentFactory.dateField(value) }
+    public static ColorField colorField(String value) { ComponentFactory.colorField(value) }
+    public static DateTimeField dateTimeField(String value) { ComponentFactory.dateTimeField(value) }
+    public static MonthField monthField(String value) { ComponentFactory.monthField(value) }
+    public static PhoneField phoneField(String value) { ComponentFactory.phoneField(value) }
+    public static TimeField timeField(String value) { ComponentFactory.timeField(value) }
+    public static WeekField weekField(String value) { ComponentFactory.weekField(value) }
 }

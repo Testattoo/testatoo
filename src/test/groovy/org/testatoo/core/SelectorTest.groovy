@@ -26,7 +26,6 @@ import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.Component
 
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.component.ComponentFactory.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -172,6 +171,7 @@ class SelectorTest {
 
     @Test
     public void should_find_link_by_text() {
+        // TODO
     }
 
     @Test
