@@ -15,7 +15,6 @@
  */
 package org.testatoo.core
 
-import com.sun.prism.CompositeMode
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
