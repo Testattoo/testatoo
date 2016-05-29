@@ -20,8 +20,10 @@ import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.core.support.property.ItemSupport
 import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.property.SelectedItemSupport
+import org.testatoo.core.support.state.EmptySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Dropdown extends Component implements SingleSelectable, LabelSupport, GroupSupport, ItemSupport, SelectedItemSupport {}
+abstract class Dropdown extends Component implements SingleSelectable, LabelSupport, GroupSupport, EmptySupport,
+        ItemSupport, SelectedItemSupport {}

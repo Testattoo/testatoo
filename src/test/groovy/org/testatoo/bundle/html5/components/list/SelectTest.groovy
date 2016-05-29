@@ -46,6 +46,9 @@ class SelectTest {
     public void select_should_have_expected_behaviours() {
         assert Select in Dropdown
 
+        Select empty_select = $('#empty_select') as Select
+        empty_select.should { be empty }
+
         Select elements = $('#elements') as Select
 
         assert elements.label() == 'Elements list'

@@ -61,4 +61,9 @@ class MultiSelect extends ListBox {
     String label() {
         label(this)
     }
+
+    @Override
+    boolean empty() {
+        items().empty
+    }
 }

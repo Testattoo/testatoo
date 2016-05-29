@@ -43,4 +43,9 @@ class Table extends DataGrid {
     Th column(String title) {
         columns().find { it.title() == title }
     }
+
+    @Override
+    boolean empty() {
+        rows().empty
+    }
 }

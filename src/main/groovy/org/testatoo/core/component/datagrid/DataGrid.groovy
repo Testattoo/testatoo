@@ -18,8 +18,9 @@ package org.testatoo.core.component.datagrid
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.ColumnSupport
 import org.testatoo.core.support.property.RowSupport
+import org.testatoo.core.support.state.EmptySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class DataGrid extends Component implements ColumnSupport, RowSupport {}
+abstract class DataGrid extends Component implements ColumnSupport, RowSupport, EmptySupport {}
