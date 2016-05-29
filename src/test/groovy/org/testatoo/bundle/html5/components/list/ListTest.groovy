@@ -46,7 +46,10 @@ class ListTest {
     public void should_have_expected_behaviours() {
         assert Ul in ListView
 
-        Ul ul = $('#unordered_list') as Ul
+        Ul ul = $('#empty_unordered_list') as Ul
+        assert ul.empty()
+
+        ul = $('#unordered_list') as Ul
 
         assert ul.items().size() == 5
         assert ul.items()[0].value() == 'Item 1'
@@ -55,7 +58,11 @@ class ListTest {
         assert ul.items()[3].toString() == 'Item 4'
 
         assert Ol in ListView
-        Ol ol = $('#ordered_list') as Ol
+
+        Ol ol = $('#empty_ordered_list') as Ol
+        assert ol.empty()
+
+         ol = $('#ordered_list') as Ol
 
         assert ol.items().size() == 5
         assert ol.items()[0].value() == 'Item 11'

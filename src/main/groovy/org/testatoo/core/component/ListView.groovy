@@ -16,10 +16,11 @@
 package org.testatoo.core.component
 
 import org.testatoo.core.support.property.ItemSupport
+import org.testatoo.core.support.state.EmptySupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class ListView extends Component implements ItemSupport {
+abstract class ListView extends Component implements ItemSupport, EmptySupport {
     abstract Item item(String value)
 }

@@ -46,6 +46,9 @@ class MultiSelectTest {
     public void should_have_expected_behaviours() {
         assert MultiSelect in ListBox
 
+        ListBox empty_multi_select = $('#empty_multi_select') as MultiSelect
+        empty_multi_select.should { be empty }
+
         ListBox cities = $('#cities') as MultiSelect
 
         assert cities.label() == 'Cities list'

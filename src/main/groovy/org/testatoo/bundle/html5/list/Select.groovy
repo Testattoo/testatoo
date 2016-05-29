@@ -55,4 +55,9 @@ class Select extends Dropdown {
     String label() {
        label(this)
     }
+
+    @Override
+    boolean empty() {
+        items().empty
+    }
 }

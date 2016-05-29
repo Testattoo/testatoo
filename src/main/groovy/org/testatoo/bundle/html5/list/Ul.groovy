@@ -33,4 +33,9 @@ class Ul extends ListView {
     Li item(String value) {
         items().find { it.value() == value }
     }
+
+    @Override
+    boolean empty() {
+        items().empty
+    }
 }

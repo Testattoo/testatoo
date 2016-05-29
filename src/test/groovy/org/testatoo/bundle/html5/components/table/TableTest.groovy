@@ -46,7 +46,10 @@ class TableTest {
     public void should_have_expected_behaviours() {
         assert Table in DataGrid
 
-        Table data_grid = $('#data_grid') as Table
+        Table data_grid = $('#empty_data_grid') as Table
+        assert data_grid.empty()
+
+        data_grid = $('#data_grid') as Table
 
         assert data_grid.columns().size() == 4
         assert data_grid.rows().size() == 4
