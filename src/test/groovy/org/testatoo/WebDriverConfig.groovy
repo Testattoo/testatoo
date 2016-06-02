@@ -32,23 +32,36 @@ import static org.testatoo.core.Testatoo.config
 class WebDriverConfig extends ExternalResource {
     @Override
     protected void before() throws Throwable {
-        if(Boolean.valueOf(System.getProperty("CI"))) {
 
-            DesiredCapabilities caps = DesiredCapabilities.firefox();
-            caps.setCapability("platform", "Windows XP");
-            caps.setCapability("version", "43.0");
 
-            String URL = "http://" + System.getProperty("sauceUsername") + ":" + System.getProperty("sauceAccessKey") + "@localhost:4445/wd/hub"
+            if(Boolean.valueOf(System.getProperty("CI"))) {
+                switch (System.getProperty("Browser")) {
+                    case "Firefox":
+                        FirefoxProfile profile = new FirefoxProfile();
+                        profile.setEnableNativeEvents(true);
+                        config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
+                        break
 
-            WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-            config.evaluator = new WebDriverEvaluator(driver)
+                    case "Chrome":
+
+                        break
+                }
+
+//            DesiredCapabilities caps = DesiredCapabilities.firefox();
+//            caps.setCapability("platform", "Windows XP");
+//            caps.setCapability("version", "43.0");
+
+//            String URL = "http://" + System.getProperty("sauceUsername") + ":" + System.getProperty("sauceAccessKey") + "@localhost:4445/wd/hub"
+
+//            WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
+//            config.evaluator = new WebDriverEvaluator(driver)
         } else {
 //            System.setProperty("webdriver.chrome.driver", "/home/david/Applications/chromedriver");
 //            config.evaluator = new WebDriverEvaluator(new ChromeDriver())
 
-            FirefoxProfile profile = new FirefoxProfile();
-            profile.setEnableNativeEvents(true);
-            config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
+                FirefoxProfile profile = new FirefoxProfile();
+                profile.setEnableNativeEvents(true);
+                config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
         }
     }
 

@@ -9,4 +9,4 @@ before_script:
   - sleep 3
 
 script:
-  mvn test
+  mvn test -DBrowser=Firefox
