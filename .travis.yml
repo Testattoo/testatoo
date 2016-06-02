@@ -15,11 +15,14 @@ language: java
 jdk:
   - oraclejdk8
 
+cache:
+  directories:
+    - $HOME/.m2/repository
+
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3
 
 script:
-  - mvn test -DBrowser=Firefox
-  - mvn test -DBrowser=Chrome
+  mvn test -DBrowser=Chrome
