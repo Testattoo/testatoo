@@ -1,6 +1,7 @@
 = Testatoo
 
 :revdate: 29-19-2015
+:build-icon: https://travis-ci.org/Ovea/testatoo.svg?branch=master["Build Status", link="https://travis-ci.org/Ovea/testatoo"]
 :gitter-icon: https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
@@ -9,11 +10,11 @@ image:{build-icon}
 image:{gitter-icon}
 
 [.left.text-left]
-image::https://github.com/Ovea/testatoo/blob/master/src/doc/images/logo.jpg[]
+image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/logo.jpg[]
 
 == Documentation and Samples
 
-The documentation is available https://github.com/Ovea/testatoo/blob/master/src/doc/index.adoc[here]
+The documentation is available https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/index.adoc[here]
 
 Samples are available https://github.com/Ovea/testatoo-sample[here]
 

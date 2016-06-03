@@ -110,13 +110,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <sauceUsername>${ovea.sauce.username}</sauceUsername>
-                        <sauceAccessKey>${ovea.sauce.key}</sauceAccessKey>
-                        <!--<CI>true</CI>-->
-                    </systemPropertyVariables>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -246,31 +239,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>com.saucelabs.maven.plugin</groupId>-->
-                <!--<artifactId>sauce-connect-plugin</artifactId>-->
-                <!--<version>2.1.20</version>-->
-                <!--<configuration>-->
-                    <!--<sauceUsername>${ovea.sauce.username}</sauceUsername>-->
-                    <!--<sauceAccessKey>${ovea.sauce.key}</sauceAccessKey>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>start-sauceconnct</id>-->
-                        <!--<phase>test-compile</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>start-sauceconnect</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>stop-sauceconnect</id>-->
-                        <!--<phase>test</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>stop-sauceconnect</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
@@ -386,25 +354,6 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>com.saucelabs</groupId>-->
-            <!--<artifactId>sauce_junit</artifactId>-->
-            <!--<version>2.1.19</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.saucelabs.selenium</groupId>-->
-            <!--<artifactId>sauce-ondemand-driver</artifactId>-->
-            <!--<version>2.14</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.saucelabs.selenium</groupId>-->
-            <!--<artifactId>selenium-client-factory</artifactId>-->
-            <!--<version>2.14</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
     </dependencies>
 
     <distributionManagement>
@@ -418,31 +367,6 @@
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>saucelabs-repository</id>
-            <url>https://repository-saucelabs.forge.cloudbees.com/release</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>saucelabs-repository</id>
-            <url>http://repository-saucelabs.forge.cloudbees.com/release</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
     <profiles>
         <profile>
