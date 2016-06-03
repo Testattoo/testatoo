@@ -25,4 +25,5 @@ before_script:
   - sleep 3
 
 script:
-  mvn test -DBrowser=Chrome
+  - mvn test -DBrowser=Firefox
+  - mvn test -DBrowser=Chrome
