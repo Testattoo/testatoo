@@ -27,3 +27,6 @@ before_script:
 script:
   - mvn test -DBrowser=Firefox
   - mvn test -DBrowser=Chrome
+
+after_success:
+  - mvn jacoco:report coveralls:report
