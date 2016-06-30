@@ -26,4 +26,4 @@ before_script:
 
 script:
   - mvn test jacoco:report coveralls:report -PFirefox -DCI
-  - mvn test -PChrome -DCI
+#  - mvn test -PChrome -DCI

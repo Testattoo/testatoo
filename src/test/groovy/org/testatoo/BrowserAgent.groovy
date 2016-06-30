@@ -20,6 +20,6 @@ package org.testatoo
  */
 interface BrowserAgent {
     public interface All {}
-    public interface Firefox extends All {}
-    public interface Chrome extends All {}
+    public interface Firefox {}
+    public interface Chrome {}
 }

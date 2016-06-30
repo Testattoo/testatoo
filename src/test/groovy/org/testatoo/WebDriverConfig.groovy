@@ -31,7 +31,6 @@ class WebDriverConfig extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         if (Boolean.valueOf(System.getProperty("CI"))) {
-            println '=================== CI Build ==================='
             switch (System.getProperty("browser")) {
                 case "Firefox":
                     println '=================== Firefox Profile ==================='
