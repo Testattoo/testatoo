@@ -22,7 +22,7 @@ import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
-import org.testatoo.BrowserAgent
+import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Div
 import org.testatoo.bundle.html5.input.InputTypeText
@@ -35,7 +35,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(BrowserAgent.All)
+@Category(UserAgent.All)
 class WebDriverEvaluatorTest {
 
     @ClassRule

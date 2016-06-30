@@ -18,7 +18,7 @@ package org.testatoo
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-interface BrowserAgent {
+interface UserAgent {
     public interface All {}
     public interface Firefox {}
     public interface Chrome {}

@@ -21,7 +21,7 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.BrowserAgent
+import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.core.ComponentException
 import org.testatoo.core.input.MouseModifiers
@@ -35,7 +35,7 @@ import static org.testatoo.core.input.Key.CTRL
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(BrowserAgent.All)
+@Category(UserAgent.All)
 class ErrorsTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

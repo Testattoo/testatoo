@@ -21,7 +21,7 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.BrowserAgent
+import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.core.Browser
 import org.testatoo.core.component.Radio
@@ -32,7 +32,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(BrowserAgent.All)
+@Category(UserAgent.All)
 class SpecTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

@@ -7,14 +7,14 @@ import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.BrowserAgent
+import org.testatoo.UserAgent
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 
 @RunWith(JUnit4)
-@Category(BrowserAgent.All)
+@Category(UserAgent.All)
 class JunitStarterTest {
     @BeforeClass
     public static void setup() {
