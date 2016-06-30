@@ -407,7 +407,7 @@
                             <systemPropertyVariables>
                                 <browser>Firefox</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.BrowserAgent$Firefox</groups>
+                            <groups>org.testatoo.BrowserAgent$Firefox,org.testatoo.BrowserAgent$All</groups>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -424,7 +424,7 @@
                             <systemPropertyVariables>
                                 <browser>Chrome</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.BrowserAgent$Chrome</groups>
+                            <groups>org.testatoo.BrowserAgent$Chrome,org.testatoo.BrowserAgent$All</groups>
                         </configuration>
                     </plugin>
                 </plugins>
