@@ -31,7 +31,7 @@ class WebDriverConfig extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         if (Boolean.valueOf(System.getProperty("CI"))) {
-            switch (System.getProperty("Browser")) {
+            switch (System.getProperty("browser")) {
                 case "Firefox":
                     FirefoxProfile profile = new FirefoxProfile();
                     profile.setEnableNativeEvents(true);
@@ -44,11 +44,11 @@ class WebDriverConfig extends ExternalResource {
                     break
             }
         } else {
-//            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-//            config.evaluator = new WebDriverEvaluator(new ChromeDriver())
-            FirefoxProfile profile = new FirefoxProfile();
-            profile.setEnableNativeEvents(true);
-            config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
+            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+            config.evaluator = new WebDriverEvaluator(new ChromeDriver())
+//            FirefoxProfile profile = new FirefoxProfile();
+//            profile.setEnableNativeEvents(true);
+//            config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
         }
     }
 
