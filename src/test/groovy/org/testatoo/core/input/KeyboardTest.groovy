@@ -21,8 +21,7 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.AllBrowser
-import org.testatoo.Firefox
+import org.testatoo.BrowserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Span
@@ -36,7 +35,7 @@ import static org.testatoo.core.input.Key.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(AllBrowser)
+@Category(BrowserAgent.All)
 class KeyboardTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
@@ -72,7 +71,7 @@ class KeyboardTest {
     }
 
     @Test
-    @Category(Firefox)
+    @Category(BrowserAgent.Firefox)
     public void should_type_special_key_on_keyboard() {
         [
                 '#span_esc'      : ESCAPE,

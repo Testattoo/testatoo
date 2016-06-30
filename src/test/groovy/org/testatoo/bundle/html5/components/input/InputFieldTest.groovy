@@ -21,7 +21,7 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.AllBrowser
+import org.testatoo.BrowserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.input.*
 import org.testatoo.core.Browser
@@ -37,7 +37,7 @@ import static org.testatoo.core.Testatoo.visit
  */
 
 @RunWith(JUnit4)
-@Category(AllBrowser)
+@Category(BrowserAgent.All)
 class InputFieldTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

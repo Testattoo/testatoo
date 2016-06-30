@@ -109,9 +109,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
-                <configuration>
-                    <groups>org.testatoo.AllBrowser</groups>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -245,9 +242,6 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.2.0</version>
-                <configuration>
-                    <repoToken>${coverall-token}</repoToken>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -413,7 +407,7 @@
                             <systemPropertyVariables>
                                 <browser>Firefox</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.Firefox</groups>
+                            <groups>org.testatoo.BrowserAgent$Firefox</groups>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -430,7 +424,7 @@
                             <systemPropertyVariables>
                                 <browser>Chrome</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.Chrome</groups>
+                            <groups>org.testatoo.BrowserAgent$Chrome</groups>
                         </configuration>
                     </plugin>
                 </plugins>
