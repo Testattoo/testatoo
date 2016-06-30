@@ -38,9 +38,8 @@
 
     <properties>
         <jdk.version>1.7</jdk.version>
-        <groovy.version>2.4.6</groovy.version>
+        <groovy.version>2.4.7</groovy.version>
         <selenium.version>2.53.0</selenium.version>
-        <jetty.version>9.1.4.v20140401</jetty.version>
         <jetty.daemon>true</jetty.daemon>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -188,7 +187,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -211,10 +210,10 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <plugin >
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.version}</version>
+                <version>9.1.4.v20140401</version>
                 <configuration>
                     <webAppSourceDirectory>src/test/webapp</webAppSourceDirectory>
                     <daemon>${jetty.daemon}</daemon>
@@ -250,7 +249,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
+                <version>0.7.7.201606060606</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -321,7 +320,7 @@
         <dependency>
             <groupId>io.github.lukehutch</groupId>
             <artifactId>fast-classpath-scanner</artifactId>
-            <version>1.9.19</version>
+            <version>1.9.21</version>
         </dependency>
 
         <dependency>

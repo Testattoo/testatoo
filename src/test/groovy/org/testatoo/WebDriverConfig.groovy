@@ -44,6 +44,8 @@ class WebDriverConfig extends ExternalResource {
                     break
             }
         } else {
+//            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+//            config.evaluator = new WebDriverEvaluator(new ChromeDriver())
             FirefoxProfile profile = new FirefoxProfile();
             profile.setEnableNativeEvents(true);
             config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
