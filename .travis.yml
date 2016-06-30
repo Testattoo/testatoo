@@ -25,8 +25,5 @@ before_script:
   - sleep 3
 
 script:
-  - mvn test -DBrowser=Firefox
-  - mvn test -DBrowser=Chrome
-
-after_success:
-  - mvn clean test jacoco:report coveralls:report -DBrowser=Chrome
+  - mvn test jacoco:report coveralls:report -DBrowser=Firefox -PFirefox
+  - mvn test -DBrowser=Chrome -PChrome
