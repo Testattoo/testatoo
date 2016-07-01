@@ -22,8 +22,10 @@ import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.input.InputTypePassword
 import org.testatoo.category.UserAgent
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.input.MouseModifiers
 
 import static org.junit.Assert.fail
@@ -94,6 +96,16 @@ class ErrorsTest {
             fail()
         } catch (IllegalArgumentException e) {
             assert e.message == 'Invalid click sequence'
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_when_asking_length_on_input_whiteout_length() {
+        PasswordField password = $('#password') as InputTypePassword
+        try {
+            password.length()
+        } catch (ComponentException e) {
+            assert e.message == 'Not length defined for component InputTypePassword InputTypePassword:password'
         }
     }
 }
