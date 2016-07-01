@@ -36,4 +36,36 @@ class RowTest {
         assert Row in TitleSupport
         assert Row in CellSupport
     }
+
+    @Test
+    public void should_have_equality_and_hashcode_based_on_title() {
+        Row row_1 = new TestRow('title_1')
+        Row row_2 = new TestRow('title_2')
+        Row row_3 = new TestRow('title_1')
+
+        assert !row_1.equals(row_2)
+        assert row_1.equals(row_3)
+
+        assert row_1.hashCode() == 'title_1'.hashCode()
+    }
+
+    private class TestRow extends Row {
+        private String title;
+
+        public TestRow(String title) {
+            this.title = title
+        }
+
+        List<Cell> cells() {
+            return null
+        }
+
+        Cell cell(Object value) {
+            return null
+        }
+
+        String title() {
+            return title
+        }
+    }
 }

@@ -38,6 +38,37 @@ class ItemTest {
         assert Item in UnSelectable
         assert Item in SelectSupport
         assert Item in ValueSupport
+    }
 
+    @Test
+    public void should_have_equality_and_hashcode_based_on_value() {
+        Item item_1 = new TestItem('value_1')
+        Item item_2 = new TestItem('value_2')
+        Item item_3 = new TestItem('value_1')
+
+        assert !item_1.equals(item_2)
+        assert item_1.equals(item_3)
+
+        assert item_1.hashCode() == 'value_1'.hashCode()
+    }
+
+    private class TestItem extends Item {
+        private String value;
+
+        public TestItem(String value) {
+            this.value = value
+        }
+
+        void select() {}
+
+        void unselect() {}
+
+        Object value() {
+            return value
+        }
+
+        boolean selected() {
+            return false
+        }
     }
 }

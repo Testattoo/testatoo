@@ -21,6 +21,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.category.NoGui
 import org.testatoo.core.component.Component
+import org.testatoo.core.component.Item
 import org.testatoo.core.support.property.CellSupport
 import org.testatoo.core.support.property.TitleSupport
 
@@ -35,5 +36,37 @@ class ColumnTest {
         assert Column in Component
         assert Column in TitleSupport
         assert Column in CellSupport
+    }
+
+    @Test
+    public void should_have_equality_and_hashcode_based_on_title() {
+        Column column_1 = new TestColumn('title_1')
+        Column column_2 = new TestColumn('title_2')
+        Column column_3 = new TestColumn('title_1')
+
+        assert !column_1.equals(column_2)
+        assert column_1.equals(column_3)
+
+        assert column_1.hashCode() == 'title_1'.hashCode()
+    }
+
+    private class TestColumn extends Column {
+        private String title;
+
+        public TestColumn(String title) {
+            this.title = title
+        }
+
+        List<Cell> cells() {
+            return null
+        }
+
+        Cell cell(Object value) {
+            return null
+        }
+
+        String title() {
+            return title
+        }
     }
 }
