@@ -18,6 +18,10 @@ package org.testatoo.hamcrest.matcher.state
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
 import org.junit.Test
+import org.junit.experimental.categories.Category
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
@@ -34,6 +38,8 @@ import static org.testatoo.hamcrest.Matchers.contain
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@RunWith(JUnit4)
+@Category(NoGui)
 class ContainMatcherTest {
     @Test
     public void should_have_expected_matcher() {

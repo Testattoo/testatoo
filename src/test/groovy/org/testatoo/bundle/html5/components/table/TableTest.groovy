@@ -21,10 +21,10 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.table.Table
 import org.testatoo.bundle.html5.table.Tr
+import org.testatoo.category.UserAgent
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid

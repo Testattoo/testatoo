@@ -21,7 +21,7 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.UserAgent
+import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Span
@@ -35,7 +35,6 @@ import static org.testatoo.core.input.Key.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(UserAgent.All)
 class KeyboardTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
@@ -49,6 +48,7 @@ class KeyboardTest {
     }
 
     @Test
+    @Category(UserAgent.All)
     public void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
@@ -61,6 +61,7 @@ class KeyboardTest {
     }
 
     @Test
+    @Category(UserAgent.All)
     public void should_type_number_on_keyboard() {
         (0..9).each {
             Span current_span = $("#span_$it") as Span
@@ -115,6 +116,7 @@ class KeyboardTest {
     }
 
     @Test
+    @Category(UserAgent.All)
     public void should_use_key_modifier_on_keyboard() {
         Span span = $('#span_Ctrl_Alt_Shift_x') as Span
         assert !span.available()

@@ -7,8 +7,8 @@ import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.testatoo.UserAgent
 import org.testatoo.bundle.html5.input.InputTypeText
+import org.testatoo.category.UserAgent
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*

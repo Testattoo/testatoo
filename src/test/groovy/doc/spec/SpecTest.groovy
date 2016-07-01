@@ -21,8 +21,8 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
+import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.component.Radio
 

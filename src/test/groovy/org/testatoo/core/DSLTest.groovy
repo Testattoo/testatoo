@@ -17,8 +17,10 @@ package org.testatoo.core
 
 import org.junit.BeforeClass
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
@@ -37,6 +39,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(NoGui)
 class DSLTest {
     private static MetaDataProvider meta
 

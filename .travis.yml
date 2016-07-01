@@ -25,5 +25,5 @@ before_script:
   - sleep 3
 
 script:
-  - mvn test jacoco:report coveralls:report -PFirefox -DCI
-#  - mvn test -PChrome -DCI
+  - mvn test jacoco:report coveralls:report -Pfirefox -DCI
+#  - mvn test -Pchrome -DCI

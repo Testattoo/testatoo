@@ -16,8 +16,10 @@
 package org.testatoo.core.component.field
 
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.InputSupport
 import org.testatoo.core.support.property.LabelSupport
@@ -31,6 +33,7 @@ import org.testatoo.core.support.state.ValiditySupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(NoGui)
 class FieldTest {
     @Test
     public void should_have_expected_inheritance() {

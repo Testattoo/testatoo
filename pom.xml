@@ -40,7 +40,7 @@
     <properties>
         <jdk.version>1.7</jdk.version>
         <groovy.version>2.4.7</groovy.version>
-        <selenium.version>2.53.0</selenium.version>
+        <selenium.version>2.53.1</selenium.version>
         <jetty.daemon>true</jetty.daemon>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -110,12 +110,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
-                <configuration>
-                    <includes>
-                        <include>org/testatoo/core/component/**/*Test.java</include>
-                        <include>org/testatoo/hamcrest/**/*Test.java</include>
-                    </includes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -404,7 +398,7 @@
             </properties>
         </profile>
         <profile>
-            <id>Firefox</id>
+            <id>firefox</id>
             <build>
                 <plugins>
                     <plugin>
@@ -414,14 +408,14 @@
                             <systemPropertyVariables>
                                 <browser>Firefox</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.UserAgent$Firefox,org.testatoo.UserAgent$All</groups>
+                            <groups>org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Firefox,org.testatoo.category.UserAgent$All</groups>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
         <profile>
-            <id>Chrome</id>
+            <id>chrome</id>
             <build>
                 <plugins>
                     <plugin>
@@ -431,7 +425,7 @@
                             <systemPropertyVariables>
                                 <browser>Chrome</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.UserAgent$Chrome,org.testatoo.UserAgent$All</groups>
+                            <groups>org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Chrome,org.testatoo.category.UserAgent$All</groups>
                         </configuration>
                     </plugin>
                 </plugins>

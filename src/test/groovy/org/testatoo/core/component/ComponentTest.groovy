@@ -17,8 +17,10 @@ package org.testatoo.core.component
 
 import org.junit.Before
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
@@ -36,6 +38,7 @@ import static org.testatoo.core.input.MouseModifiers.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(NoGui)
 class ComponentTest {
     MetaDataProvider metaData
     Evaluator evaluator

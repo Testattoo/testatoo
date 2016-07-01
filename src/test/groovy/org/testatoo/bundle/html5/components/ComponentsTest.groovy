@@ -21,12 +21,12 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.*
 import org.testatoo.bundle.html5.heading.*
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
+import org.testatoo.category.UserAgent
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.*

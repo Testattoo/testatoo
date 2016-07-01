@@ -7,7 +7,6 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.*
 import org.testatoo.bundle.html5.heading.H1
@@ -17,6 +16,7 @@ import org.testatoo.bundle.html5.list.MultiSelect
 import org.testatoo.bundle.html5.list.Select
 import org.testatoo.bundle.html5.list.Ul
 import org.testatoo.bundle.html5.table.Table
+import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.Column
