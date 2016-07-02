@@ -248,6 +248,12 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.7.201606060606</version>
+                <configuration>
+                    <excludes>
+                        <exclude>org/testatoo/hamcrest/matcher/property/dummy/*</exclude>
+                    </excludes>
+                </configuration>
+
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
