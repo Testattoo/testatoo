@@ -1,6 +1,6 @@
 = Testatoo
 
-:revdate: 29-19-2015
+:revdate: 07-02-2015
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 
@@ -37,21 +37,21 @@ Latest Testatoo version is available on {download-url}[Maven Central]
 You need version **1.8** and more of the Java JDK installed
 
     $ java -version
-    java version "1.8.0_25"
-    Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
-    Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+    java version "1.8.0_91"
+    Java(TM) SE Runtime Environment (build 1.8.0_91-b14)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
     
 ==== Maven
 
 Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven Installation Instructions"]
 
     $ mvn --version  
-    Apache Maven 3.0.5
+    Apache Maven 3.3.9
     Maven home: /usr/share/maven
-    Java version: 1.8.0_25, vendor: Oracle Corporation
+    Java version: 1.8.0_91, vendor: Oracle Corporation
     Java home: /usr/lib/jvm/java-8-oracle/jre
     Default locale: en_US, platform encoding: UTF-8
-    OS name: "linux", version: "3.16.0-24-generic", arch: "amd64", family: "unix"
+    OS name: "linux", version: "4.4.0-28-generic", arch: "amd64", family: "unix"
     
 === Installation Steps
 
@@ -61,7 +61,7 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
 
 In your original Terminal
 
-    $ mvn clean install
+    $ mvn clean install -Pfirefox
 
 To just build and skip the tests
 
