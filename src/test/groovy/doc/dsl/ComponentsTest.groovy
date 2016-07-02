@@ -19,6 +19,7 @@ import org.testatoo.bundle.html5.table.Table
 import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.component.*
+import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
@@ -134,6 +135,11 @@ class ComponentsTest {
         on os_list select gentoo
         os_list.should { have selectedItem(gentoo) }
 
+        Item[] linux_dist = new Item[os_list.items().size()]
+        os_list.should { have items(os_list.items().toArray(linux_dist))}
+
+        Group[] linux_family = new Group[os_list.groups().size()]
+        os_list.should { have groups(os_list.groups().toArray(linux_family))}
     }
 
     @Test
@@ -375,6 +381,9 @@ class ComponentsTest {
         }
         // end::column[]
 
+        Column[] _columns = new Column[datagrid.columns().size()]
+        datagrid.should { have columns(datagrid.columns().toArray(_columns))}
+
         // tag::row[]
         Row row = datagrid.row('Row 3') // Or datagrid.row[2]
         row.should {
@@ -390,5 +399,8 @@ class ComponentsTest {
             have value('cell 32')
         }
         // end::cell[]
+
+        Cell[] _cells = new Cell[datagrid.rows()[0].cells().size()]
+        datagrid.rows()[0].should { have cells(datagrid.rows()[0].cells().toArray(_cells))}
     }
 }

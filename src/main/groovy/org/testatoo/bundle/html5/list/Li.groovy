@@ -34,10 +34,6 @@ class Li extends Item {
         throw new ComponentException('Unsupported Operation')
     }
 
-    boolean unselected() {
-        !selected()
-    }
-
     void select() {
         throw new ComponentException("${this.class.simpleName} ${this} cannot be selected (Unsupported Operation)")
     }
