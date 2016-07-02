@@ -18,8 +18,10 @@ package org.testatoo.hamcrest.matcher.state
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 import org.testatoo.core.component.Component
 
 import static org.hamcrest.MatcherAssert.assertThat
@@ -33,6 +35,7 @@ import static org.testatoo.hamcrest.Matchers.hidden
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(NoGui)
 class HiddenMatcherTest {
     @Test
     public void should_have_expected_matcher() {

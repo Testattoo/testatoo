@@ -16,8 +16,10 @@
 package org.testatoo.core.component.datagrid
 
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.ColumnSupport
 import org.testatoo.core.support.property.RowSupport
@@ -26,6 +28,7 @@ import org.testatoo.core.support.property.RowSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(NoGui)
 class DataGridTest {
     @Test
     public void should_have_expected_inheritance() {

@@ -15,6 +15,7 @@
  */
 package org.testatoo.bundle.html5.input
 
+import org.testatoo.core.ComponentException
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.NumberField
 
@@ -31,7 +32,7 @@ class InputTypeNumber extends NumberField implements Input {
         if (value)
             value as BigDecimal
         else
-            0
+            throw new ComponentException("${this.class.simpleName} ${this} is empty and has no value")
     }
 
     @Override

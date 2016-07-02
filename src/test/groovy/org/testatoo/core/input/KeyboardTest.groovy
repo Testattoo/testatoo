@@ -17,10 +17,11 @@ package org.testatoo.core.input
 
 import org.junit.Before
 import org.junit.ClassRule
-import org.junit.Ignore
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Span
@@ -47,6 +48,7 @@ class KeyboardTest {
     }
 
     @Test
+    @Category(UserAgent.All)
     public void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
@@ -59,6 +61,7 @@ class KeyboardTest {
     }
 
     @Test
+    @Category(UserAgent.All)
     public void should_type_number_on_keyboard() {
         (0..9).each {
             Span current_span = $("#span_$it") as Span
@@ -69,7 +72,7 @@ class KeyboardTest {
     }
 
     @Test
-    @Ignore // Special key handled by browser
+    @Category(UserAgent.Firefox)
     public void should_type_special_key_on_keyboard() {
         [
                 '#span_esc'      : ESCAPE,
@@ -107,13 +110,13 @@ class KeyboardTest {
         ].each { k, v ->
             Span current_span = $(k) as Span
             assert !current_span.available()
-            println('======>' + v)
             type v
             assert current_span.available()
         }
     }
 
     @Test
+    @Category(UserAgent.All)
     public void should_use_key_modifier_on_keyboard() {
         Span span = $('#span_Ctrl_Alt_Shift_x') as Span
         assert !span.available()

@@ -18,9 +18,11 @@ package org.testatoo.evaluator.webdriver
 import org.junit.AfterClass
 import org.junit.ClassRule
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
+import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Div
 import org.testatoo.bundle.html5.input.InputTypeText
@@ -33,6 +35,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(UserAgent.All)
 class WebDriverEvaluatorTest {
 
     @ClassRule

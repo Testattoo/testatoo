@@ -27,7 +27,6 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class CachedMetaData implements MetaDataProvider {
-    @Delegate
     private MetaInfo metaInfo
 
     private IdProvider idProvider

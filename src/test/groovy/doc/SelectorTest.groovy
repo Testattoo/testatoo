@@ -18,10 +18,12 @@ package doc
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
+import org.testatoo.category.UserAgent
 
 import static org.testatoo.core.Testatoo.*
 
@@ -29,6 +31,7 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(UserAgent.All)
 class SelectorTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

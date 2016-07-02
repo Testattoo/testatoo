@@ -16,6 +16,10 @@
 package org.testatoo.core
 
 import org.junit.Test
+import org.junit.experimental.categories.Category
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.testatoo.category.NoGui
 
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
@@ -23,6 +27,8 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
+@RunWith(JUnit4)
+@Category(NoGui)
 class WindowTest {
     @Test
     public void should_create_a_window() {

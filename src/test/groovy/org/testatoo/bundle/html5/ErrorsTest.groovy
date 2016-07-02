@@ -18,10 +18,16 @@ package org.testatoo.bundle.html5
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.input.InputTypeNumber
+import org.testatoo.bundle.html5.input.InputTypePassword
+import org.testatoo.category.UserAgent
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.field.NumberField
+import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.input.MouseModifiers
 
 import static org.junit.Assert.fail
@@ -33,6 +39,7 @@ import static org.testatoo.core.input.Key.CTRL
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
+@Category(UserAgent.All)
 class ErrorsTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
@@ -91,6 +98,26 @@ class ErrorsTest {
             fail()
         } catch (IllegalArgumentException e) {
             assert e.message == 'Invalid click sequence'
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_when_asking_length_on_input_whiteout_length() {
+        PasswordField password = $('#password') as InputTypePassword
+        try {
+            password.length()
+        } catch (ComponentException e) {
+            assert e.message == 'Not length defined for component InputTypePassword InputTypePassword:password'
+        }
+    }
+
+    @Test
+    public void should_throw_an_error_when_asking_value_on_number_field_whiteout_value() {
+        NumberField number = $('#number') as InputTypeNumber
+        try {
+            number.value()
+        } catch (ComponentException e) {
+            assert e.message == 'InputTypeNumber InputTypeNumber:number is empty and has no value'
         }
     }
 }
