@@ -394,6 +394,9 @@ class ComponentsTest {
         }
         // end::row[]
 
+        Row[] _rows = new Row[datagrid.rows().size()]
+        datagrid.should { have rows(datagrid.rows().toArray(_rows))}
+
         // tag::cell[]
         datagrid.rows()[2].cells()[1].should {
             have value('cell 32')
