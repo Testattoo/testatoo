@@ -29,5 +29,5 @@ before_install:
     - sleep 3 # give xvfb some time to start
 
 script:
-  - mvn test jacoco:report coveralls:report -Pfirefox -DCI
-  - mvn test -Pchrome -DCI
+  - mvn test jacoco:report coveralls:report -Pfirefox
+  - mvn test -Pchrome
