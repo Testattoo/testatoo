@@ -414,7 +414,9 @@
                             <systemPropertyVariables>
                                 <browser>Firefox</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Firefox,org.testatoo.category.UserAgent$All</groups>
+                            <groups>
+                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Firefox,org.testatoo.category.UserAgent$All
+                            </groups>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -431,7 +433,9 @@
                             <systemPropertyVariables>
                                 <browser>Chrome</browser>
                             </systemPropertyVariables>
-                            <groups>org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Chrome,org.testatoo.category.UserAgent$All</groups>
+                            <groups>
+                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Chrome,org.testatoo.category.UserAgent$All
+                            </groups>
                         </configuration>
                     </plugin>
                 </plugins>

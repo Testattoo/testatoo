@@ -59,9 +59,14 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
     $ git clone https://github.com/Ovea/testatoo
     $ cd testatoo
 
-In your original Terminal
+=== Install browsers
+    - Install Firefox
+    - Install Chrome
+    - Download an install chromedriver in the */usr/local/bin* directory
 
-    $ mvn clean install -Pfirefox
+In your Terminal
+
+    $ mvn clean install -Pfirefox // Or -Pchrome
 
 To just build and skip the tests
 
