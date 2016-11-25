@@ -53,7 +53,7 @@ class ItemTest {
     }
 
     private class TestItem extends Item {
-        private String value;
+        private String value
 
         TestItem(String value) {
             this.value = value

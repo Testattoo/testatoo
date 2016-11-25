@@ -55,9 +55,9 @@ class KeyboardTest {
             char letter = (char) (('a' as char) + it)
             Span current_span = $("#span_$letter") as Span
 
-            current_span.should { be missing }
+            assert !current_span.available()
             type "$letter"
-            current_span.should { be available }
+            assert current_span.available()
         }
     }
 
@@ -66,9 +66,9 @@ class KeyboardTest {
     void should_type_number_on_keyboard() {
         (0..9).each {
             Span current_span = $("#span_$it") as Span
-            current_span.should { be missing }
+            assert !current_span.available()
             type "$it"
-            current_span.should { be available }
+            assert current_span.available()
         }
     }
 
@@ -110,9 +110,9 @@ class KeyboardTest {
                 '#span_down'     : DOWN
         ].each { k, v ->
             Span current_span = $(k) as Span
-            current_span.should { be missing }
+            assert !current_span.available()
             type v
-            current_span.should { be available }
+            assert current_span.available()
         }
     }
 
@@ -120,25 +120,25 @@ class KeyboardTest {
     @Category(UserAgent.All)
     void should_use_key_modifier_on_keyboard() {
         Span span = $('#span_Ctrl_Alt_Shift_x') as Span
-        span.should { be missing }
+        assert !span.available()
         type(CTRL + ALT + SHIFT + 'x')
-        span.should { be available }
+        assert span.available()
 
         TextField textField = $('#textfield') as InputTypeText
 
-        textField.should { have value('') }
+        assert textField.value() == ''
         clickOn textField
         type(SHIFT + 'testatoo')
-        textField.should { have value('TESTATOO') }
+        assert textField.value() == 'TESTATOO'
 
         textField.clear()
-        textField.should { have value('') }
+        assert textField.value() == ''
         type('~!@#$%^&*()_+')
-        textField.should { have value('~!@#$%^&*()_+') }
+        assert textField.value() == '~!@#$%^&*()_+'
 
         textField.clear()
-        textField.should { have value('') }
+        assert textField.value() == ''
         type(SHIFT + '`1234567890-=')
-        textField.should { have value('~!@#$%^&*()_+') }
+        assert textField.value() == '~!@#$%^&*()_+'
     }
 }
