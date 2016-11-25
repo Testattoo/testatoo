@@ -33,8 +33,6 @@ interface Evaluator extends AutoCloseable {
 
     abstract boolean check(String id, String jsExpr)
 
-    abstract void trigger(String id, String event)
-
     abstract String getTitle()
 
     abstract String getPageSource()

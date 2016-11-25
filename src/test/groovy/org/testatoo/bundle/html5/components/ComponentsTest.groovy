@@ -180,14 +180,13 @@ class ComponentsTest {
 
         email.value('joe.blow@email.org')
         password.value('password666')
-
-        email.should { have value('joe.blow@email.org') }
-        password.should { have value('password666') }
+        assert email.value() == 'joe.blow@email.org'
+        assert password.value() == 'password666'
 
         form.reset()
 
-        email.should { have value('') }
-        password.should { have value('') }
+        assert email.value() == ''
+        assert password.value() == ''
 
         assert message.title() == 'The form was submitted 0 time(s)'
         // Set the required password field before submitting

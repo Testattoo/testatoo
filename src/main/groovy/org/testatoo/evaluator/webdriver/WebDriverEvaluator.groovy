@@ -64,11 +64,6 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void trigger(String id, String event) {
-        runScript("\$('#${id}').trigger('${event}')")
-    }
-
-    @Override
     void runScript(String script) {
         js.executeScript(script)
     }

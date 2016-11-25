@@ -49,10 +49,8 @@ trait Input {
         if (!this.enabled()) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
         }
-        config.evaluator.trigger(this.id(), 'blur')
         clear()
         config.evaluator.type([String.valueOf(value)])
-        config.evaluator.trigger(this.id(), 'blur')
     }
 
     String label() {
@@ -63,7 +61,6 @@ trait Input {
         this.click()
         config.evaluator.runScript("\$('#${id()}').val(' ').change()")
         config.evaluator.type([BACK_SPACE])
-        config.evaluator.trigger(id(), 'blur')
         this.click()
     }
 

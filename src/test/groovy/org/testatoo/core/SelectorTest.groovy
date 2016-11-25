@@ -47,10 +47,8 @@ class SelectorTest {
     void should_use_$_as_a_single_selector() {
         Button button = $('#button') as Button
 
-        button.should {
-            be enabled
-            be visible
-        }
+        assert button.enabled()
+        assert button.visible()
     }
 
     @Test
@@ -99,9 +97,9 @@ class SelectorTest {
         assert textFields.size() == 3
 
         textFields.each {
-            it.should { be enabled }
-            it.should { be visible }
-            it.should { be empty }
+            assert it.enabled()
+            assert it.visible()
+            assert it.empty()
         }
 
         textFields.each { it ->
@@ -109,8 +107,8 @@ class SelectorTest {
         }
 
         textFields.each {
-            it.should { be filled }
-            it.should { have value('TESTATOO!')}
+            assert !it.empty()
+            assert it.value() == 'TESTATOO!'
         }
     }
 
