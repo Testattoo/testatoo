@@ -20,7 +20,7 @@ before_install:
     # Install Chrome driver
     - wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
     - unzip chromedriver_linux64.zip
-    = rm chromedriver_linux64.zip
+    - rm chromedriver_linux64.zip
     - sudo chmod u+x chromedriver
     - sudo mv chromedriver /usr/local/bin/
 
