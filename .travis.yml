@@ -4,7 +4,6 @@ sudo: required
 addons:
   packages:
     - unzip
-    - google-chrome-stable
   firefox: latest
 
 language: java
@@ -17,6 +16,12 @@ cache:
     - $HOME/.m2/repository
 
 before_install:
+    # Install last Chrome
+    - sudo apt-get update
+    - sudo apt-get install -y libappindicator1 fonts-liberation
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - sudo dpkg -i google-chrome*.deb
+
     # Install Chrome driver
     - wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
     - unzip chromedriver_linux64.zip
