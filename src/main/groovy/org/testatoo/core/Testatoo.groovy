@@ -172,7 +172,7 @@ class Testatoo {
 
     static class Components<T extends Component> {
         private final MetaDataProvider meta
-        private final Class<T> type;
+        private final Class<T> type
         private List<T> components
 
         Components(Class<T> type, MetaDataProvider meta) {

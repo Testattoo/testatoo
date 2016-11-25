@@ -47,8 +47,10 @@ class SelectorTest {
     void should_use_$_as_a_single_selector() {
         Button button = $('#button') as Button
 
-        assert button.enabled()
-        assert button.visible()
+        button.should {
+            be enabled
+            be visible
+        }
     }
 
     @Test
@@ -97,9 +99,9 @@ class SelectorTest {
         assert textFields.size() == 4
 
         textFields.each {
-            assert it.enabled()
-            assert it.visible()
-            assert it.empty()
+            it.should { be enabled }
+            it.should { be visible }
+            it.should { be empty }
         }
 
         textFields.each { it ->
@@ -107,8 +109,8 @@ class SelectorTest {
         }
 
         textFields.each {
-            assert !it.empty()
-            assert it.value() == 'TESTATOO!'
+            it.should { be filled }
+            it.should { have value('TESTATOO!')}
         }
     }
 
@@ -225,6 +227,6 @@ class SelectorTest {
     private class InvalidComponent extends Component {}
 
     private class BigButton extends Button {
-        public boolean isBig() { true }
+        boolean isBig() { true }
     }
 }

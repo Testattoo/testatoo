@@ -54,10 +54,10 @@ class SelectorTest {
 
         // end::componentSelection[]
 
-        assert button.text() == 'Button'
-        assert reset.text() == 'Reset'
-        assert submit.text() == 'Submit'
-        assert myButton.text() == 'My Button Text'
+        button.should { have text('Button') }
+        reset.should { have text('Reset') }
+        submit.should { have text('Submit') }
+        myButton.should { have text('My Button Text') }
     }
 
     @Test
