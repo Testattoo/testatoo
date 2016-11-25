@@ -18,10 +18,18 @@ cache:
 
 before_install:
     # Install Chrome driver
-    - wget http://chromedriver.storage.googleapis.com/2.21/chromedriver_linux64.zip
+    - wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
     - unzip chromedriver_linux64.zip
+    = rm chromedriver_linux64.zip
     - sudo chmod u+x chromedriver
     - sudo mv chromedriver /usr/local/bin/
+
+    # Install Gecko driver
+    - wget https://github.com/mozilla/geckodriver/releases/download/v0.11.1/geckodriver-v0.11.1-linux64.tar.gz
+    - tar xzvf geckodriver-v0.11.1-linux64.tar.gz
+    - rm geckodriver-v0.11.1-linux64.tar.gz
+    - sudo chmod u+x geckodriver
+    - sudo mv geckodriver /usr/local/bin/
 
     # For selenium in headless linux system
     - "export DISPLAY=:99.0"
@@ -29,5 +37,5 @@ before_install:
     - sleep 3 # give xvfb some time to start
 
 script:
-  - mvn test jacoco:report coveralls:report -Pfirefox
-  - mvn test -Pchrome
+  - mvn test jacoco:report coveralls:report -Pchrome
+#  - mvn test -Pchrome

@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.reference
 @Category(NoGui)
 class ReferenceMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         ReferenceSupport cmp = mock(ReferenceSupport)
 
         when(cmp.reference()).thenReturn('my-reference')
@@ -48,9 +48,9 @@ class ReferenceMatcherTest {
             assertThat(cmp, has(reference('other-reference')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has reference "other-reference"')
-                    .appendText('\n     but: has reference "my-reference"');
+                    .appendText('\n     but: has reference "my-reference"')
 
             assert e.message == description.toString()
         }

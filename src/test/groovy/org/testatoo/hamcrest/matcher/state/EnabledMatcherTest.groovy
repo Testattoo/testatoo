@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.enabled
 @Category(NoGui)
 class EnabledMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
         when(cmp.enabled()).thenReturn(true)
@@ -49,9 +49,9 @@ class EnabledMatcherTest {
             assertThat(cmp, is(enabled()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is enabled')
-                    .appendText('\n     but: is disabled');
+                    .appendText('\n     but: is disabled')
 
             assert e.message == description.toString()
         }

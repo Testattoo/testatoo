@@ -41,12 +41,12 @@ class ListTest {
     public static WebDriverConfig driver =  new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/components.html'
     }
 
     @Test
-    public void should_have_expected_behaviours() {
+    void should_have_expected_behaviours() {
         assert Ul in ListView
 
         Ul ul = $('#empty_unordered_list') as Ul

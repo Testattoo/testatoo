@@ -29,7 +29,7 @@ import org.testatoo.core.support.property.TextSupport
 @Category(NoGui)
 class LinkTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Link in Component
         assert Link in TextSupport
     }

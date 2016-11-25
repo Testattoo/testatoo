@@ -39,12 +39,12 @@ class SelectorTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/selectors.html'
     }
 
     @Test
-    public void should_use_$_as_a_single_selector() {
+    void should_use_$_as_a_single_selector() {
         Button button = $('#button') as Button
 
         assert button.enabled()
@@ -52,7 +52,7 @@ class SelectorTest {
     }
 
     @Test
-    public void should_throw_an_error_if_single_selector_find_many_components() {
+    void should_throw_an_error_if_single_selector_find_many_components() {
         try {
             Button button = $('[type="text"]') as Button
             button.should { be enabled }
@@ -62,7 +62,7 @@ class SelectorTest {
     }
 
     @Test
-    public void should_throw_an_error_if_single_selector_return_not_expected_component_type() {
+    void should_throw_an_error_if_single_selector_return_not_expected_component_type() {
         try {
             Button button = $('[type="text"]:first') as Button
             button.should { be enabled }
@@ -73,7 +73,7 @@ class SelectorTest {
     }
 
     @Test
-    public void should_have_at_least_an_Identifier_available_on_Component() {
+    void should_have_at_least_an_Identifier_available_on_Component() {
         // 1 - A component without identifier cannot be used
         try {
             InvalidComponent cmp = $('#button') as InvalidComponent
@@ -89,7 +89,7 @@ class SelectorTest {
     }
 
     @Test
-    public void should_use_$$_as_a_multi_selector() {
+    void should_use_$$_as_a_multi_selector() {
         List<Button> buttons = $$('.btn', Button)
         assert buttons.size() == 4
 
@@ -113,7 +113,7 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_button_by_text() {
+    void should_find_button_by_text() {
         button 'Button' should { have text('Button') }
         button 'Submit' should { have text('Submit') }
         button 'Reset' should { have text('Reset') }
@@ -121,17 +121,17 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_radio_by_label() {
+    void should_find_radio_by_label() {
         radio 'My Radio' should { have label('My Radio') }
     }
 
     @Test
-    public void should_find_checkbox_by_label() {
+    void should_find_checkbox_by_label() {
         checkbox 'Check me' should { have label('Check me') }
     }
 
     @Test
-    public void should_find_fields_by_label_or_placeholder() {
+    void should_find_fields_by_label_or_placeholder() {
         textField 'Text' should { have label('Text') }
         textField 'Placeholder' should { have placeholder('Placeholder') }
 
@@ -173,12 +173,12 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_link_by_text() {
+    void should_find_link_by_text() {
         // TODO
     }
 
     @Test
-    public void should_find_dropdown_by_label() {
+    void should_find_dropdown_by_label() {
         dropdown 'Elements' should {
             have label('Elements')
             have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium')
@@ -186,7 +186,7 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_listbox_by_label() {
+    void should_find_listbox_by_label() {
         listBox 'Cities' should {
             have label('Cities')
             have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
@@ -194,14 +194,14 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_item_by_value() {
+    void should_find_item_by_value() {
         item 'Montreal' should {
             have value('Montreal')
         }
     }
 
     @Test
-    public void should_find_group_by_value() {
+    void should_find_group_by_value() {
         group 'Cat-2' should {
             have value('Cat-2')
             have items('Jupiter', 'Saturn', 'Uranus', 'Neptune')
@@ -209,14 +209,14 @@ class SelectorTest {
     }
 
     @Test
-    public void should_find_heading_by_text() {
+    void should_find_heading_by_text() {
         heading 'My heading' should {
             have text('My heading')
         }
     }
 
     @Test
-    public void should_find_panel_by_title() {
+    void should_find_panel_by_title() {
         panel 'My Panel title' should {
             have title('My Panel title')
         }

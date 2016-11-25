@@ -36,7 +36,7 @@ class HtmlComponentTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @Test
-    public void should_implement_default_states() {
+    void should_implement_default_states() {
         visit 'http://localhost:8080/components.html'
 
         Button button = $('#button') as Button
@@ -55,12 +55,12 @@ class HtmlComponentTest {
     }
 
     @Test
-    public void should_find_child_elements_by_css() {
+    void should_find_child_elements_by_css() {
         // TODO David
     }
 
     @Test
-    public void should_find_child_elements_by_js() {
+    void should_find_child_elements_by_js() {
         // TODO David
     }
 }

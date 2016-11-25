@@ -39,7 +39,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class ColumnMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         ColumnSupport cmp = mock(ColumnSupport)
 
         Column column_1 = mock(Column)
@@ -58,9 +58,9 @@ class ColumnMatcherTest {
             assertThat(cmp, has(columns('column_1', 'column_3')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has column(s) ["column_1", "column_3"]')
-                    .appendText('\n     but: has column(s) ["column_1", "column_2"]');
+                    .appendText('\n     but: has column(s) ["column_1", "column_2"]')
 
             assert e.message == description.toString()
         }
@@ -69,9 +69,9 @@ class ColumnMatcherTest {
             assertThat(cmp, has(columns(column_1, column_3)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has column(s) ["column_1", "column_3"]')
-                    .appendText('\n     but: has column(s) ["column_1", "column_2"]');
+                    .appendText('\n     but: has column(s) ["column_1", "column_2"]')
 
             assert e.message == description.toString()
         }

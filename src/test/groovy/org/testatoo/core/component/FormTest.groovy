@@ -31,7 +31,7 @@ import org.testatoo.core.support.state.ValiditySupport
 @Category(NoGui)
 class FormTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Form in Component
         assert Form in ValiditySupport
         assert Form in Resettable

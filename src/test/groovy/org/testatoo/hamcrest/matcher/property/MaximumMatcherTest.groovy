@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.maximum
 @Category(NoGui)
 class MaximumMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         MaximumSupport cmp = mock(MaximumSupport)
 
         when(cmp.maximum()).thenReturn(10)
@@ -47,9 +47,9 @@ class MaximumMatcherTest {
             assertThat(cmp, has(maximum(50)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has maximum 50')
-                    .appendText('\n     but: has maximum 10');
+                    .appendText('\n     but: has maximum 10')
 
             assert e.message == description.toString()
         }

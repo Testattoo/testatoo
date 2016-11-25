@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.readOnly
 @Category(NoGui)
 class ReadOnlyMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         ReadOnlySupport cmp = mock(ReadOnlySupport)
 
         when(cmp.readOnly()).thenReturn(true)
@@ -49,9 +49,9 @@ class ReadOnlyMatcherTest {
             assertThat(cmp, is(readOnly()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is read only')
-                    .appendText('\n     but: is not read only');
+                    .appendText('\n     but: is not read only')
 
             assert e.message == description.toString()
         }

@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.missing
 @Category(NoGui)
 class MissingMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
         when(cmp.available()).thenReturn(false)
@@ -49,9 +49,9 @@ class MissingMatcherTest {
             assertThat(cmp, is(missing()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is missing')
-                    .appendText('\n     but: is available');
+                    .appendText('\n     but: is available')
 
             assert e.message == description.toString()
         }

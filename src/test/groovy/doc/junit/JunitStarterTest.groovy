@@ -17,20 +17,20 @@ import static org.testatoo.core.Testatoo.*
 @Category(UserAgent.All)
 class JunitStarterTest {
     @BeforeClass
-    public static void setup() {
+    static void setup() {
         config.evaluator = new WebDriverEvaluator(new FirefoxDriver()) // <1>
         visit 'http://www.google.com' // <2>
     }
 
     @Test
-    public void google_search_field_should_be_visible() {
+    void google_search_field_should_be_visible() {
         // Write you test here
         InputTypeText search = $('#lst-ib') as InputTypeText    // <3>
         search.should { be visible }
     }
 
     @AfterClass
-    public static void tearDown() {
+    static void tearDown() {
         config.evaluator.close() // <4>
     }
 }

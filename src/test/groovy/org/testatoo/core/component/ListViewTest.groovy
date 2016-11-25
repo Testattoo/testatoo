@@ -29,7 +29,7 @@ import org.testatoo.core.support.property.ItemSupport
 @Category(NoGui)
 class ListViewTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert ListView in Component
         assert ListView in ItemSupport
     }

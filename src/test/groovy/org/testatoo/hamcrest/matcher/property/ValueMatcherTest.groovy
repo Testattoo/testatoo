@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.value
 @Category(NoGui)
 class ValueMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         ValueSupport cmp = mock(ValueSupport)
         when(cmp.value()).thenReturn('MyValue')
 
@@ -47,9 +47,9 @@ class ValueMatcherTest {
             assertThat(cmp, has(value('OtherValue')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has value "OtherValue"')
-                    .appendText('\n     but: has value "MyValue"');
+                    .appendText('\n     but: has value "MyValue"')
 
             assert e.message == description.toString()
         }

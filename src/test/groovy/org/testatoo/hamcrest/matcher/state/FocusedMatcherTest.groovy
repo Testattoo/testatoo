@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.focused
 @Category(NoGui)
 class FocusedMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         FocusSupport cmp = mock(FocusSupport)
 
         when(cmp.focused()).thenReturn(true)
@@ -49,9 +49,9 @@ class FocusedMatcherTest {
             assertThat(cmp, is(focused()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is focused')
-                    .appendText('\n     but: is not focused');
+                    .appendText('\n     but: is not focused')
 
             assert e.message == description.toString()
         }

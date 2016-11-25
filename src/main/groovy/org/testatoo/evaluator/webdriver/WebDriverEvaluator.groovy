@@ -39,17 +39,17 @@ class WebDriverEvaluator implements Evaluator {
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
-        this.js = (JavascriptExecutor) webDriver;
+        this.js = (JavascriptExecutor) webDriver
     }
 
     @Override
-    public <T> T getImplementation(Class<T> type) { type.cast(webDriver) }
+    <T> T getImplementation(Class<T> type) { type.cast(webDriver) }
 
     @Override
     void open(String url) { webDriver.get(url) }
 
     @Override
-    public <T> T getJson(String jQueryExpr) {
+    <T> T getJson(String jQueryExpr) {
         eval(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
@@ -152,7 +152,7 @@ class WebDriverEvaluator implements Evaluator {
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
-        action.build().perform();
+        action.build().perform()
     }
 
     @Override

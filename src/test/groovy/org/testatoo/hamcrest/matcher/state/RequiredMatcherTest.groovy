@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.required
 @Category(NoGui)
 class RequiredMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         RequiredSupport cmp = mock(RequiredSupport)
 
         when(cmp.required()).thenReturn(true)
@@ -49,9 +49,9 @@ class RequiredMatcherTest {
             assertThat(cmp, is(required()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is required')
-                    .appendText('\n     but: is optional');
+                    .appendText('\n     but: is optional')
 
             assert e.message == description.toString()
         }

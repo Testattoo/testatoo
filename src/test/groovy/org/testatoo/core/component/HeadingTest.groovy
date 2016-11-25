@@ -29,7 +29,7 @@ import org.testatoo.core.support.property.TextSupport
 @Category(NoGui)
 class HeadingTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Heading in Component
         assert Heading in TextSupport
     }

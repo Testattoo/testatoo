@@ -8,13 +8,13 @@ The signature of the $ function is the following…
 
 [source, java]
 -------------------------------------------------------------------------------
-$('css selector');
+$('css selector')
 
 // Samples
-$('#myId');                 <1>
-$('.myClass');              <2>
-$('ul li:first-child');     <3>
-$('[data-role=button]');    <4>
+$('#myId')                 <1>
+$('.myClass')              <2>
+$('ul li:first-child')     <3>
+$('[data-role=button]')    <4>
 -------------------------------------------------------------------------------
 
 <1> Match the DOM element on the page with id "myId"

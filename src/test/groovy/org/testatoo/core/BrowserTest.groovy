@@ -38,7 +38,7 @@ class BrowserTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @Test
-    public void should_be_able_to_have_browser_properties_access() {
+    void should_be_able_to_have_browser_properties_access() {
         Browser.open 'http://localhost:8080/components.html'
 
         assert Browser.title == 'Testatoo Rocks'
@@ -50,7 +50,7 @@ class BrowserTest {
     }
 
     @Test
-    public void should_be_able_to_navigate() {
+    void should_be_able_to_navigate() {
         Browser.open 'http://localhost:8080/components.html'
 
         assert Browser.url == 'http://localhost:8080/components.html'
@@ -69,7 +69,7 @@ class BrowserTest {
     }
 
     @Test
-    public void should_manage_windows() {
+    void should_manage_windows() {
         Browser.open 'http://localhost:8080/components.html'
 
         assert Browser.windows.size() == 1

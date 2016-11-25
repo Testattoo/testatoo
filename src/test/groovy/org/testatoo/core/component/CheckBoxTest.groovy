@@ -32,7 +32,7 @@ import org.testatoo.core.support.state.CheckSupport
 @Category(NoGui)
 class CheckBoxTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert CheckBox in Component
         assert CheckBox in CheckSupport
         assert CheckBox in LabelSupport

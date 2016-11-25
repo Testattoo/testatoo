@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.minimum
 @Category(NoGui)
 class MinimumMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         MinimumSupport cmp = mock(MinimumSupport)
 
         when(cmp.minimum()).thenReturn(10)
@@ -47,9 +47,9 @@ class MinimumMatcherTest {
             assertThat(cmp, has(minimum(50)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has minimum 50')
-                    .appendText('\n     but: has minimum 10');
+                    .appendText('\n     but: has minimum 10')
 
             assert e.message == description.toString()
         }

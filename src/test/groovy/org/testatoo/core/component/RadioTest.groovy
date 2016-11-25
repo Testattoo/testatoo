@@ -31,7 +31,7 @@ import org.testatoo.core.support.state.CheckSupport
 @Category(NoGui)
 class RadioTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Radio in Component
         assert Radio in LabelSupport
         assert Radio in CheckSupport

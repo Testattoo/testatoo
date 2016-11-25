@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.title
 @Category(NoGui)
 class TitleMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         TitleSupport cmp = mock(TitleSupport)
         when(cmp.title()).thenReturn('MyTitle')
 
@@ -47,9 +47,9 @@ class TitleMatcherTest {
             assertThat(cmp, has(title('OtherTitle')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has title "OtherTitle"')
-                    .appendText('\n     but: has title "MyTitle"');
+                    .appendText('\n     but: has title "MyTitle"')
 
             assert e.message == description.toString()
         }

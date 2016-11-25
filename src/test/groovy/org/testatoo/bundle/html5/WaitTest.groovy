@@ -42,18 +42,18 @@ class WaitTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         config.waitUntil = 10.seconds
         visit 'http://localhost:8080/wait.html'
     }
 
     @AfterClass
-    public static void tearDown() {
+    static void tearDown() {
         config.waitUntil = 2.seconds
     }
 
     @Test
-    public void should_be_able_to_wait_on_condition() {
+    void should_be_able_to_wait_on_condition() {
         Browser.refresh()
 
         Button button = $('#add-message') as Button
@@ -75,7 +75,7 @@ class WaitTest {
     }
 
     @Test
-    public void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
+    void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
         Browser.refresh()
 
         Button button = $('#add-message') as Button
@@ -84,10 +84,10 @@ class WaitTest {
             button.should { be disabled }
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('Unable to reach the condition after 10000 milliseconds')
                     .appendText('\nExpected: is disabled')
-                    .appendText('\n     but: is enabled');
+                    .appendText('\n     but: is enabled')
 
             assert e.message == description.toString()
         }

@@ -58,7 +58,7 @@ class Identifiers {
         Map<Class, String> selectors = new HashMap<>()
 
         if(!cachedComponents.get(clazz)) {
-            List<Class> matchingClasses = new ArrayList<>();
+            List<Class> matchingClasses = new ArrayList<>()
             scanner.matchSubclassesOf(clazz, { c -> matchingClasses.add(c) }).scan()
             cachedComponents.put(clazz, matchingClasses)
         }

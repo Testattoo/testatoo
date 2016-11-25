@@ -30,13 +30,13 @@ import org.testatoo.core.support.property.ValueSupport
 @Category(NoGui)
 class CellTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Cell in Component
         assert Cell in ValueSupport
     }
 
     @Test
-    public void should_have_equality_and_hashcode_based_on_value() {
+    void should_have_equality_and_hashcode_based_on_value() {
         Cell cell_1 = new TestCell('value_1')
         Cell cell_2 = new TestCell('value_2')
         Cell cell_3 = new TestCell('value_1')
@@ -50,7 +50,7 @@ class CellTest {
     private class TestCell extends Cell {
         private String value;
 
-        public TestCell(String value) {
+        TestCell(String value) {
             this.value = value
         }
 

@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.optional
 @Category(NoGui)
 class OptionalMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         RequiredSupport cmp = mock(RequiredSupport)
 
         when(cmp.required()).thenReturn(false)
@@ -50,9 +50,9 @@ class OptionalMatcherTest {
             fail()
         } catch (AssertionError e) {
 
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is optional')
-                    .appendText('\n     but: is required');
+                    .appendText('\n     but: is required')
 
             assert e.message == description.toString()
         }

@@ -31,7 +31,7 @@ import static org.testatoo.core.Testatoo.config
 @Category(NoGui)
 class WindowTest {
     @Test
-    public void should_create_a_window() {
+    void should_create_a_window() {
         Window window = new Window('id')
 
         assert window.id == 'id'
@@ -42,7 +42,7 @@ class WindowTest {
     }
 
     @Test
-    public void should_have_equal_based_on_id() {
+    void should_have_equal_based_on_id() {
         Window window_1 = new Window('id_1')
         Window window_2 = new Window('id_2')
         Window window_3 = new Window('id_1')
@@ -52,14 +52,14 @@ class WindowTest {
     }
 
     @Test
-    public void should_have_hash_code_base_on_id() {
+    void should_have_hash_code_base_on_id() {
         Window window = new Window('id_1')
 
         assert window.hashCode() == 'id_1'.hashCode()
     }
 
     @Test
-    public void should_call_underline_evaluator_on_close() {
+    void should_call_underline_evaluator_on_close() {
         Evaluator evaluator = mock(Evaluator)
         config.evaluator = evaluator
 

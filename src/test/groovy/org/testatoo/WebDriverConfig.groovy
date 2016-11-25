@@ -18,7 +18,6 @@ package org.testatoo
 import org.junit.rules.ExternalResource
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.firefox.FirefoxProfile
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.config
@@ -34,13 +33,12 @@ class WebDriverConfig extends ExternalResource {
         switch (browser) {
             case "Firefox":
                 println '=================== Firefox Profile ==================='
-                FirefoxProfile profile = new FirefoxProfile();
-                profile.setEnableNativeEvents(true);
-                config.evaluator = new WebDriverEvaluator(new FirefoxDriver(profile));
+                System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver")
+                config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
                 break
             case "Chrome":
                 println '=================== Chrome Profile ==================='
-                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver")
                 config.evaluator = new WebDriverEvaluator(new ChromeDriver())
                 break
         }

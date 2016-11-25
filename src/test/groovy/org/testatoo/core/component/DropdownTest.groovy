@@ -33,7 +33,7 @@ import org.testatoo.core.support.property.SelectedItemSupport
 @Category(NoGui)
 class DropdownTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Dropdown in Component
         assert Dropdown in ItemSupport
         assert Dropdown in GroupSupport

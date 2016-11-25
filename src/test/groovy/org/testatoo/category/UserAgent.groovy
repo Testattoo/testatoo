@@ -19,7 +19,7 @@ package org.testatoo.category
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface UserAgent {
-    public interface All {}
-    public interface Firefox {}
-    public interface Chrome {}
+    interface All {}
+    interface Firefox {}
+    interface Chrome {}
 }

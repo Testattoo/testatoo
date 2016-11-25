@@ -37,7 +37,7 @@ import static org.testatoo.hamcrest.Matchers.length
 @Category(NoGui)
 class LengthMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         LengthSupport cmp = mock(LengthSupport)
 
         when(cmp.length()).thenReturn(10)
@@ -46,9 +46,9 @@ class LengthMatcherTest {
             assertThat(cmp, has(length(50)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has length 50')
-                    .appendText('\n     but: has length 10');
+                    .appendText('\n     but: has length 10')
 
             assert e.message == description.toString()
         }

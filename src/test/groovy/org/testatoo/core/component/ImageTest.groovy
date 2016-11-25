@@ -28,7 +28,7 @@ import org.testatoo.category.NoGui
 @Category(NoGui)
 class ImageTest {
     @Test
-    public void should_have_expected_inheritance() {
+     void should_have_expected_inheritance() {
         assert Image in Component
     }
 }

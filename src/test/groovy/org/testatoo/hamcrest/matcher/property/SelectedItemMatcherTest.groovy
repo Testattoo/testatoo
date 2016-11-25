@@ -39,7 +39,7 @@ import static org.testatoo.hamcrest.Matchers.selectedItem
 @Category(NoGui)
 class SelectedItemMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         SelectedItemSupport cmp = mock(SelectedItemSupport)
         Item itemSelected = mock(Item)
 
@@ -53,9 +53,9 @@ class SelectedItemMatcherTest {
             assertThat(cmp, has(selectedItem('no selected')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has selected item "no selected"')
-                    .appendText('\n     but: has selected item "selected"');
+                    .appendText('\n     but: has selected item "selected"')
 
             assert e.message == description.toString()
         }
@@ -67,9 +67,9 @@ class SelectedItemMatcherTest {
             assertThat(cmp, has(selectedItem(item)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has selected item "no selected"')
-                    .appendText('\n     but: has selected item "selected"');
+                    .appendText('\n     but: has selected item "selected"')
 
             assert e.message == description.toString()
         }

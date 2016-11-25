@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class VisibleItemsSizeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         VisibleItemsSupport cmp = mock(VisibleItemsSupport)
 
         when(cmp.visibleItems()).thenReturn([mock(Item), mock(Item)])
@@ -48,9 +48,9 @@ class VisibleItemsSizeMatcherTest {
             assertThat(cmp, has(3.visibleItems))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has 3 visible item(s)')
-                    .appendText('\n     but: has 2 visible item(s)');
+                    .appendText('\n     but: has 2 visible item(s)')
 
             assert e.message == description.toString()
         }

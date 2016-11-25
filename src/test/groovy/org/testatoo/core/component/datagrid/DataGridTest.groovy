@@ -31,7 +31,7 @@ import org.testatoo.core.support.property.RowSupport
 @Category(NoGui)
 class DataGridTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert DataGrid in Component
         assert DataGrid in ColumnSupport
         assert DataGrid in RowSupport

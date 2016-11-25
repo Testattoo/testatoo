@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class GroupSizeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         GroupSupport cmp = mock(GroupSupport)
 
         when(cmp.groups()).thenReturn([mock(Group), mock(Group)])
@@ -48,9 +48,9 @@ class GroupSizeMatcherTest {
             assertThat(cmp, has(3.groups))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has 3 group(s)')
-                    .appendText('\n     but: has 2 group(s)');
+                    .appendText('\n     but: has 2 group(s)')
 
             assert e.message == description.toString()
         }

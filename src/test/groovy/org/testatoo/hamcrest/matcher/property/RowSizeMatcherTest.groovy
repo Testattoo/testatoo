@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class RowSizeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         RowSupport cmp = mock(RowSupport)
 
         when(cmp.rows()).thenReturn([mock(Row), mock(Row)])
@@ -48,9 +48,9 @@ class RowSizeMatcherTest {
             assertThat(cmp, has(3.rows))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has 3 row(s)')
-                    .appendText('\n     but: has 2 row(s)');
+                    .appendText('\n     but: has 2 row(s)')
 
             assert e.message == description.toString()
         }

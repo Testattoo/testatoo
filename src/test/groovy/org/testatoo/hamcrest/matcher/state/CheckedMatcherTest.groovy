@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.checked
 @Category(NoGui)
 class CheckedMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         CheckSupport cmp = mock(CheckSupport)
 
         when(cmp.checked()).thenReturn(true)
@@ -49,9 +49,9 @@ class CheckedMatcherTest {
             assertThat(cmp, is(checked()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is checked')
-                    .appendText('\n     but: is unchecked');
+                    .appendText('\n     but: is unchecked')
 
             assert e.message == description.toString()
         }

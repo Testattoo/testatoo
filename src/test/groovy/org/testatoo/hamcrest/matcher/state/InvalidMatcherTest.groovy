@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.invalid
 @Category(NoGui)
 class InvalidMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         ValiditySupport cmp = mock(ValiditySupport)
 
         when(cmp.valid()).thenReturn(false)
@@ -48,9 +48,9 @@ class InvalidMatcherTest {
             assertThat(cmp, is(invalid()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is invalid')
-                    .appendText('\n     but: is valid');
+                    .appendText('\n     but: is valid')
 
             assert e.message == description.toString()
         }

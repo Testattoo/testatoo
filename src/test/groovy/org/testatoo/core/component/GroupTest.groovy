@@ -28,12 +28,12 @@ import org.testatoo.category.NoGui
 @Category(NoGui)
 class GroupTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Group in Component
     }
 
     @Test
-    public void should_have_equality_and_hashcode_based_on_value() {
+    void should_have_equality_and_hashcode_based_on_value() {
         Group group_1 = new TestGroup('value_1')
         Group group_2 = new TestGroup('value_2')
         Group group_3 = new TestGroup('value_1')
@@ -47,7 +47,7 @@ class GroupTest {
     private class TestGroup extends Group {
         private String value;
 
-        public TestGroup(String value) {
+        TestGroup(String value) {
             this.value = value
         }
 

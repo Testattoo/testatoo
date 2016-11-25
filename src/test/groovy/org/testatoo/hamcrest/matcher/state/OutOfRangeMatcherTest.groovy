@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.outOfRange
 @Category(NoGui)
 class OutOfRangeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         RangeSupport cmp = mock(RangeSupport)
 
         when(cmp.inRange()).thenReturn(false)
@@ -48,9 +48,9 @@ class OutOfRangeMatcherTest {
             assertThat(cmp, is(outOfRange()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is out of range')
-                    .appendText('\n     but: is in range');
+                    .appendText('\n     but: is in range')
 
             assert e.message == description.toString()
         }

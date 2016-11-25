@@ -36,7 +36,7 @@ import org.testatoo.core.support.state.ValiditySupport
 @Category(NoGui)
 class FieldTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Field in Component
         assert Field in LabelSupport
         assert Field in InputSupport

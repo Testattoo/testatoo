@@ -37,7 +37,7 @@ import static org.testatoo.hamcrest.Matchers.*
 @Category(NoGui)
 class FocusMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         FocusSupport cmp = mock(FocusSupport)
 
         when(cmp.focused()).thenReturn(true)
@@ -47,9 +47,9 @@ class FocusMatcherTest {
             assertThat(cmp, has(focus()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has focus')
-                    .appendText('\n     but: has no focus');
+                    .appendText('\n     but: has no focus')
 
             assert e.message == description.toString()
         }

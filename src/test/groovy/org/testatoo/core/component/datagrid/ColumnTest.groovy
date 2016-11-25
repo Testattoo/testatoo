@@ -32,14 +32,14 @@ import org.testatoo.core.support.property.TitleSupport
 @Category(NoGui)
 class ColumnTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Column in Component
         assert Column in TitleSupport
         assert Column in CellSupport
     }
 
     @Test
-    public void should_have_equality_and_hashcode_based_on_title() {
+    void should_have_equality_and_hashcode_based_on_title() {
         Column column_1 = new TestColumn('title_1')
         Column column_2 = new TestColumn('title_2')
         Column column_3 = new TestColumn('title_1')
@@ -53,7 +53,7 @@ class ColumnTest {
     private class TestColumn extends Column {
         private String title;
 
-        public TestColumn(String title) {
+        TestColumn(String title) {
             this.title = title
         }
 

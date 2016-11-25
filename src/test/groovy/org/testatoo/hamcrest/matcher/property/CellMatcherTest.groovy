@@ -39,7 +39,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class CellMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         CellSupport cmp = mock(CellSupport)
 
         Cell cell_1 = mock(Cell)
@@ -60,7 +60,7 @@ class CellMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has cell(s) ["cell_1", "cell_3"]')
-                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]');
+                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]')
 
             assert e.message == description.toString()
         }
@@ -69,9 +69,9 @@ class CellMatcherTest {
             assertThat(cmp, has(cells(cell_1, cell_3)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has cell(s) ["cell_1", "cell_3"]')
-                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]');
+                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]')
 
             assert e.message == description.toString()
         }

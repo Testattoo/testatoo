@@ -41,7 +41,7 @@ class SpecTest {
     Radio female_radio
 
     @Before
-    public void before() {
+    void before() {
         Browser.open 'http://localhost:8080/spec.html'
 
         male_radio = $('[name=gender]:first') as org.testatoo.bundle.html5.Radio
@@ -49,7 +49,7 @@ class SpecTest {
     }
 
     @Test
-    public void should_select_gender() {
+    void should_select_gender() {
         // tag::specMethod[]
         male_radio.should {
             be unchecked

@@ -42,7 +42,7 @@ import static org.testatoo.hamcrest.Matchers.contain
 @Category(NoGui)
 class ContainMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         MetaDataProvider containerMeta = mock(MetaDataProvider)
         MetaDataProvider cmp_1Meta = mock(MetaDataProvider)
         MetaDataProvider cmp_2Meta = mock(MetaDataProvider)
@@ -68,9 +68,9 @@ class ContainMatcherTest {
             assertThat(container, contain(cmp_1, cmp_2))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: Component Component:container contains [Component:1, Component:2]')
-                    .appendText('\n     but: does not contains expected component(s): [Component:2]');
+                    .appendText('\n     but: does not contains expected component(s): [Component:2]')
 
             assert e.message == description.toString()
         }

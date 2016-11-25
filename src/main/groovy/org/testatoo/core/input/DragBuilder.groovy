@@ -25,11 +25,11 @@ import static org.testatoo.core.Testatoo.config
 class DragBuilder {
     Component dragged
 
-    public DragBuilder(Component dragged) {
+    DragBuilder(Component dragged) {
         this.dragged = dragged
     }
 
-    public void on(Component onto) {
+    void on(Component onto) {
         config.evaluator.dragAndDrop(dragged.id(), onto.id())
     }
 }

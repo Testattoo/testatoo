@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.visible
 @Category(NoGui)
 class VisibleMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
         when(cmp.visible()).thenReturn(true)
@@ -49,9 +49,9 @@ class VisibleMatcherTest {
             assertThat(cmp, is(visible()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is visible')
-                    .appendText('\n     but: is hidden');
+                    .appendText('\n     but: is hidden')
 
             assert e.message == description.toString()
         }

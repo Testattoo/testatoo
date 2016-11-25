@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.step
 @Category(NoGui)
 class StepMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         StepSupport cmp = mock(StepSupport)
 
         when(cmp.step()).thenReturn(10)
@@ -48,9 +48,9 @@ class StepMatcherTest {
             assertThat(cmp, has(step(50)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has step 50')
-                    .appendText('\n     but: has step 10');
+                    .appendText('\n     but: has step 10')
 
             assert e.message == description.toString()
         }

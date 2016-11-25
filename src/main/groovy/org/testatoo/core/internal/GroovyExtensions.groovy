@@ -36,11 +36,11 @@ import static org.testatoo.core.input.MouseModifiers.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
-    public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
+    static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 
-    public static Collection<?> plus(Key a, Key b) { [a, b] }
+    static Collection<?> plus(Key a, Key b) { [a, b] }
 
-    public static Collection<?> plus(Key a, String b) { [a, b] }
+    static Collection<?> plus(Key a, String b) { [a, b] }
 
     static void click(Key key, Component c) { click([key], c) }
 
@@ -82,19 +82,19 @@ class GroovyExtensions {
         new VisibleItemsSizeMatcher(number)
     }
 
-    public static PropertyMatcher getGroups(Integer number) {
+    static PropertyMatcher getGroups(Integer number) {
         new GroupSizeMatcher(number)
     }
 
-    public static PropertyMatcher getColumns(Integer number) {
+    static PropertyMatcher getColumns(Integer number) {
         new ColumnSizeMatcher(number)
     }
 
-    public static PropertyMatcher getRows(Integer number) {
+    static PropertyMatcher getRows(Integer number) {
         new RowSizeMatcher(number)
     }
 
-    public static PropertyMatcher getCells(Integer number) {
+    static PropertyMatcher getCells(Integer number) {
         new CellSizeMatcher(number)
     }
 
@@ -111,16 +111,18 @@ class GroovyExtensions {
         component.addBlock(org.hamcrest.Matchers.is(matcher.newInstance()))
     }
 
+    // TODO David why not used ?
     static void contain(Component component, Component... components) {
         component.addBlock(new ContainMatcher(config.evaluator, components))
     }
 
+    // TODO David why not used ?
     static void have(Component component, PropertyMatcher matcher) {
         component.addBlock(Matchers.has((matcher)))
     }
 
     private static void waitUntil(Closure c, Matcher what) {
-        boolean success = false;
+        boolean success = false
         long timeout = config.waitUntil.toMillis()
         long interval = 200
 
@@ -144,8 +146,8 @@ class GroovyExtensions {
                     .appendText('Unable to reach the condition after ' + config.waitUntil.toMillis() + ' milliseconds')
                     .appendText('\nExpected: ')
                     .appendDescriptionOf(what)
-                    .appendText('\n     but: ');
-            what.describeMismatch(c.delegate, description);
+                    .appendText('\n     but: ')
+            what.describeMismatch(c.delegate, description)
             throw new AssertionError(description.toString())
         }
     }

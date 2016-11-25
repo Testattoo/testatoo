@@ -37,17 +37,16 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(JUnit4)
 @Category(UserAgent.All)
 class WebDriverEvaluatorTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @AfterClass
-    public static void after() {
+    static void after() {
         config.debug = false
     }
-//
+
     @Test
-    public void should_be_able_to_obtain_the_underline_implementation() {
+    void should_be_able_to_obtain_the_underline_implementation() {
         try {
             assert config.evaluator.getImplementation(WebDriver) instanceof WebDriver
         } finally {
@@ -56,7 +55,7 @@ class WebDriverEvaluatorTest {
     }
 
     @Test
-    public void should_be_able_to_register_a_script() {
+    void should_be_able_to_register_a_script() {
         try {
             visit 'http://localhost:8080/dsl.html'
 
@@ -85,7 +84,7 @@ class WebDriverEvaluatorTest {
     }
 
     @Test
-    public void should_be_able_to_activate_logging() {
+    void should_be_able_to_activate_logging() {
         assert !Log.debug
         config.debug = true
         assert Log.debug

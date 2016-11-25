@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.text
 @Category(NoGui)
 class TextMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         TextSupport cmp = mock(TextSupport)
         when(cmp.text()).thenReturn('MyText')
 
@@ -47,9 +47,9 @@ class TextMatcherTest {
             assertThat(cmp, has(text('OtherText')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has text "OtherText"')
-                    .appendText('\n     but: has text "MyText"');
+                    .appendText('\n     but: has text "MyText"')
 
             assert e.message == description.toString()
         }

@@ -45,12 +45,12 @@ class ErrorsTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/error.html'
     }
 
     @Test
-    public void should_not_check_already_checked_element() {
+    void should_not_check_already_checked_element() {
         CheckBox checkbox = $('#checkbox_1') as CheckBox
         checkbox.should { be checked }
 
@@ -62,7 +62,7 @@ class ErrorsTest {
     }
 
     @Test
-    public void should_not_be_able_to_submit_form_if_no_submit_button_available() {
+    void should_not_be_able_to_submit_form_if_no_submit_button_available() {
         Form form = $('#form') as Form
         try {
             submit form
@@ -73,7 +73,7 @@ class ErrorsTest {
     }
 
     @Test
-    public void should_not_be_able_to_reset_form_if_no_reset_button_available() {
+    void should_not_be_able_to_reset_form_if_no_reset_button_available() {
         Form form = $('#form') as Form
         try {
             reset form
@@ -84,7 +84,7 @@ class ErrorsTest {
     }
 
     @Test
-    public void should_throw_an_error_on_invalid_click_sequence() {
+    void should_throw_an_error_on_invalid_click_sequence() {
         Form form = $('#form') as Form
         try {
             [CTRL, 'test', ALT].click form
@@ -102,7 +102,7 @@ class ErrorsTest {
     }
 
     @Test
-    public void should_throw_an_error_when_asking_length_on_input_whiteout_length() {
+    void should_throw_an_error_when_asking_length_on_input_whiteout_length() {
         PasswordField password = $('#password') as InputTypePassword
         try {
             password.length()
@@ -112,7 +112,7 @@ class ErrorsTest {
     }
 
     @Test
-    public void should_throw_an_error_when_asking_value_on_number_field_whiteout_value() {
+    void should_throw_an_error_when_asking_value_on_number_field_whiteout_value() {
         NumberField number = $('#number') as InputTypeNumber
         try {
             number.value()

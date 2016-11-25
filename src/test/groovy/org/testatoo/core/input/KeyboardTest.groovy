@@ -27,6 +27,7 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Span
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.field.TextField
+import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
@@ -40,40 +41,40 @@ class KeyboardTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @Before
-    public void before() {
+    void before() {
         visit 'http://localhost:8080/keyboard.html'
         // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
         clickOn($('#button') as Button)
-        Thread.sleep(500);
+        Thread.sleep(500)
     }
 
     @Test
     @Category(UserAgent.All)
-    public void should_type_letters_on_keyboard() {
+    void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
             Span current_span = $("#span_$letter") as Span
 
-            assert !current_span.available()
+            current_span.should { be missing }
             type "$letter"
-            assert current_span.available()
+            current_span.should { be available }
         }
     }
 
     @Test
     @Category(UserAgent.All)
-    public void should_type_number_on_keyboard() {
+    void should_type_number_on_keyboard() {
         (0..9).each {
             Span current_span = $("#span_$it") as Span
-            assert !current_span.available()
+            current_span.should { be missing }
             type "$it"
-            assert current_span.available()
+            current_span.should { be available }
         }
     }
 
     @Test
     @Category(UserAgent.Firefox)
-    public void should_type_special_key_on_keyboard() {
+    void should_type_special_key_on_keyboard() {
         [
                 '#span_esc'      : ESCAPE,
                 '#span_f1'       : F1,
@@ -109,35 +110,35 @@ class KeyboardTest {
                 '#span_down'     : DOWN
         ].each { k, v ->
             Span current_span = $(k) as Span
-            assert !current_span.available()
+            current_span.should { be missing }
             type v
-            assert current_span.available()
+            current_span.should { be available }
         }
     }
 
     @Test
     @Category(UserAgent.All)
-    public void should_use_key_modifier_on_keyboard() {
+    void should_use_key_modifier_on_keyboard() {
         Span span = $('#span_Ctrl_Alt_Shift_x') as Span
-        assert !span.available()
+        span.should { be missing }
         type(CTRL + ALT + SHIFT + 'x')
-        assert span.available()
+        span.should { be available }
 
         TextField textField = $('#textfield') as InputTypeText
 
-        assert textField.value() == ''
+        textField.should { have value('') }
         clickOn textField
         type(SHIFT + 'testatoo')
-        assert textField.value() == 'TESTATOO'
+        textField.should { have value('TESTATOO') }
 
         textField.clear()
-        assert textField.value() == ''
+        textField.should { have value('') }
         type('~!@#$%^&*()_+')
-        assert textField.value() == '~!@#$%^&*()_+'
+        textField.should { have value('~!@#$%^&*()_+') }
 
         textField.clear()
-        assert textField.value() == ''
+        textField.should { have value('') }
         type(SHIFT + '`1234567890-=')
-        assert textField.value() == '~!@#$%^&*()_+'
+        textField.should { have value('~!@#$%^&*()_+') }
     }
 }

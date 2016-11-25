@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.disabled
 @Category(NoGui)
 class DisabledMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         Component cmp = mock(Component)
 
         when(cmp.enabled()).thenReturn(false)
@@ -49,9 +49,9 @@ class DisabledMatcherTest {
             assertThat(cmp, is(disabled()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is disabled')
-                    .appendText('\n     but: is enabled');
+                    .appendText('\n     but: is enabled')
 
             assert e.message == description.toString()
         }

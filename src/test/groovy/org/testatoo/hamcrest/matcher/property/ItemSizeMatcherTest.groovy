@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class ItemSizeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         ItemSupport cmp = mock(ItemSupport)
 
         when(cmp.items()).thenReturn([mock(Item), mock(Item)])
@@ -48,9 +48,9 @@ class ItemSizeMatcherTest {
             assertThat(cmp, has(3.items))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has 3 item(s)')
-                    .appendText('\n     but: has 2 item(s)');
+                    .appendText('\n     but: has 2 item(s)')
 
             assert e.message == description.toString()
         }

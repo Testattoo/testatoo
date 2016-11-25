@@ -41,12 +41,12 @@ class TableTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/components.html'
     }
 
     @Test
-    public void should_have_expected_behaviours() {
+    void should_have_expected_behaviours() {
         assert Table in DataGrid
 
         Table data_grid = $('#empty_data_grid') as Table
@@ -95,7 +95,7 @@ class TableTest {
     }
 
     @Test
-    public void should_access_to_column_by_title() {
+    void should_access_to_column_by_title() {
         DataGrid data_grid = $('#data_grid') as Table
 
         data_grid.column('').title() == ''
@@ -105,7 +105,7 @@ class TableTest {
     }
 
     @Test
-    public void should_access_to_row_by_title() {
+    void should_access_to_row_by_title() {
         DataGrid data_grid = $('#data_grid') as Table
 
         data_grid.row('Row 1').title() == 'Row 1'

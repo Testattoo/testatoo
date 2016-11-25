@@ -64,15 +64,15 @@ class Component implements Clickable, Draggable {
         config.evaluator.metaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
     }
 
-    public void clearBlocks() {
+    void clearBlocks() {
         BLOCKS.clear()
     }
 
-    public boolean addBlock(Matcher matcher) {
+    boolean addBlock(Matcher matcher) {
         BLOCKS.add(matcher)
     }
 
-    public LinkedList<Matcher> getBlocks() {
+    LinkedList<Matcher> getBlocks() {
         Collections.unmodifiableCollection(BLOCKS)
     }
 

@@ -40,13 +40,13 @@ class SelectTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/components.html'
     }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
-    public void select_should_have_expected_behaviours() {
+    void select_should_have_expected_behaviours() {
         assert Select in Dropdown
 
         Select empty_select = $('#empty_select') as Select
@@ -86,7 +86,7 @@ class SelectTest {
     }
 
     @Test
-    public void groupItem_should_have_expected_behaviours() {
+    void groupItem_should_have_expected_behaviours() {
         assert OptionGroup in Group
 
         Select os = $('#os') as Select
@@ -98,7 +98,7 @@ class SelectTest {
     }
 
     @Test
-    public void implement_toString_and_equal() {
+    void implement_toString_and_equal() {
         Select os = $('#os') as Select
 
         assert os.items()[1].toString() == 'Ubuntu'

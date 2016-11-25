@@ -39,7 +39,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class GroupMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         GroupSupport cmp = mock(GroupSupport)
 
         Group group_1 = mock(Group)
@@ -58,9 +58,9 @@ class GroupMatcherTest {
             assertThat(cmp, has(groups('group_1', 'group_3')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has group(s) ["group_1", "group_3"]')
-                    .appendText('\n     but: has group(s) ["group_1", "group_2"]');
+                    .appendText('\n     but: has group(s) ["group_1", "group_2"]')
 
             assert e.message == description.toString()
         }
@@ -69,9 +69,9 @@ class GroupMatcherTest {
             assertThat(cmp, has(groups(group_1, group_3)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has group(s) ["group_1", "group_3"]')
-                    .appendText('\n     but: has group(s) ["group_1", "group_2"]');
+                    .appendText('\n     but: has group(s) ["group_1", "group_2"]')
 
             assert e.message == description.toString()
         }

@@ -33,7 +33,7 @@ import org.testatoo.core.support.property.VisibleItemsSupport
 @Category(NoGui)
 class ListBoxTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert ListBox in Component
         assert ListBox in ItemSupport
         assert ListBox in GroupSupport

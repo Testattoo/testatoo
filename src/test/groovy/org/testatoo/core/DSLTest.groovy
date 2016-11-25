@@ -44,13 +44,13 @@ class DSLTest {
     private static MetaDataProvider meta
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         meta = mock(MetaDataProvider)
         when(meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
     }
 
     @Test
-    public void should_verify_state_available_on_component() {
+    void should_verify_state_available_on_component() {
         Component cmp = spy(new Component(meta))
         doReturn(new LinkedList<>()).when(cmp).blocks
 
@@ -76,7 +76,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_verify_contained_components_on_component() {
+    void should_verify_contained_components_on_component() {
         Component cmp = spy(new Component(meta))
         doReturn(new LinkedList<>()).when(cmp).blocks
 
@@ -88,7 +88,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_check_and_uncheck() {
+    void should_be_able_to_check_and_uncheck() {
         CheckBox checkbox = mock(CheckBox)
         when(checkbox.blocks).thenReturn(new LinkedList<>())
 
@@ -112,7 +112,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_visit() {
+    void should_be_able_to_visit() {
         config.evaluator = mock(Evaluator)
 
         verify(config.evaluator, times(0)).open('http://myUrl')
@@ -121,7 +121,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_fill_set_and_clear_fields() {
+    void should_be_able_to_fill_set_and_clear_fields() {
         InputSupport field = mock(InputSupport)
         Date now = new Date()
 
@@ -138,7 +138,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_select_and_unselect_item() {
+    void should_be_able_to_select_and_unselect_item() {
         Item item_1 = mock(Item)
         Item item_2 = mock(Item)
 
@@ -156,7 +156,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_submit_and_reset_form() {
+    void should_be_able_to_submit_and_reset_form() {
         Form form = mock(Form)
 
         verify(form, times(0)).reset()
@@ -169,7 +169,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_be_able_to_type_text() {
+    void should_be_able_to_type_text() {
         config.evaluator = mock(Evaluator)
 
         verify(config.evaluator, times(0)).type(['data'])
@@ -178,7 +178,7 @@ class DSLTest {
     }
 
     @Test
-    public void should_have_on_as_placeholder() {
+    void should_have_on_as_placeholder() {
         Radio radio = mock(Radio)
         Heading heading = mock(Heading)
 
@@ -187,10 +187,10 @@ class DSLTest {
     }
 
     @Test
-    public void should_have_shortcut_for_mouse() {
+    void should_have_shortcut_for_mouse() {
 
 //        @Test
-//        public void should_be_able_to_rightClick() {
+//        void should_be_able_to_rightClick() {
 //            Button button = $('#button_5') as Button
 //
 //            assert button.text == 'Button'
@@ -205,6 +205,5 @@ class DSLTest {
 //            button.rightClick()
 //            assert button.text == 'Button Right Clicked!'
 //        }
-
     }
 }

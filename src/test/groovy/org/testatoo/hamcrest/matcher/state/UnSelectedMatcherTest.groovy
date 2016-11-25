@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.unselected
 @Category(NoGui)
 class UnSelectedMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         SelectSupport cmp = mock(SelectSupport)
 
         when(cmp.selected()).thenReturn(false)
@@ -48,9 +48,9 @@ class UnSelectedMatcherTest {
             assertThat(cmp, is(unselected()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is unselected')
-                    .appendText('\n     but: is selected');
+                    .appendText('\n     but: is selected')
 
             assert e.message == description.toString()
         }

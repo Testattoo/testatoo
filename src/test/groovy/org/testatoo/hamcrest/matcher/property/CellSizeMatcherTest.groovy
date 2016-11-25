@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.has
 @Category(NoGui)
 class CellSizeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         CellSupport cmp = mock(CellSupport)
 
         when(cmp.cells()).thenReturn([mock(Cell), mock(Cell)])
@@ -48,9 +48,9 @@ class CellSizeMatcherTest {
             assertThat(cmp, has(3.cells))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has 3 cell(s)')
-                    .appendText('\n     but: has 2 cell(s)');
+                    .appendText('\n     but: has 2 cell(s)')
 
             assert e.message == description.toString()
         }

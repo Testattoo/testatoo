@@ -41,12 +41,12 @@ class MultiSelectTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/components.html'
     }
 
     @Test
-    public void should_have_expected_behaviours() {
+    void should_have_expected_behaviours() {
         assert MultiSelect in ListBox
 
         ListBox empty_multi_select = $('#empty_multi_select') as MultiSelect

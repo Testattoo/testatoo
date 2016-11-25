@@ -45,17 +45,17 @@ class MouseTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
+    static void before() {
         visit 'http://localhost:8080/mouse.html'
     }
 
     @Before
-    public void setup() {
+    void setup() {
         Browser.refresh()
     }
 
     @Test
-    public void should_be_able_to_click() {
+    void should_be_able_to_click() {
         Button button = $('#button_1') as Button
         assert button.text() == 'Button'
         clickOn button
@@ -86,7 +86,7 @@ class MouseTest {
     }
 
     @Test
-    public void should_be_able_to_doubleClick() {
+    void should_be_able_to_doubleClick() {
         Button button = $('#button_2') as Button
 
         assert button.text() == 'Button'
@@ -103,7 +103,7 @@ class MouseTest {
     }
 
     @Test
-    public void should_be_able_to_rightClick() {
+    void should_be_able_to_rightClick() {
         Button button = $('#button_5') as Button
 
         assert button.text() == 'Button'
@@ -120,7 +120,7 @@ class MouseTest {
     }
 
     @Test
-    public void should_be_able_to_mouseOver() {
+    void should_be_able_to_mouseOver() {
         Button button = $('#button_3') as Button
         assert button.text() == 'Button'
         hoveringMouseOn button
@@ -128,7 +128,7 @@ class MouseTest {
     }
 
     @Test
-    public void should_be_able_to_mouseOut() {
+    void should_be_able_to_mouseOut() {
         Button button = $('#button_4') as Button
         assert button.text() == 'Button'
 
@@ -142,7 +142,7 @@ class MouseTest {
     }
 
     @Test
-    public void should_be_able_to_dragAndDrop() {
+    void should_be_able_to_dragAndDrop() {
         DropPanel dropPanel = $('#droppable') as DropPanel
         assert dropPanel.title() == 'Drop here'
 
@@ -161,7 +161,7 @@ class MouseTest {
     }
 
     @Test
-    public void should_be_able_to_use_mouse_with_key_modifier() {
+    void should_be_able_to_use_mouse_with_key_modifier() {
         Span span_Ctrl_mouseleft = $('#span_Ctrl_mouseleft') as Span
         Span span_Shift_mouseleft = $('#span_Shift_mouseleft') as Span
 

@@ -38,7 +38,7 @@ import static org.mockito.Mockito.when
 @Category(NoGui)
 class EmptyMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         EmptySupport cmp = mock(EmptySupport)
 
         when(cmp.empty()).thenReturn(true)
@@ -49,9 +49,9 @@ class EmptyMatcherTest {
             assertThat(cmp, is(Matchers.empty()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is empty')
-                    .appendText('\n     but: is filled');
+                    .appendText('\n     but: is filled')
 
             assert e.message == description.toString()
         }
