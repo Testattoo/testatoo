@@ -17,6 +17,7 @@ package org.testatoo
 
 import org.junit.rules.ExternalResource
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
@@ -29,17 +30,22 @@ class WebDriverConfig extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-        String browser = System.getProperty("browser") ?: 'Firefox' // defined in the maven profile
+        String browser = System.getProperty('browser') ?: 'Firefox' // defined in the maven profile
         switch (browser) {
-            case "Firefox":
+            case 'Firefox':
                 println '=================== Firefox Profile ==================='
-                System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver")
+                System.setProperty('webdriver.gecko.driver', '/usr/local/bin/geckodriver')
                 config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
                 break
-            case "Chrome":
+            case 'Chrome':
                 println '=================== Chrome Profile ==================='
-                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver")
+                System.setProperty('webdriver.chrome.driver', '/usr/local/bin/chromedriver')
                 config.evaluator = new WebDriverEvaluator(new ChromeDriver())
+                break
+            case 'Edge':
+                println '=================== Edge Profile ==================='
+                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
+                config.evaluator = new WebDriverEvaluator(new EdgeDriver())
                 break
         }
     }
