@@ -95,8 +95,8 @@ class SelectorTest {
         List<Button> buttons = $$('.btn', Button)
         assert buttons.size() == 4
 
-        List<InputTypeText> textFields = $$('[type="text"]', InputTypeText)
-        assert textFields.size() == 4
+        List<InputTypeText> textFields = $$('.controls [type="text"]', InputTypeText)
+        assert textFields.size() == 3
 
         textFields.each {
             it.should { be enabled }
