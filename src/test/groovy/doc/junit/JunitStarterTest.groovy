@@ -2,6 +2,7 @@ package doc.junit
 
 import org.junit.AfterClass
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
@@ -15,6 +16,7 @@ import static org.testatoo.core.Testatoo.*
 
 @RunWith(JUnit4)
 @Category(UserAgent.All)
+@Ignore
 class JunitStarterTest {
     @BeforeClass
     static void setup() {
