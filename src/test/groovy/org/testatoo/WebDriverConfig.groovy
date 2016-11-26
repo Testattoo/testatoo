@@ -19,6 +19,7 @@ import org.junit.rules.ExternalResource
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.remote.DesiredCapabilities
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.config
@@ -35,7 +36,9 @@ class WebDriverConfig extends ExternalResource {
             case 'Firefox':
                 println '=================== Firefox Profile ==================='
                 System.setProperty('webdriver.gecko.driver', '/usr/local/bin/geckodriver')
-                config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+                DesiredCapabilities cap = DesiredCapabilities.firefox()
+                cap.setCapability('marionette', true)
+                config.evaluator = new WebDriverEvaluator(new FirefoxDriver(cap))
                 break
             case 'Chrome':
                 println '=================== Chrome Profile ==================='

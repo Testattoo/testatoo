@@ -27,7 +27,6 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Span
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.field.TextField
-import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
@@ -129,16 +128,16 @@ class KeyboardTest {
         assert textField.value() == ''
         clickOn textField
         type(SHIFT + 'testatoo')
-        assert textField.value() == 'TESTATOO'
+        textField.should { have value('TESTATOO') }
 
         textField.clear()
-        assert textField.value() == ''
+        textField.should { have value('') }
         type('~!@#$%^&*()_+')
-        assert textField.value() == '~!@#$%^&*()_+'
+        textField.should { have value('~!@#$%^&*()_+') }
 
         textField.clear()
-        assert textField.value() == ''
+        textField.should { have value('') }
         type(SHIFT + '`1234567890-=')
-        assert textField.value() == '~!@#$%^&*()_+'
+        textField.should { have value('~!@#$%^&*()_+') }
     }
 }
