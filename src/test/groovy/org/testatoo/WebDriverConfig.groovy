@@ -36,9 +36,9 @@ class WebDriverConfig extends ExternalResource {
             case 'Firefox':
                 println '=================== Firefox Profile ==================='
                 System.setProperty('webdriver.gecko.driver', '/usr/local/bin/geckodriver')
-                DesiredCapabilities cap = DesiredCapabilities.firefox()
-                cap.setCapability('marionette', true)
-                config.evaluator = new WebDriverEvaluator(new FirefoxDriver(cap))
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox()
+                capabilities.setCapability('marionette', true)
+                config.evaluator = new WebDriverEvaluator(new FirefoxDriver(capabilities))
                 break
             case 'Chrome':
                 println '=================== Chrome Profile ==================='
