@@ -29,7 +29,7 @@
     +----------+    +---------+    +---------+     +---------+
 ....
 
-Testatoo is built on top of http://code.google.com/p/selenium/[Selenium], it can work with any browser supported by https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions[Selenium] (IE, Google-chrome, Firefox, ...).
+Testatoo is built on top of http://www.seleniumhq.org/[Selenium, role="external", window="_blank"], it can work with any browser supported by http://www.seleniumhq.org/about/platforms.jsp[Selenium, role="external", window="_blank"] (IE, Google-chrome, Firefox, ...).
 Even though Testatoo provides an extra layer of convenience and productivity, it is always possible to "fallback" to the WebDriver level to do something directly, if you need to.
 
 Testatoo adds a powerful DSL, while maintaining the usage of Groovy and keeps the advantages of a strongly typed language.
