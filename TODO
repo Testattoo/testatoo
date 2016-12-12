@@ -16,7 +16,7 @@ MetaInfoProvider !!!
 //    @BeforeClass
 //    static void setup() {
 //        config.scan 'org.testatoo.component'
-//        browser.open 'http://localhost:8080/components.html'
+//        browser.open BASE_URL + ''components.html'
 //    }
 //
 //    @AfterClass

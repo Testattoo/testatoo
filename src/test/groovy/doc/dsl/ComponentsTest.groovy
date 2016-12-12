@@ -25,6 +25,7 @@ import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.component.field.*
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -38,7 +39,7 @@ class ComponentsTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Before
@@ -320,7 +321,7 @@ class ComponentsTest {
     void should_have_expected_properties_and_states_supported_by_image() {
         Image image = $('#image') as Img
         // tag::image[]
-        image.should { have reference('http://localhost:8080/img/Montpellier.jpg') }
+        image.should { have reference(BASE_URL + 'img/Montpellier.jpg') }
         // end::image[]
     }
 
@@ -330,7 +331,7 @@ class ComponentsTest {
         // tag::link[]
         link.should {
             have text('Link to dsl page')
-            have reference('http://localhost:8080/dsl.html')
+            have reference(BASE_URL + 'dsl.html')
         }
         // end::link[]
     }

@@ -29,6 +29,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.core.Browser
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.clickOn
 
@@ -44,7 +45,7 @@ class WaitTest {
     @BeforeClass
     static void before() {
         config.waitUntil = 10.seconds
-        visit 'http://localhost:8080/wait.html'
+        visit BASE_URL + 'wait.html'
     }
 
     @AfterClass

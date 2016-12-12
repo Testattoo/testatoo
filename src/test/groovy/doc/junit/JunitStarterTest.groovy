@@ -6,7 +6,7 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.chrome.ChromeDriver
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.category.UserAgent
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
@@ -18,8 +18,8 @@ import static org.testatoo.core.Testatoo.*
 class JunitStarterTest {
     @BeforeClass
     static void setup() {
-        System.setProperty('webdriver.gecko.driver', '/usr/local/bin/geckodriver')
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver()) // <1>
+        System.setProperty('webdriver.chrome.driver', '/usr/bin/chromedriver')
+        config.evaluator = new WebDriverEvaluator(new ChromeDriver()) // <1>
         visit 'http://www.google.com' // <2>
     }
 

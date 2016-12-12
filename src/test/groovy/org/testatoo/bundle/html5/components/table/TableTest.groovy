@@ -29,6 +29,7 @@ import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -42,7 +43,7 @@ class TableTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Test

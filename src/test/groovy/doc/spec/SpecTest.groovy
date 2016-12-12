@@ -26,6 +26,7 @@ import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.component.Radio
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -42,7 +43,7 @@ class SpecTest {
 
     @Before
     void before() {
-        Browser.open 'http://localhost:8080/spec.html'
+        Browser.open BASE_URL + 'spec.html'
 
         male_radio = $('[name=gender]:first') as org.testatoo.bundle.html5.Radio
         female_radio = $('[value=female]:last') as org.testatoo.bundle.html5.Radio

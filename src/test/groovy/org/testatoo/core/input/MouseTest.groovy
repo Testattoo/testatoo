@@ -32,6 +32,7 @@ import org.testatoo.bundle.html5.Span
 import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.Browser
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
 
@@ -46,7 +47,7 @@ class MouseTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/mouse.html'
+        visit BASE_URL + 'mouse.html'
     }
 
     @Before

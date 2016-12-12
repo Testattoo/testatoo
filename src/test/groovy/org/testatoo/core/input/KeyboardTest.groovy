@@ -23,11 +23,11 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.Span
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.field.TextField
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
 
@@ -41,10 +41,7 @@ class KeyboardTest {
 
     @Before
     void before() {
-        visit 'http://localhost:8080/keyboard.html'
-        // TODO remove when FF issue on new driver is fixed => https://code.google.com/p/selenium/issues/detail?id=7937
-        clickOn($('#button') as Button)
-        Thread.sleep(500)
+        visit BASE_URL + 'keyboard.html'
     }
 
     @Test

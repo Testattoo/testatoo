@@ -28,6 +28,7 @@ import org.testatoo.category.UserAgent
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -41,7 +42,7 @@ class SelectTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     // http://en.wikipedia.org/wiki/Drop-down_list

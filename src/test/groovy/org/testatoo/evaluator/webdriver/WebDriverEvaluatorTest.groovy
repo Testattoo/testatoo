@@ -29,6 +29,7 @@ import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.field.TextField
 import org.testatoo.core.internal.Log
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -57,7 +58,7 @@ class WebDriverEvaluatorTest {
     @Test
     void should_be_able_to_register_a_script() {
         try {
-            visit 'http://localhost:8080/dsl.html'
+            visit BASE_URL + 'dsl.html'
 
             TextField field = $('#firstname') as InputTypeText
             Div error = $('#firstname_blur') as Div
@@ -71,7 +72,7 @@ class WebDriverEvaluatorTest {
             config.evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
             config.evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
-            visit 'http://localhost:8080/dsl.html'
+            visit BASE_URL + 'dsl.html'
 
             field = $('#firstname') as InputTypeText
             error = $('#firstname_blur') as Div

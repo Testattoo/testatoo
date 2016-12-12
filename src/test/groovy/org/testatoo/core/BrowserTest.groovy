@@ -25,6 +25,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.A
 import org.testatoo.bundle.html5.Form
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
 
@@ -39,48 +40,46 @@ class BrowserTest {
 
     @Test
     void should_be_able_to_have_browser_properties_access() {
-        Browser.open 'http://localhost:8080/components.html'
+        Browser.open BASE_URL + 'components.html'
 
         assert Browser.title == 'Testatoo Rocks'
         assert Browser.pageSource.contains('<title>Testatoo Rocks</title>')
-        assert Browser.url == 'http://localhost:8080/components.html'
+        assert Browser.url == BASE_URL + 'components.html'
 
-        Browser.open('http://localhost:8080/keyboard.html')
-        assert Browser.url == 'http://localhost:8080/keyboard.html'
+        Browser.open(BASE_URL + 'keyboard.html')
+        assert Browser.url == BASE_URL + 'keyboard.html'
     }
 
     @Test
     void should_be_able_to_navigate() {
-        Browser.open 'http://localhost:8080/components.html'
+        Browser.open BASE_URL + 'components.html'
 
-        assert Browser.url == 'http://localhost:8080/components.html'
+        assert Browser.url == BASE_URL + 'components.html'
 
-        Browser.navigateTo('http://localhost:8080/keyboard.html')
-        assert Browser.url == 'http://localhost:8080/keyboard.html'
+        Browser.navigateTo(BASE_URL + 'keyboard.html')
+        assert Browser.url == BASE_URL + 'keyboard.html'
 
         Browser.back()
-        assert Browser.url == 'http://localhost:8080/components.html'
+        assert Browser.url == BASE_URL + 'components.html'
 
         Browser.forward()
-        assert Browser.url == 'http://localhost:8080/keyboard.html'
+        assert Browser.url == BASE_URL + 'keyboard.html'
 
         Browser.refresh()
-        assert Browser.url == 'http://localhost:8080/keyboard.html'
+        assert Browser.url == BASE_URL + 'keyboard.html'
     }
 
     @Test
     void should_manage_windows() {
-        Browser.open 'http://localhost:8080/components.html'
-
-        assert Browser.windows.size() == 1
-        String main_window_id = Browser.windows[0].id
-
+        Browser.open BASE_URL + 'components.html'
         A link = $('#link') as A
         Form form = $('#dsl-form') as Form
 
         assert Browser.windows.size() == 1
         assert link.available()
         assert !form.available()
+
+        String main_window_id = Browser.windows[0].id
 
         clickOn link
 

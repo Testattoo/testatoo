@@ -29,6 +29,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.ListView
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -42,7 +43,7 @@ class ListTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Test

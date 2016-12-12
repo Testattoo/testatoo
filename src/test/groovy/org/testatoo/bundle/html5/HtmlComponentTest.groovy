@@ -24,6 +24,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.category.UserAgent
 import org.testatoo.core.component.Panel
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -37,7 +38,7 @@ class HtmlComponentTest {
 
     @Test
     void should_implement_default_states() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
 
         Button button = $('#button') as Button
         assert button.available()

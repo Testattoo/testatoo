@@ -33,6 +33,7 @@ import org.testatoo.core.component.*
 import org.testatoo.core.support.property.TextSupport
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -46,7 +47,7 @@ class ComponentsTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Test
@@ -238,7 +239,7 @@ class ComponentsTest {
 
         Img image = $('#image') as Img
 
-        assert image.reference() == 'http://localhost:8080/img/Montpellier.jpg'
+        assert image.reference().endsWith('img/Montpellier.jpg')
     }
 
     @Test
@@ -248,7 +249,7 @@ class ComponentsTest {
         A link = $('#link') as A
 
         assert link.text() == 'Link to dsl page'
-        assert link.reference() == 'http://localhost:8080/dsl.html'
+        assert link.reference().endsWith('dsl.html')
     }
 
     @Test

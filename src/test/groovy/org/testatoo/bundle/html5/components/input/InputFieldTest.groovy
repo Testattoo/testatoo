@@ -29,6 +29,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.visit
 
@@ -44,7 +45,7 @@ class InputFieldTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/components.html'
+        visit BASE_URL + 'components.html'
     }
 
     @Test

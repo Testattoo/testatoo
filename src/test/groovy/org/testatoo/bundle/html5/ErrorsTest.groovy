@@ -31,6 +31,7 @@ import org.testatoo.core.component.field.PasswordField
 import org.testatoo.core.input.MouseModifiers
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.ALT
 import static org.testatoo.core.input.Key.CTRL
@@ -46,7 +47,7 @@ class ErrorsTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/error.html'
+        visit BASE_URL + 'error.html'
     }
 
     @Test

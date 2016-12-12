@@ -27,6 +27,7 @@ import org.testatoo.bundle.html5.Button
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.Component
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -40,7 +41,7 @@ class SelectorTest {
 
     @BeforeClass
     static void before() {
-        visit 'http://localhost:8080/selectors.html'
+        visit BASE_URL + 'selectors.html'
     }
 
     @Test
