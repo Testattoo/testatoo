@@ -110,16 +110,16 @@ class KeyboardTest {
             type v
             assert current_span.available()
         }
+
+        Span span = $('#span_Ctrl_Alt_Shift_x') as Span
+        assert !span.available()
+        type(CTRL + ALT + SHIFT + 'x')
+        assert span.available()
     }
 
     @Test
     @Category(UserAgent.All)
     void should_use_key_modifier_on_keyboard() {
-        Span span = $('#span_Ctrl_Alt_Shift_x') as Span
-        assert !span.available()
-        type(CTRL + ALT + SHIFT + 'x')
-        assert span.available()
-
         TextField textField = $('#textfield') as InputTypeText
 
         assert textField.value() == ''
