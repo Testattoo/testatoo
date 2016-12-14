@@ -14,7 +14,7 @@ import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 import static org.testatoo.core.Testatoo.*
 
 @RunWith(JUnit4)
-@Category(UserAgent.All)
+@Category(UserAgent.Chrome)
 class JunitStarterTest {
     @BeforeClass
     static void setup() {
