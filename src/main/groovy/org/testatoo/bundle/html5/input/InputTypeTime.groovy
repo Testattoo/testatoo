@@ -18,8 +18,15 @@ package org.testatoo.bundle.html5.input
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.TimeField
 
+import static org.testatoo.core.Testatoo.getConfig
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @CssIdentifier('input[type=time]')
-class InputTypeTime extends TimeField implements Input {}
+class InputTypeTime extends TimeField implements Input {
+    @Override
+    void value(Object value) {
+        config.evaluator.runScript("\$('#${id()}').val('" + value + "')")
+    }
+}
