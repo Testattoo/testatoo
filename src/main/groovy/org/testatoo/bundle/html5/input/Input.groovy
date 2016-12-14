@@ -59,9 +59,7 @@ trait Input {
 
     void clear() {
         this.click()
-        config.evaluator.runScript("\$('#${id()}').val(' ').change()")
-        config.evaluator.type([BACK_SPACE])
-        this.click()
+        config.evaluator.runScript("\$('#${id()}').val('').change()")
     }
 
     Object value() {
