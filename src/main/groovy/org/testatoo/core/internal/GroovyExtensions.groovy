@@ -31,6 +31,7 @@ import java.time.Duration
 
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
+import static org.testatoo.core.internal.Wait.waitUntil
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -111,44 +112,11 @@ class GroovyExtensions {
         component.addBlock(org.hamcrest.Matchers.is(matcher.newInstance()))
     }
 
-    // TODO David why not used ?
     static void contain(Component component, Component... components) {
         component.addBlock(new ContainMatcher(config.evaluator, components))
     }
 
-    // TODO David why not used ?
     static void have(Component component, PropertyMatcher matcher) {
         component.addBlock(Matchers.has((matcher)))
-    }
-
-    private static void waitUntil(Closure c, Matcher what) {
-        boolean success = false
-        long timeout = config.waitUntil.toMillis()
-        long interval = 200
-
-        Log.log "WaitUntil: " + timeout
-        for (; timeout > 0; timeout -= interval) {
-            try {
-                if (what.matches(c.delegate)) {
-                    success = true
-                    break
-                }
-            } catch (e) {
-                Log.log('Matcher evaluation fail with this exception : ' + e.message)
-                Log.log('Retrying...')
-            }
-            Thread.sleep(interval)
-        }
-
-        if(!success) {
-            Description description = new StringDescription()
-            description
-                    .appendText('Unable to reach the condition after ' + config.waitUntil.toMillis() + ' milliseconds')
-                    .appendText('\nExpected: ')
-                    .appendDescriptionOf(what)
-                    .appendText('\n     but: ')
-            what.describeMismatch(c.delegate, description)
-            throw new AssertionError(description.toString())
-        }
     }
 }

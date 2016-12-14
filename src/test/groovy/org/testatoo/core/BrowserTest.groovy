@@ -24,10 +24,13 @@ import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.A
 import org.testatoo.bundle.html5.Form
+import org.testatoo.core.internal.Wait
 
 import static org.testatoo.WebDriverConfig.BASE_URL
+import static org.testatoo.core.Browser.*
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Mouse.*
+import static org.testatoo.core.internal.Wait.waitUntil
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -40,56 +43,56 @@ class BrowserTest {
 
     @Test
     void should_be_able_to_have_browser_properties_access() {
-        Browser.open BASE_URL + 'components.html'
+        open BASE_URL + 'components.html'
 
-        assert Browser.title == 'Testatoo Rocks'
-        assert Browser.pageSource.contains('<title>Testatoo Rocks</title>')
-        assert Browser.url == BASE_URL + 'components.html'
+        assert title == 'Testatoo Rocks'
+        assert pageSource.contains('<title>Testatoo Rocks</title>')
+        assert url == BASE_URL + 'components.html'
 
-        Browser.open(BASE_URL + 'keyboard.html')
-        assert Browser.url == BASE_URL + 'keyboard.html'
+        open(BASE_URL + 'keyboard.html')
+        assert url == BASE_URL + 'keyboard.html'
     }
 
     @Test
     void should_be_able_to_navigate() {
-        Browser.open BASE_URL + 'components.html'
+        open BASE_URL + 'components.html'
 
-        assert Browser.url == BASE_URL + 'components.html'
+        assert url == BASE_URL + 'components.html'
 
-        Browser.navigateTo(BASE_URL + 'keyboard.html')
-        assert Browser.url == BASE_URL + 'keyboard.html'
+        navigateTo(BASE_URL + 'keyboard.html')
+        assert url == BASE_URL + 'keyboard.html'
 
-        Browser.back()
-        assert Browser.url == BASE_URL + 'components.html'
+        back()
+        assert url == BASE_URL + 'components.html'
 
-        Browser.forward()
-        assert Browser.url == BASE_URL + 'keyboard.html'
+        forward()
+        assert url == BASE_URL + 'keyboard.html'
 
-        Browser.refresh()
-        assert Browser.url == BASE_URL + 'keyboard.html'
+        refresh()
+        assert url == BASE_URL + 'keyboard.html'
     }
 
     @Test
     void should_manage_windows() {
-        Browser.open BASE_URL + 'components.html'
+        open BASE_URL + 'components.html'
         A link = $('#link') as A
         Form form = $('#dsl-form') as Form
 
-        assert Browser.windows.size() == 1
+        assert windows.size() == 1
         assert link.available()
         assert !form.available()
 
-        String main_window_id = Browser.windows[0].id
+        String main_window_id = windows[0].id
 
         clickOn link
 
-        assert Browser.windows.size() == 2
-        Browser.switchTo(Browser.windows[1])
+        waitUntil({ windows.size() == 2 })
+        switchTo(windows[1])
         assert form.available()
 
-        Browser.windows[1].close()
-        assert Browser.windows.size() == 1
-        assert Browser.windows[0].id == main_window_id
-        assert Browser.windows[0].toString() == main_window_id
+        windows[1].close()
+        waitUntil({ windows.size() == 1 })
+        assert windows[0].id == main_window_id
+        assert windows[0].toString() == main_window_id
     }
 }
