@@ -250,8 +250,8 @@ class InputFieldTest {
         assert time.label() == 'Time'
 
         assert time.value() == ''
-        time.value('04:45PM')
-        assert (time.value() as String).startsWith('16:45') // HTML specs : time value with no time zone in 24-hour military format
+        time.value('16:45')
+        assert time.value() == '16:45'
     }
 
     @Test
