@@ -19,7 +19,6 @@ import org.testatoo.core.ComponentException
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
 import static org.testatoo.core.Testatoo.config
-import static org.testatoo.core.input.Key.BACK_SPACE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

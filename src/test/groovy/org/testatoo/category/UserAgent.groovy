@@ -22,4 +22,5 @@ interface UserAgent {
     interface All {}
     interface Firefox {}
     interface Chrome {}
+    interface Edge {}
 }

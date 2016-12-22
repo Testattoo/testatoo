@@ -47,8 +47,6 @@ class WebDriverConfig extends ExternalResource {
         final boolean docker = Boolean.valueOf(System.getProperty('docker')) ?: false // -Ddocker=true
         final String ip = System.getProperty('ip') ?: '127.0.0.1' // -DIP=xxx.xxx.xxx.xxx
 
-
-
         BASE_URL = 'http://' + ip + ':8080/'
 
         startJetty()
@@ -78,7 +76,8 @@ class WebDriverConfig extends ExternalResource {
                 break
             case 'Edge':
                 println '=================== Edge Profile ==================='
-                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
+                System.setProperty('webdriver.edge.driver', 'C:\\Users\\Stephanie\\IdeaProjects\\MicrosoftWebDriver.exe')
+//                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
                 config.evaluator = new WebDriverEvaluator(new EdgeDriver())
                 break
         }

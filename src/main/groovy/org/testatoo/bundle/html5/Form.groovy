@@ -18,6 +18,7 @@ package org.testatoo.bundle.html5
 import org.testatoo.core.By
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
+import org.testatoo.core.component.Component
 
 import static org.testatoo.core.Testatoo.config
 
@@ -46,6 +47,8 @@ class Form extends org.testatoo.core.component.Form {
 
     @Override
     boolean valid() {
-        !config.evaluator.check(id(), "it.is(':invalid')")
+        find(By.css('input'), Component).findAll { input ->
+            config.evaluator.check(input.id(), "it.is(':invalid')")
+        }.empty
     }
 }
