@@ -425,6 +425,25 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>safari</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <browser>Safari</browser>
+                            </systemPropertyVariables>
+                            <groups>
+                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Safari,org.testatoo.category.UserAgent$All
+                            </groups>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>

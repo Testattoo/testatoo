@@ -26,6 +26,7 @@ import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
+import org.openqa.selenium.safari.SafariDriver
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.config
@@ -53,7 +54,7 @@ class WebDriverConfig extends ExternalResource {
 
         switch (browser) {
             case 'Firefox':
-                println '=================== Firefox Profile ==================='
+                println '================== Firefox Profile ==================='
                 if (docker) {
                     WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), DesiredCapabilities.firefox())
                     config.evaluator = new WebDriverEvaluator(driver)
@@ -74,8 +75,13 @@ class WebDriverConfig extends ExternalResource {
                     config.evaluator = new WebDriverEvaluator(new ChromeDriver())
                 }
                 break
+            case 'Safari ':
+                println '=================== Safari Profile ==================='
+                System.setProperty('webdriver.safari.driver', '/usr/bin/safaridriver')
+                config.evaluator = new WebDriverEvaluator(new SafariDriver())
+                break
             case 'Edge':
-                println '=================== Edge Profile ==================='
+                println '==================== Edge Profile ===================='
                 System.setProperty('webdriver.edge.driver', 'C:\\Users\\Stephanie\\IdeaProjects\\MicrosoftWebDriver.exe')
 //                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
                 config.evaluator = new WebDriverEvaluator(new EdgeDriver())

@@ -16,18 +16,23 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(JUnit4)
 @Category(UserAgent.Chrome)
 class JunitStarterTest {
+
     @BeforeClass
     static void setup() {
         System.setProperty('webdriver.chrome.driver', '/usr/bin/chromedriver')
         config.evaluator = new WebDriverEvaluator(new ChromeDriver()) // <1>
-        visit 'http://www.google.com' // <2>
+
+        visit 'http://www.google.ca' // <2>
     }
 
     @Test
     void google_search_field_should_be_visible() {
         // Write you test here
         InputTypeText search = $('#lst-ib') as InputTypeText    // <3>
-        search.should { be visible }
+        search.should {
+            have focus
+            be visible
+        }
     }
 
     @AfterClass
