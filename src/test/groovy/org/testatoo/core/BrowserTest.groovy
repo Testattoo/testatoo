@@ -24,7 +24,6 @@ import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.A
 import org.testatoo.bundle.html5.Form
-import org.testatoo.core.internal.Wait
 
 import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Browser.*

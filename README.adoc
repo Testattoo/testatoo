@@ -1,6 +1,6 @@
 = Testatoo
 
-:revdate: 07-02-2015
+:revdate: 01-07-2017
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 
@@ -16,6 +16,19 @@ image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/log
 The documentation is available https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/index.adoc[here]
 
 Samples are available https://github.com/Ovea/testatoo-sample[here]
+
+== Quickstart
+
+Get Started in 5 minutes
+
+== Compatibility
+
+Chrome: 100%
+Firefox:
+IE: 11
+Edge:
+Safari:
+
 
 == Downloading
 

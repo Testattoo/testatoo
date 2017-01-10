@@ -9,6 +9,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.chrome.ChromeDriver
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.category.UserAgent
+import org.testatoo.core.component.field.TextField
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
@@ -28,7 +29,7 @@ class JunitStarterTest {
     @Test
     void google_search_field_should_be_visible() {
         // Write you test here
-        InputTypeText search = $('#lst-ib') as InputTypeText    // <3>
+        TextField search = $('#lst-ib') as InputTypeText    // <3>
         search.should {
             have focus
             be visible

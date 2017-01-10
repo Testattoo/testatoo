@@ -22,10 +22,10 @@ import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
-import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Div
 import org.testatoo.bundle.html5.input.InputTypeText
+import org.testatoo.category.UserAgent
 import org.testatoo.core.component.field.TextField
 import org.testatoo.core.internal.Log
 
@@ -48,11 +48,7 @@ class WebDriverEvaluatorTest {
 
     @Test
     void should_be_able_to_obtain_the_underline_implementation() {
-        try {
-            assert config.evaluator.getImplementation(WebDriver) instanceof WebDriver
-        } finally {
-            config.evaluator.close()
-        }
+        assert config.evaluator.driver instanceof WebDriver
     }
 
     @Test

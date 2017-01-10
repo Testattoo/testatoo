@@ -82,8 +82,7 @@ class WebDriverConfig extends ExternalResource {
                 break
             case 'Edge':
                 println '==================== Edge Profile ===================='
-                System.setProperty('webdriver.edge.driver', 'C:\\Users\\Stephanie\\IdeaProjects\\MicrosoftWebDriver.exe')
-//                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
+                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
                 config.evaluator = new WebDriverEvaluator(new EdgeDriver())
                 break
         }

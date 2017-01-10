@@ -1,0 +1,29 @@
+== Compatibility
+
+Testatoo is based on Selenium 3 and definitely turned to the future.
+But for the moment all the vendor driver are not at the same level and it's an on going process.
+We take care to be 100% compatible with all browser to offer you a full abstraction of Selenium. But for the moment it's not the case
+
+==== Chrome
+
+Fully compatible. We strongly encourage to use it as your default test Browser.
+
+==== Firefox
+
+Not fully
+
+1. Selenium Actions are not implemented see: https://github.com/mozilla/geckodriver/issues/233
+2. FF don't have the focus on the browser when page is opened: https://github.com/mozilla/geckodriver/issues/394
+
+==== Edge
+
+==== Safari
+
+==== Fallback
+
+In any case you can fallback to native webdriver like this:
+
+[source, groovy]
+-------------------------------------------------------------------------------
+WebDriver webdriver = config.evaluator.driver
+-------------------------------------------------------------------------------
