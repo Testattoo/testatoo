@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,16 +31,17 @@ import java.time.Duration
 
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
+import static org.testatoo.core.internal.Wait.waitUntil
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class GroovyExtensions {
-    public static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
+    static Duration getSeconds(Number self) { Duration.ofSeconds(self.longValue()) }
 
-    public static Collection<?> plus(Key a, Key b) { [a, b] }
+    static Collection<?> plus(Key a, Key b) { [a, b] }
 
-    public static Collection<?> plus(Key a, String b) { [a, b] }
+    static Collection<?> plus(Key a, String b) { [a, b] }
 
     static void click(Key key, Component c) { click([key], c) }
 
@@ -82,19 +83,19 @@ class GroovyExtensions {
         new VisibleItemsSizeMatcher(number)
     }
 
-    public static PropertyMatcher getGroups(Integer number) {
+    static PropertyMatcher getGroups(Integer number) {
         new GroupSizeMatcher(number)
     }
 
-    public static PropertyMatcher getColumns(Integer number) {
+    static PropertyMatcher getColumns(Integer number) {
         new ColumnSizeMatcher(number)
     }
 
-    public static PropertyMatcher getRows(Integer number) {
+    static PropertyMatcher getRows(Integer number) {
         new RowSizeMatcher(number)
     }
 
-    public static PropertyMatcher getCells(Integer number) {
+    static PropertyMatcher getCells(Integer number) {
         new CellSizeMatcher(number)
     }
 
@@ -117,36 +118,5 @@ class GroovyExtensions {
 
     static void have(Component component, PropertyMatcher matcher) {
         component.addBlock(Matchers.has((matcher)))
-    }
-
-    private static void waitUntil(Closure c, Matcher what) {
-        boolean success = false;
-        long timeout = config.waitUntil.toMillis()
-        long interval = 200
-
-        Log.log "WaitUntil: " + timeout
-        for (; timeout > 0; timeout -= interval) {
-            try {
-                if (what.matches(c.delegate)) {
-                    success = true
-                    break
-                }
-            } catch (e) {
-                Log.log('Matcher evaluation fail with this exception : ' + e.message)
-                Log.log('Retrying...')
-            }
-            Thread.sleep(interval)
-        }
-
-        if(!success) {
-            Description description = new StringDescription()
-            description
-                    .appendText('Unable to reach the condition after ' + config.waitUntil.toMillis() + ' milliseconds')
-                    .appendText('\nExpected: ')
-                    .appendDescriptionOf(what)
-                    .appendText('\n     but: ');
-            what.describeMismatch(c.delegate, description);
-            throw new AssertionError(description.toString())
-        }
     }
 }

@@ -25,6 +25,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 import org.testatoo.category.UserAgent
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -37,14 +38,14 @@ class SelectorTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/selectors.html'
+    static void before() {
+        visit BASE_URL + 'selectors.html'
     }
 
     @Test
-    public void should_select_unique_component_by_css_selector() {
+    void should_select_unique_component_by_css_selector() {
         // tag::componentSelection[]
-        $('css selector');
+        $('css selector')
 
         // Samples
         Button button = $('#button') as Button              // <1>
@@ -61,10 +62,9 @@ class SelectorTest {
     }
 
     @Test
-    public void should_select_many_components_by_css_selector() {
+    void should_select_many_components_by_css_selector() {
         // tag::componentsSelection[]
 
         // end::componentsSelection[]
     }
-
 }

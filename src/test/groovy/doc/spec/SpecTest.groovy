@@ -26,6 +26,7 @@ import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.component.Radio
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -41,15 +42,15 @@ class SpecTest {
     Radio female_radio
 
     @Before
-    public void before() {
-        Browser.open 'http://localhost:8080/spec.html'
+    void before() {
+        Browser.open BASE_URL + 'spec.html'
 
         male_radio = $('[name=gender]:first') as org.testatoo.bundle.html5.Radio
         female_radio = $('[value=female]:last') as org.testatoo.bundle.html5.Radio
     }
 
     @Test
-    public void should_select_gender() {
+    void should_select_gender() {
         // tag::specMethod[]
         male_radio.should {
             be unchecked

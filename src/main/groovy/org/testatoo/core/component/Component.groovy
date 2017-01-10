@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -64,15 +64,15 @@ class Component implements Clickable, Draggable {
         config.evaluator.metaInfo(by.getExpression(this)).collect { it.asType(type) } as List<T>
     }
 
-    public void clearBlocks() {
+    void clearBlocks() {
         BLOCKS.clear()
     }
 
-    public boolean addBlock(Matcher matcher) {
+    boolean addBlock(Matcher matcher) {
         BLOCKS.add(matcher)
     }
 
-    public LinkedList<Matcher> getBlocks() {
+    LinkedList<Matcher> getBlocks() {
         Collections.unmodifiableCollection(BLOCKS)
     }
 

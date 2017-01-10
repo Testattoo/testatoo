@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,6 +29,7 @@ import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -41,12 +42,12 @@ class TableTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/components.html'
+    static void before() {
+        visit BASE_URL + 'components.html'
     }
 
     @Test
-    public void should_have_expected_behaviours() {
+    void should_have_expected_behaviours() {
         assert Table in DataGrid
 
         Table data_grid = $('#empty_data_grid') as Table
@@ -95,7 +96,7 @@ class TableTest {
     }
 
     @Test
-    public void should_access_to_column_by_title() {
+    void should_access_to_column_by_title() {
         DataGrid data_grid = $('#data_grid') as Table
 
         data_grid.column('').title() == ''
@@ -105,7 +106,7 @@ class TableTest {
     }
 
     @Test
-    public void should_access_to_row_by_title() {
+    void should_access_to_row_by_title() {
         DataGrid data_grid = $('#data_grid') as Table
 
         data_grid.row('Row 1').title() == 'Row 1'

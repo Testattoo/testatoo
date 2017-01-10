@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.inRange
 @Category(NoGui)
 class InRangeMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         RangeSupport cmp = mock(RangeSupport)
 
         when(cmp.inRange()).thenReturn(true)
@@ -48,9 +48,9 @@ class InRangeMatcherTest {
             assertThat(cmp, is(inRange()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: is in range')
-                    .appendText('\n     but: is out of range');
+                    .appendText('\n     but: is out of range')
 
             assert e.message == description.toString()
         }

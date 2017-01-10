@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,13 +22,14 @@ import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
-import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Div
 import org.testatoo.bundle.html5.input.InputTypeText
+import org.testatoo.category.UserAgent
 import org.testatoo.core.component.field.TextField
 import org.testatoo.core.internal.Log
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -37,28 +38,23 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(JUnit4)
 @Category(UserAgent.All)
 class WebDriverEvaluatorTest {
-
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @AfterClass
-    public static void after() {
+    static void after() {
         config.debug = false
-    }
-//
-    @Test
-    public void should_be_able_to_obtain_the_underline_implementation() {
-        try {
-            assert config.evaluator.getImplementation(WebDriver) instanceof WebDriver
-        } finally {
-            config.evaluator.close()
-        }
     }
 
     @Test
-    public void should_be_able_to_register_a_script() {
+    void should_be_able_to_obtain_the_underline_implementation() {
+        assert config.evaluator.driver instanceof WebDriver
+    }
+
+    @Test
+    void should_be_able_to_register_a_script() {
         try {
-            visit 'http://localhost:8080/dsl.html'
+            visit BASE_URL + 'dsl.html'
 
             TextField field = $('#firstname') as InputTypeText
             Div error = $('#firstname_blur') as Div
@@ -72,7 +68,7 @@ class WebDriverEvaluatorTest {
             config.evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
             config.evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
-            visit 'http://localhost:8080/dsl.html'
+            visit BASE_URL + 'dsl.html'
 
             field = $('#firstname') as InputTypeText
             error = $('#firstname_blur') as Div
@@ -85,7 +81,7 @@ class WebDriverEvaluatorTest {
     }
 
     @Test
-    public void should_be_able_to_activate_logging() {
+    void should_be_able_to_activate_logging() {
         assert !Log.debug
         config.debug = true
         assert Log.debug

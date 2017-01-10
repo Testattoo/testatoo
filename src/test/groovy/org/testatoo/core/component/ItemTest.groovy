@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,7 +32,7 @@ import org.testatoo.core.support.state.SelectSupport
 @Category(NoGui)
 class ItemTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Item in Component
         assert Item in Selectable
         assert Item in UnSelectable
@@ -41,7 +41,7 @@ class ItemTest {
     }
 
     @Test
-    public void should_have_equality_and_hashcode_based_on_value() {
+    void should_have_equality_and_hashcode_based_on_value() {
         Item item_1 = new TestItem('value_1')
         Item item_2 = new TestItem('value_2')
         Item item_3 = new TestItem('value_1')
@@ -53,9 +53,9 @@ class ItemTest {
     }
 
     private class TestItem extends Item {
-        private String value;
+        private String value
 
-        public TestItem(String value) {
+        TestItem(String value) {
             this.value = value
         }
 

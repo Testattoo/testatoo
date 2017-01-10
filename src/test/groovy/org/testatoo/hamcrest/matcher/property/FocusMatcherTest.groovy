@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,7 +37,7 @@ import static org.testatoo.hamcrest.Matchers.*
 @Category(NoGui)
 class FocusMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         FocusSupport cmp = mock(FocusSupport)
 
         when(cmp.focused()).thenReturn(true)
@@ -47,9 +47,9 @@ class FocusMatcherTest {
             assertThat(cmp, has(focus()))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has focus')
-                    .appendText('\n     but: has no focus');
+                    .appendText('\n     but: has no focus')
 
             assert e.message == description.toString()
         }

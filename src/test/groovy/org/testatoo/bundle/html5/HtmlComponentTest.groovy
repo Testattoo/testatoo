@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,6 +24,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.category.UserAgent
 import org.testatoo.core.component.Panel
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -36,8 +37,8 @@ class HtmlComponentTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @Test
-    public void should_implement_default_states() {
-        visit 'http://localhost:8080/components.html'
+    void should_implement_default_states() {
+        visit BASE_URL + 'components.html'
 
         Button button = $('#button') as Button
         assert button.available()
@@ -55,12 +56,12 @@ class HtmlComponentTest {
     }
 
     @Test
-    public void should_find_child_elements_by_css() {
+    void should_find_child_elements_by_css() {
         // TODO David
     }
 
     @Test
-    public void should_find_child_elements_by_js() {
+    void should_find_child_elements_by_js() {
         // TODO David
     }
 }

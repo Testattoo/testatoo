@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,13 +15,14 @@
  */
 package org.testatoo.core
 
+import org.openqa.selenium.WebDriver
 import org.testatoo.core.input.MouseModifiers
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Evaluator extends AutoCloseable {
-    abstract <T> T getImplementation(Class<T> type)
+    abstract WebDriver getDriver()
 
     abstract void open(String url)
 
@@ -32,8 +33,6 @@ interface Evaluator extends AutoCloseable {
     abstract String eval(String id, String jsExpr)
 
     abstract boolean check(String id, String jsExpr)
-
-    abstract void trigger(String id, String event)
 
     abstract String getTitle()
 

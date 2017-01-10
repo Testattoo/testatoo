@@ -25,6 +25,7 @@ import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.component.field.*
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -37,17 +38,17 @@ class ComponentsTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/components.html'
+    static void before() {
+        visit BASE_URL + 'components.html'
     }
 
     @Before
-    public void setUp() {
+    void setUp() {
         Browser.refresh()
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_component() {
+    void should_have_expected_properties_and_states_supported_by_component() {
         Component component = $('#button') as Component
         // tag::component[]
         component.should {
@@ -68,7 +69,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_button() {
+    void should_have_expected_properties_and_states_supported_by_button() {
         Button button = $('#btn') as Button
         // tag::button[]
         button.should { have text('My Button Text') }
@@ -76,7 +77,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_checkbox() {
+    void should_have_expected_properties_and_states_supported_by_checkbox() {
         CheckBox checkbox = $('#checkbox') as CheckBox
         // tag::checkbox[]
         checkbox.should {
@@ -93,7 +94,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_radio() {
+    void should_have_expected_properties_and_states_supported_by_radio() {
         Radio checked_radio = $('#radio_1') as Radio
         Radio unchecked_radio = $('#radio_2') as Radio
         // tag::radio[]
@@ -115,7 +116,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_dropdown() {
+    void should_have_expected_properties_and_states_supported_by_dropdown() {
         Dropdown os_list = $('#os') as Select
         // tag::dropdown[]
         os_list.should {
@@ -143,7 +144,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_group() {
+    void should_have_expected_properties_and_states_supported_by_group() {
         Dropdown os_list = $('#os') as Select
         // tag::group[]
         Group linux_group = os_list.group('linux') // Or os_list.groups[0]
@@ -156,7 +157,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_listbox() {
+    void should_have_expected_properties_and_states_supported_by_listbox() {
         ListBox cities = $('#cities') as MultiSelect
         // tag::listbox[]
         cities.should {
@@ -180,7 +181,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_item() {
+    void should_have_expected_properties_and_states_supported_by_item() {
         Dropdown os_list = $('#os') as Select
         // tag::item[]
         Item os = os_list.item('Gentoo')  // Or os_list.items[1]
@@ -205,7 +206,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_textfield() {
+    void should_have_expected_properties_and_states_supported_by_textfield() {
         TextField textfield = $('#text_field') as InputTypeText
         // tag::textfield[]
         textfield.should {
@@ -225,7 +226,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_datefield() {
+    void should_have_expected_properties_and_states_supported_by_datefield() {
         DateField date = $('#date_field') as InputTypeDate
         // tag::datefield[]
         date.should {
@@ -242,7 +243,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_numberfield() {
+    void should_have_expected_properties_and_states_supported_by_numberfield() {
         NumberField number = $('#number_field') as InputTypeNumber
         // tag::numberfield[]
         number.should {
@@ -259,7 +260,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_rangefield() {
+    void should_have_expected_properties_and_states_supported_by_rangefield() {
         RangeField range = $('#range_field') as InputTypeRange
         // tag::rangefield[]
         range.should {
@@ -277,7 +278,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_form() {
+    void should_have_expected_properties_and_states_supported_by_form() {
         Form form = $('#form') as org.testatoo.bundle.html5.Form
         EmailField email_field = $('#email') as InputTypeEmail
         PasswordField password_field = $('#password') as InputTypePassword
@@ -307,7 +308,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_heading() {
+    void should_have_expected_properties_and_states_supported_by_heading() {
         Heading first_heading = $('#h1') as H1
         Heading last_heading = $('#h6') as H6
         // tag::heading[]
@@ -317,26 +318,26 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_image() {
+    void should_have_expected_properties_and_states_supported_by_image() {
         Image image = $('#image') as Img
         // tag::image[]
-        image.should { have reference('http://localhost:8080/img/Montpellier.jpg') }
+        image.should { have reference(BASE_URL + 'img/Montpellier.jpg') }
         // end::image[]
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_link() {
+    void should_have_expected_properties_and_states_supported_by_link() {
         Link link = $('#link') as A
         // tag::link[]
         link.should {
             have text('Link to dsl page')
-            have reference('http://localhost:8080/dsl.html')
+            have reference(BASE_URL + 'dsl.html')
         }
         // end::link[]
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_listview() {
+    void should_have_expected_properties_and_states_supported_by_listview() {
         ListView listview = $('#unordered_list') as Ul
         // tag::listview[]
         listview.should {
@@ -347,7 +348,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_panel() {
+    void should_have_expected_properties_and_states_supported_by_panel() {
         Panel panel = $('#panel') as Div
         try {
             // tag::panel[]
@@ -359,7 +360,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void should_have_expected_properties_and_states_supported_by_datagrid() {
+    void should_have_expected_properties_and_states_supported_by_datagrid() {
         DataGrid datagrid = $('#data_grid') as Table
         // tag::datagrid[]
         datagrid.should {

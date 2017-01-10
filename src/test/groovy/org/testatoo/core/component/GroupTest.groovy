@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,12 +28,12 @@ import org.testatoo.category.NoGui
 @Category(NoGui)
 class GroupTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Group in Component
     }
 
     @Test
-    public void should_have_equality_and_hashcode_based_on_value() {
+    void should_have_equality_and_hashcode_based_on_value() {
         Group group_1 = new TestGroup('value_1')
         Group group_2 = new TestGroup('value_2')
         Group group_3 = new TestGroup('value_1')
@@ -47,7 +47,7 @@ class GroupTest {
     private class TestGroup extends Group {
         private String value;
 
-        public TestGroup(String value) {
+        TestGroup(String value) {
             this.value = value
         }
 

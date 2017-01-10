@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,7 +43,7 @@ class ComponentTest {
     Evaluator evaluator
 
     @Before
-    public void before() {
+    void before() {
         metaData = mock(MetaDataProvider)
         when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
         evaluator = mock(Evaluator)
@@ -51,19 +51,19 @@ class ComponentTest {
     }
 
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Component in Clickable
         assert Component in Draggable
     }
 
     @Test
-    public void should_be_initialized_with_a_meta_data_provider() {
+    void should_be_initialized_with_a_meta_data_provider() {
         Component cmp = new Component(metaData)
         assert cmp.meta == metaData
     }
 
     @Test
-    public void should_have_identity_on_id() {
+    void should_have_identity_on_id() {
         Component cmp_1 = new Component(metaData)
         Component cmp_2 = new Component(metaData)
         Component cmp_3 = new Component(metaData)
@@ -85,7 +85,7 @@ class ComponentTest {
     }
 
     @Test
-    public void should_implement_toString_based_on_class_name_and_id() {
+    void should_implement_toString_based_on_class_name_and_id() {
         Component cmp_1 = new Component(metaData)
         when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'cmpId_1'))
 
@@ -93,7 +93,7 @@ class ComponentTest {
     }
 
     @Test
-    public void should_have_generic_behaviours_delegated_to_evaluator() {
+    void should_have_generic_behaviours_delegated_to_evaluator() {
         String cmp_id = 'cmpId_1'
         Component component = new Component(metaData)
         when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: cmp_id))

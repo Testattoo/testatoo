@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,17 +39,17 @@ class WebDriverEvaluator implements Evaluator {
 
     WebDriverEvaluator(WebDriver webDriver) {
         this.webDriver = webDriver
-        this.js = (JavascriptExecutor) webDriver;
+        this.js = (JavascriptExecutor) webDriver
     }
 
     @Override
-    public <T> T getImplementation(Class<T> type) { type.cast(webDriver) }
+    WebDriver getDriver() { webDriver }
 
     @Override
     void open(String url) { webDriver.get(url) }
 
     @Override
-    public <T> T getJson(String jQueryExpr) {
+    <T> T getJson(String jQueryExpr) {
         eval(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
@@ -61,11 +61,6 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     boolean check(String id, String jsExpr) {
         Boolean.parseBoolean(eval(id, jsExpr))
-    }
-
-    @Override
-    void trigger(String id, String event) {
-        runScript("\$('#${id}').trigger('${event}')")
     }
 
     @Override
@@ -152,7 +147,7 @@ class WebDriverEvaluator implements Evaluator {
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
-        action.build().perform();
+        action.build().perform()
     }
 
     @Override
@@ -223,13 +218,13 @@ class WebDriverEvaluator implements Evaluator {
         Log.log(v)
 
         if (v == '__JQUERY_MISSING__') {
-            js.executeScript(getClass().getResource("jquery-2.2.2.min.js").text
-                    + getClass().getResource("testatoo.js").text)
+            js.executeScript(getClass().getResource('jquery-3.1.1.slim.min.js').text
+                    + getClass().getResource('testatoo.js').text)
             registeredScripts.each { js.executeScript(it) }
             return execute(id, s)
         }
         if (v == '__TESTATOO_MISSING__') {
-            js.executeScript(getClass().getResource("testatoo.js").text)
+            js.executeScript(getClass().getResource('testatoo.js').text)
             registeredScripts.each { js.executeScript(it) }
             return execute(id, s)
         }

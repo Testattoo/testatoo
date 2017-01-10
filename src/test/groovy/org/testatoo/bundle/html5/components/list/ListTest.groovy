@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,6 +29,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.ListView
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -41,12 +42,12 @@ class ListTest {
     public static WebDriverConfig driver =  new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/components.html'
+    static void before() {
+        visit BASE_URL + 'components.html'
     }
 
     @Test
-    public void should_have_expected_behaviours() {
+    void should_have_expected_behaviours() {
         assert Ul in ListView
 
         Ul ul = $('#empty_unordered_list') as Ul

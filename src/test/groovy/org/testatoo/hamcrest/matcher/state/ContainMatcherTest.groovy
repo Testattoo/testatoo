@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -42,7 +42,7 @@ import static org.testatoo.hamcrest.Matchers.contain
 @Category(NoGui)
 class ContainMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         MetaDataProvider containerMeta = mock(MetaDataProvider)
         MetaDataProvider cmp_1Meta = mock(MetaDataProvider)
         MetaDataProvider cmp_2Meta = mock(MetaDataProvider)
@@ -68,9 +68,9 @@ class ContainMatcherTest {
             assertThat(container, contain(cmp_1, cmp_2))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: Component Component:container contains [Component:1, Component:2]')
-                    .appendText('\n     but: does not contains expected component(s): [Component:2]');
+                    .appendText('\n     but: does not contains expected component(s): [Component:2]')
 
             assert e.message == description.toString()
         }

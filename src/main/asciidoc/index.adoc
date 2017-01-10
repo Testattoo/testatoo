@@ -11,8 +11,8 @@
 :imagesdir: images
 :basepath: ../..
 :junit-version: 4.12
-:selenium-version: 2.53.0
-:testato-version: 2.0.b23
+:selenium-version: 3.0.1
+:testato-version: 2.0.b26
 
 image::logo.svg[Testatoo,align="center"]
 
@@ -23,6 +23,8 @@ include::design_and_architecture.adoc[]
 include::installation.adoc[]
 
 include::philosophy.adoc[]
+
+include::compatibility.adoc[]
 
 include::content_interaction.adoc[]
 
@@ -37,3 +39,4 @@ include::html5_bundle.adoc[]
 include::create_new_component.adoc[]
 
 include::create_new_bundle.adoc[]
+

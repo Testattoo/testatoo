@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,7 +19,6 @@ import org.testatoo.core.ComponentException
 
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
 import static org.testatoo.core.Testatoo.config
-import static org.testatoo.core.input.Key.BACK_SPACE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -49,10 +48,8 @@ trait Input {
         if (!this.enabled()) {
             throw new ComponentException("${this.class.simpleName} ${this} is disabled and cannot be filled")
         }
-        config.evaluator.trigger(this.id(), 'blur')
         clear()
         config.evaluator.type([String.valueOf(value)])
-        config.evaluator.trigger(this.id(), 'blur')
     }
 
     String label() {
@@ -61,10 +58,7 @@ trait Input {
 
     void clear() {
         this.click()
-        config.evaluator.runScript("\$('#${id()}').val(' ').change()")
-        config.evaluator.type([BACK_SPACE])
-        config.evaluator.trigger(id(), 'blur')
-        this.click()
+        config.evaluator.runScript("\$('#${id()}').val('').change()")
     }
 
     Object value() {

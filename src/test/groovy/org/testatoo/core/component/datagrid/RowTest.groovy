@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,20 +31,20 @@ import org.testatoo.core.support.property.TitleSupport
 @Category(NoGui)
 class RowTest {
     @Test
-    public void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Row in Component
         assert Row in TitleSupport
         assert Row in CellSupport
     }
 
     @Test
-    public void should_have_equality_and_hashcode_based_on_title() {
+    void should_have_equality_and_hashcode_based_on_title() {
         Row row_1 = new TestRow('title_1')
         Row row_2 = new TestRow('title_2')
         Row row_3 = new TestRow('title_1')
 
-        assert !row_1.equals(row_2)
-        assert row_1.equals(row_3)
+        assert row_1 != row_2
+        assert row_1 == row_3
 
         assert row_1.hashCode() == 'title_1'.hashCode()
     }
@@ -52,7 +52,7 @@ class RowTest {
     private class TestRow extends Row {
         private String title;
 
-        public TestRow(String title) {
+        TestRow(String title) {
             this.title = title
         }
 

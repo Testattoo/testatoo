@@ -1,6 +1,6 @@
 = Testatoo
 
-:revdate: 07-02-2015
+:revdate: 01-07-2017
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 
@@ -16,6 +16,19 @@ image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/log
 The documentation is available https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/index.adoc[here]
 
 Samples are available https://github.com/Ovea/testatoo-sample[here]
+
+== Quickstart
+
+Get Started in 5 minutes
+
+== Compatibility
+
+Chrome: 100%
+Firefox:
+IE: 11
+Edge:
+Safari:
+
 
 == Downloading
 
@@ -62,22 +75,27 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
 === Install browsers
     - Install Firefox
     - Install Chrome
-    - Download an install chromedriver in the */usr/local/bin* directory
+    - Install Edge / Safari
+
+With Selenium 3 now you need to install also the drivers:
+
+    - https://github.com/mozilla/geckodriver/releases[Firefox Driver]
+    - https://sites.google.com/a/chromium.org/chromedriver/[Chrome Driver]
+    - https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/[Edge Driver]
+    - For Safari it's already included in your Safari in the directory '/usr/bin/safaridriver'
+
+If you don't want to install Browser and driver you can use docker images
+
+    - docker run -d -p 4444:4444 selenium/standalone-firefox:3.0.1-aluminum
+    - docker run -d -p 4444:4444 selenium/standalone-chrome:3.0.1-aluminum
 
 In your Terminal
 
     $ mvn clean install -Pfirefox // Or -Pchrome
+    or
+    $ mvn clean install -Pchrome -Ddocker=true -Dip=xxx.xxx.xxx.xxx
+    with docker you need to set your host IP (don't use loopback (127.0.0.1) it's not reachable from the docker container)
 
 To just build and skip the tests
 
     $ mvn package -Dmaven.test.skip=true
-
-If you want just start the jetty web server to execute the tests manually you can run in
-testatoo-tests and testatoo-documentation/samples the command :
-
-    $ mvn jetty:run -Pdev
-    
-    
-
-    
-    

@@ -6,31 +6,38 @@ import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.chrome.ChromeDriver
 import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.category.UserAgent
+import org.testatoo.core.component.field.TextField
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.*
 
 @RunWith(JUnit4)
-@Category(UserAgent.All)
+@Category(UserAgent.Chrome)
 class JunitStarterTest {
+
     @BeforeClass
-    public static void setup() {
-        config.evaluator = new WebDriverEvaluator(new FirefoxDriver()) // <1>
-        visit 'http://www.google.com' // <2>
+    static void setup() {
+        System.setProperty('webdriver.chrome.driver', '/usr/bin/chromedriver')
+        config.evaluator = new WebDriverEvaluator(new ChromeDriver()) // <1>
+
+        visit 'http://www.google.ca' // <2>
     }
 
     @Test
-    public void google_search_field_should_be_visible() {
+    void google_search_field_should_be_visible() {
         // Write you test here
-        InputTypeText search = $('#lst-ib') as InputTypeText    // <3>
-        search.should { be visible }
+        TextField search = $('#lst-ib') as InputTypeText    // <3>
+        search.should {
+            have focus
+            be visible
+        }
     }
 
     @AfterClass
-    public static void tearDown() {
+    static void tearDown() {
         config.evaluator.close() // <4>
     }
 }

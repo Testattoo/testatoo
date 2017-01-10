@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,6 +33,7 @@ import org.testatoo.core.component.*
 import org.testatoo.core.support.property.TextSupport
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -45,12 +46,12 @@ class ComponentsTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/components.html'
+    static void before() {
+        visit BASE_URL + 'components.html'
     }
 
     @Test
-    public void component_should_have_expected_common_behaviours() {
+    void component_should_have_expected_common_behaviours() {
         assert Button in Button
 
         Button button = $('#button') as Button
@@ -70,7 +71,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void article_should_have_expected_behaviours() {
+    void article_should_have_expected_behaviours() {
         assert Article in Component
 
         Article article = $('#article') as Article
@@ -79,7 +80,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void aside_should_have_expected_behaviours() {
+    void aside_should_have_expected_behaviours() {
         assert Aside in Component
 
         Aside aside = $('#aside') as Aside
@@ -88,7 +89,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void button_should_have_expected_behaviours() {
+    void button_should_have_expected_behaviours() {
         assert Button in Button
 
         // fields type=button
@@ -112,7 +113,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void checkbox_should_have_expected_behaviours() {
+    void checkbox_should_have_expected_behaviours() {
         assert CheckBox in CheckBox
 
         CheckBox checkBox = $('#checkbox') as CheckBox
@@ -157,7 +158,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void footer_should_have_expected_behaviours() {
+    void footer_should_have_expected_behaviours() {
         assert Footer in Component
 
         Footer footer = $('#footer') as Footer
@@ -166,7 +167,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void form_should_have_expected_behaviours() {
+    void form_should_have_expected_behaviours() {
         assert Form in Form
 
         Form form = $('#form') as Form
@@ -196,7 +197,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void header_should_have_expected_behaviours() {
+    void header_should_have_expected_behaviours() {
         assert Header in Component
 
         Header header = $('#header') as Header
@@ -205,7 +206,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void heading_should_have_expected_behaviours() {
+    void heading_should_have_expected_behaviours() {
         assert H1 in Heading
         assert H2 in Heading
         assert H3 in Heading
@@ -233,26 +234,26 @@ class ComponentsTest {
     }
 
     @Test
-    public void image_should_have_expected_behaviours() {
+    void image_should_have_expected_behaviours() {
         assert Img in Image
 
         Img image = $('#image') as Img
 
-        assert image.reference() == 'http://localhost:8080/img/Montpellier.jpg'
+        assert image.reference().endsWith('img/Montpellier.jpg')
     }
 
     @Test
-    public void link_should_have_expected_behaviours() {
+    void link_should_have_expected_behaviours() {
         assert A in Link
 
         A link = $('#link') as A
 
         assert link.text() == 'Link to dsl page'
-        assert link.reference() == 'http://localhost:8080/dsl.html'
+        assert link.reference().endsWith('dsl.html')
     }
 
     @Test
-    public void panel_should_have_expected_behaviours() {
+    void panel_should_have_expected_behaviours() {
         assert Div in Panel
 
         Div panel = $('#panel') as Div
@@ -261,7 +262,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void paragraph_should_have_expected_behaviours() {
+    void paragraph_should_have_expected_behaviours() {
         assert Paragraph in Component
         assert Paragraph in TextSupport
 
@@ -271,7 +272,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void radio_should_have_expected_behaviours() {
+    void radio_should_have_expected_behaviours() {
         assert Radio in Radio
 
         Radio radio = $('#radio_1') as Radio
@@ -286,7 +287,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void section_should_have_expected_behaviours() {
+    void section_should_have_expected_behaviours() {
         assert Section in Component
 
         Section section = $('#section') as Section
@@ -296,7 +297,7 @@ class ComponentsTest {
     }
 
     @Test
-    public void span_should_have_expected_behaviours() {
+    void span_should_have_expected_behaviours() {
         assert Span in Component
 
         Span span = $('#span') as Span

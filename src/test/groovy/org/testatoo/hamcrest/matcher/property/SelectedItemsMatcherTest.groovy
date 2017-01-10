@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,7 +39,7 @@ import static org.testatoo.hamcrest.Matchers.selectedItems
 @Category(NoGui)
 class SelectedItemsMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         SelectedItemsSupport cmp = mock(SelectedItemsSupport)
         Item itemSelected_1 = mock(Item)
         Item itemSelected_2 = mock(Item)
@@ -55,9 +55,9 @@ class SelectedItemsMatcherTest {
             assertThat(cmp, has(selectedItems('no_selected_item_1', 'no_selected_item_2')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has selected item(s) ["no_selected_item_1", "no_selected_item_2"]')
-                    .appendText('\n     but: has selected item(s) ["selected_value_1", "selected_value_2"]');
+                    .appendText('\n     but: has selected item(s) ["selected_value_1", "selected_value_2"]')
 
             assert e.message == description.toString()
         }
@@ -71,9 +71,9 @@ class SelectedItemsMatcherTest {
             assertThat(cmp, has(selectedItems(item_1, item_2)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has selected item(s) ["no_selected_item_1", "no_selected_item_2"]')
-                    .appendText('\n     but: has selected item(s) ["selected_value_1", "selected_value_2"]');
+                    .appendText('\n     but: has selected item(s) ["selected_value_1", "selected_value_2"]')
 
             assert e.message == description.toString()
         }

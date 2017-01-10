@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,6 +28,7 @@ import org.testatoo.category.UserAgent
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -40,13 +41,13 @@ class SelectTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/components.html'
+    static void before() {
+        visit BASE_URL + 'components.html'
     }
 
     // http://en.wikipedia.org/wiki/Drop-down_list
     @Test
-    public void select_should_have_expected_behaviours() {
+    void select_should_have_expected_behaviours() {
         assert Select in Dropdown
 
         Select empty_select = $('#empty_select') as Select
@@ -86,7 +87,7 @@ class SelectTest {
     }
 
     @Test
-    public void groupItem_should_have_expected_behaviours() {
+    void groupItem_should_have_expected_behaviours() {
         assert OptionGroup in Group
 
         Select os = $('#os') as Select
@@ -98,7 +99,7 @@ class SelectTest {
     }
 
     @Test
-    public void implement_toString_and_equal() {
+    void implement_toString_and_equal() {
         Select os = $('#os') as Select
 
         assert os.items()[1].toString() == 'Ubuntu'

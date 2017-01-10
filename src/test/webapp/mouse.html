@@ -50,8 +50,8 @@
     }
   </style>
 
-  <script src="js/jquery-2.2.2.min.js"></script>
-  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="js/jquery.hotkeys.js"></script>
 </head>
 <body>
@@ -131,64 +131,63 @@
 </div>
 <script>
 
-  $.fn.dirtyCheck = function () {
-    this.addClass('dirty');
-    this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
-  };
+    $.fn.dirtyCheck = function () {
+        this.addClass('dirty');
+        this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
+    };
 
-  (function ($) {
+    $(function () {
+        $("#draggable").draggable();
+        $("#droppable").droppable({
+            drop: function () {
+                $(this).find("h1").html("Dropped!");
 
-    // ==================== MOUSE ===================
-
-    $('#button_1').on('click', function (e) {
-      e.preventDefault();
-      $(this).attr('value', 'Button Clicked!');
+            }
+        });
     });
 
-    $('#button_2').on('dblclick', function (e) {
-      e.preventDefault();
-      $(this).attr('value', 'Button Double Clicked!');
-    });
+    (function ($) {
+        // ==================== MOUSE ===================
+        $('#button_1').on('click', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Clicked!');
+        });
 
-    $('#button_3').on('mouseover', function (e) {
-      e.preventDefault();
-      $(this).attr('value', 'Button Mouse Over!');
-    });
+        $('#button_2').on('dblclick', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Double Clicked!');
+        });
 
-    $('#button_4').on('mouseout', function (e) {
-      e.preventDefault();
-      $(this).attr('value', 'Button Mouse Out!');
-    });
+        $('#button_3').on('mouseover', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Mouse Over!');
+        });
 
-    $('#button_5').on('contextmenu', function (e) {
-      e.preventDefault();
-      $(this).attr('value', 'Button Right Clicked!');
-    });
+        $('#button_4').on('mouseout', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Mouse Out!');
+        });
 
-    $('#draggable').draggable();
+        $('#button_5').on('contextmenu', function (e) {
+            e.preventDefault();
+            $(this).attr('value', 'Button Right Clicked!');
+        });
 
-    $('#droppable').droppable({
-      drop: function () {
-        $(this).find("h1").html("Dropped!");
-      }
-    });
+        //   ============= SPECIAL MODIFIERS AND MOUSE ===============
+        $(document).on('click', function (e) {
+            if (e.button == 2) {
+                if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
+                if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
+                if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();
+            } else {
+                if (e.ctrlKey) $('#_Ctrl_mouseleft').dirtyCheck();
+                if (e.shiftKey) $('#_Shift_mouseleft').dirtyCheck();
+                if (e.altKey && e.shiftKey) $('#_Alt_Shift_mouseleft').dirtyCheck();
+                if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
+            }
+        });
 
-    //   ============= SPECIAL MODIFIERS AND MOUSE ===============
-    $(document).on('click', function (e) {
-      if (e.button == 2) {
-        if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
-        if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
-        if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();
-      } else {
-        if (e.ctrlKey) $('#_Ctrl_mouseleft').dirtyCheck();
-        if (e.shiftKey) $('#_Shift_mouseleft').dirtyCheck();
-        if (e.altKey && e.shiftKey) $('#_Alt_Shift_mouseleft').dirtyCheck();
-        if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
-      }
-    });
-
-  }(jQuery));
-
+    }(jQuery));
 </script>
 
 </body>

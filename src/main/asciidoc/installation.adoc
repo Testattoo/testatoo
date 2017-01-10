@@ -20,18 +20,7 @@ The following installation if for JUnit. For another test runner, adapt the firs
    <version>{testato-version}</version>
    <scope>test</scope>
 </dependency>
-<dependency>
-  <groupId>org.seleniumhq.selenium</groupId>
-  <artifactId>selenium-firefox-driver</artifactId>
-  <version>${selenium.version}</version>
-  <scope>test</scope>
-</dependency>
 -------------------------------------------------------------------------------
-
-=== Installation with Gradle
-
-TODO
-// TODO Roch
 
 === A first UI test example with JUnit
 '''
@@ -49,6 +38,3 @@ include::{basepath}/test/groovy/doc/junit/JunitStarterTest.groovy[]
 <3> Write you first test ($ usage is explained after)
 
 <4> At the end of the test don't forget to close the browser.
-
-
-

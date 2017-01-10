@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,7 +38,7 @@ import static org.testatoo.hamcrest.Matchers.label
 @Category(NoGui)
 class LabelMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         LabelSupport cmp = mock(LabelSupport)
         when(cmp.label()).thenReturn('MyLabel')
 
@@ -47,9 +47,9 @@ class LabelMatcherTest {
             assertThat(cmp, has(label('OtherLabel')))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has label "OtherLabel"')
-                    .appendText('\n     but: has label "MyLabel"');
+                    .appendText('\n     but: has label "MyLabel"')
 
             assert e.message == description.toString()
         }

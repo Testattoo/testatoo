@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,6 +29,7 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
 
 import static org.junit.Assert.fail
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.$
 import static org.testatoo.core.Testatoo.visit
 
@@ -43,12 +44,12 @@ class InputFieldTest {
     public static WebDriverConfig driver = new WebDriverConfig()
 
     @BeforeClass
-    public static void before() {
-        visit 'http://localhost:8080/components.html'
+    static void before() {
+        visit BASE_URL + 'components.html'
     }
 
     @Test
-    public void input_should_have_expected_behaviours() {
+    void input_should_have_expected_behaviours() {
         Browser.refresh()
 
         InputTypeEmail in EmailField
@@ -88,7 +89,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void color_field_should_have_expected_behaviours() {
+    void color_field_should_have_expected_behaviours() {
         InputTypeColor in ColorField
         InputTypeColor in Input
 
@@ -103,7 +104,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void date_field_should_have_expected_behaviours() {
+    void date_field_should_have_expected_behaviours() {
         InputTypeColor in DateField
         InputTypeColor in Input
 
@@ -119,7 +120,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void dateTime_field_should_have_expected_behaviours() {
+    void dateTime_field_should_have_expected_behaviours() {
         InputTypeDateTime in DateTimeField
         InputTypeDateTime in Input
 
@@ -131,7 +132,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void email_field_should_have_expected_behaviours() {
+    void email_field_should_have_expected_behaviours() {
         InputTypeEmail in EmailField
         InputTypeEmail in Input
 
@@ -140,7 +141,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void month_field_should_have_expected_behaviours() {
+    void month_field_should_have_expected_behaviours() {
         InputTypeMonth in MonthField
         InputTypeMonth in Input
 
@@ -149,7 +150,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void number_field_should_have_expected_behaviours() {
+    void number_field_should_have_expected_behaviours() {
         InputTypeNumber in NumberField
         InputTypeNumber in Input
 
@@ -168,7 +169,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void password_field_should_have_expected_behaviours() {
+    void password_field_should_have_expected_behaviours() {
         InputTypePassword in PasswordField
         InputTypePassword in Input
 
@@ -178,7 +179,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void phone_field_should_have_expected_behaviours() {
+    void phone_field_should_have_expected_behaviours() {
         InputTypeTel in PhoneField
         InputTypeTel in Input
 
@@ -187,7 +188,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void range_field_should_have_expected_behaviours() {
+    void range_field_should_have_expected_behaviours() {
         InputTypeRange in RangeField
         InputTypeRange in Input
 
@@ -207,7 +208,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void search_field_should_have_expected_behaviours() {
+    void search_field_should_have_expected_behaviours() {
         InputTypeSearch in SearchField
         InputTypeSearch in Input
 
@@ -221,7 +222,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void text_field_should_have_expected_behaviours() {
+    void text_field_should_have_expected_behaviours() {
         InputTypeText in TextField
         InputTypeText in Input
 
@@ -231,7 +232,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void area_field_should_have_expected_behaviours() {
+    void area_field_should_have_expected_behaviours() {
         TextArea in TextField
         TextArea in Input
 
@@ -241,7 +242,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void time_field_should_have_expected_behaviours() {
+    void time_field_should_have_expected_behaviours() {
         InputTypeTime in TimeField
         InputTypeTime in Input
 
@@ -249,13 +250,12 @@ class InputFieldTest {
         assert time.label() == 'Time'
 
         assert time.value() == ''
-        time.value('14:45PM')
-        // 14:45PM on FF but 14:45 on Chrome (Field vs Widget)
-        assert (time.value() as String).startsWith('14:45')
+        time.value('16:45')
+        assert time.value() == '16:45'
     }
 
     @Test
-    public void url_field_should_have_expected_behaviours() {
+    void url_field_should_have_expected_behaviours() {
         InputTypeURL in URLField
         InputTypeURL in Input
 
@@ -269,7 +269,7 @@ class InputFieldTest {
     }
 
     @Test
-    public void week_field_should_have_expected_behaviours() {
+    void week_field_should_have_expected_behaviours() {
         InputTypeWeek in WeekField
         InputTypeWeek in Input
 

@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -89,55 +89,55 @@ class Testatoo {
     /**
      * States
      */
-    public static Class available = AvailableMatcher
-    public static Class checked = CheckedMatcher
-    public static Class disabled = DisabledMatcher
-    public static Class empty = EmptyMatcher
-    public static Class enabled = EnabledMatcher
-    public static Class filled = FilledMatcher
-    public static Class hidden = HiddenMatcher
-    public static Class inRange = InRangeMatcher
-    public static Class invalid = InvalidMatcher
-    public static Class missing = MissingMatcher
-    public static Class optional = OptionalMatcher
-    public static Class outOfRange = OutOfRangeMatcher
-    public static Class readOnly = ReadOnlyMatcher
-    public static Class required = RequiredMatcher
-    public static Class selected = SelectedMatcher
-    public static Class unchecked = UnCheckedMatcher
-    public static Class unselected = UnSelectedMatcher
-    public static Class valid = ValidMatcher
-    public static Class visible = VisibleMatcher
-    public static Class focused = FocusedMatcher
+    static Class available = AvailableMatcher
+    static Class checked = CheckedMatcher
+    static Class disabled = DisabledMatcher
+    static Class empty = EmptyMatcher
+    static Class enabled = EnabledMatcher
+    static Class filled = FilledMatcher
+    static Class hidden = HiddenMatcher
+    static Class inRange = InRangeMatcher
+    static Class invalid = InvalidMatcher
+    static Class missing = MissingMatcher
+    static Class optional = OptionalMatcher
+    static Class outOfRange = OutOfRangeMatcher
+    static Class readOnly = ReadOnlyMatcher
+    static Class required = RequiredMatcher
+    static Class selected = SelectedMatcher
+    static Class unchecked = UnCheckedMatcher
+    static Class unselected = UnSelectedMatcher
+    static Class valid = ValidMatcher
+    static Class visible = VisibleMatcher
+    static Class focused = FocusedMatcher
 
     /**
      * Properties
      */
-    public static LabelMatcher label(String label) { new LabelMatcher(label) }
-    public static MaximumMatcher maximum(object) { new MaximumMatcher(object) }
-    public static MinimumMatcher minimum(object) { new MinimumMatcher(object) }
-    public static PlaceholderMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
-    public static LengthMatcher length(object) { new LengthMatcher(object) }
-    public static ItemMatcher items(String... values) { new ItemMatcher(values) }
-    public static ItemMatcher items(Item... items) { new ItemMatcher(items) }
-    public static ColumnMatcher columns(String... values) { new ColumnMatcher(values) }
-    public static ColumnMatcher columns(Column... columns) { new ColumnMatcher(columns) }
-    public static RowMatcher rows(String... values) { new RowMatcher(values) }
-    public static RowMatcher rows(Row... rows) { new RowMatcher(rows) }
-    public static CellMatcher cells(String... values) { new CellMatcher(values) }
-    public static CellMatcher cells(Cell... cells) { new CellMatcher(cells) }
-    public static GroupMatcher groups(String... values) { new GroupMatcher(values) }
-    public static GroupMatcher groups(Group... groups) { new GroupMatcher(groups) }
-    public static SelectedItemMatcher selectedItem(String item) { new SelectedItemMatcher(item) }
-    public static SelectedItemMatcher selectedItem(Item item) { new SelectedItemMatcher(item) }
-    public static SelectedItemsMatcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
-    public static SelectedItemsMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
-    public static StepMatcher step(object) { new StepMatcher(object) }
-    public static TextMatcher text(String text) { new TextMatcher(text) }
-    public static ValueMatcher value(Object value) { new ValueMatcher(value) }
-    public static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
-    public static TitleMatcher title(String title) { new TitleMatcher(title) }
-    public static FocusMatcher getFocus() { new FocusMatcher() }
+    static LabelMatcher label(String label) { new LabelMatcher(label) }
+    static MaximumMatcher maximum(object) { new MaximumMatcher(object) }
+    static MinimumMatcher minimum(object) { new MinimumMatcher(object) }
+    static PlaceholderMatcher placeholder(String placeholder) { new PlaceholderMatcher(placeholder) }
+    static LengthMatcher length(object) { new LengthMatcher(object) }
+    static ItemMatcher items(String... values) { new ItemMatcher(values) }
+    static ItemMatcher items(Item... items) { new ItemMatcher(items) }
+    static ColumnMatcher columns(String... values) { new ColumnMatcher(values) }
+    static ColumnMatcher columns(Column... columns) { new ColumnMatcher(columns) }
+    static RowMatcher rows(String... values) { new RowMatcher(values) }
+    static RowMatcher rows(Row... rows) { new RowMatcher(rows) }
+    static CellMatcher cells(String... values) { new CellMatcher(values) }
+    static CellMatcher cells(Cell... cells) { new CellMatcher(cells) }
+    static GroupMatcher groups(String... values) { new GroupMatcher(values) }
+    static GroupMatcher groups(Group... groups) { new GroupMatcher(groups) }
+    static SelectedItemMatcher selectedItem(String item) { new SelectedItemMatcher(item) }
+    static SelectedItemMatcher selectedItem(Item item) { new SelectedItemMatcher(item) }
+    static SelectedItemsMatcher selectedItems(String... items) { new SelectedItemsMatcher(items) }
+    static SelectedItemsMatcher selectedItems(Item... items) { new SelectedItemsMatcher(items) }
+    static StepMatcher step(object) { new StepMatcher(object) }
+    static TextMatcher text(String text) { new TextMatcher(text) }
+    static ValueMatcher value(Object value) { new ValueMatcher(value) }
+    static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
+    static TitleMatcher title(String title) { new TitleMatcher(title) }
+    static FocusMatcher getFocus() { new FocusMatcher() }
 
     /**
      * Actions
@@ -154,33 +154,33 @@ class Testatoo {
     static final FillAction fill(InputSupport c) { new FillAction(c) }
     static final FillAction set(InputSupport c) { new FillAction(c) }
 
-    public static class FillAction {
+    static class FillAction {
         private InputSupport input
 
-        public FillAction(InputSupport input) {
+        FillAction(InputSupport input) {
             this.input = input
         }
 
-        public void with(Object value) {
+        void with(Object value) {
             input.value(value)
         }
 
-        public void to(Object value) {
+        void to(Object value) {
             input.value(value)
         }
     }
 
-    public static class Components<T extends Component> {
+    static class Components<T extends Component> {
         private final MetaDataProvider meta
-        private final Class<T> type;
+        private final Class<T> type
         private List<T> components
 
-        public Components(Class<T> type, MetaDataProvider meta) {
+        Components(Class<T> type, MetaDataProvider meta) {
             this.meta = meta
             this.type = type
         }
 
-        public List<T> list() {
+        List<T> list() {
             if (components == null) {
                 components = meta.metaInfos().collect {
                     new Component(new CachedMetaData(idProvider: new jQueryIdProvider("#${it.id}", false))).asType(type)
@@ -203,28 +203,28 @@ class Testatoo {
     static void type(String text) { type([text]) }
 
     // Generic Component Factory
-    public static Button button(String text) { ComponentFactory.button(text) }
-    public static Radio radio(String label) { ComponentFactory.radio(label) }
-    public static CheckBox checkbox(String label) { ComponentFactory.checkbox(label)  }
-    public static Dropdown dropdown(String label) { ComponentFactory.dropdown(label) }
-    public static ListBox listBox(String label) { ComponentFactory.listBox(label) }
-    public static Group group(String value) { ComponentFactory.group(value) }
-    public static Item item(String value) { ComponentFactory.item(value) }
-    public static Heading heading(String text) { ComponentFactory.heading(text) }
-    public static Panel panel(String title) { ComponentFactory.panel(title) }
+    static Button button(String text) { ComponentFactory.button(text) }
+    static Radio radio(String label) { ComponentFactory.radio(label) }
+    static CheckBox checkbox(String label) { ComponentFactory.checkbox(label)  }
+    static Dropdown dropdown(String label) { ComponentFactory.dropdown(label) }
+    static ListBox listBox(String label) { ComponentFactory.listBox(label) }
+    static Group group(String value) { ComponentFactory.group(value) }
+    static Item item(String value) { ComponentFactory.item(value) }
+    static Heading heading(String text) { ComponentFactory.heading(text) }
+    static Panel panel(String title) { ComponentFactory.panel(title) }
 
-    public static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
-    public static TextField textField(String value) { ComponentFactory.textField(value) }
-    public static SearchField searchField(String value) { ComponentFactory.searchField(value) }
-    public static EmailField emailField(String value) { ComponentFactory.emailField(value) }
-    public static URLField urlField(String value) { ComponentFactory.urlField(value) }
-    public static NumberField numberField(String value) { ComponentFactory.numberField(value) }
-    public static RangeField rangeField(String value) { ComponentFactory.rangeField(value) }
-    public static DateField dateField(String value) { ComponentFactory.dateField(value) }
-    public static ColorField colorField(String value) { ComponentFactory.colorField(value) }
-    public static DateTimeField dateTimeField(String value) { ComponentFactory.dateTimeField(value) }
-    public static MonthField monthField(String value) { ComponentFactory.monthField(value) }
-    public static PhoneField phoneField(String value) { ComponentFactory.phoneField(value) }
-    public static TimeField timeField(String value) { ComponentFactory.timeField(value) }
-    public static WeekField weekField(String value) { ComponentFactory.weekField(value) }
+    static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
+    static TextField textField(String value) { ComponentFactory.textField(value) }
+    static SearchField searchField(String value) { ComponentFactory.searchField(value) }
+    static EmailField emailField(String value) { ComponentFactory.emailField(value) }
+    static URLField urlField(String value) { ComponentFactory.urlField(value) }
+    static NumberField numberField(String value) { ComponentFactory.numberField(value) }
+    static RangeField rangeField(String value) { ComponentFactory.rangeField(value) }
+    static DateField dateField(String value) { ComponentFactory.dateField(value) }
+    static ColorField colorField(String value) { ComponentFactory.colorField(value) }
+    static DateTimeField dateTimeField(String value) { ComponentFactory.dateTimeField(value) }
+    static MonthField monthField(String value) { ComponentFactory.monthField(value) }
+    static PhoneField phoneField(String value) { ComponentFactory.phoneField(value) }
+    static TimeField timeField(String value) { ComponentFactory.timeField(value) }
+    static WeekField weekField(String value) { ComponentFactory.weekField(value) }
 }

@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,7 +37,7 @@ import static org.testatoo.hamcrest.Matchers.length
 @Category(NoGui)
 class LengthMatcherTest {
     @Test
-    public void should_have_expected_matcher() {
+    void should_have_expected_matcher() {
         LengthSupport cmp = mock(LengthSupport)
 
         when(cmp.length()).thenReturn(10)
@@ -46,9 +46,9 @@ class LengthMatcherTest {
             assertThat(cmp, has(length(50)))
             fail()
         } catch (AssertionError e) {
-            Description description = new StringDescription();
+            Description description = new StringDescription()
             description.appendText('\nExpected: has length 50')
-                    .appendText('\n     but: has length 10');
+                    .appendText('\n     but: has length 10')
 
             assert e.message == description.toString()
         }

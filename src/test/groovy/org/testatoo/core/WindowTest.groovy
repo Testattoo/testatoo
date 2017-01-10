@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2016 Ovea (dev@ovea.com)
+ * Copyright © 2016 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,7 +31,7 @@ import static org.testatoo.core.Testatoo.config
 @Category(NoGui)
 class WindowTest {
     @Test
-    public void should_create_a_window() {
+    void should_create_a_window() {
         Window window = new Window('id')
 
         assert window.id == 'id'
@@ -42,7 +42,7 @@ class WindowTest {
     }
 
     @Test
-    public void should_have_equal_based_on_id() {
+    void should_have_equal_based_on_id() {
         Window window_1 = new Window('id_1')
         Window window_2 = new Window('id_2')
         Window window_3 = new Window('id_1')
@@ -52,14 +52,14 @@ class WindowTest {
     }
 
     @Test
-    public void should_have_hash_code_base_on_id() {
+    void should_have_hash_code_base_on_id() {
         Window window = new Window('id_1')
 
         assert window.hashCode() == 'id_1'.hashCode()
     }
 
     @Test
-    public void should_call_underline_evaluator_on_close() {
+    void should_call_underline_evaluator_on_close() {
         Evaluator evaluator = mock(Evaluator)
         config.evaluator = evaluator
 

@@ -1,11 +1,11 @@
 MetaInfoProvider !!!
 
 //
-//    public static PropertyMatcher getParagraphs(Integer expected) {
+//    static PropertyMatcher getParagraphs(Integer expected) {
 //        Properties.paragraphSize.equalsTo(expected)
 //    }
 //
-//    public static PropertyMatcher getArticles(Integer expected) {
+//    static PropertyMatcher getArticles(Integer expected) {
 //        Properties.articleSize.equalsTo(expected)
 //    }
 
@@ -14,16 +14,16 @@ MetaInfoProvider !!!
 //    public static WebDriverConfig driver = new WebDriverConfig()
 //
 //    @BeforeClass
-//    public static void setup() {
+//    static void setup() {
 //        config.scan 'org.testatoo.component'
-//        browser.open 'http://localhost:8080/components.html'
+//        browser.open BASE_URL + ''components.html'
 //    }
 //
 //    @AfterClass
-//    public static void tearDown() { config.evaluator.close() }
+//    static void tearDown() { config.evaluator.close() }
 //
 //    @Test
-//    public void should_be_able_to_find_nested_component() {
+//    void should_be_able_to_find_nested_component() {
 //        Section section = $('#section') as Section
 //        Paragraph paragraph = section.find('p:first')[0] as Paragraph
 //
