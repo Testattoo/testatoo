@@ -27,6 +27,7 @@ import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
+import org.testatoo.core.internal.Wait
 
 import static org.junit.Assert.fail
 import static org.testatoo.WebDriverConfig.BASE_URL
@@ -263,8 +264,8 @@ class InputFieldTest {
         assert url.label() == 'URL'
 
         assert url.value() == ''
-        url.value('http://mysite.org')
-        assert url.value() == 'http://mysite.org'
+        url.value('http://mysite')
+        assert url.value() == 'http://mysite'
         assert url.length()  == 150
     }
 
