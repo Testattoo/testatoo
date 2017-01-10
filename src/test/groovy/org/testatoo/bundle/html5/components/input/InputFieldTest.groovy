@@ -27,12 +27,10 @@ import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
-import org.testatoo.core.internal.Wait
 
 import static org.junit.Assert.fail
 import static org.testatoo.WebDriverConfig.BASE_URL
-import static org.testatoo.core.Testatoo.$
-import static org.testatoo.core.Testatoo.visit
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -86,7 +84,7 @@ class InputFieldTest {
         assert !password.valid()
 
         password.value('My Password')
-        assert password.value() == 'My Password'
+        password.should { have value('My Password') }
     }
 
     @Test
@@ -100,7 +98,7 @@ class InputFieldTest {
         // Fail on CI
         assert colorField.value() == '#000000'
         colorField.value('#ff0000')
-        assert colorField.value() == '#ff0000'
+        colorField.should { have value('#ff0000') }
         assert colorField.valid()
     }
 
@@ -117,7 +115,7 @@ class InputFieldTest {
         assert date.maximum() == '2012-06-25'
 
         date.value('2010-06-25')
-        assert date.value() == '2010-06-25'
+        date.should { have value('2010-06-25') }
     }
 
     @Test
@@ -129,7 +127,7 @@ class InputFieldTest {
 
         assert dateTime.value() == ''
         dateTime.value('2010-06-25')
-        assert dateTime.value() == '2010-06-25'
+        dateTime.should { have value('2010-06-25') }
     }
 
     @Test
@@ -165,8 +163,10 @@ class InputFieldTest {
         assert number.inRange()
 
         number.value('150')
-        assert number.value() == 150
-        assert !number.inRange()
+        number.should {
+            have value(150)
+            be outOfRange
+        }
     }
 
     @Test
@@ -201,11 +201,11 @@ class InputFieldTest {
 
         assert range.value() == 10
         range.value(40)
-        assert range.value() == 40
+        range.should { have value(40) }
 
         // Cause step 5
         range.value(42)
-        assert range.value() == 40
+        range.should { have value(40) }
     }
 
     @Test
@@ -219,7 +219,7 @@ class InputFieldTest {
 
         searchField.value() == ''
         searchField.value('my search')
-        assert searchField.value() == 'my search'
+        searchField.should { have value('my search') }
     }
 
     @Test
@@ -265,8 +265,10 @@ class InputFieldTest {
 
         assert url.value() == ''
         url.value('http://mysite')
-        assert url.value() == 'http://mysite'
-        assert url.length()  == 150
+        url.should {
+            have value('http://mysite')
+            have length(150)
+        }
     }
 
     @Test
@@ -279,6 +281,6 @@ class InputFieldTest {
 
         assert week.value() == ''
         week.value('2016-W32')
-        assert week.value() == '2016-W32'
+        week.should { have value ('2016-W32') }
     }
 }
