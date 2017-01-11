@@ -1,6 +1,6 @@
 = Testatoo documentation
 :author: David Avenante, Stephanie Parisot
-:revnumber: 2.0.b26
+:revnumber: 2.0.b27-SNAPSHOT
 :toc: left
 :toclevels: 5
 :numbered: true
@@ -11,7 +11,7 @@
 :imagesdir: images
 :basepath: ../..
 :junit-version: 4.12
-:testato-version: 2.0.b26
+:testato-version: 2.0.b27-SNAPSHOT
 
 image::logo.svg[Testatoo,align="center"]
 
