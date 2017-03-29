@@ -19,7 +19,7 @@ Samples are available https://github.com/Ovea/testatoo-sample[here]
 
 == Quickstart
 
-Get Started in 5 minutes http://www.testatoo.org/gettingstarted.html[here]
+Get Started in 5 minutes http://www.testatoo.org/get-started.html[here]
 
 == Downloading
 
