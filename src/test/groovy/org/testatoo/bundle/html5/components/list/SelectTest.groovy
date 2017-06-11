@@ -18,13 +18,11 @@ package org.testatoo.bundle.html5.components.list
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.list.OptionGroup
 import org.testatoo.bundle.html5.list.Select
-import org.testatoo.category.UserAgent
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 
@@ -35,7 +33,6 @@ import static org.testatoo.core.Testatoo.*
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(UserAgent.All)
 class SelectTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

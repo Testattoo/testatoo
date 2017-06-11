@@ -30,16 +30,16 @@ class By {
         this.templateEngine = templateEngine
     }
 
-    public static By css(String expression) {
+    static By css(String expression) {
         String id = '${id}'
         new By("\\\$('#${id}').find('${expression}')", new SimpleTemplateEngine())
     }
 
-    public static js(String expression) {
+    static js(String expression) {
         new By(expression, null)
     }
 
-    public String getExpression(Component component) {
+    String getExpression(Component component) {
         templateEngine ? templateEngine.createTemplate(expression).make([id: component.id()]) : expression
     }
 

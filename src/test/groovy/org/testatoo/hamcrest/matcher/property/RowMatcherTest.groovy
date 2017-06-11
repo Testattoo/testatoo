@@ -18,10 +18,8 @@ package org.testatoo.hamcrest.matcher.property
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.NoGui
 import org.testatoo.core.component.datagrid.Row
 import org.testatoo.core.support.property.RowSupport
 
@@ -36,7 +34,6 @@ import static org.testatoo.hamcrest.Matchers.rows
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(NoGui)
 class RowMatcherTest {
     @Test
     void should_have_expected_matcher() {

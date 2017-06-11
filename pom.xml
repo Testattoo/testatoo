@@ -39,7 +39,7 @@
     <properties>
         <jdk.version>1.7</jdk.version>
         <groovy.version>2.4.7</groovy.version>
-        <selenium.version>3.0.1</selenium.version>
+        <selenium.version>3.4.0</selenium.version>
         <jetty.daemon>true</jetty.daemon>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -236,15 +236,16 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.3</version>
+                <version>1.5.5</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctorj-diagram</artifactId>
-                        <version>1.5.0</version>
+                        <version>1.5.4</version>
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <preserveDirectories>true</preserveDirectories>
                     <backend>html5</backend>
                     <requires>
                         <require>asciidoctor-diagram</require>
@@ -304,13 +305,13 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.4.0.RC2</version>
+            <version>9.4.5.v20170502</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-util</artifactId>
-            <version>9.4.0.RC2</version>
+            <version>9.4.5.v20170502</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -367,82 +368,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>firefox</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <browser>Firefox</browser>
-                            </systemPropertyVariables>
-                            <groups>
-                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Firefox,org.testatoo.category.UserAgent$All
-                            </groups>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>chrome</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <browser>Chrome</browser>
-                            </systemPropertyVariables>
-                            <groups>
-                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Chrome,org.testatoo.category.UserAgent$All
-                            </groups>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>edge</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <browser>Edge</browser>
-                            </systemPropertyVariables>
-                            <groups>
-                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Edge,org.testatoo.category.UserAgent$All
-                            </groups>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>safari</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <browser>Safari</browser>
-                            </systemPropertyVariables>
-                            <groups>
-                                org.testatoo.category.NoGui,org.testatoo.category.UserAgent$Safari,org.testatoo.category.UserAgent$All
-                            </groups>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

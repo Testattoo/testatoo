@@ -16,10 +16,8 @@
 package org.testatoo.core.component
 
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.NoGui
 import org.testatoo.core.support.Resettable
 import org.testatoo.core.support.Submissible
 import org.testatoo.core.support.state.ValiditySupport
@@ -28,7 +26,6 @@ import org.testatoo.core.support.state.ValiditySupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(NoGui)
 class FormTest {
     @Test
     void should_have_expected_inheritance() {

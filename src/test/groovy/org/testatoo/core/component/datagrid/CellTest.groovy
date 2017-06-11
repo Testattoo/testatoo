@@ -16,10 +16,8 @@
 package org.testatoo.core.component.datagrid
 
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.NoGui
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.ValueSupport
 
@@ -27,7 +25,6 @@ import org.testatoo.core.support.property.ValueSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(NoGui)
 class CellTest {
     @Test
     void should_have_expected_inheritance() {
@@ -48,7 +45,7 @@ class CellTest {
     }
 
     private class TestCell extends Cell {
-        private String value;
+        private String value
 
         TestCell(String value) {
             this.value = value

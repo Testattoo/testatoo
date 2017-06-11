@@ -16,17 +16,14 @@
 package org.testatoo.core.component
 
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.NoGui
 import org.testatoo.core.support.property.ItemSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(NoGui)
 class ListViewTest {
     @Test
     void should_have_expected_inheritance() {

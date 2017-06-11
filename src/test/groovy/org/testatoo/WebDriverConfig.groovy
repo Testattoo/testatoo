@@ -41,7 +41,7 @@ class WebDriverConfig extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         // Defined in the maven profile
-        final String browser = System.getProperty('browser') ?: 'Chrome' // defined in the maven profile
+        final String browser = System.getProperty('browser') ?: 'Firefox' // defined in the maven profile
 
         // Defined by JVM maven arguments
         final String drivers = System.getProperty('drivers') ?: '/usr/bin/'
