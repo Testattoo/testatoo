@@ -23,7 +23,6 @@ Firefox:
 https://github.com/mozilla/geckodriver/issues/394 (closed)
 https://github.com/mozilla/geckodriver/issues/646
 
-
 == Documentation and Samples
 
 The documentation is available http://www.testatoo.org/documentation.html[here]
