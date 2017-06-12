@@ -172,10 +172,6 @@ class MouseTest {
         assert span_Ctrl_mouseleft.available()
         assert span_Shift_mouseleft.available()
 
-        // Not testable cause Rightclick Handled by the browser
-//        CTRL.rightClick $('#_Ctrl_mouseright') as Div
-//        [CTRL, ALT].rightClick $('#_Ctrl_mouseright') as Div
-
         Span span_Alt_Shift_mouseleft = $('#span_Alt_Shift_mouseleft') as Span
         assert !span_Alt_Shift_mouseleft.available()
         (ALT + SHIFT).click $('#_Alt_Shift_mouseleft') as Div

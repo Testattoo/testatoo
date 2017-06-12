@@ -1,6 +1,6 @@
 = Testatoo
 
-:revdate: 01-07-2017
+:revdate: 06-11-2017
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 
@@ -10,6 +10,19 @@ https://coveralls.io/github/Ovea/testatoo?branch=master[image:https://coveralls.
 
 [.left.text-left]
 image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/logo.jpg[]
+
+== Warning
+Migration to Selenium 3 in progress.
+100% compatible with Chrome
+Issues open for Firefox and Edge
+
+Edge:
+https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10290683/
+
+Firefox:
+https://github.com/mozilla/geckodriver/issues/394 (closed)
+https://github.com/mozilla/geckodriver/issues/646
+
 
 == Documentation and Samples
 

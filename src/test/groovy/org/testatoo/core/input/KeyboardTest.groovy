@@ -85,7 +85,6 @@ class KeyboardTest {
             Span current_span = $(k) as Span
             assert !current_span.available()
             type v
-            println '-----' + v
             assert current_span.available()
         }
 
