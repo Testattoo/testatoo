@@ -18,10 +18,8 @@ package org.testatoo.core.input
 import org.junit.Before
 import org.junit.ClassRule
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Span
 import org.testatoo.bundle.html5.input.InputTypeText
@@ -45,7 +43,6 @@ class KeyboardTest {
     }
 
     @Test
-    @Category(UserAgent.All)
     void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
@@ -58,7 +55,6 @@ class KeyboardTest {
     }
 
     @Test
-    @Category(UserAgent.All)
     void should_type_number_on_keyboard() {
         (0..9).each {
             Span current_span = $("#span_$it") as Span
@@ -68,42 +64,23 @@ class KeyboardTest {
         }
     }
 
+    /**
+     * Most of the browsers of the market don't ever propagate all keyboard events for some keys.
+     * So in this tests we just test keys that can be really handle by a web page
+     * So we excluded :
+     *  F1 to F12
+     *  ESCAPE, INSERT, DELETE, PAGE_UP, PAGE_DOWN, HOME, END, BACK_SPACE, TAB, LEFT, UP, RIGHT, DOWN
+     */
     @Test
-    @Category(UserAgent.Firefox)
     void should_type_special_key_on_keyboard() {
         [
-                '#span_esc'      : ESCAPE,
-                '#span_f1'       : F1,
-                '#span_f2'       : F2,
-                '#span_f3'       : F3,
-                '#span_f4'       : F4,
-                '#span_f5'       : F5,
-                '#span_f6'       : F6,
-                '#span_f7'       : F7,
-                '#span_f8'       : F8,
-                '#span_f9'       : F9,
-                '#span_f10'      : F10,
-                '#span_f11'      : F11,
-                '#span_f12'      : F12,
-                '#span_insert'   : INSERT,
-                '#span_del'      : DELETE,
-                '#span_pageup'   : PAGE_UP,
-                '#span_pagedown' : PAGE_DOWN,
-                '#span_home'     : HOME,
-                '#span_end'      : END,
-                '#span_backspace': BACK_SPACE,
                 '#span_divide'   : DIVIDE,
                 '#span_multiply' : MULTIPLY,
                 '#span_substract': SUBTRACT,
                 '#span_add'      : ADD,
                 '#span_equals'   : EQUALS,
-                '#span_tab'      : TAB,
                 '#span_return'   : RETURN,
-                '#span_space'    : SPACE,
-                '#span_left'     : LEFT,
-                '#span_up'       : UP,
-                '#span_right'    : RIGHT,
-                '#span_down'     : DOWN
+                '#span_space'    : SPACE
         ].each { k, v ->
             Span current_span = $(k) as Span
             assert !current_span.available()
@@ -118,7 +95,6 @@ class KeyboardTest {
     }
 
     @Test
-    @Category(UserAgent.All)
     void should_use_key_modifier_on_keyboard() {
         TextField textField = $('#textfield') as InputTypeText
 

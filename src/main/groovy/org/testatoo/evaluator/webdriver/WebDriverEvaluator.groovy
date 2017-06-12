@@ -187,7 +187,7 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     void dragAndDrop(String originId, String targetId) {
-        new Actions(webDriver).dragAndDrop(webDriver.findElement(By.id(originId)), webDriver.findElement(By.id(targetId))).build().perform()
+        new Actions(webDriver).dragAndDrop(webDriver.findElement(By.id(originId)), webDriver.findElement(By.id(targetId))).perform()
     }
 
     @Override

@@ -17,10 +17,8 @@ package org.testatoo.core
 
 import org.junit.ClassRule
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.UserAgent
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.A
 import org.testatoo.bundle.html5.Form
@@ -35,7 +33,6 @@ import static org.testatoo.core.internal.Wait.waitUntil
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(UserAgent.All)
 class BrowserTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

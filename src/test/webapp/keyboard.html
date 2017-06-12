@@ -114,43 +114,14 @@
 
       <h2>Special Keys</h2>
 
-      <div id="_esc" class="eventNotifier">esc</div>
-
-      <div id="_f1" class="eventNotifier">f1</div>
-      <div id="_f2" class="eventNotifier">f2</div>
-      <div id="_f3" class="eventNotifier">f3</div>
-      <div id="_f4" class="eventNotifier">f4</div>
-      <div id="_f5" class="eventNotifier">f5</div>
-      <div id="_f6" class="eventNotifier">f6</div>
-      <div id="_f7" class="eventNotifier">f7</div>
-      <div id="_f8" class="eventNotifier">f8</div>
-      <div id="_f9" class="eventNotifier">f9</div>
-      <div id="_f10" class="eventNotifier">f10</div>
-      <div id="_f11" class="eventNotifier">f11</div>
-      <div id="_f12" class="eventNotifier">f12</div>
-
-      <div id="_insert" class="eventNotifier">insert</div>
-      <div id="_del" class="eventNotifier">del</div>
-      <div id="_pageup" class="eventNotifier">pageup</div>
-      <div id="_pagedown" class="eventNotifier">pagedown</div>
-      <div id="_home" class="eventNotifier">home</div>
-      <div id="_end" class="eventNotifier">end</div>
-      <div id="_backspace" class="eventNotifier">backspace</div>
-
       <div id="_divide" class="eventNotifier">/</div>
       <div id="_multiply" class="eventNotifier">*</div>
       <div id="_substract" class="eventNotifier">-</div>
       <div id="_add" class="eventNotifier">+</div>
       <div id="_equals" class="eventNotifier">=</div>
 
-      <div id="_tab" class="eventNotifier">tab</div>
       <div id="_return" class="eventNotifier">return</div>
       <div id="_space" class="eventNotifier">space</div>
-
-      <div id="_left" class="eventNotifier">left</div>
-      <div id="_up" class="eventNotifier">up</div>
-      <div id="_right" class="eventNotifier">right</div>
-      <div id="_down" class="eventNotifier">down</div>
 
       <div style="clear: both;"></div>
 
@@ -288,7 +259,6 @@
     });
 
     //        ============= DIGITS ===============
-
     $(document).on('keypress', null, '1', function () {
       $('#_1').dirtyCheck();
       return false;
@@ -331,87 +301,6 @@
     });
 
     //     ============= SPECIAL KEYS ===============
-
-    $(document).on('keypress', null, 'esc', function () {
-      $('#_esc').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f1', function () {
-      $('#_f1').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f2', function () {
-      $('#_f2').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f3', function () {
-      $('#_f3').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f4', function () {
-      $('#_f4').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f5', function () {
-      $('#_f5').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f6', function () {
-      $('#_f6').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f7', function () {
-      $('#_f7').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f8', function () {
-      $('#_f8').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f9', function () {
-      $('#_f9').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f10', function () {
-      $('#_f10').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f11', function () {
-      $('#_f11').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'f12', function () {
-      $('#_f12').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'insert', function () {
-      $('#_insert').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'del', function () {
-      $('#_del').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'pageup', function () {
-      $('#_pageup').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'pagedown', function () {
-      $('#_pagedown').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'home', function () {
-      $('#_home').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'end', function () {
-      $('#_end').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'backspace', function () {
-      $('#_backspace').dirtyCheck();
-      return false;
-    });
     $(document).on('keypress', null, '/', function () {
       $('#_divide').dirtyCheck();
       return false;
@@ -432,10 +321,6 @@
       $('#_equals').dirtyCheck();
       return false;
     });
-    $(document).on('keypress', null, 'tab', function () {
-      $('#_tab').dirtyCheck();
-      return false;
-    });
     $(document).on('keypress', null, 'return', function () {
       $('#_return').dirtyCheck();
       return false;
@@ -444,25 +329,8 @@
       $('#_space').dirtyCheck();
       return false;
     });
-    $(document).on('keypress', null, 'left', function () {
-      $('#_left').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'up', function () {
-      $('#_up').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'right', function () {
-      $('#_right').dirtyCheck();
-      return false;
-    });
-    $(document).on('keypress', null, 'down', function () {
-      $('#_down').dirtyCheck();
-      return false;
-    });
 
     //   ============= SPECIAL MODIFIERS  ===============
-
     $(document).on('keypress', null, 'alt+ctrl+shift+x', function () {
       $('#_Ctrl_Alt_Shift_x').dirtyCheck();
       return false;

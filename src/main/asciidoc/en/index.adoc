@@ -1,0 +1,41 @@
+= Testatoo documentation
+:author: David Avenante, Stephanie Parisot
+:revnumber: 2.0.b27
+:toc: left
+:toclevels: 5
+:numbered: true
+:doctype: book
+:icons: font
+:homepage: https://www.testatoo.org
+:desc: This is the Testatoo documentation
+:imagesdir: images
+:basepath: ../../..
+:junit-version: 4.12
+:testato-version: 2.0.b27
+
+image::logo.svg[Testatoo,align="center"]
+
+include::en/introduction.adoc[]
+
+include::en/design_and_architecture.adoc[]
+
+include::en/installation.adoc[]
+
+include::en/philosophy.adoc[]
+
+include::en/compatibility.adoc[]
+
+include::en/content_interaction.adoc[]
+
+include::en/testatoo_language.adoc[]
+
+include::en/BDD_style.adoc[]
+
+include::en/components_reference.adoc[]
+
+include::en/html5_bundle.adoc[]
+
+include::en/create_new_component.adoc[]
+
+include::en/create_new_bundle.adoc[]
+

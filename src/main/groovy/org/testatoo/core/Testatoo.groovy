@@ -48,6 +48,7 @@ import org.testatoo.core.input.Key
 import org.testatoo.core.input.Keyboard
 import org.testatoo.core.input.Mouse
 import org.testatoo.core.internal.CachedMetaData
+import org.testatoo.core.internal.Wait
 import org.testatoo.core.internal.jQueryIdProvider
 import org.testatoo.core.support.Checkable
 import org.testatoo.core.support.Clearable
@@ -82,9 +83,7 @@ class Testatoo {
         components.list()
     }
 
-    static {
-        config.scan 'org.testatoo.bundle.html5'
-    }
+    static { config.scan 'org.testatoo.bundle.html5' }
 
     /**
      * States

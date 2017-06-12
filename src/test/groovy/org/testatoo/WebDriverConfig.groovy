@@ -40,10 +40,8 @@ class WebDriverConfig extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-        // Defined in the maven profile
-        final String browser = System.getProperty('browser') ?: 'Chrome' // defined in the maven profile
-
         // Defined by JVM maven arguments
+        final String browser = System.getProperty('browser') ?: 'Chrome'
         final String drivers = System.getProperty('drivers') ?: '/usr/bin/'
         final boolean docker = Boolean.valueOf(System.getProperty('docker')) ?: false // -Ddocker=true
         final String ip = System.getProperty('ip') ?: '127.0.0.1' // -DIP=xxx.xxx.xxx.xxx

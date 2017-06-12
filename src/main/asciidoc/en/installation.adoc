@@ -11,7 +11,7 @@ The following installation if for JUnit. For another test runner, adapt the firs
 <dependency>
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
-    <version>{junit-version}</version>
+    <version>4.12</version>
     <scope>test</scope>
 </dependency>
 <dependency>

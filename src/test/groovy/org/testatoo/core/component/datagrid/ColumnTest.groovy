@@ -16,12 +16,9 @@
 package org.testatoo.core.component.datagrid
 
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.category.NoGui
 import org.testatoo.core.component.Component
-import org.testatoo.core.component.Item
 import org.testatoo.core.support.property.CellSupport
 import org.testatoo.core.support.property.TitleSupport
 
@@ -29,7 +26,6 @@ import org.testatoo.core.support.property.TitleSupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(NoGui)
 class ColumnTest {
     @Test
     void should_have_expected_inheritance() {
@@ -51,7 +47,7 @@ class ColumnTest {
     }
 
     private class TestColumn extends Column {
-        private String title;
+        private String title
 
         TestColumn(String title) {
             this.title = title

@@ -18,12 +18,10 @@ package org.testatoo.bundle.html5.components.input
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.input.*
-import org.testatoo.category.UserAgent
 import org.testatoo.core.Browser
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.*
@@ -37,7 +35,6 @@ import static org.testatoo.core.Testatoo.*
  */
 
 @RunWith(JUnit4)
-@Category(UserAgent.All)
 class InputFieldTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()

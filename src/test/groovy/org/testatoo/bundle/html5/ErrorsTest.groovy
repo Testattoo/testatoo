@@ -18,13 +18,11 @@ package org.testatoo.bundle.html5
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Test
-import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.input.InputTypeNumber
 import org.testatoo.bundle.html5.input.InputTypePassword
-import org.testatoo.category.UserAgent
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.field.NumberField
 import org.testatoo.core.component.field.PasswordField
@@ -40,7 +38,6 @@ import static org.testatoo.core.input.Key.CTRL
  * @author David Avenante (d.avenante@gmail.com)
  */
 @RunWith(JUnit4)
-@Category(UserAgent.All)
 class ErrorsTest {
     @ClassRule
     public static WebDriverConfig driver = new WebDriverConfig()
