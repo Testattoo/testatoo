@@ -23,8 +23,10 @@ import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.*
 import org.testatoo.bundle.html5.heading.*
+import org.testatoo.bundle.html5.input.InputTypeCheckBox
 import org.testatoo.bundle.html5.input.InputTypeEmail
 import org.testatoo.bundle.html5.input.InputTypePassword
+import org.testatoo.bundle.html5.input.InputTypeRadio
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 import org.testatoo.core.component.*
@@ -111,9 +113,9 @@ class ComponentsTest {
 
     @Test
     void checkbox_should_have_expected_behaviours() {
-        assert CheckBox in CheckBox
+        assert InputTypeCheckBox in CheckBox
 
-        CheckBox checkBox = $('#checkbox') as CheckBox
+        CheckBox checkBox = $('#checkbox') as InputTypeCheckBox
         assert checkBox.label() == 'Check me out'
         assert !checkBox.checked()
         checkBox.check()
@@ -127,7 +129,7 @@ class ComponentsTest {
             checkBox.check()
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'CheckBox CheckBox:checkbox is already checked and cannot be checked'
+            assert e.message == 'InputTypeCheckBox InputTypeCheckBox:checkbox is already checked and cannot be checked'
         }
 
         try {
@@ -135,22 +137,22 @@ class ComponentsTest {
             checkBox.uncheck()
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'CheckBox CheckBox:checkbox is already unchecked and cannot be unchecked'
+            assert e.message == 'InputTypeCheckBox InputTypeCheckBox:checkbox is already unchecked and cannot be unchecked'
         }
 
-        checkBox = $('#disabled_checkbox') as CheckBox
+        checkBox = $('#disabled_checkbox') as InputTypeCheckBox
         try {
             checkBox.check()
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'CheckBox CheckBox:disabled_checkbox is disabled and cannot be checked'
+            assert e.message == 'InputTypeCheckBox InputTypeCheckBox:disabled_checkbox is disabled and cannot be checked'
         }
 
         try {
             checkBox.uncheck()
             fail()
         } catch (ComponentException e) {
-            assert e.message == 'CheckBox CheckBox:disabled_checkbox is disabled and cannot be unchecked'
+            assert e.message == 'InputTypeCheckBox InputTypeCheckBox:disabled_checkbox is disabled and cannot be unchecked'
         }
     }
 
@@ -260,23 +262,23 @@ class ComponentsTest {
 
     @Test
     void paragraph_should_have_expected_behaviours() {
-        assert Paragraph in Component
-        assert Paragraph in TextSupport
+        assert P in Component
+        assert P in TextSupport
 
-        Paragraph paragraph = $('#p_1') as Paragraph
+        P paragraph = $('#p_1') as P
 
         assert paragraph.text() == 'Paragraph 1'
     }
 
     @Test
     void radio_should_have_expected_behaviours() {
-        assert Radio in Radio
+        assert InputTypeRadio in Radio
 
-        Radio radio = $('#radio_1') as Radio
+        Radio radio = $('#radio_1') as InputTypeRadio
         assert radio.label() == 'Radio checked'
         assert radio.checked()
 
-        radio = $('#radio_2') as Radio
+        radio = $('#radio_2') as InputTypeRadio
         assert radio.label() == 'Radio unchecked'
         assert !radio.checked()
         radio.check()

@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.CssIdentifier
+import org.testatoo.core.component.CheckBox
 
 import static org.testatoo.bundle.html5.helper.CheckHelper.*
 import static org.testatoo.bundle.html5.helper.LabelHelper.label
@@ -24,7 +25,7 @@ import static org.testatoo.bundle.html5.helper.LabelHelper.label
  * @author David Avenante (d.avenante@gmail.com)
  */
 @CssIdentifier('input[type=checkbox]')
-class CheckBox extends org.testatoo.core.component.CheckBox {
+class InputTypeCheckBox extends CheckBox {
     @Override
     boolean checked() {
         checked(this)

@@ -13,21 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.html5
+package org.testatoo.bundle.html5.input
 
 import org.testatoo.core.CssIdentifier
-import org.testatoo.core.component.Component
-import org.testatoo.core.support.property.TextSupport
+import org.testatoo.core.component.Radio
 
-import static org.testatoo.core.Testatoo.config
+import static org.testatoo.bundle.html5.helper.CheckHelper.*
+import static org.testatoo.bundle.html5.helper.LabelHelper.label
 
 /**
- * @author David Avenante (d.avenante@gmail.com)
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
-@CssIdentifier('p')
-class Paragraph extends Component implements TextSupport {
+@CssIdentifier('input[type=radio]')
+class InputTypeRadio extends Radio {
     @Override
-    String text() {
-        config.evaluator.eval(id(), "it.text()")
+    boolean checked() {
+        checked(this)
+    }
+
+    @Override
+    void check() {
+        check(this)
+    }
+
+    @Override
+    String label() {
+        label(this)
     }
 }

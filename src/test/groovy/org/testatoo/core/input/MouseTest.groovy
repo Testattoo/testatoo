@@ -23,12 +23,14 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.CheckBox
+import org.testatoo.bundle.html5.input.InputTypeCheckBox
 import org.testatoo.bundle.html5.Div
-import org.testatoo.bundle.html5.Radio
+import org.testatoo.bundle.html5.input.InputTypeRadio
 import org.testatoo.bundle.html5.Span
 import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.Browser
+import org.testatoo.core.component.CheckBox
+import org.testatoo.core.component.Radio
 
 import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
@@ -66,12 +68,12 @@ class MouseTest {
         button.click()
         assert button.text() == 'Button Clicked!'
 
-        CheckBox checkBox = $('#checkbox') as CheckBox
+        CheckBox checkBox = $('#checkbox') as InputTypeCheckBox
         assert !checkBox.checked()
         clickOn checkBox
         assert checkBox.checked()
 
-        Radio radio = $('#radio') as Radio
+        Radio radio = $('#radio') as InputTypeRadio
         assert !radio.checked()
         clickOn radio
         assert radio.checked()

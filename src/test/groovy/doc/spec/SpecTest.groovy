@@ -21,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.input.InputTypeRadio
 import org.testatoo.core.Browser
 import org.testatoo.core.component.Radio
 
@@ -42,8 +43,8 @@ class SpecTest {
     void before() {
         Browser.open BASE_URL + 'spec.html'
 
-        male_radio = $('[name=gender]:first') as org.testatoo.bundle.html5.Radio
-        female_radio = $('[value=female]:last') as org.testatoo.bundle.html5.Radio
+        male_radio = $('[name=gender]:first') as InputTypeRadio
+        female_radio = $('[value=female]:last') as InputTypeRadio
     }
 
     @Test
