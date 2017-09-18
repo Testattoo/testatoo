@@ -75,7 +75,7 @@ class ComponentsTest {
 
     @Test
     void should_have_expected_properties_and_states_supported_by_checkbox() {
-        CheckBox checkbox = $('#checkbox') as CheckBox
+        CheckBox checkbox = $('#checkbox') as InputTypeCheckBox
         // tag::checkbox[]
         checkbox.should {
             have label('Check me out')
@@ -92,8 +92,8 @@ class ComponentsTest {
 
     @Test
     void should_have_expected_properties_and_states_supported_by_radio() {
-        Radio checked_radio = $('#radio_1') as Radio
-        Radio unchecked_radio = $('#radio_2') as Radio
+        Radio checked_radio = $('#radio_1') as InputTypeRadio
+        Radio unchecked_radio = $('#radio_2') as InputTypeRadio
         // tag::radio[]
         checked_radio.should {
             have label('Radio checked')

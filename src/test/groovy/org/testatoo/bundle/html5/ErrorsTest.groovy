@@ -21,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
+import org.testatoo.bundle.html5.input.InputTypeCheckBox
 import org.testatoo.bundle.html5.input.InputTypeNumber
 import org.testatoo.bundle.html5.input.InputTypePassword
 import org.testatoo.core.ComponentException
@@ -49,13 +50,13 @@ class ErrorsTest {
 
     @Test
     void should_not_check_already_checked_element() {
-        CheckBox checkbox = $('#checkbox_1') as CheckBox
+        InputTypeCheckBox checkbox = $('#checkbox_1') as InputTypeCheckBox
         checkbox.should { be checked }
 
         try {
             check checkbox
         } catch (ComponentException e) {
-            assert e.message == 'CheckBox CheckBox:checkbox_1 is already checked and cannot be checked'
+            assert e.message == 'InputTypeCheckBox InputTypeCheckBox:checkbox_1 is already checked and cannot be checked'
         }
     }
 

@@ -16,27 +16,18 @@
 package org.testatoo.bundle.html5
 
 import org.testatoo.core.CssIdentifier
+import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.TextSupport
 
-import static org.testatoo.bundle.html5.helper.CheckHelper.*
-import static org.testatoo.bundle.html5.helper.LabelHelper.label
+import static org.testatoo.core.Testatoo.config
 
 /**
- * @author Mathieu Carbou (mathieu.carbou@gmail.com)
+ * @author David Avenante (d.avenante@gmail.com)
  */
-@CssIdentifier('input[type=radio]')
-class Radio extends org.testatoo.core.component.Radio {
+@CssIdentifier('p')
+class P extends Component implements TextSupport {
     @Override
-    boolean checked() {
-        checked(this)
-    }
-
-    @Override
-    void check() {
-        check(this)
-    }
-
-    @Override
-    String label() {
-        label(this)
+    String text() {
+        config.evaluator.eval(id(), "it.text()")
     }
 }

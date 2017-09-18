@@ -24,8 +24,8 @@ import org.testatoo.core.component.Component
  */
 @CssIdentifier('section')
 class Section extends Component {
-    List<Paragraph> paragraphs() {
-        find(By.css('> p'), Paragraph)
+    List<P> paragraphs() {
+        find(By.css('> p'), P)
     }
 
     List<Article> articles() {
