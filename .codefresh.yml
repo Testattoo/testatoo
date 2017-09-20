@@ -1,0 +1,9 @@
+version: '1.0'
+
+steps:
+
+    unit_test:
+      title: Unit Tests
+      image: maven:latest
+      commands:
+        - mvn -version
