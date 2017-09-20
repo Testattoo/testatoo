@@ -6,4 +6,4 @@ steps:
       title: Unit Tests
       image: maven:latest
       commands:
-        - mvn -version
+        - mvn clean package
