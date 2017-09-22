@@ -83,7 +83,7 @@ class SelectorTest {
         // 2 - If component don't have Identifier on it the Identifier on the superclass is used
         BigButton cmp = $('#button') as BigButton
         cmp.should { be visible }
-        assert  cmp.big
+        assert cmp.big
     }
 
     @Test
