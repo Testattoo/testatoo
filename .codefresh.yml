@@ -2,23 +2,23 @@ version: '1.0'
 
 steps:
 
-  build_image:
-    title: Building Image
-    type: build
-    dockerfile: Dockerfile
-    image_name: codefresh/selenium-test
+#  build_image:
+#    title: Building Image
+#    type: build
+#    dockerfile: Dockerfile
+#    image_name: codefresh/selenium-test
 
   unit_test:
     title: Unit Tests
     image: maven:latest
 
-    composition:
-      version: '2'
-      services:
-        selenium:
-          image: selenium/standalone-chrome:2.46.0
-          ports:
-            - 4444:4444
+#    composition:
+#      version: '2'
+#      services:
+#        selenium:
+#          image: selenium/standalone-chrome:2.46.0
+#          ports:
+#            - 4444:4444
 
     commands:
       - mvn clean package
