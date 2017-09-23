@@ -6,7 +6,7 @@ addons:
     - unzip
   firefox: latest
 
-language: java
+language: groovy
 
 jdk:
   - oraclejdk8
@@ -43,3 +43,6 @@ before_install:
 
 script:
   - mvn test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
