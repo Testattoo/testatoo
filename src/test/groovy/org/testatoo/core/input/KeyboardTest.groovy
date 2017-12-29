@@ -21,9 +21,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.Span
-import org.testatoo.bundle.html5.input.InputTypeText
-import org.testatoo.core.component.field.TextField
+import org.testatoo.bundle.html5.InputTypeText
+import org.testatoo.core.CssIdentifier
+
+import org.testatoo.core.component.Component
+import org.testatoo.core.support.property.ValueSupport
 
 import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
@@ -46,7 +48,7 @@ class KeyboardTest {
     void should_type_letters_on_keyboard() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
-            Span current_span = $("#span_$letter") as Span
+            Component current_span = $("#span_$letter") as Component
 
             assert !current_span.available()
             type "$letter"
@@ -57,7 +59,7 @@ class KeyboardTest {
     @Test
     void should_type_number_on_keyboard() {
         (0..9).each {
-            Span current_span = $("#span_$it") as Span
+            Component current_span = $("#span_$it") as Component
             assert !current_span.available()
             type "$it"
             assert current_span.available()
@@ -82,13 +84,13 @@ class KeyboardTest {
                 '#span_return'   : RETURN,
                 '#span_space'    : SPACE
         ].each { k, v ->
-            Span current_span = $(k) as Span
+            Component current_span = $(k) as Component
             assert !current_span.available()
             type v
             assert current_span.available()
         }
 
-        Span span = $('#span_Ctrl_Alt_Shift_x') as Span
+        Component span = $('#span_Ctrl_Alt_Shift_x') as Component
         assert !span.available()
         type(CTRL + ALT + SHIFT + 'x')
         assert span.available()
@@ -96,7 +98,7 @@ class KeyboardTest {
 
     @Test
     void should_use_key_modifier_on_keyboard() {
-        TextField textField = $('#textfield') as InputTypeText
+        InputTypeText textField = $('#textfield') as InputTypeText
 
         assert textField.value() == ''
         clickOn textField

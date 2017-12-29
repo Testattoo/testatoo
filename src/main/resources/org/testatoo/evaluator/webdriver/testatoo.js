@@ -15,7 +15,6 @@
  */
 (function ($) {
     $.fn.testatoo = function(options) {
-
         switch (options.method) {
             case 'metaInfos':
                 var metaInfos = [];

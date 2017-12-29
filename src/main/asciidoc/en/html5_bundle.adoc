@@ -1,6 +1,0 @@
-== The HTML5 bundle
-'''
-
-Testatoo comes with a bunch of predefined HTML components. These components are not only the standard representation of HTML elements,
-but also a powerful base to build your own components. Each component supports States and Properties. One of the strengths of Testatoo
-is the ability to add support for new States and Properties and to override existing States and Properties, on existing or new components.

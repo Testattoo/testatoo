@@ -1,2 +1,3 @@
-[] improve WaitUntil
-[] add WaitUntil shortcut in Testatoo.*
+[] Add test to factory on textfiel (text and placeholder)
+
+static { config.scan 'org.testatoo.bundle.html5' }

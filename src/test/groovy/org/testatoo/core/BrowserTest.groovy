@@ -20,14 +20,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.A
-import org.testatoo.bundle.html5.Form
+import org.testatoo.core.component.Component
 
 import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Browser.*
 import static org.testatoo.core.Testatoo.*
-import static org.testatoo.core.input.Mouse.*
-import static org.testatoo.core.internal.Wait.waitUntil
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -39,11 +36,11 @@ class BrowserTest {
 
     @Test
     void should_be_able_to_have_browser_properties_access() {
-        open BASE_URL + 'components.html'
+        open BASE_URL + 'index.html'
 
         assert title == 'Testatoo Rocks'
         assert pageSource.contains('<title>Testatoo Rocks</title>')
-        assert url == BASE_URL + 'components.html'
+        assert url == BASE_URL + 'index.html'
 
         open(BASE_URL + 'keyboard.html')
         assert url == BASE_URL + 'keyboard.html'
@@ -51,15 +48,15 @@ class BrowserTest {
 
     @Test
     void should_be_able_to_navigate() {
-        open BASE_URL + 'components.html'
+        open BASE_URL + 'index.html'
 
-        assert url == BASE_URL + 'components.html'
+        assert url == BASE_URL + 'index.html'
 
         navigateTo(BASE_URL + 'keyboard.html')
         assert url == BASE_URL + 'keyboard.html'
 
         back()
-        assert url == BASE_URL + 'components.html'
+        assert url == BASE_URL + 'index.html'
 
         forward()
         assert url == BASE_URL + 'keyboard.html'
@@ -70,9 +67,9 @@ class BrowserTest {
 
     @Test
     void should_manage_windows() {
-        open BASE_URL + 'components.html'
-        A link = $('#link') as A
-        Form form = $('#dsl-form') as Form
+        open BASE_URL + 'index.html'
+        Component link = $('#link') as Component
+        Component form = $('#dsl-form') as Component
 
         assert windows.size() == 1
         assert link.available()

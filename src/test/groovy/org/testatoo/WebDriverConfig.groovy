@@ -15,6 +15,9 @@
  */
 package org.testatoo
 
+import io.github.bonigarcia.wdm.ChromeDriverManager
+import io.github.bonigarcia.wdm.EdgeDriverManager
+import io.github.bonigarcia.wdm.FirefoxDriverManager
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.handler.DefaultHandler
 import org.eclipse.jetty.server.handler.HandlerList
@@ -26,7 +29,6 @@ import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
-import org.openqa.selenium.safari.SafariDriver
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
 import static org.testatoo.core.Testatoo.config
@@ -42,7 +44,6 @@ class WebDriverConfig extends ExternalResource {
     protected void before() throws Throwable {
         // Defined by JVM maven arguments
         final String browser = System.getProperty('browser') ?: 'Chrome'
-        final String drivers = System.getProperty('drivers') ?: '/usr/bin/'
         final boolean docker = Boolean.valueOf(System.getProperty('docker')) ?: false // -Ddocker=true
         final String ip = System.getProperty('ip') ?: '127.0.0.1' // -DIP=xxx.xxx.xxx.xxx
 
@@ -57,10 +58,8 @@ class WebDriverConfig extends ExternalResource {
                     WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), DesiredCapabilities.firefox())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
-                    System.setProperty('webdriver.gecko.driver', drivers + 'geckodriver')
-                    DesiredCapabilities capabilities = DesiredCapabilities.firefox()
-                    capabilities.setCapability('marionette', true)
-                    config.evaluator = new WebDriverEvaluator(new FirefoxDriver(capabilities))
+                    FirefoxDriverManager.instance.setup()
+                    config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
                 }
                 break
             case 'Chrome':
@@ -69,18 +68,13 @@ class WebDriverConfig extends ExternalResource {
                     WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), DesiredCapabilities.chrome())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
-                    System.setProperty('webdriver.chrome.driver', drivers + 'chromedriver')
+                    ChromeDriverManager.instance.setup()
                     config.evaluator = new WebDriverEvaluator(new ChromeDriver())
                 }
                 break
-            case 'Safari ':
-                println '=================== Safari Profile ==================='
-                System.setProperty('webdriver.safari.driver', '/usr/bin/safaridriver')
-                config.evaluator = new WebDriverEvaluator(new SafariDriver())
-                break
             case 'Edge':
                 println '==================== Edge Profile ===================='
-                System.setProperty('webdriver.edge.driver', 'C:\\Program Files (x86)\\Microsoft Web Driver\\MicrosoftWebDriver.exe')
+                EdgeDriverManager.instance.setup()
                 config.evaluator = new WebDriverEvaluator(new EdgeDriver())
                 break
         }

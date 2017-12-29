@@ -183,24 +183,14 @@ class DSLTest {
         assert on(heading).is(heading)
     }
 
-    @Test
-    void should_have_shortcut_for_mouse() {
-
-//        @Test
-//        void should_be_able_to_rightClick() {
-//            Button button = $('#button_5') as Button
-//
-//            assert button.text == 'Button'
-//            rightClickOn button
-//            assert button.text == 'Button Right Clicked!'
-//
-//            browser.refresh()
-//
-//            button = $('#button_5') as Button
-//
-//            assert button.text == 'Button'
-//            button.rightClick()
-//            assert button.text == 'Button Right Clicked!'
-//        }
-    }
+    // STATES
+//    filled
+//    inRange
+//    invalid
+//    optional
+//    outOfRange
+//    readOnly
+//    unselected
+//    valid
+//    focused
 }

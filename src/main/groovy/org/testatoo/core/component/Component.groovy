@@ -41,7 +41,9 @@ class Component implements Clickable, Draggable {
         this.meta = meta
     }
 
-    String id() throws ComponentException { meta.metaInfo(this).id }
+    String id() throws ComponentException {
+        meta.metaInfo(this).id
+    }
 
     boolean enabled() {
         !config.evaluator.check(id(), "it.is(':disabled') || !!it.attr('disabled')")

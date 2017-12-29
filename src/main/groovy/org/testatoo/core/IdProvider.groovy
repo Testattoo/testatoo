@@ -17,6 +17,6 @@ package org.testatoo.core
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-public interface IdProvider {
+interface IdProvider {
     List<MetaInfo> metaInfos() throws ComponentException
 }

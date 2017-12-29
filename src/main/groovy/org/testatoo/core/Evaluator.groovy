@@ -54,9 +54,9 @@ interface Evaluator extends AutoCloseable {
 
     abstract void refresh()
 
-    abstract <T> T getJson(String jQueryExpr)
+    abstract <T> T getJson(String expression)
 
-    abstract List<MetaInfo> metaInfo(String jQueryExpr)
+    abstract List<MetaInfo> metaInfo(String expression)
 
     abstract void type(Collection<?> keys)
 

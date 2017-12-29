@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.getConfig
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Wait {
-
     static void waitUntil(Closure c, Matcher what = null) {
         boolean success = false
         long timeout = config.waitUntil.toMillis()

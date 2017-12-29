@@ -35,12 +35,11 @@ class By {
         new By("\\\$('#${id}').find('${expression}')", new SimpleTemplateEngine())
     }
 
-    static js(String expression) {
+    static By js(String expression) {
         new By(expression, null)
     }
 
     String getExpression(Component component) {
         templateEngine ? templateEngine.createTemplate(expression).make([id: component.id()]) : expression
     }
-
 }

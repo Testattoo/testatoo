@@ -16,6 +16,7 @@
 package org.testatoo.evaluator.webdriver
 
 import org.junit.AfterClass
+import org.junit.Before
 import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,8 +24,7 @@ import org.junit.runners.JUnit4
 import org.openqa.selenium.WebDriver
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Div
-import org.testatoo.bundle.html5.input.InputTypeText
-import org.testatoo.core.component.field.TextField
+import org.testatoo.bundle.html5.InputTypeText
 import org.testatoo.core.internal.Log
 
 import static org.testatoo.WebDriverConfig.BASE_URL
@@ -51,9 +51,9 @@ class WebDriverEvaluatorTest {
     @Test
     void should_be_able_to_register_a_script() {
         try {
-            visit BASE_URL + 'dsl.html'
+            visit BASE_URL + 'popup.html'
 
-            TextField field = $('#firstname') as InputTypeText
+            InputTypeText field = $('#firstname') as InputTypeText
             Div error = $('#firstname_blur') as Div
 
             assert field.empty()
@@ -65,7 +65,7 @@ class WebDriverEvaluatorTest {
             config.evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
             config.evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
 
-            visit BASE_URL + 'dsl.html'
+            visit BASE_URL + 'popup.html'
 
             field = $('#firstname') as InputTypeText
             error = $('#firstname_blur') as Div
@@ -75,6 +75,13 @@ class WebDriverEvaluatorTest {
         } finally {
             config.evaluator.close()
         }
+    }
+
+    @Test
+    void should_add_jquery_if_missing() {
+        visit BASE_URL + 'popup.html'
+
+        assert 'Joe' == config.evaluator.eval(null, "\$('#firstname').val('Joe').val()")
     }
 
     @Test

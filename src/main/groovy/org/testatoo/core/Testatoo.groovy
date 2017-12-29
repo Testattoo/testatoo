@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.hamcrest.Matcher
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
@@ -23,6 +24,7 @@ import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Item
+import org.testatoo.core.component.Link
 import org.testatoo.core.component.ListBox
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.Radio
@@ -83,7 +85,14 @@ class Testatoo {
         components.list()
     }
 
-    static { config.scan 'org.testatoo.bundle.html5' }
+    static {
+        config.scan 'org.testatoo.bundle'
+    }
+
+    protected static componentFactory = new ComponentFactory()
+    protected static mouse = new Mouse()
+    protected static keyboard = new Keyboard()
+    protected static wait = new Wait()
 
     /**
      * States
@@ -190,40 +199,43 @@ class Testatoo {
     }
 
     // Delegate to Mouse
-    static void clickOn(Component c) { Mouse.clickOn(c) }
-    static void doubleClickOn(Component c) { Mouse.doubleClickOn(c) }
-    static void rightClickOn(Component c) { Mouse.rightClickOn(c) }
-    static void hoveringMouseOn(Component c) { Mouse.hoveringMouseOn(c) }
-    static DragBuilder drag(Component c) { Mouse.drag(c) }
+    static void clickOn(Component c) { mouse.clickOn(c) }
+    static void doubleClickOn(Component c) { mouse.doubleClickOn(c) }
+    static void rightClickOn(Component c) { mouse.rightClickOn(c) }
+    static void hoveringMouseOn(Component c) { mouse.hoveringMouseOn(c) }
+    static DragBuilder drag(Component c) { mouse.drag(c) }
 
     // Delegate to Keyboard
-    static void type(Collection<?> keys) { Keyboard.type(keys) }
+    static void type(Collection<?> keys) { keyboard.type(keys) }
     static void type(Key key)  { type([key]) }
     static void type(String text) { type([text]) }
 
     // Generic Component Factory
-    static Button button(String text) { ComponentFactory.button(text) }
-    static Radio radio(String label) { ComponentFactory.radio(label) }
-    static CheckBox checkbox(String label) { ComponentFactory.checkbox(label)  }
-    static Dropdown dropdown(String label) { ComponentFactory.dropdown(label) }
-    static ListBox listBox(String label) { ComponentFactory.listBox(label) }
-    static Group group(String value) { ComponentFactory.group(value) }
-    static Item item(String value) { ComponentFactory.item(value) }
-    static Heading heading(String text) { ComponentFactory.heading(text) }
-    static Panel panel(String title) { ComponentFactory.panel(title) }
+    static Button button(String text) { componentFactory.button(text) }
+    static Radio radio(String label) { componentFactory.radio(label) }
+    static CheckBox checkbox(String label) { componentFactory.checkbox(label)  }
+    static Dropdown dropdown(String label) { componentFactory.dropdown(label) }
+    static ListBox listBox(String label) { componentFactory.listBox(label) }
+    static Group group(String value) { componentFactory.group(value) }
+    static Item item(String value) { componentFactory.item(value) }
+    static Heading heading(String text) { componentFactory.heading(text) }
+    static Panel panel(String title) { componentFactory.panel(title) }
+    static Link link(String name) { componentFactory.link(name) }
 
-    static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
-    static TextField textField(String value) { ComponentFactory.textField(value) }
-    static SearchField searchField(String value) { ComponentFactory.searchField(value) }
-    static EmailField emailField(String value) { ComponentFactory.emailField(value) }
-    static URLField urlField(String value) { ComponentFactory.urlField(value) }
-    static NumberField numberField(String value) { ComponentFactory.numberField(value) }
-    static RangeField rangeField(String value) { ComponentFactory.rangeField(value) }
-    static DateField dateField(String value) { ComponentFactory.dateField(value) }
-    static ColorField colorField(String value) { ComponentFactory.colorField(value) }
-    static DateTimeField dateTimeField(String value) { ComponentFactory.dateTimeField(value) }
-    static MonthField monthField(String value) { ComponentFactory.monthField(value) }
-    static PhoneField phoneField(String value) { ComponentFactory.phoneField(value) }
-    static TimeField timeField(String value) { ComponentFactory.timeField(value) }
-    static WeekField weekField(String value) { ComponentFactory.weekField(value) }
+    static PasswordField passwordField(String value) { componentFactory.passwordField(value) }
+    static TextField textField(String value) { componentFactory.textField(value) }
+    static SearchField searchField(String value) { componentFactory.searchField(value) }
+    static EmailField emailField(String value) { componentFactory.emailField(value) }
+    static URLField urlField(String value) { componentFactory.urlField(value) }
+    static NumberField numberField(String value) { componentFactory.numberField(value) }
+    static RangeField rangeField(String value) { componentFactory.rangeField(value) }
+    static DateField dateField(String value) { componentFactory.dateField(value) }
+    static ColorField colorField(String value) { componentFactory.colorField(value) }
+    static DateTimeField dateTimeField(String value) { componentFactory.dateTimeField(value) }
+    static MonthField monthField(String value) { componentFactory.monthField(value) }
+    static PhoneField phoneField(String value) { componentFactory.phoneField(value) }
+    static TimeField timeField(String value) { componentFactory.timeField(value) }
+    static WeekField weekField(String value) { componentFactory.weekField(value) }
+
+    static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 }
