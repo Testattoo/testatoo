@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2017 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 
-import static org.mockito.Matchers.any
+import static org.mockito.Mockito.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*

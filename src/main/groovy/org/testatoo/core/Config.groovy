@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2017 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,7 @@
  */
 package org.testatoo.core
 
-import com.google.common.reflect.ClassPath
 import org.testatoo.core.component.Component
-import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log
 
 import java.time.Duration
@@ -30,17 +28,6 @@ class Config {
      * Change default time to wait for wait for assertions to complete (waitUntil)
      */
     Duration waitUntil = 2.seconds
-
-    /**
-     * Scan for packages containing custom component
-     */
-    void scan(String... packageNames) {
-        componentTypes.addAll(packageNames
-            .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
-            .flatten()
-            .collect { it.load() }
-            .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
-    }
 
     /**
      * Activate debug mode

@@ -1,12 +1,12 @@
 <!--
 
-    Copyright (C) 2016 Ovea (dev@ovea.com)
+    Copyright © 2017 Ovea (d.avenante@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-            http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -51,7 +51,7 @@
   </style>
 
   <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="js/jquery-ui-1.12.1.min.js"></script>
   <script src="js/jquery.hotkeys.js"></script>
 </head>
 <body>
@@ -107,12 +107,14 @@
 
       <div id="_Ctrl_Shift_mouseleft" class="eventNotifier">Ctrl+Shift+mouseleft</div>
       <div style="clear: both;"></div>
+
+      <div id="_Ctrl_Shift_mouseright" class="eventNotifier">Ctrl+Shift+mouseright</div>
+      <div style="clear: both;"></div>
     </div>
     <div class="col-md-2"></div>
   </div>
 </div>
 <script>
-
     $.fn.dirtyCheck = function () {
         this.addClass('dirty');
         this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
@@ -157,7 +159,7 @@
 
         //   ============= SPECIAL MODIFIERS AND MOUSE ===============
         $(document).on('click', function (e) {
-            if (e.button == 2) {
+            if (e.button === 2) {
                 if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
                 if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
                 if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();

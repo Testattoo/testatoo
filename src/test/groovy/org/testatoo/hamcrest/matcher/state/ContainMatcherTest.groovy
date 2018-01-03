@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2017 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import org.testatoo.core.component.Component
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
-import static org.mockito.Matchers.any
+import static org.mockito.Mockito.any
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.core.Testatoo.config

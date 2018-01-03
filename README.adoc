@@ -1,6 +1,6 @@
 = Testatoo
 
-:revdate: 06-11-2017
+:revdate: 01-01-2018
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 

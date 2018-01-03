@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2017 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 package org.testatoo.evaluator.webdriver
 
 import org.junit.AfterClass
-import org.junit.Before
 import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -51,6 +50,7 @@ class WebDriverEvaluatorTest {
     @Test
     void should_be_able_to_register_a_script() {
         try {
+            // Page with jquery missing
             visit BASE_URL + 'popup.html'
 
             InputTypeText field = $('#firstname') as InputTypeText
@@ -72,6 +72,23 @@ class WebDriverEvaluatorTest {
 
             assert !field.empty()
             assert error.visible()
+
+            // Page with jquery already available
+            visit BASE_URL + 'index.html'
+
+            Div created = $('#created') as Div
+            created.should { be missing }
+
+            // Register scripts who
+            // Create the missing TAG
+            config.evaluator.registerScripts("function create() { var element = document.createElement('div'); " +
+                    "element.id = 'created'; document.body.appendChild(element);}; create()")
+
+            visit BASE_URL + 'index.html'
+
+            created = $('#created') as Div
+            created.should { be available }
+
         } finally {
             config.evaluator.close()
         }
