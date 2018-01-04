@@ -13,62 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.stub
+package org.testatoo.bundle.stub.datagrid
 
-import org.testatoo.core.component.field.RangeField
+import org.testatoo.core.component.datagrid.Column
+import org.testatoo.core.component.datagrid.DataGrid
+import org.testatoo.core.component.datagrid.Row
 
-class RangeFieldStub extends RangeField {
-    String placeholder() {
+class DataGridStub extends DataGrid {
+    List<Column> columns() {
         return null
     }
 
-    void value(Object value) {
-    }
-
-    void clear() {
-    }
-
-    String label() {
+    Column column(String title) {
         return null
     }
 
-    boolean inRange() {
-        return false
-    }
-
-    Object maximum() {
+    List<Row> rows() {
         return null
     }
 
-    Object minimum() {
-        return null
-    }
-
-    Object step() {
-        return null
-    }
-
-    Object value() {
+    Row row(String title) {
         return null
     }
 
     boolean empty() {
-        return false
-    }
-
-    boolean focused() {
-        return false
-    }
-
-    boolean readOnly() {
-        return false
-    }
-
-    boolean required() {
-        return false
-    }
-
-    boolean valid() {
         return false
     }
 }

@@ -15,8 +15,10 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.CheckBox
 
+@CssIdentifier('CheckBoxStub')
 class CheckBoxStub extends CheckBox {
     void check() {
     }
@@ -25,7 +27,7 @@ class CheckBoxStub extends CheckBox {
     }
 
     String label() {
-        return null
+        return 'Checkbox Label'
     }
 
     boolean checked() {

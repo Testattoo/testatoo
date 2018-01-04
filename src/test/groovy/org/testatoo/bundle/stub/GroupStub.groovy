@@ -15,9 +15,11 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
 
+@CssIdentifier('GroupStub')
 class GroupStub extends Group {
     List<Item> items() {
         return null
@@ -28,6 +30,6 @@ class GroupStub extends Group {
     }
 
     Object value() {
-        return null
+        return 'Group Value'
     }
 }

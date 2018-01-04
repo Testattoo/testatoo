@@ -15,14 +15,16 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Link
 
+@CssIdentifier('LinkStub')
 class LinkStub extends Link {
     String reference() {
         return null
     }
 
     String text() {
-        return null
+        return 'Link Text'
     }
 }

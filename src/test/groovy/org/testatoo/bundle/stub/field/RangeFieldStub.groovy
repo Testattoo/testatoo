@@ -13,30 +13,64 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.stub
+package org.testatoo.bundle.stub.field
 
-import org.testatoo.core.component.datagrid.Column
-import org.testatoo.core.component.datagrid.DataGrid
-import org.testatoo.core.component.datagrid.Row
+import org.testatoo.core.CssIdentifier
+import org.testatoo.core.component.field.RangeField
 
-class DataGridStub extends DataGrid {
-    List<Column> columns() {
+@CssIdentifier('RangeFieldStub')
+class RangeFieldStub extends RangeField {
+    String placeholder() {
+        return 'Range Field Placeholder'
+    }
+
+    void value(Object value) {
+    }
+
+    void clear() {
+    }
+
+    String label() {
+        return 'Range Field Label'
+    }
+
+    boolean inRange() {
+        return false
+    }
+
+    Object maximum() {
         return null
     }
 
-    Column column(String title) {
+    Object minimum() {
         return null
     }
 
-    List<Row> rows() {
+    Object step() {
         return null
     }
 
-    Row row(String title) {
+    Object value() {
         return null
     }
 
     boolean empty() {
+        return false
+    }
+
+    boolean focused() {
+        return false
+    }
+
+    boolean readOnly() {
+        return false
+    }
+
+    boolean required() {
+        return false
+    }
+
+    boolean valid() {
         return false
     }
 }

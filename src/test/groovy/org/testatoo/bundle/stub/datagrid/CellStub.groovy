@@ -13,21 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.stub
+package org.testatoo.bundle.stub.datagrid
 
 import org.testatoo.core.component.datagrid.Cell
-import org.testatoo.core.component.datagrid.Column
 
-class ColumnStub extends Column {
-    List<Cell> cells() {
-        return null
-    }
-
-    Cell cell(Object value) {
-        return null
-    }
-
-    String title() {
+class CellStub extends Cell {
+    Object value() {
         return null
     }
 }

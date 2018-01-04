@@ -15,10 +15,12 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Button
 
+@CssIdentifier('ButtonStub')
 class ButtonStub extends Button {
     String text() {
-        return null
+        return 'Ok'
     }
 }

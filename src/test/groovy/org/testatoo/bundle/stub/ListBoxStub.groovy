@@ -15,10 +15,12 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
 import org.testatoo.core.component.ListBox
 
+@CssIdentifier('ListBoxStub')
 class ListBoxStub extends ListBox {
     List<Group> groups() {
         return null
@@ -37,7 +39,7 @@ class ListBoxStub extends ListBox {
     }
 
     String label() {
-        return null
+        return 'ListBox Label'
     }
 
     List<Item> selectedItems() {

@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.stub
+package org.testatoo.bundle.stub.field
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.TextField
 
+@CssIdentifier('TextFieldStub')
 class TextFieldStub extends TextField {
     String placeholder() {
-        return null
+        return 'Text Field Placeholder'
     }
 
     void value(Object value) {
@@ -29,7 +31,7 @@ class TextFieldStub extends TextField {
     }
 
     String label() {
-        return null
+        return 'Text Field Label'
     }
 
     Object length() {

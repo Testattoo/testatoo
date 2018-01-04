@@ -15,8 +15,10 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Item
 
+@CssIdentifier('ItemStub')
 class ItemStub extends Item {
     void select() {
     }
@@ -25,7 +27,7 @@ class ItemStub extends Item {
     }
 
     Object value() {
-        return null
+        return 'Item Value'
     }
 
     boolean selected() {

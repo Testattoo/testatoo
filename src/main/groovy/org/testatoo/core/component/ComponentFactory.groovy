@@ -47,7 +47,7 @@ class ComponentFactory {
     static Item item(String value) { collectAll(Item).find { it.value() == value } }
     static Heading heading(String text) { collectAll(Heading).find { it.text() == text } }
     static Panel panel(String title) { collectAll(Panel).find { it.title() == title } }
-    static Link link(String name) { collectAll(Link).find { it.text() == name }}
+    static Link link(String text) { collectAll(Link).find { it.text() == text }}
 
     static PasswordField passwordField(String value) { field(value, PasswordField) }
     static TextField textField(String value) { field(value, TextField) }

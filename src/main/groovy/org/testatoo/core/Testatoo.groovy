@@ -215,7 +215,7 @@ class Testatoo {
     static Item item(String value) { ComponentFactory.item(value) }
     static Heading heading(String text) { ComponentFactory.heading(text) }
     static Panel panel(String title) { ComponentFactory.panel(title) }
-    static Link link(String name) { ComponentFactory.link(name) }
+    static Link link(String text) { ComponentFactory.link(text) }
 
     static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
     static TextField textField(String value) { ComponentFactory.textField(value) }

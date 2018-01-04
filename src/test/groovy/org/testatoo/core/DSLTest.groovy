@@ -20,32 +20,48 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.bundle.stub.ButtonStub
-import org.testatoo.bundle.stub.CellStub
-import org.testatoo.bundle.stub.ColumnStub
-import org.testatoo.bundle.stub.DataGridStub
+import org.testatoo.bundle.stub.datagrid.CellStub
+import org.testatoo.bundle.stub.datagrid.ColumnStub
+import org.testatoo.bundle.stub.datagrid.DataGridStub
 import org.testatoo.bundle.stub.DropDownStub
 import org.testatoo.bundle.stub.FormStub
 import org.testatoo.bundle.stub.GroupStub
 import org.testatoo.bundle.stub.ItemStub
 import org.testatoo.bundle.stub.LinkStub
 import org.testatoo.bundle.stub.ListBoxStub
-import org.testatoo.bundle.stub.RowStub
-import org.testatoo.bundle.stub.TextFieldStub
+import org.testatoo.bundle.stub.datagrid.RowStub
+import org.testatoo.bundle.stub.field.TextFieldStub
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Form
 import org.testatoo.core.component.Group
+import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Item
 import org.testatoo.core.component.Link
 import org.testatoo.core.component.ListBox
+import org.testatoo.core.component.Panel
+import org.testatoo.core.component.Radio
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
 import org.testatoo.core.component.datagrid.Row
+import org.testatoo.core.component.field.ColorField
+import org.testatoo.core.component.field.DateField
+import org.testatoo.core.component.field.DateTimeField
+import org.testatoo.core.component.field.EmailField
+import org.testatoo.core.component.field.MonthField
+import org.testatoo.core.component.field.NumberField
+import org.testatoo.core.component.field.PasswordField
+import org.testatoo.core.component.field.PhoneField
+import org.testatoo.core.component.field.SearchField
+import org.testatoo.core.component.field.TextField
+import org.testatoo.core.component.field.TimeField
+import org.testatoo.core.component.field.URLField
+import org.testatoo.core.component.field.WeekField
 
 import static org.junit.Assert.*
 import org.testatoo.bundle.stub.CheckBoxStub
-import org.testatoo.bundle.stub.RangeFieldStub
+import org.testatoo.bundle.stub.field.RangeFieldStub
 import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.field.RangeField
@@ -60,11 +76,12 @@ import static org.testatoo.core.Testatoo.*
 @RunWith(JUnit4)
 class DSLTest {
     private static MetaDataProvider meta
+    private static MetaInfo metaInfo = new MetaInfo(id: 'id', node: 'node')
 
     @BeforeClass
     static void before() {
         meta = mock(MetaDataProvider)
-        when(meta.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
+        when(meta.metaInfo(any(Component))).thenReturn(metaInfo)
     }
 
     @Test
@@ -385,5 +402,148 @@ class DSLTest {
     void should_have_on_as_placeholder() {
         CheckBox checkBox = spy(new CheckBoxStub())
         assert on(checkBox).is(checkBox)
+    }
+
+    @Test
+    void should_have_generic_components_factory() {
+        config.evaluator = mock(Evaluator)
+
+        when(config.evaluator.metaInfo("\$('ButtonStub')")).thenReturn([metaInfo])
+        Button button = button 'Ok'
+        button.should { have text('Ok') }
+
+        when(config.evaluator.metaInfo("\$('RadioStub')")).thenReturn([metaInfo])
+        Radio radio = radio 'Radio Label'
+        radio.should { have label('Radio Label') }
+
+        when(config.evaluator.metaInfo("\$('CheckBoxStub')")).thenReturn([metaInfo])
+        CheckBox checkBox = checkbox 'Checkbox Label'
+        checkBox.should { have label('Checkbox Label') }
+
+        when(config.evaluator.metaInfo("\$('DropDownStub')")).thenReturn([metaInfo])
+        Dropdown dropdown = dropdown 'DropDown Label'
+        dropdown.should { have label('DropDown Label') }
+
+        when(config.evaluator.metaInfo("\$('ListBoxStub')")).thenReturn([metaInfo])
+        ListBox listBox = listBox 'ListBox Label'
+        listBox.should { have label('ListBox Label') }
+
+        when(config.evaluator.metaInfo("\$('GroupStub')")).thenReturn([metaInfo])
+        Group group = group 'Group Value'
+        group.should { have value('Group Value') }
+
+        when(config.evaluator.metaInfo("\$('ItemStub')")).thenReturn([metaInfo])
+        Item item = item 'Item Value'
+        item.should { have value('Item Value') }
+
+        when(config.evaluator.metaInfo("\$('HeadingStub')")).thenReturn([metaInfo])
+        Heading heading = heading 'Heading Text'
+        heading.should { have text('Heading Text') }
+
+        when(config.evaluator.metaInfo("\$('PanelStub')")).thenReturn([metaInfo])
+        Panel panel = panel 'Panel Title'
+        panel.should { have title('Panel Title') }
+
+        when(config.evaluator.metaInfo("\$('LinkStub')")).thenReturn([metaInfo])
+        Link link = link 'Link Text'
+        link.should { have text('Link Text') }
+
+        when(config.evaluator.metaInfo("\$('PasswordFieldStub')")).thenReturn([metaInfo])
+        PasswordField password = passwordField 'Password Field Label'
+        password.should { have label('Password Field Label') }
+
+        password = passwordField 'Password Field Placeholder'
+        password.should { have placeholder('Password Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('TextFieldStub')")).thenReturn([metaInfo])
+        TextField text = textField 'Text Field Label'
+        text.should { have label('Text Field Label') }
+
+        text = textField 'Text Field Placeholder'
+        text.should { have placeholder('Text Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('SearchFieldStub')")).thenReturn([metaInfo])
+        SearchField search = searchField 'Search Field Label'
+        search.should { have label('Search Field Label') }
+
+        search = searchField 'Search Field Placeholder'
+        search.should { have placeholder('Search Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('EmailFieldStub')")).thenReturn([metaInfo])
+        EmailField email = emailField 'Email Field Label'
+        email.should { have label('Email Field Label') }
+
+        email = emailField 'Email Field Placeholder'
+        email.should { have placeholder('Email Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('UrlFieldStub')")).thenReturn([metaInfo])
+        URLField url = urlField 'Url Field Label'
+        url.should { have label('Url Field Label') }
+
+        url = urlField 'Url Field Placeholder'
+        url.should { have placeholder('Url Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('NumberFieldStub')")).thenReturn([metaInfo])
+        NumberField number = numberField 'Number Field Label'
+        number.should { have label('Number Field Label') }
+
+        number = numberField 'Number Field Placeholder'
+        number.should { have placeholder('Number Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('RangeFieldStub')")).thenReturn([metaInfo])
+        RangeField range = rangeField 'Range Field Label'
+        range.should { have label('Range Field Label') }
+
+        range = rangeField 'Range Field Placeholder'
+        range.should { have placeholder('Range Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('DateFieldStub')")).thenReturn([metaInfo])
+        DateField date = dateField 'Date Field Label'
+        date.should { have label('Date Field Label') }
+
+        date = dateField 'Date Field Placeholder'
+        date.should { have placeholder('Date Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('ColorFieldStub')")).thenReturn([metaInfo])
+        ColorField color = colorField 'Color Field Label'
+        color.should { have label('Color Field Label') }
+
+        color = colorField 'Color Field Placeholder'
+        color.should { have placeholder('Color Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('DateTimeFieldStub')")).thenReturn([metaInfo])
+        DateTimeField dateTime = dateTimeField 'DateTime Field Label'
+        dateTime.should { have label('DateTime Field Label') }
+
+        dateTime = dateTimeField 'DateTime Field Placeholder'
+        dateTime.should { have placeholder('DateTime Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('MonthFieldStub')")).thenReturn([metaInfo])
+        MonthField month = monthField 'Month Field Label'
+        month.should { have label('Month Field Label') }
+
+        month = monthField 'Month Field Placeholder'
+        month.should { have placeholder('Month Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('PhoneFieldStub')")).thenReturn([metaInfo])
+        PhoneField phone = phoneField 'Phone Field Label'
+        phone.should { have label('Phone Field Label') }
+
+        phone = phoneField 'Phone Field Placeholder'
+        phone.should { have placeholder('Phone Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('TimeFieldStub')")).thenReturn([metaInfo])
+        TimeField time = timeField 'Time Field Label'
+        time.should { have label('Time Field Label') }
+
+        time = timeField 'Time Field Placeholder'
+        time.should { have placeholder('Time Field Placeholder') }
+
+        when(config.evaluator.metaInfo("\$('WeekFieldStub')")).thenReturn([metaInfo])
+        WeekField week = weekField 'Week Field Label'
+        week.should { have label('Week Field Label') }
+
+        week = weekField 'Week Field Placeholder'
+        week.should { have placeholder('Week Field Placeholder') }
     }
 }

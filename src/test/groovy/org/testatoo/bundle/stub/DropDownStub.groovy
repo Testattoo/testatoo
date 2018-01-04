@@ -15,10 +15,12 @@
  */
 package org.testatoo.bundle.stub
 
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Item
 
+@CssIdentifier('DropDownStub')
 class DropDownStub extends Dropdown {
     List<Group> groups() {
         return null
@@ -37,7 +39,7 @@ class DropDownStub extends Dropdown {
     }
 
     String label() {
-        return null
+        return 'DropDown Label'
     }
 
     Item selectedItem() {
