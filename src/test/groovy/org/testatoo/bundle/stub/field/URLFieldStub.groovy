@@ -18,10 +18,10 @@ package org.testatoo.bundle.stub.field
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.component.field.URLField
 
-@CssIdentifier('UrlFieldStub')
-class UrlFieldStub extends URLField {
+@CssIdentifier('URLFieldStub')
+class URLFieldStub extends URLField {
     String placeholder() {
-        return 'Url Field Placeholder'
+        return 'URL Field Placeholder'
     }
 
     void value(Object value) {
@@ -31,7 +31,7 @@ class UrlFieldStub extends URLField {
     }
 
     String label() {
-        return 'Url Field Label'
+        return 'URL Field Label'
     }
 
     Object length() {

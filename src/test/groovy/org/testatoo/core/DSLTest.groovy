@@ -476,12 +476,12 @@ class DSLTest {
         email = emailField 'Email Field Placeholder'
         email.should { have placeholder('Email Field Placeholder') }
 
-        when(config.evaluator.metaInfo("\$('UrlFieldStub')")).thenReturn([metaInfo])
-        URLField url = urlField 'Url Field Label'
-        url.should { have label('Url Field Label') }
+        when(config.evaluator.metaInfo("\$('URLFieldStub')")).thenReturn([metaInfo])
+        URLField url = urlField 'URL Field Label'
+        url.should { have label('URL Field Label') }
 
-        url = urlField 'Url Field Placeholder'
-        url.should { have placeholder('Url Field Placeholder') }
+        url = urlField 'URL Field Placeholder'
+        url.should { have placeholder('URL Field Placeholder') }
 
         when(config.evaluator.metaInfo("\$('NumberFieldStub')")).thenReturn([metaInfo])
         NumberField number = numberField 'Number Field Label'
