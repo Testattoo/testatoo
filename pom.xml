@@ -1,6 +1,6 @@
 <!--
 
-    Copyright © 2017 Ovea (d.avenante@gmail.com)
+    Copyright © 2018 Ovea (d.avenante@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
     <packaging>jar</packaging>
 
     <name>Testatoo</name>
-    <inceptionYear>2017</inceptionYear>
+    <inceptionYear>2018</inceptionYear>
 
     <description>A functional testing API</description>
     <url>http://www.testatoo.org</url>
