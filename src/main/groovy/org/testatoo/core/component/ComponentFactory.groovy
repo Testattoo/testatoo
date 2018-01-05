@@ -15,21 +15,8 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.component.field.ColorField
-import org.testatoo.core.component.field.DateField
-import org.testatoo.core.component.field.DateTimeField
-import org.testatoo.core.component.field.EmailField
-import org.testatoo.core.component.field.Field
-import org.testatoo.core.component.field.MonthField
-import org.testatoo.core.component.field.NumberField
-import org.testatoo.core.component.field.PasswordField
-import org.testatoo.core.component.field.PhoneField
-import org.testatoo.core.component.field.RangeField
-import org.testatoo.core.component.field.SearchField
-import org.testatoo.core.component.field.TextField
-import org.testatoo.core.component.field.TimeField
-import org.testatoo.core.component.field.URLField
-import org.testatoo.core.component.field.WeekField
+import org.testatoo.core.ComponentException
+import org.testatoo.core.component.field.*
 import org.testatoo.core.internal.Identifiers
 
 import static org.testatoo.core.Testatoo.$$
@@ -65,7 +52,10 @@ class ComponentFactory {
     static WeekField weekField(String value) { field(value, WeekField) }
 
     private static <T extends Field> T field(String value, Class<T> clazz) {
-        collectAll(clazz).find { it.label() == value || it.placeholder() == value }
+        T field = collectAll(clazz).find { it.label() == value || it.placeholder() == value }
+        if(field)
+            return field
+        throw new ComponentException("Unable to find " + clazz + " with label or placeholder equals to '" + value + "'")
     }
 
     private static <T extends Component> List<T> collectAll(Class<T> clazz) {

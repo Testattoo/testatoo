@@ -34,6 +34,10 @@ class Identifiers {
         (CssIdentifier): { CssIdentifier annotation -> return "it.is('${annotation.value()}')" }
     ]
 
+    static boolean hasIdentifier(Class<? extends Component> c) {
+        return c.annotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+    }
+
     static String identifyingExpression(Class<? extends Component> c) {
         Annotation annotation = c.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
         if (!annotation) {

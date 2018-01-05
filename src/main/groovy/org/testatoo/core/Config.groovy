@@ -15,7 +15,9 @@
  */
 package org.testatoo.core
 
+import com.google.common.reflect.ClassPath
 import org.testatoo.core.component.Component
+import org.testatoo.core.internal.Identifiers
 import org.testatoo.core.internal.Log
 
 import java.time.Duration
@@ -34,6 +36,17 @@ class Config {
      */
     static void setDebug(boolean debug) {
         Log.debug = debug
+    }
+
+    /**
+     * Scan for packages containing custom component
+     */
+    void scan(String... packageNames) {
+        componentTypes.addAll(packageNames
+                .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
+                .flatten()
+                .collect { it.load() }
+                .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
     }
 
     final Collection<Class<Component>> componentTypes = new HashSet<>()

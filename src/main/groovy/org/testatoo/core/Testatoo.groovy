@@ -85,6 +85,8 @@ class Testatoo {
         components.list()
     }
 
+    static { config.scan 'org.testatoo.bundle' }
+
     protected static mouse = new Mouse()
     protected static keyboard = new Keyboard()
     protected static wait = new Wait()

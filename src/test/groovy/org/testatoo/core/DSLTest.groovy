@@ -546,4 +546,23 @@ class DSLTest {
         week = weekField 'Week Field Placeholder'
         week.should { have placeholder('Week Field Placeholder') }
     }
+
+    @Test
+    void should_throw_an_error_when_field_not_found() {
+        config.evaluator = mock(Evaluator)
+
+        when(config.evaluator.metaInfo("\$('EmailFieldStub')")).thenReturn([metaInfo])
+        try {
+            emailField 'Email Field Invalid Label'
+            fail()
+        } catch (ComponentException e) {
+            assert e.message == "Unable to find class org.testatoo.core.component.field.EmailField with label or placeholder equals to 'Email Field Invalid Label'"
+        }
+
+
+
+
+
+
+    }
 }
