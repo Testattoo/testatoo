@@ -1,9 +1,0 @@
-== Write a test - Testatoo language
-'''
-
-TODO
-
-
-
-
-

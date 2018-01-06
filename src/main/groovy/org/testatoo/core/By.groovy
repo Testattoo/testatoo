@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,11 @@ class By {
         new By("\\\$('#${id}').find('${expression}')", new SimpleTemplateEngine())
     }
 
-    static js(String expression) {
+    static By js(String expression) {
         new By(expression, null)
     }
 
     String getExpression(Component component) {
         templateEngine ? templateEngine.createTemplate(expression).make([id: component.id()]) : expression
     }
-
 }

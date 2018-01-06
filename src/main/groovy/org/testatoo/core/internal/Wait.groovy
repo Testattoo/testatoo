@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import static org.testatoo.core.Testatoo.getConfig
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Wait {
-
     static void waitUntil(Closure c, Matcher what = null) {
         boolean success = false
         long timeout = config.waitUntil.toMillis()

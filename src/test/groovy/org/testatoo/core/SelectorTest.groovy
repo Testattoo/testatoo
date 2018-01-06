@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,16 @@
  */
 package org.testatoo.core
 
-import org.junit.BeforeClass
-import org.junit.ClassRule
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.WebDriverConfig
-import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.input.InputTypeText
 import org.testatoo.core.component.Component
+import org.testatoo.core.internal.Identifiers
 
-import static org.testatoo.WebDriverConfig.BASE_URL
+import static org.junit.Assert.fail
+import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.when
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -33,196 +32,172 @@ import static org.testatoo.core.Testatoo.*
  */
 @RunWith(JUnit4)
 class SelectorTest {
-    @ClassRule
-    public static WebDriverConfig driver = new WebDriverConfig()
-
-    @BeforeClass
-    static void before() {
-        visit BASE_URL + 'selectors.html'
+    @Before
+    void before() {
+        config.evaluator = mock(Evaluator)
+        config.componentTypes.clear()
     }
 
     @Test
     void should_use_$_as_a_single_selector() {
-        Button button = $('#button') as Button
+        when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node')])
 
+        Component button = $('expression') as Component
         assert button.enabled()
-        assert button.visible()
     }
 
     @Test
     void should_throw_an_error_if_single_selector_find_many_components() {
+        when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node'),
+                                                                 new MetaInfo(id: '2', node: 'node'),
+                                                                 new MetaInfo(id: '3', node: 'node')])
         try {
-            Button button = $('[type="text"]') as Button
+            Component button = $('expression') as Component
             button.should { be enabled }
+            fail()
         } catch (ComponentException e) {
-            assert e.message == "Component defined by expression \$('[type=\"text\"]') is not unique: got 4"
+            assert e.message == "Component defined by expression \$('expression') is not unique: got 3"
         }
     }
 
     @Test
     void should_throw_an_error_if_single_selector_return_not_expected_component_type() {
+        config.componentTypes.add(CustomElement_1)
+        config.componentTypes.add(CustomElement_2)
+
+        when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node')])
+        when(config.evaluator.check('1', "it.is('custom_1')")).thenReturn(false)
+        when(config.evaluator.check('1', Identifiers.identifyingExpression(CustomElement_2))).thenReturn(true)
+
         try {
-            Button button = $('[type="text"]:first') as Button
-            button.should { be enabled }
+            CustomElement_1 element = $('expression') as CustomElement_1
+            element.should { be enabled }
+            fail()
         } catch (ComponentException e) {
-            assert e.message.contains('Expected a Button')
-            assert e.message.contains('but was: InputTypeText')
+            assert e.message.contains("Expected a CustomElement_1 for component with id '1', but was: CustomElement_2")
         }
     }
 
     @Test
     void should_have_at_least_an_Identifier_available_on_Component() {
+        config.componentTypes.add(InvalidComponent)
+        when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node')])
+
         // 1 - A component without identifier cannot be used
         try {
-            InvalidComponent cmp = $('#button') as InvalidComponent
+            InvalidComponent cmp = $('expression') as InvalidComponent
             cmp.should { be visible }
         } catch (ComponentException e) {
             assert e.message == 'Missing @Identifier annotation on type org.testatoo.core.SelectorTest$InvalidComponent'
         }
 
+        config.componentTypes.add(BigButton)
+        when(config.evaluator.metaInfo("\$('button')")).thenReturn([new MetaInfo(id: '2', node: 'BigButton')])
+        when(config.evaluator.check('2', Identifiers.identifyingExpression(BigButton))).thenReturn(true)
+
         // 2 - If component don't have Identifier on it the Identifier on the superclass is used
-        BigButton cmp = $('#button') as BigButton
+        BigButton cmp = $('button') as BigButton
         cmp.should { be visible }
         assert cmp.big
     }
 
     @Test
     void should_use_$$_as_a_multi_selector() {
-        List<Button> buttons = $$('.btn', Button)
-        assert buttons.size() == 4
+        when(config.evaluator.metaInfo("\$('.btn')")).thenReturn([new MetaInfo(id: '1', node: 'node'),
+                                                                        new MetaInfo(id: '2', node: 'node'),
+                                                                        new MetaInfo(id: '3', node: 'node')])
 
-        List<InputTypeText> textFields = $$('.controls [type="text"]', InputTypeText)
-        assert textFields.size() == 3
-
-        textFields.each {
-            assert it.enabled()
-            assert it.visible()
-            assert it.empty()
-        }
-
-        textFields.each { it ->
-            fill it with 'TESTATOO!'
-        }
-
-        textFields.each {
-            assert !it.empty()
-            assert it.value() == 'TESTATOO!'
-        }
+        List<CustomElement_1> elements = $$('.btn', CustomElement_1)
+        assert elements.size() == 3
     }
 
-    @Test
-    void should_find_button_by_text() {
-        button 'Button' should { have text('Button') }
-        button 'Submit' should { have text('Submit') }
-        button 'Reset' should { have text('Reset') }
-        button 'My Button Text' should { have text('My Button Text') }
-    }
-
-    @Test
-    void should_find_radio_by_label() {
-        radio 'My Radio' should { have label('My Radio') }
-    }
-
-    @Test
-    void should_find_checkbox_by_label() {
-        checkbox 'Check me' should { have label('Check me') }
-    }
-
-    @Test
-    void should_find_fields_by_label_or_placeholder() {
-        textField 'Text' should { have label('Text') }
-        textField 'Placeholder' should { have placeholder('Placeholder') }
-
-        passwordField 'Password:' should { have label('Password:') }
-        passwordField 'Password' should { have placeholder('Password') }
-
-        searchField 'Search' should { have label('Search') }
-        searchField 'Search...' should { have placeholder('Search...') }
-
-        emailField 'Email:' should { have label('Email:') }
-        emailField 'my@email.org' should { have placeholder('my@email.org') }
-
-        urlField 'URL' should { have label('URL') }
-        urlField 'www.mysite.org' should { have placeholder('www.mysite.org') }
-
-        numberField 'Number' should { have label('Number') }
-
-        rangeField 'Range' should { have label('Range') }
-
-        colorField 'Color' should { have label('Color') }
-
-        dateField 'Date' should { have label('Date') }
-        dateField 'yyyy/mm/dd' should { have placeholder('yyyy/mm/dd') }
-
-        dateTimeField 'DateTime:' should { have label('DateTime:') }
-        dateTimeField 'DateTime' should { have placeholder('DateTime') }
-
-        monthField 'Month:' should { have label('Month:') }
-        monthField 'Month' should { have placeholder('Month') }
-
-        phoneField 'Phone' should { have label('Phone') }
-        phoneField '+1 514 123 4567' should { have placeholder('+1 514 123 4567') }
-
-        timeField 'Time:' should { have label('Time:') }
-        timeField 'Time' should { have placeholder('Time') }
-
-        weekField 'Week:' should { have label('Week:') }
-        weekField 'Week' should { have placeholder('Week') }
-    }
-
-    @Test
-    void should_find_link_by_text() {
-        // TODO
-    }
-
-    @Test
-    void should_find_dropdown_by_label() {
-        dropdown 'Elements' should {
-            have label('Elements')
-            have items('Helium', 'Boron', 'Polonium', 'Calcium', 'Radium')
-        }
-    }
-
-    @Test
-    void should_find_listbox_by_label() {
-        listBox 'Cities' should {
-            have label('Cities')
-            have items('Montreal', 'Quebec', 'Montpellier', 'New York', 'Casablanca', 'Munich')
-        }
-    }
-
-    @Test
-    void should_find_item_by_value() {
-        item 'Montreal' should {
-            have value('Montreal')
-        }
-    }
-
-    @Test
-    void should_find_group_by_value() {
-        group 'Cat-2' should {
-            have value('Cat-2')
-            have items('Jupiter', 'Saturn', 'Uranus', 'Neptune')
-        }
-    }
-
-    @Test
-    void should_find_heading_by_text() {
-        heading 'My heading' should {
-            have text('My heading')
-        }
-    }
-
-    @Test
-    void should_find_panel_by_title() {
-        panel 'My Panel title' should {
-            have title('My Panel title')
-        }
-    }
+//    @Test
+//    void should_delegate_to_expected_factory() {
+//        ComponentFactory factorySpy = spy(new ComponentFactory())
+//        componentFactory = factorySpy
+//
+//        button 'Button'
+//        verify(factorySpy).button('Button')
+//
+//        radio 'Radio'
+//        verify(factorySpy).radio('Radio')
+//
+//        checkbox 'Checkbox'
+//        verify(factorySpy).checkbox('Checkbox')
+//
+//        textField 'Text'
+//        verify(factorySpy).textField('Text')
+//
+//        passwordField 'Password'
+//        verify(factorySpy).passwordField('Password')
+//
+//        searchField 'Search'
+//        verify(factorySpy).searchField('Search')
+//
+//        emailField 'Email'
+//        verify(factorySpy).emailField('Email')
+//
+//        urlField 'URL'
+//        verify(factorySpy).urlField('URL')
+//
+//        numberField 'Number'
+//        verify(factorySpy).numberField('Number')
+//
+//        rangeField 'Range'
+//        verify(factorySpy).rangeField('Range')
+//
+//        colorField 'Color'
+//        verify(factorySpy).colorField('Color')
+//
+//        dateField 'Date'
+//        verify(factorySpy).dateField('Date')
+//
+//        dateTimeField 'DateTime'
+//        verify(factorySpy).dateTimeField('DateTime')
+//
+//        monthField 'Month'
+//        verify(factorySpy).monthField('Month')
+//
+//        phoneField 'Phone'
+//        verify(factorySpy).phoneField('Phone')
+//
+//        timeField 'Time'
+//        verify(factorySpy).timeField('Time')
+//
+//        weekField 'Week'
+//        verify(factorySpy).weekField('Week')
+//
+//        link 'Link'
+//        verify(factorySpy).link('Link')
+//
+//        dropdown 'Elements'
+//        verify(factorySpy).dropdown('Elements')
+//
+//        listBox 'List'
+//        verify(factorySpy).listBox('List')
+//
+//        item 'Item'
+//        verify(factorySpy).item('Item')
+//
+//        group 'Group'
+//        verify(factorySpy).group('Group')
+//
+//        heading 'Heading'
+//        verify(factorySpy).heading('Heading')
+//
+//        panel 'Panel'
+//        verify(factorySpy).panel('Panel')
+//    }
 
     private class InvalidComponent extends Component {}
 
-    private class BigButton extends Button {
+    private class BigButton extends CustomElement_1 {
         boolean isBig() { true }
     }
+
+    @CssIdentifier('custom_1')
+    class CustomElement_1 extends Component {}
+
+    @CssIdentifier('custom_2')
+    class CustomElement_2 extends Component {}
 }

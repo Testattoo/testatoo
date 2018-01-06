@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,8 +49,8 @@ class WebDriverEvaluator implements Evaluator {
     void open(String url) { webDriver.get(url) }
 
     @Override
-    <T> T getJson(String jQueryExpr) {
-        eval(null, "JSON.stringify(${removeTrailingChars(jQueryExpr)})")?.with { new JsonSlurper().parseText(it) as T }
+    <T> T getJson(String expression) {
+        eval(null, "JSON.stringify(${removeTrailingChars(expression)})")?.with { new JsonSlurper().parseText(it) as T }
     }
 
     @Override
@@ -124,8 +124,8 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    List<MetaInfo> metaInfo(String jQueryExpr) {
-        List<Map> infos = getJson("${removeTrailingChars(jQueryExpr)}.testatoo({method:'metaInfos'});")
+    List<MetaInfo> metaInfo(String expression) {
+        List<Map> infos = getJson("${removeTrailingChars(expression)}.testatoo({method: 'metaInfos'});")
         return infos.collect {
             new MetaInfo(
                     id: it.id,

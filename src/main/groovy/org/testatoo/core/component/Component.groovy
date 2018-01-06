@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,9 @@ class Component implements Clickable, Draggable {
         this.meta = meta
     }
 
-    String id() throws ComponentException { meta.metaInfo(this).id }
+    String id() throws ComponentException {
+        meta.metaInfo(this).id
+    }
 
     boolean enabled() {
         !config.evaluator.check(id(), "it.is(':disabled') || !!it.attr('disabled')")
@@ -72,7 +74,7 @@ class Component implements Clickable, Draggable {
         BLOCKS.add(matcher)
     }
 
-    LinkedList<Matcher> getBlocks() {
+    Collection<Matcher> getBlocks() {
         Collections.unmodifiableCollection(BLOCKS)
     }
 

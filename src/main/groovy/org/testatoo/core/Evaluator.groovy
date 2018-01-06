@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,9 +54,9 @@ interface Evaluator extends AutoCloseable {
 
     abstract void refresh()
 
-    abstract <T> T getJson(String jQueryExpr)
+    abstract <T> T getJson(String expression)
 
-    abstract List<MetaInfo> metaInfo(String jQueryExpr)
+    abstract List<MetaInfo> metaInfo(String expression)
 
     abstract void type(Collection<?> keys)
 

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ import java.lang.annotation.Annotation
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Identifiers {
-
     private static scanner = new FastClasspathScanner('org.testatoo.bundle')
     private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
 
@@ -65,6 +64,9 @@ class Identifiers {
 
         cachedComponents.get(clazz).each {
             Annotation annotation = it.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
+            if(annotation == null) {
+                throw new ComponentException("Unable to find any component definition for: " + clazz)
+            }
             selectors.put(it, annotation.value())
         }
         selectors

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,21 +32,21 @@ class Config {
     Duration waitUntil = 2.seconds
 
     /**
-     * Scan for packages containing custom component
-     */
-    void scan(String... packageNames) {
-        componentTypes.addAll(packageNames
-            .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
-            .flatten()
-            .collect { it.load() }
-            .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
-    }
-
-    /**
      * Activate debug mode
      */
     static void setDebug(boolean debug) {
         Log.debug = debug
+    }
+
+    /**
+     * Scan for packages containing custom component
+     */
+    void scan(String... packageNames) {
+        componentTypes.addAll(packageNames
+                .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
+                .flatten()
+                .collect { it.load() }
+                .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
     }
 
     final Collection<Class<Component>> componentTypes = new HashSet<>()

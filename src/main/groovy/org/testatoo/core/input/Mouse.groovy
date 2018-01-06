@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,9 @@ import static org.testatoo.core.Testatoo.config
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Mouse {
-    static void clickOn(Component c) { c.click() }
-    static void doubleClickOn(Component c) { c.doubleClick() }
-    static void rightClickOn(Component c) { c.rightClick() }
-    static void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id()) }
-    static DragBuilder drag(Component c) { return new DragBuilder(c) }
+    void clickOn(Component c) { c.click() }
+    void doubleClickOn(Component c) { c.doubleClick() }
+    void rightClickOn(Component c) { c.rightClick() }
+    void hoveringMouseOn(Component c) { config.evaluator.mouseOver(c.id()) }
+    DragBuilder drag(Component c) { return new DragBuilder(c) }
 }

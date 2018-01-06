@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,10 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
-import org.testatoo.bundle.html5.input.InputTypeCheckBox
 import org.testatoo.bundle.html5.Div
-import org.testatoo.bundle.html5.input.InputTypeRadio
+import org.testatoo.bundle.html5.DropPanel
 import org.testatoo.bundle.html5.Span
-import org.testatoo.bundle.html5.list.Select
 import org.testatoo.core.Browser
-import org.testatoo.core.component.CheckBox
-import org.testatoo.core.component.Radio
 
 import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
@@ -67,22 +63,6 @@ class MouseTest {
         assert button.text() == 'Button'
         button.click()
         assert button.text() == 'Button Clicked!'
-
-        CheckBox checkBox = $('#checkbox') as InputTypeCheckBox
-        assert !checkBox.checked()
-        clickOn checkBox
-        assert checkBox.checked()
-
-        Radio radio = $('#radio') as InputTypeRadio
-        assert !radio.checked()
-        clickOn radio
-        assert radio.checked()
-
-        Select dropDown = $('#elements') as Select
-        dropDown.selectedItem().value() == 'H'
-
-        clickOn dropDown.items()[2]
-        dropDown.selectedItem().value() == 'Pol'
     }
 
     @Test
@@ -189,9 +169,4 @@ class MouseTest {
         ['data'].click $('#_Ctrl_Shift_mouseleft') as Div
     }
 
-    private class DropPanel extends Div {
-        String title() {
-            config.evaluator.eval(id(), "it.find('h1').text()")
-        }
-    }
 }

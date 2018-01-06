@@ -11,6 +11,9 @@
 # Mac
 .DS_Store
 
+#Selenium Drivers
+drivers/
+
 # Maven
 log/
 pom.xml.tag

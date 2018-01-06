@@ -1,4 +1,0 @@
-== Create a new component
-'''
-
-TODO

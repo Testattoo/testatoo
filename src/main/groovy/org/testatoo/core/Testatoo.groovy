@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.testatoo.core
 
+import org.hamcrest.Matcher
 import org.testatoo.core.component.Button
 import org.testatoo.core.component.CheckBox
 import org.testatoo.core.component.Component
@@ -23,6 +24,7 @@ import org.testatoo.core.component.Dropdown
 import org.testatoo.core.component.Group
 import org.testatoo.core.component.Heading
 import org.testatoo.core.component.Item
+import org.testatoo.core.component.Link
 import org.testatoo.core.component.ListBox
 import org.testatoo.core.component.Panel
 import org.testatoo.core.component.Radio
@@ -83,7 +85,11 @@ class Testatoo {
         components.list()
     }
 
-    static { config.scan 'org.testatoo.bundle.html5' }
+    static { config.scan 'org.testatoo.bundle' }
+
+    protected static mouse = new Mouse()
+    protected static keyboard = new Keyboard()
+    protected static wait = new Wait()
 
     /**
      * States
@@ -149,7 +155,7 @@ class Testatoo {
     static void submit(Submissible c) { c.submit() }
     static <T extends Component> T on(Component c) { c as T }
     static void select(Item... items) { items.each { it.select() } }
-    static void unselect(Item... items) { items.each { it.unselect() } }
+    static void deselect(Item... items) { items.each { it.unselect() } }
     static final FillAction fill(InputSupport c) { new FillAction(c) }
     static final FillAction set(InputSupport c) { new FillAction(c) }
 
@@ -190,14 +196,14 @@ class Testatoo {
     }
 
     // Delegate to Mouse
-    static void clickOn(Component c) { Mouse.clickOn(c) }
-    static void doubleClickOn(Component c) { Mouse.doubleClickOn(c) }
-    static void rightClickOn(Component c) { Mouse.rightClickOn(c) }
-    static void hoveringMouseOn(Component c) { Mouse.hoveringMouseOn(c) }
-    static DragBuilder drag(Component c) { Mouse.drag(c) }
+    static void clickOn(Component c) { mouse.clickOn(c) }
+    static void doubleClickOn(Component c) { mouse.doubleClickOn(c) }
+    static void rightClickOn(Component c) { mouse.rightClickOn(c) }
+    static void hoveringMouseOn(Component c) { mouse.hoveringMouseOn(c) }
+    static DragBuilder drag(Component c) { mouse.drag(c) }
 
     // Delegate to Keyboard
-    static void type(Collection<?> keys) { Keyboard.type(keys) }
+    static void type(Collection<?> keys) { keyboard.type(keys) }
     static void type(Key key)  { type([key]) }
     static void type(String text) { type([text]) }
 
@@ -211,6 +217,7 @@ class Testatoo {
     static Item item(String value) { ComponentFactory.item(value) }
     static Heading heading(String text) { ComponentFactory.heading(text) }
     static Panel panel(String title) { ComponentFactory.panel(title) }
+    static Link link(String text) { ComponentFactory.link(text) }
 
     static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
     static TextField textField(String value) { ComponentFactory.textField(value) }
@@ -226,4 +233,6 @@ class Testatoo {
     static PhoneField phoneField(String value) { ComponentFactory.phoneField(value) }
     static TimeField timeField(String value) { ComponentFactory.timeField(value) }
     static WeekField weekField(String value) { ComponentFactory.weekField(value) }
+
+    static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
 }

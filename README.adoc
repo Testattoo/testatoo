@@ -1,6 +1,6 @@
 = Testatoo
 
-:revdate: 06-11-2017
+:revdate: 01-01-2018
 :download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
 :noheader:
 
@@ -53,25 +53,19 @@ Latest Testatoo version is available on {download-url}[Maven Central]
 You need version **1.8** and more of the Java JDK installed
 
     $ java -version
-    java version "1.8.0_91"
-    Java(TM) SE Runtime Environment (build 1.8.0_91-b14)
-    Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
+    java version "1.8.0_151"
+    ...
     
 ==== Maven
 
 Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven Installation Instructions"]
 
     $ mvn --version  
-    Apache Maven 3.3.9
-    Maven home: /usr/share/maven
-    Java version: 1.8.0_91, vendor: Oracle Corporation
-    Java home: /usr/lib/jvm/java-8-oracle/jre
-    Default locale: en_US, platform encoding: UTF-8
-    OS name: "linux", version: "4.4.0-28-generic", arch: "amd64", family: "unix"
-    
+    Apache Maven 3.5.0
+    ...
+
 === Installation Steps
 
-    $ cd /wherever
     $ git clone https://github.com/Ovea/testatoo
     $ cd testatoo
 
@@ -79,13 +73,6 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
     - Install Firefox
     - Install Chrome
     - Install Edge / Safari
-
-With Selenium 3 now you need to install also the drivers:
-
-    - https://github.com/mozilla/geckodriver/releases[Firefox Driver]
-    - https://sites.google.com/a/chromium.org/chromedriver/[Chrome Driver]
-    - https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/[Edge Driver]
-    - For Safari it's already included in your Safari in the directory '/usr/bin/safaridriver'
 
 If you don't want to install Browser and driver you can use docker images
 

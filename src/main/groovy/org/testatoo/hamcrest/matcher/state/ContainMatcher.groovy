@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,6 @@ class ContainMatcher extends StateMatcher<Component> {
 
     @Override
     void describeTo(Description description) {
-
         description.appendText("Component ${container} contains ${components}")
     }
 }

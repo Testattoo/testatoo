@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Ovea (d.avenante@gmail.com)
+ * Copyright © 2018 Ovea (d.avenante@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,7 @@
  */
 package org.testatoo.core.internal
 
-import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.StringDescription
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
@@ -30,8 +28,8 @@ import org.testatoo.hamcrest.matcher.state.ContainMatcher
 import java.time.Duration
 
 import static org.testatoo.core.Testatoo.config
+import static org.testatoo.core.Testatoo.waitUntil
 import static org.testatoo.core.input.MouseModifiers.*
-import static org.testatoo.core.internal.Wait.waitUntil
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -45,28 +43,34 @@ class GroovyExtensions {
 
     static void click(Key key, Component c) { click([key], c) }
 
-    static void rightClick(Key key, Component c) { rightClick([key], c) }
-
     static void click(Collection<Key> keys, Component c) {
         config.evaluator.click(c.id(), [LEFT, SINGLE], keys)
     }
 
+    // Not testable in current browsers cause handled by browsers
+    // ====================================================================
+    static void rightClick(Key key, Component c) { rightClick([key], c) }
+
     static void rightClick(Collection<Key> keys, Component c) {
         config.evaluator.click(c.id(), [RIGHT, SINGLE], keys)
     }
+    // ====================================================================
 
     static void select(Component component, String... values) {
         for (value in values) {
-            component.items().find { it.value() == value }.select()
-        }
+            component.items().find { it.value() == value }.select() }
     }
 
     static void select(Component component, Item... items) {
-        items.each { it.select() }
+        items.each {
+            if(component.items().contains(it)) { it.select() }
+        }
     }
 
     static void unselect(Component component, Item... items) {
-        items.each { it.unselect() }
+        items.each {
+            if(component.items().contains(it)) { it.unselect() }
+        }
     }
 
     static void unselect(Component component, String... values) {
