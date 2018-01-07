@@ -1,0 +1,9 @@
+version: '1.0'
+
+steps:
+  step_1:
+    title: Step 1
+    description: Step that run tests on Chrome
+    image: markhobson/docker-maven-chrome
+    commands:
+      - mvn clean test
