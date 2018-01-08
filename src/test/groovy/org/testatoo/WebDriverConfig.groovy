@@ -25,9 +25,10 @@ import org.eclipse.jetty.server.handler.ResourceHandler
 import org.junit.rules.ExternalResource
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.remote.DesiredCapabilities
+import org.openqa.selenium.firefox.FirefoxOptions
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
 
@@ -55,7 +56,7 @@ class WebDriverConfig extends ExternalResource {
             case 'Firefox':
                 println '================== Firefox Profile ==================='
                 if (docker) {
-                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), DesiredCapabilities.firefox())
+                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new FirefoxOptions())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
                     FirefoxDriverManager.instance.setup()
@@ -65,7 +66,7 @@ class WebDriverConfig extends ExternalResource {
             case 'Chrome':
                 println '=================== Chrome Profile ==================='
                 if (docker) {
-                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), DesiredCapabilities.chrome())
+                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new ChromeOptions())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
                     ChromeDriverManager.instance.setup()

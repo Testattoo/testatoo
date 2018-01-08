@@ -2,8 +2,19 @@ version: '1.0'
 
 steps:
   step_1:
-    title: Step 1
-    description: Step that run tests on Chrome
-    image: markhobson/docker-maven-chrome
+    title: Selenium
+    description: Standelone Chrome Selenium
+    type: composition
+    composition:
+      version: '2'
+      services:
+        selenium:
+          image: selenium/standalone-chrome:2.46.0
+          ports:
+            - 4444:4444
+  step_2:
+    title: Unit Test
+    description: Run unit tests
+    image:  maven:3.5.2-jdk-8-alpine
     commands:
-      - mvn clean test
+      - echo ifconfig
