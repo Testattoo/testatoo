@@ -2,9 +2,9 @@ version: '1.0'
 
 steps:
   step_1:
-    title: Selenium
-    description: Standelone Chrome Selenium
+    title: Unit Tests under Chrome
     type: composition
+    description: Test under Standalone Chrome Selenium
     composition:
       version: '2'
       services:
@@ -12,9 +12,10 @@ steps:
           image: selenium/standalone-chrome:2.46.0
           ports:
             - 4444:4444
-  step_2:
-    title: Unit Test
-    description: Run unit tests
-    image:  maven:3.5.2-jdk-8-alpine
-    commands:
-      - echo ifconfig
+    composition_candidates:
+      test:
+        image: maven:3.5.2-jdk-8-alpine
+        volumes:
+          - /dev/shm:/dev/shm
+        commands:
+              - echo ifconfig
