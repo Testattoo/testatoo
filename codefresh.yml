@@ -15,7 +15,7 @@ steps:
     composition_candidates:
       test:
         image: maven:3.5.2-jdk-8-alpine
-        volumes:
-          - /dev/shm:/dev/shm
+#        volumes:
+#          - /dev/shm:/dev/shm
         commands:
           - echo "Test"
