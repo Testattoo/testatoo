@@ -18,6 +18,10 @@ package org.testatoo
 import io.github.bonigarcia.wdm.ChromeDriverManager
 import io.github.bonigarcia.wdm.EdgeDriverManager
 import io.github.bonigarcia.wdm.FirefoxDriverManager
+
+//import io.github.bonigarcia.wdm.ChromeDriverManager
+//import io.github.bonigarcia.wdm.EdgeDriverManager
+//import io.github.bonigarcia.wdm.FirefoxDriverManager
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.handler.DefaultHandler
 import org.eclipse.jetty.server.handler.HandlerList
@@ -66,7 +70,7 @@ class WebDriverConfig extends ExternalResource {
             case 'Chrome':
                 println '=================== Chrome Profile ==================='
                 if (docker) {
-                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new ChromeOptions())
+                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:32770/wd/hub'), new ChromeOptions())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
                     ChromeDriverManager.instance.setup()

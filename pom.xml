@@ -153,6 +153,7 @@
                     <excludes>
                         <exclude>**/README</exclude>
                         <exclude>**/*.adoc</exclude>
+                        <exclude>**/*.yml</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
                         <exclude>src/test/webapp/css/**</exclude>

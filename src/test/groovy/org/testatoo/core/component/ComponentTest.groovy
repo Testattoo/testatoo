@@ -117,17 +117,17 @@ class ComponentTest {
         component.available()
         verify(metaData, times(1)).metaInfo(component)
 
-        verify(evaluator, times(0)).click(cmp_id, [LEFT, SINGLE])
+        verify(evaluator, times(0)).click(cmp_id, [LEFT, SINGLE], [])
         component.click()
-        verify(evaluator, times(1)).click(cmp_id, [LEFT, SINGLE])
+        verify(evaluator, times(1)).click(cmp_id, [LEFT, SINGLE], [])
 
-        verify(evaluator, times(0)).click(cmp_id, [RIGHT, SINGLE])
+        verify(evaluator, times(0)).click(cmp_id, [RIGHT, SINGLE], [])
         component.rightClick()
-        verify(evaluator, times(1)).click(cmp_id, [RIGHT, SINGLE])
+        verify(evaluator, times(1)).click(cmp_id, [RIGHT, SINGLE], [])
 
-        verify(evaluator, times(0)).click(cmp_id, [LEFT, DOUBLE])
+        verify(evaluator, times(0)).click(cmp_id, [LEFT, DOUBLE], [])
         component.doubleClick()
-        verify(evaluator, times(1)).click(cmp_id, [LEFT, DOUBLE])
+        verify(evaluator, times(1)).click(cmp_id, [LEFT, DOUBLE], [])
 
         DragBuilder dragBuilder = component.drag()
         assert dragBuilder.dragged == component

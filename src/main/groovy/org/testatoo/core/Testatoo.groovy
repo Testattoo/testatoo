@@ -85,7 +85,9 @@ class Testatoo {
         components.list()
     }
 
-    static { config.scan 'org.testatoo.bundle' }
+    static {
+        config.scan 'org.testatoo.bundle'
+    }
 
     protected static mouse = new Mouse()
     protected static keyboard = new Keyboard()
@@ -142,38 +144,34 @@ class Testatoo {
     static ValueMatcher value(Object value) { new ValueMatcher(value) }
     static ReferenceMatcher reference(String reference) { new ReferenceMatcher(reference) }
     static TitleMatcher title(String title) { new TitleMatcher(title) }
-    static FocusMatcher getFocus() { new FocusMatcher() }
 
     /**
      * Actions
      */
     static void visit(String uri) { Browser.open(uri) }
-    static void check(Checkable c) { c.check() }
-    static void uncheck(UnCheckable c) { c.uncheck() }
+
+    static void check(Checkable c) {
+        if (!c.enabled())
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be checked")
+        if (c.checked())
+            throw new ComponentException("${c.class.simpleName} ${c} is already checked and cannot be checked")
+        c.click()
+    }
+
+    static void uncheck(UnCheckable c) {
+        if (!c.enabled())
+            throw new ComponentException("${c.class.simpleName} ${c} is disabled and cannot be unchecked")
+        if (!c.checked())
+            throw new ComponentException("${c.class.simpleName} ${c} is already unchecked and cannot be unchecked")
+        c.click()
+    }
+
     static void clear(Clearable c) { c.clear() }
     static void reset(Resettable c) { c.reset() }
     static void submit(Submissible c) { c.submit() }
     static <T extends Component> T on(Component c) { c as T }
-    static void select(Item... items) { items.each { it.select() } }
-    static void deselect(Item... items) { items.each { it.unselect() } }
     static final FillAction fill(InputSupport c) { new FillAction(c) }
     static final FillAction set(InputSupport c) { new FillAction(c) }
-
-    static class FillAction {
-        private InputSupport input
-
-        FillAction(InputSupport input) {
-            this.input = input
-        }
-
-        void with(Object value) {
-            input.value(value)
-        }
-
-        void to(Object value) {
-            input.value(value)
-        }
-    }
 
     static class Components<T extends Component> {
         private final MetaDataProvider meta
@@ -204,13 +202,13 @@ class Testatoo {
 
     // Delegate to Keyboard
     static void type(Collection<?> keys) { keyboard.type(keys) }
-    static void type(Key key)  { type([key]) }
+    static void type(Key key) { type([key]) }
     static void type(String text) { type([text]) }
 
     // Generic Component Factory
     static Button button(String text) { ComponentFactory.button(text) }
     static Radio radio(String label) { ComponentFactory.radio(label) }
-    static CheckBox checkbox(String label) { ComponentFactory.checkbox(label)  }
+    static CheckBox checkbox(String label) { ComponentFactory.checkbox(label) }
     static Dropdown dropdown(String label) { ComponentFactory.dropdown(label) }
     static ListBox listBox(String label) { ComponentFactory.listBox(label) }
     static Group group(String value) { ComponentFactory.group(value) }
@@ -218,7 +216,6 @@ class Testatoo {
     static Heading heading(String text) { ComponentFactory.heading(text) }
     static Panel panel(String title) { ComponentFactory.panel(title) }
     static Link link(String text) { ComponentFactory.link(text) }
-
     static PasswordField passwordField(String value) { ComponentFactory.passwordField(value) }
     static TextField textField(String value) { ComponentFactory.textField(value) }
     static SearchField searchField(String value) { ComponentFactory.searchField(value) }
@@ -235,4 +232,20 @@ class Testatoo {
     static WeekField weekField(String value) { ComponentFactory.weekField(value) }
 
     static void waitUntil(Closure c, Matcher what = null) { wait.waitUntil(c, what) }
+
+    private static class FillAction {
+        private InputSupport input
+
+        FillAction(InputSupport input) {
+            this.input = input
+        }
+
+        void with(Object value) {
+            input.value(value)
+        }
+
+        void to(Object value) {
+            input.value(value)
+        }
+    }
 }

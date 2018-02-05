@@ -126,9 +126,6 @@ class Matchers {
     static Matcher<ValueSupport> value(Object value) { new ValueMatcher(value) }
 
     @Factory
-    static Matcher<FocusSupport> focus() { new FocusMatcher() }
-
-    @Factory
     static Matcher<ReferenceSupport> reference(String source) { new ReferenceMatcher(source) }
 
     @Factory

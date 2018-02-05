@@ -56,10 +56,6 @@ class ItemTest {
             this.value = value
         }
 
-        void select() {}
-
-        void unselect() {}
-
         Object value() {
             return value
         }

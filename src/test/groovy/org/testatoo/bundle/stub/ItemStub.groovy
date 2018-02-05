@@ -20,12 +20,6 @@ import org.testatoo.core.component.Item
 
 @CssIdentifier('ItemStub')
 class ItemStub extends Item {
-    void select() {
-    }
-
-    void unselect() {
-    }
-
     Object value() {
         return 'Item Value'
     }

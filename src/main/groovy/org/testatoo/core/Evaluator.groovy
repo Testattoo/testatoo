@@ -62,10 +62,6 @@ interface Evaluator extends AutoCloseable {
 
     abstract void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
 
-    abstract void click(String id, Collection<MouseModifiers> click)
-
-    abstract void click(String id)
-
     abstract void mouseOver(String id)
 
     abstract void dragAndDrop(String originId, String targetId)

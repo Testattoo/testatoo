@@ -31,11 +31,5 @@ class DummyItem extends Item {
     boolean selected() { return false }
 
     @Override
-    void select() {}
-
-    @Override
-    void unselect() {}
-
-    @Override
     Object value() { return value }
 }
