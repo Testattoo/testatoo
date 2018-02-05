@@ -111,6 +111,8 @@ class ActionTest {
 
         reset(item_1)
         reset(item_2)
+        doReturn(true).when(item_1).selected()
+
         listBox.unselect(item_1)
         verify(item_1, times(1)).click()
         verify(item_2, times(0)).click()
