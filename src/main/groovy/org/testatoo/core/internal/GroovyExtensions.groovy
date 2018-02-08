@@ -30,6 +30,7 @@ import java.time.Duration
 
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.Testatoo.waitUntil
+import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -72,7 +73,7 @@ class GroovyExtensions {
                 if (it.selected()) {
                     throw new ComponentException("${it.class.simpleName} ${it} is already selected and cannot be selected")
                 }
-                it.click()
+                CTRL.click it
             }
         }
     }
@@ -91,7 +92,7 @@ class GroovyExtensions {
                 if (!it.selected()) {
                     throw new ComponentException("${it.class.simpleName} ${it} is already unselected and cannot be deselected")
                 }
-                it.click()
+                CTRL.click it
             }
         }
     }

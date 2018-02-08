@@ -38,6 +38,9 @@ import static org.junit.Assert.fail
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.*
+import static org.testatoo.core.input.Key.CTRL
+import static org.testatoo.core.input.MouseModifiers.LEFT
+import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -119,38 +122,52 @@ class ActionTest {
         Item item_2 = spy(new ItemStub())
         item_2.meta = meta
 
-        doReturn([item_1, item_2]).when(listBox).items()
-        listBox.select(item_1)
-        verify(item_1, times(1)).click()
-        verify(item_2, times(0)).click()
+        config.evaluator = mock(Evaluator)
 
+        doReturn([item_1, item_2]).when(listBox).items()
+        doReturn('1').when(item_1).id()
+        doReturn('2').when(item_2).id()
+
+        listBox.select(item_1)
+        verify(config.evaluator, times(1)).click('1', [LEFT, SINGLE], [CTRL])
+        verify(config.evaluator, times(0)).click('2', [LEFT, SINGLE], [CTRL])
+
+        reset(config.evaluator)
         reset(item_1)
         reset(item_2)
+        doReturn('1').when(item_1).id()
+        doReturn('2').when(item_2).id()
         doReturn(true).when(item_1).selected()
 
         listBox.unselect(item_1)
-        verify(item_1, times(1)).click()
-        verify(item_2, times(0)).click()
+        verify(config.evaluator, times(1)).click('1', [LEFT, SINGLE], [CTRL])
+        verify(config.evaluator, times(0)).click('2', [LEFT, SINGLE], [CTRL])
 
+        reset(config.evaluator)
         reset(item_1)
         reset(item_2)
+        doReturn('1').when(item_1).id()
+        doReturn('2').when(item_2).id()
         doReturn('Item_1').when(item_1).value()
         doReturn('Item_2').when(item_2).value()
 
         listBox.select('Item_2')
-        verify(item_1, times(0)).click()
-        verify(item_2, times(1)).click()
+        verify(config.evaluator, times(0)).click('1', [LEFT, SINGLE], [CTRL])
+        verify(config.evaluator, times(1)).click('2', [LEFT, SINGLE], [CTRL])
 
+        reset(config.evaluator)
         reset(item_1)
         reset(item_2)
+        doReturn('1').when(item_1).id()
+        doReturn('2').when(item_2).id()
         doReturn('Item_1').when(item_1).value()
         doReturn('Item_2').when(item_2).value()
-
         doReturn(true).when(item_1).selected()
         doReturn(true).when(item_2).selected()
+
         listBox.unselect('Item_1', 'Item_2')
-        verify(item_1, times(1)).click()
-        verify(item_2, times(1)).click()
+        verify(config.evaluator, times(1)).click('1', [LEFT, SINGLE], [CTRL])
+        verify(config.evaluator, times(1)).click('2', [LEFT, SINGLE], [CTRL])
     }
 
     @Test
