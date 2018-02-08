@@ -146,6 +146,8 @@ class ActionTest {
         doReturn('Item_1').when(item_1).value()
         doReturn('Item_2').when(item_2).value()
 
+        doReturn(true).when(item_1).selected()
+        doReturn(true).when(item_2).selected()
         listBox.unselect('Item_1', 'Item_2')
         verify(item_1, times(1)).click()
         verify(item_2, times(1)).click()

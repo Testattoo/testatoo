@@ -79,7 +79,7 @@ class GroovyExtensions {
 
     static void unselect(Component component, String... values) {
         values.each { value ->
-            component.items().find { it.value() == value }.each { select(component, it) }
+            component.items().find { it.value() == value }.each { unselect(component, it) }
         }
     }
 
