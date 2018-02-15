@@ -20,6 +20,8 @@ import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.core.support.Selectable
+import org.testatoo.core.support.UnSelectable
 import org.testatoo.hamcrest.Matchers
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
@@ -59,13 +61,13 @@ class GroovyExtensions {
 
     // ====================================================================
 
-    static void select(Component component, String... values) {
+    static void select(Selectable component, String... values) {
         values.each { value ->
             component.items().find { it.value() == value }.each { select(component, it) }
         }
     }
 
-    static void select(Component component, Item... items) {
+    static void select(Selectable component, Item... items) {
         items.each {
             if (component.items().contains(it)) {
                 if (!it.enabled())
@@ -78,13 +80,13 @@ class GroovyExtensions {
         }
     }
 
-    static void unselect(Component component, String... values) {
+    static void unselect(UnSelectable component, String... values) {
         values.each { value ->
             component.items().find { it.value() == value }.each { unselect(component, it) }
         }
     }
 
-    static void unselect(Component component, Item... items) {
+    static void unselect(UnSelectable component, Item... items) {
         items.each {
             if (component.items().contains(it)) {
                 if (!it.enabled())

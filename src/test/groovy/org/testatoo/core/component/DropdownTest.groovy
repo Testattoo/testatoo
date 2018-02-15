@@ -18,7 +18,7 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.SingleSelectable
+import org.testatoo.core.support.Selectable
 import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.core.support.property.ItemSupport
 import org.testatoo.core.support.property.LabelSupport
@@ -34,8 +34,8 @@ class DropdownTest {
         assert Dropdown in Component
         assert Dropdown in ItemSupport
         assert Dropdown in GroupSupport
-        assert Dropdown in SingleSelectable
         assert Dropdown in LabelSupport
+        assert Dropdown in Selectable
         assert Dropdown in SelectedItemSupport
     }
 }

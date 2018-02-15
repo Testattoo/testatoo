@@ -15,14 +15,13 @@
  */
 package org.testatoo.core
 
-import org.openqa.selenium.WebDriver
 import org.testatoo.core.input.MouseModifiers
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Evaluator extends AutoCloseable {
-    abstract WebDriver getDriver()
+    abstract Object getDriver()
 
     abstract void open(String url)
 

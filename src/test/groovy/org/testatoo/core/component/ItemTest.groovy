@@ -18,8 +18,6 @@ package org.testatoo.core.component
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.core.support.Selectable
-import org.testatoo.core.support.UnSelectable
 import org.testatoo.core.support.property.ValueSupport
 import org.testatoo.core.support.state.SelectSupport
 
@@ -31,8 +29,6 @@ class ItemTest {
     @Test
     void should_have_expected_inheritance() {
         assert Item in Component
-        assert Item in Selectable
-        assert Item in UnSelectable
         assert Item in SelectSupport
         assert Item in ValueSupport
     }
