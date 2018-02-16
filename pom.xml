@@ -40,7 +40,7 @@
 
     <properties>
         <jdk.version>1.6</jdk.version>
-        <groovy.version>2.4.12</groovy.version>
+        <groovy.version>2.4.13</groovy.version>
         <selenium.version>3.9.1</selenium.version>
         <jetty.version>9.4.8.v20171121</jetty.version>
         <jetty.daemon>true</jetty.daemon>
@@ -100,13 +100,13 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>${groovy.version}</version>
-                    </dependency>
-                </dependencies>
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.codehaus.groovy</groupId>-->
+                        <!--<artifactId>groovy-all</artifactId>-->
+                        <!--<version>${groovy.version}</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
