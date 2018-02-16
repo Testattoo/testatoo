@@ -20,12 +20,6 @@ import org.testatoo.core.component.CheckBox
 
 @CssIdentifier('CheckBoxStub')
 class CheckBoxStub extends CheckBox {
-    void check() {
-    }
-
-    void uncheck() {
-    }
-
     String label() {
         return 'Checkbox Label'
     }

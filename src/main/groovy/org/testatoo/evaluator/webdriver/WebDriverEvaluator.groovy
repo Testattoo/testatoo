@@ -19,6 +19,7 @@ import groovy.json.JsonSlurper
 import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
@@ -43,7 +44,7 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    WebDriver getDriver() { webDriver }
+    Object getDriver() { webDriver }
 
     @Override
     void open(String url) { webDriver.get(url) }
@@ -152,10 +153,11 @@ class WebDriverEvaluator implements Evaluator {
 
     @Override
     void click(String id, Collection<MouseModifiers> mouseModifiers = [LEFT], Collection<?> keys = []) {
-        if (mouseModifiers == [LEFT, SINGLE] && keys.empty) {
-            webDriver.findElement(By.id(id)).click()
-            return
-        }
+        WebElement element = webDriver.findElement(By.id(id))
+        // Not used cause still an issue in FF => https://github.com/mozilla/geckodriver/issues/776
+//        new Actions(webDriver).moveToElement(element).build().perform()
+        // Temporary fix with pure js command
+        runScript("document.getElementById('${id}').scrollIntoView(true)")
 
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
@@ -168,11 +170,11 @@ class WebDriverEvaluator implements Evaluator {
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
         text.each { it instanceof Key ? action.sendKeys(KeyConverter.convert(it)) : action.sendKeys(it) }
         if (mouseModifiers == [LEFT, SINGLE]) {
-            action.click(webDriver.findElement(By.id(id)))
+            action.click(element)
         } else if (mouseModifiers == [RIGHT, SINGLE]) {
-            action.contextClick(webDriver.findElement(By.id(id)))
+            action.contextClick(element)
         } else if (mouseModifiers == [LEFT, DOUBLE]) {
-            action.doubleClick(webDriver.findElement(By.id(id)))
+            action.doubleClick(element)
         } else {
             throw new IllegalArgumentException('Invalid click sequence')
         }

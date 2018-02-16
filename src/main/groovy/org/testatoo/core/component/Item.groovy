@@ -15,15 +15,13 @@
  */
 package org.testatoo.core.component
 
-import org.testatoo.core.support.Selectable
-import org.testatoo.core.support.UnSelectable
 import org.testatoo.core.support.property.ValueSupport
 import org.testatoo.core.support.state.SelectSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Item extends Component implements SelectSupport, ValueSupport, Selectable, UnSelectable {
+abstract class Item extends Component implements SelectSupport, ValueSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

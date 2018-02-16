@@ -80,17 +80,17 @@ class Component implements Clickable, Draggable {
 
     @Override
     void click() {
-        config.evaluator.click(id(), [LEFT, SINGLE])
+        config.evaluator.click(id(), [LEFT, SINGLE], [])
     }
 
     @Override
     void rightClick() {
-        config.evaluator.click(id(), [RIGHT, SINGLE])
+        config.evaluator.click(id(), [RIGHT, SINGLE], [])
     }
 
     @Override
     void doubleClick() {
-        config.evaluator.click(id(), [LEFT, DOUBLE])
+        config.evaluator.click(id(), [LEFT, DOUBLE], [])
     }
 
     @Override

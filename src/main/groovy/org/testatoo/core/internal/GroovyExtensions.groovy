@@ -16,9 +16,12 @@
 package org.testatoo.core.internal
 
 import org.hamcrest.Matcher
+import org.testatoo.core.ComponentException
 import org.testatoo.core.component.Component
 import org.testatoo.core.component.Item
 import org.testatoo.core.input.Key
+import org.testatoo.core.support.Selectable
+import org.testatoo.core.support.UnSelectable
 import org.testatoo.hamcrest.Matchers
 import org.testatoo.hamcrest.PropertyMatcher
 import org.testatoo.hamcrest.StateMatcher
@@ -29,6 +32,7 @@ import java.time.Duration
 
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.Testatoo.waitUntil
+import static org.testatoo.core.input.Key.CTRL
 import static org.testatoo.core.input.MouseModifiers.*
 
 /**
@@ -54,33 +58,51 @@ class GroovyExtensions {
     static void rightClick(Collection<Key> keys, Component c) {
         config.evaluator.click(c.id(), [RIGHT, SINGLE], keys)
     }
+
     // ====================================================================
 
-    static void select(Component component, String... values) {
-        for (value in values) {
-            component.items().find { it.value() == value }.select() }
+    static void select(Selectable component, String... values) {
+        values.each { value ->
+            component.items().find { it.value() == value }.each { select(component, it) }
+        }
     }
 
-    static void select(Component component, Item... items) {
+    static void select(Selectable component, Item... items) {
         items.each {
-            if(component.items().contains(it)) { it.select() }
+            if (component.items().contains(it)) {
+                if (!it.enabled())
+                    throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be selected")
+                if (it.selected()) {
+                    throw new ComponentException("${it.class.simpleName} ${it} is already selected and cannot be selected")
+                }
+                CTRL.click it
+            }
         }
     }
 
-    static void unselect(Component component, Item... items) {
+    static void unselect(UnSelectable component, String... values) {
+        values.each { value ->
+            component.items().find { it.value() == value }.each { unselect(component, it) }
+        }
+    }
+
+    static void unselect(UnSelectable component, Item... items) {
         items.each {
-            if(component.items().contains(it)) { it.unselect() }
+            if (component.items().contains(it)) {
+                if (!it.enabled())
+                    throw new ComponentException("${it.class.simpleName} ${it} is disabled and cannot be deselected")
+                if (!it.selected()) {
+                    throw new ComponentException("${it.class.simpleName} ${it} is already unselected and cannot be deselected")
+                }
+                CTRL.click it
+            }
         }
     }
 
-    static void unselect(Component component, String... values) {
-        values.each { value -> component.items().find {
-            item -> item.value() == value }.unselect()
-        }
-    }
+    // ====================================================================
 
     static PropertyMatcher getItems(Integer number) {
-       new ItemSizeMatcher(number)
+        new ItemSizeMatcher(number)
     }
 
     static PropertyMatcher getVisibleItems(Integer number) {

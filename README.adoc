@@ -14,6 +14,9 @@ image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/log
 == Warning
 Migration to Selenium 3 in progress.
 100% compatible with Chrome
+Firefox issues
+ - https://github.com/mozilla/geckodriver/issues/944
+ - https://github.com/mozilla/geckodriver/issues/773 (Fixed in FF 59)
 Issues open for Firefox and Edge
 
 Edge:
