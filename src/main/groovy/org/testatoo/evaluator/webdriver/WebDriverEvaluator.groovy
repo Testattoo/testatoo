@@ -154,8 +154,10 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void click(String id, Collection<MouseModifiers> mouseModifiers = [LEFT], Collection<?> keys = []) {
         WebElement element = webDriver.findElement(By.id(id))
-
-        new Actions(webDriver).moveToElement(element).build().perform()
+        // Not used cause still an issue in FF => https://github.com/mozilla/geckodriver/issues/776
+//        new Actions(webDriver).moveToElement(element).build().perform()
+        // Temporary fix with pure js command
+        runScript("document.getElementById('${id}').scrollIntoView(true)")
 
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
