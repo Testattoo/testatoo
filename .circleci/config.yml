@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: maven:3.5.2-jdk-7-alpine
+      - image: jamesdbloom/docker-java8-maven
       - image: selenium/standalone-chrome
 
     working_directory: ~/repo
