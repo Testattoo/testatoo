@@ -9,7 +9,7 @@ image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/test
 https://coveralls.io/github/Ovea/testatoo?branch=master[image:https://coveralls.io/repos/Ovea/testatoo/badge.svg?branch=master&service=github[CoverageStatus]]
 
 [.left.text-left]
-image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/logo.jpg[]
+image::logo.svg[]
 
 == Warning
 Migration to Selenium 3 in progress.
