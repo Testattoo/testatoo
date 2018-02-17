@@ -48,8 +48,8 @@ class WebDriverConfig extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         // Defined by JVM maven arguments
-        final String browser = System.getProperty('browser') ?: 'Chrome'
-        final boolean docker = Boolean.valueOf(System.getProperty('remote')) ?: true // -Dremote=true
+        final String browser = System.getProperty('browser') ?: 'Chrome' // -Dbrowser=Firefox
+        final boolean docker = Boolean.valueOf(System.getProperty('remote')) ?: false // -Dremote=true
 
         BASE_URL = 'http://localhost:8080/'
 
