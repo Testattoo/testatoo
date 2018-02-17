@@ -48,11 +48,10 @@ class WebDriverConfig extends ExternalResource {
     @Override
     protected void before() throws Throwable {
         // Defined by JVM maven arguments
-        final String browser = System.getProperty('browser') ?: 'Chrome'
-        final boolean docker = Boolean.valueOf(System.getProperty('docker')) ?: false // -Ddocker=true
-        final String ip = System.getProperty('ip') ?: '127.0.0.1' // -DIP=xxx.xxx.xxx.xxx
+        final String browser = System.getProperty('browser') ?: 'Chrome' // -Dbrowser=Firefox
+        final boolean docker = Boolean.valueOf(System.getProperty('remote')) ?: false // -Dremote=true
 
-        BASE_URL = 'http://' + ip + ':8080/'
+        BASE_URL = 'http://localhost:8080/'
 
         startJetty()
 
@@ -70,7 +69,7 @@ class WebDriverConfig extends ExternalResource {
             case 'Chrome':
                 println '=================== Chrome Profile ==================='
                 if (docker) {
-                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:32770/wd/hub'), new ChromeOptions())
+                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new ChromeOptions())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
                     ChromeDriverManager.instance.setup()
