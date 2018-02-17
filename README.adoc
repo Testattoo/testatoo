@@ -9,22 +9,7 @@ image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/test
 https://coveralls.io/github/Ovea/testatoo?branch=master[image:https://coveralls.io/repos/Ovea/testatoo/badge.svg?branch=master&service=github[CoverageStatus]]
 
 [.left.text-left]
-image::https://github.com/Ovea/testatoo/blob/master/src/main/asciidoc/images/logo.jpg[]
-
-== Warning
-Migration to Selenium 3 in progress.
-100% compatible with Chrome
-Firefox issues
- - https://github.com/mozilla/geckodriver/issues/944
- - https://github.com/mozilla/geckodriver/issues/773 (Fixed in FF 59)
-Issues open for Firefox and Edge
-
-Edge:
-https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10290683/
-
-Firefox:
-https://github.com/mozilla/geckodriver/issues/394 (closed)
-https://github.com/mozilla/geckodriver/issues/646
+image::logo.svg[]
 
 == Documentation and Samples
 
@@ -80,15 +65,11 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
 If you don't want to install Browser and driver you can use docker images
 
     - docker run -d -p 4444:4444 selenium/standalone-firefox:3.0.1-aluminum
+    or
     - docker run -d -p 4444:4444 selenium/standalone-chrome:3.0.1-aluminum
 
 In your Terminal
 
-    $ mvn clean install -Pfirefox // Or -Pchrome
-    or
-    $ mvn clean install -Pchrome -Ddocker=true -Dip=xxx.xxx.xxx.xxx
-    with docker you need to set your host IP (don't use loopback (127.0.0.1) it's not reachable from the docker container)
-
-To just build and skip the tests
-
-    $ mvn package -Dmaven.test.skip=true
+    $ mvn clean install  // Test on Chrome by default
+    // With docker container usage
+    $ mvn clean install -Dremote -Pfirefox
