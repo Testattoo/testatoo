@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk
       - image: selenium/standalone-chrome
+        environment:
+          port: 4444:4444
 
     working_directory: ~/repo
 
