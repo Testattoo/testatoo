@@ -137,7 +137,7 @@
                 <configuration>
                     <useAgent>false</useAgent>
                     <keyname>F82FA7FE</keyname>
-                    <passphrase>${ovea.gpg.passphrase}</passphrase>
+                    <passphrase>${ovea_gpg_passphrase}</passphrase>
                 </configuration>
             </plugin>
             <plugin>
@@ -220,7 +220,7 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
                 <configuration>
-                    <repoToken>${testatoo.coveralls.token}</repoToken>
+                    <repoToken>${testatoo_coveralls_token}</repoToken>
                 </configuration>
             </plugin>
         </plugins>
