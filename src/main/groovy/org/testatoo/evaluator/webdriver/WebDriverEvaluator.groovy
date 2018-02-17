@@ -159,6 +159,12 @@ class WebDriverEvaluator implements Evaluator {
         // Temporary fix with pure js command
         runScript("document.getElementById('${id}').scrollIntoView(true)")
 
+        // Temporary hack until Selenium fix
+        if(optionInDropdown(id)) {
+            element.click()
+            return
+        }
+
         Actions action = new Actions(webDriver)
         Collection<Key> modifiers = []
         Collection<String> text = []
@@ -179,7 +185,7 @@ class WebDriverEvaluator implements Evaluator {
             throw new IllegalArgumentException('Invalid click sequence')
         }
         modifiers.each { action.keyUp(KeyConverter.convert(it)) }
-        action.build().perform()
+        action.perform()
     }
 
     @Override
@@ -237,5 +243,9 @@ class WebDriverEvaluator implements Evaluator {
     private static String removeTrailingChars(String expr) {
         expr = expr.trim()
         expr.endsWith(';') ? expr.substring(0, expr.length() - 1) : expr
+    }
+
+    private boolean optionInDropdown(String id) {
+        return check(id, "it.prop('tagName').toLowerCase() === 'option' && !it.closest('select').prop('multiple')")
     }
 }
