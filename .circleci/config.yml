@@ -26,6 +26,6 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn test -Ddocker=true
+      - run: mvn package -Ddocker=true
 
       - run: mvn coveralls:report
