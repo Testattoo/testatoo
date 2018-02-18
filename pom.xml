@@ -21,7 +21,7 @@
 
     <groupId>org.testatoo</groupId>
     <artifactId>testatoo</artifactId>
-    <version>2.0.b29-SNAPSHOT</version>
+    <version>2.0.b28-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Testatoo</name>
@@ -97,6 +97,16 @@
                             <goal>compile</goal>
                             <goal>compileTests</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-doc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>groovydoc</goal>
+                        </goals>
+                        <configuration>
+                            <groovyDocOutputDirectory>${project.build.directory}/apidocs</groovyDocOutputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
                 <dependencies>
@@ -195,6 +205,20 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
