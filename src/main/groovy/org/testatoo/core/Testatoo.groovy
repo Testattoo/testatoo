@@ -116,6 +116,8 @@ class Testatoo {
     static Class valid = ValidMatcher
     static Class visible = VisibleMatcher
     static Class focused = FocusedMatcher
+    static Class expanded = ExpandedMatcher
+    static Class collapsed = CollapsedMatcher
 
     /**
      * Properties

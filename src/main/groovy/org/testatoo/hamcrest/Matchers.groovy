@@ -100,6 +100,13 @@ class Matchers {
     @Factory
     static Matcher<Component> contain(Component... components) { new ContainMatcher(Testatoo.config.evaluator, components)  }
 
+    @Factory
+    static Matcher<CollapseSupport> expanded() { new ExpandedMatcher() }
+
+    @Factory
+    static Matcher<CollapseSupport> collapsed() { new CollapsedMatcher() }
+
+
     // Properties
     @Factory
     static Matcher<LabelSupport> label(String label) { new LabelMatcher(label) }
