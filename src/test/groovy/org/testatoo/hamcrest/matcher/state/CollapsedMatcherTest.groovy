@@ -28,7 +28,6 @@ import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.hamcrest.Matchers.collapsed
-import static org.testatoo.hamcrest.Matchers.expanded
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
