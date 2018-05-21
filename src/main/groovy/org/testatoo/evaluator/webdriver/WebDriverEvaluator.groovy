@@ -204,7 +204,7 @@ class WebDriverEvaluator implements Evaluator {
     private String execute(String id, String s) {
         String element = ''
         if (id) {
-            element = "var it = el = \$('#${id}');"
+            element = "var it = el = \$('[id=\"${id}\"]');"
         }
 
         String expr = """
