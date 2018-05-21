@@ -30,7 +30,7 @@ class InputTypeText extends Component implements ValueSupport, EmptySupport {
 
     void clear() {
         this.click()
-        config.evaluator.runScript("\$('#${id()}').val('').change()")
+        config.evaluator.runScript("\$('#${id()}').val('')")
     }
 
     boolean empty() {
