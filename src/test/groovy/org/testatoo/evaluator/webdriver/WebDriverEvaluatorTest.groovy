@@ -53,7 +53,7 @@ class WebDriverEvaluatorTest {
             // Page with jquery missing
             visit BASE_URL + 'popup.html'
 
-            InputTypeText field = $('#firstname') as InputTypeText
+            InputTypeText field = $('[id="first.name"]') as InputTypeText
             Div error = $('#firstname_blur') as Div
 
             assert field.empty()
@@ -63,11 +63,11 @@ class WebDriverEvaluatorTest {
             // 1 - show the first name_blur message
             // 2 - set an email in email field
             config.evaluator.registerScripts("function A_test() { \$('#firstname_blur').show()  }; A_test()")
-            config.evaluator.registerScripts("function B_test() { \$('#firstname').val('Joe') }; B_test()")
+            config.evaluator.registerScripts("function B_test() { \$('[id=\"first.name\"]').val('Joe') }; B_test()")
 
             visit BASE_URL + 'popup.html'
 
-            field = $('#firstname') as InputTypeText
+            field = $('[id="first.name"]') as InputTypeText
             error = $('#firstname_blur') as Div
 
             assert !field.empty()
@@ -98,7 +98,7 @@ class WebDriverEvaluatorTest {
     void should_add_jquery_if_missing() {
         visit BASE_URL + 'popup.html'
 
-        assert 'Joe' == config.evaluator.eval(null, "\$('#firstname').val('Joe').val()")
+        assert 'Joe' == config.evaluator.eval(null, "\$('#last_name').val('Joe').val()")
     }
 
     @Test

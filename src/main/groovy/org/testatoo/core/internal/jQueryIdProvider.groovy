@@ -41,8 +41,7 @@ class jQueryIdProvider implements IdProvider {
             if (metaInfos.size() == 1) return metaInfos
             if (metaInfos.size() == 0) throw new ComponentException("Component defined by expression ${expression} not found.")
             throw new ComponentException("Component defined by expression ${expression} is not unique: got ${metaInfos.size()}")
-        } else {
-            return metaInfos
         }
+        return metaInfos
     }
 }
