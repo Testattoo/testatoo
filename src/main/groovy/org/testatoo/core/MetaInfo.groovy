@@ -33,7 +33,7 @@ class MetaInfo {
 
     Object asType(Class clazz) {
         if (Component.isAssignableFrom(clazz)) {
-            return $("#${id}").asType(clazz)
+            return $("[id='${id}']").asType(clazz)
         }
         return super.asType(clazz)
     }

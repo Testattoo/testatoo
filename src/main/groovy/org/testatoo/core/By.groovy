@@ -32,7 +32,7 @@ class By {
 
     static By css(String expression) {
         String id = '${id}'
-        new By("\\\$('#${id}').find('${expression}')", new SimpleTemplateEngine())
+        new By("\\\$('[id=\"${id}\"]').find('${expression}')", new SimpleTemplateEngine())
     }
 
     static By js(String expression) {
