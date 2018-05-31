@@ -42,7 +42,7 @@ class ByTest {
         Component cmp = new Component()
         cmp.meta = meta
 
-        assert by.getExpression(cmp) == "\$('#id').find('option')"
+        assert by.getExpression(cmp) == "\$('[id=\"id\"]').find('option')"
 
         by =  By.js('some_js_expression')
 
@@ -53,7 +53,7 @@ class ByTest {
     void should_be_able_to_find_sub_components() {
         Component cmp = new Component()
         cmp.meta = meta
-        when(config.evaluator.metaInfo("\$('#id').find('sub_expression')")).thenReturn([
+        when(config.evaluator.metaInfo("\$('[id=\"id\"]').find('sub_expression')")).thenReturn([
                 new MetaInfo(id: '1', node: 'node'),
                 new MetaInfo(id: '2', node: 'node')
         ])
