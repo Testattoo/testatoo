@@ -15,7 +15,8 @@
  */
 package org.testatoo.core.internal
 
-import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
+import io.github.classgraph.ClassGraph
+import io.github.classgraph.ScanResult
 import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Identifier
@@ -27,8 +28,11 @@ import java.lang.annotation.Annotation
  * @author Mathieu Carbou (mathieu.carbou@gmail.com)
  */
 class Identifiers {
-    private static scanner = new FastClasspathScanner('org.testatoo.bundle')
     private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
+
+    private static ScanResult scan = new ClassGraph()
+            .whitelistPackages('org.testatoo.bundle')
+            .scan()
 
     static Map factories = [
         (CssIdentifier): { CssIdentifier annotation -> return "it.is('${annotation.value()}')" }
@@ -58,7 +62,7 @@ class Identifiers {
 
         if(!cachedComponents.get(clazz)) {
             List<Class> matchingClasses = new ArrayList<>()
-            scanner.matchSubclassesOf(clazz, { c -> matchingClasses.add(c) }).scan()
+            matchingClasses.addAll(scan.getSubclasses(clazz.name).loadClasses())
             cachedComponents.put(clazz, matchingClasses)
         }
 

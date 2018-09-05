@@ -17,7 +17,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
-          - v1-dependencies-
 
       - run: mvn dependency:go-offline
 
@@ -27,3 +26,5 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       - run: mvn clean test jacoco:report coveralls:report -Dremote=true
+      - store_test_results:
+          path: target/surefire-reports
