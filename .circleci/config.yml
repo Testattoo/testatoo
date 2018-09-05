@@ -27,4 +27,4 @@ jobs:
 
       - run: mvn clean test jacoco:report coveralls:report -Dremote=true
       - store_test_results:
-        path: target/surefire-reports
+          path: target/surefire-reports
