@@ -1,0 +1,10 @@
+engines:
+  sonar-java:
+    enabled: true
+    config:
+      sonar.java.source: 7
+      tests_patterns:
+      - src/test/**
+
+exclude_paths:
+- build/
