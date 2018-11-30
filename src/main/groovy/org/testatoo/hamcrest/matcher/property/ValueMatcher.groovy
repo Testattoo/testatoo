@@ -36,7 +36,7 @@ class ValueMatcher extends PropertyMatcher<ValueSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('value ')appendValue(value)
+        description.appendText('value ') appendValue(value)
     }
 
     @Override

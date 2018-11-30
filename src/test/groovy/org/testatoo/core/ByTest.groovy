@@ -21,7 +21,9 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.component.Component
 
-import static org.mockito.Mockito.*
+import static org.mockito.ArgumentMatchers.any
+import static org.mockito.Mockito.mock
+import static org.mockito.Mockito.when
 import static org.testatoo.core.Testatoo.config
 
 @RunWith(JUnit4)
@@ -37,14 +39,14 @@ class ByTest {
 
     @Test
     void should_generate_expected_expression() {
-        By by =  By.css('option')
+        By by = By.css('option')
 
         Component cmp = new Component()
         cmp.meta = meta
 
         assert by.getExpression(cmp) == "\$('[id=\"id\"]').find('option')"
 
-        by =  By.js('some_js_expression')
+        by = By.js('some_js_expression')
 
         assert by.getExpression(cmp) == "some_js_expression"
     }
@@ -54,8 +56,8 @@ class ByTest {
         Component cmp = new Component()
         cmp.meta = meta
         when(config.evaluator.metaInfo("\$('[id=\"id\"]').find('sub_expression')")).thenReturn([
-                new MetaInfo(id: '1', node: 'node'),
-                new MetaInfo(id: '2', node: 'node')
+            new MetaInfo(id: '1', node: 'node'),
+            new MetaInfo(id: '2', node: 'node')
         ])
 
         List<Component> subs = cmp.find(By.css('sub_expression'))

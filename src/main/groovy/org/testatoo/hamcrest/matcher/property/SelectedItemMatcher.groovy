@@ -37,7 +37,7 @@ class SelectedItemMatcher extends PropertyMatcher<SelectedItemSupport> {
 
     @Override
     protected boolean matchesSafely(SelectedItemSupport component) {
-        if(value) {
+        if (value) {
             return component.selectedItem().value() == value
         }
         component.selectedItem() == item

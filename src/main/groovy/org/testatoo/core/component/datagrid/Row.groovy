@@ -26,7 +26,7 @@ abstract class Row extends Component implements TitleSupport, CellSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true
-        if(!o in Row) return false
+        if (!o in Row) return false
         Row row = (Row) o
         title() == row.title()
     }

@@ -25,4 +25,5 @@ import org.testatoo.core.support.state.ValiditySupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-abstract class Field extends Component implements LabelSupport, InputSupport, ValueSupport, ValiditySupport, FocusSupport {}
+abstract class Field extends Component implements LabelSupport, InputSupport, ValueSupport, ValiditySupport, FocusSupport {
+}

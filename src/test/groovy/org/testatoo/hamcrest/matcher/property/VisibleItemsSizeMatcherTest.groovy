@@ -47,7 +47,7 @@ class VisibleItemsSizeMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has 3 visible item(s)')
-                    .appendText('\n     but: has 2 visible item(s)')
+                .appendText('\n     but: has 2 visible item(s)')
 
             assert e.message == description.toString()
         }

@@ -21,47 +21,49 @@ import org.testatoo.core.input.MouseModifiers
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Evaluator extends AutoCloseable {
-    abstract Object getDriver()
+    Object getDriver()
 
-    abstract void open(String url)
+    void open(String url)
 
-    abstract void runScript(String script)
+    void runScript(String script)
 
-    abstract void registerScripts(String... scripts)
+    void registerScripts(String... scripts)
 
-    abstract String eval(String id, String jsExpr)
+    String eval(String id, String jsExpr)
 
-    abstract boolean check(String id, String jsExpr)
+    boolean check(String id, String jsExpr)
 
-    abstract String getTitle()
+    String getTitle()
 
-    abstract String getPageSource()
+    String getPageSource()
 
-    abstract String getUrl()
+    String getUrl()
 
-    abstract Set<String> getWindowIds()
+    Set<String> getWindowIds()
 
-    abstract void closeWindow(String id)
+    void closeWindow(String id)
 
-    abstract void switchToWindow(String id)
+    void switchToWindow(String id)
 
-    abstract void to(String url)
+    void clear(String id)
 
-    abstract void back()
+    void to(String url)
 
-    abstract void forward()
+    void back()
 
-    abstract void refresh()
+    void forward()
+
+    void refresh()
 
     abstract <T> T getJson(String expression)
 
-    abstract List<MetaInfo> metaInfo(String expression)
+    List<MetaInfo> metaInfo(String expression)
 
-    abstract void type(Collection<?> keys)
+    void type(Collection<?> keys)
 
-    abstract void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
+    void click(String id, Collection<MouseModifiers> click, Collection<?> keys)
 
-    abstract void mouseOver(String id)
+    void mouseOver(String id)
 
-    abstract void dragAndDrop(String originId, String targetId)
+    void dragAndDrop(String originId, String targetId)
 }

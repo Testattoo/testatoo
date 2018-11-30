@@ -47,7 +47,7 @@ class ItemSizeMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has 3 item(s)')
-                    .appendText('\n     but: has 2 item(s)')
+                .appendText('\n     but: has 2 item(s)')
 
             assert e.message == description.toString()
         }

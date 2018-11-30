@@ -48,7 +48,7 @@ class ReadOnlyMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is read only')
-                    .appendText('\n     but: is not read only')
+                .appendText('\n     but: is not read only')
 
             assert e.message == description.toString()
         }

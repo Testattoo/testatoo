@@ -26,7 +26,7 @@ abstract class Column extends Component implements TitleSupport, CellSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true
-        if(!o in Column) return false
+        if (!o in Column) return false
         Column column = (Column) o
         title() == column.title()
     }

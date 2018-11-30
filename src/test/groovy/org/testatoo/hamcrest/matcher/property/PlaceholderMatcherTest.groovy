@@ -46,7 +46,7 @@ class PlaceholderMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has placeholder "OtherPlaceholder"')
-                    .appendText('\n     but: has placeholder "MyPlaceholder"')
+                .appendText('\n     but: has placeholder "MyPlaceholder"')
 
             assert e.message == description.toString()
         }

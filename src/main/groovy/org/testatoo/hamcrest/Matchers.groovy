@@ -98,7 +98,9 @@ class Matchers {
     static Matcher<ValiditySupport> invalid() { new InvalidMatcher() }
 
     @Factory
-    static Matcher<Component> contain(Component... components) { new ContainMatcher(Testatoo.config.evaluator, components)  }
+    static Matcher<Component> contain(Component... components) {
+        new ContainMatcher(Testatoo.config.evaluator, components)
+    }
 
     @Factory
     static Matcher<CollapseSupport> expanded() { new ExpandedMatcher() }
@@ -151,10 +153,10 @@ class Matchers {
     static Matcher<SelectedItemSupport> selectedItem(Item value) { new SelectedItemMatcher(value) }
 
     @Factory
-    static Matcher<SelectedItemsSupport> selectedItems(String... values) { new SelectedItemsMatcher(values)  }
+    static Matcher<SelectedItemsSupport> selectedItems(String... values) { new SelectedItemsMatcher(values) }
 
     @Factory
-    static Matcher<SelectedItemsSupport> selectedItems(Item... values) { new SelectedItemsMatcher(values)  }
+    static Matcher<SelectedItemsSupport> selectedItems(Item... values) { new SelectedItemsMatcher(values) }
 
     @Factory
     static Matcher<GroupSupport> groups(String... values) { new GroupMatcher(values) }

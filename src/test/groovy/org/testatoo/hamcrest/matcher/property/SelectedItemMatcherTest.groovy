@@ -52,7 +52,7 @@ class SelectedItemMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has selected item "no selected"')
-                    .appendText('\n     but: has selected item "selected"')
+                .appendText('\n     but: has selected item "selected"')
 
             assert e.message == description.toString()
         }
@@ -66,7 +66,7 @@ class SelectedItemMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has selected item "no selected"')
-                    .appendText('\n     but: has selected item "selected"')
+                .appendText('\n     but: has selected item "selected"')
 
             assert e.message == description.toString()
         }

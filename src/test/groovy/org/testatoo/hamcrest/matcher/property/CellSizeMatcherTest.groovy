@@ -47,7 +47,7 @@ class CellSizeMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has 3 cell(s)')
-                    .appendText('\n     but: has 2 cell(s)')
+                .appendText('\n     but: has 2 cell(s)')
 
             assert e.message == description.toString()
         }

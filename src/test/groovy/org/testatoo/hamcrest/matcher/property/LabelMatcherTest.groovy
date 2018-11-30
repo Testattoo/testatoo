@@ -46,7 +46,7 @@ class LabelMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has label "OtherLabel"')
-                    .appendText('\n     but: has label "MyLabel"')
+                .appendText('\n     but: has label "MyLabel"')
 
             assert e.message == description.toString()
         }

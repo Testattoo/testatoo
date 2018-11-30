@@ -48,7 +48,7 @@ class FilledMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is filled')
-                    .appendText('\n     but: is empty')
+                .appendText('\n     but: is empty')
 
             assert e.message == description.toString()
         }

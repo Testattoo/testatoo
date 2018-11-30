@@ -46,7 +46,7 @@ class TitleMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has title "OtherTitle"')
-                    .appendText('\n     but: has title "MyTitle"')
+                .appendText('\n     but: has title "MyTitle"')
 
             assert e.message == description.toString()
         }

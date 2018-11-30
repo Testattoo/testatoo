@@ -43,10 +43,10 @@ class Config {
      */
     void scan(String... packageNames) {
         componentTypes.addAll(packageNames
-                .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
-                .flatten()
-                .collect { it.load() }
-                .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
+            .collect { ClassPath.from(Thread.currentThread().contextClassLoader).getTopLevelClassesRecursive(it) }
+            .flatten()
+            .collect { it.load() }
+            .findAll { Component.isAssignableFrom(it) && Identifiers.hasIdentifier(it) })
     }
 
     final Collection<Class<Component>> componentTypes = new HashSet<>()

@@ -46,7 +46,7 @@ class TextMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has text "OtherText"')
-                    .appendText('\n     but: has text "MyText"')
+                .appendText('\n     but: has text "MyText"')
 
             assert e.message == description.toString()
         }

@@ -25,7 +25,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4)
 class ImageTest {
     @Test
-     void should_have_expected_inheritance() {
+    void should_have_expected_inheritance() {
         assert Image in Component
     }
 }

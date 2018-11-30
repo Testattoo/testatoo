@@ -25,7 +25,7 @@ abstract class Cell extends Component implements ValueSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true
-        if(!o in Cell) return false
+        if (!o in Cell) return false
         Cell cell = (Cell) o
         value() == cell.value()
     }

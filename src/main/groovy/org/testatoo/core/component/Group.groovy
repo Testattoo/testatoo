@@ -25,7 +25,7 @@ abstract class Group extends Component implements ValueSupport, ItemSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true
-        if(!o in Group) return false
+        if (!o in Group) return false
         Group group = (Group) o
         value() == group.value()
     }

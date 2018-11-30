@@ -47,7 +47,7 @@ class InvalidMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is invalid')
-                    .appendText('\n     but: is valid')
+                .appendText('\n     but: is valid')
 
             assert e.message == description.toString()
         }

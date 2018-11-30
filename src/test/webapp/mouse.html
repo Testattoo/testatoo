@@ -115,63 +115,63 @@
   </div>
 </div>
 <script>
-    $.fn.dirtyCheck = function () {
-        this.addClass('dirty');
-        this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
-    };
+  $.fn.dirtyCheck = function () {
+    this.addClass('dirty');
+    this.append('<span id="span' + this.attr('id') + '" style="display:none"/>');
+  };
 
-    $(function () {
-        $("#draggable").draggable();
-        $("#droppable").droppable({
-            drop: function () {
-                $(this).find("h1").html("Dropped!");
+  $(function () {
+    $("#draggable").draggable();
+    $("#droppable").droppable({
+      drop: function () {
+        $(this).find("h1").html("Dropped!");
 
-            }
-        });
+      }
+    });
+  });
+
+  (function ($) {
+    // ==================== MOUSE ===================
+    $('#button_1').on('click', function (e) {
+      e.preventDefault();
+      $(this).attr('value', 'Button Clicked!');
     });
 
-    (function ($) {
-        // ==================== MOUSE ===================
-        $('#button_1').on('click', function (e) {
-            e.preventDefault();
-            $(this).attr('value', 'Button Clicked!');
-        });
+    $('#button_2').on('dblclick', function (e) {
+      e.preventDefault();
+      $(this).attr('value', 'Button Double Clicked!');
+    });
 
-        $('#button_2').on('dblclick', function (e) {
-            e.preventDefault();
-            $(this).attr('value', 'Button Double Clicked!');
-        });
+    $('#button_3').on('mouseover', function (e) {
+      e.preventDefault();
+      $(this).attr('value', 'Button Mouse Over!');
+    });
 
-        $('#button_3').on('mouseover', function (e) {
-            e.preventDefault();
-            $(this).attr('value', 'Button Mouse Over!');
-        });
+    $('#button_4').on('mouseout', function (e) {
+      e.preventDefault();
+      $(this).attr('value', 'Button Mouse Out!');
+    });
 
-        $('#button_4').on('mouseout', function (e) {
-            e.preventDefault();
-            $(this).attr('value', 'Button Mouse Out!');
-        });
+    $('#button_5').on('contextmenu', function (e) {
+      e.preventDefault();
+      $(this).attr('value', 'Button Right Clicked!');
+    });
 
-        $('#button_5').on('contextmenu', function (e) {
-            e.preventDefault();
-            $(this).attr('value', 'Button Right Clicked!');
-        });
+    //   ============= SPECIAL MODIFIERS AND MOUSE ===============
+    $(document).on('click', function (e) {
+      if (e.button === 2) {
+        if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
+        if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
+        if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();
+      } else {
+        if (e.ctrlKey) $('#_Ctrl_mouseleft').dirtyCheck();
+        if (e.shiftKey) $('#_Shift_mouseleft').dirtyCheck();
+        if (e.altKey && e.shiftKey) $('#_Alt_Shift_mouseleft').dirtyCheck();
+        if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
+      }
+    });
 
-        //   ============= SPECIAL MODIFIERS AND MOUSE ===============
-        $(document).on('click', function (e) {
-            if (e.button === 2) {
-                if (e.ctrlKey) $('#_Ctrl_mouseright').dirtyCheck();
-                if (e.shiftKey) $('#_Shift_mouseright').dirtyCheck();
-                if (e.shiftKey && e.altKey) $('#_Alt_Shift_mouseright').dirtyCheck();
-            } else {
-                if (e.ctrlKey) $('#_Ctrl_mouseleft').dirtyCheck();
-                if (e.shiftKey) $('#_Shift_mouseleft').dirtyCheck();
-                if (e.altKey && e.shiftKey) $('#_Alt_Shift_mouseleft').dirtyCheck();
-                if (e.ctrlKey && e.shiftKey) $('#_Ctrl_Shift_mouseleft').dirtyCheck();
-            }
-        });
-
-    }(jQuery));
+  }(jQuery));
 </script>
 
 </body>

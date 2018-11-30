@@ -48,7 +48,7 @@ class RequiredMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is required')
-                    .appendText('\n     but: is optional')
+                .appendText('\n     but: is optional')
 
             assert e.message == description.toString()
         }
