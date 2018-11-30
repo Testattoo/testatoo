@@ -20,15 +20,16 @@ import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.interactions.Actions
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
+import static org.testatoo.core.input.MouseModifiers.*
 import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -159,10 +160,12 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void click(String id, Collection<MouseModifiers> mouseModifiers = [LEFT], Collection<?> keys = []) {
         WebElement element = webDriver.findElement(By.id(id))
-        // Not used cause still an issue in FF => https://github.com/mozilla/geckodriver/issues/776
-//        new Actions(webDriver).moveToElement(element).build().perform()
-        // Temporary fix with pure js command
-        runScript("document.getElementById('${id}').scrollIntoView(true)")
+        if(webDriver instanceof FirefoxDriver) {
+            // Temporary fix with pure js command in FF => https://github.com/mozilla/geckodriver/issues/776
+            runScript("document.getElementById('${id}').scrollIntoView(true)")
+        } else {
+            new Actions(webDriver).moveToElement(element).build().perform()
+        }
 
         // Temporary hack until Selenium fix
         if (optionInDropdown(id)) {

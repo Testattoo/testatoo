@@ -51,6 +51,7 @@ enum Key {
 
     TAB,
     RETURN,
+    ENTER,
     SPACE,
 
     LEFT,

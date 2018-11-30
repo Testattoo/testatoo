@@ -86,6 +86,8 @@ class KeyConverter {
                 return Keys.TAB
             case RETURN:
                 return Keys.RETURN
+            case ENTER:
+                return Keys.ENTER
             case SPACE:
                 return Keys.SPACE
             case LEFT:
