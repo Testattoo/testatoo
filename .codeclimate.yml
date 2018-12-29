@@ -1,6 +1,6 @@
 ---
 version: "2"
-engines:
+plugins:
   codenarc:
     enabled: true
 
