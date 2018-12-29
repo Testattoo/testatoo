@@ -6,4 +6,5 @@ workflow "Push Workflow" {
 action "Unit-tests" {
   uses = "docker://circleci/openjdk"
   runs = "./mvnw test"
+  secrets = ["GITHUB_TOKEN"]
 }
