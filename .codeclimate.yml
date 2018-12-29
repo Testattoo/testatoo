@@ -1,4 +1,10 @@
+---
 version: "2"
 plugins:
   codenarc:
     enabled: true
+
+exclude_patterns:
+  - .github/
+  - .mvnw/
+  - src/test/**/*
