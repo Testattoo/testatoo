@@ -3,6 +3,8 @@ version: "2"
 plugins:
   codenarc:
     enabled: true
+  fixme:
+    enabled: true
 
 exclude_patterns:
   - .github/
