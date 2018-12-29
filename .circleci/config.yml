@@ -25,6 +25,6 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn clean test jacoco:report coveralls:report -Dremote=true
+      - run: mvn clean test -Dremote=true
       - store_test_results:
           path: target/surefire-reports
