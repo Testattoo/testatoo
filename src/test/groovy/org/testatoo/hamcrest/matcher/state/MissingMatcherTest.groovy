@@ -48,7 +48,7 @@ class MissingMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is missing')
-                    .appendText('\n     but: is available')
+                .appendText('\n     but: is available')
 
             assert e.message == description.toString()
         }

@@ -46,7 +46,7 @@ class MaximumMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has maximum 50')
-                    .appendText('\n     but: has maximum 10')
+                .appendText('\n     but: has maximum 10')
 
             assert e.message == description.toString()
         }

@@ -48,7 +48,7 @@ class SelectedMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is selected')
-                    .appendText('\n     but: is unselected')
+                .appendText('\n     but: is unselected')
 
             assert e.message == description.toString()
         }

@@ -27,7 +27,7 @@ import org.testatoo.WebDriverConfig
 import org.testatoo.bundle.html5.Button
 
 import static org.junit.Assert.fail
-import static org.testatoo.WebDriverConfig.*
+import static org.testatoo.WebDriverConfig.BASE_URL
 import static org.testatoo.core.Testatoo.*
 
 /**
@@ -83,8 +83,8 @@ class WaitTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('Unable to reach the condition after 10000 milliseconds')
-                    .appendText('\nExpected: is disabled')
-                    .appendText('\n     but: is enabled')
+                .appendText('\nExpected: is disabled')
+                .appendText('\n     but: is enabled')
 
             assert e.message == description.toString()
         }

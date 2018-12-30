@@ -48,7 +48,7 @@ class FocusedMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is focused')
-                    .appendText('\n     but: is not focused')
+                .appendText('\n     but: is not focused')
 
             assert e.message == description.toString()
         }

@@ -57,7 +57,7 @@ class ItemMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has item(s) ["item_1", "item_3"]')
-                    .appendText('\n     but: has item(s) ["item_1", "item_2"]')
+                .appendText('\n     but: has item(s) ["item_1", "item_2"]')
 
             assert e.message == description.toString()
         }
@@ -68,7 +68,7 @@ class ItemMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has item(s) ["item_1", "item_3"]')
-                    .appendText('\n     but: has item(s) ["item_1", "item_2"]')
+                .appendText('\n     but: has item(s) ["item_1", "item_2"]')
 
             assert e.message == description.toString()
         }

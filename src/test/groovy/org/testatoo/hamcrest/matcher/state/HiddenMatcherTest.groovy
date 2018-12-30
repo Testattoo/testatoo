@@ -48,7 +48,7 @@ class HiddenMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is hidden')
-                    .appendText('\n     but: is visible')
+                .appendText('\n     but: is visible')
 
             assert e.message == description.toString()
         }

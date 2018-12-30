@@ -44,8 +44,8 @@ class WindowTest {
         Window window_2 = new Window('id_2')
         Window window_3 = new Window('id_1')
 
-        assert  window_1 != window_2
-        assert  window_1 == window_3
+        assert window_1 != window_2
+        assert window_1 == window_3
     }
 
     @Test

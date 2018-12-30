@@ -36,7 +36,7 @@ class LabelMatcher extends PropertyMatcher<LabelSupport> {
 
     @Override
     void describeTo(Description description) {
-        description.appendText('label ')appendValue(label)
+        description.appendText('label ') appendValue(label)
     }
 
     @Override

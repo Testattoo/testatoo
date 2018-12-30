@@ -26,7 +26,7 @@ import org.testatoo.core.input.DragBuilder
 import org.testatoo.core.support.Clickable
 import org.testatoo.core.support.Draggable
 
-import static org.mockito.Mockito.any
+import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
 import static org.testatoo.core.input.MouseModifiers.*
@@ -67,12 +67,12 @@ class ComponentTest {
         Component cmp_4 = new Component(metaData) {}
 
         when(metaData.metaInfo(any(Component)))
-                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
-                .thenReturn(new MetaInfo(id: 'cmpId_2')) // Call on id for cmp_2
-                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
-                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
-                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
-                .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
+            .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
+            .thenReturn(new MetaInfo(id: 'cmpId_2')) // Call on id for cmp_2
+            .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
+            .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
+            .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
+            .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
 
         assert !cmp_1.equals(cmp_2) // Same class not same id
         assert cmp_1.equals(cmp_3)  // Same class and same id

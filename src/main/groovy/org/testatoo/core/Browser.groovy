@@ -22,13 +22,19 @@ import static org.testatoo.core.Testatoo.config
  */
 class Browser {
     static void navigateTo(String url) { config.evaluator.to(url) }
+
     static void back() { config.evaluator.back() }
+
     static void forward() { config.evaluator.forward() }
+
     static void refresh() { config.evaluator.refresh() }
 
     static String getTitle() { config.evaluator.title }
+
     static String getPageSource() { config.evaluator.pageSource }
+
     static String getUrl() { config.evaluator.url }
+
     static void open(String url) { config.evaluator.open(url) }
 
     static List<Window> getWindows() {

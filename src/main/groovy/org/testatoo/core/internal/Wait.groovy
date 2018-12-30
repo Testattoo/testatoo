@@ -49,8 +49,8 @@ class Wait {
             description.appendText('Unable to reach the condition after ' + config.waitUntil.toMillis() + ' milliseconds')
             if (what) {
                 description.appendText('\nExpected: ')
-                        .appendDescriptionOf(what)
-                        .appendText('\n     but: ')
+                    .appendDescriptionOf(what)
+                    .appendText('\n     but: ')
                 what.describeMismatch(c.delegate, description)
             }
             throw new AssertionError(description.toString())

@@ -16,7 +16,9 @@
 package org.testatoo.core.support.property
 
 import org.testatoo.core.support.Clearable
-import org.testatoo.core.support.state.*
+import org.testatoo.core.support.state.EmptySupport
+import org.testatoo.core.support.state.ReadOnlySupport
+import org.testatoo.core.support.state.RequiredSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

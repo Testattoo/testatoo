@@ -19,12 +19,7 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.testatoo.bundle.stub.ButtonStub
-import org.testatoo.bundle.stub.DropDownStub
-import org.testatoo.bundle.stub.GroupStub
-import org.testatoo.bundle.stub.ItemStub
-import org.testatoo.bundle.stub.LinkStub
-import org.testatoo.bundle.stub.ListBoxStub
+import org.testatoo.bundle.stub.*
 import org.testatoo.bundle.stub.datagrid.CellStub
 import org.testatoo.bundle.stub.datagrid.ColumnStub
 import org.testatoo.bundle.stub.datagrid.DataGridStub
@@ -34,13 +29,7 @@ import org.testatoo.bundle.stub.field.TextFieldStub
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
-import org.testatoo.core.component.Button
-import org.testatoo.core.component.Component
-import org.testatoo.core.component.Dropdown
-import org.testatoo.core.component.Group
-import org.testatoo.core.component.Item
-import org.testatoo.core.component.Link
-import org.testatoo.core.component.ListBox
+import org.testatoo.core.component.*
 import org.testatoo.core.component.datagrid.Cell
 import org.testatoo.core.component.datagrid.Column
 import org.testatoo.core.component.datagrid.DataGrid
@@ -49,34 +38,8 @@ import org.testatoo.core.component.field.RangeField
 import org.testatoo.core.component.field.TextField
 
 import static org.mockito.ArgumentMatchers.any
-import static org.mockito.Mockito.doReturn
-import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.spy
-import static org.mockito.Mockito.when
-import static org.testatoo.core.Testatoo.cells
-import static org.testatoo.core.Testatoo.cells
-import static org.testatoo.core.Testatoo.columns
-import static org.testatoo.core.Testatoo.columns
-import static org.testatoo.core.Testatoo.getConfig
-import static org.testatoo.core.Testatoo.groups
-import static org.testatoo.core.Testatoo.groups
-import static org.testatoo.core.Testatoo.items
-import static org.testatoo.core.Testatoo.items
-import static org.testatoo.core.Testatoo.label
-import static org.testatoo.core.Testatoo.length
-import static org.testatoo.core.Testatoo.maximum
-import static org.testatoo.core.Testatoo.minimum
-import static org.testatoo.core.Testatoo.placeholder
-import static org.testatoo.core.Testatoo.reference
-import static org.testatoo.core.Testatoo.rows
-import static org.testatoo.core.Testatoo.rows
-import static org.testatoo.core.Testatoo.selectedItem
-import static org.testatoo.core.Testatoo.selectedItem
-import static org.testatoo.core.Testatoo.selectedItems
-import static org.testatoo.core.Testatoo.step
-import static org.testatoo.core.Testatoo.text
-import static org.testatoo.core.Testatoo.title
-import static org.testatoo.core.Testatoo.value
+import static org.mockito.Mockito.*
+import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

@@ -47,7 +47,7 @@ class OutOfRangeMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is out of range')
-                    .appendText('\n     but: is in range')
+                .appendText('\n     but: is in range')
 
             assert e.message == description.toString()
         }

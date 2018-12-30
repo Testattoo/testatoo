@@ -25,10 +25,11 @@ import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
-import static org.testatoo.core.input.MouseModifiers.*
 import org.testatoo.core.internal.Log
 
 import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.MouseModifiers.DOUBLE
+import static org.testatoo.core.input.MouseModifiers.SINGLE
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -129,8 +130,8 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(expression)}.testatoo({method: 'metaInfos'});")
         return infos.collect {
             new MetaInfo(
-                    id: it.id,
-                    node: it.node
+                id: it.id,
+                node: it.node
             )
         }
     }
@@ -160,7 +161,7 @@ class WebDriverEvaluator implements Evaluator {
         runScript("document.getElementById('${id}').scrollIntoView(true)")
 
         // Temporary hack until Selenium fix
-        if(optionInDropdown(id)) {
+        if (optionInDropdown(id)) {
             element.click()
             return
         }
@@ -227,7 +228,7 @@ class WebDriverEvaluator implements Evaluator {
 
         if (v == '__JQUERY_MISSING__') {
             js.executeScript(getClass().getResource('jquery-3.1.1.slim.min.js').text
-                    + getClass().getResource('testatoo.js').text)
+                + getClass().getResource('testatoo.js').text)
             registeredScripts.each { js.executeScript(it) }
             return execute(id, s)
         }

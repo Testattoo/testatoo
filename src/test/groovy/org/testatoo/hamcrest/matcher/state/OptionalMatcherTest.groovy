@@ -49,7 +49,7 @@ class OptionalMatcherTest {
 
             Description description = new StringDescription()
             description.appendText('\nExpected: is optional')
-                    .appendText('\n     but: is required')
+                .appendText('\n     but: is required')
 
             assert e.message == description.toString()
         }

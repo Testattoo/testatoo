@@ -17,8 +17,8 @@ package org.testatoo.core.internal
 
 import io.github.classgraph.ClassGraph
 import io.github.classgraph.ScanResult
-import org.testatoo.core.CssIdentifier
 import org.testatoo.core.ComponentException
+import org.testatoo.core.CssIdentifier
 import org.testatoo.core.Identifier
 import org.testatoo.core.component.Component
 
@@ -31,8 +31,8 @@ class Identifiers {
     private static Map<Class, List<Class>> cachedComponents = new HashMap<>()
 
     private static ScanResult scan = new ClassGraph()
-            .whitelistPackages('org.testatoo.bundle')
-            .scan()
+        .whitelistPackages('org.testatoo.bundle')
+        .scan()
 
     static Map factories = [
         (CssIdentifier): { CssIdentifier annotation -> return "it.is('${annotation.value()}')" }
@@ -60,13 +60,13 @@ class Identifiers {
     static Map<Class, String> findSelectorsFor(Class clazz) {
         Map<Class, String> selectors = new HashMap<>()
 
-        if(!cachedComponents.get(clazz)) {
+        if (!cachedComponents.get(clazz)) {
             cachedComponents.put(clazz, scan.getSubclasses(clazz.name).loadClasses())
         }
 
         cachedComponents.get(clazz).each {
             Annotation annotation = it.declaredAnnotations.find { it.annotationType().isAnnotationPresent(Identifier) }
-            if(annotation == null) {
+            if (annotation == null) {
                 throw new ComponentException("Unable to find any component definition for: " + clazz)
             }
             selectors.put(it, annotation.value())

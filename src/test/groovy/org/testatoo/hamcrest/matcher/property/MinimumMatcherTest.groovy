@@ -46,7 +46,7 @@ class MinimumMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has minimum 50')
-                    .appendText('\n     but: has minimum 10')
+                .appendText('\n     but: has minimum 10')
 
             assert e.message == description.toString()
         }

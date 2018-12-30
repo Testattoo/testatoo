@@ -48,7 +48,7 @@ class CheckedMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is checked')
-                    .appendText('\n     but: is unchecked')
+                .appendText('\n     but: is unchecked')
 
             assert e.message == description.toString()
         }
