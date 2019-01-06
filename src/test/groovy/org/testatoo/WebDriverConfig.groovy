@@ -37,6 +37,7 @@ import static org.testatoo.core.Testatoo.config
  */
 class WebDriverConfig extends ExternalResource {
     public static String BASE_URL
+    private static int PORT = 9090
     private static Server server
 
     @Override
@@ -45,7 +46,7 @@ class WebDriverConfig extends ExternalResource {
         final String browser = System.getProperty('browser') ?: 'Chrome' // -Dbrowser=Firefox
         final boolean docker = Boolean.valueOf(System.getProperty('remote')) ?: false // -Dremote=true
 
-        BASE_URL = 'http://localhost:8080/'
+        BASE_URL = 'http://localhost:' + PORT + '/'
 
         startJetty()
 
@@ -56,7 +57,7 @@ class WebDriverConfig extends ExternalResource {
                     WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new FirefoxOptions())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
-                    WebDriverManager.firefoxdriver().setup();
+                    WebDriverManager.firefoxdriver().setup()
                     config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
                 }
                 break
@@ -66,13 +67,13 @@ class WebDriverConfig extends ExternalResource {
                     WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new ChromeOptions())
                     config.evaluator = new WebDriverEvaluator(driver)
                 } else {
-                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.chromedriver().setup()
                     config.evaluator = new WebDriverEvaluator(new ChromeDriver())
                 }
                 break
             case 'Edge':
                 println '==================== Edge Profile ===================='
-                WebDriverManager.edgedriver().setup();
+                WebDriverManager.edgedriver().setup()
                 config.evaluator = new WebDriverEvaluator(new EdgeDriver())
                 break
         }
@@ -85,7 +86,7 @@ class WebDriverConfig extends ExternalResource {
     }
 
     private static void startJetty() {
-        server = new Server(8080)
+        server = new Server(PORT)
         ResourceHandler resource_handler = new ResourceHandler()
 
         resource_handler.directoriesListed = true
