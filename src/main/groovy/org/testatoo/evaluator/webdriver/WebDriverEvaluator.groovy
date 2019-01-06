@@ -27,9 +27,7 @@ import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
 import org.testatoo.core.internal.Log
 
-import static org.testatoo.core.input.Key.*
-import static org.testatoo.core.input.MouseModifiers.DOUBLE
-import static org.testatoo.core.input.MouseModifiers.SINGLE
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -143,7 +141,7 @@ class WebDriverEvaluator implements Evaluator {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [SHIFT, CTRL, ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
@@ -171,7 +169,7 @@ class WebDriverEvaluator implements Evaluator {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [SHIFT, CTRL, ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }

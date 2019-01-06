@@ -4,7 +4,7 @@ workflow "Push Workflow" {
 }
 
 action "Unit-tests" {
-  uses = "docker://tenjaa/java-chrome-nodejs"
-  runs = "./mvnw test"
+  uses = "docker://circleci/openjdk:8-jdk"
+  runs = "./mvnw test -Dremote=true"
   secrets = ["GITHUB_TOKEN"]
 }

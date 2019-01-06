@@ -164,7 +164,6 @@ class MouseTest {
         [CTRL, SHIFT].click $('#_Ctrl_Shift_mouseleft') as Div
         assert !span_Crtl_Shift_mouseleft.available()
 
-        // For code coverage
         [SPACE].click $('#_Ctrl_Shift_mouseleft') as Div
         ['data'].click $('#_Ctrl_Shift_mouseleft') as Div
     }
