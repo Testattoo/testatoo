@@ -4,7 +4,7 @@ workflow "Push Workflow" {
 }
 
 action "Unit-tests" {
-  uses = "docker://atlassianlabs/docker-node-jdk-chrome-firefox"
+  uses = "docker://tenjaa/java-chrome-nodejs"
   runs = "./mvnw test"
   secrets = ["GITHUB_TOKEN"]
 }
