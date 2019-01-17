@@ -28,6 +28,8 @@ import org.testatoo.core.support.state.*
 import org.testatoo.hamcrest.matcher.property.*
 import org.testatoo.hamcrest.matcher.state.*
 
+import static org.testatoo.core.Testatoo.*
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
@@ -76,7 +78,7 @@ class Matchers {
     static Matcher<ValiditySupport> invalid() { new InvalidMatcher() }
 
     static Matcher<Component> contain(Component... components) {
-        new ContainMatcher(Testatoo.config.evaluator, components)
+        new ContainMatcher(config.evaluator, components)
     }
 
     static Matcher<CollapseSupport> expanded() { new ExpandedMatcher() }
