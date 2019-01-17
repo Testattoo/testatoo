@@ -1,10 +1,6 @@
-= Testatoo
+# Testatoo
 
-:revdate: 01-01-2018
-:download-url: http://repo1.maven.org/maven2/org/testatoo/testatoo/
-:noheader:
-
-image:https://img.shields.io/circleci/project/github/Testatoo/testatoo.svg?style=flat-square["CircleCI",link="https://circleci.com/gh/Testatoo/testatoo"]
+[![CircleCI](https://circleci.com/gh/Testatoo/testatoo.svg?style=svg)](https://circleci.com/gh/Testatoo/testatoo)
 image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 https://coveralls.io/github/Testatoo/testatoo?branch=master[image:https://coveralls.io/repos/Testatoo/testatoo/badge.svg?branch=master&service=github[CoverageStatus]]
 image:https://img.shields.io/hexpm/l/plug.svg[Hex.pm]
@@ -12,17 +8,17 @@ image:https://img.shields.io/hexpm/l/plug.svg[Hex.pm]
 [.left.text-left]
 image::logo.svg[]
 
-== Documentation and Samples
+## Documentation and Samples
 
 The documentation is available http://www.testatoo.org/documentation.html[here]
 
 Samples are available https://github.com/Ovea/testatoo-sample[here]
 
-== Quickstart
+## Quickstart
 
 Get Started in 5 minutes http://www.testatoo.org/get-started.html[here]
 
-== Downloading
+## Downloading
 
 Latest Testatoo version is available on {download-url}[Maven Central]
 
@@ -33,11 +29,11 @@ Latest Testatoo version is available on {download-url}[Maven Central]
       <scope>test</scope>
     </dependency>
 
-== Building
+## Building
 
-=== Prerequisites
+### Prerequisites
 
-==== Java 1.8+
+#### Java 1.8+
 
 You need version **1.8** and more of the Java JDK installed
 
@@ -45,7 +41,7 @@ You need version **1.8** and more of the Java JDK installed
     java version "1.8.0_151"
     ...
     
-==== Maven
+#### Maven
 
 Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven Installation Instructions"]
 
@@ -53,12 +49,12 @@ Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven
     Apache Maven 3.5.0
     ...
 
-=== Installation Steps
+#### Installation Steps
 
     $ git clone https://github.com/Ovea/testatoo
     $ cd testatoo
 
-=== Install browsers
+### Install browsers
     - Install Firefox
     - Install Chrome
     - Install Edge / Safari
