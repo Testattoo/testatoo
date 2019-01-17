@@ -42,7 +42,7 @@ You need version **1.8** and more of the Java JDK installed
     
 #### Maven
 
-Follow the instructions http://maven.apache.org/download.cgi#Installation["Maven Installation Instructions"]
+Follow the instructions [Maven Installation Instructions](http://maven.apache.org/download.cgi#Installation)
 
     $ mvn --version  
     Apache Maven 3.5.0
