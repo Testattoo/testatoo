@@ -20,11 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.support.Selectable
 import org.testatoo.core.support.UnSelectable
-import org.testatoo.core.support.property.GroupSupport
-import org.testatoo.core.support.property.ItemSupport
-import org.testatoo.core.support.property.LabelSupport
-import org.testatoo.core.support.property.SelectedItemsSupport
-import org.testatoo.core.support.property.VisibleItemsSupport
+import org.testatoo.core.support.property.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)

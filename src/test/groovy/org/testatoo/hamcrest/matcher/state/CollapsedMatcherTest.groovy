@@ -49,7 +49,7 @@ class CollapsedMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is collapsed')
-                    .appendText('\n     but: is expanded')
+                .appendText('\n     but: is expanded')
 
             assert e.message == description.toString()
         }

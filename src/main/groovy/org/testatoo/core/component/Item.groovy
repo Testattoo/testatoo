@@ -25,7 +25,7 @@ abstract class Item extends Component implements SelectSupport, ValueSupport {
     @Override
     boolean equals(o) {
         if (this.is(o)) return true
-        if(!o in Item) return false
+        if (!o in Item) return false
         Item item = (Item) o
         value() == item.value()
     }

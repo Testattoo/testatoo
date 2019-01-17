@@ -26,4 +26,4 @@ import org.testatoo.core.support.state.EmptySupport
  * @author David Avenante (d.avenante@gmail.com)
  */
 abstract class Dropdown extends Component implements LabelSupport, GroupSupport, EmptySupport, Selectable,
-        ItemSupport, SelectedItemSupport {}
+    ItemSupport, SelectedItemSupport {}

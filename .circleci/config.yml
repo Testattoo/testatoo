@@ -1,30 +1,28 @@
-version: 2
+version: 2.1
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+    - build-and-test
+
+orbs:
+  codecov: codecov/codecov@1.0.2
+
+
 jobs:
-  build:
+  build-and-test:
     docker:
       - image: circleci/openjdk:8-jdk
       - image: selenium/standalone-chrome
         environment:
           port: 4444:4444
 
-    working_directory: ~/repo
-
-    environment:
-      MAVEN_OPTS: -Xmx3200m
-
     steps:
       - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-
-      - run: mvn dependency:go-offline
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-
-      - run: mvn clean test jacoco:report coveralls:report -Dremote=true
+      - run: mvn clean cobertura:cobertura -Dremote=true
       - store_test_results:
           path: target/surefire-reports
+      - codecov/upload:
+          file: target/site/cobertura/coverage.xml
+

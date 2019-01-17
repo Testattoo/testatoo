@@ -47,7 +47,7 @@ class ColumnSizeMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has 3 column(s)')
-                    .appendText('\n     but: has 2 column(s)')
+                .appendText('\n     but: has 2 column(s)')
 
             assert e.message == description.toString()
         }

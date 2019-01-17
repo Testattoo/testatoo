@@ -22,7 +22,7 @@ import org.testatoo.hamcrest.PropertyMatcher
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class LengthMatcher  extends PropertyMatcher<LengthSupport> {
+class LengthMatcher extends PropertyMatcher<LengthSupport> {
     private Object length
 
     LengthMatcher(Object length) {

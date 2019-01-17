@@ -57,7 +57,7 @@ class CellMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has cell(s) ["cell_1", "cell_3"]')
-                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]')
+                .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]')
 
             assert e.message == description.toString()
         }
@@ -68,7 +68,7 @@ class CellMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has cell(s) ["cell_1", "cell_3"]')
-                    .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]')
+                .appendText('\n     but: has cell(s) ["cell_1", "cell_2"]')
 
             assert e.message == description.toString()
         }

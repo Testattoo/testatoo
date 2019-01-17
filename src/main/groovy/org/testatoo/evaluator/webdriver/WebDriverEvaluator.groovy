@@ -25,10 +25,9 @@ import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaInfo
 import org.testatoo.core.input.Key
 import org.testatoo.core.input.MouseModifiers
-import static org.testatoo.core.input.MouseModifiers.*
 import org.testatoo.core.internal.Log
 
-import static org.testatoo.core.input.Key.*
+import static org.testatoo.core.input.MouseModifiers.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
@@ -129,8 +128,8 @@ class WebDriverEvaluator implements Evaluator {
         List<Map> infos = getJson("${removeTrailingChars(expression)}.testatoo({method: 'metaInfos'});")
         return infos.collect {
             new MetaInfo(
-                    id: it.id,
-                    node: it.node
+                id: it.id,
+                node: it.node
             )
         }
     }
@@ -142,7 +141,7 @@ class WebDriverEvaluator implements Evaluator {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [SHIFT, CTRL, ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
@@ -160,7 +159,7 @@ class WebDriverEvaluator implements Evaluator {
         runScript("document.getElementById('${id}').scrollIntoView(true)")
 
         // Temporary hack until Selenium fix
-        if(optionInDropdown(id)) {
+        if (optionInDropdown(id)) {
             element.click()
             return
         }
@@ -170,7 +169,7 @@ class WebDriverEvaluator implements Evaluator {
         Collection<String> text = []
         keys.each { k ->
             if (k instanceof Key && text) throw new IllegalArgumentException('Cannot type a modifier after some text')
-            if (k instanceof Key && k in [SHIFT, CTRL, ALT]) modifiers << k
+            if (k instanceof Key && k in [Key.SHIFT, Key.CTRL, Key.ALT]) modifiers << k
             else text << k as String
         }
         modifiers.each { action.keyDown(KeyConverter.convert(it)) }
@@ -227,7 +226,7 @@ class WebDriverEvaluator implements Evaluator {
 
         if (v == '__JQUERY_MISSING__') {
             js.executeScript(getClass().getResource('jquery-3.1.1.slim.min.js').text
-                    + getClass().getResource('testatoo.js').text)
+                + getClass().getResource('testatoo.js').text)
             registeredScripts.each { js.executeScript(it) }
             return execute(id, s)
         }

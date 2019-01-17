@@ -49,8 +49,8 @@ class SelectorTest {
     @Test
     void should_throw_an_error_if_single_selector_find_many_components() {
         when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node'),
-                                                                 new MetaInfo(id: '2', node: 'node'),
-                                                                 new MetaInfo(id: '3', node: 'node')])
+                                                                        new MetaInfo(id: '2', node: 'node'),
+                                                                        new MetaInfo(id: '3', node: 'node')])
         try {
             Component button = $('expression') as Component
             button.should { be enabled }
@@ -104,8 +104,8 @@ class SelectorTest {
     @Test
     void should_use_$$_as_a_multi_selector() {
         when(config.evaluator.metaInfo("\$('.btn')")).thenReturn([new MetaInfo(id: '1', node: 'node'),
-                                                                        new MetaInfo(id: '2', node: 'node'),
-                                                                        new MetaInfo(id: '3', node: 'node')])
+                                                                  new MetaInfo(id: '2', node: 'node'),
+                                                                  new MetaInfo(id: '3', node: 'node')])
 
         List<CustomElement_1> elements = $$('.btn', CustomElement_1)
         assert elements.size() == 3

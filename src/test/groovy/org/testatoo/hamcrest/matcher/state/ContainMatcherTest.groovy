@@ -27,7 +27,7 @@ import org.testatoo.core.component.Component
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
-import static org.mockito.Mockito.any
+import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.core.Testatoo.config
@@ -67,7 +67,7 @@ class ContainMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: Component Component:container contains [Component:1, Component:2]')
-                    .appendText('\n     but: does not contains expected component(s): [Component:2]')
+                .appendText('\n     but: does not contains expected component(s): [Component:2]')
 
             assert e.message == description.toString()
         }

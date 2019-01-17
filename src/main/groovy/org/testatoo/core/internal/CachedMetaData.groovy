@@ -34,19 +34,19 @@ class CachedMetaData implements MetaDataProvider {
     @Override
     MetaInfo metaInfo(Component c) {
         if (!metaInfo) {
-                MetaInfo info = idProvider.metaInfos()[0]
-                if (c.class != Component) {
-                    String identifyingExpr = Identifiers.identifyingExpression(c.class)
-                    if (!(config.evaluator.check(info.id, identifyingExpr))) {
-                        Class<Component> type = config.componentTypes.find {
-                            config.evaluator.check(info.id, Identifiers.identifyingExpression(it))
-                        }
-                        throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
+            MetaInfo info = idProvider.metaInfos()[0]
+            if (c.class != Component) {
+                String identifyingExpr = Identifiers.identifyingExpression(c.class)
+                if (!(config.evaluator.check(info.id, identifyingExpr))) {
+                    Class<Component> type = config.componentTypes.find {
+                        config.evaluator.check(info.id, Identifiers.identifyingExpression(it))
                     }
+                    throw new ComponentException("Expected a ${c.class.simpleName} for component with id '${info.id}', but was: ${type?.simpleName ?: 'unknown'}")
                 }
-                metaInfo = info
             }
-            return metaInfo
+            metaInfo = info
+        }
+        return metaInfo
     }
 
     @Override

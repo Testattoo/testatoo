@@ -73,13 +73,13 @@ class KeyboardTest {
     @Test
     void should_type_special_key_on_keyboard() {
         [
-                '#span_divide'   : DIVIDE,
-                '#span_multiply' : MULTIPLY,
-                '#span_substract': SUBTRACT,
-                '#span_add'      : ADD,
-                '#span_equals'   : EQUALS,
-                '#span_return'   : RETURN,
-                '#span_space'    : SPACE
+            '#span_divide'   : DIVIDE,
+            '#span_multiply' : MULTIPLY,
+            '#span_substract': SUBTRACT,
+            '#span_add'      : ADD,
+            '#span_equals'   : EQUALS,
+            '#span_return'   : RETURN,
+            '#span_space'    : SPACE
         ].each { k, v ->
             Component current_span = $(k) as Component
             assert !current_span.available()

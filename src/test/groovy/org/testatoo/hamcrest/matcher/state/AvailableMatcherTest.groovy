@@ -48,7 +48,7 @@ class AvailableMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is available')
-                    .appendText('\n     but: is missing')
+                .appendText('\n     but: is missing')
 
             assert e.message == description.toString()
         }

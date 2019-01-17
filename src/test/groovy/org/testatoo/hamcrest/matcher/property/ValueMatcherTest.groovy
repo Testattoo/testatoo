@@ -46,7 +46,7 @@ class ValueMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has value "OtherValue"')
-                    .appendText('\n     but: has value "MyValue"')
+                .appendText('\n     but: has value "MyValue"')
 
             assert e.message == description.toString()
         }

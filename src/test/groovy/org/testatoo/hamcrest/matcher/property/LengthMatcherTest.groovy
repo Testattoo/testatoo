@@ -21,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.testatoo.core.support.property.LengthSupport
+
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.junit.Assert.fail
 import static org.mockito.Mockito.mock
@@ -45,7 +46,7 @@ class LengthMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: has length 50')
-                    .appendText('\n     but: has length 10')
+                .appendText('\n     but: has length 10')
 
             assert e.message == description.toString()
         }

@@ -82,7 +82,7 @@ class WebDriverEvaluatorTest {
             // Register scripts who
             // Create the missing TAG
             config.evaluator.registerScripts("function create() { var element = document.createElement('div'); " +
-                    "element.id = 'created'; document.body.appendChild(element);}; create()")
+                "element.id = 'created'; document.body.appendChild(element);}; create()")
 
             visit BASE_URL + 'index.html'
 

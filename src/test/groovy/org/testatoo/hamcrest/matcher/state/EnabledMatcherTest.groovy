@@ -48,7 +48,7 @@ class EnabledMatcherTest {
         } catch (AssertionError e) {
             Description description = new StringDescription()
             description.appendText('\nExpected: is enabled')
-                    .appendText('\n     but: is disabled')
+                .appendText('\n     but: is disabled')
 
             assert e.message == description.toString()
         }
