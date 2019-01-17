@@ -25,3 +25,4 @@ jobs:
           path: target/surefire-reports
       - codecov/upload:
           file: target/site/cobertura/coverage.xml
+
