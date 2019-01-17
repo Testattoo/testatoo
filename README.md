@@ -2,9 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/Testatoo/testatoo.svg?style=svg)](https://circleci.com/gh/Testatoo/testatoo)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Ovea/testatoo)
+[![codecov](https://codecov.io/gh/Testatoo/testatoo/branch/master/graph/badge.svg)](https://codecov.io/gh/Testatoo/testatoo)
 
-image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/Ovea/testatoo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
-https://coveralls.io/github/Testatoo/testatoo?branch=master[image:https://coveralls.io/repos/Testatoo/testatoo/badge.svg?branch=master&service=github[CoverageStatus]]
+
+
 image:https://img.shields.io/hexpm/l/plug.svg[Hex.pm]
 
 [.left.text-left]
