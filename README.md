@@ -5,11 +5,11 @@
 [![codecov](https://codecov.io/gh/Testatoo/testatoo/branch/master/graph/badge.svg)](https://codecov.io/gh/Testatoo/testatoo)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-![Alt text](logo.svg "Optional title")
+![TEstatoo Logo](logo.svg "Testatoo")
 
 ## Documentation and Samples
 
-The documentation is available http://www.testatoo.org/documentation.html[here]
+The documentation is available [here](http://www.testatoo.org/documentation.html)
 
 Samples are available https://github.com/Ovea/testatoo-sample[here]
 
