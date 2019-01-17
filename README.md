@@ -5,8 +5,7 @@
 [![codecov](https://codecov.io/gh/Testatoo/testatoo/branch/master/graph/badge.svg)](https://codecov.io/gh/Testatoo/testatoo)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[.left.text-left]
-image::logo.svg[]
+![Alt text](logo.svg "Optional title")
 
 ## Documentation and Samples
 
