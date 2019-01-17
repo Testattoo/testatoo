@@ -11,15 +11,15 @@
 
 The documentation is available [here](http://www.testatoo.org/documentation.html)
 
-Samples are available https://github.com/Ovea/testatoo-sample[here]
+Samples are available [here](https://github.com/Ovea/testatoo-sample)
 
 ## Quickstart
 
-Get Started in 5 minutes http://www.testatoo.org/get-started.html[here]
+Get Started in 5 minutes [here](http://www.testatoo.org/get-started.html)
 
 ## Downloading
 
-Latest Testatoo version is available on {download-url}[Maven Central]
+Latest Testatoo version is available on [Maven Central](https://repo.maven.apache.org/maven2/org/testatoo/testatoo/)
 
     <dependency>
       <groupId>org.testatoo</groupId>
