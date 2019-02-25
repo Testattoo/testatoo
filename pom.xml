@@ -178,10 +178,16 @@
             <email>d.avenante@gmail.com</email>
           </properties>
           <excludes>
+            <exclude>mvnw</exclude>
+            <exclude>mvnw.cmd</exclude>
+            <exclude>.editorconfig</exclude>
             <exclude>**/README</exclude>
             <exclude>**/LICENCE</exclude>
             <exclude>**/*.adoc</exclude>
             <exclude>**/*.yml</exclude>
+            <exclude>**/*.yml</exclude>
+
+            <exclude>.mvn/**</exclude>
             <exclude>src/test/resources/**</exclude>
             <exclude>src/main/resources/**</exclude>
             <exclude>src/test/webapp/css/**</exclude>
