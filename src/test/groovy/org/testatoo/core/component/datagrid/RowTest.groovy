@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.component.datagrid
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.CellSupport
 import org.testatoo.core.support.property.TitleSupport
@@ -25,17 +24,19 @@ import org.testatoo.core.support.property.TitleSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Row")
 class RowTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Row in Component
         assert Row in TitleSupport
         assert Row in CellSupport
     }
 
     @Test
-    void should_have_equality_and_hashcode_based_on_title() {
+    @DisplayName("Should have equality and hashcode based on row title")
+    void equality_and_hashcode() {
         Row row_1 = new TestRow('title_1')
         Row row_2 = new TestRow('title_2')
         Row row_3 = new TestRow('title_1')

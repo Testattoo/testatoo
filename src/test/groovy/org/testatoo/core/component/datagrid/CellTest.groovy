@@ -15,31 +15,32 @@
  */
 package org.testatoo.core.component.datagrid
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.ValueSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Cell")
 class CellTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Cell in Component
         assert Cell in ValueSupport
     }
 
     @Test
-    void should_have_equality_and_hashcode_based_on_value() {
+    @DisplayName("Should have equality and hashcode based on cell value")
+    void equality_and_hashcode() {
         Cell cell_1 = new TestCell('value_1')
         Cell cell_2 = new TestCell('value_2')
         Cell cell_3 = new TestCell('value_1')
 
-        assert !cell_1.equals(cell_2)
-        assert cell_1.equals(cell_3)
+        assert cell_1 != cell_2
+        assert cell_1 == cell_3
 
         assert cell_1.hashCode() == 'value_1'.hashCode()
     }

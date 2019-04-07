@@ -13,18 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.testatoo.bundle.stub
+package org.testatoo
 
-import org.testatoo.core.CssIdentifier
-import org.testatoo.core.component.CheckBox
+import reactor.netty.DisposableServer
+import reactor.netty.http.server.HttpServer
 
-@CssIdentifier('CheckBoxStub')
-class CheckBoxStub extends CheckBox {
-    String label() {
-        return 'Checkbox Label'
-    }
+import java.nio.file.Path
+import java.nio.file.Paths
 
-    boolean checked() {
-        return false
+class Server {
+    static DisposableServer start(int port) {
+        String helper = new File(".").absolutePath
+        Path resource = Paths.get(helper + "/src/test/webapp")
+        return HttpServer.create()
+            .port(port)
+            .route{routes -> routes.directory("/", resource)}
+            .bindNow()
     }
 }

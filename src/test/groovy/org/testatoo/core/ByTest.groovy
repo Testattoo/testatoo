@@ -15,10 +15,9 @@
  */
 package org.testatoo.core
 
-import org.junit.BeforeClass
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.component.Component
 
 import static org.mockito.ArgumentMatchers.any
@@ -26,11 +25,11 @@ import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.core.Testatoo.config
 
-@RunWith(JUnit4)
+@DisplayName("By selector")
 class ByTest {
     private static MetaDataProvider meta
 
-    @BeforeClass
+    @BeforeAll
     static void before() {
         config.evaluator = mock(Evaluator)
         meta = mock(MetaDataProvider)
@@ -38,6 +37,7 @@ class ByTest {
     }
 
     @Test
+    @DisplayName("Should generate expected expression")
     void should_generate_expected_expression() {
         By by = By.css('option')
 
@@ -52,7 +52,8 @@ class ByTest {
     }
 
     @Test
-    void should_be_able_to_find_sub_components() {
+    @DisplayName("Should find sub components")
+    void should_find_sub_components() {
         Component cmp = new Component()
         cmp.meta = meta
         when(config.evaluator.metaInfo("\$('[id=\"id\"]').find('sub_expression')")).thenReturn([

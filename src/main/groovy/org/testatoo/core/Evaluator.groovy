@@ -21,23 +21,23 @@ import org.testatoo.core.input.MouseModifiers
  * @author David Avenante (d.avenante@gmail.com)
  */
 interface Evaluator extends AutoCloseable {
-    abstract Object getDriver()
+    Object getDriver()
 
-    abstract void open(String url)
+    void open(String url)
 
-    abstract void runScript(String script)
+    void runScript(String script)
 
-    abstract void registerScripts(String... scripts)
+    void registerScripts(String... scripts)
 
-    abstract String eval(String id, String jsExpr)
+    String eval(String id, String jsExpr)
 
-    abstract boolean check(String id, String jsExpr)
+    boolean check(String id, String jsExpr)
 
-    abstract String getTitle()
+    String getTitle()
 
-    abstract String getPageSource()
+    String getPageSource()
 
-    abstract String getUrl()
+    String getUrl()
 
     abstract Set<String> getWindowIds()
 
@@ -64,4 +64,6 @@ interface Evaluator extends AutoCloseable {
     abstract void mouseOver(String id)
 
     abstract void dragAndDrop(String originId, String targetId)
+
+    abstract String currentWindow()
 }

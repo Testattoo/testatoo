@@ -94,8 +94,11 @@ class WebDriverEvaluator implements Evaluator {
     }
 
     @Override
-    void switchToWindow(String id) {
+    String switchToWindow(String id) {
+        String parentWindow = webDriver.windowHandle
         webDriver.switchTo().window(id)
+        return parentWindow
+
     }
 
     @Override
@@ -195,6 +198,11 @@ class WebDriverEvaluator implements Evaluator {
     @Override
     void dragAndDrop(String originId, String targetId) {
         new Actions(webDriver).dragAndDrop(webDriver.findElement(By.id(originId)), webDriver.findElement(By.id(targetId))).perform()
+    }
+
+    @Override
+    String currentWindow() {
+        return  webDriver.windowHandle
     }
 
     @Override

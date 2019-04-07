@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.support.Checkable
 import org.testatoo.core.support.property.LabelSupport
 import org.testatoo.core.support.state.CheckSupport
@@ -25,10 +24,11 @@ import org.testatoo.core.support.state.CheckSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Radio")
 class RadioTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Radio in Component
         assert Radio in LabelSupport
         assert Radio in CheckSupport

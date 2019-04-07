@@ -15,9 +15,8 @@
  */
 package org.testatoo.core
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.config
@@ -25,9 +24,10 @@ import static org.testatoo.core.Testatoo.config
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Window")
 class WindowTest {
     @Test
+    @DisplayName("Should create a window")
     void should_create_a_window() {
         Window window = new Window('id')
 
@@ -39,23 +39,20 @@ class WindowTest {
     }
 
     @Test
-    void should_have_equal_based_on_id() {
+    @DisplayName("Should have equality and hashcode based on id")
+    void equality_and_hashcode() {
         Window window_1 = new Window('id_1')
         Window window_2 = new Window('id_2')
         Window window_3 = new Window('id_1')
 
         assert window_1 != window_2
         assert window_1 == window_3
+
+        assert window_1.hashCode() == 'id_1'.hashCode()
     }
 
     @Test
-    void should_have_hash_code_base_on_id() {
-        Window window = new Window('id_1')
-
-        assert window.hashCode() == 'id_1'.hashCode()
-    }
-
-    @Test
+    @DisplayName("Should call underline evaluator on close")
     void should_call_underline_evaluator_on_close() {
         Evaluator evaluator = mock(Evaluator)
         config.evaluator = evaluator

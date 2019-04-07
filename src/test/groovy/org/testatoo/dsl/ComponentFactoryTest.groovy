@@ -15,10 +15,9 @@
  */
 package org.testatoo.dsl
 
-import org.junit.BeforeClass
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.ComponentException
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
@@ -26,7 +25,7 @@ import org.testatoo.core.MetaInfo
 import org.testatoo.core.component.*
 import org.testatoo.core.component.field.*
 
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
@@ -35,12 +34,12 @@ import static org.testatoo.core.Testatoo.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Component factory")
 class ComponentFactoryTest {
     private static MetaDataProvider meta
     private static MetaInfo metaInfo = new MetaInfo(id: 'id', node: 'node')
 
-    @BeforeClass
+    @BeforeAll
     static void before() {
         meta = mock(MetaDataProvider)
         when(meta.metaInfo(any(Component))).thenReturn(metaInfo)
@@ -48,6 +47,7 @@ class ComponentFactoryTest {
     }
 
     @Test
+    @DisplayName("Should have some generic components factory")
     void should_have_generic_components_factory() {
         config.evaluator = mock(Evaluator)
 
@@ -191,6 +191,7 @@ class ComponentFactoryTest {
     }
 
     @Test
+    @DisplayName("Should throw an error when component not found")
     void should_throw_an_error_when_component_not_found() {
         config.evaluator = mock(Evaluator)
 

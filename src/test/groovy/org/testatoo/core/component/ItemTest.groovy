@@ -15,26 +15,27 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.support.property.ValueSupport
 import org.testatoo.core.support.state.SelectSupport
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Item")
 class ItemTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Item in Component
         assert Item in SelectSupport
         assert Item in ValueSupport
     }
 
     @Test
-    void should_have_equality_and_hashcode_based_on_value() {
+    @DisplayName("Should have equality and hashcode based on item value")
+    void equality_and_hashcode() {
         Item item_1 = new TestItem('value_1')
         Item item_2 = new TestItem('value_2')
         Item item_3 = new TestItem('value_1')

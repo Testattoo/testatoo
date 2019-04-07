@@ -15,10 +15,10 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
@@ -34,12 +34,12 @@ import static org.testatoo.core.input.MouseModifiers.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Component")
 class ComponentTest {
     MetaDataProvider metaData
     Evaluator evaluator
 
-    @Before
+    @BeforeEach
     void before() {
         metaData = mock(MetaDataProvider)
         when(metaData.metaInfo(any(Component))).thenReturn(new MetaInfo(id: 'id', node: 'node'))
@@ -48,7 +48,8 @@ class ComponentTest {
     }
 
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Component in Clickable
         assert Component in Draggable
     }
@@ -74,9 +75,9 @@ class ComponentTest {
             .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_1
             .thenReturn(new MetaInfo(id: 'cmpId_1')) // Call on id for cmp_3
 
-        assert !cmp_1.equals(cmp_2) // Same class not same id
-        assert cmp_1.equals(cmp_3)  // Same class and same id
-        assert !cmp_1.equals(cmp_4)  // Different class and same id
+        assert cmp_1 != cmp_2 // Same class not same id
+        assert cmp_1 == cmp_3  // Same class and same id
+        assert cmp_1 != cmp_4  // Different class and same id
 
         assert cmp_1.hashCode() == cmp_1.id().hashCode()
     }

@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.support.Selectable
 import org.testatoo.core.support.UnSelectable
 import org.testatoo.core.support.property.*
@@ -25,10 +24,11 @@ import org.testatoo.core.support.property.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("ListBox")
 class ListBoxTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert ListBox in Component
         assert ListBox in ItemSupport
         assert ListBox in GroupSupport

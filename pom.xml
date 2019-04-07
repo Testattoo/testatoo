@@ -41,7 +41,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jdk.version>1.8</jdk.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+
     <groovy.version>2.5.6</groovy.version>
 
     <classgraph.version>4.6.10</classgraph.version>
@@ -49,11 +51,10 @@
     <hamcrest.version>2.1</hamcrest.version>
 
     <!-- Tests -->
-    <junit.version>4.12</junit.version>
-    <mockito.version>2.23.4</mockito.version>
+    <junit.jupiter.version>5.4.0</junit.jupiter.version>
+    <mockito-core.version>2.21.0</mockito-core.version>
     <webdrivermanager.version>3.1.1</webdrivermanager.version>
-    <jetty.version>9.4.12.v20180830</jetty.version>
-    <jetty.daemon>true</jetty.daemon>
+    <reactor-netty.version>0.8.5.RELEASE</reactor-netty.version>
 
     <!-- Plugins -->
     <gmavenplus-plugin.version>1.6.2</gmavenplus-plugin.version>
@@ -188,8 +189,8 @@
             <exclude>**/*.yml</exclude>
             <exclude>**/*.yml</exclude>
             <exclude>.mvn/**</exclude>
+            <exclude>src/main/resources/**/jquery*.js</exclude>
             <exclude>src/test/resources/**</exclude>
-            <exclude>src/main/resources/**</exclude>
             <exclude>src/test/webapp/css/**</exclude>
             <exclude>src/test/webapp/js/**</exclude>
             <exclude>src/test/webapp/fonts/**</exclude>
@@ -261,9 +262,18 @@
   <dependencies>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
+      <artifactId>groovy</artifactId>
       <version>${groovy.version}</version>
-      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-templates</artifactId>
+      <version>${groovy.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-json</artifactId>
+      <version>${groovy.version}</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -281,27 +291,33 @@
       <version>${classgraph.version}</version>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>${mockito.version}</version>
+      <version>${mockito-core.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
+      <artifactId>selenium-jupiter</artifactId>
       <version>${webdrivermanager.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-      <version>${jetty.version}</version>
+      <groupId>io.projectreactor.netty</groupId>
+      <artifactId>reactor-netty</artifactId>
+      <version>${reactor-netty.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

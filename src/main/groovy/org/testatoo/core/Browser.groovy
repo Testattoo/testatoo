@@ -45,5 +45,5 @@ class Browser {
         return windows
     }
 
-    static void switchTo(Window window) { config.evaluator.switchToWindow(window.id) }
+    static void switchTo(Window window) { window.switchTo(window) }
 }
