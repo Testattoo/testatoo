@@ -34,10 +34,10 @@
         });
         return metaInfos;
       case 'contains':
-        var el = $('#' + options.id);
+        var el = $("[id='" + options.id + "']");
         var not = [];
         $.each(options.ids, function (index, _id) {
-          !$.contains(el[0], $('#' + _id)[0]) && not.push(_id);
+          !$.contains(el[0], $("[id='" + _id + "']")[0]) && not.push(_id);
         });
         return not;
     }
