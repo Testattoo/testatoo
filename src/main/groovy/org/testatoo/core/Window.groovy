@@ -14,15 +14,27 @@
  * limitations under the License.
  */
 package org.testatoo.core
+
+import static org.testatoo.core.Testatoo.*
+
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
 class Window {
     final String id
+    private String parent
 
     Window(String id) { this.id = id }
 
-    void close() { Testatoo.config.evaluator.closeWindow(this.id) }
+    void close() {
+        config.evaluator.closeWindow(this.id)
+        if(parent) config.evaluator.switchToWindow(parent)
+    }
+
+    void switchTo(Window window) {
+        window.parent =  config.evaluator.currentWindow()
+        config.evaluator.switchToWindow(window.id)
+    }
 
     @Override
     String toString() { this.id }

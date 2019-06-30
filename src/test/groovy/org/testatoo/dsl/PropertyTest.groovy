@@ -15,17 +15,9 @@
  */
 package org.testatoo.dsl
 
-import org.junit.BeforeClass
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.testatoo.bundle.stub.*
-import org.testatoo.bundle.stub.datagrid.CellStub
-import org.testatoo.bundle.stub.datagrid.ColumnStub
-import org.testatoo.bundle.stub.datagrid.DataGridStub
-import org.testatoo.bundle.stub.datagrid.RowStub
-import org.testatoo.bundle.stub.field.RangeFieldStub
-import org.testatoo.bundle.stub.field.TextFieldStub
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
@@ -44,12 +36,12 @@ import static org.testatoo.core.Testatoo.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Property")
 class PropertyTest {
     private static MetaDataProvider meta
     private static MetaInfo metaInfo = new MetaInfo(id: 'id', node: 'node')
 
-    @BeforeClass
+    @BeforeAll
     static void before() {
         meta = mock(MetaDataProvider)
         when(meta.metaInfo(any(Component))).thenReturn(metaInfo)
@@ -57,8 +49,9 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support label and placeholder")
     void should_support_label_and_placeholder() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
 
         doReturn('Label').when(field).label()
@@ -69,8 +62,9 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support: maximum, minimum and step")
     void should_support_maximum_minimum_and_step() {
-        RangeField field = spy(new RangeFieldStub())
+        RangeField field = spy(RangeField)
         field.meta = meta
 
         doReturn(5).when(field).minimum()
@@ -85,8 +79,9 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support value")
     void should_support_value() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
 
         doReturn('Value').when(field).value()
@@ -94,8 +89,9 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support text")
     void should_support_text() {
-        Button button = spy(new ButtonStub())
+        Button button = spy(Button)
         button.meta = meta
 
         doReturn('Text').when(button).text()
@@ -103,8 +99,9 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support length")
     void should_support_length() {
-        TextFieldStub other_field = spy(new TextFieldStub())
+        TextField other_field = spy(TextField)
         other_field.meta = meta
 
         doReturn(25).when(other_field).length()
@@ -112,8 +109,9 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support reference")
     void should_support_reference() {
-        Link link = spy(new LinkStub())
+        Link link = spy(Link)
         link.meta = meta
 
         doReturn('http://reference').when(link).reference()
@@ -121,13 +119,14 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support datagrid properties")
     void should_support_datagrid() {
-        DataGrid datagrid = spy(new DataGridStub())
+        DataGrid datagrid = spy(DataGrid)
         datagrid.meta = meta
 
-        Column column_1 = spy(new ColumnStub())
+        Column column_1 = spy(Column)
         column_1.meta = meta
-        Column column_2 = spy(new ColumnStub())
+        Column column_2 = spy(Column)
         column_2.meta = meta
 
         doReturn([column_1, column_2]).when(datagrid).columns()
@@ -137,9 +136,9 @@ class PropertyTest {
         doReturn('Column 2').when(column_2).title()
         datagrid.should { have columns('Column 1', 'Column 2') }
 
-        Row row_1 = spy(new RowStub())
+        Row row_1 = spy(Row)
         row_1.meta = meta
-        Row row_2 = spy(new RowStub())
+        Row row_2 = spy(Row)
         row_2.meta = meta
 
         doReturn([row_1, row_2]).when(datagrid).rows()
@@ -151,9 +150,9 @@ class PropertyTest {
 
         row_1.should { have title('Row 1') }
 
-        Cell cell_1 = spy(new CellStub())
+        Cell cell_1 = spy(Cell)
         cell_1.meta = meta
-        Cell cell_2 = spy(new CellStub())
+        Cell cell_2 = spy(Cell)
         cell_2.meta = meta
 
         doReturn([cell_1, cell_2]).when(row_1).cells()
@@ -165,13 +164,14 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support dropdown properties")
     void should_support_dropdown() {
-        Dropdown dropdown = spy(new DropDownStub())
+        Dropdown dropdown = spy(Dropdown)
         dropdown.meta = meta
 
-        Group group_1 = spy(new GroupStub())
+        Group group_1 = spy(Group)
         group_1.meta = meta
-        Group group_2 = spy(new GroupStub())
+        Group group_2 = spy(Group)
         group_2.meta = meta
 
         doReturn([group_1, group_2]).when(dropdown).groups()
@@ -181,10 +181,10 @@ class PropertyTest {
         doReturn('Group 2').when(group_2).value()
         dropdown.should { have groups('Group 1', 'Group 2') }
 
-        Item item_1 = spy(new ItemStub())
+        Item item_1 = spy(Item)
         item_1.meta = meta
 
-        Item item_2 = spy(new ItemStub())
+        Item item_2 = spy(Item)
         item_2.meta = meta
 
         doReturn([item_1, item_2]).when(dropdown).items()
@@ -202,14 +202,15 @@ class PropertyTest {
     }
 
     @Test
+    @DisplayName("Should support ListBox properties")
     void should_support_listbox() {
-        ListBox listBox = spy(new ListBoxStub())
+        ListBox listBox = spy(ListBox)
         listBox.meta = meta
 
-        Item item_1 = spy(new ItemStub())
+        Item item_1 = spy(Item)
         item_1.meta = meta
 
-        Item item_2 = spy(new ItemStub())
+        Item item_2 = spy(Item)
         item_2.meta = meta
 
         doReturn('Item 1').when(item_1).value()

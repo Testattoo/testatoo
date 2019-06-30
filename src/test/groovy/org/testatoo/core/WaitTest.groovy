@@ -17,39 +17,52 @@ package org.testatoo.core
 
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
-import org.junit.AfterClass
-import org.junit.BeforeClass
-import org.junit.ClassRule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.testatoo.WebDriverConfig
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+import org.testatoo.Server
 import org.testatoo.bundle.html5.Button
+import org.testatoo.evaluator.webdriver.WebDriverEvaluator
+import reactor.netty.DisposableServer
 
-import static org.junit.Assert.fail
-import static org.testatoo.WebDriverConfig.BASE_URL
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver
+import static org.junit.jupiter.api.Assertions.fail
 import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Wait until")
 class WaitTest {
-    @ClassRule
-    public static WebDriverConfig driver = new WebDriverConfig()
+    private static DisposableServer server
+    private static final int PORT = 9090
+    private static String BASE_URL = "http://localhost:${PORT}/"
+    private static WebDriver driver
 
-    @BeforeClass
+    @BeforeAll
     static void before() {
+        server = Server.start(9090)
+
+        chromedriver().setup()
+        driver = new ChromeDriver()
+        config.evaluator = new WebDriverEvaluator(driver)
+
         config.waitUntil = 10.seconds
         visit BASE_URL + 'wait.html'
     }
 
-    @AfterClass
+    @AfterAll
     static void tearDown() {
         config.waitUntil = 2.seconds
+        driver.close()
+        server.dispose()
     }
 
     @Test
+    @DisplayName("Should wait on condition")
     void should_be_able_to_wait_on_condition() {
         Browser.refresh()
 
@@ -72,6 +85,7 @@ class WaitTest {
     }
 
     @Test
+    @DisplayName("Should throw an exception when condition not reach in expected duration")
     void should_throw_exception_when_condition_in_not_reach_in_expected_duration() {
         Browser.refresh()
 

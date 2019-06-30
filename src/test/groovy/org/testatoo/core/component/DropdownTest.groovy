@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.support.Selectable
 import org.testatoo.core.support.property.GroupSupport
 import org.testatoo.core.support.property.ItemSupport
@@ -27,10 +26,11 @@ import org.testatoo.core.support.property.SelectedItemSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Dropdown")
 class DropdownTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Dropdown in Component
         assert Dropdown in ItemSupport
         assert Dropdown in GroupSupport

@@ -16,11 +16,7 @@
 package org.testatoo
 
 import io.github.bonigarcia.wdm.WebDriverManager
-import org.eclipse.jetty.server.Server
-import org.eclipse.jetty.server.handler.DefaultHandler
-import org.eclipse.jetty.server.handler.HandlerList
-import org.eclipse.jetty.server.handler.ResourceHandler
-import org.junit.rules.ExternalResource
+import org.junit.jupiter.api.BeforeAll
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
@@ -29,74 +25,83 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxOptions
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.testatoo.evaluator.webdriver.WebDriverEvaluator
+import reactor.netty.DisposableServer
+import reactor.netty.http.server.HttpServer
+
+import java.nio.file.Path
+import java.nio.file.Paths
 
 import static org.testatoo.core.Testatoo.config
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-class WebDriverConfig extends ExternalResource {
+class WebDriverConfig { //} extends ExternalResource {
     public static String BASE_URL
     private static int PORT = 9090
-    private static Server server
+    private static DisposableServer server
 
-    @Override
-    protected void before() throws Throwable {
-        // Defined by JVM maven arguments
-        final String browser = System.getProperty('browser') ?: 'Chrome' // -Dbrowser=Firefox
-        final boolean docker = Boolean.valueOf(System.getProperty('remote')) ?: false // -Dremote=true
-
-        BASE_URL = 'http://localhost:' + PORT + '/'
-
-        startJetty()
-
-        switch (browser) {
-            case 'Firefox':
-                println '================== Firefox Profile ==================='
-                if (docker) {
-                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new FirefoxOptions())
-                    config.evaluator = new WebDriverEvaluator(driver)
-                } else {
-                    WebDriverManager.firefoxdriver().setup()
-                    config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
-                }
-                break
-            case 'Chrome':
-                println '=================== Chrome Profile ==================='
-                if (docker) {
-                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new ChromeOptions())
-                    config.evaluator = new WebDriverEvaluator(driver)
-                } else {
-                    WebDriverManager.chromedriver().setup()
-                    config.evaluator = new WebDriverEvaluator(new ChromeDriver())
-                }
-                break
-            case 'Edge':
-                println '==================== Edge Profile ===================='
-                WebDriverManager.edgedriver().setup()
-                config.evaluator = new WebDriverEvaluator(new EdgeDriver())
-                break
-        }
+    @BeforeAll
+    static void setUp() {
+        startServer()
     }
 
-    @Override
-    protected void after() {
-        config.evaluator.close()
-        server.stop()
+    static DisposableServer startServer() {
+        String helper = new File(".").getAbsolutePath()
+        Path resource = Paths.get(helper + "/webapp")
+        return HttpServer.create()
+            .port(PORT)
+            .route{routes -> routes.directory("/", resource)}
+            .bindNow()
     }
 
-    private static void startJetty() {
-        server = new Server(PORT)
-        ResourceHandler resource_handler = new ResourceHandler()
 
-        resource_handler.directoriesListed = true
-        resource_handler.welcomeFiles = ['index.html']
-        resource_handler.resourceBase = 'src/test/webapp'
+//    @Override
+//    protected void before() throws Throwable {
+//        // Defined by JVM maven arguments
+//        final String browser = System.getProperty('browser') ?: 'Chrome' // -Dbrowser=Firefox
+//        final boolean docker = Boolean.valueOf(System.getProperty('remote')) ?: false // -Dremote=true
+//
+//        BASE_URL = 'http://localhost:' + PORT + '/'
+//
+//        startJetty()
+//
+//        switch (browser) {
+//            case 'Firefox':
+//                println '================== Firefox Profile ==================='
+//                if (docker) {
+//                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new FirefoxOptions())
+//                    config.evaluator = new WebDriverEvaluator(driver)
+//                } else {
+//                    WebDriverManager.firefoxdriver().setup()
+//                    config.evaluator = new WebDriverEvaluator(new FirefoxDriver())
+//                }
+//                break
+//            case 'Chrome':
+//                println '=================== Chrome Profile ==================='
+//                if (docker) {
+//                    WebDriver driver = new RemoteWebDriver(new URL('http://localhost:4444/wd/hub'), new ChromeOptions())
+//                    config.evaluator = new WebDriverEvaluator(driver)
+//                } else {
+//                    WebDriverManager.chromedriver().setup()
+//                    config.evaluator = new WebDriverEvaluator(new ChromeDriver())
+//                }
+//                break
+//            case 'Edge':
+//                println '==================== Edge Profile ===================='
+//                WebDriverManager.edgedriver().setup()
+//                config.evaluator = new WebDriverEvaluator(new EdgeDriver())
+//                break
+//        }
+//    }
 
-        HandlerList handlers = new HandlerList()
-        handlers.handlers = [resource_handler, new DefaultHandler()]
-        server.handler = handlers
 
-        server.start()
-    }
+
+
+//    @Override
+//    protected void after() {
+//        config.evaluator.close()
+//        server.stop()
+//    }
+
 }

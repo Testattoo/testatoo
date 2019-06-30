@@ -15,28 +15,29 @@
  */
 package org.testatoo.core.component
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Group")
 class GroupTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Group in Component
     }
 
     @Test
-    void should_have_equality_and_hashcode_based_on_value() {
+    @DisplayName("Should have equality and hashcode based on group value")
+    void equality_and_hashcode() {
         Group group_1 = new TestGroup('value_1')
         Group group_2 = new TestGroup('value_2')
         Group group_3 = new TestGroup('value_1')
 
-        assert !group_1.equals(group_2)
-        assert group_1.equals(group_3)
+        assert group_1 != group_2
+        assert group_1 == group_3
 
         assert group_1.hashCode() == 'value_1'.hashCode()
     }

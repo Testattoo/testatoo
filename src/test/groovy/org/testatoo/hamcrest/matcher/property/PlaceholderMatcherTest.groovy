@@ -17,13 +17,12 @@ package org.testatoo.hamcrest.matcher.property
 
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.support.property.InputSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.hamcrest.Matchers.has
@@ -32,9 +31,10 @@ import static org.testatoo.hamcrest.Matchers.placeholder
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Placeholder Property Matcher")
 class PlaceholderMatcherTest {
     @Test
+    @DisplayName("Should have expected matcher available")
     void should_have_expected_matcher() {
         InputSupport cmp = mock(InputSupport)
 

@@ -15,14 +15,13 @@
  */
 package org.testatoo.core
 
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.component.Component
 import org.testatoo.core.internal.Identifiers
 
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.core.Testatoo.*
@@ -30,15 +29,16 @@ import static org.testatoo.core.Testatoo.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Selector")
 class SelectorTest {
-    @Before
+    @BeforeEach
     void before() {
         config.evaluator = mock(Evaluator)
         config.componentTypes.clear()
     }
 
     @Test
+    @DisplayName("Should use \$ as selector for single component")
     void should_use_$_as_a_single_selector() {
         when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node')])
 
@@ -47,6 +47,7 @@ class SelectorTest {
     }
 
     @Test
+    @DisplayName("Should throw an error if single selector find many components")
     void should_throw_an_error_if_single_selector_find_many_components() {
         when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node'),
                                                                         new MetaInfo(id: '2', node: 'node'),
@@ -61,6 +62,7 @@ class SelectorTest {
     }
 
     @Test
+    @DisplayName("Should throw an error if single selector return not expected component type")
     void should_throw_an_error_if_single_selector_return_not_expected_component_type() {
         config.componentTypes.add(CustomElement_1)
         config.componentTypes.add(CustomElement_2)
@@ -79,7 +81,8 @@ class SelectorTest {
     }
 
     @Test
-    void should_have_at_least_an_Identifier_available_on_Component() {
+    @DisplayName("Should have at least an identifier available on component")
+    void should_have_at_least_an_identifier_available_on_component() {
         config.componentTypes.add(InvalidComponent)
         when(config.evaluator.metaInfo("\$('expression')")).thenReturn([new MetaInfo(id: '1', node: 'node')])
 
@@ -102,6 +105,7 @@ class SelectorTest {
     }
 
     @Test
+    @DisplayName("Should use \$\$ as selector for list of components")
     void should_use_$$_as_a_multi_selector() {
         when(config.evaluator.metaInfo("\$('.btn')")).thenReturn([new MetaInfo(id: '1', node: 'node'),
                                                                   new MetaInfo(id: '2', node: 'node'),
@@ -110,84 +114,6 @@ class SelectorTest {
         List<CustomElement_1> elements = $$('.btn', CustomElement_1)
         assert elements.size() == 3
     }
-
-//    @Test
-//    void should_delegate_to_expected_factory() {
-//        ComponentFactory factorySpy = spy(new ComponentFactory())
-//        componentFactory = factorySpy
-//
-//        button 'Button'
-//        verify(factorySpy).button('Button')
-//
-//        radio 'Radio'
-//        verify(factorySpy).radio('Radio')
-//
-//        checkbox 'Checkbox'
-//        verify(factorySpy).checkbox('Checkbox')
-//
-//        textField 'Text'
-//        verify(factorySpy).textField('Text')
-//
-//        passwordField 'Password'
-//        verify(factorySpy).passwordField('Password')
-//
-//        searchField 'Search'
-//        verify(factorySpy).searchField('Search')
-//
-//        emailField 'Email'
-//        verify(factorySpy).emailField('Email')
-//
-//        urlField 'URL'
-//        verify(factorySpy).urlField('URL')
-//
-//        numberField 'Number'
-//        verify(factorySpy).numberField('Number')
-//
-//        rangeField 'Range'
-//        verify(factorySpy).rangeField('Range')
-//
-//        colorField 'Color'
-//        verify(factorySpy).colorField('Color')
-//
-//        dateField 'Date'
-//        verify(factorySpy).dateField('Date')
-//
-//        dateTimeField 'DateTime'
-//        verify(factorySpy).dateTimeField('DateTime')
-//
-//        monthField 'Month'
-//        verify(factorySpy).monthField('Month')
-//
-//        phoneField 'Phone'
-//        verify(factorySpy).phoneField('Phone')
-//
-//        timeField 'Time'
-//        verify(factorySpy).timeField('Time')
-//
-//        weekField 'Week'
-//        verify(factorySpy).weekField('Week')
-//
-//        link 'Link'
-//        verify(factorySpy).link('Link')
-//
-//        dropdown 'Elements'
-//        verify(factorySpy).dropdown('Elements')
-//
-//        listBox 'List'
-//        verify(factorySpy).listBox('List')
-//
-//        item 'Item'
-//        verify(factorySpy).item('Item')
-//
-//        group 'Group'
-//        verify(factorySpy).group('Group')
-//
-//        heading 'Heading'
-//        verify(factorySpy).heading('Heading')
-//
-//        panel 'Panel'
-//        verify(factorySpy).panel('Panel')
-//    }
 
     private class InvalidComponent extends Component {}
 

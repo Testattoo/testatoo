@@ -15,14 +15,9 @@
  */
 package org.testatoo.dsl
 
-import org.junit.BeforeClass
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.testatoo.bundle.stub.CheckBoxStub
-import org.testatoo.bundle.stub.ItemStub
-import org.testatoo.bundle.stub.field.RangeFieldStub
-import org.testatoo.bundle.stub.field.TextFieldStub
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.Evaluator
 import org.testatoo.core.MetaDataProvider
 import org.testatoo.core.MetaInfo
@@ -33,7 +28,7 @@ import org.testatoo.core.component.Item
 import org.testatoo.core.component.field.RangeField
 import org.testatoo.core.component.field.TextField
 
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.*
@@ -41,12 +36,12 @@ import static org.testatoo.core.Testatoo.*
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("State")
 class StateTest {
     private static MetaDataProvider meta
     private static MetaInfo metaInfo = new MetaInfo(id: 'id', node: 'node')
 
-    @BeforeClass
+    @BeforeAll
     static void before() {
         meta = mock(MetaDataProvider)
         when(meta.metaInfo(any(Component))).thenReturn(metaInfo)
@@ -54,6 +49,7 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support available, enabled and visible")
     void should_support_available_enabled_visible() {
         Component cmp = spy(new Component(meta))
 
@@ -79,8 +75,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support checked/unchecked")
     void should_support_checked_unchecked() {
-        CheckBox checkbox = spy(new CheckBoxStub())
+        CheckBox checkbox = spy(CheckBox)
         checkbox.meta = meta
 
         doReturn(true).when(checkbox).enabled()
@@ -98,8 +95,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support required")
     void should_support_required() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
 
         doReturn(false).when(field).required()
@@ -110,8 +108,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support valid")
     void should_support_valid() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
 
         doReturn(true).when(field).valid()
@@ -122,8 +121,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support empty")
     void should_support_empty() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
 
         doReturn(true).when(field).empty()
@@ -134,8 +134,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support read only")
     void should_support_readOnly() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
         doReturn(true).when(field).readOnly()
         field.should { be readOnly }
@@ -150,8 +151,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support focused")
     void should_support_focused() {
-        TextField field = spy(new TextFieldStub())
+        TextField field = spy(TextField)
         field.meta = meta
 
         doReturn(true).when(field).focused()
@@ -167,8 +169,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support selected")
     void should_support_selected() {
-        Item item = spy(new ItemStub())
+        Item item = spy(Item)
         item.meta = meta
 
         doReturn(false).when(item).selected()
@@ -179,8 +182,9 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support range")
     void should_support_range() {
-        RangeField field = spy(new RangeFieldStub())
+        RangeField field = spy(RangeField)
         field.meta = meta
 
         doReturn(true).when(field).inRange()
@@ -191,6 +195,7 @@ class StateTest {
     }
 
     @Test
+    @DisplayName("Should support contain")
     void should_support_contain() {
         Component cmp = spy(new Component(meta))
         config.evaluator = mock(Evaluator)

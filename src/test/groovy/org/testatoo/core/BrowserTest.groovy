@@ -15,31 +15,57 @@
  */
 package org.testatoo.core
 
-import org.junit.ClassRule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.testatoo.WebDriverConfig
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+import org.testatoo.Server
 import org.testatoo.core.component.Component
+import org.testatoo.evaluator.webdriver.WebDriverEvaluator
+import reactor.netty.DisposableServer
 
-import static org.testatoo.WebDriverConfig.BASE_URL
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver
 import static org.testatoo.core.Browser.*
 import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Browser behaviours")
 class BrowserTest {
-    @ClassRule
-    public static WebDriverConfig driver = new WebDriverConfig()
+    private static DisposableServer server
+    private static final int PORT = 9090
+    private static String BASE_URL = "http://localhost:${PORT}/"
+    private static WebDriver driver
+
+    @BeforeAll
+    static void before() {
+        server = Server.start(9090)
+
+        chromedriver().setup()
+        driver = new ChromeDriver()
+        config.evaluator = new WebDriverEvaluator(driver)
+
+        config.waitUntil = 10.seconds
+        visit BASE_URL + 'wait.html'
+    }
+
+    @AfterAll
+    static void tearDown() {
+        config.waitUntil = 2.seconds
+        driver.close()
+        server.dispose()
+    }
 
     @Test
-    void should_be_able_to_have_browser_properties_access() {
+    @DisplayName("Should access to browser properties")
+    void should_access_to_browser_properties() {
         open BASE_URL + 'index.html'
 
-        assert title == 'Testatoo Rocks'
-        assert pageSource.contains('<title>Testatoo Rocks</title>')
+        assert title == 'Testattoo Rocks'
+        assert pageSource.contains('<title>Testattoo Rocks</title>')
         assert url == BASE_URL + 'index.html'
 
         open(BASE_URL + 'keyboard.html')
@@ -47,7 +73,8 @@ class BrowserTest {
     }
 
     @Test
-    void should_be_able_to_navigate() {
+    @DisplayName("Should navigate")
+    void should_navigate() {
         open BASE_URL + 'index.html'
 
         assert url == BASE_URL + 'index.html'
@@ -66,6 +93,7 @@ class BrowserTest {
     }
 
     @Test
+    @DisplayName("Should manage Windows")
     void should_manage_windows() {
         open BASE_URL + 'index.html'
         Component link = $('#link') as Component
@@ -87,5 +115,6 @@ class BrowserTest {
         waitUntil({ windows.size() == 1 })
         assert windows[0].id == main_window_id
         assert windows[0].toString() == main_window_id
+
     }
 }

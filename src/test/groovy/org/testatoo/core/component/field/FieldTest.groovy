@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.component.field
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.InputSupport
 import org.testatoo.core.support.property.LabelSupport
@@ -30,10 +29,11 @@ import org.testatoo.core.support.state.ValiditySupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Field")
 class FieldTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert Field in Component
         assert Field in LabelSupport
         assert Field in InputSupport

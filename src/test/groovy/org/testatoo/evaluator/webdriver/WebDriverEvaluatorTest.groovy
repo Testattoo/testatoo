@@ -15,40 +15,57 @@
  */
 package org.testatoo.evaluator.webdriver
 
-import org.junit.AfterClass
-import org.junit.ClassRule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.openqa.selenium.WebDriver
-import org.testatoo.WebDriverConfig
+import org.openqa.selenium.chrome.ChromeDriver
+import org.testatoo.Server
 import org.testatoo.bundle.html5.Div
 import org.testatoo.bundle.html5.InputTypeText
 import org.testatoo.core.internal.Log
+import reactor.netty.DisposableServer
 
-import static org.testatoo.WebDriverConfig.BASE_URL
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver
 import static org.testatoo.core.Testatoo.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Webdriver Evaluator")
 class WebDriverEvaluatorTest {
-    @ClassRule
-    public static WebDriverConfig driver = new WebDriverConfig()
+    private static DisposableServer server
+    private static final int PORT = 9090
+    private static String BASE_URL = "http://localhost:${PORT}/"
+    private static WebDriver driver
 
-    @AfterClass
-    static void after() {
+    @BeforeAll
+    static void before() {
+        server = Server.start(9090)
+
+        chromedriver().setup()
+        driver = new ChromeDriver()
+        config.evaluator = new WebDriverEvaluator(driver)
+    }
+
+    @AfterAll
+    static void tearDown() {
         config.debug = false
+        server.dispose()
+        driver.close()
     }
 
     @Test
-    void should_be_able_to_obtain_the_underline_implementation() {
+    @DisplayName("Should obtain the underline implementation")
+    void should_obtain_the_underline_implementation() {
         assert config.evaluator.driver instanceof WebDriver
     }
 
     @Test
-    void should_be_able_to_register_a_script() {
+    @DisplayName("Should register a script")
+    void should_register_a_script() {
         try {
             // Page with jquery missing
             visit BASE_URL + 'popup.html'
@@ -95,6 +112,7 @@ class WebDriverEvaluatorTest {
     }
 
     @Test
+    @DisplayName("Should inject a jQuery in noConflict mode")
     void should_add_jquery_if_missing() {
         visit BASE_URL + 'popup.html'
 
@@ -102,6 +120,7 @@ class WebDriverEvaluatorTest {
     }
 
     @Test
+    @DisplayName("Should activate logging")
     void should_be_able_to_activate_logging() {
         assert !Log.debug
         config.debug = true

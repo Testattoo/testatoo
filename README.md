@@ -1,30 +1,30 @@
 # Testatoo
 
-[![CircleCI](https://circleci.com/gh/Testatoo/testatoo.svg?style=svg)](https://circleci.com/gh/Testatoo/testatoo)
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Ovea/testatoo)
-[![codecov](https://codecov.io/gh/Testatoo/testatoo/branch/master/graph/badge.svg)](https://codecov.io/gh/Testatoo/testatoo)
+[![CircleCI](https://circleci.com/gh/Testattoo/testattoo.svg?style=svg)](https://circleci.com/gh/Testattoo/testattoo)
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Ovea/testattoo)
+[![codecov](https://codecov.io/gh/Testattoo/testattoo/branch/master/graph/badge.svg)](https://codecov.io/gh/Testattoo/testattoo)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-![TEstatoo Logo](logo.svg "Testatoo")
+![Testattoo Logo](logo.svg "Testattoo")
 
 ## Documentation and Samples
 
-The documentation is available [here](http://www.testatoo.org/documentation.html)
+The documentation is available [here](http://www.testattoo.org/documentation.html)
 
-Samples are available [here](https://github.com/Ovea/testatoo-sample)
+Samples are available [here](https://github.com/Ovea/testattoo-sample)
 
 ## Quickstart
 
-Get Started in 5 minutes [here](http://www.testatoo.org/get-started.html)
+Get Started in 5 minutes [here](http://www.testattoo.org/get-started.html)
 
 ## Downloading
 
-Latest Testatoo version is available on [Maven Central](https://repo.maven.apache.org/maven2/org/testatoo/testatoo/)
+Latest Testattoo version is available on [Maven Central](https://repo.maven.apache.org/maven2/org/testattoo/testattoo/)
 
     <dependency>
-      <groupId>org.testatoo</groupId>
-      <artifactId>testatoo</artifactId>
-      <version>2.0.b27</version>
+      <groupId>org.testattoo</groupId>
+      <artifactId>testattoo-core</artifactId>
+      <version>[LATEST]</version>
       <scope>test</scope>
     </dependency>
 

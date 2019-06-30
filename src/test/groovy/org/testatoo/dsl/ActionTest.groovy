@@ -15,22 +15,15 @@
  */
 package org.testatoo.dsl
 
-import org.junit.BeforeClass
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.testatoo.bundle.stub.CheckBoxStub
-import org.testatoo.bundle.stub.FormStub
-import org.testatoo.bundle.stub.ItemStub
-import org.testatoo.bundle.stub.ListBoxStub
-import org.testatoo.bundle.stub.field.RangeFieldStub
-import org.testatoo.bundle.stub.field.TextFieldStub
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.*
 import org.testatoo.core.component.*
 import org.testatoo.core.component.field.RangeField
 import org.testatoo.core.component.field.TextField
 
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.ArgumentMatchers.any
 import static org.mockito.Mockito.*
 import static org.testatoo.core.Testatoo.*
@@ -41,12 +34,12 @@ import static org.testatoo.core.input.MouseModifiers.SINGLE
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Actions")
 class ActionTest {
     private static MetaDataProvider meta
     private static MetaInfo metaInfo = new MetaInfo(id: 'id', node: 'node')
 
-    @BeforeClass
+    @BeforeAll
     static void before() {
         meta = mock(MetaDataProvider)
         when(meta.metaInfo(any(Component))).thenReturn(metaInfo)
@@ -54,7 +47,8 @@ class ActionTest {
     }
 
     @Test
-    void should_be_able_to_visit() {
+    @DisplayName("Should visit an URL")
+    void should_visit() {
         config.evaluator = mock(Evaluator)
 
         verify(config.evaluator, times(0)).open('http://myUrl')
@@ -63,7 +57,8 @@ class ActionTest {
     }
 
     @Test
-    void should_be_able_to_type_text() {
+    @DisplayName("Should type text")
+    void should_type_text() {
         config.evaluator = mock(Evaluator)
 
         verify(config.evaluator, times(0)).type(['data'])
@@ -72,8 +67,9 @@ class ActionTest {
     }
 
     @Test
-    void should_be_able_to_fill() {
-        TextField field = spy(new TextFieldStub())
+    @DisplayName("Should fill a field")
+    void should_fill_field() {
+        TextField field = spy(TextField)
         field.meta = meta
 
         fill field with 'Some value'
@@ -81,8 +77,9 @@ class ActionTest {
     }
 
     @Test
-    void should_be_able_to_set() {
-        RangeField range = spy(new RangeFieldStub())
+    @DisplayName("Should set a value")
+    void should_set_a_value() {
+        RangeField range = spy(RangeField)
         range.meta = meta
 
         set range to 10
@@ -90,14 +87,16 @@ class ActionTest {
     }
 
     @Test
+    @DisplayName("Should have 'on' as language placeholder ... on component do something ...")
     void should_have_on_as_placeholder() {
-        CheckBox checkBox = spy(new CheckBoxStub())
+        CheckBox checkBox = spy(CheckBox)
         assert on(checkBox).is(checkBox)
     }
 
     @Test
-    void should_be_able_to_submit_and_reset_form() {
-        Form form = spy(new FormStub())
+    @DisplayName("Should submit and reset a form")
+    void should_submit_and_reset_form() {
+        Form form = spy(Form.class)
         form.meta = meta
 
         Testatoo.reset form // Explicit call to forbid Mockito reset method call
@@ -108,14 +107,15 @@ class ActionTest {
     }
 
     @Test
-    void should_be_able_to_select_items_in_components_containing_items() {
-        ListBox listBox = spy(new ListBoxStub())
+    @DisplayName("Should select items in components that containing items")
+    void should_select_items_in_components_containing_items() {
+        ListBox listBox = spy(ListBox)
         listBox.meta = meta
 
-        Item item_1 = spy(new ItemStub())
+        Item item_1 = spy(Item)
         item_1.meta = meta
 
-        Item item_2 = spy(new ItemStub())
+        Item item_2 = spy(Item)
         item_2.meta = meta
 
         config.evaluator = mock(Evaluator)
@@ -167,8 +167,9 @@ class ActionTest {
     }
 
     @Test
+    @DisplayName("Should throw an error when action on component does not correspond to its state")
     void should_throw_an_error_when_action_on_component_does_not_correspond_to_its_state() {
-        CheckBox checkbox = spy(new CheckBoxStub())
+        CheckBox checkbox = spy(CheckBox)
         checkbox.meta = meta
 
         doReturn(false).when(checkbox).enabled()
@@ -205,10 +206,10 @@ class ActionTest {
             assert e.message.endsWith('is already unchecked and cannot be unchecked')
         }
 
-        ListBox listBox = spy(new ListBoxStub())
+        ListBox listBox = spy(ListBox)
         listBox.meta = meta
 
-        Item item_1 = spy(new ItemStub())
+        Item item_1 = spy(Item)
         item_1.meta = meta
 
         doReturn([item_1]).when(listBox).items()

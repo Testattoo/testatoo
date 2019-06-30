@@ -45,15 +45,15 @@ class Testatoo {
     /**
      * Create a component
      */
-    static Component $(String jQuery) {
-        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, true)))
+    static Component $(String expression) {
+        new Component(new CachedMetaData(idProvider: new jQueryIdProvider(expression, true)))
     }
 
     /**
      * Creates a list of component
      */
-    static List $$(String jQuery, Class clazz = Component) {
-        Components components = new Components(clazz, new CachedMetaData(idProvider: new jQueryIdProvider(jQuery, false)))
+    static List $$(String expression, Class clazz = Component) {
+        Components components = new Components(clazz, new CachedMetaData(idProvider: new jQueryIdProvider(expression, false)))
         components.list()
     }
 

@@ -17,14 +17,13 @@ package org.testatoo.hamcrest.matcher.state
 
 import org.hamcrest.Description
 import org.hamcrest.StringDescription
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.support.state.CollapseSupport
 
 import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
-import static org.junit.Assert.fail
+import static org.junit.jupiter.api.Assertions.fail
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 import static org.testatoo.hamcrest.Matchers.expanded
@@ -32,10 +31,10 @@ import static org.testatoo.hamcrest.Matchers.expanded
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-
-@RunWith(JUnit4)
+@DisplayName("Expanded State Matcher")
 class ExpandedMatcherTest {
     @Test
+    @DisplayName("Should have expected matcher available")
     void should_have_expected_matcher() {
         CollapseSupport cmp = mock(CollapseSupport)
 

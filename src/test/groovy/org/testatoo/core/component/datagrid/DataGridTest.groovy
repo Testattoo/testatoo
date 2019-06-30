@@ -15,9 +15,8 @@
  */
 package org.testatoo.core.component.datagrid
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.testatoo.core.component.Component
 import org.testatoo.core.support.property.ColumnSupport
 import org.testatoo.core.support.property.RowSupport
@@ -25,10 +24,11 @@ import org.testatoo.core.support.property.RowSupport
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("DataGrid")
 class DataGridTest {
     @Test
-    void should_have_expected_inheritance() {
+    @DisplayName("Should have expected inheritance")
+    void inheritance() {
         assert DataGrid in Component
         assert DataGrid in ColumnSupport
         assert DataGrid in RowSupport

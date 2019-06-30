@@ -15,34 +15,59 @@
  */
 package org.testatoo.core.input
 
-import org.junit.Before
-import org.junit.ClassRule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.testatoo.WebDriverConfig
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+import org.testatoo.Server
 import org.testatoo.bundle.html5.InputTypeText
 import org.testatoo.core.component.Component
+import org.testatoo.evaluator.webdriver.WebDriverEvaluator
+import reactor.netty.DisposableServer
 
-import static org.testatoo.WebDriverConfig.BASE_URL
+import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver
+import static org.testatoo.core.Browser.refresh
 import static org.testatoo.core.Testatoo.*
 import static org.testatoo.core.input.Key.*
 
 /**
  * @author David Avenante (d.avenante@gmail.com)
  */
-@RunWith(JUnit4)
+@DisplayName("Keyboard behaviours")
 class KeyboardTest {
-    @ClassRule
-    public static WebDriverConfig driver = new WebDriverConfig()
+    private static DisposableServer server
+    private static final int PORT = 9090
+    private static String BASE_URL = "http://localhost:${PORT}/"
+    private static WebDriver driver
 
-    @Before
-    void before() {
+    @BeforeAll
+    static void before() {
+        server = Server.start(9090)
+
+        chromedriver().setup()
+        driver = new ChromeDriver()
+        config.evaluator = new WebDriverEvaluator(driver)
+
         visit BASE_URL + 'keyboard.html'
     }
 
+    @AfterAll
+    static void tearDown() {
+        driver.close()
+        server.dispose()
+    }
+
+    @BeforeEach
+    void setup() {
+        refresh()
+    }
+
     @Test
-    void should_type_letters_on_keyboard() {
+    @DisplayName("Should type Letters")
+    void should_type_letters() {
         (0..25).each {
             char letter = (char) (('a' as char) + it)
             Component current_span = $("#span_$letter") as Component
@@ -54,7 +79,8 @@ class KeyboardTest {
     }
 
     @Test
-    void should_type_number_on_keyboard() {
+    @DisplayName("Should type Numbers")
+    void should_type_number() {
         (0..9).each {
             Component current_span = $("#span_$it") as Component
             assert !current_span.available()
@@ -71,7 +97,8 @@ class KeyboardTest {
      *  ESCAPE, INSERT, DELETE, PAGE_UP, PAGE_DOWN, HOME, END, BACK_SPACE, TAB, LEFT, UP, RIGHT, DOWN
      */
     @Test
-    void should_type_special_key_on_keyboard() {
+    @DisplayName("Should type special Keys")
+    void should_type_special_key() {
         [
             '#span_divide'   : DIVIDE,
             '#span_multiply' : MULTIPLY,
@@ -94,7 +121,8 @@ class KeyboardTest {
     }
 
     @Test
-    void should_use_key_modifier_on_keyboard() {
+    @DisplayName("Should use key modifier")
+    void should_use_key_modifier() {
         InputTypeText textField = $('#textfield') as InputTypeText
 
         assert textField.value() == ''
